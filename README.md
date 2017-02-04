@@ -14,6 +14,9 @@ Features:
 - Auto track episodes
 - (add/remove) Kiss Bookmarks = (plan to watch/dropped) on Mal (not on bookmark site)
 - Caches entries for faster load times
+- Mal Score is a link to Mal
+
+Google is used to find the Anime. Because it has so many domains (.com .en .de ....) it will ask you to allow that Domain.
 
 Prototype 1
 Has some more Features at the moment (automatically set as completed ...)
