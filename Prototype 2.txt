@@ -62,24 +62,68 @@
         //update
         try{
             var curEpisode = parseInt(window.location.href.split("/")[5].split("?")[0].match(/\d+/)[0].slice(-3));
-            if(curEpisode > anime['.add_anime[num_watched_episodes]']){
-                var animechange = {};
-                animechange['.add_anime[num_watched_episodes]'] = curEpisode;
-                setanime(window.location.href.split("/")[4],animechange);
-                /*if(astatus === 1){//TODO on anime List?
-                    setanime(animeId,curEpisode);
-                }else{
-                    var setstatus = null;
-                    if (confirm('Set anime as Watching?')) {
-                        setstatus = 1;
-                    }
-                    setanime(animeId,curEpisode,null,setstatus);
-                }*/
-
-            }
+            //if(curEpisode > anime['.add_anime[num_watched_episodes]']){
+            var animechange = {};
+            animechange['.add_anime[num_watched_episodes]'] = curEpisode;
+            animechange['checkIncrease'] = 1;
+            setanime(window.location.href.split("/")[4],animechange);
         }catch(e) {
 
         }
+    }
+
+    function handleanimeupdate( anime, current){
+        if(anime['checkIncrease'] === 1){
+            if(current['.add_anime[num_watched_episodes]'] >= anime['.add_anime[num_watched_episodes]']){
+                if((anime['.add_anime[status]'] === 2 || current['.add_anime[status]'] === 2) && anime['.add_anime[num_watched_episodes]'] === 1){
+                    if (confirm('Rewatch anime?')) {
+                        anime['.add_anime[is_rewatching]'] = 1;
+                    }else{
+                        return null;
+                    }
+                }else{
+                    return null;
+                }
+            }
+            if(current['.add_anime[status]'] !== 2 && anime['.add_anime[num_watched_episodes]'] === current['totalEp']){
+                if (confirm('Set as completed?')) {
+                    anime['.add_anime[status]'] = 2;
+                    if(current['.add_anime[finish_date][day]'] === ''){
+                        var Datec = new Date();
+                        anime['.add_anime[finish_date][year]'] = Datec.getFullYear();
+                        anime['.add_anime[finish_date][month]'] = Datec.getMonth()+1;
+                        anime['.add_anime[finish_date][day]'] = Datec.getDate();
+                    }
+                }
+            }
+            if(current['.add_anime[status]'] === 2 && anime['.add_anime[num_watched_episodes]'] === current['totalEp'] && current['.add_anime[is_rewatching]'] === 1){
+                if (confirm('Finish rewatching?')) {
+                    anime['.add_anime[is_rewatching]'] = 0;
+                    if(current['.add_anime[num_watched_times]'] === ''){
+                        anime ['.add_anime[num_watched_times]'] = 1;
+                    }else{
+                        anime ['.add_anime[num_watched_times]'] = parseInt(current['.add_anime[num_watched_times]'])+1;
+                    }
+                }
+            }
+            if(current['.add_anime[status]'] !== 1 && current['.add_anime[status]'] !== 2 && anime['.add_anime[status]'] !== 2){ 
+                if (confirm('Start watching?')) {
+                    anime['.add_anime[status]'] = 1;
+                    if(current['.add_anime[start_date][day]'] === ''){
+                        var Datec = new Date();
+                        anime['.add_anime[start_date][year]'] = Datec.getFullYear();
+                        anime['.add_anime[start_date][month]'] = Datec.getMonth()+1;
+                        anime['.add_anime[start_date][day]'] = Datec.getDate();
+                    }
+                }
+                //TODO Set Rewatching
+            }
+
+        }
+
+
+
+        return anime;
     }
 
     function getcommondata(url){
@@ -194,18 +238,18 @@
         }
         data = data.split('<form name="')[1].split('</form>')[0];
 
-        anime['totalEp'] = data.split('id="totalEpisodes">')[1].split('<')[0];
+        anime['totalEp'] = parseInt(data.split('id="totalEpisodes">')[1].split('<')[0]);
         anime['name'] = data.split('<a href="')[1].split('">')[1].split('<')[0];
-        anime['.anime_id'] = data.split('name="anime_id"')[1].split('value="')[1].split('"')[0]; //input
-        anime['.aeps'] = data.split('name="aeps"')[1].split('value="')[1].split('"')[0];
-        anime['.astatus'] = data.split('name="astatus"')[1].split('value="')[1].split('"')[0];
-        anime['.add_anime[status]'] = getselect(data,'add_anime[status]');
+        anime['.anime_id'] = parseInt(data.split('name="anime_id"')[1].split('value="')[1].split('"')[0]); //input
+        anime['.aeps'] = parseInt(data.split('name="aeps"')[1].split('value="')[1].split('"')[0]);
+        anime['.astatus'] = parseInt(data.split('name="astatus"')[1].split('value="')[1].split('"')[0]);
+        anime['.add_anime[status]'] = parseInt(getselect(data,'add_anime[status]'));
         //Rewatching
         if(data.split('name="add_anime[is_rewatching]"')[1].split('>')[0].indexOf('checked="checked"') >= 0){
             anime['.add_anime[is_rewatching]'] = 1;
         }
         //
-        anime['.add_anime[num_watched_episodes]'] = data.split('name="add_anime[num_watched_episodes]"')[1].split('value="')[1].split('"')[0];
+        anime['.add_anime[num_watched_episodes]'] = parseInt(data.split('name="add_anime[num_watched_episodes]"')[1].split('value="')[1].split('"')[0]);
         anime['.add_anime[score]'] = getselect(data,'add_anime[score]');
         anime['.add_anime[start_date][month]'] = getselect(data,'add_anime[start_date][month]');
         anime['.add_anime[start_date][day]'] = getselect(data,'add_anime[start_date][day]');
@@ -235,23 +279,31 @@
             return;
         }
 
+        var url = "https://myanimelist.net/editlist.php?type=anime&id="+actual['.anime_id'];
+        if(actual['addanime'] === 1){
+            url = "https://myanimelist.net/ownlist/anime/add?selected_series_id="+actual['.anime_id'];
+            if (!confirm('Add "'+actual['name']+'" to MAL?')) {
+                return;
+            }
+        }
+
+        anime = handleanimeupdate( anime, actual );
+        if(anime === null){
+            return;
+        }
         $.each( anime, function( index, value ){
             actual[index] = value;
         });
         anime = actual;
         var parameter = "";
-        var url = "https://myanimelist.net/editlist.php?type=anime&id="+anime['.anime_id'];
-        if(anime['addanime'] === 1){
-            url = "https://myanimelist.net/ownlist/anime/add?selected_series_id="+anime['.anime_id'];
-            if (!confirm('Add "'+anime['name']+'" to MAL?')) {
-                return;
-            }
-        }
+
 
         $.each( anime, function( index, value ){
             if(index.charAt(0) == "."){
-                console.log(index.substring(1)+": ",value);
-                parameter += encodeURIComponent (index.substring(1))+"="+encodeURIComponent (value)+"&";
+                if(!(index === '.add_anime[is_rewatching]' && anime[index] === 0)){
+                    console.log(index.substring(1)+": ",value);
+                    parameter += encodeURIComponent (index.substring(1))+"="+encodeURIComponent (value)+"&";
+                }
             }
         });
         //return;
@@ -267,7 +319,9 @@
             },
             onload: function(response) {
                 //console.log(response);//.responseText);
-                checkdata();
+                if(anime['checkIncrease'] !== 1){
+                    checkdata();
+                }
                 if(response.responseText.indexOf('Successfully') >= 0){
                     flashm( "Anime was updated" , false);
                     if($("#malbutton").height()!==null){
