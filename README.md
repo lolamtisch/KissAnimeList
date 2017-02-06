@@ -19,7 +19,5 @@ Features:
 Google is used to find the Anime. Because it has so many domains (.com .en .de ....) it will ask you to allow that Domain.
 
 Prototype 1
-Has some more Features at the moment (automatically set as completed ...)
 
 Prototype 2 (Recommended)
-Faster and Reliable
