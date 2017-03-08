@@ -1400,5 +1400,11 @@
             "Mal-img": "https://myanimelist.cdn-dena.com/images/anime/11/50411.jpg",
             "Mal-title": "ef: A Tale of Memories."
         }
+    },
+    "animeRequest": {
+        "-KehhdwZ4uwaAFQXeyaj": {
+            "Kiss": "http://kissanime.ru/Anime/Haiyore-Nyaruko-san-F",
+            "Mal": "https://myanimelist.net/anime/26023/Haiyore_Nyaruko-san_F"
+        }
     }
 }
