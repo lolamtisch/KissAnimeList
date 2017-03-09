@@ -2191,19 +2191,15 @@
             "Mal-img": "https://myanimelist.cdn-dena.com/images/anime/6/25254.jpg",
             "Mal-title": "Kaichou wa Maid-sama!"
         },
-        "http%3A%2F%2Fkissanime%2Eru%2FAnime%2FKamisama-Hajimemashita": {
-            "Kiss": "http://kissanime.ru/Anime/Kamisama-Hajimemashita",
-            "Kiss-description": "",
-            "Kiss-img": "https://myanimelist.cdn-dena.com/images/anime/5/67999.jpg",
-            "Kiss-title": "Kamisama Hajimemashita (Sub)",
-            "Mal": "https://myanimelist.net/anime/14713/Kamisama_Hajimemashita",
-            "Mal-description": "High schooler Nanami Momozono has quite a few problems of late, beginning with her absentee father being in such extreme debt that they lose everything. Downtrodden and homeless, she runs into a man being harassed by a dog. After helping him, she explains her situation, and to her surprise, he offers her his home in gratitude. But when she discovers that said home is a rundown shrine, she tries to leave; however, she is caught by two shrine spirits and a fox familiar named Tomoe. They mistake her for the man Nanami rescued&mdash;the land god of the shrine, Mikage. Realizing that Mikage must have sent her there as a replacement god, Tomoe leaves abruptly, refusing to serve a human.<br />\r\n<br />\r\nRather than going back to being homeless, Nanami immerses herself in her divine duties. But if she must keep things running smoothly, she will need the help of a certain hot-headed fox. In her fumbling attempt to seek out Tomoe, she lands in trouble and ends up sealing a contract with him. Now the two must traverse the path of godhood together as god and familiar; but it will not be easy, for new threats arise in the form of a youkai who wants to devour the girl, a snake that wants to marry her, and Nanami&#039;s own unexpected feelings for her new familiar.<br />\r\n<br />\r\n[Written by MAL Rewrite]",
-            "Mal-img": "https://myanimelist.cdn-dena.com/images/anime/5/67999.jpg",
-            "Mal-title": "Kamisama Hajimemashita"
-        },
         "http%3A%2F%2Fkissanime%2Eru%2FAnime%2FKamisama-no-Memochou-Dub": {
             "Kiss": "http://kissanime.ru/Anime/Kamisama-no-Memochou-Dub",
-            "Mal": "https://myanimelist.net/anime/10568/Kamisama_no_Memochou"
+            "Kiss-description": "<span style=\"text-align: justify;\">Narumi Fujishima isn't your typical high school student. He's never really fit in and has become increasingly more isolated from his fellow classmates. But he's not alone, and when Ayaka, the sole member of the Gardening Club, introduces him to the reclusive girl who lives above the ramen shop, Narumi enters a whole new secret world. Alice is a NEET, someone who is Not Employed, being Educated or in Training, but as Narumi quickly discovers, that doesn't mean that she does nothing all day.&nbsp;</span><br style=\"text-align: justify;\" /><br style=\"text-align: justify;\" /><span style=\"text-align: justify;\">In between tending to her small army of stuffed bears, Alice is an expert hacker and a very exclusive private detective. To his surprise, Narumi finds himself drafted as one of the strange-but-elite team of associates that Alice has assembled from her NEET acquaintances. Together they'll battle gangs, thieves, murderers, and drug lords. And in the middle of it all, Narumi will find his life changing forever!&nbsp;</span>",
+            "Kiss-img": "https://myanimelist.cdn-dena.com/images/anime/13/75202.jpg",
+            "Kiss-title": "Kamisama no Memochou (Dub)",
+            "Mal": "https://myanimelist.net/anime/10568/Kamisama_no_Memochou",
+            "Mal-description": "Narumi Fujishima isn&#039;t your typical high school student. He&#039;s never really fit in and has become increasingly more isolated from his fellow classmates. But he&#039;s not alone, and when Ayaka, the sole member of the Gardening Club, introduces him to the reclusive girl who lives above the ramen shop, Narumi enters a whole new secret world. Alice is a NEET, someone who is Not Employed, being Educated or in Training, but as Narumi quickly discovers, that doesn&#039;t mean that she does nothing all day. <br />\r\n<br />\r\nIn between tending to her small army of stuffed bears, Alice is an expert hacker and a very exclusive private detective. To his surprise, Narumi finds himself drafted as one of the strange-but-elite team of associates that Alice has assembled from her NEET acquaintances. Together they&#039;ll battle gangs, thieves, murderers, and drug lords. And in the middle of it all, Narumi will find his life changing forever! <br />\r\n<br />\r\n(Source: Sentai Filmworks) ",
+            "Mal-img": "https://myanimelist.cdn-dena.com/images/anime/13/75202.jpg",
+            "Mal-title": "Kamisama no Memochou"
         },
         "http%3A%2F%2Fkissanime%2Eru%2FAnime%2FKampfer": {
             "Kiss": "http://kissanime.ru/Anime/Kampfer",
@@ -4817,6 +4813,72 @@
             "Mal-description": "On Christmas Eve, Hiro Hirono runs into Miyako Miyamura, a frivolous girl who &quot;borrows&quot; his bicycle in order to chase down a purse thief. After Hiro finds his bicycle wrecked and Miyako unconscious, the two unexpectedly spend their Christmas Eve together, and when they discover they go to the same high school, their accidental relationship develops even further. This sparks the jealousy of Hiro&#039;s childhood friend Kei Shindou, whose pure approach to life catches the eye of Kyosuke Tsutsumi, a womanizing photographer searching for the perfect shot.<br />\r\n<br />\r\nElsewhere, Renji Asou, a boy who dreams of being a girl&#039;s knight in shining armor, has a chance encounter with Kei&#039;s twin sister&mdash;the overly shy Chihiro Shindou, who spends her time reading alone&mdash;at an abandoned train station. The two quickly become friends and eventually decide to write a novel together. However, when Renji discovers Chihiro&#039;s secret, a disability that causes her to have an eternally ephemeral memory, his childish ideals will be put to the test.<br />\r\n<br />\r\nGuided by two mysterious adults, these youths&#039; relationships intertwine in a heart-rending tale of love, rejection, acceptance, and memories.<br />\r\n<br />\r\n[Written by MAL Rewrite]",
             "Mal-img": "https://myanimelist.cdn-dena.com/images/anime/11/50411.jpg",
             "Mal-title": "ef: A Tale of Memories."
+        }
+    },
+    "animeRequest": {
+        "-KejisGfQyvkkeZlbMDO": {
+            "Kiss": "http://kissanime.ru/Anime/Akiba-s-Trip-The-Animation",
+            "Mal": "https://myanimelist.net/anime/34051/Akibas_Trip_The_Animation"
+        },
+        "-Kek-NKGdqoLydQV73ev": {
+            "Kiss": "http://kissanime.ru/Anime/Venus-Wars-Dub",
+            "Mal": "https://myanimelist.net/anime/544/Venus_Senki"
+        },
+        "-Kek0v2_p9LGUx0dwfMv": {
+            "Kiss": "http://kissanime.ru/Anime/To-LOVE-Ru-Darkness-2nd",
+            "Mal": "https://myanimelist.net/anime/28979/To_LOVE-Ru_Darkness_2nd"
+        },
+        "-Kek5kjr9vA6oMRhEVTl": {
+            "Kiss": "http://kissanime.ru/Anime/Desert-Punk",
+            "Mal": "https://myanimelist.net/anime/25/Sunabouzu"
+        },
+        "-Kek6BABJ_1EJiYnO58B": {
+            "Kiss": "http://kissanime.ru/Anime/Accel-World-Dub",
+            "Mal": "https://myanimelist.net/anime/11759/Accel_World"
+        },
+        "-KekGSaRqZiw_d-fw_t9": {
+            "Kiss": "http://kissanime.ru/Anime/Sankarea",
+            "Mal": "https://myanimelist.net/anime/11499/Sankarea"
+        },
+        "-KekSJeOnlM1rSEOLRhZ": {
+            "Kiss": "http://kissanime.ru/Anime/Funky-Fables-Dub",
+            "Mal": "https://myanimelist.net/anime/30029/Video_Ehonkan_Sekai_Meisaku_Douwa"
+        },
+        "-KekSR3UfnnkkXVp3Lx9": {
+            "Kiss": "http://kissanime.ru/Anime/IS-Infinite-Stratos-2-World-Purge-hen-Dub",
+            "Mal": "https://myanimelist.net/anime/21653/IS__Infinite_Stratos_2_-_World_Purge-hen"
+        },
+        "-KekT7fFqso9Egskg1Fi": {
+            "Kiss": "http://kissanime.ru/Anime/High-School-DxD-BorN-Dub",
+            "Mal": "https://myanimelist.net/anime/24703/High_School_DxD_BorN"
+        },
+        "-KekT7kk6q_z_tSzNkMV": {
+            "Kiss": "http://kissanime.ru/Anime/High-School-DxD-New-Dub",
+            "Mal": "https://myanimelist.net/anime/15451/High_School_DxD_New"
+        },
+        "-KekXZSEDecA51oY9sIJ": {
+            "Kiss": "http://kissanime.ru/Anime/Kuroko-no-Basket-Movie-3-Winter-Cup-Soushuuhen",
+            "Mal": "https://myanimelist.net/anime/32871/Kuroko_no_Basket_Movie_3__Winter_Cup_Soushuuhen_-_Tobira_no_Mukou"
+        },
+        "-KekXfg1cDg00yJdrjnx": {
+            "Kiss": "http://kissanime.ru/Anime/Kuroko-no-Basket-Movie-1-Winter-Cup-Soushuuhen",
+            "Mal": "https://myanimelist.net/anime/32869/Kuroko_no_Basket_Movie_1__Winter_Cup_Soushuuhen_-_Kage_to_Hikari"
+        },
+        "-KekXr4zo23l3Mv8LuHu": {
+            "Kiss": "http://kissanime.ru/Anime/Kuroko-no-Basket-Movie-2-Winter-Cup-Soushuuhen",
+            "Mal": "https://myanimelist.net/anime/32870/Kuroko_no_Basket_Movie_2__Winter_Cup_Soushuuhen_-_Namida_no_Saki_e"
+        },
+        "-KekYCb-VBp2cQMl0LRJ": {
+            "Kiss": "http://kissanime.ru/Anime/Kikaider-01-The-Animation-Dub",
+            "Mal": "https://myanimelist.net/anime/1768/Kikaider_01_The_Animation"
+        },
+        "-KekYQZvsuMol-wbInNn": {
+            "Kiss": "http://kissanime.ru/Anime/Kikaider",
+            "Mal": "https://myanimelist.net/anime/598/Jinzou_Ningen_Kikaider_The_Animation"
+        },
+        "-KekaKj9uyfM-JAHlIfr": {
+            "Kiss": "http://kissanime.ru/Anime/Death-Note-Dub",
+            "Mal": "https://myanimelist.net/anime/1535/Death_Note"
         }
     }
 }
