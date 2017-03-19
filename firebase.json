@@ -1001,16 +1001,6 @@
             "Mal-img": "https://myanimelist.cdn-dena.com/images/anime/13/32285.jpg",
             "Mal-title": "C³"
         },
-        "http%3A%2F%2Fkissanime%2Eru%2FAnime%2FC-3%23": {
-            "Kiss": "http://kissanime.ru/Anime/C-3#",
-            "Kiss-description": "From the light novel series written by Minase Hazuki, comes a story of love, action, and comedy. Yachi Haruaki is a high school boy who is naturally resistant to curses. After his father sends him a mysterious black cube, Haruaki awakes to find a nude girl named Fear standing in his kitchen. She&rsquo;s the human form of the cursed black cube &ndash; and an instrument of torture! Utilizing her special abilities, Fear fights alongside Haruaki to defeat other cursed instruments and their owners.",
-            "Kiss-img": "https://myanimelist.cdn-dena.com/images/anime/13/32285.jpg",
-            "Kiss-title": "C3",
-            "Mal": "https://myanimelist.net/anime/10578/C%25C2%25B3",
-            "Mal-description": "From the light novel series written by Minase Hazuki, comes a story of love, action, and comedy. Yachi Haruaki is a high school boy who is naturally resistant to curses. After his father sends him a mysterious black cube, Haruaki awakes to find a nude girl named Fear standing in his kitchen. She&rsquo;s the human form of the cursed black cube &ndash; and an instrument of torture! Utilizing her special abilities, Fear fights alongside Haruaki to defeat other cursed instruments and their owners.<br />\r\n<br />\r\n(Source: FUNimation)",
-            "Mal-img": "https://myanimelist.cdn-dena.com/images/anime/13/32285.jpg",
-            "Mal-title": "C³"
-        },
         "http%3A%2F%2Fkissanime%2Eru%2FAnime%2FCLANNAD-After-Story-Dub": {
             "Kiss": "http://kissanime.ru/Anime/CLANNAD-After-Story-Dub",
             "Kiss-description": "Events in After Story take place immediately after the first season,  following Tomoya's final semester of high school. After declaring his  love to Nagisa, they begin to have a close relationship. Their life  together will be faced with unexpected challenges, as the truth behind  the illusionary world and the city's legend come to light.",
@@ -7196,10 +7186,6 @@
         }
     },
     "animeRequest": {
-        "-KfSNGEHaKlMuB-0mul0": {
-            "Kiss": "http://kissanime.ru/Anime/ChaoS-HEAd-dub",
-            "Mal": "https://myanimelist.net/anime/4975/Ch%25C3%25A4oS_HEAd/userrecs"
-        },
         "-KfSNbGZDIWqE9fYxTxZ": {
             "Kiss": "http://kissanime.ru/Anime/Chaos-Head-Dub",
             "Mal": "https://myanimelist.net/anime/4975/Ch%25C3%25A4oS_HEAd"
@@ -7339,6 +7325,162 @@
         "-KfUsWgg0WVr1TjsS5Hx": {
             "Kiss": "http://kissanime.ru/Anime/Ranma-Big-Trouble-in-Nekonron-China",
             "Mal": "https://myanimelist.net/anime/418/Ranma_%25C2%25BD__Chuugoku_Nekonron_Daikessen_Okite_Yaburi_no_Gekitou-hen"
+        },
+        "-KfVOlOPX0IG82QlGWpv": {
+            "Kiss": "http://kissanime.ru/Anime/Haunted-Junction",
+            "Mal": "https://myanimelist.net/anime/646/Haunted_Junction"
+        },
+        "-KfVgyoQHx3wq7XLY-Te": {
+            "Kiss": "http://kissanime.ru/AnimeList/MostPopular",
+            "Mal": "https://myanimelist.net/anime/16742/Watashi_ga_Motenai_no_wa_Dou_Kangaetemo_Omaera_ga_Warui"
+        },
+        "-KfVkd4sPQGu3bzEQiFP": {
+            "Kiss": "http://kissanime.ru/Anime/Re-Zero-kara-Hajimeru-Isekai-Seikatsu",
+            "Mal": "https://myanimelist.net/anime/31240/Re_Zero_kara_Hajimeru_Isekai_Seikatsu"
+        },
+        "-KfW8CBp2bF84mLCRCkI": {
+            "Kiss": "http://kissanime.ru/Anime/Kobayashi-san-Chi-no-Maid-Dragon",
+            "Mal": "https://myanimelist.net/anime/33206/Kobayashi-san_Chi_no_Maid_Dragon"
+        },
+        "-KfWD_zp99tbySICWsMl": {
+            "Kiss": "http://kissanime.ru/Anime/Naruto-Shippuuden",
+            "Mal": "https://myanimelist.net/anime/1735/Naruto__Shippuuden"
+        },
+        "-KfWWQG5ktrkdxnc-34f": {
+            "Kiss": "http://kissanime.ru/Anime/Higurashi-no-Naku-Koro-ni-Dub",
+            "Mal": "https://myanimelist.net/anime/934/Higurashi_no_Naku_Koro_ni"
+        },
+        "-KfXUZlVjA552C0y748U": {
+            "Kiss": "http://kissanime.ru/Anime/Ghost-in-the-Shell-Arise-Border-2-Ghost-Whispers-dub",
+            "Mal": "https://myanimelist.net/anime/19191/Ghost_in_the_Shell__Arise_-_Border_2_Ghost_Whispers"
+        },
+        "-KfXUj7KJa3UJGHT9-ai": {
+            "Kiss": "http://kissanime.ru/Anime/Ghost-in-the-Shell-Arise-Border-2-Ghost-Whispers-Dub",
+            "Mal": "https://myanimelist.net/anime/19191/Ghost_in_the_Shell__Arise_-_Border_2_Ghost_Whispers"
+        },
+        "-KfXVoUaiSXcagSwhtSu": {
+            "Kiss": "http://kissanime.ru/Anime/NouCome",
+            "Mal": "https://myanimelist.net/anime/19221/Ore_no_Nounai_Sentakushi_ga_Gakuen_Love_Comedy_wo_Zenryoku_de_Jama_Shiteiru"
+        },
+        "-KfXW5yDdZt1CNqqmKku": {
+            "Kiss": "http://kissanime.ru/Anime/Ghost-in-the-Shell-Arise-Border-1-Ghost-Pain-dub",
+            "Mal": "https://myanimelist.net/anime/17187/Ghost_in_the_Shell__Arise_-_Border_1_Ghost_Pain"
+        },
+        "-KfXWEawyWTyV2hRUNl-": {
+            "Kiss": "http://kissanime.ru/Anime/Ghost-in-the-Shell-Arise-Border-1-Ghost-Pain-Dub",
+            "Mal": "https://myanimelist.net/anime/17187/Ghost_in_the_Shell__Arise_-_Border_1_Ghost_Pain"
+        },
+        "-KfXYF1CrSK8VQDhkuKj": {
+            "Kiss": "http://kissanime.ru/Anime/School-Rumble",
+            "Mal": "https://myanimelist.net/anime/24/School_Rumble"
+        },
+        "-KfXeOIbQtc7ixGtbHpp": {
+            "Kiss": "http://kissanime.ru/Anime/Ben-To-Dub",
+            "Mal": "https://myanimelist.net/anime/10396/Ben-To"
+        },
+        "-KfXjC7j7QuBqYFVkddD": {
+            "Kiss": "http://kissanime.ru/Anime/Ghost-in-the-Shell-Arise-Border-3-Ghost-Tears-dub",
+            "Mal": "https://myanimelist.net/anime/19193/Ghost_in_the_Shell__Arise_-_Border_3_Ghost_Tears"
+        },
+        "-KfXjK6Y0abb_kETeyWn": {
+            "Kiss": "http://kissanime.ru/Anime/Ghost-in-the-Shell-Arise-Border-3-Ghost-Tears-Dub",
+            "Mal": "https://myanimelist.net/anime/19193/Ghost_in_the_Shell__Arise_-_Border_3_Ghost_Tears"
+        },
+        "-KfXo0lqavSJTuDBcMYI": {
+            "Kiss": "http://kissanime.ru/Anime/Aikatsu-Stars",
+            "Mal": "https://myanimelist.net/anime/32717/Aikatsu_Stars"
+        },
+        "-KfXy8WN3S6ZHne6jjRh": {
+            "Kiss": "http://kissanime.ru/Anime/Ghost-in-the-Shell-Arise-Border-4-Ghost-Stands-Alone-Dub",
+            "Mal": "https://myanimelist.net/anime/19195/Ghost_in_the_Shell__Arise_-_Border_4_Ghost_Stands_Alone"
+        },
+        "-KfY6ZOmeikZNQQxqlsW": {
+            "Kiss": "http://kissanime.ru/Anime/Rewrite-Moon-and-Terra",
+            "Mal": "https://myanimelist.net/anime/34126/Rewrite_2nd_Season"
+        },
+        "-KfYBd5yCIUKvMz75kxE": {
+            "Kiss": "http://kissanime.ru/Anime/Maoyuu-Maou-Yuusha",
+            "Mal": "https://myanimelist.net/anime/14833/Maoyuu_Maou_Yuusha"
+        },
+        "-KfYXH6cBFpojRiBvAmM": {
+            "Kiss": "http://kissanime.ru/Anime/Ghost-in-the-Shell-Arise-Alternative-Architecture",
+            "Mal": "https://myanimelist.net/anime/29325/Ghost_in_the_Shell__Arise_-_Alternative_Architecture"
+        },
+        "-KfYYWwHK-hj7MxO9_w2": {
+            "Kiss": "http://kissanime.ru/Anime/Ghost-in-the-Shell-dub",
+            "Mal": "https://myanimelist.net/anime/467/Ghost_in_the_Shell__Stand_Alone_Complex"
+        },
+        "-KfYYZzEsOl_LbdiEoeD": {
+            "Kiss": "http://kissanime.ru/Anime/Ghost-in-the-Shell-Dub",
+            "Mal": "https://myanimelist.net/anime/43/Ghost_in_the_Shell"
+        },
+        "-KfY_BVqilKXGAyJy7OY": {
+            "Kiss": "http://kissanime.ru/Anime/Ghost-in-the-Shell-2015-dub",
+            "Mal": "https://myanimelist.net/anime/27411/Ghost_in_the_Shell_2015"
+        },
+        "-KfY_HR7pskILmN5CEPu": {
+            "Kiss": "http://kissanime.ru/Anime/Ghost-in-the-Shell-2015-Dub",
+            "Mal": "https://myanimelist.net/anime/27411/Ghost_in_the_Shell_2015"
+        },
+        "-KfYqP_JuVEau64fKOof": {
+            "Kiss": "http://kissanime.ru/Anime/Hibike-Euphonium-2-Specials",
+            "Mal": "https://myanimelist.net/anime/34204/Hibike_Euphonium_2_Specials"
+        },
+        "-KfYyT-dsGnKV8cVSCA1": {
+            "Kiss": "http://kissanime.ru/Anime/Sengoku-Basara",
+            "Mal": "https://myanimelist.net/anime/5355/Sengoku_Basara"
+        },
+        "-KfZ5fik8Y1fGImz49s8": {
+            "Kiss": "http://kissanime.ru/Anime/Masamune-kun-no-Revenge",
+            "Mal": "https://myanimelist.net/anime/33487/Masamune-kun_no_Revenge"
+        },
+        "-KfZ5grQEJ191H_1NtRw": {
+            "Kiss": "http://kissanime.ru/Anime/Fuuka",
+            "Mal": "https://myanimelist.net/anime/33743/Fuuka"
+        },
+        "-KfZ5w0s_2ArPmmV2ZJJ": {
+            "Kiss": "http://kissanime.ru/Anime/Sword-Art-Online-II-Dub",
+            "Mal": "https://myanimelist.net/anime/21881/Sword_Art_Online_II"
+        },
+        "-KfZKhSm9tH-lVJVj6_F": {
+            "Kiss": "http://kissanime.ru/Anime/Reikenzan-Hoshikuzu-tachi-no-Utage-2nd-Season",
+            "Mal": "https://myanimelist.net/anime/33019/Reikenzan__Eichi_e_no_Shikaku"
+        },
+        "-KfZO7BXhSlwos_Lkffu": {
+            "Kiss": "http://kissanime.ru/Anime/Owarimonogatari",
+            "Mal": "https://myanimelist.net/anime/31181/Owarimonogatari"
+        },
+        "-KfZOP5NLumz4NASIAqd": {
+            "Kiss": "http://kissanime.ru/Anime/Koyomimonogatari",
+            "Mal": "https://myanimelist.net/anime/32268/Koyomimonogatari"
+        },
+        "-KfZPbTIyolN8GSH4ZEr": {
+            "Kiss": "http://kissanime.ru/Anime/Death-Billiards",
+            "Mal": "https://myanimelist.net/anime/14353/Death_Billiards"
+        },
+        "-KfZRTiw99R2tesb3I2F": {
+            "Kiss": "http://kissanime.ru/Anime/Higashi-no-Eden-dub",
+            "Mal": "https://myanimelist.net/anime/6927/Higashi_no_Eden_Soushuuhen__Air_Communication"
+        },
+        "-KfZRpckoUBKCkMIs0Em": {
+            "Kiss": "http://kissanime.ru/Anime/The-Dragon-Dentist-Dub",
+            "Mal": "https://myanimelist.net/anime/34549/Ryuu_no_Haisha"
+        },
+        "-KfZRwgj_V68cAYCEb3C": {
+            "Kiss": "http://kissanime.ru/Anime/The-Dragon-Dentist-Dub#",
+            "Mal": "https://myanimelist.net/anime/34549/Ryuu_no_Haisha"
+        },
+        "-KfZtOX5F3cQCgSmYwRy": {
+            "Kiss": "http://kissanime.ru/Anime/Dimension-W-Dub",
+            "Mal": "https://myanimelist.net/anime/31163/Dimension_W"
+        },
+        "-KfZtPRdrTWFgEjWYWKv": {
+            "Kiss": "http://kissanime.ru/Anime/Dimension-W",
+            "Mal": "https://myanimelist.net/anime/31163/Dimension_W"
+        },
+        "-KfZv00s9_Pacj9ECGXj": {
+            "Kiss": "http://kissanime.ru/Anime/Jigoku-Shoujo",
+            "Mal": "https://myanimelist.net/anime/228/Jigoku_Shoujo"
         }
     }
 }
