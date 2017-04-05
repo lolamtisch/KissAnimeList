@@ -120,16 +120,6 @@
             "Mal-img": "https://myanimelist.cdn-dena.com/images/anime/3/83776.jpg",
             "Mal-title": "ACCA: 13-ku Kansatsu-ka"
         },
-        "http%3A%2F%2Fkissanime%2Eru%2FAnime%2FACCA-13-ku-Kansatsu-ka-dub": {
-            "Kiss": "http://kissanime.ru/Anime/ACCA-13-ku-Kansatsu-ka-dub",
-            "Kiss-description": "<span>The kingdom of Dowa, which is subdivided into 13 states, is celebrating its monarch's 99th birthday. These 13 states have many agencies that are controlled by the giant organization known as ACCA. Within ACCA, Jean Otus is the second-in-command of the inspection agency. His agency has ten people placed in each of the 13 states, with a central office in the capital city. They keep track of all the activities of ACCA across the kingdom, and keep data on each state's ACCA office flowing toward the central office. Jean also often has business trips from the capital to the other districts to check on the situation and personnel there.</span>",
-            "Kiss-img": "https://kissanime.ru/Uploads/Etc/1-17-2017/52082054583776.jpg",
-            "Kiss-title": "ACCA: 13-ku Kansatsu-ka (Dub)",
-            "Mal": "https://myanimelist.net/anime/33337/ACCA__13-ku_Kansatsu-ka",
-            "Mal-description": "The kingdom of Dowa, which is subdivided into 13 states, is celebrating its monarch&#039;s 99th birthday. These 13 states have many agencies that are controlled by the giant organization known as ACCA. Within ACCA, Jean Otus is the second-in-command of the inspection agency. His agency has ten people placed in each of the 13 states, with a central office in the capital city. They keep track of all the activities of ACCA across the kingdom, and keep data on each state&#039;s ACCA office flowing toward the central office. Jean also often has business trips from the capital to the other districts to check on the situation and personnel there.<br />\r\n<br />\r\n(Source: MangaHelpers, edited)",
-            "Mal-img": "https://myanimelist.cdn-dena.com/images/anime/3/83776.jpg",
-            "Mal-title": "ACCA: 13-ku Kansatsu-ka"
-        },
         "http%3A%2F%2Fkissanime%2Eru%2FAnime%2FAbarenbou-Kishi-Matsutarou": {
             "Kiss": "http://kissanime.ru/Anime/Abarenbou-Kishi-Matsutarou",
             "Kiss-description": "Matsutarou Sakaguchi is a giant roughneck man with strength far beyond ordinary people. He never uttered words like \"work hard,\" \"strive,\" and \"dream\" like the typical shounen manga protagonist. However, he is stronger than anyone and peerless in sumo wrestling. His greatest weakness is his own carefree personality. He grows into a full-fledged sumo wrestler.",
@@ -1001,6 +991,16 @@
             "Mal-img": "https://myanimelist.cdn-dena.com/images/anime/12/73984.jpg",
             "Mal-title": "Ben-To"
         },
+        "http%3A%2F%2Fkissanime%2Eru%2FAnime%2FBerserk": {
+            "Kiss": "http://kissanime.ru/Anime/Berserk",
+            "Kiss-description": "",
+            "Kiss-img": "https://myanimelist.cdn-dena.com/images/anime/12/18520.jpg",
+            "Kiss-title": "Berserk (Dub)",
+            "Mal": "https://myanimelist.net/anime/33/Berserk",
+            "Mal-description": "Born from the corpse of his mother, a young mercenary known only as Guts, embraces the battlefield as his only means of survival. Day in and day out, putting his life on the line just to make enough to get by, he moves from one bloodshed to the next.<br />\r\n<br />\r\nAfter a run-in with the Band of the Hawk, a formidable troop of mercenaries, Guts is recruited by their charismatic leader Griffith, nicknamed the &quot;White Hawk.&quot; As he quickly climbed the ranks in order to become the head of the offensive faction, Guts proves to be a mighty addition to Griffith&#039;s force, taking Midland by storm. However, while the band&#039;s quest for recognition continues, Guts slowly realizes that the world is not as black-and-white as he once assumed.<br />\r\n<br />\r\nSet in the medieval era, <i>Berserk</i> is a dark, gritty tale that follows one man&#039;s struggle to find his own path, while supporting another&#039;s lust for power, and the unimaginable tragedy that begins to turn the wheels of fate.<br />\r\n<br />\r\n[Written by MAL Rewrite]",
+            "Mal-img": "https://myanimelist.cdn-dena.com/images/anime/12/18520.jpg",
+            "Mal-title": "Berserk"
+        },
         "http%3A%2F%2Fkissanime%2Eru%2FAnime%2FBerserk-2016": {
             "Kiss": "http://kissanime.ru/Anime/Berserk-2016",
             "Kiss-description": "Now branded for death and destined to be hunted by demons until the day he dies, Guts embarks on a journey to defy such a gruesome fate, as waves of beasts relentlessly pursue him. Steeling his resolve, he takes up the monstrous blade Dragonslayer and vows to exact vengeance on the one responsible, hunting down the very man he once looked up to and considered a friend.<br /><br />Along the way, he encounters some unlikely allies, such as a small elf named Puck, and Isidro, a young thief looking to learn swordsmanship from the former mercenary. As the ragtag group slowly comes together after having decided to join Guts in his quest, they will face incredible danger unlike anything they have ever experienced before.<br style=\"font-family: Verdana, Arial; font-size: 11px;\" />",
@@ -1091,8 +1091,8 @@
             "Mal-img": "https://myanimelist.cdn-dena.com/images/anime/4/25596.jpg",
             "Mal-title": "Black Lagoon"
         },
-        "http%3A%2F%2Fkissanime%2Eru%2FAnime%2FBlack-Lagoon-The-Second-Barrage-dub": {
-            "Kiss": "http://kissanime.ru/Anime/Black-Lagoon-The-Second-Barrage-dub",
+        "http%3A%2F%2Fkissanime%2Eru%2FAnime%2FBlack-Lagoon-The-Second-Barrage-Dub": {
+            "Kiss": "http://kissanime.ru/Anime/Black-Lagoon-The-Second-Barrage-Dub",
             "Kiss-description": "<span style=\"text-align: justify;\">Okajima Rokuro - now known almost exclusively as 'Rock' - was once a typical, put-upon Japanese businessman. Then, on a routine business trip, he was kidnapped and ransomed by the Lagoon Company: a band of mercenary pirates operating out of the crime-riddled city of Roanapur. Abandoned by his bosses, he joined the Lagoon Company. Now he must try and stay afloat amongst the ever-shifting politics of the criminal underworld, while simultaneously avoiding death at the hands of his quick-tempered, gun-toting co-worker, 'Two Hand' Revy.&nbsp;</span>",
             "Kiss-img": "https://myanimelist.cdn-dena.com/images/anime/10/20980.jpg",
             "Kiss-title": "Black Lagoon: The Second Barrage (Dub)",
@@ -1190,6 +1190,16 @@
             "Mal-description": "Saya Otonashi is a seemingly ordinary girl living a mundane life with her adoptive family in Okinawa City. In fact, her only peculiarities are suffering from anemia and being unable to remember any of her life beyond the previous year.<br />\r\n<br />\r\nHowever, Saya&#039;s forgotten past quickly comes back to haunt her&mdash;one night, she is attacked at school by a creature that feeds on human blood. Just when all hope seems lost, a mysterious man named Haji appears and fends off the creature temporarily. But when her rescuer forces her to drink his blood, Saya suddenly enters a trance and slays the monster with ease, using her own blood as a catalyst. <br />\r\n<br />\r\nSaya then learns of an organization named Red Shield, founded for the sole purpose of defeating the hellish beasts. Now Saya and Haji must work together with Red Shield to fight these fearsome monsters and unlock the secrets to the girl&#039;s past.<br />\r\n<br />\r\n[Written by MAL Rewrite]",
             "Mal-img": "https://myanimelist.cdn-dena.com/images/anime/10/10183.jpg",
             "Mal-title": "Blood+"
+        },
+        "http%3A%2F%2Fkissanime%2Eru%2FAnime%2FBlue-Gender-The-Warrior-Dub": {
+            "Kiss": "http://kissanime.ru/Anime/Blue-Gender-The-Warrior-Dub",
+            "Kiss-description": "<span>It is a time of chaos. Earth is no longer what it used to be. It has been infested with a bug like species called the Blue. 20 years ago Yuji Kaido, who has a mysterious disease, is put into suspended animation until a cure is found. When he wakes up Yuji learns that it&rsquo;s been more than 20 years since he was put into suspended animation, and the world is now controlled by these creatures. He then decides to join a group of soldiers fighting against the Blue for hope of a better future.</span>",
+            "Kiss-img": "https://myanimelist.cdn-dena.com/images/anime/4/15774.jpg",
+            "Kiss-title": "Blue Gender: The Warrior (Dub)",
+            "Mal": "https://myanimelist.net/anime/1380/Blue_Gender__The_Warrior",
+            "Mal-description": "It is a time of chaos. Earth is no longer what it used to be. It has been infested with a bug like species called the Blue. 20 years ago Yuji Kaido, who has a mysterious disease, is put into suspended animation until a cure is found. When he wakes up Yuji learns that it&rsquo;s been more than 20 years since he was put into suspended animation, and the world is now controlled by these creatures. He then decides to join a group of soldiers fighting against the Blue for hope of a better future.<br />\r\n<br />\r\n(Source: ANN)",
+            "Mal-img": "https://myanimelist.cdn-dena.com/images/anime/4/15774.jpg",
+            "Mal-title": "Blue Gender: The Warrior"
         },
         "http%3A%2F%2Fkissanime%2Eru%2FAnime%2FBlue-Seed-Dub": {
             "Kiss": "http://kissanime.ru/Anime/Blue-Seed-Dub",
@@ -1370,6 +1380,16 @@
             "Mal-description": "Fight between Nike and Narvi after both lose their Golems.<br />\r\n<br />\r\nIncluded in the Blu-ray Box release of the TV series.",
             "Mal-img": "https://myanimelist.cdn-dena.com/images/anime/7/73418.jpg",
             "Mal-title": "Break Blade: Virgins War"
+        },
+        "http%3A%2F%2Fkissanime%2Eru%2FAnime%2FBriar-Rose-or-The-Sleeping-Beauty": {
+            "Kiss": "http://kissanime.ru/Anime/Briar-Rose-or-The-Sleeping-Beauty",
+            "Kiss-description": "An alternate retelling of the classic Sleeping Beauty fairy tale. The story begins in the same way as the original story but our young heroine instead of falling under the mystical spell begins to uncover the mystery of the man who cursed her and his relationship with her mother. It is a realistic reminder that \"They lived happily ever after...\", may not be as happy as we once envisioned.",
+            "Kiss-img": "https://myanimelist.cdn-dena.com/images/anime/9/81213.jpg",
+            "Kiss-title": "Briar-Rose or The Sleeping Beauty",
+            "Mal": "https://myanimelist.net/anime/7169/Ibara-Hime_matawa_Nemuri-Hime",
+            "Mal-description": "An alternate retelling of the classic Sleeping Beauty fairy tale. The story begins in the same way as the original story but our young heroine instead of falling under the mystical spell begins to uncover the mystery of the man who cursed her and his relationship with her mother.  It is a realistic reminder that &quot;They lived happily ever after...&quot;, may not be as happy as we once envisioned.",
+            "Mal-img": "https://myanimelist.cdn-dena.com/images/anime/9/81213.jpg",
+            "Mal-title": "Ibara-Hime matawa Nemuri-Hime"
         },
         "http%3A%2F%2Fkissanime%2Eru%2FAnime%2FBtooom-Dub": {
             "Kiss": "http://kissanime.ru/Anime/Btooom-Dub",
@@ -2431,6 +2451,16 @@
             "Mal-img": "https://myanimelist.cdn-dena.com/images/anime/2/70187.jpg",
             "Mal-title": "Dungeon ni Deai wo Motomeru no wa Machigatteiru Darou ka"
         },
+        "http%3A%2F%2Fkissanime%2Eru%2FAnime%2FDungeon-ni-Deai-wo-Motomeru-no-wa-Machigatteiru-Darou-ka-Gaiden-Sword-Oratoria": {
+            "Kiss": "http://kissanime.ru/Anime/Dungeon-ni-Deai-wo-Motomeru-no-wa-Machigatteiru-Darou-ka-Gaiden-Sword-Oratoria",
+            "Kiss-description": "<span>Sword princess Aiz Wallenstein. Today, once again, the strongest female swordsman heads to the giant labyrinth known as the \"Dungeon\" along with her allies. On the 50th floor where mysteries and threats such as a decayed dragon's corpse that crumbles to ash and an irregularity that creeps ever closer to the party loom, Aiz calls for the wind and heads deeper into the darkness of the Dungeon. Eventually, she finds herself meeting a boy for the first time. \"Um, are you OK?\" In the Labyrinth City of Orario, the contrasting stories of the boy and the girl intersect!</span>",
+            "Kiss-img": "https://kissanime.ru/Uploads/Etc/2-28-2017/88072754584471l.jpg",
+            "Kiss-title": "Dungeon ni Deai wo Motomeru no wa Machigatteiru Darou ka Gaiden: Sword Oratoria",
+            "Mal": "https://myanimelist.net/anime/32887/Dungeon_ni_Deai_wo_Motomeru_no_wa_Machigatteiru_Darou_ka_Gaiden__Sword_Oratoria",
+            "Mal-description": "Sword princess Aiz Wallenstein. Today, once again, the strongest female swordsman heads to the giant labyrinth known as the &quot;Dungeon&quot; along with her allies. On the 50th floor where mysteries and threats such as a decayed dragon&#039;s corpse that crumbles to ash and an irregularity that creeps ever closer to the party loom, Aiz calls for the wind and heads deeper into the darkness of the Dungeon. Eventually, she finds herself meeting a boy for the first time. &quot;Um, are you OK?&quot; In the Labyrinth City of Orario, the contrasting stories of the boy and the girl intersect!<br />\r\n<br />\r\n(Source: ANN)",
+            "Mal-img": "https://myanimelist.cdn-dena.com/images/anime/7/84471.jpg",
+            "Mal-title": "Dungeon ni Deai wo Motomeru no wa Machigatteiru Darou ka Gaiden: Sword Oratoria"
+        },
         "http%3A%2F%2Fkissanime%2Eru%2FAnime%2FDungeon-ni-Deai-wo-Motomeru-no-wa-Machigatteiru-Darou-ka-OVA": {
             "Kiss": "http://kissanime.ru/Anime/Dungeon-ni-Deai-wo-Motomeru-no-wa-Machigatteiru-Darou-ka-OVA",
             "Kiss-description": "<span>Based on Oomori Fujino's light novel series. </span>",
@@ -2471,6 +2501,16 @@
             "Mal-img": "https://myanimelist.cdn-dena.com/images/anime/10/6883.jpg",
             "Mal-title": "Elfen Lied"
         },
+        "http%3A%2F%2Fkissanime%2Eru%2FAnime%2FErgo-Proxy": {
+            "Kiss": "http://kissanime.ru/Anime/Ergo-Proxy",
+            "Kiss-description": "The world is bigger than you think...<br /><br />After the explosion of the methane hydrate layer, the remaining members of mankind are forced to live in isolated domed cities scattered across the arid and inhospitable planet. They live in a controlled society and are assisted in daily life by autonomous robots called AutoReivs. In one of these cities, Romdo, Inspector Re-l Mayer, granddaughter of the regent, leads an investigation concerning AutoReivs that have gone mad after being infected by the Cogito virus. In the process, she comes in contact with a monster called Proxy. Elsewhere in the city, immigrant Vincent Law is on the run after being framed for involvement in several Cogito cases. Together, along with the adorable child-AutoReiv Pino, they set out on a journey to the dome city Moscow in order to unravel the mystery of the Proxies.",
+            "Kiss-img": "https://myanimelist.cdn-dena.com/images/anime/11/6259.jpg",
+            "Kiss-title": "Ergo Proxy (Sub)",
+            "Mal": "https://myanimelist.net/anime/790/Ergo_Proxy",
+            "Mal-description": "Within the domed city of Romdo lies one of the last human civilizations on Earth. Thousands of years ago, a global ecological catastrophe doomed the planet; now, life outside these domes is virtually impossible. To expedite mankind&#039;s recovery, &quot;AutoReivs,&quot; humanoid-like robots, have been created to assist people in their day-to-day lives. However, AutoReivs have begun contracting an enigmatic disease called the &quot;Cogito Virus&quot; which grants them self-awareness. Re-l Mayer, granddaughter of Romdo&#039;s ruler, is assigned to investigate this phenomenon alongside her AutoReiv partner Iggy. But what begins as a routine investigation quickly spirals into a conspiracy as Re-l is confronted by humanity&#039;s darkest sins.<br />\r\n<br />\r\nElsewhere in Romdo, an AutoReiv specialist by the name of Vincent Law must also face his demons when surreal events begin occurring around him. Re-l, Iggy, Vincent, and the child AutoReiv named Pino, will form an unlikely faction as they struggle to uncover Romdo&#039;s mysteries and ultimately, discover the true purpose of the mythical beings called &quot;Proxies.&quot;<br />\r\n<br />\r\n[Written by MAL Rewrite]",
+            "Mal-img": "https://myanimelist.cdn-dena.com/images/anime/11/6259.jpg",
+            "Mal-title": "Ergo Proxy"
+        },
         "http%3A%2F%2Fkissanime%2Eru%2FAnime%2FErgo-Proxy-Dub": {
             "Kiss": "http://kissanime.ru/Anime/Ergo-Proxy-Dub",
             "Kiss-description": "The world is bigger than you think...<br /><br /> After the explosion of the methane hydrate layer, the remaining members of mankind are forced to live in isolated domed cities scattered across the arid and inhospitable planet. They live in a controlled society and are assisted in daily life by autonomous robots called AutoReivs. In one of these cities, Romdo, Inspector Re-l Mayer, granddaughter of the regent, leads an investigation concerning AutoReivs that have gone mad after being infected by the Cogito virus. In the process, she comes in contact with a monster called Proxy. Elsewhere in the city, immigrant Vincent Law is on the run after being framed for involvement in several Cogito cases. Together, along with the adorable child-AutoReiv Pino, they set out on a journey to the dome city Moscow in order to unravel the mystery of the Proxies.",
@@ -2480,6 +2520,16 @@
             "Mal-description": "Within the domed city of Romdo lies one of the last human civilizations on Earth. Thousands of years ago, a global ecological catastrophe doomed the planet; now, life outside these domes is virtually impossible. To expedite mankind&#039;s recovery, &quot;AutoReivs,&quot; humanoid-like robots, have been created to assist people in their day-to-day lives. However, AutoReivs have begun contracting an enigmatic disease called the &quot;Cogito Virus&quot; which grants them self-awareness. Re-l Mayer, granddaughter of Romdo&#039;s ruler, is assigned to investigate this phenomenon alongside her AutoReiv partner Iggy. But what begins as a routine investigation quickly spirals into a conspiracy as Re-l is confronted by humanity&#039;s darkest sins.<br />\r\n<br />\r\nElsewhere in Romdo, an AutoReiv specialist by the name of Vincent Law must also face his demons when surreal events begin occurring around him. Re-l, Iggy, Vincent, and the child AutoReiv named Pino, will form an unlikely faction as they struggle to uncover Romdo&#039;s mysteries and ultimately, discover the true purpose of the mythical beings called &quot;Proxies.&quot;<br />\r\n<br />\r\n[Written by MAL Rewrite]",
             "Mal-img": "https://myanimelist.cdn-dena.com/images/anime/11/6259.jpg",
             "Mal-title": "Ergo Proxy"
+        },
+        "http%3A%2F%2Fkissanime%2Eru%2FAnime%2FEromanga-sensei": {
+            "Kiss": "http://kissanime.ru/Anime/Eromanga-sensei",
+            "Kiss-description": "<span>The \"new sibling romantic comedy\" revolves around Masamune Izumi, a light novel author in high school. Masamune's little sister is Sagiri, a shut-in girl who hasn't left her room for an entire year. She even forces her brother to make and bring her meals when she stomps the floor. Masamune wants his sister to leave her room, because the two of them are each other's only family.<br /> <br /> Masamune's novel illustrator, pen name \"Eromanga,\" draws extremely perverted drawings, and is very reliable. Masamune had never met his illustrator, and figured he was just a disgusting, perverted otaku. However, the truth is revealed... that his \"Eromanga-sensei\" is his own younger sister! To add to the chaos that erupts between the siblings, a beautiful, female, best-selling shoujo manga creator becomes their rival!</span>",
+            "Kiss-img": "https://kissanime.ru/Uploads/Etc/2-28-2017/62144654583541l.jpg",
+            "Kiss-title": "Eromanga-sensei",
+            "Mal": "https://myanimelist.net/anime/32901/Eromanga-sensei",
+            "Mal-description": "The &quot;new sibling romantic comedy&quot; revolves around Masamune Izumi, a light novel author in high school. Masamune&#039;s little sister is Sagiri, a shut-in girl who hasn&#039;t left her room for an entire year. She even forces her brother to make and bring her meals when she stomps the floor. Masamune wants his sister to leave her room, because the two of them are each other&#039;s only family.<br />\r\n<br />\r\nMasamune&#039;s novel illustrator, pen name &quot;Eromanga,&quot; draws extremely perverted drawings, and is very reliable. Masamune had never met his illustrator, and figured he was just a disgusting, perverted otaku. However, the truth is revealed... that his &quot;Eromanga-sensei&quot; is his own younger sister! To add to the chaos that erupts between the siblings, a beautiful, female, best-selling shoujo manga creator becomes their rival!<br />\r\n<br />\r\n(Source: ANN)",
+            "Mal-img": "https://myanimelist.cdn-dena.com/images/anime/12/84656.jpg",
+            "Mal-title": "Eromanga-sensei"
         },
         "http%3A%2F%2Fkissanime%2Eru%2FAnime%2FEscaflowne-The-Movie-Dub": {
             "Kiss": "http://kissanime.ru/Anime/Escaflowne-The-Movie-Dub",
@@ -2610,6 +2660,16 @@
             "Mal-description": "The film revolves around a mysterious girl named &Eacute;clair who appears before Fairy Tail, the world's most notorious wizard's guild. She lost all of her memories, except for the imperative that she must deliver two Phoenix Stones somewhere. The stones may spell the collapse of the magical world, and Natsu, Lucy, and the rest of the Fairy Tail guild are caught up in the intrigue. <br />\r\n<br />\r\n(Source: ANN) ",
             "Mal-img": "https://myanimelist.cdn-dena.com/images/anime/13/47083.jpg",
             "Mal-title": "Fairy Tail Movie 1: Houou no Miko"
+        },
+        "http%3A%2F%2Fkissanime%2Eru%2FAnime%2FFantasista-Stella": {
+            "Kiss": "http://kissanime.ru/Anime/Fantasista-Stella",
+            "Kiss-description": "Teppei and teammate Keisuke Honda aim for the FIFA World Cup 2014 in Brazil.",
+            "Kiss-img": "https://myanimelist.cdn-dena.com/images/anime/4/63765.jpg",
+            "Kiss-title": "Fantasista Stella",
+            "Mal": "https://myanimelist.net/anime/24817/Fantasista_Stella",
+            "Mal-description": "Teppei and teammate Keisuke Honda aim for the FIFA World Cup 2014 in Brazil.",
+            "Mal-img": "https://myanimelist.cdn-dena.com/images/anime/4/63765.jpg",
+            "Mal-title": "Fantasista Stella"
         },
         "http%3A%2F%2Fkissanime%2Eru%2FAnime%2FFantastic-Children": {
             "Kiss": "http://kissanime.ru/Anime/Fantastic-Children",
@@ -2880,6 +2940,16 @@
             "Mal-description": "CG short specials of <i>Flying Witch</i> posted on the official YouTube channel of distributor VAP and later bundled with the Blu-ray and DVD volumes.",
             "Mal-img": "https://myanimelist.cdn-dena.com/images/anime/5/79113.jpg",
             "Mal-title": "Flying Witch Petit"
+        },
+        "http%3A%2F%2Fkissanime%2Eru%2FAnime%2FFrame-Arms-Girl": {
+            "Kiss": "http://kissanime.ru/Anime/Frame-Arms-Girl",
+            "Kiss-description": "<span>Based on Kotobukiya's Frame Arms Girl model kit line. The anime will focus on Gourai, the first model released for the line, as well as Stylet and Baselard.</span>",
+            "Kiss-img": "https://kissanime.ru/Uploads/Etc/3-1-2017/52233654583987l.jpg",
+            "Kiss-title": "Frame Arms Girl",
+            "Mal": "https://myanimelist.net/anime/34427/Frame_Arms_Girl",
+            "Mal-description": "Based on Kotobukiya&#039;s Frame Arms Girl model kit line. The anime will focus on Gourai, the first model released for the line, as well as Stylet and Baselard.<br />\r\n<br />\r\n<span style=\"font-size: 90%;\"><b>Episode 1 will be previewed at a screening on March 9, 2017. Regular broadcasting will begin on April 4, 2017.</b>",
+            "Mal-img": "https://myanimelist.cdn-dena.com/images/anime/10/83987.jpg",
+            "Mal-title": "Frame Arms Girl"
         },
         "http%3A%2F%2Fkissanime%2Eru%2FAnime%2FFree": {
             "Kiss": "http://kissanime.ru/Anime/Free",
@@ -3301,16 +3371,6 @@
             "Mal-img": "https://myanimelist.cdn-dena.com/images/anime/2/72690.jpg",
             "Mal-title": "Ghost in the Shell (2015)"
         },
-        "http%3A%2F%2Fkissanime%2Eru%2FAnime%2FGhost-in-the-Shell-2015-dub": {
-            "Kiss": "http://kissanime.ru/Anime/Ghost-in-the-Shell-2015-dub",
-            "Kiss-description": "<span>In the year 2027, a year following the end of the non-nuclear World War IV, a bomb has gone off in Newport City, killing a major arms dealer who may have ties with the mysterious 501 Organization. Public Security official Daisuke Aramaki hires full-body cyber prosthesis user and hacker extraordinaire, Motoko Kusanagi, to investigate.</span>",
-            "Kiss-img": "https://myanimelist.cdn-dena.com/images/anime/2/72690.jpg",
-            "Kiss-title": "Ghost in the Shell (2015) (Dub)",
-            "Mal": "https://myanimelist.net/anime/27411/Ghost_in_the_Shell_2015",
-            "Mal-description": "In the year 2027, a year following the end of the non-nuclear World War IV, a bomb has gone off in Newport City, killing a major arms dealer who may have ties with the mysterious 501 Organization. Public Security official Daisuke Aramaki hires full-body cyber prosthesis user and hacker extraordinaire, Motoko Kusanagi, to investigate.<br />\r\n<br />\r\n(Source: Wikipedia)",
-            "Mal-img": "https://myanimelist.cdn-dena.com/images/anime/2/72690.jpg",
-            "Mal-title": "Ghost in the Shell (2015)"
-        },
         "http%3A%2F%2Fkissanime%2Eru%2FAnime%2FGhost-in-the-Shell-Arise-Alternative-Architecture": {
             "Kiss": "http://kissanime.ru/Anime/Ghost-in-the-Shell-Arise-Alternative-Architecture",
             "Kiss-description": "TV series for Ghost in the Shell: Arise.",
@@ -3351,16 +3411,6 @@
             "Mal-img": "https://myanimelist.cdn-dena.com/images/anime/8/46673.jpg",
             "Mal-title": "Ghost in the Shell: Arise - Border:1 Ghost Pain"
         },
-        "http%3A%2F%2Fkissanime%2Eru%2FAnime%2FGhost-in-the-Shell-Arise-Border-1-Ghost-Pain-dub": {
-            "Kiss": "http://kissanime.ru/Anime/Ghost-in-the-Shell-Arise-Border-1-Ghost-Pain-dub",
-            "Kiss-description": "The anime's story is set in 2027, one year after the end of the fourth non-nuclear war. New Port City is still reeling from the war's aftermath when it suffers a bombing caused by a self-propelled mine. Then, a military member implicated in arms-dealing bribes is gunned down.<br /><br /> During the investigation, Public Security Section's Daisuke Aramaki encounters Motoko Kusanagi, the cyborg wizard-level hacker assigned to the military's 501st Secret Unit. Batou, a man with the \"eye that does not sleep,\" suspects that Kusanagi is the one behind the bombing. The Niihama Prefectural Police detective Togusa is pursuing his own dual cases of the shooting death and a prostitute's murder. Motoko herself is being watched by the 501st Secret Unit's head Kurutsu and cyborg agents.",
-            "Kiss-img": "https://myanimelist.cdn-dena.com/images/anime/8/46673.jpg",
-            "Kiss-title": "Ghost in the Shell: Arise - Border:1 Ghost Pain (Dub)",
-            "Mal": "https://myanimelist.net/anime/17187/Ghost_in_the_Shell__Arise_-_Border_1_Ghost_Pain",
-            "Mal-description": "The anime's story is set in 2027, one year after the end of the fourth non-nuclear war. New Port City is still reeling from the war's aftermath when it suffers a bombing caused by a self-propelled mine. Then, a military member implicated in arms-dealing bribes is gunned down.<br />\r\n<br />\r\nDuring the investigation, Public Security Section's Daisuke Aramaki encounters Motoko Kusanagi, the cyborg wizard-level hacker assigned to the military's 501st Secret Unit. Batou, a man with the &quot;eye that does not sleep,&quot; suspects that Kusanagi is the one behind the bombing. The Niihama Prefectural Police detective Togusa is pursuing his own dual cases of the shooting death and a prostitute's murder. Motoko herself is being watched by the 501st Secret Unit's head Kurutsu and cyborg agents.<br />\r\n<br />\r\n(Source: ANN)",
-            "Mal-img": "https://myanimelist.cdn-dena.com/images/anime/8/46673.jpg",
-            "Mal-title": "Ghost in the Shell: Arise - Border:1 Ghost Pain"
-        },
         "http%3A%2F%2Fkissanime%2Eru%2FAnime%2FGhost-in-the-Shell-Arise-Border-2-Ghost-Whispers": {
             "Kiss": "http://kissanime.ru/Anime/Ghost-in-the-Shell-Arise-Border-2-Ghost-Whispers",
             "Kiss-description": "Second movie of Ghost in the Shell: Arise.<br /><br />Freed of her responsibilities with the 501 Organization, Motoko Kusanagi must now learn how to take orders from Aramaki. Someone hacks the Logicomas, and Batou enlists the help of former army intelligence officer Ishikawa and former air artillery expert Borma. Kusanagi also seeks to enlist ace sniper Saito and undercover cop Paz into the new Public Security Section 9. The two groups rival each other in a case involving a man who receives false memories of a refugee transport operation.",
@@ -3373,16 +3423,6 @@
         },
         "http%3A%2F%2Fkissanime%2Eru%2FAnime%2FGhost-in-the-Shell-Arise-Border-2-Ghost-Whispers-Dub": {
             "Kiss": "http://kissanime.ru/Anime/Ghost-in-the-Shell-Arise-Border-2-Ghost-Whispers-Dub",
-            "Kiss-description": "Second movie of Ghost in the Shell: Arise.<br /><br /> Freed of her responsibilities with the 501 Organization, Motoko Kusanagi must now learn how to take orders from Aramaki. Someone hacks the Logicomas, and Batou enlists the help of former army intelligence officer Ishikawa and former air artillery expert Borma. Kusanagi also seeks to enlist ace sniper Saito and undercover cop Paz into the new Public Security Section 9. The two groups rival each other in a case involving a man who receives false memories of a refugee transport operation.",
-            "Kiss-img": "https://myanimelist.cdn-dena.com/images/anime/8/52135.jpg",
-            "Kiss-title": "Ghost in the Shell: Arise - Border:2 Ghost Whispers (Dub)",
-            "Mal": "https://myanimelist.net/anime/19191/Ghost_in_the_Shell__Arise_-_Border_2_Ghost_Whispers",
-            "Mal-description": "Second movie of Ghost in the Shell: Arise.<br />\r\n<br />\r\nFreed of her responsibilities with the 501 Organization, Motoko Kusanagi must now learn how to take orders from Aramaki. Someone hacks the Logicomas, and Batou enlists the help of former army intelligence officer Ishikawa and former air artillery expert Borma. Kusanagi also seeks to enlist ace sniper Saito and undercover cop Paz into the new Public Security Section 9. The two groups rival each other in a case involving a man who receives false memories of a refugee transport operation.<br />\r\n<br />\r\n(Source: Wikipedia)",
-            "Mal-img": "https://myanimelist.cdn-dena.com/images/anime/8/52135.jpg",
-            "Mal-title": "Ghost in the Shell: Arise - Border:2 Ghost Whispers"
-        },
-        "http%3A%2F%2Fkissanime%2Eru%2FAnime%2FGhost-in-the-Shell-Arise-Border-2-Ghost-Whispers-dub": {
-            "Kiss": "http://kissanime.ru/Anime/Ghost-in-the-Shell-Arise-Border-2-Ghost-Whispers-dub",
             "Kiss-description": "Second movie of Ghost in the Shell: Arise.<br /><br /> Freed of her responsibilities with the 501 Organization, Motoko Kusanagi must now learn how to take orders from Aramaki. Someone hacks the Logicomas, and Batou enlists the help of former army intelligence officer Ishikawa and former air artillery expert Borma. Kusanagi also seeks to enlist ace sniper Saito and undercover cop Paz into the new Public Security Section 9. The two groups rival each other in a case involving a man who receives false memories of a refugee transport operation.",
             "Kiss-img": "https://myanimelist.cdn-dena.com/images/anime/8/52135.jpg",
             "Kiss-title": "Ghost in the Shell: Arise - Border:2 Ghost Whispers (Dub)",
@@ -3470,16 +3510,6 @@
             "Mal-description": "A.D. 2034. It has been two years since Motoko Kusanagi left Section 9. Togusa is now the new leader of the team, that has considerably increased its appointed personnel. The expanded new Section 9 confronts a rash of complicated incidents, and investigations reveal that an ultra-wizard hacker named the Puppeteer is behind the entire series of events.<br />\n<br />\nIn the midst of all, Batou, who was stalking the case on a separate track, encounters Motoko. She goes away after saying, \"Stay away from the Solid State Society.\" Batou is left with a doubt in his mind. Could Motoko be the Puppeteer?<br />\n<br />\nThe series of intriguing incidents that Section 9 faces gradually link together almost artistically. Who is the Puppeteer? What will happen to Batou's relationship with Motoko? What is the full truth behind this carefully planned perfect crime? And what will the outcome be? Mysteries surround the Solid State Society...<br />\n<br />\n(Source: Production I.G.)",
             "Mal-img": "https://myanimelist.cdn-dena.com/images/anime/4/29816.jpg",
             "Mal-title": "Ghost in the Shell: Stand Alone Complex - Solid State Society"
-        },
-        "http%3A%2F%2Fkissanime%2Eru%2FAnime%2FGhost-in-the-Shell-dub": {
-            "Kiss": "http://kissanime.ru/Anime/Ghost-in-the-Shell-dub",
-            "Kiss-description": "In the year 2029, the barriers of our world have been broken down by the net and by cybernetics, but this brings new vulnerability to humans in the form of brain-hacking. When a highly-wanted hacker known as 'The Puppetmaster' begins involving them in politics, Section 9, a group of cybernetically enhanced cops, are called in to investigate and stop the Puppetmaster. The pursuit will call into question what makes a human and what is the Puppetmaster in a world where the distinction between human and machine is increasingly blurry.",
-            "Kiss-img": "https://myanimelist.cdn-dena.com/images/anime/10/82594.jpg",
-            "Kiss-title": "Ghost in the Shell (Dub)",
-            "Mal": "https://myanimelist.net/anime/43/Ghost_in_the_Shell",
-            "Mal-description": "In the year 2029, advances in Cybernetics allow people to replace nearly all of their body parts and organs with robotics. Through these prosthetics, the weak are made strong, and the dying are given new life. Public Security Section 9 of Niihama City (a fictional setting inspired by Hong Kong), a diverse team of AI, cyborgs and unmodified humans, must investigate cases of corruption and terrorism. Major Motoko Kusanagi has full-body prosthetics, owing to a childhood accident. She, her second in command Batou and information specialist Ishikawa have been assigned an important task: to investigate a hacker known only as &quot;The Puppetmaster.&quot; But as Motoko and her team discover, things are never so simple.<br />\r\n<br />\r\n<i>Ghost in the Shell</i> is a futuristic thriller with intense action scenes mixed with slower artistic sequences and many philosophical questions about one&#039;s soul, gender and human identity in such an advanced age of technology.",
-            "Mal-img": "https://myanimelist.cdn-dena.com/images/anime/10/82594.jpg",
-            "Mal-title": "Ghost in the Shell"
         },
         "http%3A%2F%2Fkissanime%2Eru%2FAnime%2FGin-no-Guardian": {
             "Kiss": "http://kissanime.ru/Anime/Gin-no-Guardian",
@@ -4163,16 +4193,6 @@
         },
         "http%3A%2F%2Fkissanime%2Eru%2FAnime%2FHigashi-no-Eden-Dub": {
             "Kiss": "http://kissanime.ru/Anime/Higashi-no-Eden-Dub",
-            "Kiss-description": "On November 22, 2010 ten missiles strike Japan. However, this unprecedented terrorist act, later to be known as \"Careless Monday,\" does not result in any apparent victims, and is soon forgotten by almost everyone. Then, 3 months later... Saki Morimi is a young woman currently in the United States of America on her graduation trip. But just when she is in front of the White House, Washington DC, she gets into trouble, and only the unexpected intervention of one of her fellow countrymen saves her. However, this man, who introduces himself as Akira Takizawa, is a complete mystery. He appears to have lost his memory, is stark naked, except for the gun he holds in one hand, and the mobile phone he's holding in the other. A phone that is charged with 8,200,000,000 yen in digital cash.",
-            "Kiss-img": "https://myanimelist.cdn-dena.com/images/anime/9/15033.jpg",
-            "Kiss-title": "Higashi no Eden (Dub)",
-            "Mal": "https://myanimelist.net/anime/5630/Higashi_no_Eden",
-            "Mal-description": "On November 22, 2010, Japan was hit by missile strikes, a terrorist act that fortunately did not harm anyone, becoming known as &quot;Careless Monday.&quot; Quickly forgotten, society goes on about their lives as normal.<br />\r\n <br />\r\nDuring her graduation trip to America three months later, friendly college student Saki Morimi&#039;s life is forever changed when she finds herself saved from unexpected trouble by Akira Takizawa. Takizawa is cheerful, but odd in many ways&mdash;he is stark naked and suffers from amnesia, believing himself to be a terrorist. In addition, he possesses a strange cell phone loaded with 8.2 billion yen in digital cash.<br />\r\n<br />\r\nDespite Takizawa&#039;s suspicious traits, Saki quickly befriends the enigmatic young man. However, unbeknownst to her, this is the beginning of a thrilling death game involving money, cell phones, and the salvation of the world. <i>Higashi no Eden</i> chronicles Saki&#039;s struggle to unravel the mysteries behind her savior, while Takizawa himself battles other individuals armed with similar cell phones and returning memories which reveal his possible connection to the event from months ago.<br />\r\n<br />\r\n[Written by MAL Rewrite]",
-            "Mal-img": "https://myanimelist.cdn-dena.com/images/anime/9/15033.jpg",
-            "Mal-title": "Higashi no Eden"
-        },
-        "http%3A%2F%2Fkissanime%2Eru%2FAnime%2FHigashi-no-Eden-dub": {
-            "Kiss": "http://kissanime.ru/Anime/Higashi-no-Eden-dub",
             "Kiss-description": "On November 22, 2010 ten missiles strike Japan. However, this unprecedented terrorist act, later to be known as \"Careless Monday,\" does not result in any apparent victims, and is soon forgotten by almost everyone. Then, 3 months later... Saki Morimi is a young woman currently in the United States of America on her graduation trip. But just when she is in front of the White House, Washington DC, she gets into trouble, and only the unexpected intervention of one of her fellow countrymen saves her. However, this man, who introduces himself as Akira Takizawa, is a complete mystery. He appears to have lost his memory, is stark naked, except for the gun he holds in one hand, and the mobile phone he's holding in the other. A phone that is charged with 8,200,000,000 yen in digital cash.",
             "Kiss-img": "https://myanimelist.cdn-dena.com/images/anime/9/15033.jpg",
             "Kiss-title": "Higashi no Eden (Dub)",
@@ -5771,16 +5791,6 @@
             "Mal-img": "https://myanimelist.cdn-dena.com/images/anime/5/56525.jpg",
             "Mal-title": "Machine-Doll wa Kizutsukanai Specials"
         },
-        "http%3A%2F%2Fkissanime%2Eru%2FAnime%2FMachine-Doll-wa-Kizutsukanai-dub": {
-            "Kiss": "http://kissanime.ru/Anime/Machine-Doll-wa-Kizutsukanai-dub",
-            "Kiss-description": "During the early 20th century, along with technological advancements, scientists were able to develop sophisticated magic. The combination of science and sorcery was Makinot, circuits made from spells that were put into objects to bring them to life and even gain a personality. It was developed as a military weapon and has now spread throughout the world.<br /><br />Akabane Raishin is now attending the Royal Academy to become the best in the world. Accompanied by the lovely teenage girl Yaya, who is actually Raishin&rsquo;s puppet weapon, he plans on rocketing to the top of the class. However, his test scores come nearly dead last although his combat skills and determination are second to none. Raishin has to compete with the deadliest of classmates if he wants to come out as the king.",
-            "Kiss-img": "https://myanimelist.cdn-dena.com/images/anime/4/56141.jpg",
-            "Kiss-title": "Machine-Doll wa Kizutsukanai (Dub)",
-            "Mal": "https://myanimelist.net/anime/17247/Machine-Doll_wa_Kizutsukanai",
-            "Mal-description": "The Walpurgis Royal Academy of Machinart was founded alongside the development of &quot;Machinart,&quot; machine magic capable of giving life and intelligence to mechanical dolls subsequently called as &quot;automaton.&quot; Its aim: train skilled puppeteers to control the automatons, as militaries across the globe have begun incorporating Machinart into their armies.<br />\r\n<br />\r\nAfter miserably failing the academy&#039;s entrance exams, Raishin Akabane and his humanoid automaton Yaya must defeat one of the top one hundred students to earn the right to take part in the Evening Party, a fight for supremacy between puppeteers using their automatons. The last one standing is bestowed the title of &quot;Wiseman&quot; and granted access to the powerful forbidden arts.<br />\r\n<br />\r\nThus, Raishin challenges Charlotte Belew and her automaton Sigmund to a duel, but before they even begin, Sigmund is attacked by other students. After saving his opponents from their assaulters, Raishin cancels the duel but is forced to search for a new way to gain access to the Party. Driven by the tragedies of his past, Raishin fights alongside Yaya to rise to the top and claim the title of Wiseman.<br />\r\n<br />\r\n[Written by MAL Rewrite]",
-            "Mal-img": "https://myanimelist.cdn-dena.com/images/anime/4/56141.jpg",
-            "Mal-title": "Machine-Doll wa Kizutsukanai"
-        },
         "http%3A%2F%2Fkissanime%2Eru%2FAnime%2FMacross": {
             "Kiss": "http://kissanime.ru/Anime/Macross",
             "Kiss-description": "",
@@ -5806,6 +5816,16 @@
             "Kiss-description": "In a fantasy version of Europe, a war between enemy countries is brewing. One of these countries, Zhcted, has its seven regions ruled by War Maidens, known as Vanadis. Equipped with powerful dragon-carved weapons, Eleonora \"Elen\" Viltaria, one of the Vanadis, launches an invasion against their neighboring rival country of Brune. Eventually, Tigrevurmud \"Tigre\" Vorn, a young archer and an earl for Brune's region of Alsace, has his entire army decimated at Elen's hands. In a strange twist of events, Elen spares Tigre, and gives him the order, \"Become mine!\" What could be the meaning behind this new alliance?<br /><br />Adapted from the light novel written by Tsukasa Kawaguchi,&nbsp;<em>Madan no Ou to Vanadis</em>&nbsp;is an epic adventure filled with complex war tactics and beautiful women. Trapped in a multinational conflict, Tigre and Elen are swept up in a war filled with dark secrets, conspiracies, and corruption.",
             "Kiss-img": "https://myanimelist.cdn-dena.com/images/anime/3/64911.jpg",
             "Kiss-title": "Madan no Ou to Vanadis (Sub)",
+            "Mal": "https://myanimelist.net/anime/24455/Madan_no_Ou_to_Vanadis",
+            "Mal-description": "In a fantasy version of Europe, a war between enemy countries is brewing. One of these countries, Zhcted, has its seven regions ruled by War Maidens, known as Vanadis. Equipped with powerful dragon-carved weapons, Eleonora &quot;Elen&quot; Viltaria, one of the Vanadis, launches an invasion against their neighboring rival country of Brune. Eventually, Tigrevurmud &quot;Tigre&quot; Vorn, a young archer and an earl for Brune's region of Alsace, has his entire army decimated at Elen's hands. In a strange twist of events, Elen spares Tigre, and gives him the order, &quot;Become mine!&quot; What could be the meaning behind this new alliance?<br />\r\n<br />\r\nAdapted from the light novel written by Tsukasa Kawaguchi, <i>Madan no Ou to Vanadis</i> is an epic adventure filled with complex war tactics and beautiful women. Trapped in a multinational conflict, Tigre and Elen are swept up in a war filled with dark secrets, conspiracies, and corruption.<br />\r\n<br />\r\n[Written by MAL Rewrite]",
+            "Mal-img": "https://myanimelist.cdn-dena.com/images/anime/3/64911.jpg",
+            "Mal-title": "Madan no Ou to Vanadis"
+        },
+        "http%3A%2F%2Fkissanime%2Eru%2FAnime%2FMadan-no-Ou-to-Vanadis-Dub": {
+            "Kiss": "http://kissanime.ru/Anime/Madan-no-Ou-to-Vanadis-Dub",
+            "Kiss-description": "<span>In a fantasy version of Europe, a war between enemy countries is brewing. One of these countries, Zhcted, has its seven regions ruled by War Maidens, known as Vanadis. Equipped with powerful dragon-carved weapons, Eleonora \"Elen\" Viltaria, one of the Vanadis, launches an invasion against their neighboring rival country of Brune. Eventually, Tigrevurmud \"Tigre\" Vorn, a young archer and an earl for Brune's region of Alsace, has his entire army decimated at Elen's hands. In a strange twist of events, Elen spares Tigre, and gives him the order, \"Become mine!\" What could be the meaning behind this new alliance?<br /> <br /> Adapted from the light novel written by Tsukasa Kawaguchi, <em>Madan no Ou to Vanadis</em> is an epic adventure filled with complex war tactics and beautiful women. Trapped in a multinational conflict, Tigre and Elen are swept up in a war filled with dark secrets, conspiracies, and corruption.<br /></span>",
+            "Kiss-img": "https://myanimelist.cdn-dena.com/images/anime/3/64911.jpg",
+            "Kiss-title": "Madan no Ou to Vanadis (Dub)",
             "Mal": "https://myanimelist.net/anime/24455/Madan_no_Ou_to_Vanadis",
             "Mal-description": "In a fantasy version of Europe, a war between enemy countries is brewing. One of these countries, Zhcted, has its seven regions ruled by War Maidens, known as Vanadis. Equipped with powerful dragon-carved weapons, Eleonora &quot;Elen&quot; Viltaria, one of the Vanadis, launches an invasion against their neighboring rival country of Brune. Eventually, Tigrevurmud &quot;Tigre&quot; Vorn, a young archer and an earl for Brune's region of Alsace, has his entire army decimated at Elen's hands. In a strange twist of events, Elen spares Tigre, and gives him the order, &quot;Become mine!&quot; What could be the meaning behind this new alliance?<br />\r\n<br />\r\nAdapted from the light novel written by Tsukasa Kawaguchi, <i>Madan no Ou to Vanadis</i> is an epic adventure filled with complex war tactics and beautiful women. Trapped in a multinational conflict, Tigre and Elen are swept up in a war filled with dark secrets, conspiracies, and corruption.<br />\r\n<br />\r\n[Written by MAL Rewrite]",
             "Mal-img": "https://myanimelist.cdn-dena.com/images/anime/3/64911.jpg",
@@ -5871,6 +5891,46 @@
             "Mal-img": "https://myanimelist.cdn-dena.com/images/anime/11/55225.jpg",
             "Mal-title": "Mahou Shoujo Madoka★Magica"
         },
+        "http%3A%2F%2Fkissanime%2Eru%2FAnime%2FMahou-Shoujo-Madoka-Magica-Dub": {
+            "Kiss": "http://kissanime.ru/Anime/Mahou-Shoujo-Madoka-Magica-Dub",
+            "Kiss-description": "Madoka Kaname and Sayaka Miki are regular high school girls with regular lives, but all that changes when they encounter Kyuubey, a cat-like magical familiar, and Homura Akemi, the new transfer student.<br /><br />Kyuubey offers them a proposition: he will grant one of their wishes and in exchange, they will each become a magical girl, gaining enough power to fulfill their dreams. However Homura, a magical girl herself, urges them not to accept the offer since everything is not what it seems.<br /><br />A story of hope, despair, and friendship,&nbsp;<em>Mahou Shoujo Madoka★Magica</em>&nbsp;deals with the difficulties of being a magical girl and the price one has to pay to make a dream come true.",
+            "Kiss-img": "https://myanimelist.cdn-dena.com/images/anime/11/55225.jpg",
+            "Kiss-title": "Mahou Shoujo Madoka★Magica (Dub)",
+            "Mal": "https://myanimelist.net/anime/9756/Mahou_Shoujo_Madoka%25E2%2598%2585Magica",
+            "Mal-description": "Madoka Kaname and Sayaka Miki are regular middle school girls with regular lives, but all that changes when they encounter Kyuubey, a cat-like magical familiar, and Homura Akemi, the new transfer student.<br />\r\n<br />\r\nKyuubey offers them a proposition: he will grant one of their wishes and in exchange, they will each become a magical girl, gaining enough power to fulfill their dreams. However Homura, a magical girl herself, urges them not to accept the offer since everything is not what it seems.<br />\r\n<br />\r\nA story of hope, despair, and friendship, <i>Mahou Shoujo Madoka★Magica</i> deals with the difficulties of being a magical girl and the price one has to pay to make a dream come true.<br />\r\n<br />\r\n[Written by MAL Rewrite]",
+            "Mal-img": "https://myanimelist.cdn-dena.com/images/anime/11/55225.jpg",
+            "Mal-title": "Mahou Shoujo Madoka★Magica"
+        },
+        "http%3A%2F%2Fkissanime%2Eru%2FAnime%2FMahou-Shoujo-Madoka-Magica-Movie-1-Hajimari-no-Monogatari-Dub": {
+            "Kiss": "http://kissanime.ru/Anime/Mahou-Shoujo-Madoka-Magica-Movie-1-Hajimari-no-Monogatari-Dub",
+            "Kiss-description": "The first movie in the Madoka trilogy. It is a recap of the first eight episodes of the series.",
+            "Kiss-img": "https://myanimelist.cdn-dena.com/images/anime/6/42331.jpg",
+            "Kiss-title": "Mahou Shoujo Madoka★Magica Movie 1: Hajimari no Monogatari (Dub)",
+            "Mal": "https://myanimelist.net/anime/11977/Mahou_Shoujo_Madoka%25E2%2598%2585Magica_Movie_1__Hajimari_no_Monogatari",
+            "Mal-description": "In the city of Mitakihara, a girl named Madoka Kaname, along with her friend, Sayaka Miki, encounter a creature named Kyubey and are saved from witches by a magical girl named Mami Tomoe. Kyubey offers Madoka and Sayaka the chance to have any one wish granted in exchange for becoming a magical girl and fighting witches, whilst Homura Akemi, another magical girl who recently transferred into Madoka&#039;s class, is strongly against Madoka becoming one. Before Madoka can make a decision, however, Mami is killed by a witch, leaving Madoka too afraid to become a magical girl. Sayaka, however, decides to become a magical girl herself in order to heal the hand of her childhood friend, Kyosuke Kamijou. As Sayaka soon comes into conflict with another magical girl named Kyouko Sakura, they, along with Madoka, learn the shocking truth that their soul gems, the source of their magical powers, literally contain their souls.<br />\r\n<br />\r\n(Source: ANN)",
+            "Mal-img": "https://myanimelist.cdn-dena.com/images/anime/6/42331.jpg",
+            "Mal-title": "Mahou Shoujo Madoka★Magica Movie 1: Hajimari no Monogatari"
+        },
+        "http%3A%2F%2Fkissanime%2Eru%2FAnime%2FMahou-Shoujo-Madoka-Magica-Movie-2-Eien-no-Monogatari-Dub": {
+            "Kiss": "http://kissanime.ru/Anime/Mahou-Shoujo-Madoka-Magica-Movie-2-Eien-no-Monogatari-Dub",
+            "Kiss-description": "The second movie in the Madoka trilogy. It is a recap of the last four episodes of the series.",
+            "Kiss-img": "https://myanimelist.cdn-dena.com/images/anime/6/42265.jpg",
+            "Kiss-title": "Mahou Shoujo Madoka★Magica Movie 2: Eien no Monogatari (Dub)",
+            "Mal": "https://myanimelist.net/anime/11979/Mahou_Shoujo_Madoka%25E2%2598%2585Magica_Movie_2__Eien_no_Monogatari",
+            "Mal-description": "Though Sayaka Miki&#039;s wish was fulfilled, the unforeseen consequences that came with it overwhelm her, causing her soul gem to become tainted as she succumbs to despair and eventually loses her humanity. Homura Akemi reveals to Kyouko Sakura and Madoka Kaname the ultimate fate of magical girls: once their soul gem becomes tainted, it transforms into a Grief Seed, and they are reborn as witches&mdash;a truth Homura learned only through repeating history countless times in a bid to prevent Madoka&#039;s tragedy.<br />\r\n<br />\r\nKyuubey only compounds their despair when he confesses his true intentions: to harness the energy created from magical girls and use it to prolong the life of the universe. As the threat of Walpurgisnacht, a powerful witch, looms overhead, Homura once again vows to protect Madoka and the world from a grim fate.  <br />\r\n<br />\r\nCaught between honoring Homura&#039;s wish and saving the world, which one will Madoka choose in the end?<br />\r\n<i>Mahou Shoujo Madoka★Magica Movie 2: Eien no Monogatari</i> is a story of inescapable destiny, and an unlikely hero who could change it all.<br />\r\n<br />\r\n[Written by MAL Rewrite]",
+            "Mal-img": "https://myanimelist.cdn-dena.com/images/anime/6/42265.jpg",
+            "Mal-title": "Mahou Shoujo Madoka★Magica Movie 2: Eien no Monogatari"
+        },
+        "http%3A%2F%2Fkissanime%2Eru%2FAnime%2FMahou-Shoujo-Madoka-Magica-Movie-3-Hangyaku-no-Monogatari-Dub": {
+            "Kiss": "http://kissanime.ru/Anime/Mahou-Shoujo-Madoka-Magica-Movie-3-Hangyaku-no-Monogatari-Dub",
+            "Kiss-description": "Were all the magical girls truly saved from despair? Now, the great \"Law of Cycles\" leads the magical girls to their new fate. Madoka Kaname, a girl who once led an ordinary life, sacrificed her very existence to set every magical girl free from their cruel destiny. Homura Akemi, another magical girl who was unable to keep her promise with Madoka, continues to fight in the world in which Madoka left her behind.<br /><br /> \"I dream of the day when I can finally see your dear smile again.\"<br /><br /> Madoka Kaname has changed the world. In this new world, is what the magical girls see a world of hope... or despair?",
+            "Kiss-img": "https://myanimelist.cdn-dena.com/images/anime/5/54231.jpg",
+            "Kiss-title": "Mahou Shoujo Madoka★Magica Movie 3: Hangyaku no Monogatari (Dub)",
+            "Mal": "https://myanimelist.net/anime/11981/Mahou_Shoujo_Madoka%25E2%2598%2585Magica_Movie_3__Hangyaku_no_Monogatari",
+            "Mal-description": "The young girls of Mitakihara happily live their lives, occasionally fighting off evil, but otherwise going about their peaceful, everyday routines. However, Homura Akemi feels that something is wrong with this unusually pleasant atmosphere&mdash;though the others remain oblivious, she can&#039;t help but suspect that there is more to what is going on than meets the eye: someone who should not exist is currently present to join in on their activities.<br />\r\n<br />\r\n<i>Mahou Shoujo Madoka★Magica Movie 3: Hangyaku no Monogatari</i> follows Homura in her struggle to uncover the painful truth behind the mysterious circumstances, as she selfishly and desperately fights for the sake of her undying love in this despair-ridden conclusion to the story of five magical girls.<br />\r\n<br />\r\n[Written by MAL Rewrite]",
+            "Mal-img": "https://myanimelist.cdn-dena.com/images/anime/5/54231.jpg",
+            "Mal-title": "Mahou Shoujo Madoka★Magica Movie 3: Hangyaku no Monogatari"
+        },
         "http%3A%2F%2Fkissanime%2Eru%2FAnime%2FMahouka-Koukou-no-Rettousei": {
             "Kiss": "http://kissanime.ru/Anime/Mahouka-Koukou-no-Rettousei",
             "Kiss-description": "Magic&mdash;A century has passed since this concept has been recognized as a formal technology instead of the product of the occult or folklore.<br /><br />The season is spring and it is time for a brand new school year.<br />At the National Magic University First Affiliate High School, A.K.A Magic High School, students are divided into two distinct groups according to their academic performances. The \"Bloom,\" who demonstrate the highest grades and are enrolled in the \"First Course,\" and the \"Weed,\" who have a poor academic record and are enrolled in the \"Second Course.\"<br /><br />This spring, a very peculiar brother and sister enroll as new students.<br /><br />The brother is an under achiever with some deficiencies and enrolls as a \"Weed,\" while his younger sister is an honor student, who enrolls as a \"Bloom.\"<br /><br />The brother, with a somewhat philosophical expression, and the younger sister who holds feelings a little stronger than sibling love for him...<br /><br />Ever since these two have entered through the gates of this prestigious school, the calm campus was beginning to change...",
@@ -5900,6 +5960,16 @@
             "Mal-description": "Shibaki is a high-school boy whose only interest is girls. Except he's been branded as the most perverted boy at school and the girls avoid him like the plague. One day he finds a book in the library about how to summon witches. He tries it as a joke, but it turns out to be the real thing. An apprentice witch named Rurumo appears to grant him a wish. Shibaki helps Rurumo and she in return refuses to take his soul. (This part of this story happened before the start of chapter 1) When the story starts, Shibaki wishes he could see Rurumo again. His wishes are granted immediately as Rurumo falls from the sky and crash lands in front of him. He finds out that as punishment for not taking his soul she's been busted down to an apprentice demon. Now, she must complete the task of getting Shibaki to use up 666 magic tickets that grant wishes before she can become a witch again. However, what she doesn't know is that each time he uses a ticket it shortens his life. When the last ticket is used up, Shibaki will die. Shibaki knows this because Rurumo's familiar black cat Chiro tells him as part of the &quot;contract&quot; for giving him the tickets. Now, Shibaki has a choice, make a wish and help Rurumo become a witch again or resist the temptation and try to save his own life.<br />\r\n<br />\r\n(Source: jCafe24)",
             "Mal-img": "https://myanimelist.cdn-dena.com/images/anime/8/64443.jpg",
             "Mal-title": "Majimoji Rurumo"
+        },
+        "http%3A%2F%2Fkissanime%2Eru%2FAnime%2FMaken-Ki": {
+            "Kiss": "http://kissanime.ru/Anime/Maken-Ki",
+            "Kiss-description": "Based on the manga series by Hiromitsu Takeda, this romantic comedy is about Takeru Ohyama, a typical perverted teenage boy. His new school doesn't require entrance exams, and it just turned co-ed! Unfortunately, his dreams of a happy high school life are dashed when he finds out the school is much more than it seems. All of the students wield a special item&mdash;a Maken&mdash;to unleash their magical abilities in duels! Can Takeru find a Maken that works for him? Even while trying to fit in at a new school and dealing with all kinds of girl problems?",
+            "Kiss-img": "https://myanimelist.cdn-dena.com/images/anime/2/75234.jpg",
+            "Kiss-title": "Maken-Ki! (Sub)",
+            "Mal": "https://myanimelist.net/anime/9936/Maken-Ki/pics",
+            "Mal-description": "",
+            "Mal-img": "https://myanimelist.cdn-dena.com/images/anime/2/75234.jpg",
+            "Mal-title": "Maken-Ki!"
         },
         "http%3A%2F%2Fkissanime%2Eru%2FAnime%2FMaken-Ki-Dub": {
             "Kiss": "http://kissanime.ru/Anime/Maken-Ki-Dub",
@@ -5993,16 +6063,6 @@
         },
         "http%3A%2F%2Fkissanime%2Eru%2FAnime%2FMasamune-kun-no-Revenge-Dub": {
             "Kiss": "http://kissanime.ru/Anime/Masamune-kun-no-Revenge-Dub",
-            "Kiss-description": "<span>As a child, Masamune Makabe once suffered greatly at the hands of a wealthy and beautiful girl named Aki Adagaki, who nicknamed him \"Piggy\" due to his chubby appearance. Seeking revenge against his tormentor, Masamune works hard to improve himself and returns as an incredibly handsome, albeit narcissistic, high school student. When he encounters Aki once again, he is prepared to exact vengeance.<br /> <br /> With the aid of the rich girl's maid, Yoshino Koiwai, Masamune slowly begins to build his relationship with Aki, intending to break her heart when the time is right. However, as his friendship with Aki begins to grow, Masamune starts to question the objectives of his devious plans, and if bringing them to fruition is what his heart truly desires.</span>",
-            "Kiss-img": "https://kissanime.ru/Uploads/Etc/1-20-2017/31884954580599l.jpg",
-            "Kiss-title": "Masamune-kun no Revenge (Dub)",
-            "Mal": "https://myanimelist.net/anime/33487/Masamune-kun_no_Revenge",
-            "Mal-description": "As a child, Masamune Makabe once suffered greatly at the hands of a wealthy and beautiful girl named Aki Adagaki, who nicknamed him &quot;Piggy&quot; due to his chubby appearance. Seeking revenge against his tormentor, Masamune works hard to improve himself and returns as an incredibly handsome, albeit narcissistic, high school student. When he encounters Aki once again, he is prepared to exact vengeance.<br />\r\n<br />\r\nWith the aid of the rich girl&#039;s maid, Yoshino Koiwai, Masamune slowly begins to build his relationship with Aki, intending to break her heart when the time is right. However, as his friendship with Aki begins to grow, Masamune starts to question the objectives of his devious plans, and if bringing them to fruition is what his heart truly desires.<br />\r\n<br />\r\n[Written by MAL Rewrite]",
-            "Mal-img": "https://myanimelist.cdn-dena.com/images/anime/12/83709.jpg",
-            "Mal-title": "Masamune-kun no Revenge"
-        },
-        "http%3A%2F%2Fkissanime%2Eru%2FAnime%2FMasamune-kun-no-Revenge-dub": {
-            "Kiss": "http://kissanime.ru/Anime/Masamune-kun-no-Revenge-dub",
             "Kiss-description": "<span>As a child, Masamune Makabe once suffered greatly at the hands of a wealthy and beautiful girl named Aki Adagaki, who nicknamed him \"Piggy\" due to his chubby appearance. Seeking revenge against his tormentor, Masamune works hard to improve himself and returns as an incredibly handsome, albeit narcissistic, high school student. When he encounters Aki once again, he is prepared to exact vengeance.<br /> <br /> With the aid of the rich girl's maid, Yoshino Koiwai, Masamune slowly begins to build his relationship with Aki, intending to break her heart when the time is right. However, as his friendship with Aki begins to grow, Masamune starts to question the objectives of his devious plans, and if bringing them to fruition is what his heart truly desires.</span>",
             "Kiss-img": "https://kissanime.ru/Uploads/Etc/1-20-2017/31884954580599l.jpg",
             "Kiss-title": "Masamune-kun no Revenge (Dub)",
@@ -6481,6 +6541,16 @@
             "Mal-img": "https://myanimelist.cdn-dena.com/images/anime/12/48827.jpg",
             "Mal-title": "Mushibugyou"
         },
+        "http%3A%2F%2Fkissanime%2Eru%2FAnime%2FMushishi-Dub": {
+            "Kiss": "http://kissanime.ru/Anime/Mushishi-Dub",
+            "Kiss-description": "",
+            "Kiss-img": "https://myanimelist.cdn-dena.com/images/anime/2/73862.jpg",
+            "Kiss-title": "Mushishi (Dub)",
+            "Mal": "https://myanimelist.net/anime/457/Mushishi",
+            "Mal-description": "&quot;Mushi&quot;: the most basic forms of life in the world. They exist without any goals or purposes aside from simply &quot;being.&quot; They are beyond the shackles of the words &quot;good&quot; and &quot;evil.&quot; Mushi can exist in countless forms and are capable of mimicking things from the natural world such as plants, diseases, and even phenomena like rainbows.<br />\r\n<br />\r\nThis is, however, just a vague definition of these entities that inhabit the vibrant world of Mushishi, as to even call them a form of life would be an oversimplification. Detailed information on Mushi is scarce because the majority of humans are unaware of their existence.<br />\r\n<br />\r\nSo what are Mushi and why do they exist? This is the question that a &quot;Mushishi,&quot; Ginko, ponders constantly. Mushishi are those who research Mushi in hopes of understanding their place in the world&#039;s hierarchy of life.<br />\r\n<br />\r\nGinko chases rumors of occurrences that could be tied to Mushi, all for the sake of finding an answer.<br />\r\n<br />\r\nIt could, after all, lead to the meaning of life itself.<br />\r\n<br />\r\n[Written by MAL Rewrite]",
+            "Mal-img": "https://myanimelist.cdn-dena.com/images/anime/2/73862.jpg",
+            "Mal-title": "Mushishi"
+        },
         "http%3A%2F%2Fkissanime%2Eru%2FAnime%2FMushishi-Zoku-Shou": {
             "Kiss": "http://kissanime.ru/Anime/Mushishi-Zoku-Shou",
             "Kiss-description": "They existed long before anyone can remember. They are simple and strange in nature, not resembling any other plant or animal in this world. In ancient times, people revered these bizarre creatures and called them \"Mushi.\"<br /><br />People once again began to believe in the existence of these \"Mushi\" when they began affecting their lives in inexplicable ways.&nbsp;<br /><br />The one who connects the world of \"Mushi\" to the world of humans -- they were called the \"Mushi-shi.\"<br /><br />All life exists not to hinder others in this world.&nbsp;<br />They are simply there to live as they were meant to.",
@@ -6500,16 +6570,6 @@
             "Mal-description": "Second season of <i>Mushishi Zoku Shou</i>.",
             "Mal-img": "https://myanimelist.cdn-dena.com/images/anime/9/68095.jpg",
             "Mal-title": "Mushishi Zoku Shou 2nd Season"
-        },
-        "http%3A%2F%2Fkissanime%2Eru%2FAnime%2FMushishi-dub": {
-            "Kiss": "http://kissanime.ru/Anime/Mushishi-dub",
-            "Kiss-description": "",
-            "Kiss-img": "https://myanimelist.cdn-dena.com/images/anime/2/73862.jpg",
-            "Kiss-title": "Mushishi (Dub)",
-            "Mal": "https://myanimelist.net/anime/457/Mushishi",
-            "Mal-description": "&quot;Mushi&quot;: the most basic forms of life in the world. They exist without any goals or purposes aside from simply &quot;being.&quot; They are beyond the shackles of the words &quot;good&quot; and &quot;evil.&quot; Mushi can exist in countless forms and are capable of mimicking things from the natural world such as plants, diseases, and even phenomena like rainbows.<br />\r\n<br />\r\nThis is, however, just a vague definition of these entities that inhabit the vibrant world of Mushishi, as to even call them a form of life would be an oversimplification. Detailed information on Mushi is scarce because the majority of humans are unaware of their existence.<br />\r\n<br />\r\nSo what are Mushi and why do they exist? This is the question that a &quot;Mushi-shi,&quot; Ginko, ponders constantly. Mushi-shi are those who research Mushi in hopes of understanding their place in the world&#039;s hierarchy of life.<br />\r\n<br />\r\nGinko chases rumors of occurrences that could be tied to Mushi, all for the sake of finding an answer.<br />\r\n<br />\r\nIt could, after all, lead to the meaning of life itself.<br />\r\n<br />\r\n[Written by MAL Rewrite]",
-            "Mal-img": "https://myanimelist.cdn-dena.com/images/anime/2/73862.jpg",
-            "Mal-title": "Mushishi"
         },
         "http%3A%2F%2Fkissanime%2Eru%2FAnime%2FNabari-no-Ou": {
             "Kiss": "http://kissanime.ru/Anime/Nabari-no-Ou",
@@ -6621,16 +6681,6 @@
             "Mal-img": "https://myanimelist.cdn-dena.com/images/anime/9/83263.jpg",
             "Mal-title": "Nanbaka (2017)"
         },
-        "http%3A%2F%2Fkissanime%2Eru%2FAnime%2FNanbaka-dub": {
-            "Kiss": "http://kissanime.ru/Anime/Nanbaka-dub",
-            "Kiss-description": "<span>A super exciting action comedy starring the inmates and guards of the world's most formidable prison.</span>",
-            "Kiss-img": "https://myanimelist.cdn-dena.com/images/anime/2/81399.jpg",
-            "Kiss-title": "Nanbaka (Dub)",
-            "Mal": "https://myanimelist.net/anime/30016/Nanbaka/characters",
-            "Mal-description": "",
-            "Mal-img": "https://myanimelist.cdn-dena.com/images/anime/2/81399.jpg",
-            "Mal-title": "Nanbaka"
-        },
         "http%3A%2F%2Fkissanime%2Eru%2FAnime%2FNaruto": {
             "Kiss": "http://kissanime.ru/Anime/Naruto",
             "Kiss-description": "",
@@ -6740,6 +6790,16 @@
             "Mal-description": "The story takes place in a time when the world is in the pits of despair after being ravaged by a poison called \"shinobi\" that came to earth via an asteroid. The people run away to the place called \"Kairiku,\" a place that used to be the bottom of the ocean. Here, the people try and protect themselves against the effects of the poison. In such a world, there was a single light of hope. The \"Holy Weapon Giga Road\" and the legendary warrior \"Yagyuu\" are needed in order to counter the effects of the poison. In order to save the world, Ame, a princess of a fallen nation, stands up in order to save the world.<br />\n<br />\n(Source: ANN)",
             "Mal-img": "https://myanimelist.cdn-dena.com/images/anime/11/56827.jpg",
             "Mal-title": "Neppuu Kairiku Bushi Road"
+        },
+        "http%3A%2F%2Fkissanime%2Eru%2FAnime%2FNerawareta-Gakuen-Dub": {
+            "Kiss": "http://kissanime.ru/Anime/Nerawareta-Gakuen-Dub",
+            "Kiss-description": "<span>Kenji Seki's daily routine was set in stone. Every morning he walks his dog at the beach to get a glimpse of his crush, Kahori Harukawa, as she rides the waves on her surfboard, and walks to school together with his childhood friend, Natsuki Suzuura. Everything changed on a sunny spring morning when he stumbled across Ryouichi Kyougoku, a handsome new transfer student who claims to be a psychic, musing about how amazing it was that he was finally on Earth&hellip;<br /> <br /> <em>Nerawareta Gakuen</em> tells the relationship-driven story of how Ryouichi&rsquo;s presence sets the wheels of fate in motion for Kenji. Not only are his ordinary days challenged by growing jealousy from seeing Kahori falling for the young psychic, but his friend Natsuki seems to be troubled by problems of her own. And then he still has to deal with whatever plans Ryouichi has in store for him.</span>",
+            "Kiss-img": "https://myanimelist.cdn-dena.com/images/anime/2/43807.jpg",
+            "Kiss-title": "Nerawareta Gakuen (Dub)",
+            "Mal": "https://myanimelist.net/anime/14293/Nerawareta_Gakuen",
+            "Mal-description": "Kenji Seki&#039;s daily routine was set in stone. Every morning he walks his dog at the beach to get a glimpse of his crush, Kahori Harukawa, as she rides the waves on her surfboard, and walks to school together with his childhood friend, Natsuki Suzuura. Everything changed on a sunny spring morning when he stumbled across Ryouichi Kyougoku, a handsome new transfer student who claims to be a psychic, musing about how amazing it was that he was finally on Earth...<br />\r\n<br />\r\n<i>Nerawareta Gakuen</i> tells the relationship-driven story of how Ryouichi&#039;s presence sets the wheels of fate in motion for Kenji. Not only are his ordinary days challenged by growing jealousy from seeing Kahori falling for the young psychic, but his friend Natsuki seems to be troubled by problems of her own. And then he still has to deal with whatever plans Ryouichi has in store for him.",
+            "Mal-img": "https://myanimelist.cdn-dena.com/images/anime/2/43807.jpg",
+            "Mal-title": "Nerawareta Gakuen"
         },
         "http%3A%2F%2Fkissanime%2Eru%2FAnime%2FNetoge-no-Yome-wa-Onnanoko-ja-Nai-to-Omotta-Dub": {
             "Kiss": "http://kissanime.ru/Anime/Netoge-no-Yome-wa-Onnanoko-ja-Nai-to-Omotta-Dub",
@@ -6910,16 +6970,6 @@
             "Mal-description": "Bundled with the limited editions of the 15th and 16th volumes of the manga.<br />\r\n<br />\r\n15th volume DVD is planned to be released on November 17, 2015. It will adapt the <i>Nijikan no Teikei ni So Koto (Following A Stereotypical Two Hours)</i> story from the first volume of the <i>Noragami: Shuuishuu</i> spinoff manga<br />\r\n<br />\r\n16th volume DVD will adapt the manga&#039;s 41st chapter where the main characters go to &quot;Capypa Land.&quot; <br />\r\n<br />\r\n(Source: MAL News)<br />\r\n",
             "Mal-img": "https://myanimelist.cdn-dena.com/images/anime/11/77510.jpg",
             "Mal-title": "Noragami Aragoto OVA"
-        },
-        "http%3A%2F%2Fkissanime%2Eru%2FAnime%2FNoragami-Aragoto-dub": {
-            "Kiss": "http://kissanime.ru/Anime/Noragami-Aragoto-dub",
-            "Kiss-description": "<span>In the second season of Noragami the main focus is on Bishamon, god of war. She has many shinki due to her being unable to abandon spirits attacked by Ayakashi. She has a large group of shinki with her as leader, causing her trouble as she sometimes cannot tend to all of them properly, especially when one of them gets sick or is in pain. She has a strong hate for Yato, as a dark past binds the two of them. How will the horrifying events dated hundreds of years ago in combination with current evil happenings affect Yato and Yukine? </span>",
-            "Kiss-img": "https://myanimelist.cdn-dena.com/images/anime/4/75627.jpg",
-            "Kiss-title": "Noragami Aragoto (Dub)",
-            "Mal": "https://myanimelist.net/anime/30503/Noragami_Aragoto",
-            "Mal-description": "Yato and Yukine have finally mended their relationship as god and Regalia, and everyone has returned to their daily life. Yato remains a minor and unknown deity who continues taking odd jobs for five yen apiece in the hopes of one day having millions of worshippers and his own grand shrine. Hiyori Iki has yet to have her loose soul fixed by Yato, but she enjoys life and prepares to attend high school nonetheless.<br />\r\n<br />\r\nTaking place immediately after the first season, <i>Noragami Aragoto</i> delves into the complicated past between Yato and the god of war Bishamon. The female god holds a mysterious grudge against Yato, which often results in violent clashes between them. It doesn&#039;t help that Bishamon&#039;s most trusted and beloved Regalia, Kazuma, appears to be indebted to Yato. When lives are on the line, unraveling these mysteries and others may be the only way to correct past mistakes.<br />\r\n<br />\r\n[Written by MAL Rewrite]",
-            "Mal-img": "https://myanimelist.cdn-dena.com/images/anime/4/75627.jpg",
-            "Mal-title": "Noragami Aragoto"
         },
         "http%3A%2F%2Fkissanime%2Eru%2FAnime%2FNoragami-Dub": {
             "Kiss": "http://kissanime.ru/Anime/Noragami-Dub",
@@ -9086,6 +9136,16 @@
             "Mal-img": "https://myanimelist.cdn-dena.com/images/anime/8/61889.jpg",
             "Mal-title": "Soul Eater NOT!"
         },
+        "http%3A%2F%2Fkissanime%2Eru%2FAnime%2FSouryo-to-Majiwaru-Shikiyoku-no-Yoru-ni": {
+            "Kiss": "http://kissanime.ru/Anime/Souryo-to-Majiwaru-Shikiyoku-no-Yoru-ni",
+            "Kiss-description": "<span>The reunion of Kujo with his old female classmate. He has inherited his parents' temple and became a priest. However, after the two became drunk, he does something unexpected of him to her!</span>",
+            "Kiss-img": "https://kissanime.ru/Uploads/Etc/3-1-2017/81563854584040l.jpg",
+            "Kiss-title": "Souryo to Majiwaru Shikiyoku no Yoru ni...",
+            "Mal": "https://myanimelist.net/anime/34823/Souryo_to_Majiwaru_Shikiyoku_no_Yoru_ni",
+            "Mal-description": "The reunion of Kujo with his old female classmate. He has inherited his parents&#039; temple and became a priest. However, after the two became drunk, he does something unexpected of him to her!<br />\r\n<br />\r\n(Source: MAL News)",
+            "Mal-img": "https://myanimelist.cdn-dena.com/images/anime/4/84553.jpg",
+            "Mal-title": "Souryo to Majiwaru Shikiyoku no Yoru ni..."
+        },
         "http%3A%2F%2Fkissanime%2Eru%2FAnime%2FSousei-no-Onmyouji-Twin-Star-Exorcists": {
             "Kiss": "http://kissanime.ru/Anime/Sousei-no-Onmyouji-Twin-Star-Exorcists",
             "Kiss-description": "Grotesque monsters known as Impurities reside in Magano, a realm parallel to the present day. Exorcists purify these evil apparitions to protect the people. Rokuro Enmado is opposed to becoming an exorcist, even though he has the talent to be one, but an oracle gives him the title of \"Twin Star Exorcist,\" the name bestowed upon married exorcists. Benio Adashino, the girl who receives the title along with Rokuro, is determined to exorcise all the Kegare, or Impurities, in the world. The two find themselves wrapped up in more and more battles together as the Twin Star Exorcists...",
@@ -9814,6 +9874,16 @@
             "Mal-img": "https://myanimelist.cdn-dena.com/images/anime/7/75610.jpg",
             "Mal-title": "Toaru Kagaku no Railgun S"
         },
+        "http%3A%2F%2Fkissanime%2Eru%2FAnime%2FToaru-Kagaku-no-Railgun-S-OVA": {
+            "Kiss": "http://kissanime.ru/Anime/Toaru-Kagaku-no-Railgun-S-OVA",
+            "Kiss-description": "Bundled with the official visual book.",
+            "Kiss-img": "https://myanimelist.cdn-dena.com/images/anime/2/76119.jpg",
+            "Kiss-title": "Toaru Kagaku no Railgun S: Daiji na Koto wa Zenbu Sentou ni Osowatta",
+            "Mal": "https://myanimelist.net/anime/22759/Toaru_Kagaku_no_Railgun_S__Daiji_na_Koto_wa_Zenbu_Sentou_ni_Osowatta",
+            "Mal-description": "Bundled with the official visual book.",
+            "Mal-img": "https://myanimelist.cdn-dena.com/images/anime/2/76119.jpg",
+            "Mal-title": "Toaru Kagaku no Railgun S: Daiji na Koto wa Zenbu Sentou ni Osowatta"
+        },
         "http%3A%2F%2Fkissanime%2Eru%2FAnime%2FToaru-Majutsu-no-Index": {
             "Kiss": "http://kissanime.ru/Anime/Toaru-Majutsu-no-Index",
             "Kiss-description": "Set in a city of scientifically advanced superhuman students, but in a  world where magic is also real. Touma Kamijou&rsquo;s right hand, the Imagine  Breaker, will negate all magic, psychic, or divine powers, but not his  own bad luck. One day he finds a young girl hanging on his balcony  railing. She turns out to be a nun from the Church of England, and her  mind has been implanted with the Index-Librorum-Prohibitorum - all the  magical texts the Church has removed from circulation.",
@@ -10034,6 +10104,26 @@
             "Mal-img": "https://myanimelist.cdn-dena.com/images/anime/8/18578.jpg",
             "Mal-title": "True Tears"
         },
+        "http%3A%2F%2Fkissanime%2Eru%2FAnime%2FTsubasa-Chronicle-Dub": {
+            "Kiss": "http://kissanime.ru/Anime/Tsubasa-Chronicle-Dub",
+            "Kiss-description": "During an excavation at the mysterious ruins in Clow Country, Syaoran discovers his childhood friend Princess Sakura appear on the site with wings that disperse into many feathers. As the feather's disappear to different dimensions, so does Sakura's memory. In attempts to save Sakura's life and restore her memory, Syaoran travels through to another world to find a solution. There's only one thing left he can do. Travel through to different dimensions to collect Sakura's feathers. Helping out with the quest is Kurogane, an exiled ninja from Japan Country who wishes to return to his world, the runaway magician, Fay, who desires to jump between each world never to return to his own and the white meat-bun shaped creature, Mokona.",
+            "Kiss-img": "https://myanimelist.cdn-dena.com/images/anime/4/6554.jpg",
+            "Kiss-title": "Tsubasa Chronicle (Dub)",
+            "Mal": "https://myanimelist.net/anime/177/Tsubasa_Chronicle",
+            "Mal-description": "During an excavation at the mysterious ruins in Clow Country, Syaoran discovers his childhood friend Princess Sakura appear on the site with wings that disperse into many feathers. As the feather's disappear to different dimensions, so does Sakura's memory. In attempts to save Sakura's life and restore her memory, Syaoran travels through to another world to find a solution. There's only one thing left he can do. Travel through to different dimensions to collect Sakura's feathers. Helping out with the quest is Kurogane, an exiled ninja from Japan Country who wishes to return to his world, the runaway magician, Fay, who desires to jump between each world never to return to his own and the white meat-bun shaped creature, Mokona.",
+            "Mal-img": "https://myanimelist.cdn-dena.com/images/anime/9/6555.jpg",
+            "Mal-title": "Tsubasa Chronicle"
+        },
+        "http%3A%2F%2Fkissanime%2Eru%2FAnime%2FTsubasa-Tokyo-Revelations": {
+            "Kiss": "http://kissanime.ru/Anime/Tsubasa-Tokyo-Revelations",
+            "Kiss-description": "Continuing their journey from Record Country (the place that held the book of memories), Syaoran and company land into Tokyo Country, a blood-filled country under war from opposing factions for natural resources and survival. While reluctantly involved in the race to live, the group faces their own problems as certain revelations are made, changing their journey forever.<br /><br />A shocking betrayal and a battle that risks all of their lives. After this revelation, they will never be the same again.",
+            "Kiss-img": "https://myanimelist.cdn-dena.com/images/anime/4/49129.jpg",
+            "Kiss-title": "Tsubasa: Tokyo Revelations (Sub)",
+            "Mal": "https://myanimelist.net/anime/2685/Tsubasa__Tokyo_Revelations",
+            "Mal-description": "Continuing their journey from Record Country (the place that held the book of memories), Syaoran and company land into Tokyo Country, a blood-filled country under war from opposing factions for natural resources and survival. While reluctantly involved in the race to live, the group faces their own problems as certain revelations are made, changing their journey forever.<br />\r\n<br />\r\nA shocking betrayal and a battle that risks all of their lives. After this revelation, they will never be the same again.",
+            "Mal-img": "https://myanimelist.cdn-dena.com/images/anime/4/49129.jpg",
+            "Mal-title": "Tsubasa: Tokyo Revelations"
+        },
         "http%3A%2F%2Fkissanime%2Eru%2FAnime%2FTsubu-Doll": {
             "Kiss": "http://kissanime.ru/Anime/Tsubu-Doll",
             "Kiss-description": "The series centers around 16 girls who want to fulfill their dreams of being on stage in the city of Sagamihara. Rather than being a story where the characters compete to be the \"top idol,\" the girls will bring life and energy to the city through local idol activities. A number of events are planned surrounding the project to bring vitalization to Sagamihara, in addition to a drama CD and radio program.",
@@ -10043,6 +10133,16 @@
             "Mal-description": "The series centers around 16 girls who want to fulfill their dreams of being on stage in the city of Sagamihara. Rather than being a story where the characters compete to be the &quot;top idol,&quot; the girls will bring life and energy to the city through local idol activities. A number of events are planned surrounding the project to bring vitalization to Sagamihara, in addition to a drama CD and radio program.<br />\r\n<br />\r\n(Source: MAL News)",
             "Mal-img": "https://myanimelist.cdn-dena.com/images/anime/6/75970.jpg",
             "Mal-title": "Tsubu★Doll"
+        },
+        "http%3A%2F%2Fkissanime%2Eru%2FAnime%2FTsugumomo": {
+            "Kiss": "http://kissanime.ru/Anime/Tsugumomo",
+            "Kiss-description": "<span>Kazuya Kagami never goes anywhere without the precious \"Sakura Obi\" his mother gave him. One day a beautiful, kimono-clad girl named Kiriha appeared before him. Kiriha naturally began to live with Kazuya in his room. Then there's Chisato, Kazuya's childhood friend with glasses and a ponytail, who meddles in his affairs. Soon there's also an overprotective older sister who seems to want to take baths with him. Jumble in a huge-chested priestess, a good-looking sorceress named Kokuyoura, beautiful women, and hot girls, and Kazuya's happy, embarrassing, confusing life begins&hellip;</span>",
+            "Kiss-img": "https://kissanime.ru/Uploads/Etc/3-1-2017/9106154584461l.jpg",
+            "Kiss-title": "Tsugumomo",
+            "Mal": "https://myanimelist.net/anime/34019/Tsugumomo",
+            "Mal-description": "Kazuya Kagami never goes anywhere without the precious &quot;Sakura Obi&quot; his mother gave him. One day a beautiful, kimono-clad girl named Kiriha appeared before him. Kiriha naturally began to live with Kazuya in his room. Then there&#039;s Chisato, Kazuya&#039;s childhood friend with glasses and a ponytail, who meddles in his affairs. Soon there&#039;s also an overprotective older sister who seems to want to take baths with him. Jumble in a huge-chested priestess, a good-looking sorceress named Kokuyoura, beautiful women, and hot girls, and Kazuya&#039;s happy, embarrassing, confusing life begins&hellip;<br />\r\n<br />\r\n(Source: MAL News)",
+            "Mal-img": "https://myanimelist.cdn-dena.com/images/anime/13/84461.jpg",
+            "Mal-title": "Tsugumomo"
         },
         "http%3A%2F%2Fkissanime%2Eru%2FAnime%2FTsukuyomi-Moon-Phase": {
             "Kiss": "http://kissanime.ru/Anime/Tsukuyomi-Moon-Phase",
@@ -10790,201 +10890,189 @@
         }
     },
     "animeRequest": {
-        "-Kgo01opAqLZx5J98oPD": {
-            "Kiss": "http://kissanime.ru/Anime/Ergo-Proxy",
-            "Mal": "https://myanimelist.net/anime/790/Ergo_Proxy"
+        "-KgsCLzkNhfJtshs_EG9": {
+            "Kiss": "http://kissanime.ru/Anime/Yowamushi-Pedal-New-Generation",
+            "Mal": "https://myanimelist.net/anime/31783/Yowamushi_Pedal__New_Generation"
         },
-        "-Kgo02V_-cmJocCOvYEl": {
-            "Kiss": "http://kissanime.ru/Anime/Ergo-Proxy-Dub",
-            "Mal": "https://myanimelist.net/anime/790/Ergo_Proxy"
+        "-KgsEm3Ofk60sm-Hufgg": {
+            "Kiss": "http://kissanime.ru/Anime/Warau-Salesman-New",
+            "Mal": "https://myanimelist.net/anime/34550/Warau_Salesman_New"
         },
-        "-Kgo6OgpfRJRhyUPMLYg": {
-            "Kiss": "http://kissanime.ru/Anime/Maken-Ki",
-            "Mal": "https://myanimelist.net/anime/9936/Maken-Ki/pics"
+        "-KgsGhxHgZyImLHKkICP": {
+            "Kiss": "http://kissanime.ru/Anime/Tsugumomo",
+            "Mal": "https://myanimelist.net/anime/34019/Tsugumomo"
         },
-        "-Kgo6_1IVZp-r4sr8rqc": {
-            "Kiss": "http://kissanime.ru/Anime/Masamune-kun-no-Revenge",
-            "Mal": "https://myanimelist.net/anime/33487/Masamune-kun_no_Revenge"
+        "-KgsYg2a2TlDFbZ-P2YF": {
+            "Kiss": "http://kissanime.ru/Anime/High-School-Fleet-OVA",
+            "Mal": "https://myanimelist.net/anime/34125/High_School_Fleet_OVA"
         },
-        "-KgoC9Ndx692PXv6WykS": {
-            "Kiss": "http://kissanime.ru/Anime/Nerawareta-Gakuen-Dub",
-            "Mal": "https://myanimelist.net/anime/14293/Nerawareta_Gakuen"
+        "-KgsZ0vTnW92QxN7KbaS": {
+            "Kiss": "http://kissanime.ru/Anime/Trinity-Seven-Dub",
+            "Mal": "https://myanimelist.net/anime/25157/Trinity_Seven"
         },
-        "-KgoPRkLZFOQ8Db184cG": {
-            "Kiss": "http://kissanime.ru/Anime/Ergo-Proxy-dub",
-            "Mal": "https://myanimelist.net/anime/790/Ergo_Proxy"
-        },
-        "-KgoPTk1IMn1em59MP9x": {
-            "Kiss": "http://kissanime.ru/Anime/Ergo-Proxy-Dub",
-            "Mal": "https://myanimelist.net/anime/790/Ergo_Proxy"
-        },
-        "-KgoTXcjX73tYiTgHsZ_": {
-            "Kiss": "http://kissanime.ru/Anime/Sekai-no-Yami-Zukan",
-            "Mal": "https://myanimelist.net/anime/35069/Sekai_no_Yami_Zukan"
-        },
-        "-KgoUvR0wkB56TVcFBB2": {
-            "Kiss": "http://kissanime.ru/Anime/Souryo-to-Majiwaru-Shikiyoku-no-Yoru-ni",
-            "Mal": "https://myanimelist.net/anime/34823/Souryo_to_Majiwaru_Shikiyoku_no_Yoru_ni"
-        },
-        "-KgobUdLHBbV6fRERW6z": {
-            "Kiss": "http://kissanime.ru/Anime/Gintama-2017",
-            "Mal": "https://myanimelist.net/anime/34096/Gintama"
-        },
-        "-KgodpO39Ci1eUEXSsls": {
-            "Kiss": "http://kissanime.ru/Anime/Souryo-to-Majiwaru-Shikiyoku-no-Yoru-ni",
-            "Mal": "https://myanimelist.net/anime/34823/Souryo_to_Majiwaru_Shikiyoku_no_Yoru_ni"
-        },
-        "-KgomNmvE-b-XSl_dcnM": {
-            "Kiss": "http://kissanime.ru/Anime/Toaru-Kagaku-no-Railgun-S-OVA",
-            "Mal": "https://myanimelist.net/anime/22759/Toaru_Kagaku_no_Railgun_S__Daiji_na_Koto_wa_Zenbu_Sentou_ni_Osowatta"
-        },
-        "-KgomvJ5oR9xe03aG3My": {
-            "Kiss": "http://kissanime.ru/Anime/Toaru-Majutsu-no-Index-II-Dub",
-            "Mal": "https://myanimelist.net/anime/8937/Toaru_Majutsu_no_Index_II"
-        },
-        "-Kgp6k8ELzbZoG6Jnf-1": {
-            "Kiss": "http://kissanime.ru/Anime/Kobayashi-san-Chi-no-Maid-Dragon",
-            "Mal": "https://myanimelist.net/anime/33206/Kobayashi-san_Chi_no_Maid_Dragon"
-        },
-        "-Kgp6qTNybpGLJAuZAKF": {
-            "Kiss": "http://kissanime.ru/Anime/Eromanga-sensei",
-            "Mal": "https://myanimelist.net/anime/32901/Eromanga-sensei"
-        },
-        "-Kgp7Us-pXkmZzp8P-_A": {
-            "Kiss": "http://kissanime.ru/Anime/Granblue-Fantasy-The-Animation",
-            "Mal": "https://myanimelist.net/anime/31629/Granblue_Fantasy_The_Animation"
-        },
-        "-Kgp7zeK4qRJ0OfFudxp": {
-            "Kiss": "http://kissanime.ru/Anime/Little-Witch-Academia-TV",
-            "Mal": "https://myanimelist.net/anime/33489/Little_Witch_Academia_TV"
-        },
-        "-Kgp8gX07eLoSlB9JiPK": {
-            "Kiss": "http://kissanime.ru/Anime/Tsubasa-Tokyo-Revelations",
-            "Mal": "https://myanimelist.net/anime/2685/Tsubasa__Tokyo_Revelations"
-        },
-        "-Kgp8nq7NQxgQO43VBa2": {
-            "Kiss": "http://kissanime.ru/Anime/Tsubasa-Chronicle-Dub",
-            "Mal": "https://myanimelist.net/anime/177/Tsubasa_Chronicle"
-        },
-        "-KgpGJ93AYbMlgVoaxpT": {
-            "Kiss": "http://kissanime.ru/Anime/Dungeon-ni-Deai-wo-Motomeru-no-wa-Machigatteiru-Darou-ka",
-            "Mal": "https://myanimelist.net/anime/28121/Dungeon_ni_Deai_wo_Motomeru_no_wa_Machigatteiru_Darou_ka"
-        },
-        "-KgpHCzEOAUO1_N3yh2E": {
-            "Kiss": "http://kissanime.ru/Anime/Madan-no-Ou-to-Vanadis",
-            "Mal": "https://myanimelist.net/anime/24455/Madan_no_Ou_to_Vanadis"
-        },
-        "-KgpHD6MzuIiVt0yZZ5L": {
-            "Kiss": "http://kissanime.ru/Anime/Overlord",
-            "Mal": "https://myanimelist.net/anime/29803/Overlord"
-        },
-        "-KgpHvEypr_Pza6xZwsM": {
-            "Kiss": "http://kissanime.ru/Anime/Dungeon-ni-Deai-wo-Motomeru-no-wa-Machigatteiru-Darou-ka-Gaiden-Sword-Oratoria",
-            "Mal": "https://myanimelist.net/anime/32887/Dungeon_ni_Deai_wo_Motomeru_no_wa_Machigatteiru_Darou_ka_Gaiden__Sword_Oratoria"
-        },
-        "-KgpI1OVm3G6fpaAuLAk": {
-            "Kiss": "http://kissanime.ru/Anime/Dungeon-ni-Deai-wo-Motomeru-no-wa-Machigatteiru-Darou-ka-OVA",
-            "Mal": "https://myanimelist.net/anime/32801/Dungeon_ni_Deai_wo_Motomeru_no_wa_Machigatteiru_Darou_ka_OVA"
-        },
-        "-KgpNEBGzHcqyb_VEnJU": {
-            "Kiss": "http://kissanime.ru/Anime/Madan-no-Ou-to-Vanadis-Dub",
-            "Mal": "https://myanimelist.net/anime/24455/Madan_no_Ou_to_Vanadis"
-        },
-        "-KgpdHViGS2kORlA3AVT": {
-            "Kiss": "http://kissanime.ru/Anime/Berserk-2016-Dub",
-            "Mal": "https://myanimelist.net/anime/32379/Berserk_2016"
-        },
-        "-KgpdJ1m-qYQQSJMe7YF": {
-            "Kiss": "http://kissanime.ru/Anime/Berserk-2016",
-            "Mal": "https://myanimelist.net/anime/32379/Berserk_2016"
-        },
-        "-KgpqeGrvDAsyUynsGin": {
-            "Kiss": "http://kissanime.ru/Anime/Gurren-Lagann-Dub",
-            "Mal": "https://myanimelist.net/anime/2001/Tengen_Toppa_Gurren_Lagann"
-        },
-        "-Kgpr1xXOgam2u4h_A-e": {
-            "Kiss": "http://kissanime.ru/Anime/Code-Geass-Lelouch-of-the-Rebellion-Dub",
-            "Mal": "https://myanimelist.net/anime/1575/Code_Geass__Hangyaku_no_Lelouch"
-        },
-        "-Kgpr6uyh14C32C5lAE6": {
-            "Kiss": "http://kissanime.ru/Anime/Code-Geass-Lelouch-of-the-Rebellion-R2-Dub",
-            "Mal": "https://myanimelist.net/anime/2904/Code_Geass__Hangyaku_no_Lelouch_R2"
-        },
-        "-KgprT4IzFAtzuipUFwk": {
-            "Kiss": "http://kissanime.ru/Anime/Mahou-Shoujo-Madoka-Magica-Dub",
-            "Mal": "https://myanimelist.net/anime/9756/Mahou_Shoujo_Madoka%25E2%2598%2585Magica"
-        },
-        "-KgprbAcj7LWnbYjShfJ": {
-            "Kiss": "http://kissanime.ru/Anime/Mahou-Shoujo-Madoka-Magica-Movie-1-Hajimari-no-Monogatari-Dub",
-            "Mal": "https://myanimelist.net/anime/11977/Mahou_Shoujo_Madoka%25E2%2598%2585Magica_Movie_1__Hajimari_no_Monogatari"
-        },
-        "-KgprbCU8N3g0n3-gbIa": {
-            "Kiss": "http://kissanime.ru/Anime/Mahou-Shoujo-Madoka-Magica-Movie-2-Eien-no-Monogatari-Dub",
-            "Mal": "https://myanimelist.net/anime/11979/Mahou_Shoujo_Madoka%25E2%2598%2585Magica_Movie_2__Eien_no_Monogatari"
-        },
-        "-KgprmlYtoSIuNR_LmlY": {
-            "Kiss": "http://kissanime.ru/Anime/Mahou-Shoujo-Madoka-Magica-Movie-3-Hangyaku-no-Monogatari-Dub",
-            "Mal": "https://myanimelist.net/anime/11981/Mahou_Shoujo_Madoka%25E2%2598%2585Magica_Movie_3__Hangyaku_no_Monogatari"
-        },
-        "-KgprwNYeUaQbZ35t4r3": {
-            "Kiss": "http://kissanime.ru/Anime/Death-Note-Dub",
-            "Mal": "https://myanimelist.net/anime/1535/Death_Note"
-        },
-        "-Kgq0zOYDICZry5ZgNDb": {
-            "Kiss": "http://kissanime.ru/Anime/Frame-Arms-Girl",
-            "Mal": "https://myanimelist.net/anime/34427/Frame_Arms_Girl"
-        },
-        "-Kgq13LGJ7jAeGvCLHrd": {
-            "Kiss": "http://kissanime.ru/Anime/Souryo-to-Majiwaru-Shikiyoku-no-Yoru-ni",
-            "Mal": "https://myanimelist.net/anime/34823/Souryo_to_Majiwaru_Shikiyoku_no_Yoru_ni"
-        },
-        "-Kgq22RXV9gK-zXXlNTF": {
-            "Kiss": "http://kissanime.ru/Anime/Alice-to-Zouroku",
-            "Mal": "https://myanimelist.net/anime/34350/Alice_to_Zouroku"
-        },
-        "-KgqNWeGXjlHt-qYLiMN": {
-            "Kiss": "http://kissanime.ru/Anime/Berserk",
-            "Mal": "https://myanimelist.net/anime/33/Berserk"
-        },
-        "-KgqS-K5fvkd0Raa9mRU": {
-            "Kiss": "http://kissanime.ru/Anime/Re-Zero-kara-Hajimeru-Isekai-Seikatsu",
-            "Mal": "https://myanimelist.net/anime/31240/Re_Zero_kara_Hajimeru_Isekai_Seikatsu"
-        },
-        "-KgqnnHXzyygPqlsK-vq": {
-            "Kiss": "http://kissanime.ru/Anime/Tales-of-Symphonia-The-Animation-Sekai-Tougou-hen",
-            "Mal": "https://myanimelist.net/anime/8995/Tales_of_Symphonia_The_Animation__Sekai_Tougou-hen"
-        },
-        "-KgqwjyjfrVX46LFf10e": {
-            "Kiss": "http://kissanime.ru/Anime/Little-Witch-Academia-TV",
-            "Mal": "https://myanimelist.net/anime/33489/Little_Witch_Academia_TV"
-        },
-        "-Kgr2KU8xcMKDlGSPQtZ": {
-            "Kiss": "http://kissanime.ru/Anime/Kobayashi-san-Chi-no-Maid-Dragon",
-            "Mal": "https://myanimelist.net/anime/33206/Kobayashi-san_Chi_no_Maid_Dragon"
-        },
-        "-Kgr2cnoNIdbSy5j7Adf": {
-            "Kiss": "http://kissanime.ru/Anime/Sousei-no-Onmyouji-Twin-Star-Exorcists",
-            "Mal": "https://myanimelist.net/anime/32105/Sousei_no_Onmyouji"
-        },
-        "-Kgr7ieoLKLRSJYwn_2G": {
-            "Kiss": "http://kissanime.ru/Anime/Jigoku-Shoujo",
-            "Mal": "https://myanimelist.net/anime/228/Jigoku_Shoujo"
-        },
-        "-Kgr9jl9SAiYV1XqEchi": {
-            "Kiss": "http://kissanime.ru/Anime/Macross",
-            "Mal": "https://myanimelist.net/anime/1088/Macross"
-        },
-        "-KgrJLFPTki8LnH2ej6W": {
-            "Kiss": "http://kissanime.ru/Anime/Blue-Gender-The-Warrior-Dub",
-            "Mal": "https://myanimelist.net/anime/1380/Blue_Gender__The_Warrior"
-        },
-        "-KgrJM-I-ttIvFsLyJaV": {
+        "-KgsZK81LtuMnpEWXucU": {
             "Kiss": "http://kissanime.ru/Anime/Fantasista-Stella",
             "Mal": "https://myanimelist.net/anime/24817/Fantasista_Stella"
         },
-        "-KgrJMUgfefdB7zrueeC": {
+        "-KgszSUqgiLe6Q4v5naD": {
+            "Kiss": "http://kissanime.ru/Anime/Jormungand-Dub",
+            "Mal": "https://myanimelist.net/anime/12413/Jormungand"
+        },
+        "-KgtDdmjgYBt_LV2TPGD": {
+            "Kiss": "http://kissanime.ru/Anime/ChaoS-HEAd-dub",
+            "Mal": "https://myanimelist.net/anime/4975/Ch%25C3%25A4oS_HEAd/userrecs"
+        },
+        "-KgtDgkdD8V4csl4m1gd": {
+            "Kiss": "http://kissanime.ru/Anime/Chaos-Head-Dub",
+            "Mal": "https://myanimelist.net/anime/4975/Ch%25C3%25A4oS_HEAd"
+        },
+        "-KgtbW37IhJYfOwff2G4": {
+            "Kiss": "http://kissanime.ru/Anime/Tsugumomo",
+            "Mal": "https://myanimelist.net/anime/34019/Tsugumomo"
+        },
+        "-Kgthdyi0r9vP4ah6g0Y": {
+            "Kiss": "http://kissanime.ru/Anime/Boruto-Naruto-the-Movie",
+            "Mal": "https://myanimelist.net/anime/28755/Boruto__Naruto_the_Movie"
+        },
+        "-KgtkDr-Duty9sLC3ni1": {
+            "Kiss": "http://kissanime.ru/Anime/Yowamushi-Pedal-New-Generation",
+            "Mal": "https://myanimelist.net/anime/31783/Yowamushi_Pedal__New_Generation"
+        },
+        "-KgtkJTTKGEj-Cbdi0x2": {
+            "Kiss": "http://kissanime.ru/Anime/Masamune-kun-no-Revenge-Dub",
+            "Mal": "https://myanimelist.net/anime/33487/Masamune-kun_no_Revenge"
+        },
+        "-KgtkyFLquBxAjcJSWdY": {
+            "Kiss": "http://kissanime.ru/Anime/All-Out-Dub",
+            "Mal": "https://myanimelist.net/anime/31588/All_Out"
+        },
+        "-Kgu-kPqH8TvmFaxvNZy": {
+            "Kiss": "http://kissanime.ru/Anime/Hand-Shakers",
+            "Mal": "https://myanimelist.net/anime/32981/Hand_Shakers"
+        },
+        "-Kgu-nOMNLKR0hLsqNxt": {
+            "Kiss": "http://kissanime.ru/Anime/Hand-Shakers-Dub",
+            "Mal": "https://myanimelist.net/anime/32981/Hand_Shakers"
+        },
+        "-KguLxl9R7XdN11wZN3p": {
+            "Kiss": "http://kissanime.ru/Anime/Hataraku-Maou-sama-dub",
+            "Mal": "https://myanimelist.net/anime/15809/Hataraku_Maou-sama"
+        },
+        "-KguM2jiC7wZRl4gHt6y": {
+            "Kiss": "http://kissanime.ru/Anime/Hataraku-Maou-sama-Dub",
+            "Mal": "https://myanimelist.net/anime/15809/Hataraku_Maou-sama"
+        },
+        "-KguVB18vMeKSQI0CaQT": {
+            "Kiss": "http://kissanime.ru/Anime/Rokudenashi-Majutsu-Koushi-to-Akashic-Records",
+            "Mal": "https://myanimelist.net/anime/32951/Rokudenashi_Majutsu_Koushi_to_Akashic_Records"
+        },
+        "-Kgujd3bNysYlRV2hMCd": {
+            "Kiss": "http://kissanime.ru/Anime/THE-iDOLM-STER-CINDERELLA-GIRLS-Theater-Web",
+            "Mal": "https://myanimelist.net/anime/23587/The_iDOLMSTER_Cinderella_Girls"
+        },
+        "-Kgujd9z-9DufKinELBO": {
+            "Kiss": "http://kissanime.ru/Anime/Cinderella-Girls-Gekijou",
+            "Mal": "https://myanimelist.net/anime/34257/Cinderella_Girls_Gekijou"
+        },
+        "-KguvPhEPg-zxyH-oJ76": {
+            "Kiss": "http://kissanime.ru/Anime/Rokudenashi-Majutsu-Koushi-to-Akashic-Records",
+            "Mal": "https://myanimelist.net/anime/32951/Rokudenashi_Majutsu_Koushi_to_Akashic_Records"
+        },
+        "-Kgv0435dq1fzaSl1uxX": {
+            "Kiss": "http://kissanime.ru/Anime/Sansha-Sanyou-Specials",
+            "Mal": "https://myanimelist.net/anime/33173/Sansha_Sanyou_Specials"
+        },
+        "-KgvTjzQaK6YZT18g5j6": {
+            "Kiss": "http://kissanime.ru/Anime/Oushitsu-Kyoushi-Haine",
+            "Mal": "https://myanimelist.net/anime/34262/Oushitsu_Kyoushi_Haine"
+        },
+        "-KgvUQoqqxjvnSmJeHiz": {
+            "Kiss": "http://kissanime.ru/Anime/Rokudenashi-Majutsu-Koushi-to-Akashic-Records",
+            "Mal": "https://myanimelist.net/anime/32951/Rokudenashi_Majutsu_Koushi_to_Akashic_Records"
+        },
+        "-Kgvc1gMn56lWCGpTiBe": {
             "Kiss": "http://kissanime.ru/Anime/Souryo-to-Majiwaru-Shikiyoku-no-Yoru-ni",
             "Mal": "https://myanimelist.net/anime/34823/Souryo_to_Majiwaru_Shikiyoku_no_Yoru_ni"
+        },
+        "-Kgvh80kAXrUJDYCmVif": {
+            "Kiss": "http://kissanime.ru/Anime/Koe-no-Katachi",
+            "Mal": "https://myanimelist.net/anime/28851/Koe_no_Katachi"
+        },
+        "-KgvhMGYK5rm-NBbxAUy": {
+            "Kiss": "http://kissanime.ru/Anime/Steins-Gate-Movie-Fuka-Ryouiki-no-Deja-vu-dub",
+            "Mal": "https://myanimelist.net/anime/11577/Steins_Gate_Movie__Fuka_Ryouiki_no_D%25C3%25A9j%25C3%25A0_vu/forum"
+        },
+        "-KgvhYfg3ttRoyQX7Xrw": {
+            "Kiss": "http://kissanime.ru/Anime/Steins-Gate-Movie-Fuka-Ryouiki-no-Deja-vu-Dub",
+            "Mal": "https://myanimelist.net/anime/11577/Steins_Gate_Movie__Fuka_Ryouiki_no_D%25C3%25A9j%25C3%25A0_vu"
+        },
+        "-Kgw1Ygd9E8uIuw0PrLI": {
+            "Kiss": "http://kissanime.ru/Anime/Mahou-Sensei-Negima-Dub",
+            "Mal": "https://myanimelist.net/anime/157/Mahou_Sensei_Negima"
+        },
+        "-KgwD-WC32TjFyiBy-CF": {
+            "Kiss": "http://kissanime.ru/Anime/Boruto-Naruto-Next-Generations",
+            "Mal": "https://myanimelist.net/anime/34566/Boruto__Naruto_Next_Generations"
+        },
+        "-KgwESEpf2s1nDMTR7oo": {
+            "Kiss": "http://kissanime.ru/Anime/Souryo-to-Majiwaru-Shikiyoku-no-Yoru-ni",
+            "Mal": "https://myanimelist.net/anime/34823/Souryo_to_Majiwaru_Shikiyoku_no_Yoru_ni"
+        },
+        "-KgwFHh-CcExu_9_97uT": {
+            "Kiss": "http://kissanime.ru/Anime/Sekai-no-Yami-Zukan",
+            "Mal": "https://myanimelist.net/anime/35069/Sekai_no_Yami_Zukan"
+        },
+        "-KgwFVQREugO7tz-cKUn": {
+            "Kiss": "http://kissanime.ru/Anime/Oushitsu-Kyoushi-Haine",
+            "Mal": "https://myanimelist.net/anime/34262/Oushitsu_Kyoushi_Haine"
+        },
+        "-KgwFVoAtiHwwvV5bONF": {
+            "Kiss": "http://kissanime.ru/Anime/Rokudenashi-Majutsu-Koushi-to-Akashic-Records",
+            "Mal": "https://myanimelist.net/anime/32951/Rokudenashi_Majutsu_Koushi_to_Akashic_Records"
+        },
+        "-KgwGmh2GgZ-u_kqWMJI": {
+            "Kiss": "http://kissanime.ru/Anime/Macross-7-Movie-Ginga-ga-Ore-wo-Yondeiru",
+            "Mal": "https://myanimelist.net/anime/1400/Macross_7_Movie__Ginga_ga_Ore_wo_Yondeiru"
+        },
+        "-KgwGqUI3S8iTdGgXiJ2": {
+            "Kiss": "http://kissanime.ru/Anime/Macross-Do-You-Remember-Love",
+            "Mal": "https://myanimelist.net/anime/1089/Macross__Do_You_Remember_Love"
+        },
+        "-KgwHrlZHaHG_8cJ3ye_": {
+            "Kiss": "http://kissanime.ru/Anime/Monster-Strike-2",
+            "Mal": "https://myanimelist.net/anime/34670/Monster_Strike_2"
+        },
+        "-KgwHyDutpTR2YGrQoP5": {
+            "Kiss": "http://kissanime.ru/Anime/Monster-Strike-2#",
+            "Mal": "https://myanimelist.net/anime/34670/Monster_Strike_2"
+        },
+        "-KgwI6jo64AeaXwTel3v": {
+            "Kiss": "http://kissanime.ru/Anime/Oushitsu-Kyoushi-Haine",
+            "Mal": "https://myanimelist.net/anime/34262/Oushitsu_Kyoushi_Haine"
+        },
+        "-KgwIFSb6BvRfa8dTz_Z": {
+            "Kiss": "http://kissanime.ru/Anime/3-gatsu-no-Lion",
+            "Mal": "https://myanimelist.net/anime/31646/3-gatsu_no_Lion"
+        },
+        "-KgwKKMBhKm4OYB3tSXA": {
+            "Kiss": "http://kissanime.ru/Anime/Gin-no-Guardian",
+            "Mal": "https://myanimelist.net/anime/32936/Gin_no_Guardian"
+        },
+        "-KgwNOAU4fIoh0iAauHG": {
+            "Kiss": "http://kissanime.ru/Anime/Shingeki-no-Kyojin-2nd-Season",
+            "Mal": "https://myanimelist.net/anime/25777/Shingeki_no_Kyojin_Season_2"
+        },
+        "-KgwNb5NAsV6cvkziNCc": {
+            "Kiss": "http://kissanime.ru/Anime/Boruto-Naruto-Next-Generations",
+            "Mal": "https://myanimelist.net/anime/34566/Boruto__Naruto_Next_Generations"
+        },
+        "-KgwO8Dv492xLq_OQpZH": {
+            "Kiss": "http://kissanime.ru/Anime/Gin-no-Guardian",
+            "Mal": "https://myanimelist.net/anime/32936/Gin_no_Guardian"
+        },
+        "-KgwOgB1SwZeCcFI25Rd": {
+            "Kiss": "http://kissanime.ru/Anime/Kuzu-no-Honkai",
+            "Mal": "https://myanimelist.net/anime/32949/Kuzu_no_Honkai"
         }
     }
 }
