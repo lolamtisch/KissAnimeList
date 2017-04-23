@@ -1,4 +1,22 @@
 {
+    "Prototyp": {
+        "Kissanime": {
+            "nogamenolife": {
+                "Mal": {
+                    "321": true
+                },
+                "image": "url"
+            }
+        },
+        "Mal": {
+            "321": {
+                "image": "url",
+                "stream": {
+                    "nogamenolife": "Kissanime"
+                }
+            }
+        }
+    },
     "anime": {
         "http%3A%2F%2Fkissanime%2Eru%2FAnime%2F001": {
             "Kiss": "http://kissanime.ru/Anime/001",
@@ -14361,6 +14379,114 @@
         "-KiHv1z338e-ltnvIdZx": {
             "Kiss": "http://kissanime.ru/Anime/Re-Creators",
             "Mal": "https://myanimelist.net/anime/34561/Re_Creators"
+        },
+        "-KiJafIYstsGOAalJW11": {
+            "Kiss": "http://kissanime.ru/Anime/Gin-no-Guardian",
+            "Mal": "https://myanimelist.net/anime/32936/Gin_no_Guardian"
+        },
+        "-KiJbXNzrMwY6zckL0Rp": {
+            "Kiss": "http://kissanime.ru/Anime/Quan-Zhi-Gao-Shou",
+            "Mal": "https://myanimelist.net/anime/33926/Quan_Zhi_Gao_Shou"
+        },
+        "-KiJk6wnzL0ba9VDWREi": {
+            "Kiss": "http://kissanime.ru/Anime/Chou-Yuu-Sekai-Being-the-Reality",
+            "Mal": "https://myanimelist.net/anime/34675/Chou_Yuu_Sekai__Being_the_Reality"
+        },
+        "-KiJkB53LUQRYbPOgBax": {
+            "Kiss": "http://kissanime.ru/Anime/Dungeon-ni-Deai-wo-Motomeru-no-wa-Machigatteiru-Darou-ka-Gaiden-Sword-Oratoria",
+            "Mal": "https://myanimelist.net/anime/32887/Dungeon_ni_Deai_wo_Motomeru_no_wa_Machigatteiru_Darou_ka_Gaiden__Sword_Oratoria"
+        },
+        "-KiJkI1Y1X7anNjKGjwR": {
+            "Kiss": "http://kissanime.ru/Anime/Yowamushi-Pedal-New-Generation",
+            "Mal": "https://myanimelist.net/anime/31783/Yowamushi_Pedal__New_Generation"
+        },
+        "-KiJmBpAfaAXD0E1qFhE": {
+            "Kiss": "http://kissanime.ru/Anime/Eromanga-sensei",
+            "Mal": "https://myanimelist.net/anime/32901/Eromanga-sensei"
+        },
+        "-KiJpJ9il9V67W8uQsJJ": {
+            "Kiss": "http://kissanime.ru/Anime/Renai-Boukun",
+            "Mal": "https://myanimelist.net/anime/32262/Renai_Boukun"
+        },
+        "-KiK70wmxrrmhqtKjWPZ": {
+            "Kiss": "http://kissanime.ru/Anime/Dungeon-ni-Deai-wo-Motomeru-no-wa-Machigatteiru-Darou-ka-Gaiden-Sword-Oratoria",
+            "Mal": "https://myanimelist.net/anime/32887/Dungeon_ni_Deai_wo_Motomeru_no_wa_Machigatteiru_Darou_ka_Gaiden__Sword_Oratoria"
+        },
+        "-KiKcQkZ74VRnUjaGbkj": {
+            "Kiss": "http://kissanime.ru/Anime/Boku-no-Hero-Academia-2nd-Season",
+            "Mal": "https://myanimelist.net/anime/33486/Boku_no_Hero_Academia_2nd_Season"
+        },
+        "-KiKey5-ofwoKg_qz6TD": {
+            "Kiss": "http://kissanime.ru/Anime/Jitsu-wa-Watashi-wa",
+            "Mal": "https://myanimelist.net/anime/29785/Jitsu_wa_Watashi_wa"
+        },
+        "-KiKg_PHvp5obC20QFYI": {
+            "Kiss": "http://kissanime.ru/Anime/Nobunaga-no-Shinobi-Ise-Kanegasaki-Hen",
+            "Mal": "https://myanimelist.net/anime/34978/Nobunaga_no_Shinobi__Ise_Kanegasaki-hen"
+        },
+        "-KiL1ZcFWb2n_sX70Kzh": {
+            "Kiss": "http://kissanime.ru/Anime/Boku-no-Hero-Academia-2nd-Season",
+            "Mal": "https://myanimelist.net/anime/33486/Boku_no_Hero_Academia_2nd_Season"
+        },
+        "-KiLGtGH3MSZGFWXOpD8": {
+            "Kiss": "http://kissanime.ru/Anime/Shingeki-no-Kyojin-2nd-Season",
+            "Mal": "https://myanimelist.net/anime/25777/Shingeki_no_Kyojin_Season_2"
+        },
+        "-KiLGvuiVMeetAfANt_E": {
+            "Kiss": "http://kissanime.ru/Anime/Gin-no-Guardian",
+            "Mal": "https://myanimelist.net/anime/32936/Gin_no_Guardian"
+        },
+        "-KiM8z0Fb-sn_zwELOTZ": {
+            "Kiss": "http://kissanime.ru/Anime/Shingeki-no-Kyojin-2nd-Season",
+            "Mal": "https://myanimelist.net/anime/25777/Shingeki_no_Kyojin_Season_2"
+        },
+        "-KiMFhTZmTKfjJ2lC8lo": {
+            "Kiss": "http://kissanime.ru/Anime/Re-Creators",
+            "Mal": "https://myanimelist.net/anime/34561/Re_Creators"
+        },
+        "-KiMTmmb9l4mcFjl3oNm": {
+            "Kiss": "http://kissanime.ru/Anime/Sword-Art-Online-Movie-Ordinal-Scale",
+            "Mal": "https://myanimelist.net/anime/31765/Sword_Art_Online_Movie__Ordinal_Scale"
+        },
+        "-KiMTnN2olOKjIAaUH82": {
+            "Kiss": "http://kissanime.ru/Anime/Shingeki-no-Kyojin-2nd-Season",
+            "Mal": "https://myanimelist.net/anime/25777/Shingeki_no_Kyojin_Season_2"
+        },
+        "-KiM_VYUthC1Y9w8__a0": {
+            "Kiss": "http://kissanime.ru/Anime/Eromanga-sensei",
+            "Mal": "https://myanimelist.net/anime/32901/Eromanga-sensei"
+        },
+        "-KiM_XZze1mT1ayUFFxu": {
+            "Kiss": "http://kissanime.ru/Anime/Sword-Art-Online-Movie-Ordinal-Scale",
+            "Mal": "https://myanimelist.net/anime/31765/Sword_Art_Online_Movie__Ordinal_Scale"
+        },
+        "-KiMc5lwF5nAvJOqsOqZ": {
+            "Kiss": "http://kissanime.ru/Anime/Shingeki-no-Kyojin-2nd-Season",
+            "Mal": "https://myanimelist.net/anime/25777/Shingeki_no_Kyojin_Season_2"
+        },
+        "-KiMfZ5ApnAVnYw1wc-L": {
+            "Kiss": "http://kissanime.ru/Anime/Granblue-Fantasy-The-Animation",
+            "Mal": "https://myanimelist.net/anime/31629/Granblue_Fantasy_The_Animation"
+        },
+        "-KiN34G6-Q2hBZQvILCp": {
+            "Kiss": "http://kissanime.ru/Anime/Masamune-kun-no-Revenge",
+            "Mal": "https://myanimelist.net/anime/33487/Masamune-kun_no_Revenge"
+        },
+        "-KiNIpT85kgwvpb8ycg_": {
+            "Kiss": "http://kissanime.ru/Anime/Sword-Art-Online-Movie-Ordinal-Scale",
+            "Mal": "https://myanimelist.net/anime/31765/Sword_Art_Online_Movie__Ordinal_Scale"
+        },
+        "-KiNexY5LPKbjVbTSzYJ": {
+            "Kiss": "http://kissanime.ru/Anime/Shingeki-no-Kyojin-2nd-Season",
+            "Mal": "https://myanimelist.net/anime/25777/Shingeki_no_Kyojin_Season_2"
+        },
+        "-KiNtn8e5McAKjqI0Vqg": {
+            "Kiss": "http://kissanime.ru/Anime/Boku-no-Hero-Academia-2nd-Season",
+            "Mal": "https://myanimelist.net/anime/33486/Boku_no_Hero_Academia_2nd_Season"
+        },
+        "-KiO3ZNhkF0LCz35lx4I": {
+            "Kiss": "http://kissanime.ru/Anime/Re-Creators",
+            "Mal": "https://myanimelist.net/anime/34561/Re_Creators"
         }
     },
     "manga": {
@@ -14987,6 +15113,50 @@
         "-KiHbL_dTQVsco5ZGAWk": {
             "Kiss": "http://kissmanga.com/Manga/Fire-Punch",
             "Mal": "https://myanimelist.net/manga/98270/Fire_Punch"
+        },
+        "-KiJT5QY5dZGNKoZ0zdt": {
+            "Kiss": "http://kissmanga.com/Manga/Kanojo-ni-Naru-Hi",
+            "Mal": "https://myanimelist.net/manga/54817/Kanojo_ni_Naru_Hi"
+        },
+        "-KiL8AnfDHCW-BNDIS1j": {
+            "Kiss": "http://kissmanga.com/Manga/Yumi-s-Cells",
+            "Mal": "https://myanimelist.net/manga/78649/Sora_x_Lila__Sorairo_no_Lila_to_Okubyou_na_Boku"
+        },
+        "-KiL8CEy521Cicero4Fw": {
+            "Kiss": "http://kissmanga.com/Manga/Baby-Steps",
+            "Mal": "https://myanimelist.net/manga/8300/Baby_Steps"
+        },
+        "-KiL8JAcN0efTpcyCpYs": {
+            "Kiss": "http://kissmanga.com/Manga/The-Promised-Neverland",
+            "Mal": "https://myanimelist.net/manga/100128/Yakusoku_no_Neverland"
+        },
+        "-KiL8QPdXzOVAy43xzIc": {
+            "Kiss": "http://kissmanga.com/Manga/All-Rounder-Meguru",
+            "Mal": "https://myanimelist.net/manga/14090/All_Rounder_Meguru"
+        },
+        "-KiL8WmqaKc-jI9y--4-": {
+            "Kiss": "http://kissmanga.com/Manga/Ubau-Mono-Ubawareru-Mono",
+            "Mal": "https://myanimelist.net/manga/99410/Ubau_Mono_Ubawareru_Mono"
+        },
+        "-KiMzvu-1YEW5ApMoH7M": {
+            "Kiss": "http://kissmanga.com/Manga/Dungeon-Meshi",
+            "Mal": "https://myanimelist.net/manga/85781/Dungeon_Meshi"
+        },
+        "-KiNLgJKY0lDCN_hOnjE": {
+            "Kiss": "http://kissmanga.com/Manga/Fairy-Tail",
+            "Mal": "https://myanimelist.net/manga/598/Fairy_Tail"
+        },
+        "-KiO-6I2JKP8NWXN-j9z": {
+            "Kiss": "http://kissmanga.com/Manga/Investor-Z",
+            "Mal": "https://myanimelist.net/manga/69045/Investor_Z"
+        },
+        "-KiO-X1VJvKb05ayLUu3": {
+            "Kiss": "http://kissmanga.com/Manga/Wortenia-Senki",
+            "Mal": "https://myanimelist.net/manga/105962/Wortenia_Senki"
+        },
+        "-KiO-fe77Gfp_R0njMgS": {
+            "Kiss": "http://kissmanga.com/Manga/Hinamatsuri",
+            "Mal": "https://myanimelist.net/manga/36413/Hinamatsuri/userrecs"
         }
     }
 }
