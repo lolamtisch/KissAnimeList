@@ -121,6 +121,22 @@
                 "title": "Blame! Movie",
                 "url": "https://9anime.to/watch/blame-movie.6zq0"
             },
+            "blood-c": {
+                "Mal": {
+                    "10490": "Blood-C"
+                },
+                "image": "https://images2-focus-opensocial.googleusercontent.com/gadgets/proxy?container=focus&amp;gadget=a&amp;no_expand=1&amp;refresh=604800&amp;url=http://2.bp.blogspot.com/-FOUXNdqSs9E/V45hKBrGtSI/AAAAAAAAwd4/YVGKIs05tZY/s0/",
+                "title": "Blood-C",
+                "url": "https://9anime.to/watch/blood-c.02q7"
+            },
+            "blood-c-dub": {
+                "Mal": {
+                    "10490": "Blood-C"
+                },
+                "image": "https://images2-focus-opensocial.googleusercontent.com/gadgets/proxy?container=focus&amp;gadget=a&amp;no_expand=1&amp;refresh=604800&amp;url=http://2.bp.blogspot.com/-S5k8v-8qJsg/V8bdxjGoxDI/AAAAAAAA62A/I6fK33Qnvs8/s0/",
+                "title": "Blood-C (Dub)",
+                "url": "https://9anime.to/watch/blood-c-dub.1zrw"
+            },
             "boku-dake-ga-inai-machi-dub": {
                 "Mal": {
                     "31043": "Boku_dake_ga_Inai_Machi"
@@ -657,6 +673,22 @@
                 "title": "Kanokon (Dub)",
                 "url": "https://9anime.to/watch/kanokon-dub.movx?ep=12"
             },
+            "karas": {
+                "Mal": {
+                    "389": "Karas"
+                },
+                "image": "https://images2-focus-opensocial.googleusercontent.com/gadgets/proxy?container=focus&amp;gadget=a&amp;no_expand=1&amp;refresh=604800&amp;url=http://2.bp.blogspot.com/-yUUsgh22rus/WANtgKd27oI/AAAAAAABIbE/VKZ-wxHBPe4/s0/",
+                "title": "Karas",
+                "url": "https://9anime.to/watch/karas.myyv"
+            },
+            "karas-dub": {
+                "Mal": {
+                    "389": "Karas"
+                },
+                "image": "https://images2-focus-opensocial.googleusercontent.com/gadgets/proxy?container=focus&amp;gadget=a&amp;no_expand=1&amp;refresh=604800&amp;url=http://2.bp.blogspot.com/-kBvxYoNiBdA/WANs5y81w4I/AAAAAAABIa8/Ln7IeuFotNw/s0/",
+                "title": "Karas (Dub)",
+                "url": "https://9anime.to/watch/karas-dub.lyy3"
+            },
             "keijo": {
                 "Mal": {
                     "32686": "Keijo"
@@ -1128,6 +1160,14 @@
                 "image": "https://images2-focus-opensocial.googleusercontent.com/gadgets/proxy?container=focus&amp;gadget=a&amp;no_expand=1&amp;refresh=604800&amp;url=http://2.bp.blogspot.com/-giJlNjJIWGo/V_HJJHmWU1I/AAAAAAABDh0/RhCs-BCguVc/s0/",
                 "title": "Selector Destructed WIXOSS Movie",
                 "url": "https://9anime.to/watch/selector-destructed-wixoss-movie.0xx7"
+            },
+            "seto-no-hanayome": {
+                "Mal": {
+                    "2104": "Seto_no_Hanayome"
+                },
+                "image": "https://images2-focus-opensocial.googleusercontent.com/gadgets/proxy?container=focus&amp;gadget=a&amp;no_expand=1&amp;refresh=604800&amp;url=http://2.bp.blogspot.com/-I7_C_fzAdd8/V4USdvGnuJI/AAAAAAAAvFI/PZUfUqfaLek/s0/",
+                "title": "Seto no Hanayome",
+                "url": "https://9anime.to/watch/seto-no-hanayome.6p4"
             },
             "shingeki-no-bahamut-genesis": {
                 "Mal": {
@@ -3323,6 +3363,14 @@
                 "title": "Bleach: The Sealed Sword Frenzy",
                 "url": "http://kissanime.ru/Anime/Bleach-The-Sealed-Sword-Frenzy"
             },
+            "blood-c": {
+                "Mal": {
+                    "10490": "Blood-C"
+                },
+                "image": "https://myanimelist.cdn-dena.com/images/anime/2/31649.jpg",
+                "title": "Blood-C (Sub)",
+                "url": "http://kissanime.ru/Anime/Blood-C"
+            },
             "blood-c-dub": {
                 "Mal": {
                     "10490": "Blood-C"
@@ -3330,6 +3378,22 @@
                 "image": "https://myanimelist.cdn-dena.com/images/anime/2/31649.jpg",
                 "title": "Blood-C (Dub)",
                 "url": "http://kissanime.ru/Anime/Blood-C-Dub"
+            },
+            "blood-c-the-last-dark": {
+                "Mal": {
+                    "10681": "Blood-C__The_Last_Dark"
+                },
+                "image": "https://myanimelist.cdn-dena.com/images/anime/9/34495.jpg",
+                "title": "Blood-C: The Last Dark (Sub)",
+                "url": "http://kissanime.ru/Anime/Blood-C-The-Last-Dark"
+            },
+            "blood-c-the-last-dark-dub": {
+                "Mal": {
+                    "10681": "Blood-C__The_Last_Dark"
+                },
+                "image": "https://myanimelist.cdn-dena.com/images/anime/9/34495.jpg",
+                "title": "Blood-C: The Last Dark (Dub)",
+                "url": "http://kissanime.ru/Anime/Blood-C-The-Last-Dark-Dub"
             },
             "blood-dub": {
                 "Mal": {
@@ -4082,6 +4146,14 @@
                 "image": "https://myanimelist.cdn-dena.com/images/anime/9/12238.jpg",
                 "title": "Chrome Shelled Regios (Dub)",
                 "url": "http://kissanime.ru/Anime/Chrome-Shelled-Regios-Dub"
+            },
+            "chuu-bra": {
+                "Mal": {
+                    "6645": "Chuu_Bra"
+                },
+                "image": "https://myanimelist.cdn-dena.com/images/anime/4/33263.jpg",
+                "title": "Chuu Bra!!",
+                "url": "http://kissanime.ru/Anime/Chuu-Bra"
             },
             "chuunibyou-demo-koi-ga-shitai": {
                 "Mal": {
@@ -9397,6 +9469,14 @@
                 "title": "Kaitou Tenshi Twin Angel (TV)",
                 "url": "http://kissanime.ru/Anime/Kaitou-Tenshi-Twin-Angel-TV"
             },
+            "kaleido-star-sub": {
+                "Mal": {
+                    "427": "Kaleido_Star"
+                },
+                "image": "https://myanimelist.cdn-dena.com/images/anime/3/75487.jpg",
+                "title": "Kaleido Star (Sub)",
+                "url": "http://kissanime.ru/Anime/Kaleido-Star-Sub"
+            },
             "kami-nomi-zo-shiru-sekai-yonin-to-idol": {
                 "Mal": {
                     "10805": "Kami_nomi_zo_Shiru_Sekai__4-nin_to_Idol"
@@ -13399,6 +13479,14 @@
                 "image": "https://myanimelist.cdn-dena.com/images/anime/4/72750.jpg",
                 "title": "Plastic Memories",
                 "url": "http://kissanime.ru/Anime/Plastic-Memories"
+            },
+            "plastic-nee-san": {
+                "Mal": {
+                    "10711": "Plastic_Neesan"
+                },
+                "image": "https://myanimelist.cdn-dena.com/images/anime/13/76583.jpg",
+                "title": "Plastic Nee-san",
+                "url": "http://kissanime.ru/Anime/Plastic-Nee-san"
             },
             "pokemon-advanced-generation-dub": {
                 "Mal": {
@@ -18445,6 +18533,22 @@
             "-Km4htQa-J2kxzI20i5N": {
                 "Kiss": "http://kissanime.ru/Anime/Onii-chan-no-Koto-nanka-Zenzen-Suki-Janain-Dakara-ne",
                 "Mal": "https://myanimelist.net/anime/9587/Oniichan_no_Koto_nanka_Zenzen_Suki_ja_Nai_n_da_kara_ne"
+            },
+            "-Km8-PhJUbyoUzqnHl72": {
+                "Kiss": "http://kissanime.ru/Anime/Onii-chan-no-Koto-nanka-Zenzen-Suki-Janain-Dakara-ne",
+                "Mal": "https://myanimelist.net/anime/9587/Oniichan_no_Koto_nanka_Zenzen_Suki_ja_Nai_n_da_kara_ne"
+            },
+            "-Km8y2Jm2qjbYK036Uri": {
+                "Kiss": "http://kissanime.ru/Anime/Onii-chan-no-Koto-nanka-Zenzen-Suki-Janain-Dakara-ne",
+                "Mal": "https://myanimelist.net/anime/9587/Oniichan_no_Koto_nanka_Zenzen_Suki_ja_Nai_n_da_kara_ne"
+            },
+            "-Km8y4qENVFAAtxBA1gF": {
+                "Kiss": "http://kissanime.ru/Anime/Onii-chan-no-Koto-nanka-Zenzen-Suki-Janain-Dakara-ne",
+                "Mal": "https://myanimelist.net/anime/9587/Oniichan_no_Koto_nanka_Zenzen_Suki_ja_Nai_n_da_kara_ne"
+            },
+            "-Km94NCRZzKz7UupmtnR": {
+                "Kiss": "http://kissanime.ru/Anime/Onii-chan-no-Koto-nanka-Zenzen-Suki-Janain-Dakara-ne",
+                "Mal": "https://myanimelist.net/anime/9587/Oniichan_no_Koto_nanka_Zenzen_Suki_ja_Nai_n_da_kara_ne"
             }
         },
         "Kissmanga": {
@@ -20724,6 +20828,14 @@
                 "title": "Futari no Renai Shoka",
                 "url": "http://kissmanga.com/Manga/Futari-no-Renai-Shoka"
             },
+            "futaribeya": {
+                "Mal": {
+                    "88489": "Futaribeya"
+                },
+                "image": "http://kissmanga.com/Uploads/Etc/6-7-2017/5929132i253490.jpg",
+                "title": "Futaribeya",
+                "url": "http://kissmanga.com/Manga/Futaribeya"
+            },
             "fuuka": {
                 "Mal": {
                     "67019": "Fuuka"
@@ -22556,6 +22668,14 @@
                 "title": "Kino&#39;s Journey (Gou)",
                 "url": "http://kissmanga.com/Manga/Kino-s-Journey-Gou"
             },
+            "kipen-manga": {
+                "Mal": {
+                    "Not-Found": "Not-Found"
+                },
+                "image": "http://kissmanga.com/Uploads/Etc/6-16-2015/4455382e330ceb9d.jpg",
+                "title": "Kipen Manga",
+                "url": "http://kissmanga.com/Manga/Kipen-Manga"
+            },
             "kiryuin-kaya-chi-wo-suwareru-dake-no-kantan-na-oshigoto": {
                 "Mal": {
                     "34961": "Kiryuuin_Kaya_ni_Chi_wo_Suwareru_dake_no_Kantan_na_Oshigoto"
@@ -24232,6 +24352,14 @@
                 "title": "Otome Sensou",
                 "url": "http://kissmanga.com/Manga/Otome-Sensou"
             },
+            "otometeki-syndrome": {
+                "Mal": {
+                    "100025": "Otometic_Syndrome"
+                },
+                "image": "http://kissmanga.com/Uploads/Etc/2-6-2016/1166492a80c48.jpg",
+                "title": "Otometeki Syndrome",
+                "url": "http://kissmanga.com/Manga/Otometeki-Syndrome"
+            },
             "otoyomegatari": {
                 "Mal": {
                     "11514": "Otoyomegatari"
@@ -24671,6 +24799,14 @@
                 "image": "http://kissmanga.com/Uploads/Etc/2-29-2012/9531272f3ef447d0721cfa3cfb1c4298187a045.jpg",
                 "title": "Reversible!",
                 "url": "http://kissmanga.com/Manga/Reversible"
+            },
+            "rhapsody-of-mulan": {
+                "Mal": {
+                    "Not-Found": "Not-Found"
+                },
+                "image": "http://kissmanga.com/Uploads/Etc/6-7-2017/6498642c9d0c005.jpg",
+                "title": "Rhapsody of Mulan",
+                "url": "http://kissmanga.com/Manga/Rhapsody-of-Mulan"
             },
             "rice-is-stronger-than-my-bf": {
                 "Mal": {
@@ -26220,6 +26356,14 @@
                 "title": "Uchi no Heika ga Shinmai de.",
                 "url": "http://kissmanga.com/Manga/Uchi-no-Heika-ga-Shinmai-de"
             },
+            "uchuu-o-kakeru-yodaka": {
+                "Mal": {
+                    "81079": "Sora_wo_Kakeru_Yodaka"
+                },
+                "image": "http://kissmanga.com/Uploads/Etc/12-5-2014/1857622448e9b8c1.jpg",
+                "title": "Uchuu o Kakeru Yodaka",
+                "url": "http://kissmanga.com/Manga/Uchuu-o-Kakeru-Yodaka"
+            },
             "unbalance-school-life": {
                 "Mal": {
                     "97051": "Unbalance_School_Life"
@@ -26491,6 +26635,14 @@
                 "image": "http://kissmanga.com/Uploads/Etc/12-27-2016/10369620ea53f.jpg",
                 "title": "What the Skylark Says...",
                 "url": "http://kissmanga.com/Manga/What-the-Skylark-Says"
+            },
+            "why-did-men-stop-wearing-high-heels": {
+                "Mal": {
+                    "Not-Found": "Not-Found"
+                },
+                "image": "http://kissmanga.com/Uploads/Etc/2-25-2017/5102932180.jpg",
+                "title": "Why Did Men Stop Wearing High Heels?",
+                "url": "http://kissmanga.com/Manga/Why-Did-Men-Stop-Wearing-High-Heels"
             },
             "winter-woods": {
                 "Mal": {
@@ -26915,6 +27067,14 @@
                 "image": "http://kissmanga.com/Uploads/Etc/10-12-2016/7798442b48c405.jpg",
                 "title": "Zetsubou Danshi to Chuugoku Musume",
                 "url": "http://kissmanga.com/Manga/Zetsubou-Danshi-to-Chuugoku-Musume"
+            },
+            "zettaijou-senpai-no-youkaigaku-kouza": {
+                "Mal": {
+                    "96604": "Zettaijou-senpai_no_Youkaigaku_Kouza"
+                },
+                "image": "http://kissmanga.com/Uploads/Etc/6-7-2017/64709320679273.jpg",
+                "title": "Zettaijou Senpai no Youkaigaku Kouza",
+                "url": "http://kissmanga.com/Manga/Zettaijou-Senpai-no-Youkaigaku-Kouza"
             },
             "zhaohuan-wansui": {
                 "Mal": {
@@ -27770,11 +27930,14 @@
                     "Kissanime": {
                         "elfen-lied": "Kissanime",
                         "elfen-lied-dub": "Kissanime"
+                    },
+                    "Masterani": {
+                        "elfen-lied": "Masterani"
                     }
                 },
                 "image": "https://myanimelist.cdn-dena.com/images/anime/10/6883.jpg",
                 "title": "Elfen Lied",
-                "url": "https://myanimelist.net/anime/226/Elfen_Lied"
+                "url": "https://myanimelist.net/anime/226/Elfen_Lied%3Fsa%3DX"
             },
             "228": {
                 "Sites": {
@@ -28200,6 +28363,10 @@
             },
             "389": {
                 "Sites": {
+                    "9anime": {
+                        "karas": "9anime",
+                        "karas-dub": "9anime"
+                    },
                     "Kissanime": {
                         "karas": "Kissanime",
                         "karas-dub": "Kissanime"
@@ -28207,7 +28374,7 @@
                 },
                 "image": "https://myanimelist.cdn-dena.com/images/anime/2/18521.jpg",
                 "title": "Karas",
-                "url": "http://myanimelist.net/anime/389/Karas"
+                "url": "https://myanimelist.net/anime/389/Karas/reviews"
             },
             "390": {
                 "Sites": {
@@ -28355,6 +28522,16 @@
                 "image": "https://myanimelist.cdn-dena.com/images/anime/10/4092.jpg",
                 "title": "Final Fantasy",
                 "url": "https://myanimelist.net/anime/426/Final_Fantasy"
+            },
+            "427": {
+                "Sites": {
+                    "Kissanime": {
+                        "kaleido-star-sub": "Kissanime"
+                    }
+                },
+                "image": "https://myanimelist.cdn-dena.com/images/anime/3/75487.jpg",
+                "title": "Kaleido Star",
+                "url": "https://myanimelist.net/anime/427/Kaleido_Star"
             },
             "431": {
                 "Sites": {
@@ -31154,6 +31331,19 @@
                 "title": "Shin Kimagure Orange☆Road: Soshite, Ano Natsu no Hajimari",
                 "url": "https://myanimelist.net/anime/2098/Shin_Kimagure_Orange%25E2%2598%2586Road__Soshite_Ano_Natsu_no_Hajimari"
             },
+            "2104": {
+                "Sites": {
+                    "9anime": {
+                        "seto-no-hanayome": "9anime"
+                    },
+                    "Masterani": {
+                        "seto-no-hanayome": "Masterani"
+                    }
+                },
+                "image": "https://myanimelist.cdn-dena.com/images/anime/13/58383.jpg",
+                "title": "Seto no Hanayome",
+                "url": "https://myanimelist.net/anime/2104/Seto_no_Hanayome"
+            },
             "2105": {
                 "Sites": {
                     "Kissanime": {
@@ -32279,6 +32469,9 @@
                 "Sites": {
                     "Kissanime": {
                         "strike-witches": "Kissanime"
+                    },
+                    "Masterani": {
+                        "strike-witches": "Masterani"
                     }
                 },
                 "image": "https://myanimelist.cdn-dena.com/images/anime/13/75524.jpg",
@@ -33695,6 +33888,9 @@
                     },
                     "Kissanime": {
                         "omamori-himari": "Kissanime"
+                    },
+                    "Masterani": {
+                        "omamori-himari": "Masterani"
                     }
                 },
                 "image": "https://myanimelist.cdn-dena.com/images/anime/13/15393.jpg",
@@ -33914,6 +34110,19 @@
                 "image": "https://myanimelist.cdn-dena.com/images/anime/5/26126.jpg",
                 "title": "Higashi no Eden Movie II: Paradise Lost",
                 "url": "https://myanimelist.net/anime/6637/Higashi_no_Eden_Movie_II__Paradise_Lost"
+            },
+            "6645": {
+                "Sites": {
+                    "Kissanime": {
+                        "chuu-bra": "Kissanime"
+                    },
+                    "Masterani": {
+                        "chuu-bra": "Masterani"
+                    }
+                },
+                "image": "https://myanimelist.cdn-dena.com/images/anime/4/33263.jpg",
+                "title": "Chuu Bra!!",
+                "url": "https://myanimelist.net/anime/6645/Chuu_Bra"
             },
             "6675": {
                 "Sites": {
@@ -34859,6 +35068,9 @@
                     "Kissanime": {
                         "is-this-a-zombie-dub": "Kissanime",
                         "kore-wa-zombie-desu-ka": "Kissanime"
+                    },
+                    "Masterani": {
+                        "kore-wa-zombie-desu-ka": "Masterani"
                     }
                 },
                 "image": "https://myanimelist.cdn-dena.com/images/anime/13/75521.jpg",
@@ -35023,6 +35235,9 @@
                 "Sites": {
                     "Kissanime": {
                         "air-gear-kuro-no-hane-to-nemuri-no-mori-break-on-the-sky": "Kissanime"
+                    },
+                    "Masterani": {
+                        "air-gear-kuro-no-hane-to-nemuri-no-mori-break-on-the-sky": "Masterani"
                     }
                 },
                 "image": "https://myanimelist.cdn-dena.com/images/anime/8/74158.jpg",
@@ -35805,8 +36020,16 @@
             },
             "10490": {
                 "Sites": {
+                    "9anime": {
+                        "blood-c": "9anime",
+                        "blood-c-dub": "9anime"
+                    },
                     "Kissanime": {
+                        "blood-c": "Kissanime",
                         "blood-c-dub": "Kissanime"
+                    },
+                    "Masterani": {
+                        "blood-c": "Masterani"
                     }
                 },
                 "image": "https://myanimelist.cdn-dena.com/images/anime/2/31649.jpg",
@@ -35925,6 +36148,20 @@
                 "title": "Tengen Toppa Gurren Lagann: Ore no Gurren wa Pikka-Pika!!",
                 "url": "https://myanimelist.net/anime/10622/Tengen_Toppa_Gurren_Lagann__Ore_no_Gurren_wa_Pikka-Pika"
             },
+            "10681": {
+                "Sites": {
+                    "Kissanime": {
+                        "blood-c-the-last-dark": "Kissanime",
+                        "blood-c-the-last-dark-dub": "Kissanime"
+                    },
+                    "Masterani": {
+                        "blood-c-the-last-dark": "Masterani"
+                    }
+                },
+                "image": "https://myanimelist.cdn-dena.com/images/anime/9/34495.jpg",
+                "title": "Blood-C: The Last Dark",
+                "url": "https://myanimelist.net/anime/10681/Blood-C__The_Last_Dark"
+            },
             "10686": {
                 "Sites": {
                     "Kissanime": {
@@ -35965,6 +36202,16 @@
                 "title": "Detective Conan OVA 11: A Secret Order from London",
                 "url": "https://myanimelist.net/anime/10703/Detective_Conan_OVA_11__A_Secret_Order_from_London"
             },
+            "10711": {
+                "Sites": {
+                    "Kissanime": {
+                        "plastic-nee-san": "Kissanime"
+                    }
+                },
+                "image": "https://myanimelist.cdn-dena.com/images/anime/13/76583.jpg",
+                "title": "Plastic Neesan",
+                "url": "https://myanimelist.net/anime/10711/Plastic_Neesan"
+            },
             "10719": {
                 "Sites": {
                     "9anime": {
@@ -35974,6 +36221,9 @@
                     "Kissanime": {
                         "boku-wa-tomodachi-ga-sukunai": "Kissanime",
                         "boku-wa-tomodachi-ga-sukunai-dub": "Kissanime"
+                    },
+                    "Masterani": {
+                        "boku-wa-tomodachi-ga-sukunai": "Masterani"
                     }
                 },
                 "image": "https://myanimelist.cdn-dena.com/images/anime/8/32873.jpg",
@@ -35995,6 +36245,9 @@
                     "Kissanime": {
                         "is-this-a-zombie-of-the-dead-dub": "Kissanime",
                         "kore-wa-zombie-desu-ka-of-the-dead": "Kissanime"
+                    },
+                    "Masterani": {
+                        "kore-wa-zombie-desu-ka-of-the-dead": "Masterani"
                     }
                 },
                 "image": "https://myanimelist.cdn-dena.com/images/anime/4/37451.jpg",
@@ -37456,6 +37709,16 @@
                 "image": "https://myanimelist.cdn-dena.com/images/anime/11/42773.jpg",
                 "title": "Magi: The Labyrinth of Magic",
                 "url": "https://myanimelist.net/anime/14513/Magi__The_Labyrinth_of_Magic"
+            },
+            "14527": {
+                "Sites": {
+                    "Masterani": {
+                        "medaka-box-abnormal": "Masterani"
+                    }
+                },
+                "image": "https://myanimelist.cdn-dena.com/images/anime/11/62919.jpg",
+                "title": "Medaka Box Abnormal",
+                "url": "https://myanimelist.net/anime/14527/Medaka_Box_Abnormal"
             },
             "14653": {
                 "Sites": {
@@ -39986,6 +40249,9 @@
                     },
                     "Kissanime": {
                         "seirei-tsukai-no-blade-dance": "Kissanime"
+                    },
+                    "Masterani": {
+                        "seirei-tsukai-no-blade-dance": "Masterani"
                     }
                 },
                 "image": "https://myanimelist.cdn-dena.com/images/anime/7/63031.jpg",
@@ -41134,6 +41400,9 @@
                     "Kissanime": {
                         "fate-kaleid-liner-prisma-illya-2wei-herz": "Kissanime",
                         "fate-kaleid-liner-prisma-illya-2wei-herz-dub": "Kissanime"
+                    },
+                    "Masterani": {
+                        "fatekaleid-liner-prismaillya-2wei-herz": "Masterani"
                     }
                 },
                 "image": "https://myanimelist.cdn-dena.com/images/anime/7/75297.jpg",
@@ -42552,6 +42821,9 @@
                 "Sites": {
                     "Kissanime": {
                         "saijaku-muhai-no-bahamut": "Kissanime"
+                    },
+                    "Masterani": {
+                        "saijaku-muhai-no-bahamut": "Masterani"
                     }
                 },
                 "image": "https://myanimelist.cdn-dena.com/images/anime/12/76664.jpg",
@@ -42749,6 +43021,16 @@
                 "image": "https://myanimelist.cdn-dena.com/images/anime/13/77323.jpg",
                 "title": "Kuroko no Basket: Saikou no Present Desu",
                 "url": "https://myanimelist.net/anime/31051/Kuroko_no_Basket__Saikou_no_Present_Desu"
+            },
+            "31056": {
+                "Sites": {
+                    "Masterani": {
+                        "fatekaleid-liner-prismaillya-2wei-herz-specials": "Masterani"
+                    }
+                },
+                "image": "https://myanimelist.cdn-dena.com/images/anime/7/81262.jpg",
+                "title": "Fate/kaleid liner Prisma☆Illya 2wei Herz! Specials",
+                "url": "https://myanimelist.net/anime/31056/Fate_kaleid_liner_Prisma%25E2%2598%2586Illya_2wei_Herz_Specials"
             },
             "31070": {
                 "Sites": {
@@ -44347,6 +44629,9 @@
                     "Kissanime": {
                         "keijo": "Kissanime",
                         "keijo-dub": "Kissanime"
+                    },
+                    "Masterani": {
+                        "keijo": "Masterani"
                     }
                 },
                 "image": "https://myanimelist.cdn-dena.com/images/anime/10/81906.jpg",
@@ -52524,6 +52809,16 @@
                 "title": "Hakumei to Mikochi",
                 "url": "https://myanimelist.net/manga/80841/Hakumei_to_Mikochi"
             },
+            "81079": {
+                "Sites": {
+                    "Kissmanga": {
+                        "uchuu-o-kakeru-yodaka": "Kissmanga"
+                    }
+                },
+                "image": "https://myanimelist.cdn-dena.com/images/manga/2/167241.jpg",
+                "title": "Sora wo Kakeru Yodaka",
+                "url": "https://myanimelist.net/manga/81079/Sora_wo_Kakeru_Yodaka"
+            },
             "81117": {
                 "Sites": {
                     "Kissmanga": {
@@ -53033,6 +53328,16 @@
                 "image": "https://myanimelist.cdn-dena.com/images/manga/3/188827.jpg",
                 "title": "Chihou Kishi Hans no Junan",
                 "url": "https://myanimelist.net/manga/88320/Chihou_Kishi_Hans_no_Junan"
+            },
+            "88489": {
+                "Sites": {
+                    "Kissmanga": {
+                        "futaribeya": "Kissmanga"
+                    }
+                },
+                "image": "https://myanimelist.cdn-dena.com/images/manga/1/154836.jpg",
+                "title": "Futaribeya",
+                "url": "https://myanimelist.net/manga/88489/Futaribeya"
             },
             "88600": {
                 "Sites": {
@@ -53935,6 +54240,16 @@
                 "title": "Yuragisou no Yuuna-san",
                 "url": "https://myanimelist.net/manga/96582/Yuragisou_no_Yuuna-san"
             },
+            "96604": {
+                "Sites": {
+                    "Kissmanga": {
+                        "zettaijou-senpai-no-youkaigaku-kouza": "Kissmanga"
+                    }
+                },
+                "image": "https://myanimelist.cdn-dena.com/images/manga/2/172436.jpg",
+                "title": "Zettaijou-senpai no Youkaigaku Kouza",
+                "url": "https://myanimelist.net/manga/96604/Zettaijou-senpai_no_Youkaigaku_Kouza"
+            },
             "96936": {
                 "Sites": {
                     "Kissmanga": {
@@ -54444,6 +54759,16 @@
                 "image": "https://myanimelist.cdn-dena.com/images/manga/3/183546.jpg",
                 "title": "Persona 5",
                 "url": "https://myanimelist.net/manga/99944/Persona_5"
+            },
+            "100025": {
+                "Sites": {
+                    "Kissmanga": {
+                        "otometeki-syndrome": "Kissmanga"
+                    }
+                },
+                "image": "https://myanimelist.cdn-dena.com/images/manga/2/180977.jpg",
+                "title": "Otometic Syndrome",
+                "url": "https://myanimelist.net/manga/100025/Otometic_Syndrome"
             },
             "100035": {
                 "Sites": {
@@ -55399,6 +55724,14 @@
                 "title": "Aikatsu Stars!",
                 "url": "https://www.masterani.me/anime/info/1919-aikatsu-stars"
             },
+            "air-gear-kuro-no-hane-to-nemuri-no-mori-break-on-the-sky": {
+                "Mal": {
+                    "9201": "Air_Gear__Kuro_no_Hane_to_Nemuri_no_Mori_-_Break_on_the_Sky"
+                },
+                "image": "//cdn.masterani.me/poster/2488huvaeb47.jpg",
+                "title": "Air Gear: Kuro no Hane to Nemuri no Mori - Break on the Sky",
+                "url": "https://www.masterani.me/anime/info/2488-air-gear-kuro-no-hane-to-nemuri-no-mori-break-on-the-sky"
+            },
             "ajin": {
                 "Mal": {
                     "31580": "Ajin"
@@ -55607,6 +55940,22 @@
                 "title": "Bleach",
                 "url": "https://www.masterani.me/anime/info/256-bleach"
             },
+            "blood-c": {
+                "Mal": {
+                    "10490": "Blood-C"
+                },
+                "image": "//cdn.masterani.me/poster/780fQjUN7i0.jpg",
+                "title": "Blood-C",
+                "url": "https://www.masterani.me/anime/info/780-blood-c"
+            },
+            "blood-c-the-last-dark": {
+                "Mal": {
+                    "10681": "Blood-C__The_Last_Dark"
+                },
+                "image": "//cdn.masterani.me/poster/781VtThyjBo.jpg",
+                "title": "Blood-C: The Last Dark",
+                "url": "https://www.masterani.me/anime/info/781-blood-c-the-last-dark"
+            },
             "boku-dake-ga-inai-machi": {
                 "Mal": {
                     "31043": "Boku_dake_ga_Inai_Machi"
@@ -55622,6 +55971,14 @@
                 "image": "//cdn.masterani.me/poster/2503naKKOd2o.jpg",
                 "title": "Boku no Hero Academia 2nd Season",
                 "url": "https://www.masterani.me/anime/info/2503-boku-no-hero-academia-2nd-season"
+            },
+            "boku-wa-tomodachi-ga-sukunai": {
+                "Mal": {
+                    "10719": "Boku_wa_Tomodachi_ga_Sukunai"
+                },
+                "image": "//cdn.masterani.me/poster/353LATFJKAq.jpg",
+                "title": "Boku wa Tomodachi ga Sukunai",
+                "url": "https://www.masterani.me/anime/info/353-boku-wa-tomodachi-ga-sukunai"
             },
             "boruto-naruto-next-generations": {
                 "Mal": {
@@ -55694,6 +56051,14 @@
                 "image": "//cdn.masterani.me/poster/724eUzxFD00.jpg",
                 "title": "Chihayafuru 2",
                 "url": "https://www.masterani.me/anime/info/724-chihayafuru-2"
+            },
+            "chuu-bra": {
+                "Mal": {
+                    "6645": "Chuu_Bra"
+                },
+                "image": "//cdn.masterani.me/poster/1314lqzbfXlH.jpg",
+                "title": "Chuu Bra!!",
+                "url": "https://www.masterani.me/anime/info/1314-chuu-bra"
             },
             "clannad-after-story": {
                 "Mal": {
@@ -55840,6 +56205,14 @@
                 "title": "ef: A Tale of Memories.",
                 "url": "https://www.masterani.me/anime/info/315-ef-a-tale-of-memories"
             },
+            "elfen-lied": {
+                "Mal": {
+                    "226": "Elfen_Lied%3Fsa%3DX"
+                },
+                "image": "//cdn.masterani.me/poster/235zLhpv1s1.jpg",
+                "title": "Elfen Lied",
+                "url": "https://www.masterani.me/anime/info/235-elfen-lied"
+            },
             "erementar-gerad": {
                 "Mal": {
                     "1250": "Erementar_Gerad"
@@ -55863,6 +56236,22 @@
                 "image": "//cdn.masterani.me/poster/244IgzHhABI.jpg",
                 "title": "Eureka Seven",
                 "url": "https://www.masterani.me/anime/info/244-eureka-seven"
+            },
+            "fatekaleid-liner-prismaillya-2wei-herz": {
+                "Mal": {
+                    "27525": "Fate_kaleid_liner_Prisma%25E2%2598%2586Illya_2wei_Herz"
+                },
+                "image": "//cdn.masterani.me/poster/1186HJbQbzsF.jpg",
+                "title": "Fate/kaleid liner Prisma☆Illya 2wei Herz!",
+                "url": "https://www.masterani.me/anime/info/1186-fatekaleid-liner-prismaillya-2wei-herz"
+            },
+            "fatekaleid-liner-prismaillya-2wei-herz-specials": {
+                "Mal": {
+                    "31056": "Fate_kaleid_liner_Prisma%25E2%2598%2586Illya_2wei_Herz_Specials"
+                },
+                "image": "//cdn.masterani.me/poster/1592vopaTPz9.jpg",
+                "title": "Fate/kaleid liner Prisma☆Illya 2wei Herz! Specials",
+                "url": "https://www.masterani.me/anime/info/1592-fatekaleid-liner-prismaillya-2wei-herz-specials"
             },
             "fatestay-night-unlimited-blade-works": {
                 "Mal": {
@@ -56360,6 +56749,14 @@
                 "title": "Kaze no Tani no Nausicaä",
                 "url": "https://www.masterani.me/anime/info/605-kaze-no-tani-no-nausicaa"
             },
+            "keijo": {
+                "Mal": {
+                    "32686": "Keijo"
+                },
+                "image": "//cdn.masterani.me/poster/1897LgZsTLIG.jpg",
+                "title": "Keijo!!!!!!!!",
+                "url": "https://www.masterani.me/anime/info/1897-keijo"
+            },
             "kimi-ga-aruji-de-shitsuji-ga-ore-de": {
                 "Mal": {
                     "3229": "Kimi_ga_Aruji_de_Shitsuji_ga_Ore_de"
@@ -56431,6 +56828,22 @@
                 "image": "//cdn.masterani.me/poster/2264aEJX2d4U.jpg",
                 "title": "Kono Subarashii Sekai ni Shukufuku wo! 2",
                 "url": "https://www.masterani.me/anime/info/2264-kono-subarashii-sekai-ni-shukufuku-wo-2"
+            },
+            "kore-wa-zombie-desu-ka": {
+                "Mal": {
+                    "8841": "Kore_wa_Zombie_Desu_ka"
+                },
+                "image": "//cdn.masterani.me/poster/112eaKVCm2U.jpg",
+                "title": "Kore wa Zombie Desu ka?",
+                "url": "https://www.masterani.me/anime/info/112-kore-wa-zombie-desu-ka"
+            },
+            "kore-wa-zombie-desu-ka-of-the-dead": {
+                "Mal": {
+                    "10790": "Kore_wa_Zombie_Desu_ka_of_the_Dead"
+                },
+                "image": "//cdn.masterani.me/poster/8325jE6xEjn.jpg",
+                "title": "Kore wa Zombie Desu ka? of the Dead",
+                "url": "https://www.masterani.me/anime/info/832-kore-wa-zombie-desu-ka-of-the-dead"
             },
             "kotonoha-no-niwa": {
                 "Mal": {
@@ -56575,6 +56988,14 @@
                 "image": "//cdn.masterani.me/poster/2275AknHLQxu.jpg",
                 "title": "Masamune-kun no Revenge",
                 "url": "https://www.masterani.me/anime/info/2275-masamune-kun-no-revenge"
+            },
+            "medaka-box-abnormal": {
+                "Mal": {
+                    "14527": "Medaka_Box_Abnormal"
+                },
+                "image": "//cdn.masterani.me/poster/7029cx1WzGi.jpg",
+                "title": "Medaka Box Abnormal",
+                "url": "https://www.masterani.me/anime/info/702-medaka-box-abnormal"
             },
             "minami-kamakura-koukou-joshi-jitensha-bu": {
                 "Mal": {
@@ -56800,6 +57221,14 @@
                 "title": "Nyan Koi!",
                 "url": "https://www.masterani.me/anime/info/114-nyan-koi"
             },
+            "omamori-himari": {
+                "Mal": {
+                    "6324": "Omamori_Himari"
+                },
+                "image": "//cdn.masterani.me/poster/834ouX9KCs7.jpg",
+                "title": "Omamori Himari",
+                "url": "https://www.masterani.me/anime/info/834-omamori-himari"
+            },
             "one-outs": {
                 "Mal": {
                     "5040": "One_Outs"
@@ -57000,6 +57429,14 @@
                 "title": "Saenai Heroine no Sodatekata ♭",
                 "url": "https://www.masterani.me/anime/info/1389-saenai-heroine-no-sodatekata-2nd-season"
             },
+            "saijaku-muhai-no-bahamut": {
+                "Mal": {
+                    "30749": "Saijaku_Muhai_no_Bahamut"
+                },
+                "image": "//cdn.masterani.me/poster/169381MSXQ6m.jpg",
+                "title": "Saijaku Muhai no Bahamut",
+                "url": "https://www.masterani.me/anime/info/1693-saijaku-muhai-no-bahamut"
+            },
             "saiki-kusuo-no-ps-nan-tv": {
                 "Mal": {
                     "33255": "Saiki_Kusuo_no_%25CE%25A8-nan_TV"
@@ -57088,6 +57525,14 @@
                 "title": "Seiken Tsukai no World Break",
                 "url": "https://www.masterani.me/anime/info/1002-seiken-tsukai-no-world-break"
             },
+            "seirei-tsukai-no-blade-dance": {
+                "Mal": {
+                    "22877": "Seireitsukai_no_Blade_Dance"
+                },
+                "image": "//cdn.masterani.me/poster/471MN2CCi2E.jpg",
+                "title": "Seirei Tsukai no Blade Dance",
+                "url": "https://www.masterani.me/anime/info/471-seirei-tsukai-no-blade-dance"
+            },
             "sen-to-chihiro-no-kamikakushi": {
                 "Mal": {
                     "199": "Sen_to_Chihiro_no_Kamikakushi"
@@ -57103,6 +57548,14 @@
                 "image": "//cdn.masterani.me/poster/1887tE1EbFxw.jpg",
                 "title": "Servamp",
                 "url": "https://www.masterani.me/anime/info/1887-servamp"
+            },
+            "seto-no-hanayome": {
+                "Mal": {
+                    "2104": "Seto_no_Hanayome"
+                },
+                "image": "//cdn.masterani.me/poster/811FCdEKFw.jpg",
+                "title": "Seto no Hanayome",
+                "url": "https://www.masterani.me/anime/info/81-seto-no-hanayome"
             },
             "shelter": {
                 "Mal": {
@@ -57247,6 +57700,14 @@
                 "image": "//cdn.masterani.me/poster/2303Lgj83AEO.jpg",
                 "title": "Strike the Blood II",
                 "url": "https://www.masterani.me/anime/info/2303-strike-the-blood-ii"
+            },
+            "strike-witches": {
+                "Mal": {
+                    "3667": "Strike_Witches"
+                },
+                "image": "//cdn.masterani.me/poster/521WQmpxp74.jpg",
+                "title": "Strike Witches",
+                "url": "https://www.masterani.me/anime/info/521-strike-witches"
             },
             "summer-wars": {
                 "Mal": {
@@ -57484,423 +57945,615 @@
     },
     "Request": {
         "9animeRequest": {
-            "-Km2cDOu67Qjns9QQlqz": {
+            "-Km5hl7SQn_jkd-7qmTP": {
                 "Kiss": "https://9anime.to/watch/no-game-no-life-dub.y2p0",
                 "Mal": "https://myanimelist.net/anime/19815/No_Game_No_Life"
             },
-            "-Km2jdPTLpJxhTvNa0eG": {
-                "Kiss": "https://9anime.to/watch/seto-no-hanayome.6p4",
-                "Mal": "https://myanimelist.net/anime/2104/Seto_no_Hanayome"
+            "-Km6Ln8t9EeeMaf9tZYy": {
+                "Kiss": "https://9anime.to/watch/steinsgate.1rx",
+                "Mal": "https://myanimelist.net/anime/9253/Steins_Gate"
             },
-            "-Km34Rt6V-e35F-FJ1Ko": {
-                "Kiss": "https://9anime.to/watch/kono-subarashii-sekai-ni-shukufuku-wo-2.5zrm",
-                "Mal": "https://myanimelist.net/anime/32937/Kono_Subarashii_Sekai_ni_Shukufuku_wo_2"
+            "-Km6LnY559igsExLC2AF": {
+                "Kiss": "https://9anime.to/watch/steinsgate-dub.718j",
+                "Mal": "https://myanimelist.net/anime/9253/Steins_Gate"
             },
-            "-Km3OSDsppWP4_pi2o0s": {
-                "Kiss": "https://9anime.to/watch/karas.myyv",
-                "Mal": "https://myanimelist.net/anime/389/Karas"
+            "-Km7C7qCqbCU_ST3fjuY": {
+                "Kiss": "https://9anime.to/watch/dramatical-murder-dub.39jy",
+                "Mal": "https://myanimelist.net/anime/23333/DRAMAtical_Murder"
             },
-            "-Km3OVogrFF6mE9ku6Wa": {
-                "Kiss": "https://9anime.to/watch/karas-dub.lyy3",
-                "Mal": "https://myanimelist.net/anime/389/Karas/reviews"
+            "-Km7ChHzSng_ALtIo49x": {
+                "Kiss": "https://9anime.to/watch/dramatical-murder.jjry",
+                "Mal": "https://myanimelist.net/anime/23333/DRAMAtical_Murder"
             },
-            "-Km3PzpehL98CsiTtu8y": {
+            "-Km7WiG39cLpgs1XiYPh": {
+                "Kiss": "https://9anime.to/watch/ice.v0j7",
+                "Mal": "https://myanimelist.net/anime/2169/Ice"
+            },
+            "-Km7WxoFC3-5OddlMgjn": {
+                "Kiss": "https://9anime.to/watch/ice-movie.k6n9",
+                "Mal": "https://myanimelist.net/anime/9053/Ice_Movie"
+            },
+            "-Km7XaC6jBF6qLwOMIkN": {
+                "Kiss": "https://9anime.to/watch/koisuru-boukun.k1o6",
+                "Mal": "https://myanimelist.net/anime/8634/Koisuru_Boukun"
+            },
+            "-Km7YF1XwRF30rQoX7zt": {
+                "Kiss": "https://9anime.to/watch/saigo-no-door-wo-shimero.47j7",
+                "Mal": "https://myanimelist.net/anime/2417/Saigo_no_Door_wo_Shimero"
+            },
+            "-Km7hF0kIKvGAeV5Jrn0": {
+                "Kiss": "https://9anime.to/watch/sex-pistols.13rv",
+                "Mal": "https://myanimelist.net/anime/5719/Sex_Pistols"
+            },
+            "-Km7hdi3eZtRD-uYzcSo": {
+                "Kiss": "https://9anime.to/watch/fushigi-no-kuni-no-miyuki-chan.vjqv",
+                "Mal": "https://myanimelist.net/anime/1496/Fushigi_no_Kuni_no_Miyuki-chan"
+            },
+            "-Km7iekvOvH3o_RxiW3V": {
+                "Kiss": "https://9anime.to/watch/fatekaleid-liner-prismaillya-2wei-herz-specials-dub.xzk3",
+                "Mal": "https://myanimelist.net/anime/27525/Fate_kaleid_liner_Prisma%25E2%2598%2586Illya_2wei_Herz"
+            },
+            "-Km7l8CPvgfa7Xuc0coL": {
+                "Kiss": "https://9anime.to/watch/clockwork-planet-dub.v46l",
+                "Mal": "https://myanimelist.net/anime/32407/Clockwork_Planet"
+            },
+            "-Km8b1AHIycwVMh4j60M": {
                 "Kiss": "https://9anime.to/watch/blood-c-dub.1zrw",
                 "Mal": "https://myanimelist.net/anime/10490/Blood-C"
             },
-            "-Km3Pzs1ns0VXjw0c1A8": {
-                "Kiss": "https://9anime.to/watch/blood-c.02q7",
-                "Mal": "https://myanimelist.net/anime/10490/Blood-C"
+            "-Km8c7WtVUrWTc4Iq0iH": {
+                "Kiss": "https://9anime.to/watch/toriko.7y1",
+                "Mal": "https://myanimelist.net/anime/10033/Toriko"
+            },
+            "-Km8jJlXDn8eCOFNEc20": {
+                "Kiss": "https://9anime.to/watch/clockwork-planet.x6kw",
+                "Mal": "https://myanimelist.net/anime/32407/Clockwork_Planet"
+            },
+            "-Km8jmRfgnwM9QazQR4W": {
+                "Kiss": "https://9anime.to/watch/one-piece.ov8",
+                "Mal": "https://myanimelist.net/anime/21/One_Piece"
+            },
+            "-Km9FknFp8svDA_CrJJc": {
+                "Kiss": "https://9anime.to/watch/kizumonogatari-ii-nekketsu-hen.p4nx",
+                "Mal": "https://myanimelist.net/anime/31757/Kizumonogatari_II__Nekketsu-hen"
+            },
+            "-Km9FmbJJ82scigj-x-I": {
+                "Kiss": "https://9anime.to/watch/kizumonogatari-iii-reiketsu-hen.qqow",
+                "Mal": "https://myanimelist.net/anime/31758/Kizumonogatari_III__Reiketsu-hen"
+            },
+            "-Km9lwbvkB1HHY6Af79U": {
+                "Kiss": "https://9anime.to/watch/shuumatsu-nani-shitemasu-ka-isogashii-desu-ka-sukutte-moratte-ii-desu-ka-dub.y34x",
+                "Mal": "https://myanimelist.net/anime/33502/Shuumatsu_Nani_Shitemasu_ka_Isogashii_desu_ka_Sukutte_Moratte_Ii_desu_ka"
             }
         },
         "KissanimeRequest": {
-            "-Km1vFzBMGtQ60THB-f5": {
-                "Kiss": "http://kissanime.ru/Anime/Boruto-Naruto-Next-Generations",
-                "Mal": "https://myanimelist.net/anime/34566/Boruto__Naruto_Next_Generations"
-            },
-            "-Km2K220CONJuLQgc07i": {
-                "Kiss": "http://kissanime.ru/Anime/Shingeki-no-Bahamut-Genesis",
-                "Mal": "https://myanimelist.net/anime/21843/Shingeki_no_Bahamut__Genesis"
-            },
-            "-Km2K5pEW9iDjzWd05vq": {
-                "Kiss": "http://kissanime.ru/Anime/Shingeki-no-Bahamut-Genesis#",
-                "Mal": "https://myanimelist.net/anime/21843/Shingeki_no_Bahamut__Genesis"
-            },
-            "-Km2PEanJnzeOIgg1jws": {
-                "Kiss": "http://kissanime.ru/Anime/Zaregoto-Series",
-                "Mal": "https://myanimelist.net/anime/33263/Kubikiri_Cycle__Aoiro_Savant_to_Zaregototsukai"
-            },
-            "-Km2Q4_keDC6VQ8AiLHd": {
-                "Kiss": "http://kissanime.ru/Anime/Souryo-to-Majiwaru-Shikiyoku-no-Yoru-ni",
-                "Mal": "https://myanimelist.net/anime/34823/Souryo_to_Majiwaru_Shikiyoku_no_Yoru_ni"
-            },
-            "-Km2arqwQ13QdXSWIQvS": {
+            "-Km5iGxqpvJrKMVPBfQ2": {
                 "Kiss": "http://kissanime.ru/Anime/No-Game-No-Life-Dub",
                 "Mal": "https://myanimelist.net/anime/19815/No_Game_No_Life"
             },
-            "-Km2cvmuyxwiZz7yrMNW": {
-                "Kiss": "http://kissanime.ru/Anime/Re-Zero-kara-Hajimeru-Isekai-Seikatsu",
-                "Mal": "https://myanimelist.net/anime/31240/Re_Zero_kara_Hajimeru_Isekai_Seikatsu"
+            "-Km6B8Rh6X09SQObzzEe": {
+                "Kiss": "http://kissanime.ru/Anime/Hikyou-Tanken-Fam-Ihrlie-Dub",
+                "Mal": "https://myanimelist.net/anime/1181/Hikyou_Tanken_Fam___Ihrlie"
             },
-            "-Km2nVd0nEsI-8DJ2FyQ": {
-                "Kiss": "http://kissanime.ru/Anime/No-Game-No-Life-Dub#fixed-tab-2",
-                "Mal": "https://myanimelist.net/anime/19815/No_Game_No_Life"
+            "-Km6CZlGiiRXpmyA5lPp": {
+                "Kiss": "http://kissanime.ru/Anime/12-sai-Kiss-Kirai-Suki",
+                "Mal": "https://myanimelist.net/anime/23579/12-sai"
             },
-            "-Km2x4f22ie2_S9DZqLE": {
-                "Kiss": "http://kissanime.ru/Anime/Rokudenashi-Majutsu-Koushi-to-Akashic-Records-Dub",
-                "Mal": "https://myanimelist.net/anime/32951/Rokudenashi_Majutsu_Koushi_to_Akashic_Records"
+            "-Km6DEJ9B62C1_Y_G1Ee": {
+                "Kiss": "http://kissanime.ru/Anime/A-Channel",
+                "Mal": "https://myanimelist.net/anime/9776/A-Channel"
             },
-            "-Km2xGu57KMbk28YHBjK": {
-                "Kiss": "http://kissanime.ru/Anime/Rokudenashi-Majutsu-Koushi-to-Akashic-Records",
-                "Mal": "https://myanimelist.net/anime/32951/Rokudenashi_Majutsu_Koushi_to_Akashic_Records"
-            },
-            "-Km2xVvg-RZlX3Sl098A": {
-                "Kiss": "http://kissanime.ru/Anime/Rokudenashi-Majutsu-Koushi-to-Akashic-Records#",
-                "Mal": "https://myanimelist.net/anime/32951/Rokudenashi_Majutsu_Koushi_to_Akashic_Records"
-            },
-            "-Km2yYE_GsFD_GdZrmJc": {
-                "Kiss": "http://kissanime.ru/Anime/Dungeon-ni-Deai-wo-Motomeru-no-wa-Machigatteiru-Darou-ka-Gaiden-Sword-Oratoria",
-                "Mal": "https://myanimelist.net/anime/32887/Dungeon_ni_Deai_wo_Motomeru_no_wa_Machigatteiru_Darou_ka_Gaiden__Sword_Oratoria"
-            },
-            "-Km2y_-m320qyuL9DMZf": {
-                "Kiss": "http://kissanime.ru/Anime/Dragon-Ball-Super#",
-                "Mal": "https://myanimelist.net/anime/30694/Dragon_Ball_Super"
-            },
-            "-Km2zXVzDkYwvO47IJeQ": {
-                "Kiss": "http://kissanime.ru/Anime/Dragon-Ball-Super-dub",
-                "Mal": "https://myanimelist.net/anime/30694/Dragon_Ball_Super"
-            },
-            "-Km3-QO2ETdkBpBgMsk5": {
-                "Kiss": "http://kissanime.ru/Anime/Reikenzan-Hoshikuzu-tachi-no-Utage",
-                "Mal": "https://myanimelist.net/anime/32094/Reikenzan__Hoshikuzu-tachi_no_Utage"
-            },
-            "-Km370ha7UBe2tNwmsRz": {
-                "Kiss": "http://kissanime.ru/Anime/Hagure-Yuusha-no-Estetica",
-                "Mal": "https://myanimelist.net/anime/13161/Hagure_Yuusha_no_Aesthetica"
-            },
-            "-Km3HVfdRViKdwnPLW3-": {
-                "Kiss": "http://kissanime.ru/Anime/Kaleido-Star-Sub",
-                "Mal": "https://myanimelist.net/anime/427/Kaleido_Star"
-            },
-            "-Km3OP-KU9XEZBCS6J8I": {
-                "Kiss": "http://kissanime.ru/Anime/Karas",
-                "Mal": "https://myanimelist.net/anime/389/Karas"
-            },
-            "-Km3PuCc7QV9NlVpYl_1": {
-                "Kiss": "http://kissanime.ru/Anime/Blood-C-Dub",
-                "Mal": "https://myanimelist.net/anime/10490/Blood-C"
-            },
-            "-Km3QVFbjHHWVvcoITX6": {
-                "Kiss": "http://kissanime.ru/Anime/Blood-C-The-Last-Dark",
-                "Mal": "https://myanimelist.net/anime/10681/Blood-C__The_Last_Dark"
-            },
-            "-Km3QXhD-s631Dslh0Nv": {
-                "Kiss": "http://kissanime.ru/Anime/Blood-C-The-Last-Dark-Dub",
-                "Mal": "https://myanimelist.net/anime/10681/Blood-C__The_Last_Dark"
-            },
-            "-Km3Qa7Kp9NLKVc-5A10": {
-                "Kiss": "http://kissanime.ru/Anime/Blood-C",
-                "Mal": "https://myanimelist.net/anime/10490/Blood-C"
-            },
-            "-Km3ZLicRJxitYaXypmp": {
-                "Kiss": "http://kissanime.ru/Anime/Boku-no-Hero-Academia-2nd-Season",
-                "Mal": "https://myanimelist.net/anime/33486/Boku_no_Hero_Academia_2nd_Season"
-            },
-            "-Km3nQ5fd4gS4jD2pDD7": {
-                "Kiss": "http://kissanime.ru/Anime/Air-Gear",
-                "Mal": "https://myanimelist.net/anime/857/Air_Gear"
-            },
-            "-Km4Nu9yDfHsG-efYfBn": {
-                "Kiss": "http://kissanime.ru/Anime/Chuu-Bra",
-                "Mal": "https://myanimelist.net/anime/6645/Chuu_Bra"
-            },
-            "-Km4ekXixnnzRH8DljKQ": {
-                "Kiss": "http://kissanime.ru/Anime/DanMachi-Dub",
-                "Mal": "https://myanimelist.net/anime/28121/Dungeon_ni_Deai_wo_Motomeru_no_wa_Machigatteiru_Darou_ka"
-            },
-            "-Km4emPA6Rv7_DSrZp2s": {
-                "Kiss": "http://kissanime.ru/Anime/DanMachi-Dub#",
-                "Mal": "https://myanimelist.net/anime/28121/Dungeon_ni_Deai_wo_Motomeru_no_wa_Machigatteiru_Darou_ka"
-            },
-            "-Km4ep736mwSSUJHoJrx": {
-                "Kiss": "http://kissanime.ru/Anime/DanMachi-Dub#",
-                "Mal": "https://myanimelist.net/anime/28121/Dungeon_ni_Deai_wo_Motomeru_no_wa_Machigatteiru_Darou_ka"
-            },
-            "-Km4eq9AD68g25hYXKo6": {
-                "Kiss": "http://kissanime.ru/Anime/DanMachi-Dub#",
-                "Mal": "https://myanimelist.net/anime/28121/Dungeon_ni_Deai_wo_Motomeru_no_wa_Machigatteiru_Darou_ka"
-            },
-            "-Km4etxi7fm4jqhZ1dE1": {
-                "Kiss": "http://kissanime.ru/Anime/To-LOVE-Ru",
-                "Mal": "https://myanimelist.net/anime/3455/To_LOVE-Ru"
-            },
-            "-Km4f5VpOYk5KxDe_BwX": {
-                "Kiss": "http://kissanime.ru/Anime/Steins-Gate-Movie-Fuka-Ryouiki-no-Deja-vu-Dub",
-                "Mal": "https://myanimelist.net/anime/11577/Steins_Gate_Movie__Fuka_Ryouiki_no_D%25C3%25A9j%25C3%25A0_vu"
-            },
-            "-Km4f8eUPrlYvX1WoJZf": {
+            "-Km6LkwR0nxLJfBKdORm": {
                 "Kiss": "http://kissanime.ru/Anime/Steins-Gate-Dub",
                 "Mal": "https://myanimelist.net/anime/9253/Steins_Gate"
             },
-            "-Km4fFJjD7iN3_zDuC6a": {
-                "Kiss": "http://kissanime.ru/Anime/Plastic-Nee-san",
-                "Mal": "https://myanimelist.net/anime/10711/Plastic_Neesan"
+            "-Km6N-xwBMrGsTNMQ6st": {
+                "Kiss": "http://kissanime.ru/Anime/Natsume-Yuujinchou-6",
+                "Mal": "https://myanimelist.net/anime/34591/Natsume_Yuujinchou_Roku"
             },
-            "-Km4fJxUWps16XhFBtii": {
-                "Kiss": "http://kissanime.ru/Anime/Youjo-Senki-Dub",
-                "Mal": "https://myanimelist.net/anime/32615/Youjo_Senki"
+            "-Km6PUkbe2ZY25p1aFI2": {
+                "Kiss": "http://kissanime.ru/Anime/No-Game-No-Life-Dub#",
+                "Mal": "https://myanimelist.net/anime/19815/No_Game_No_Life"
             },
-            "-Km4fTFXltSLEGpNFG4x": {
-                "Kiss": "http://kissanime.ru/Anime/Kobayashi-san-Chi-no-Maid-Dragon-Dub",
-                "Mal": "https://myanimelist.net/anime/33206/Kobayashi-san_Chi_no_Maid_Dragon"
+            "-Km6dGo5cOUaDIgZOTsz": {
+                "Kiss": "http://kissanime.ru/Anime/No-Game-No-Life-Dub#",
+                "Mal": "https://myanimelist.net/anime/19815/No_Game_No_Life"
             },
-            "-Km4fZo4AfiuLx9X0vP9": {
-                "Kiss": "http://kissanime.ru/Anime/The-Melancholy-of-Haruhi-Suzumiya-Dub",
-                "Mal": "https://myanimelist.net/anime/849/Suzumiya_Haruhi_no_Yuuutsu"
+            "-Km6df-iZAVL-ajhU-YW": {
+                "Kiss": "http://kissanime.ru/Anime/No-Game-No-Life-Dub#",
+                "Mal": "https://myanimelist.net/anime/19815/No_Game_No_Life"
             },
-            "-Km4wEgocZnkg8hu6Fs6": {
-                "Kiss": "http://kissanime.ru/Anime/High-School-DxD-BorN",
-                "Mal": "https://myanimelist.net/anime/24703/High_School_DxD_BorN"
+            "-Km6fd-de7QoipA7-qya": {
+                "Kiss": "http://kissanime.ru/Anime/No-Game-No-Life-Dub#",
+                "Mal": "https://myanimelist.net/anime/19815/No_Game_No_Life"
+            },
+            "-Km6fhNKFXxjhp1a9E8z": {
+                "Kiss": "http://kissanime.ru/Anime/No-Game-No-Life-Dub#",
+                "Mal": "https://myanimelist.net/anime/19815/No_Game_No_Life"
+            },
+            "-Km6ft9Dc0Itozj1FPkZ": {
+                "Kiss": "http://kissanime.ru/Anime/No-Game-No-Life-Dub#",
+                "Mal": "https://myanimelist.net/anime/19815/No_Game_No_Life"
+            },
+            "-Km6gS1yZpEjZQZ_X0o5": {
+                "Kiss": "http://kissanime.ru/Anime/No-Game-No-Life-Dub#",
+                "Mal": "https://myanimelist.net/anime/19815/No_Game_No_Life"
+            },
+            "-Km6gbeFsefj42UfGpKN": {
+                "Kiss": "http://kissanime.ru/Anime/No-Game-No-Life-Dub#",
+                "Mal": "https://myanimelist.net/anime/19815/No_Game_No_Life"
+            },
+            "-Km6h0CUrfjt7bEj_-qn": {
+                "Kiss": "http://kissanime.ru/Anime/No-Game-No-Life-Dub#",
+                "Mal": "https://myanimelist.net/anime/19815/No_Game_No_Life"
+            },
+            "-Km6h6rGU1RBZM3iHELF": {
+                "Kiss": "http://kissanime.ru/Anime/No-Game-No-Life-Dub#",
+                "Mal": "https://myanimelist.net/anime/19815/No_Game_No_Life"
+            },
+            "-Km6hDSAVSUg5SkiBHqW": {
+                "Kiss": "http://kissanime.ru/Anime/No-Game-No-Life-Dub#",
+                "Mal": "https://myanimelist.net/anime/19815/No_Game_No_Life"
+            },
+            "-Km6heHRKYzwr-5pd9Dt": {
+                "Kiss": "http://kissanime.ru/Anime/No-Game-No-Life-Dub#",
+                "Mal": "https://myanimelist.net/anime/19815/No_Game_No_Life"
+            },
+            "-Km6iKKMkoyAfuBTP0GN": {
+                "Kiss": "http://kissanime.ru/Anime/Busou-Shoujo-Machiavellianism",
+                "Mal": "https://myanimelist.net/anime/33475/Busou_Shoujo_Machiavellianism"
+            },
+            "-Km6iLgo_DMtsH68_jLq": {
+                "Kiss": "http://kissanime.ru/Anime/Renai-Boukun",
+                "Mal": "https://myanimelist.net/anime/32262/Renai_Boukun"
+            },
+            "-Km6io3BF2dWXwojBBv2": {
+                "Kiss": "http://kissanime.ru/Anime/Zero-kara-Hajimeru-Mahou-no-Sho",
+                "Mal": "https://myanimelist.net/anime/34176/Zero_kara_Hajimeru_Mahou_no_Sho"
+            },
+            "-Km6lIOaMtTu3yeMm2nI": {
+                "Kiss": "http://kissanime.ru/Anime/No-Game-No-Life-Dub#",
+                "Mal": "https://myanimelist.net/anime/19815/No_Game_No_Life"
+            },
+            "-Km6lwD3-HmoCQukAxpv": {
+                "Kiss": "http://kissanime.ru/Anime/No-Game-No-Life-Dub#",
+                "Mal": "https://myanimelist.net/anime/19815/No_Game_No_Life"
+            },
+            "-Km6m1od2W8onO6zCWi8": {
+                "Kiss": "http://kissanime.ru/Anime/No-Game-No-Life-Dub#",
+                "Mal": "https://myanimelist.net/anime/19815/No_Game_No_Life"
+            },
+            "-Km6mS7tf8S1GJ_5oLpn": {
+                "Kiss": "http://kissanime.ru/Anime/No-Game-No-Life-Dub#",
+                "Mal": "https://myanimelist.net/anime/19815/No_Game_No_Life"
+            },
+            "-Km6n7C2MbGel_0Zdo3b": {
+                "Kiss": "http://kissanime.ru/Anime/No-Game-No-Life-Dub#",
+                "Mal": "https://myanimelist.net/anime/19815/No_Game_No_Life"
+            },
+            "-Km6nKCSFARzHTKPUGqU": {
+                "Kiss": "http://kissanime.ru/Anime/No-Game-No-Life-Dub#",
+                "Mal": "https://myanimelist.net/anime/19815/No_Game_No_Life"
+            },
+            "-Km6nycjZovcJvpeWPF3": {
+                "Kiss": "http://kissanime.ru/Anime/No-Game-No-Life-Dub#",
+                "Mal": "https://myanimelist.net/anime/19815/No_Game_No_Life"
+            },
+            "-Km6oIfVVcMidEK0zO5x": {
+                "Kiss": "http://kissanime.ru/Anime/No-Game-No-Life-Dub#",
+                "Mal": "https://myanimelist.net/anime/19815/No_Game_No_Life"
+            },
+            "-Km6oQaloGvWF4g6wgdE": {
+                "Kiss": "http://kissanime.ru/Anime/No-Game-No-Life-Dub#",
+                "Mal": "https://myanimelist.net/anime/19815/No_Game_No_Life"
+            },
+            "-Km6p_c-TAhRm5jib0JJ": {
+                "Kiss": "http://kissanime.ru/Anime/Saenai-Heroine-no-Sodatekata-2nd-Season",
+                "Mal": "https://myanimelist.net/anime/30727/Saenai_Heroine_no_Sodatekata_♭"
+            },
+            "-Km6tkZhFvZJZVXbZQXA": {
+                "Kiss": "http://kissanime.ru/Anime/Monster-Dub",
+                "Mal": "https://myanimelist.net/anime/19/Monster"
+            },
+            "-Km7047rPnodVUGnm7L_": {
+                "Kiss": "http://kissanime.ru/Anime/Bakuman-3-Specials",
+                "Mal": "https://myanimelist.net/anime/23361/Bakuman_3rd_Season_Specials"
+            },
+            "-Km7OkmkCeJnM5EBV0nC": {
+                "Kiss": "http://kissanime.ru/Anime/Btooom",
+                "Mal": "https://myanimelist.net/anime/14345/Btooom"
+            },
+            "-Km7YqFGbrA4vSqV11Ig": {
+                "Kiss": "http://kissanime.ru/Anime/Boku-no-Hero-Academia-My-Hero-Academia",
+                "Mal": "https://myanimelist.net/anime/31964/Boku_no_Hero_Academia"
+            },
+            "-Km7yBCcCSPZ0GPP4xP-": {
+                "Kiss": "http://kissanime.ru/Anime/Accel-World-Infinite-Burst",
+                "Mal": "https://myanimelist.net/anime/31763/Accel_World__Infinite%25E2%2588%259EBurst"
+            },
+            "-Km8IP0LKgMZzjcu841Q": {
+                "Kiss": "http://kissanime.ru/Anime/No-Game-No-Life-Dub",
+                "Mal": "https://myanimelist.net/anime/19815/No_Game_No_Life"
+            },
+            "-Km8Ki-DFVmD4eDIanwC": {
+                "Kiss": "http://kissanime.ru/Anime/Boku-no-Hero-Academia-2nd-Season",
+                "Mal": "https://myanimelist.net/anime/33486/Boku_no_Hero_Academia_2nd_Season"
+            },
+            "-Km8KkOpyk6rZNLYm0xE": {
+                "Kiss": "http://kissanime.ru/Anime/Eromanga-sensei",
+                "Mal": "https://myanimelist.net/anime/32901/Eromanga-sensei"
+            },
+            "-Km8MzGNdibM_5JHFpa6": {
+                "Kiss": "http://kissanime.ru/Anime/Steins-Gate-Dub",
+                "Mal": "https://myanimelist.net/anime/9253/Steins_Gate"
+            },
+            "-Km8Q2shHwn36IDmhkZz": {
+                "Kiss": "http://kissanime.ru/Anime/No-Game-No-Life-Dub",
+                "Mal": "https://myanimelist.net/anime/19815/No_Game_No_Life"
+            },
+            "-Km8UtajPndvO1s8UaGD": {
+                "Kiss": "http://kissanime.ru/Anime/Little-Witch-Academia-TV",
+                "Mal": "https://myanimelist.net/anime/33489/Little_Witch_Academia_TV"
+            },
+            "-Km8W2DMvMzWzd4RxUxD": {
+                "Kiss": "http://kissanime.ru/Anime/Boku-no-Hero-Academia-2nd-Season",
+                "Mal": "https://myanimelist.net/anime/33486/Boku_no_Hero_Academia_2nd_Season"
+            },
+            "-Km8WPSCCXavl_GXeEl8": {
+                "Kiss": "http://kissanime.ru/Anime/Granblue-Fantasy-The-Animation",
+                "Mal": "https://myanimelist.net/anime/31629/Granblue_Fantasy_The_Animation"
+            },
+            "-Km8Wi9o7LPrgYY6ADpq": {
+                "Kiss": "http://kissanime.ru/Anime/Sword-Art-Online-Movie-Ordinal-Scale",
+                "Mal": "https://myanimelist.net/anime/31765/Sword_Art_Online_Movie__Ordinal_Scale"
+            },
+            "-Km8bW9X581LX6-Wy6cv": {
+                "Kiss": "http://kissanime.ru/Anime/Toriko",
+                "Mal": "https://myanimelist.net/anime/10033/Toriko"
+            },
+            "-Km8bk0_avYOwS1USZ9R": {
+                "Kiss": "http://kissanime.ru/Anime/One-Piece",
+                "Mal": "https://myanimelist.net/anime/21/One_Piece"
+            },
+            "-KmA0P1wjMc-_maoqOKK": {
+                "Kiss": "http://kissanime.ru/Anime/Saenai-Heroine-no-Sodatekata-2nd-Season",
+                "Mal": "https://myanimelist.net/anime/30727/Saenai_Heroine_no_Sodatekata_♭"
             }
         },
         "KissmangaRequest": {
-            "-Km21y_QwGe8h0jqM8Qh": {
+            "-Km61YFgM0ol5TAhfW3q": {
+                "Kiss": "http://kissmanga.com/Manga/Uchi-no-Musume-no-Tame-Naraba-Ore-wa-Moshikashitara-Mao-mo-Taoseru-Kamo-Shirenai-",
+                "Mal": "https://myanimelist.net/manga/57059/Hidoku_Shinaide_dj_-_Imasara_Briefs_no_Miryoku_ni_Kizukimashita"
+            },
+            "-Km63T83O_dvBybYVWa4": {
+                "Kiss": "http://kissmanga.com/Manga/Uchi-no-Musume-no-Tame-Naraba-Ore-wa-Moshikashitara-Mao-mo-Taoseru-Kamo-Shirenai-#",
+                "Mal": "https://myanimelist.net/manga/100127/Uchi_no_Musume_no_Tame_naraba_Ore_wa_Moshikashitara_Maou_mo_Taoseru_kamo_Shirenai"
+            },
+            "-Km6JFcfwBm9iLVrF41n": {
+                "Kiss": "http://kissmanga.com/Manga/Kochou-no-Yumeji",
+                "Mal": "https://myanimelist.net/manga/28837/Omerta__Kochou_no_Yume_no_Hate"
+            },
+            "-Km6Ob2Blru4NASVMy6n": {
+                "Kiss": "http://kissmanga.com/Manga/Golden-Kamui",
+                "Mal": "https://myanimelist.net/manga/85968/Golden_Kamuy"
+            },
+            "-Km6Ob53Ha8ddOyVkqJr": {
+                "Kiss": "http://kissmanga.com/Manga/LiLy-EBISAWA-Mayo",
+                "Mal": "https://myanimelist.net/manga/103828/LiLy"
+            },
+            "-Km6Obj45dTCvUsvzfwa": {
+                "Kiss": "http://kissmanga.com/Manga/Rodiura-Kurashi-Official",
+                "Mal": "https://myanimelist.net/manga/3446/Maker_Hikoushiki_Hatsune_Mix"
+            },
+            "-Km6jcdBcvV-KTw_LEjR": {
+                "Kiss": "http://kissmanga.com/Manga/Uchi-no-Musume-no-Tame-Naraba-Ore-wa-Moshikashitara-Mao-mo-Taoseru-Kamo-Shirenai-#",
+                "Mal": "https://myanimelist.net/manga/100127/Uchi_no_Musume_no_Tame_naraba_Ore_wa_Moshikashitara_Maou_mo_Taoseru_kamo_Shirenai"
+            },
+            "-Km6tqID5XyV1Rs7xdqA": {
+                "Kiss": "http://kissmanga.com/Manga/Tokiwa-Kitareri",
+                "Mal": "https://myanimelist.net/manga/83417/Tokiwa_Kitareri"
+            },
+            "-Km6uLAIm4nbgWTPU2yq": {
+                "Kiss": "http://kissmanga.com/Manga/Tsuki-ga-Michibiku-Isekai-Douchuu",
+                "Mal": "https://myanimelist.net/manga/90117/Tsuki_ga_Michibiku_Isekai_Douchuu"
+            },
+            "-Km6uhg89Kp277M600Uv": {
+                "Kiss": "http://kissmanga.com/Manga/Isekai-Maou-to-Shoukan-Shoujo-Dorei-Majutsu",
+                "Mal": "https://myanimelist.net/manga/83225/Isekai_Maou_to_Shoukan_Shoujo_no_Dorei_Majutsu"
+            },
+            "-Km6um06s7joOukuOD6v": {
+                "Kiss": "http://kissmanga.com/Manga/Isekai-Maou-to-Shoukan-Shoujo-Dorei-Majutsu#",
+                "Mal": "https://myanimelist.net/manga/91714/Isekai_Maou_to_Shoukan_Shoujo_no_Dorei_Majutsu"
+            },
+            "-Km6un75kIXpL2AATX2K": {
+                "Kiss": "http://kissmanga.com/Manga/Isekai-Maou-to-Shoukan-Shoujo-Dorei-Majutsu#",
+                "Mal": "https://myanimelist.net/manga/91714/Isekai_Maou_to_Shoukan_Shoujo_no_Dorei_Majutsu"
+            },
+            "-Km7XCLHR9N6jISeopIt": {
+                "Kiss": "http://kissmanga.com/Manga/Ore-Alice-Danjo-Gyakuten",
+                "Mal": "https://myanimelist.net/manga/62855/Ore_Alice__Danjo_Gyakuten"
+            },
+            "-Km7XuvP6Sh4kX6wdIcE": {
+                "Kiss": "http://kissmanga.com/Manga/World-Teacher-Isekaishiki-Kyouiku-Agent",
+                "Mal": "https://myanimelist.net/manga/92773/World_Teacher__Isekaishiki_Kyouiku_Agent"
+            },
+            "-Km7XxHUNhrtxOAXJbGP": {
+                "Kiss": "http://kissmanga.com/Manga/Kochou-no-Yumeji",
+                "Mal": "https://myanimelist.net/manga/28837/Omerta__Kochou_no_Yume_no_Hate"
+            },
+            "-Km7Y-gTg4JV5RbT68u2": {
+                "Kiss": "http://kissmanga.com/Manga/Futaba-san-Chi-no-Kyoudai",
+                "Mal": "https://myanimelist.net/manga/105700/Futaba-san_Chi_no_Kyoudai"
+            },
+            "-Km7pDc82IPTFWPDx375": {
+                "Kiss": "http://kissmanga.com/Manga/Danberu-nan-kiro-moteru",
+                "Mal": "https://myanimelist.net/manga/100539/Dumbbell_Nan_Kilo_Moteru"
+            },
+            "-Km7pFDrUbcGRuKI5S5C": {
+                "Kiss": "http://kissmanga.com/Manga/World-Teacher-Isekaishiki-Kyouiku-Agent",
+                "Mal": "https://myanimelist.net/manga/103436/World_Teacher__Isekaishiki_Kyouiku_Agent"
+            },
+            "-Km7wTVDzDhwCzrIqe-J": {
+                "Kiss": "http://kissmanga.com/Manga/Isekai-Mahou-wa-Okureteru",
+                "Mal": "https://myanimelist.net/manga/103364/Isekai_Mahou_wa_Okureteru"
+            },
+            "-Km7wUyOwuntbJuEjBMb": {
+                "Kiss": "http://kissmanga.com/Manga/Isekai-no-Seikishi-Monogatari",
+                "Mal": "https://myanimelist.net/manga/24800/Isekai_no_Seikishi_Monogatari"
+            },
+            "-Km7wY5FRE9BNqlLaPZl": {
+                "Kiss": "http://kissmanga.com/Manga/Yankee-Wa-Isekai-De-Seirei-Ni-Aisaremasu",
+                "Mal": "https://myanimelist.net/manga/105366/Yankee_wa_Isekai_de_Seirei_ni_Aisaremasu"
+            },
+            "-Km7wlShvoFT-8OMTYs3": {
+                "Kiss": "http://kissmanga.com/Manga/Isekai-Maou-to-Shoukan-Shoujo-Dorei-Majutsu#",
+                "Mal": "https://myanimelist.net/manga/91714/Isekai_Maou_to_Shoukan_Shoujo_no_Dorei_Majutsu"
+            },
+            "-Km7wnYcGtxE27c-2DaR": {
+                "Kiss": "http://kissmanga.com/Manga/Isekai-Maou-to-Shoukan-Shoujo-Dorei-Majutsu#",
+                "Mal": "https://myanimelist.net/manga/91714/Isekai_Maou_to_Shoukan_Shoujo_no_Dorei_Majutsu"
+            },
+            "-Km8H3oaq-GGj-fy3vpr": {
+                "Kiss": "http://kissmanga.com/Manga/Kanburia",
+                "Mal": "https://myanimelist.net/manga/104521/Cambria"
+            },
+            "-Km8HP8eoYRrzMvV1NtV": {
+                "Kiss": "http://kissmanga.com/Manga/Gaikotsu-Kishi-sama-Tadaima-Isekai-e-o-Dekake-chuu",
+                "Mal": "https://myanimelist.net/manga/90467/Gaikotsu_Kishi-sama_Tadaima_Isekai_e_Odekakechuu"
+            },
+            "-Km8HPnfSUkpbfoSQ1eB": {
+                "Kiss": "http://kissmanga.com/Manga/Isekai-Goumon-Hime",
+                "Mal": "https://myanimelist.net/manga/97869/Isekai_Goumon-hime"
+            },
+            "-Km8HSUvxaEfd9PTV7GN": {
+                "Kiss": "http://kissmanga.com/Manga/Isekai-Izakaya-Nobu",
+                "Mal": "https://myanimelist.net/manga/90190/Isekai_Izakaya_Nobu"
+            },
+            "-Km8HusIcTJCj7aVW9-g": {
+                "Kiss": "http://kissmanga.com/Manga/Isekai-wo-Seigyo-Mahou-de-Kirihirake",
+                "Mal": "https://myanimelist.net/manga/97522/Isekai_wo_Seigyo_Mahou_de_Kirihirake"
+            },
+            "-Km8Hvf5yl2TFUXDgac4": {
+                "Kiss": "http://kissmanga.com/Manga/Jui-san-no-Oshigoto-in-Isekai",
+                "Mal": "https://myanimelist.net/manga/99384/Jui-san_no_Oshigoto_in_Isekai"
+            },
+            "-Km8HwGeRCtQfs2I74C5": {
+                "Kiss": "http://kissmanga.com/Manga/Kou-1-Desu-ga-Isekai-de-Joushu-Hajimemashita",
+                "Mal": "https://myanimelist.net/manga/94813/Kou-1_desu_ga_Isekai_de_Joushu_Hajimemashita"
+            },
+            "-Km8HwgnAP5lxhp0WSjc": {
+                "Kiss": "http://kissmanga.com/Manga/Mondaijitachi-ga-Isekai-Kara-Kuru-Sou-Desu-yo",
+                "Mal": "https://myanimelist.net/manga/45855/Mondaiji-tachi_ga_Isekai_kara_Kuru_Sou_desu_yo"
+            },
+            "-Km8Hy0IHaHPx7il_zgw": {
+                "Kiss": "http://kissmanga.com/Manga/Mondaijitachi-ga-Isekai-kara-Kuru-sou-desu-yo-Z",
+                "Mal": "https://myanimelist.net/manga/49333/Mondaiji-tachi_ga_Isekai_kara_Kuru_Sou_desu_yo_Z"
+            },
+            "-Km8I-hgBGLoLRwBDcUh": {
+                "Kiss": "http://kissmanga.com/Manga/Ore-to-Kawazu-san-no-Isekai-Hourouki",
+                "Mal": "https://myanimelist.net/manga/74701/Ore_to_Kawazu-san_no_Isekai_Hourouki"
+            },
+            "-Km8I-jx58Ip8a7cenrn": {
+                "Kiss": "http://kissmanga.com/Manga/Re-Zero-Kara-Hajimeru-Isekai-Seikatsu-Dainishou-Yashiki-no-Shuukan-Hen",
+                "Mal": "https://myanimelist.net/manga/80719/Re_Zero_kara_Hajimeru_Isekai_Seikatsu__Dai-2_Shou_-_Yashiki_no_Isshuukan-hen"
+            },
+            "-Km8I0aj1FA5YRz7k8pW": {
+                "Kiss": "http://kissmanga.com/Manga/Nidome-no-Jinsei-wo-Isekai-de",
+                "Mal": "https://myanimelist.net/manga/102653/Nidome_no_Jinsei_wo_Isekai_de/pics"
+            },
+            "-Km8I4kEiUnmDv7QtH_e": {
+                "Kiss": "http://kissmanga.com/Manga/Re-Zero-kara-Hajimeru-Isekai-Seikatsu-Daisanshou-Truth-of-Zero",
+                "Mal": "https://myanimelist.net/manga/89960/Re_Zero_kara_Hajimeru_Isekai_Seikatsu__Dai-3_Shou_-_Truth_of_Zero"
+            },
+            "-Km8IEH6Uj7Y2fO0HbRN": {
+                "Kiss": "http://kissmanga.com/Manga/Tondemo-Skill-de-Isekai-Hourou-Meshi",
+                "Mal": "https://myanimelist.net/manga/105747/Tondemo_Skill_de_Isekai_Hourou_Meshi"
+            },
+            "-Km8IJD3VLDXdStK1Bcu": {
+                "Kiss": "http://kissmanga.com/Manga/Takarakuji-de-40-oku-Atattandakedo-Isekai-ni-Ijuu-Suru",
+                "Mal": "https://myanimelist.net/manga/77625/Takarakuji_de_40-oku_Atatta_n_dakedo_Isekai_ni_Ijuusuru"
+            },
+            "-Km8KyMJS5MOugh4az4f": {
+                "Kiss": "http://kissmanga.com/Manga/Toukyou-Hatsu-Isekai-Yuki",
+                "Mal": "https://myanimelist.net/manga/69879/Tokyo-hatsu_Isekai-yuki"
+            },
+            "-Km8NqeKZ63Mx1eTAfZV": {
+                "Kiss": "http://kissmanga.com/Manga/Uchi-no-Musume-ni-Te-o-Dasu-na-Oyako-Heroine-Funtousu",
+                "Mal": "https://myanimelist.net/manga/65299/Uchi_no_Musume_ni_Te_wo_Dasuna__Oyako_Heroine_Funtousu"
+            },
+            "-Km8O2F_ePOfWc3DlDyN": {
+                "Kiss": "http://kissmanga.com/Manga/Uchi-no-Musume-no-Tame-Naraba-Ore-wa-Moshikashitara-Mao-mo-Taoseru-Kamo-Shirenai-",
+                "Mal": "https://myanimelist.net/manga/100127/Uchi_no_Musume_no_Tame_naraba_Ore_wa_Moshikashitara_Maou_mo_Taoseru_kamo_Shirenai"
+            },
+            "-Km8PHWZKi8VIOV701QE": {
+                "Kiss": "http://kissmanga.com/Manga/Danberu-nan-kiro-moteru",
+                "Mal": "https://myanimelist.net/manga/100539/Dumbbell_Nan_Kilo_Moteru"
+            },
+            "-Km8PINY-gBNTkB2gOG5": {
+                "Kiss": "http://kissmanga.com/Manga/Arifureta-Shokugyou-de-Sekai-Saikyou",
+                "Mal": "https://myanimelist.net/manga/88923/Arifureta_Shokugyou_de_Sekai_Saikyou"
+            },
+            "-Km8QTN0hP9CgGjxph-2": {
                 "Kiss": "http://kissmanga.com/Manga/Zettaijou-Senpai-no-Youkaigaku-Kouza",
                 "Mal": "https://myanimelist.net/manga/96604/Zettaijou-senpai_no_Youkaigaku_Kouza"
             },
-            "-Km21yxHv8IrKHP1ln3B": {
-                "Kiss": "http://kissmanga.com/Manga/Rhapsody-of-Mulan",
-                "Mal": "https://myanimelist.net/manga/25488/Kenban_no_Ue_no_Caress"
+            "-Km8Qg9ld_hEpDHAczyf": {
+                "Kiss": "http://kissmanga.com/Manga/Accel-World",
+                "Mal": "https://myanimelist.net/manga/22993/Accel_World"
             },
-            "-Km229DvA53VVt-qa8pi": {
-                "Kiss": "http://kissmanga.com/Manga/Skip-Beat",
-                "Mal": "https://myanimelist.net/manga/610/Skip_Beat"
+            "-Km8SB-54xyV0usx_Nz4": {
+                "Kiss": "http://kissmanga.com/Manga/Devilchi",
+                "Mal": "https://myanimelist.net/manga/106067/Devil-chi"
             },
-            "-Km29Ct9u_H8aCxeLdEW": {
+            "-Km8XGrG28_DBFEOQ40B": {
+                "Kiss": "http://kissmanga.com/Manga/Accel-World",
+                "Mal": "https://myanimelist.net/manga/22993/Accel_World"
+            },
+            "-Km8ZOZqiqpLsh8KAmpR": {
+                "Kiss": "http://kissmanga.com/Manga/Under-PRIN",
+                "Mal": "https://myanimelist.net/manga/41577/Under_Prin"
+            },
+            "-Km8_FXHclVOmwJjUqvx": {
+                "Kiss": "http://kissmanga.com/Manga/Nidome-no-Jinsei-wo-Isekai-de#",
+                "Mal": "https://myanimelist.net/manga/102653/Nidome_no_Jinsei_wo_Isekai_de"
+            },
+            "-Km8eSqVaS5jYosuBRwH": {
+                "Kiss": "http://kissmanga.com/Manga/Yahari-Ore-no-Seishun-Love-Come-wa-Machigatteiru",
+                "Mal": "https://myanimelist.net/manga/40171/Yahari_Ore_no_Seishun_Love_Comedy_wa_Machigatteiru"
+            },
+            "-Km8eTCNNlxc3kwFIrYH": {
+                "Kiss": "http://kissmanga.com/Manga/Yahari-Ore-no-Seishun-Love-Come-wa-Machigatteiru-Iro-Hasu-Hasu-Doujinshi",
+                "Mal": "https://myanimelist.net/manga/40171/Yahari_Ore_no_Seishun_Love_Comedy_wa_Machigatteiru"
+            },
+            "-Km8eaExYU7x8ushX8Bt": {
+                "Kiss": "http://kissmanga.com/Manga/Yahari-Ore-no-Seishun-Love-Come-wa-Machigatteiru#",
+                "Mal": "https://myanimelist.net/manga/45447/Yahari_Ore_no_Seishun_Love_Comedy_wa_Machigatteiru__Monologue"
+            },
+            "-Km8ebtbeSm0bwI4txP5": {
+                "Kiss": "http://kissmanga.com/Manga/Yahari-Ore-no-Seishun-Love-Come-wa-Machigatteiru#",
+                "Mal": "https://myanimelist.net/manga/45447/Yahari_Ore_no_Seishun_Love_Comedy_wa_Machigatteiru__Monologue"
+            },
+            "-Km8vP6cLCt_seVcDF5g": {
+                "Kiss": "http://kissmanga.com/Manga/Kekkon-Yubiwa-Monogatari",
+                "Mal": "https://myanimelist.net/manga/66685/Kekkon_Yubiwa_Monogatari"
+            },
+            "-Km8vQez8K8HP_Xrv9Ym": {
+                "Kiss": "http://kissmanga.com/Manga/Shingeki-no-Kyojin",
+                "Mal": "https://myanimelist.net/manga/23390/Shingeki_no_Kyojin"
+            },
+            "-Km9eY5iD3lt0tPqf3CZ": {
+                "Kiss": "http://kissmanga.com/Manga/Ayakashiko",
+                "Mal": "https://myanimelist.net/manga/95377/Ayakashi_Ko"
+            },
+            "-Km9ea2cxZbavxi_A9gq": {
                 "Kiss": "http://kissmanga.com/Manga/Uchuu-o-Kakeru-Yodaka",
                 "Mal": "https://myanimelist.net/manga/81079/Sora_wo_Kakeru_Yodaka"
             },
-            "-Km29E-LAr1W6y_AakgB": {
-                "Kiss": "http://kissmanga.com/Manga/Bokutachi-wa-Benkyou-ga-Dekinai",
-                "Mal": "https://myanimelist.net/manga/103890/Bokutachi_wa_Benkyou_ga_Dekinai"
-            },
-            "-Km2B9tOHoyY6kg8drC-": {
-                "Kiss": "http://kissmanga.com/Manga/Rhapsody-of-Mulan",
-                "Mal": "https://myanimelist.net/manga/88641/Coffee___Vanilla"
-            },
-            "-Km2EciH9ObMsd0CTwzd": {
-                "Kiss": "http://kissmanga.com/Manga/Uchuu-o-Kakeru-Yodaka",
-                "Mal": "https://myanimelist.net/manga/81079/Sora_wo_Kakeru_Yodaka"
-            },
-            "-Km2EeD4h_ySOVz9hQzV": {
-                "Kiss": "http://kissmanga.com/Manga/Munou-na-Nana",
-                "Mal": "https://myanimelist.net/manga/107500/Munou_na_Nana"
-            },
-            "-Km2Eg3AAQI10JfzbvKG": {
-                "Kiss": "http://kissmanga.com/Manga/Futaribeya",
-                "Mal": "https://myanimelist.net/manga/88489/Futaribeya"
-            },
-            "-Km2ElbYwmJffbcpbmFO": {
-                "Kiss": "http://kissmanga.com/Manga/Okitegami-Kyouko-no-Bibouroku",
-                "Mal": "https://myanimelist.net/manga/90993/Okitegami_Kyouko_no_Bibouroku"
-            },
-            "-Km2Ena77ZlhhE40u7Ru": {
-                "Kiss": "http://kissmanga.com/Manga/Boku-wa-Nando-demo-Kimi-ni-Hajimete-no-Koi-wo-Suru",
-                "Mal": "https://myanimelist.net/manga/107154/Boku_wa_Nandodemo_Kimi_ni_Hajimete_no_Koi_wo_Suru"
-            },
-            "-Km2EtgM2E6uvmsNloa-": {
-                "Kiss": "http://kissmanga.com/Manga/Seirei-Gensouki-Konna-Sekai-de-Deaeta-Kimi-ni",
-                "Mal": "https://myanimelist.net/manga/93314/Seirei_Gensouki"
-            },
-            "-Km2NIqkOJ5GajRM8cpk": {
-                "Kiss": "http://kissmanga.com/Manga/Himegoto-Juukyuusai-no-Seifuku",
-                "Mal": "https://myanimelist.net/manga/43415/Himegoto__Juukyuusai_no_Seifuku"
-            },
-            "-Km2PakUQlPhFJVYbf7o": {
-                "Kiss": "http://kissmanga.com/Manga/Kipen-Manga",
-                "Mal": "https://myanimelist.net/manga/1101/Akumetsu"
-            },
-            "-Km2PbU1l00qcpYNGm3F": {
-                "Kiss": "http://kissmanga.com/Manga/Uchuu-o-Kakeru-Yodaka",
-                "Mal": "https://myanimelist.net/manga/81079/Sora_wo_Kakeru_Yodaka"
-            },
-            "-Km35RQ4q328gPao2Rnp": {
-                "Kiss": "http://kissmanga.com/Manga/Tensei-Shitara-Slime-Datta-Ken#",
-                "Mal": "https://myanimelist.net/manga/87609/Tensei_shitara_Slime_Datta_Ken"
-            },
-            "-Km3QSqKfNLp8_fTyB9Z": {
-                "Kiss": "http://kissmanga.com/Manga/Nejimaki-Kagyu",
-                "Mal": "https://myanimelist.net/manga/43525/Nejimaki_Kagyuu"
-            },
-            "-Km3ZV6mtiNeB2vdZ9zQ": {
-                "Kiss": "http://kissmanga.com/Manga/The-Ruler-Of-The-Land",
-                "Mal": "https://myanimelist.net/manga/16166/Ruler_of_the_Land"
-            },
-            "-Km3jFwOgEnf1QWF-ubL": {
-                "Kiss": "http://kissmanga.com/Manga/Naruto",
-                "Mal": "https://myanimelist.net/manga/11/Naruto"
-            },
-            "-Km3kBsfh3qt9HHV4EGg": {
-                "Kiss": "http://kissmanga.com/Manga/Why-Did-Men-Stop-Wearing-High-Heels",
-                "Mal": "https://myanimelist.net/manga/8223/Issho_ni_Neyou_yo"
-            },
-            "-Km46b-Ty9OA5ZN-JjMC": {
-                "Kiss": "http://kissmanga.com/Manga/Otometeki-Syndrome",
-                "Mal": "https://myanimelist.net/manga/100025/Otometic_Syndrome"
-            },
-            "-Km4CcCpN24jWL2OYKW6": {
-                "Kiss": "http://kissmanga.com/Manga/Otometeki-Syndrome",
-                "Mal": "https://myanimelist.net/manga/100025/Otometic_Syndrome"
-            },
-            "-Km4HyElpqJeTowav4mD": {
-                "Kiss": "http://kissmanga.com/Manga/Bakuon-Rettou",
-                "Mal": "https://myanimelist.net/manga/10443/Bakuon_Rettou"
-            },
-            "-Km4KuavUzv7F5ApNtnU": {
-                "Kiss": "http://kissmanga.com/Manga/Tensei-Shitara-Slime-Datta-Ken",
-                "Mal": "https://myanimelist.net/manga/87610/Tensei_shitara_Slime_Datta_Ken"
-            },
-            "-Km4MrtwqvgNcV67ZS0X": {
-                "Kiss": "http://kissmanga.com/Manga/Yuizaki-san-ha-Nageru",
-                "Mal": "https://myanimelist.net/manga/100165/Yuizaki-san_wa_Nageru"
+            "-Km9elrjwqny5kRlEbb_": {
+                "Kiss": "http://kissmanga.com/Manga/Maiko-san-Chi-no-Makanai-san",
+                "Mal": "https://myanimelist.net/manga/107239/Maiko-san_Chi_no_Makanai-san"
             }
         },
         "MasteraniRequest": {
-            "-Km2bSdpJD1JbPFhMUPS": {
-                "Kiss": "https://www.masterani.me/anime/info/55-no-game-no-life",
-                "Mal": "https://myanimelist.net/anime/19815/No_Game_No_Life"
+            "-Km63JdKLtzxJj6TUw6y": {
+                "Kiss": "https://www.masterani.me/anime/info/2292-beelzebub-hirotta-akachan-wa-daimaou",
+                "Mal": "https://myanimelist.net/anime/9120/Beelzebub__Hirotta_Akachan_wa_Daimaou"
             },
-            "-Km2ipPjlG5dr8qR5Ui8": {
-                "Kiss": "https://www.masterani.me/anime/info/81-seto-no-hanayome",
-                "Mal": "https://myanimelist.net/anime/2104/Seto_no_Hanayome"
+            "-Km6Kt28r3CVHyorPOL1": {
+                "Kiss": "https://www.masterani.me/anime/info/2536-souryo-to-majiwaru-shikiyoku-no-yoru-ni",
+                "Mal": "https://myanimelist.net/anime/34823/Souryo_to_Majiwaru_Shikiyoku_no_Yoru_ni"
             },
-            "-Km2x_TRzbW2AkKMnGhC": {
-                "Kiss": "https://www.masterani.me/anime/watch/2127-suki-ni-naru-sono-shunkan-wo-kokuhaku-jikkou-iinkai",
-                "Mal": "https://myanimelist.net/anime/33036/Suki_ni_Naru_Sono_Shunkan_wo__Kokuhaku_Jikkou_Iinkai"
+            "-Km6PULeyPw_hrdHk65T": {
+                "Kiss": "https://www.masterani.me/anime/info/1680-kono-subarashii-sekai-ni-shukufuku-wo",
+                "Mal": "https://myanimelist.net/anime/30831/Kono_Subarashii_Sekai_ni_Shukufuku_wo"
             },
-            "-Km34o-TyISmNptc6UpR": {
-                "Kiss": "https://www.masterani.me/anime/info/2514-boruto-naruto-next-generations",
-                "Mal": "https://myanimelist.net/anime/34566/Boruto__Naruto_Next_Generations"
+            "-Km6PZ1eSv61zD3Tl0Tr": {
+                "Kiss": "https://www.masterani.me/anime/info/8-glasslip",
+                "Mal": "https://myanimelist.net/anime/23079/Glasslip"
             },
-            "-Km373CY54PxAWP2iop-": {
-                "Kiss": "https://www.masterani.me/anime/info/420-hagure-yuusha-no-aesthetica",
-                "Mal": "https://myanimelist.net/anime/13161/Hagure_Yuusha_no_Aesthetica"
+            "-Km6QFLVbft4r47hU6gA": {
+                "Kiss": "https://www.masterani.me/anime/info/1102-owari-no-seraph#recommendations",
+                "Mal": "https://myanimelist.net/anime/26243/Owari_no_Seraph"
             },
-            "-Km39KRX7-s2ubmVyJ0o": {
-                "Kiss": "https://www.masterani.me/anime/info/834-omamori-himari",
-                "Mal": "https://myanimelist.net/anime/6324/Omamori_Himari"
-            },
-            "-Km39OOPEsf9onc6RjO7": {
-                "Kiss": "https://www.masterani.me/anime/info/832-kore-wa-zombie-desu-ka-of-the-dead",
-                "Mal": "https://myanimelist.net/anime/10790/Kore_wa_Zombie_Desu_ka_of_the_Dead"
-            },
-            "-Km39VdrON_9eNDUaYIc": {
-                "Kiss": "https://www.masterani.me/anime/info/471-seirei-tsukai-no-blade-dance",
-                "Mal": "https://myanimelist.net/anime/22877/Seireitsukai_no_Blade_Dance"
-            },
-            "-Km39cHylGz0Da742HP0": {
-                "Kiss": "https://www.masterani.me/anime/info/1693-saijaku-muhai-no-bahamut",
-                "Mal": "https://myanimelist.net/anime/30749/Saijaku_Muhai_no_Bahamut"
-            },
-            "-Km3A78dCx06U27I8f9f": {
-                "Kiss": "https://www.masterani.me/anime/info/832-kore-wa-zombie-desu-ka-of-the-dead#franchise",
-                "Mal": "https://myanimelist.net/anime/10790/Kore_wa_Zombie_Desu_ka_of_the_Dead"
-            },
-            "-Km3A7n1xdwHSzg6Ts1Q": {
-                "Kiss": "https://www.masterani.me/anime/info/832-kore-wa-zombie-desu-ka-of-the-dead#",
-                "Mal": "https://myanimelist.net/anime/10790/Kore_wa_Zombie_Desu_ka_of_the_Dead"
-            },
-            "-Km3AAClTvT38qAQHSLD": {
-                "Kiss": "https://www.masterani.me/anime/info/832-kore-wa-zombie-desu-ka-of-the-dead#",
-                "Mal": "https://myanimelist.net/anime/10790/Kore_wa_Zombie_Desu_ka_of_the_Dead"
-            },
-            "-Km3AB9GDhGGUNMGsmoM": {
-                "Kiss": "https://www.masterani.me/anime/info/832-kore-wa-zombie-desu-ka-of-the-dead#",
-                "Mal": "https://myanimelist.net/anime/10790/Kore_wa_Zombie_Desu_ka_of_the_Dead"
-            },
-            "-Km3B_9xiVoQxgGfNjIH": {
-                "Kiss": "https://www.masterani.me/anime/info/2505-rokudenashi-majutsu-koushi-to-akashic-records",
-                "Mal": "https://myanimelist.net/anime/32951/Rokudenashi_Majutsu_Koushi_to_Akashic_Records"
-            },
-            "-Km3I6V6ZXqJz7ONVfCZ": {
-                "Kiss": "https://www.masterani.me/anime/watch/2528-oushitsu-kyoushi-haine",
-                "Mal": "https://myanimelist.net/anime/34262/Oushitsu_Kyoushi_Haine"
-            },
-            "-Km3Q9XHOkgEe-5jnjFY": {
-                "Kiss": "https://www.masterani.me/anime/info/781-blood-c-the-last-dark",
-                "Mal": "https://myanimelist.net/anime/10681/Blood-C__The_Last_Dark"
-            },
-            "-Km3QJApWtiu54cr9R-w": {
-                "Kiss": "https://www.masterani.me/anime/info/780-blood-c",
-                "Mal": "https://myanimelist.net/anime/10490/Blood-C"
-            },
-            "-Km3SL2AdIU3lNc2YNrb": {
-                "Kiss": "https://www.masterani.me/anime/info/521-strike-witches",
-                "Mal": "https://myanimelist.net/anime/3667/Strike_Witches"
-            },
-            "-Km3SMoR2xD5RETawR-L": {
-                "Kiss": "https://www.masterani.me/anime/info/1592-fatekaleid-liner-prismaillya-2wei-herz-specials",
-                "Mal": "https://myanimelist.net/anime/31056/Fate_kaleid_liner_Prisma%25E2%2598%2586Illya_2wei_Herz_Specials"
-            },
-            "-Km3Se50ZoeTyXkcpY24": {
-                "Kiss": "https://www.masterani.me/anime/info/1897-keijo",
-                "Mal": "https://myanimelist.net/anime/32686/Keijo"
-            },
-            "-Km3SfFqkZJEyWcD9q4P": {
-                "Kiss": "https://www.masterani.me/anime/info/2488-air-gear-kuro-no-hane-to-nemuri-no-mori-break-on-the-sky",
-                "Mal": "https://myanimelist.net/anime/9201/Air_Gear__Kuro_no_Hane_to_Nemuri_no_Mori_-_Break_on_the_Sky"
-            },
-            "-Km3SgOd-w7FC4KHM_tZ": {
-                "Kiss": "https://www.masterani.me/anime/info/702-medaka-box-abnormal",
-                "Mal": "https://myanimelist.net/anime/14527/Medaka_Box_Abnormal"
-            },
-            "-Km3SjKXnxNsStH8u8mY": {
-                "Kiss": "https://www.masterani.me/anime/info/353-boku-wa-tomodachi-ga-sukunai",
-                "Mal": "https://myanimelist.net/anime/10719/Boku_wa_Tomodachi_ga_Sukunai"
-            },
-            "-Km3SvPOWWIzVg7A89Gq": {
-                "Kiss": "https://www.masterani.me/anime/info/521-strike-witches#franchise",
-                "Mal": "https://myanimelist.net/anime/3667/Strike_Witches"
-            },
-            "-Km3SyfheqLRn52QCuTi": {
-                "Kiss": "https://www.masterani.me/anime/info/521-strike-witches#",
-                "Mal": "https://myanimelist.net/anime/3667/Strike_Witches"
-            },
-            "-Km3T52DGkZSe-U03EEX": {
-                "Kiss": "https://www.masterani.me/anime/info/1592-fatekaleid-liner-prismaillya-2wei-herz-specials#franchise",
-                "Mal": "https://myanimelist.net/anime/31056/Fate_kaleid_liner_Prisma%25E2%2598%2586Illya_2wei_Herz_Specials"
-            },
-            "-Km3T6HbWcdoNVydbBCW": {
-                "Kiss": "https://www.masterani.me/anime/info/1186-fatekaleid-liner-prismaillya-2wei-herz",
-                "Mal": "https://myanimelist.net/anime/27525/Fate_kaleid_liner_Prisma%25E2%2598%2586Illya_2wei_Herz"
-            },
-            "-Km3T84RNshxtyVAQwN8": {
-                "Kiss": "https://www.masterani.me/anime/info/1186-fatekaleid-liner-prismaillya-2wei-herz#franchise",
-                "Mal": "https://myanimelist.net/anime/27525/Fate_kaleid_liner_Prisma%25E2%2598%2586Illya_2wei_Herz"
-            },
-            "-Km3eRq1Rg30Bz5yaE4W": {
-                "Kiss": "https://www.masterani.me/anime/info/521-strike-witches#",
-                "Mal": "https://myanimelist.net/anime/3667/Strike_Witches"
-            },
-            "-Km3eXpgvJN3NYG5yuo8": {
-                "Kiss": "https://www.masterani.me/anime/info/235-elfen-lied",
-                "Mal": "https://myanimelist.net/anime/226/Elfen_Lied%3Fsa%3DX"
-            },
-            "-Km3ejOpCxdXkdCw1tj2": {
-                "Kiss": "https://www.masterani.me/anime/info/1314-chuu-bra",
-                "Mal": "https://myanimelist.net/anime/6645/Chuu_Bra"
-            },
-            "-Km3esfUN_NcAX0pV2Mb": {
-                "Kiss": "https://www.masterani.me/anime/info/112-kore-wa-zombie-desu-ka",
-                "Mal": "https://myanimelist.net/anime/8841/Kore_wa_Zombie_Desu_ka"
-            },
-            "-Km3f4wGwEEMf-ou8PhB": {
-                "Kiss": "https://www.masterani.me/anime/info/112-kore-wa-zombie-desu-ka#franchise",
-                "Mal": "https://myanimelist.net/anime/8841/Kore_wa_Zombie_Desu_ka"
-            },
-            "-Km3f6G_5PwyB7ab47Wv": {
+            "-Km6rhtgFNVM0MOl3SlL": {
                 "Kiss": "https://www.masterani.me/anime/info/112-kore-wa-zombie-desu-ka#",
                 "Mal": "https://myanimelist.net/anime/8841/Kore_wa_Zombie_Desu_ka"
+            },
+            "-Km6rhzkt-i0JXRlPwH8": {
+                "Kiss": "https://www.masterani.me/anime/info/521-strike-witches#",
+                "Mal": "https://myanimelist.net/anime/3667/Strike_Witches"
+            },
+            "-Km7AjTT2KaXG_Et_U0h": {
+                "Kiss": "https://www.masterani.me/anime/info/521-strike-witches#",
+                "Mal": "https://myanimelist.net/anime/3667/Strike_Witches"
+            },
+            "-Km7AqA09wwfGnsLF2Hh": {
+                "Kiss": "https://www.masterani.me/anime/info/112-kore-wa-zombie-desu-ka#",
+                "Mal": "https://myanimelist.net/anime/8841/Kore_wa_Zombie_Desu_ka"
+            },
+            "-Km7vjYmTWSNXTDMRFdZ": {
+                "Kiss": "https://www.masterani.me/anime/info/1892-accel-world-infiniteburst",
+                "Mal": "https://myanimelist.net/anime/31763/Accel_World__Infinite%25E2%2588%259EBurst"
+            },
+            "-Km8EPXSYpu6wfBM3l4j": {
+                "Kiss": "https://www.masterani.me/anime/info/112-kore-wa-zombie-desu-ka#",
+                "Mal": "https://myanimelist.net/anime/8841/Kore_wa_Zombie_Desu_ka"
+            },
+            "-Km8R0t6F4yY1wUxlxuN": {
+                "Kiss": "https://www.masterani.me/anime/info/1314-chuu-bra#recommendations",
+                "Mal": "https://myanimelist.net/anime/6645/Chuu_Bra"
+            },
+            "-Km8R9KnpyG29WFau3ax": {
+                "Kiss": "https://www.masterani.me/anime/watch/1389-saenai-heroine-no-sodatekata-2nd-season",
+                "Mal": "https://myanimelist.net/anime/30727/Saenai_Heroine_no_Sodatekata_♭"
+            },
+            "-Km8RFv9EUpF7XSHAFzW": {
+                "Kiss": "https://www.masterani.me/anime/info/988-saenai-heroine-no-sodatekata",
+                "Mal": "https://myanimelist.net/anime/23277/Saenai_Heroine_no_Sodatekata"
+            },
+            "-Km8VZitXXZQvleBGJix": {
+                "Kiss": "https://www.masterani.me/anime/info/2127-suki-ni-naru-sono-shunkan-wo-kokuhaku-jikkou-iinkai",
+                "Mal": "https://myanimelist.net/anime/33036/Suki_ni_Naru_Sono_Shunkan_wo__Kokuhaku_Jikkou_Iinkai"
+            },
+            "-Km8afCIdVJ3Fb83DGXc": {
+                "Kiss": "https://www.masterani.me/anime/info/64-one-piece",
+                "Mal": "https://myanimelist.net/anime/21/One_Piece"
+            },
+            "-Km8bLG4_FNOLMuYTkuR": {
+                "Kiss": "https://www.masterani.me/anime/info/183-toriko",
+                "Mal": "https://myanimelist.net/anime/10033/Toriko"
+            },
+            "-Km8olcYAxCZ_9gUjkHe": {
+                "Kiss": "https://www.masterani.me/anime/info/37-haikyuu#franchise",
+                "Mal": "https://myanimelist.net/anime/20583/Haikyuu"
+            },
+            "-Km8om4o0AMjVOwcx9Gi": {
+                "Kiss": "https://www.masterani.me/anime/info/1176-haikyuu-second-season",
+                "Mal": "https://myanimelist.net/anime/28891/Haikyuu_Second_Season"
+            },
+            "-Km9EUKtznUlqiIdwfEO": {
+                "Kiss": "https://www.masterani.me/anime/info/2548-busou-shoujo-machiavellianism",
+                "Mal": "https://myanimelist.net/anime/33475/Busou_Shoujo_Machiavellianism"
+            },
+            "-Km9En4JpguIhmI8RaVR": {
+                "Kiss": "https://www.masterani.me/anime/info/2516-fukumenkei-noise",
+                "Mal": "https://myanimelist.net/anime/33203/Fukumenkei_Noise"
+            },
+            "-Km9Ev4TOyPhZ7tltJDW": {
+                "Kiss": "https://www.masterani.me/anime/info/2127-suki-ni-naru-sono-shunkan-wo-kokuhaku-jikkou-iinkai",
+                "Mal": "https://myanimelist.net/anime/33036/Suki_ni_Naru_Sono_Shunkan_wo__Kokuhaku_Jikkou_Iinkai"
+            },
+            "-Km9F6b3MMmzYbNcuLX0": {
+                "Kiss": "https://www.masterani.me/anime/info/1389-saenai-heroine-no-sodatekata-2nd-season",
+                "Mal": "https://myanimelist.net/anime/30727/Saenai_Heroine_no_Sodatekata_♭"
+            },
+            "-Km9FKbqs2IhRsEQ-097": {
+                "Kiss": "https://www.masterani.me/anime/info/2518-sakurada-reset",
+                "Mal": "https://myanimelist.net/anime/34102/Sakurada_Reset"
+            },
+            "-Km9rRSJgaE-sAMa505w": {
+                "Kiss": "https://www.masterani.me/anime/info/2578-blame-movie",
+                "Mal": "https://myanimelist.net/anime/32086/Blame_Movie"
             }
         }
     }
