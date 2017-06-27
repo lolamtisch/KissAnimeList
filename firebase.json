@@ -4331,6 +4331,14 @@
                 "title": "Bartender",
                 "url": "http://kissanime.ru/Anime/Bartender"
             },
+            "basilisk-dub": {
+                "Mal": {
+                    "67": "Basilisk__Kouga_Ninpou_Chou"
+                },
+                "image": "https://myanimelist.cdn-dena.com/images/anime/11/6793.jpg",
+                "title": "Basilisk (Dub)",
+                "url": "http://kissanime.ru/Anime/Basilisk-Dub"
+            },
             "basilisk-sub": {
                 "Mal": {
                     "67": "Basilisk__Kouga_Ninpou_Chou"
@@ -18128,6 +18136,14 @@
                 "title": "Super Danganronpa 2.5: Komaeda Nagito to Sekai no Hakaimono",
                 "url": "http://kissanime.ru/Anime/Super-Danganronpa-2-5-Komaeda-Nagito-to-Sekai-no-Hakaimono"
             },
+            "super-lovers": {
+                "Mal": {
+                    "31680": "Super_Lovers"
+                },
+                "image": "https://myanimelist.cdn-dena.com/images/anime/4/78450.jpg",
+                "title": "Super Lovers",
+                "url": "http://kissanime.ru/Anime/Super-Lovers"
+            },
             "super-lovers-ova": {
                 "Mal": {
                     "33013": "Super_Lovers_OVA"
@@ -20545,220 +20561,6 @@
                 "url": "http://kissanime.ru/Anime/Zettai-Karen-Children-The-Unlimited-Hyoubu-Kyousuke"
             }
         },
-        "KissanimeRequest": {
-            "-Kn-ylUdHw0GkbQo85Sv": {
-                "Kiss": "http://kissanime.ru/Anime/Rainbow-Nisha-Rokubou-no-Shichinin",
-                "Mal": "https://myanimelist.net/anime/6114/Rainbow__Nisha_Rokubou_no_Shichinin"
-            },
-            "-Kn0-kbiGMhLKQSX6RhQ": {
-                "Kiss": "http://kissanime.ru/Anime/Rainbow-Nisha-Rokubou-no-Shichinin",
-                "Mal": "https://myanimelist.net/anime/6114/Rainbow__Nisha_Rokubou_no_Shichinin"
-            },
-            "-Kn05v26wN2os4633qgI": {
-                "Kiss": "http://kissanime.ru/Anime/Rainbow-Nisha-Rokubou-no-Shichinin",
-                "Mal": "https://myanimelist.net/anime/6114/Rainbow__Nisha_Rokubou_no_Shichinin"
-            },
-            "-Kn05wiZDB40P2yEHhPm": {
-                "Kiss": "http://kissanime.ru/Anime/Rainbow-Nisha-Rokubou-no-Shichinin",
-                "Mal": "https://myanimelist.net/anime/6114/Rainbow__Nisha_Rokubou_no_Shichinin"
-            },
-            "-Kn0FEI61C-E8JAcwmI3": {
-                "Kiss": "http://kissanime.ru/Anime/Rainbow-Nisha-Rokubou-no-Shichinin",
-                "Mal": "https://myanimelist.net/anime/6114/Rainbow__Nisha_Rokubou_no_Shichinin"
-            },
-            "-Kn0FRbYCnLzhGUBAQYW": {
-                "Kiss": "http://kissanime.ru/Anime/Rainbow-Nisha-Rokubou-no-Shichinin",
-                "Mal": "https://myanimelist.net/anime/6114/Rainbow__Nisha_Rokubou_no_Shichinin"
-            },
-            "-Kn2g-BtsVHp0V_BJ9UO": {
-                "Kiss": "http://kissanime.ru/Anime/Rainbow-Nisha-Rokubou-no-Shichinin",
-                "Mal": "https://myanimelist.net/anime/6114/Rainbow__Nisha_Rokubou_no_Shichinin"
-            },
-            "-Kn2g1qggCASFtMsYBdD": {
-                "Kiss": "http://kissanime.ru/Anime/Rainbow-Nisha-Rokubou-no-Shichinin",
-                "Mal": "https://myanimelist.net/anime/6114/Rainbow__Nisha_Rokubou_no_Shichinin"
-            },
-            "-Kn2g3mlF497dvFkMXhf": {
-                "Kiss": "http://kissanime.ru/Anime/Rainbow-Nisha-Rokubou-no-Shichinin",
-                "Mal": "https://myanimelist.net/anime/6114/Rainbow__Nisha_Rokubou_no_Shichinin"
-            },
-            "-Kn3wiZSV-4eq3B69qYY": {
-                "Kiss": "http://kissanime.ru/Anime/Rainbow-Nisha-Rokubou-no-Shichinin",
-                "Mal": "https://myanimelist.net/anime/6114/Rainbow__Nisha_Rokubou_no_Shichinin"
-            },
-            "-Kn3wkNnU07dS0HD8TRA": {
-                "Kiss": "http://kissanime.ru/Anime/Rainbow-Nisha-Rokubou-no-Shichinin",
-                "Mal": "https://myanimelist.net/anime/6114/Rainbow__Nisha_Rokubou_no_Shichinin"
-            },
-            "-Kn6uV-il6F8em9XL_5G": {
-                "Kiss": "http://kissanime.ru/Anime/Rainbow-Nisha-Rokubou-no-Shichinin",
-                "Mal": "https://myanimelist.net/anime/6114/Rainbow__Nisha_Rokubou_no_Shichinin"
-            },
-            "-Kn6zcCmq6aWgVrigANe": {
-                "Kiss": "http://kissanime.ru/Anime/Rainbow-Nisha-Rokubou-no-Shichinin",
-                "Mal": "https://myanimelist.net/anime/6114/Rainbow__Nisha_Rokubou_no_Shichinin"
-            },
-            "-Kn6zgDKmGUJJ_Td3xHR": {
-                "Kiss": "http://kissanime.ru/Anime/Rainbow-Nisha-Rokubou-no-Shichinin",
-                "Mal": "https://myanimelist.net/anime/6114/Rainbow__Nisha_Rokubou_no_Shichinin"
-            },
-            "-Kn8-CHAtv5izIcdiKki": {
-                "Kiss": "http://kissanime.ru/Anime/Rainbow-Nisha-Rokubou-no-Shichinin",
-                "Mal": "https://myanimelist.net/anime/6114/Rainbow__Nisha_Rokubou_no_Shichinin"
-            },
-            "-Kn8-FzeLDBNDGzhPlg1": {
-                "Kiss": "http://kissanime.ru/Anime/Rainbow-Nisha-Rokubou-no-Shichinin",
-                "Mal": "https://myanimelist.net/anime/6114/Rainbow__Nisha_Rokubou_no_Shichinin"
-            },
-            "-Kn8-Ng-vpgeY6vCQ4h-": {
-                "Kiss": "http://kissanime.ru/Anime/Rainbow-Nisha-Rokubou-no-Shichinin",
-                "Mal": "https://myanimelist.net/anime/6114/Rainbow__Nisha_Rokubou_no_Shichinin"
-            },
-            "-Kn8-P1g_rVL-QMA5Nt4": {
-                "Kiss": "http://kissanime.ru/Anime/Rainbow-Nisha-Rokubou-no-Shichinin",
-                "Mal": "https://myanimelist.net/anime/6114/Rainbow__Nisha_Rokubou_no_Shichinin"
-            },
-            "-Kn8-Q7q0H6iFvDJPTIq": {
-                "Kiss": "http://kissanime.ru/Anime/Rainbow-Nisha-Rokubou-no-Shichinin",
-                "Mal": "https://myanimelist.net/anime/6114/Rainbow__Nisha_Rokubou_no_Shichinin"
-            },
-            "-KnB-sM6zlq7mfkLsByT": {
-                "Kiss": "http://kissanime.ru/Anime/Rainbow-Nisha-Rokubou-no-Shichinin",
-                "Mal": "https://myanimelist.net/anime/6114/Rainbow__Nisha_Rokubou_no_Shichinin"
-            },
-            "-KnB-toi1FcaTDRzQO0S": {
-                "Kiss": "http://kissanime.ru/Anime/Rainbow-Nisha-Rokubou-no-Shichinin",
-                "Mal": "https://myanimelist.net/anime/6114/Rainbow__Nisha_Rokubou_no_Shichinin"
-            },
-            "-KnB0A3qVDfFU2jpPjQR": {
-                "Kiss": "http://kissanime.ru/Anime/Rainbow-Nisha-Rokubou-no-Shichinin",
-                "Mal": "https://myanimelist.net/anime/6114/Rainbow__Nisha_Rokubou_no_Shichinin"
-            },
-            "-KnB0BGzWX4Yg1AiVxYV": {
-                "Kiss": "http://kissanime.ru/Anime/Rainbow-Nisha-Rokubou-no-Shichinin",
-                "Mal": "https://myanimelist.net/anime/6114/Rainbow__Nisha_Rokubou_no_Shichinin"
-            },
-            "-KnCAYO676noQkyuL-B2": {
-                "Kiss": "http://kissanime.ru/Anime/Rainbow-Nisha-Rokubou-no-Shichinin",
-                "Mal": "https://myanimelist.net/anime/6114/Rainbow__Nisha_Rokubou_no_Shichinin"
-            },
-            "-KnCAbP8qUAFQ2OdaRs2": {
-                "Kiss": "http://kissanime.ru/Anime/Rainbow-Nisha-Rokubou-no-Shichinin",
-                "Mal": "https://myanimelist.net/anime/6114/Rainbow__Nisha_Rokubou_no_Shichinin"
-            },
-            "-KnCAcd_hsDt8rfIK0Rc": {
-                "Kiss": "http://kissanime.ru/Anime/Rainbow-Nisha-Rokubou-no-Shichinin",
-                "Mal": "https://myanimelist.net/anime/6114/Rainbow__Nisha_Rokubou_no_Shichinin"
-            },
-            "-KnE37amVOd9cb3O-d7i": {
-                "Kiss": "http://kissanime.ru/Anime/Rainbow-Nisha-Rokubou-no-Shichinin",
-                "Mal": "https://myanimelist.net/anime/6114/Rainbow__Nisha_Rokubou_no_Shichinin"
-            },
-            "-KnE39r1rmwqYsODDuVL": {
-                "Kiss": "http://kissanime.ru/Anime/Rainbow-Nisha-Rokubou-no-Shichinin",
-                "Mal": "https://myanimelist.net/anime/6114/Rainbow__Nisha_Rokubou_no_Shichinin"
-            },
-            "-KnE3BgemdjyT_pGsU_H": {
-                "Kiss": "http://kissanime.ru/Anime/Rainbow-Nisha-Rokubou-no-Shichinin",
-                "Mal": "https://myanimelist.net/anime/6114/Rainbow__Nisha_Rokubou_no_Shichinin"
-            },
-            "-KnE9AaSsQGXiBjHTe3r": {
-                "Kiss": "http://kissanime.ru/Anime/Rainbow-Nisha-Rokubou-no-Shichinin",
-                "Mal": "https://myanimelist.net/anime/6114/Rainbow__Nisha_Rokubou_no_Shichinin"
-            },
-            "-KnEyW6PLftLdT7HEvyX": {
-                "Kiss": "http://kissanime.ru/Anime/Rainbow-Nisha-Rokubou-no-Shichinin",
-                "Mal": "https://myanimelist.net/anime/6114/Rainbow__Nisha_Rokubou_no_Shichinin"
-            },
-            "-KnF-0nX5mlVXPuCJmrv": {
-                "Kiss": "http://kissanime.ru/Anime/Rainbow-Nisha-Rokubou-no-Shichinin",
-                "Mal": "https://myanimelist.net/anime/6114/Rainbow__Nisha_Rokubou_no_Shichinin"
-            },
-            "-KnILSeYobB9Xx91U9XY": {
-                "Kiss": "http://kissanime.ru/Anime/To-LOVE-Ru-OVA",
-                "Mal": "https://myanimelist.net/anime/5667/To_LOVE-Ru_OVA"
-            },
-            "-KnIMdy8KSIgptQxBWM0": {
-                "Kiss": "http://kissanime.ru/Anime/To-LOVE-Ru-OVA",
-                "Mal": "https://myanimelist.net/anime/5667/To_LOVE-Ru_OVA"
-            },
-            "-KnIMkkwPFPOdW5PHs9p": {
-                "Kiss": "http://kissanime.ru/Anime/To-LOVE-Ru-OVA",
-                "Mal": "https://myanimelist.net/anime/5667/To_LOVE-Ru_OVA"
-            },
-            "-KnJJerXrCh5EcVwnoSJ": {
-                "Kiss": "http://kissanime.ru/Anime/To-LOVE-Ru-OVA",
-                "Mal": "https://myanimelist.net/anime/5667/To_LOVE-Ru_OVA"
-            },
-            "-KnJJhTLmJv-vaMhijkQ": {
-                "Kiss": "http://kissanime.ru/Anime/To-LOVE-Ru-OVA",
-                "Mal": "https://myanimelist.net/anime/5667/To_LOVE-Ru_OVA"
-            },
-            "-KnMuV3rP_BZRqqD17sg": {
-                "Kiss": "http://kissanime.ru/Anime/To-LOVE-Ru-OVA",
-                "Mal": "https://myanimelist.net/anime/5667/To_LOVE-Ru_OVA"
-            },
-            "-KnMuX_LZqUqs0rBz8Np": {
-                "Kiss": "http://kissanime.ru/Anime/To-LOVE-Ru-OVA",
-                "Mal": "https://myanimelist.net/anime/5667/To_LOVE-Ru_OVA"
-            },
-            "-KnMuZQlSro6qN7HlTMt": {
-                "Kiss": "http://kissanime.ru/Anime/To-LOVE-Ru-OVA",
-                "Mal": "https://myanimelist.net/anime/5667/To_LOVE-Ru_OVA"
-            },
-            "-KnMupePHUJn7k2V4Bkn": {
-                "Kiss": "http://kissanime.ru/Anime/To-LOVE-Ru-OVA",
-                "Mal": "https://myanimelist.net/anime/5667/To_LOVE-Ru_OVA"
-            },
-            "-KnNRfHx_6kpc4HGzquJ": {
-                "Kiss": "http://kissanime.ru/Anime/To-LOVE-Ru-OVA",
-                "Mal": "https://myanimelist.net/anime/5667/To_LOVE-Ru_OVA"
-            },
-            "-KnO8AeSpMaUG71l1A2v": {
-                "Kiss": "http://kissanime.ru/Anime/To-LOVE-Ru-OVA",
-                "Mal": "https://myanimelist.net/anime/5667/To_LOVE-Ru_OVA"
-            },
-            "-KnO8DYZG7wyXJ7sj4F_": {
-                "Kiss": "http://kissanime.ru/Anime/To-LOVE-Ru-OVA",
-                "Mal": "https://myanimelist.net/anime/5667/To_LOVE-Ru_OVA"
-            },
-            "-KnO8HT7OED1LvG2n5JM": {
-                "Kiss": "http://kissanime.ru/Anime/To-LOVE-Ru-OVA",
-                "Mal": "https://myanimelist.net/anime/5667/To_LOVE-Ru_OVA"
-            },
-            "-KnOozfBTr4PEKfY4kDw": {
-                "Kiss": "http://kissanime.ru/Anime/To-LOVE-Ru-OVA",
-                "Mal": "https://myanimelist.net/anime/5667/To_LOVE-Ru_OVA"
-            },
-            "-KnOrK2OV1EdnarNS_e-": {
-                "Kiss": "http://kissanime.ru/Anime/To-LOVE-Ru-OVA",
-                "Mal": "https://myanimelist.net/anime/5667/To_LOVE-Ru_OVA"
-            },
-            "-KnRyF4wnhRmqZ89nDXY": {
-                "Kiss": "http://kissanime.ru/Anime/Super-Lovers",
-                "Mal": "https://myanimelist.net/anime/31680/Super_Lovers"
-            },
-            "-KnRzgx_jQyK6CNWeTFb": {
-                "Kiss": "http://kissanime.ru/Anime/Super-Lovers",
-                "Mal": "https://myanimelist.net/anime/31680/Super_Lovers"
-            },
-            "-KnRzlW3IVBaCMscFuIq": {
-                "Kiss": "http://kissanime.ru/Anime/Super-Lovers",
-                "Mal": "https://myanimelist.net/anime/31680/Super_Lovers"
-            },
-            "-KnSuwWJAJLi2duQQaDt": {
-                "Kiss": "http://kissanime.ru/Anime/To-LOVE-Ru-OVA",
-                "Mal": "https://myanimelist.net/anime/5667/To_LOVE-Ru_OVA"
-            },
-            "-KnSv-wJIfhJZ_hzqFdF": {
-                "Kiss": "http://kissanime.ru/Anime/To-LOVE-Ru-OVA",
-                "Mal": "https://myanimelist.net/anime/5667/To_LOVE-Ru_OVA"
-            },
-            "-KnXktSoK65Unfl625HS": {
-                "Kiss": "http://kissanime.ru/Anime/Super-Lovers",
-                "Mal": "https://myanimelist.net/anime/31680/Super_Lovers"
-            }
-        },
         "Kissmanga": {
             "%e2%80%93-and-%e2%80%93": {
                 "Mal": {
@@ -22869,6 +22671,14 @@
                 "image": "http://kissmanga.com/Uploads/Etc/3-19-2017/3694412445d77b.jpg",
                 "title": "Doll Change",
                 "url": "http://kissmanga.com/Manga/Doll-Change"
+            },
+            "doll-maen": {
+                "Mal": {
+                    "1049": "Dolls"
+                },
+                "image": "http://kissmanga.com/Uploads/Etc/2-7-2017/9364652180.jpg",
+                "title": "Doll (Maen)",
+                "url": "http://kissmanga.com/Manga/Doll-Maen"
             },
             "dolls": {
                 "Mal": {
@@ -25546,6 +25356,14 @@
                 "title": "Kidou Senshi Gundam Katana",
                 "url": "http://kissmanga.com/Manga/Kidou-Senshi-Gundam-Katana"
             },
+            "kikou-shoujo-wa-kizutsukanai": {
+                "Mal": {
+                    "25952": "Machine-Doll_wa_Kizutsukanai"
+                },
+                "image": "http://kissmanga.com/Uploads/Etc/11-17-2011/692276266a1cb7bd495c4503a0a2d251fa0f5be.jpg",
+                "title": "Kikou Shoujo wa Kizutsukanai",
+                "url": "http://kissmanga.com/Manga/Kikou-Shoujo-wa-Kizutsukanai"
+            },
             "kimi-ni-todoke": {
                 "Mal": {
                     "3378": "Kimi_ni_Todoke"
@@ -27877,6 +27695,14 @@
                 "image": "http://kissmanga.com/Uploads/Etc/7-19-2012/5958012i130384.jpg",
                 "title": "Oz to Mahoutsukaitachi",
                 "url": "http://kissmanga.com/Manga/Oz-to-Mahoutsukaitachi"
+            },
+            "p-to-jk": {
+                "Mal": {
+                    "58659": "P_to_JK"
+                },
+                "image": "http://kissmanga.com/Uploads/Etc/4-26-2014/97751226936bf589040a74b92860d83aa7e3bb9.jpg",
+                "title": "P to JK",
+                "url": "http://kissmanga.com/Manga/P-to-JK"
             },
             "pandora-hearts": {
                 "Mal": {
@@ -30986,6 +30812,14 @@
                 "title": "Yuragi-sou no Yuuna-san",
                 "url": "http://kissmanga.com/Manga/Yuragi-sou-no-Yuuna-san"
             },
+            "yureka": {
+                "Mal": {
+                    "580": "Yureka"
+                },
+                "image": "http://kissmanga.com/Uploads/Etc/9-5-2011/21191429782750703714.jpg",
+                "title": "Yureka",
+                "url": "http://kissmanga.com/Manga/Yureka"
+            },
             "yuri-na-watashi-to-akuma-na-kanojo": {
                 "Mal": {
                     "88152": "Yuri_na_Watashi_to_Akuma_na_Kanojo"
@@ -31137,6 +30971,22 @@
                 "image": "http://kissmanga.com/Uploads/Etc/12-29-2013/42642img000003.jpg",
                 "title": "Zettai Fukujuu Game",
                 "url": "http://kissmanga.com/Manga/Zettai-Fukujuu-Game"
+            },
+            "zettai-karen-children": {
+                "Mal": {
+                    "5821": "Zettai_Karen_Children"
+                },
+                "image": "http://kissmanga.com/Uploads/Etc/9-4-2011/1224252zettai_karen_children_-_lv_11.jpg",
+                "title": "Zettai Karen Children",
+                "url": "http://kissmanga.com/Manga/Zettai-Karen-Children"
+            },
+            "zettai-karen-children-the-unlimited-hyoubu-kyousuke-best-selection": {
+                "Mal": {
+                    "49319": "The_Unlimited__Hyoubu_Kyousuke"
+                },
+                "image": "http://kissmanga.com/Uploads/Etc/5-30-2013/4578912i15288.jpg",
+                "title": "Zettai Karen Children: The Unlimited - Hyoubu Kyousuke Best Selection",
+                "url": "http://kissmanga.com/Manga/Zettai-Karen-Children-The-Unlimited-Hyoubu-Kyousuke-Best-Selection"
             },
             "zettaijou-senpai-no-youkaigaku-kouza": {
                 "Mal": {
@@ -31534,6 +31384,7 @@
             "67": {
                 "Sites": {
                     "Kissanime": {
+                        "basilisk-dub": "Kissanime",
                         "basilisk-sub": "Kissanime"
                     }
                 },
@@ -49263,6 +49114,16 @@
                 "title": "Dragon Nest: Throne of Elves",
                 "url": "https://myanimelist.net/anime/31678/Dragon_Nest__Throne_of_Elves"
             },
+            "31680": {
+                "Sites": {
+                    "Kissanime": {
+                        "super-lovers": "Kissanime"
+                    }
+                },
+                "image": "https://myanimelist.cdn-dena.com/images/anime/4/78450.jpg",
+                "title": "Super Lovers",
+                "url": "https://myanimelist.net/anime/31680/Super_Lovers"
+            },
             "31704": {
                 "Sites": {
                     "9anime": {
@@ -53289,6 +53150,16 @@
                 "title": "Yubisaki Milk Tea",
                 "url": "https://myanimelist.net/manga/579/Yubisaki_Milk_Tea"
             },
+            "580": {
+                "Sites": {
+                    "Kissmanga": {
+                        "yureka": "Kissmanga"
+                    }
+                },
+                "image": "https://myanimelist.cdn-dena.com/images/manga/4/2119.jpg",
+                "title": "Yureka",
+                "url": "https://myanimelist.net/manga/580/Yureka"
+            },
             "582": {
                 "Sites": {
                     "Kissmanga": {
@@ -53593,6 +53464,7 @@
             "1049": {
                 "Sites": {
                     "Kissmanga": {
+                        "doll-maen": "Kissmanga",
                         "dolls": "Kissmanga"
                     }
                 },
@@ -54331,6 +54203,16 @@
                 "image": "https://myanimelist.cdn-dena.com/images/manga/1/152369.jpg",
                 "title": "Dengeki Daisy",
                 "url": "https://myanimelist.net/manga/5255/Dengeki_Daisy"
+            },
+            "5821": {
+                "Sites": {
+                    "Kissmanga": {
+                        "zettai-karen-children": "Kissmanga"
+                    }
+                },
+                "image": "https://myanimelist.cdn-dena.com/images/manga/3/130509.jpg",
+                "title": "Zettai Karen Children",
+                "url": "https://myanimelist.net/manga/5821/Zettai_Karen_Children"
             },
             "5911": {
                 "Sites": {
@@ -56254,6 +56136,16 @@
                 "title": "Gunka no Baltzar",
                 "url": "https://myanimelist.net/manga/25855/Gunka_no_Baltzar"
             },
+            "25952": {
+                "Sites": {
+                    "Kissmanga": {
+                        "kikou-shoujo-wa-kizutsukanai": "Kissmanga"
+                    }
+                },
+                "image": "https://myanimelist.cdn-dena.com/images/manga/2/120687.jpg",
+                "title": "Machine-Doll wa Kizutsukanai",
+                "url": "https://myanimelist.net/manga/25952/Machine-Doll_wa_Kizutsukanai"
+            },
             "26201": {
                 "Sites": {
                     "Kissmanga": {
@@ -58136,6 +58028,16 @@
                 "title": "Nobunaga no Chef",
                 "url": "https://myanimelist.net/manga/49293/Nobunaga_no_Chef"
             },
+            "49319": {
+                "Sites": {
+                    "Kissmanga": {
+                        "zettai-karen-children-the-unlimited-hyoubu-kyousuke-best-selection": "Kissmanga"
+                    }
+                },
+                "image": "https://myanimelist.cdn-dena.com/images/manga/2/157876.jpg",
+                "title": "The Unlimited: Hyoubu Kyousuke",
+                "url": "https://myanimelist.net/manga/49319/The_Unlimited__Hyoubu_Kyousuke"
+            },
             "49333": {
                 "Sites": {
                     "Kissmanga": {
@@ -58805,6 +58707,16 @@
                 "image": "https://myanimelist.cdn-dena.com/images/manga/2/195245.jpg",
                 "title": "Next Life",
                 "url": "https://myanimelist.net/manga/58173/Next_Life"
+            },
+            "58659": {
+                "Sites": {
+                    "Kissmanga": {
+                        "p-to-jk": "Kissmanga"
+                    }
+                },
+                "image": "https://myanimelist.cdn-dena.com/images/manga/3/139239.jpg",
+                "title": "P to JK",
+                "url": "https://myanimelist.net/manga/58659/P_to_JK"
             },
             "59087": {
                 "Sites": {
@@ -66394,93 +66306,9 @@
     },
     "Request": {
         "KissmangaRequest": {
-            "-KnYW4U-CecT7racgI7Q": {
-                "Kiss": "http://kissmanga.com/Manga/Doll-Maen",
-                "Mal": "https://myanimelist.net/manga/1049/Dolls"
-            },
-            "-KnYW5tRmA_wouAF_p-A": {
-                "Kiss": "http://kissmanga.com/Manga/Doll-Maen#",
-                "Mal": "https://myanimelist.net/manga/1049/Dolls"
-            },
-            "-KnYWGdzBahQoHoutuwk": {
-                "Kiss": "http://kissmanga.com/Manga/Kikou-Shoujo-wa-Kizutsukanai",
-                "Mal": "https://myanimelist.net/manga/25952/Machine-Doll_wa_Kizutsukanai"
-            },
-            "-KnYWHgOlrlNgME0ow6Y": {
-                "Kiss": "http://kissmanga.com/Manga/Kikou-Shoujo-wa-Kizutsukanai#",
-                "Mal": "https://myanimelist.net/manga/25952/Machine-Doll_wa_Kizutsukanai"
-            },
-            "-KnYWMcXdBb5sBesD6-K": {
-                "Kiss": "http://kissmanga.com/Manga/Kikou-Shoujo-wa-Kizutsukanai#",
-                "Mal": "https://myanimelist.net/manga/23633/Machine-Doll_wa_Kizutsukanai"
-            },
-            "-KnYWMdTJGWB4ex2dVIK": {
-                "Kiss": "http://kissmanga.com/Manga/Kikou-Shoujo-wa-Kizutsukanai#",
-                "Mal": "https://myanimelist.net/manga/23633/Machine-Doll_wa_Kizutsukanai"
-            },
-            "-KnYbhn6U6Lv4SHtPUHj": {
-                "Kiss": "http://kissmanga.com/Manga/Zettai-Karen-Children-The-Unlimited-Hyoubu-Kyousuke-Best-Selection",
-                "Mal": "https://myanimelist.net/manga/49319/The_Unlimited__Hyoubu_Kyousuke"
-            },
-            "-KnYdGYQovFB4QnbSptw": {
-                "Kiss": "http://kissmanga.com/Manga/Zettai-Karen-Children",
-                "Mal": "https://myanimelist.net/manga/5821/Zettai_Karen_Children"
-            },
-            "-KnYk73S-QzYo6hpUuWv": {
-                "Kiss": "http://kissmanga.com/Manga/Koi-no-Kotoba",
-                "Mal": "https://myanimelist.net/manga/80221/Koi_no_Kotoba"
-            },
-            "-KnYuY9H31SBoUS1CY2h": {
-                "Kiss": "http://kissmanga.com/Manga/Tamen-De-Gushi",
-                "Mal": "https://myanimelist.net/manga/93516/SQ__Begin_W_Your_Name"
-            },
-            "-KnZL50fhaOxnBmuoRq8": {
-                "Kiss": "http://kissmanga.com/Manga/Kikou-Shoujo-wa-Kizutsukanai#",
-                "Mal": "https://myanimelist.net/manga/23633/Machine-Doll_wa_Kizutsukanai"
-            },
-            "-KnZbrhQfKYTbYaTP1Gb": {
-                "Kiss": "http://kissmanga.com/Manga/P-to-JK",
-                "Mal": "https://myanimelist.net/manga/58659/P_to_JK"
-            },
-            "-KnZn2DWkyIS2W_Gx-7m": {
-                "Kiss": "http://kissmanga.com/Manga/Hive",
-                "Mal": "https://myanimelist.net/manga/8591/Tajikarao"
-            },
-            "-KnZnBMMFdJ5hIYwjgOV": {
-                "Kiss": "http://kissmanga.com/Manga/Noblesse",
-                "Mal": "https://myanimelist.net/manga/29983/Noblesse"
-            },
-            "-KnZnBik4Lr-V3kSF_aP": {
-                "Kiss": "http://kissmanga.com/Manga/Tower-of-God",
-                "Mal": "https://myanimelist.net/manga/107467/Torre_de_Dios"
-            },
-            "-KnZnGWj4swo8TIu2qMY": {
-                "Kiss": "http://kissmanga.com/Manga/Freezing",
-                "Mal": "https://myanimelist.net/manga/5911/Freezing"
-            },
-            "-KnZnPqCa33TQqPkla-g": {
-                "Kiss": "http://kissmanga.com/Manga/Freezing#",
-                "Mal": "https://myanimelist.net/manga/5911/Freezing"
-            },
-            "-KnZo_Qn0jDlmrR7QL6K": {
-                "Kiss": "http://kissmanga.com/Manga/Yureka",
-                "Mal": "https://myanimelist.net/manga/580/Yureka"
-            },
-            "-KnZotFwA0XpOp832flF": {
-                "Kiss": "http://kissmanga.com/Manga/Yureka",
-                "Mal": "https://myanimelist.net/manga/580/Yureka"
-            },
-            "-KnaDAyRHQo70o_CzDvf": {
-                "Kiss": "http://kissmanga.com/Manga/Shoujo-Kishidan-x-Knight-Tale",
-                "Mal": "https://myanimelist.net/manga/98481/Shoujo_Kishidan_x_Knight_Tale"
-            },
-            "-KnaQifXtQn53bNO4y0P": {
-                "Kiss": "http://kissmanga.com/Manga/Goblin-Slayer",
-                "Mal": "https://myanimelist.net/manga/98720/Goblin_Slayer"
-            },
-            "-KnbO6UVVrYrZmUw7uc1": {
-                "Kiss": "http://kissmanga.com/Manga/Gantz",
-                "Mal": "https://myanimelist.net/manga/564/Gantz"
+            "-KndaNVVdo9Bni0GyaKv": {
+                "Kiss": "http://kissmanga.com/Manga/Thunderbolt-Fantasy",
+                "Mal": "https://myanimelist.net/manga/99884/Thunderbolt_Fantasy__Touriken_Yuuki"
             }
         }
     }
