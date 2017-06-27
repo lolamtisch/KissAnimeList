@@ -1,0 +1,65 @@
+<img src='https://greasyfork.org/system/screenshots/screenshots/000/006/617/original/s1up.PNG'>
+<b>Supported Sites:</b>
+<table style="width:100%">
+  <tr>
+    <td><u>Full: </u>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+    <td><u>No Bookmark Page: </u></td>
+  </tr>
+  <tr>
+    <td>kissanime.ru</td>
+    <td>9anime.to</td>
+  </tr>
+  <tr>
+    <td>kissmanga.com</td>
+    <td>masterani.me</td>
+  </tr>
+  <tr><td>&nbsp;</td></tr>
+</table>
+Features:
+- Shows Mal Score (Link to Mal)
+- Change Mal Data (Status/Episode/Rating)
+- Auto track episodes
+- Link to next episode
+- Bookmark thumbnails
+- Links from Mal to kiss and one click search
+- Link to last streaming page on Myanimelists Animelist (Tags have to be activated)
+- add/remove Kissanime.ru Bookmarks = plan to watch/dropped on Mal
+- Keeps track of re watches
+- Automatically sets beginning and finishing Date
+- Uses browsers Mal session (Log in credentials never needed)
+- Caches entries for faster loading times
+- Should work with any Ajax episode loading user scripts ( <a href="https://greasyfork.org/de/scripts/27780-nokissreload">NoKissReload</a> )
+
+v0.87:
+- Materialize UI
+- Add miniMAL popup
+
+
+Usage: Just install the Script and be sure to be logged in on MyAnimeList, like you normally would.
+
+Config: miniMAL
+
+The first time executing the script, it will ask you to allow a domain. This is because there are many google domains (.com .en .de ...) and I didn't add all of them.
+
+Tested with:
+<a href="https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo?hl=en">Tampermonkey</a> (Chrome)
+<a href="https://addons.mozilla.org/de/firefox/addon/tampermonkey/">Tampermonkey</a> (Firefox)
+
+Works on: (Community feedback)
+Tampermonkey (Vivaldi) [v0.86.7 - 21.06.2017 - Steven Dino Windfeld] 
+
+Bookmarks not working on:
+<a href="https://addons.mozilla.org/de/firefox/addon/greasemonkey/">Greasemonkey</a> (Firefox)
+
+Bugs or Questions? (Not reachable from 04.07.2017 to 21.07.2017)
+<a href="https://myanimelist.net/profile/lolamtisch">MAL</a> or lolamtisch@gmail.com
+
+Database: (21.06.2017)
+kissanime 2316 / ~7500
+kissmanga 1363 / ~12500
+masterani  441 / ~2500
+9anime     397 / ~7500
+
+My Scripts:
+<a href="https://greasyfork.org/de/scripts/26297-kissthumbnails">KissThumbnails</a>
+<a href="https://greasyfork.org/de/scripts/27780-nokissreload">NoKissReload</a>
