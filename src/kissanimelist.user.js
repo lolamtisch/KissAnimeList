@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name        KissAnimeList
-// @version     0.87.2
+// @version     0.87.3
 // @description Integrates MyAnimeList into diverse sites, with auto episode tracking.
 // @author      lolamtisch@gmail.com
 // @license     Creative Commons; http://creativecommons.org/licenses/by/4.0/
@@ -1817,6 +1817,9 @@
             if(/^[^/]+\/[^/]+\/Mal$/.test(cache)){
                 GM_deleteValue(cache);
             }
+            if(/^[^/]+\/[^/]+\/MalToKiss$/.test(cache)){
+                GM_deleteValue(cache);
+            }
             if(/^[^/]+\/[^/]+\/bdid$/.test(cache)){
                 GM_deleteValue(cache);
             }
@@ -1927,31 +1930,42 @@
     }
 
     //####Kiss2Mal####
+    function displaySites(responsearray, page){
+        if($('#'+page+'Links').width() == null){
+            $('#siteSearch').before('<h2 id="'+page+'Links">'+page+'</h2><br>');
+        }
+        if($("#info-iframe").contents().find('#'+page+'Links').width() == null){
+            $("#info-iframe").contents().find('.stream-block-inner').append('<li class="mdl-list__item mdl-list__item--three-line"><span class="mdl-list__item-primary-content"><span>'+page+'</span><span id="'+page+'Links" class="mdl-list__item-text-body"></span></span></li>');
+        }
+        $('#'+page+'Links').after('<div><a target="_blank" href="'+responsearray['url']+'">'+responsearray['title']+'</a><div>');
+        $("#info-iframe").contents().find('#'+page+'Links').append('<div><a target="_blank" href="'+responsearray['url']+'">'+responsearray['title']+'</a><div>');
+        $("#info-iframe").contents().find('.stream-block').show();
+    }
+
     function getSites(sites, page){
         $.each(sites, function(index, value){
             con.log( index + ": " + value );
-            GM_xmlhttpRequest({
-                url: 'https://kissanimelist.firebaseio.com/Prototyp/'+value+'/'+encodeURIComponent(index)+'.json',
-                method: "GET",
-                onload: function (response) {
-                    con.log(response);
-                    if(response.response != null){
-                        var responsearray = $.parseJSON(response.response);
-                        if($('#'+page+'Links').width() == null){
-                            $('#siteSearch').before('<h2 id="'+page+'Links">'+page+'</h2><br>');
+            if( GM_getValue( value+'/'+encodeURIComponent(index)+'/MalToKiss', null) != null ){
+                con.log('Cached');
+                var responsearray = $.parseJSON(GM_getValue( value+'/'+encodeURIComponent(index)+'/MalToKiss', null));
+                displaySites(responsearray, page);
+            }else{
+                GM_xmlhttpRequest({
+                    url: 'https://kissanimelist.firebaseio.com/Prototyp/'+value+'/'+encodeURIComponent(index)+'.json',
+                    method: "GET",
+                    onload: function (response) {
+                        con.log(response);
+                        if(response.response != null){
+                            var responsearray = $.parseJSON(response.response);
+                            GM_setValue( value+'/'+encodeURIComponent(index)+'/MalToKiss', '{"title":"'+responsearray['title']+'","url":"'+responsearray['url']+'"}' );
+                            displaySites(responsearray, page);
                         }
-                        if($("#info-iframe").contents().find('#'+page+'Links').width() == null){
-                            $("#info-iframe").contents().find('.stream-block-inner').append('<li class="mdl-list__item mdl-list__item--three-line"><span class="mdl-list__item-primary-content"><span>'+page+'</span><span id="'+page+'Links" class="mdl-list__item-text-body"></span></span></li>');
-                        }
-                        $('#'+page+'Links').after('<div><a target="_blank" href="'+responsearray['url']+'">'+responsearray['title']+'</a><div>');
-                        $("#info-iframe").contents().find('#'+page+'Links').append('<div><a target="_blank" href="'+responsearray['url']+'">'+responsearray['title']+'</a><div>');
-                        $("#info-iframe").contents().find('.stream-block').show();
+                    },
+                    onerror: function(error) {
+                        con.log("error: "+error);
                     }
-                },
-                onerror: function(error) {
-                    con.log("error: "+error);
-                }
-            });
+                });
+            }
         });
     }
 
