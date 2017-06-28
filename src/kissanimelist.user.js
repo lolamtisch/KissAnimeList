@@ -973,7 +973,6 @@
             }
         });
     }
-
     function getanime(thisUrl , callback, absolute = false, localListType = listType) {
         var thisUrl = thisUrl;
         var url = '';
@@ -1370,9 +1369,6 @@
         });
 
     }
-
-    //#####################
-
     function firefoxUrl(url, html){
         if(html.indexOf('property="og:url"') > -1){
             url = html.split('<meta property="og:url"')[1].split('content="')[1].split('"')[0];
@@ -1486,8 +1482,6 @@
         con.log("Formated: ",title);
         return title;
     }
-    //init
-
     function checkdata(){
         if($.normalUrl() !== ""){
             getanime($.normalUrl(), function(anime){handleanime(anime);});
@@ -1649,9 +1643,6 @@
 
 
     }
-
-    //######## Bookmarks ########
-    
     var xml ="";
     var foundAnime = [];
 
@@ -1928,8 +1919,6 @@
             $(window).scroll();
         });
     }
-
-    //####Kiss2Mal####
     function displaySites(responsearray, page){
         if($('#'+page+'Links').width() == null){
             $('#siteSearch').before('<h2 id="'+page+'Links">'+page+'</h2><br>');
@@ -2024,7 +2013,6 @@
             });
        });
     }
-    //######Mal-helper#######
 
     function tagToContinue(){
         if(tagLinks == 0){
@@ -2050,8 +2038,6 @@
             }, 300);
         });
     }
-
-    //######Bookmark Dropdown#######
     if(dbSelector == 'Kissanime'){
         $( document).ready( function(){
             if( window.location.href.indexOf("BookmarkList") > -1 ){
@@ -2104,8 +2090,6 @@
             }
         });
     }
-    //##############################
-    //#####Mal-Iframe###############
     function createIframe(){
         if( !($('#info-popup').height()) ){
             //var position = 'width: 80%; height: 70%; position: absolute; top: 15%; left: 10%';
@@ -2829,8 +2813,6 @@
             }
         });
     }
-    //##############################
-    //#####Calls######
     if(window.location.href.indexOf("/BookmarkList") > -1 ){
         $.docReady(function() {
             var optionsTarget = $("#divEmailNotify");
@@ -2912,8 +2894,6 @@
             checkdata();
         };
     }
-
-
 })();
 
 /**
