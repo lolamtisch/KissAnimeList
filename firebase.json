@@ -66305,10 +66305,168 @@
         }
     },
     "Request": {
+        "9animeRequest": {
+            "-KneFFCiPsVIZIGHfAAx": {
+                "Kiss": "https://9anime.to/watch/zero-kara-hajimeru-mahou-no-sho.zqpm",
+                "Mal": "https://myanimelist.net/anime/34176/Zero_kara_Hajimeru_Mahou_no_Sho"
+            },
+            "-Knekmzz_RGY4eAzTJDC": {
+                "Kiss": "https://9anime.to/watch/shuumatsu-nani-shitemasu-ka-isogashii-desu-ka-sukutte-moratte-ii-desu-ka.148m",
+                "Mal": "https://myanimelist.net/anime/33502/Shuumatsu_Nani_Shitemasu_ka_Isogashii_desu_ka_Sukutte_Moratte_Ii_desu_ka"
+            },
+            "-Knes1RRGhQdEhxSkN7b": {
+                "Kiss": "https://9anime.to/watch/netoge-no-yome-wa-onnanoko-ja-nai-to-omotta.1n0v",
+                "Mal": "https://myanimelist.net/anime/31404/Netoge_no_Yome_wa_Onnanoko_ja_Nai_to_Omotta"
+            },
+            "-Knes3F8gI4c0u6v8PKP": {
+                "Kiss": "https://9anime.to/watch/netoge-no-yome-wa-onnanoko-ja-nai-to-omotta-dub.k99w",
+                "Mal": "https://myanimelist.net/anime/31404/Netoge_no_Yome_wa_Onnanoko_ja_Nai_to_Omotta"
+            },
+            "-Knf6kXzg588t4vTnG1d": {
+                "Kiss": "https://9anime.to/watch/shokugeki-no-souma.2z2",
+                "Mal": "https://myanimelist.net/anime/28171/Shokugeki_no_Souma"
+            },
+            "-Knf78PLkggsLc1hMaAX": {
+                "Kiss": "https://9anime.to/watch/chrome-shelled-regios.prm4",
+                "Mal": "https://myanimelist.net/anime/4186/Chrome_Shelled_Regios"
+            },
+            "-Knf7A2CXDxbsRbYXqKm": {
+                "Kiss": "https://9anime.to/watch/chrome-shelled-regios-dub.k2l9",
+                "Mal": "https://myanimelist.net/anime/4186/Chrome_Shelled_Regios/userrecs"
+            },
+            "-KnfGmZHWhK73L5am-bN": {
+                "Kiss": "https://9anime.to/watch/tenjou-tenge-dub.199x",
+                "Mal": "https://myanimelist.net/anime/174/Tenjou_Tenge"
+            },
+            "-KnfkOuqeYfLJLvDjNyD": {
+                "Kiss": "https://9anime.to/watch/ikkitousen-dub.z5ml",
+                "Mal": "https://myanimelist.net/anime/257/Ikkitousen"
+            },
+            "-Kng8Zo7xtH5JpHX279h": {
+                "Kiss": "https://9anime.to/watch/nisemonogatari.lkm",
+                "Mal": "https://myanimelist.net/anime/11597/Nisemonogatari"
+            },
+            "-KngTF05OW3aFBERzvv8": {
+                "Kiss": "https://9anime.to/watch/shikabane-hime-aka-dub.4v8k",
+                "Mal": "https://myanimelist.net/anime/5034/Shikabane_Hime__Kuro"
+            },
+            "-KngdMQl8x_CJyhUBXF-": {
+                "Kiss": "https://9anime.to/watch/ikkitousen-dragon-destiny-dub.q28n",
+                "Mal": "https://myanimelist.net/anime/1956/Ikkitousen__Dragon_Destiny"
+            }
+        },
+        "KissanimeRequest": {
+            "-Kne9zxevcsqvQlyF2Tz": {
+                "Kiss": "http://kissanime.ru/Anime/No-Game-No-Life-Dub",
+                "Mal": "https://myanimelist.net/anime/19815/No_Game_No_Life"
+            },
+            "-KneBMmrTcK70qC5HoLG": {
+                "Kiss": "http://kissanime.ru/Anime/No-Game-No-Life-Dub",
+                "Mal": "https://myanimelist.net/anime/19815/No_Game_No_Life"
+            },
+            "-KneIQaQyxK_wAeC1KmM": {
+                "Kiss": "http://kissanime.ru/Anime/No-Game-No-Life-Dub",
+                "Mal": "https://myanimelist.net/anime/19815/No_Game_No_Life"
+            },
+            "-KnezTg9pbKLxC5bwpjm": {
+                "Kiss": "http://kissanime.ru/Anime/Fune-wo-Amu",
+                "Mal": "https://myanimelist.net/anime/32948/Fune_wo_Amu"
+            },
+            "-KnfIG1-cCPSilb7XXsB": {
+                "Kiss": "http://kissanime.ru/Anime/Yuri-on-Ice",
+                "Mal": "https://myanimelist.net/anime/32995/Yuri_on_ICE"
+            },
+            "-KnfozaDSC5y39z2vjrD": {
+                "Kiss": "http://kissanime.ru/Anime/Kamisama-no-Inai-Nichiyoubi",
+                "Mal": "https://myanimelist.net/anime/16009/Kamisama_no_Inai_Nichiyoubi"
+            },
+            "-Kng4hfX-20I-z2srAdQ": {
+                "Kiss": "http://kissanime.ru/Anime/Itazura-na-Kiss",
+                "Mal": "https://myanimelist.net/anime/3731/Itazura_na_Kiss"
+            },
+            "-Kng7GQoHwLyEfft_V9k": {
+                "Kiss": "http://kissanime.ru/Anime/Nisemonogatari",
+                "Mal": "https://myanimelist.net/anime/11597/Nisemonogatari"
+            },
+            "-KngiobyeeEFjfdBp7m9": {
+                "Kiss": "http://kissanime.ru/Anime/Boku-no-Hero-Academia-Training-of-the-Dead",
+                "Mal": "https://myanimelist.net/anime/35459/Boku_no_Hero_Academia__Training_of_the_Dead"
+            }
+        },
         "KissmangaRequest": {
             "-KndaNVVdo9Bni0GyaKv": {
                 "Kiss": "http://kissmanga.com/Manga/Thunderbolt-Fantasy",
                 "Mal": "https://myanimelist.net/manga/99884/Thunderbolt_Fantasy__Touriken_Yuuki"
+            },
+            "-Kne7W182kEdxuSnO01j": {
+                "Kiss": "http://kissmanga.com/Manga/Tondemo-Skill-de-Isekai-Hourou-Meshi#",
+                "Mal": "https://myanimelist.net/manga/105747/Tondemo_Skill_de_Isekai_Hourou_Meshi"
+            },
+            "-KneE_8v1QtlYe6xr8pG": {
+                "Kiss": "http://kissmanga.com/Manga/Atrail-Nisekawiteki-Nichijou-to-Senmitsu-Element",
+                "Mal": "https://myanimelist.net/manga/93224/Ātrail__Nisekai-teki_Nichijou_to_Senmetsu_Element"
+            },
+            "-KneEugdegTerW_LJCnz": {
+                "Kiss": "http://kissmanga.com/Manga/Isekai-Maou-to-Shoukan-Shoujo-Dorei-Majutsu#",
+                "Mal": "https://myanimelist.net/manga/91714/Isekai_Maou_to_Shoukan_Shoujo_no_Dorei_Majutsu"
+            },
+            "-KneKqfcdTZc9oRxWvfK": {
+                "Kiss": "http://kissmanga.com/Manga/Otaku-s-Offspring",
+                "Mal": "https://myanimelist.net/manga/738/Otaku_no_Musume-san"
+            },
+            "-KneKqtpxTEGKnQtc7XT": {
+                "Kiss": "http://kissmanga.com/Manga/Kimetsu-no-Yaiba",
+                "Mal": "https://myanimelist.net/manga/96792/Kimetsu_no_Yaiba"
+            },
+            "-KneLK2niWeqL6JJg2Uj": {
+                "Kiss": "http://kissmanga.com/Manga/Isekai-Houtei-Rebuttal-Barrister#",
+                "Mal": "https://myanimelist.net/manga/100334/Issekai_Houtei__Rebuttal_Barista"
+            },
+            "-KneUgxqHw0_n3V-tI9R": {
+                "Kiss": "http://kissmanga.com/Manga/ReLIFE",
+                "Mal": "https://myanimelist.net/manga/78523/ReLIFE"
+            },
+            "-KneXp1zZr9Wd3AI-Atg": {
+                "Kiss": "http://kissmanga.com/Manga/After-School-Nightmare",
+                "Mal": "https://myanimelist.net/manga/710/Houkago_Hokenshitsu"
+            },
+            "-KneY679jbbtHAtxCnbY": {
+                "Kiss": "http://kissmanga.com/Manga/Aoki-Hagane-no-Arpeggio",
+                "Mal": "https://myanimelist.net/manga/25861/Aoki_Hagane_no_Arpeggio"
+            },
+            "-KneYL2bdndH25gndkgu": {
+                "Kiss": "http://kissmanga.com/Manga/Criminale",
+                "Mal": "https://myanimelist.net/manga/96179/Criminale"
+            },
+            "-KneYhE5BCQNpxGD94RE": {
+                "Kiss": "http://kissmanga.com/Manga/Tales-of-Berseria",
+                "Mal": "https://myanimelist.net/manga/101263/Tales_of_Berseria"
+            },
+            "-KneYqIjKb9Kw3_e7DXN": {
+                "Kiss": "http://kissmanga.com/Manga/Hitomi-sensei-no-Hokenshitsu",
+                "Mal": "https://myanimelist.net/manga/59799/Hitomi-sensei_no_Hokenshitsu"
+            },
+            "-KnfAEnBXkYcj6WcPT3h": {
+                "Kiss": "http://kissmanga.com/Manga/Shinitaku-Naru-Shoumonai-Hibi-ga-Shinitaku-Naru-Kurai-Shoumonakute-Shinu-Hodo-Shinitakunai-Hibi",
+                "Mal": "https://myanimelist.net/manga/72111/Shinitaku_naru_Shoumonai_Hibi_ga_Shinitaku_naru_kurai_Shoumonakute_Shinu_hodo_Shinitakunai_Hibi"
+            },
+            "-KnfAW2zWQG2uh7QQCLt": {
+                "Kiss": "http://kissmanga.com/Manga/Ookumo-chan-Flashback",
+                "Mal": "https://myanimelist.net/manga/106682/Ookumo-chan_Flash_Back"
+            },
+            "-KnftuDrqTCZKcnZ0-Ab": {
+                "Kiss": "http://kissmanga.com/Manga/Sennen-Sensou-Aigis-Eiyuu-no-Kizuna",
+                "Mal": "https://myanimelist.net/manga/97071/Sennen_Sensou_Aigis__Eiyuu_no_Kizuna"
+            },
+            "-Kng78KSn_zQJPWMjewr": {
+                "Kiss": "http://kissmanga.com/Manga/To-Aru-Kagaku-no-Choudenjibou",
+                "Mal": "https://myanimelist.net/manga/7776/Toaru_Majutsu_no_Index_Gaiden__Toaru_Kagaku_no_Railgun"
+            }
+        },
+        "MasteraniRequest": {
+            "-KnfoSoFwqFbWyfeIS_4": {
+                "Kiss": "https://www.masterani.me/anime/info/611-kamisama-no-inai-nichiyoubi",
+                "Mal": "https://myanimelist.net/anime/16009/Kamisama_no_Inai_Nichiyoubi"
             }
         }
     }
