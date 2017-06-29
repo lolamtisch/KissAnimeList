@@ -1,45 +1,73 @@
-<img src='https://greasyfork.org/system/screenshots/screenshots/000/006/617/original/s1up.PNG'>
-<b>Supported Sites:</b>
+<img src='https://raw.githubusercontent.com/Franciscoseipel/Mal-for-Kissanime-Greasymonkey-/master/Screenshots/overview.png'>
+<b>Supported Pages:</b>
 <table style="width:100%">
   <tr>
-    <td><u>Full: </u>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
-    <td><u>No Bookmark Page: </u></td>
+    <td><u>Anime: </u>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+    <td><u>Manga: </u></td>
   </tr>
   <tr>
     <td>kissanime.ru</td>
-    <td>9anime.to</td>
+    <td>kissmanga.com</td>
   </tr>
   <tr>
-    <td>kissmanga.com</td>
+    <td>9anime.to</td>
+    <td></td>
+  </tr>
+  <tr>
     <td>masterani.me</td>
+    <td></td>
   </tr>
   <tr><td>&nbsp;</td></tr>
 </table>
-Features:
-- Shows Mal Score (Link to Mal)
-- Change Mal Data (Status/Episode/Rating)
-- Auto track episodes
-- Link to next episode
-- Bookmark thumbnails
-- Links from Mal to kiss and one click search
-- Link to last streaming page on Myanimelists Animelist (Tags have to be activated)
-- add/remove Kissanime.ru Bookmarks = plan to watch/dropped on Mal
-- Keeps track of re watches
-- Automatically sets beginning and finishing Date
-- Uses browsers Mal session (Log in credentials never needed)
-- Caches entries for faster loading times
+
+<b>Autotracking:</b>
+- autoincrement watched episodes/chapters
+- Automatically adds beginning and finishing dates
+- Manages Rewatches (MAL entry needs to be completed and episode/chapter one must be open)
+
+<b>Myanimelist:</b>
+<img src='https://raw.githubusercontent.com/Franciscoseipel/Mal-for-Kissanime-Greasymonkey-/master/Screenshots/Myanimelist_sidebar.png'>
+- Adds oneklick search links
+- Shows direct links using an at the moment not completed Database.
+<code>Database: (21.06.2017)
+kissanime 2316 / ~7500
+kissmanga 1363 / ~12500
+masterani 441 / ~2500
+9anime 397 / ~7500</code>
+
+<img src='https://raw.githubusercontent.com/Franciscoseipel/Mal-for-Kissanime-Greasymonkey-/master/Screenshots/continue%20watching.png'>
+- Saves the last opened viewing page and displays it on your MAL's Bookmark page
+(This uses the MAL's Tag System, so Tags have to be enabled for this to work)
+
+<b>miniMAL:</b>
+<img src='https://raw.githubusercontent.com/Franciscoseipel/Mal-for-Kissanime-Greasymonkey-/master/Screenshots/miniMAL.png'>
+- shows a small overview of the opened anime/manga using data from MAL
+- Holds the settings page
+
+<b>Wrong Recognition:</b>
+
+<details>
+<summary>Wrong MAL entry: [click]</summary>
+<img src='https://github.com/Franciscoseipel/Mal-for-Kissanime-Greasymonkey-/raw/master/Screenshots/Wrong%20recognition.gif'>
+</details>
+<details>
+<summary>Wrong offset: [click]</summary>
+<img src='https://github.com/Franciscoseipel/Mal-for-Kissanime-Greasymonkey-/raw/master/Screenshots/offset.gif'>
+</details>
+
+<b>Kiss-only:</b>
+- MAL Bookmarks
+<img src='https://raw.githubusercontent.com/Franciscoseipel/Mal-for-Kissanime-Greasymonkey-/master/Screenshots/Bookmark_list.png'>
+- add/remove Bookmarks = plan to watch/dropped on MAL
+
+<b>ETC:</b>
+- Uses browsers MAL session (Log in credentials never needed)
 - Should work with any Ajax episode loading user scripts ( <a href="https://greasyfork.org/de/scripts/27780-nokissreload">NoKissReload</a> )
 
-v0.87:
-- Materialize UI
-- Add miniMAL popup
-
-
-Usage: Just install the Script and be sure to be logged in on MyAnimeList, like you normally would.
-
-Config: miniMAL
-
 The first time executing the script, it will ask you to allow a domain. This is because there are many google domains (.com .en .de ...) and I didn't add all of them.
+
+<b>Usage:</b>
+Just install the Script and be sure to be logged in on MyAnimeList, like you normally would.
 
 Tested with:
 <a href="https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo?hl=en">Tampermonkey</a> (Chrome)
@@ -53,12 +81,6 @@ Bookmarks not working on:
 
 Bugs or Questions? (Not reachable from 04.07.2017 to 21.07.2017)
 <a href="https://myanimelist.net/profile/lolamtisch">MAL</a> or lolamtisch@gmail.com
-
-Database: (21.06.2017)
-kissanime 2316 / ~7500
-kissmanga 1363 / ~12500
-masterani  441 / ~2500
-9anime     397 / ~7500
 
 My Scripts:
 <a href="https://greasyfork.org/de/scripts/26297-kissthumbnails">KissThumbnails</a>
