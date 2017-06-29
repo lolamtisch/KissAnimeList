@@ -37,7 +37,7 @@ masterani 441 / ~2500
 
 <img src='https://raw.githubusercontent.com/Franciscoseipel/Mal-for-Kissanime-Greasymonkey-/master/Screenshots/continue%20watching.png'>
 - Saves the last opened viewing page and displays it on your MAL's Bookmark page
-(This uses the MAL's Tag System, so Tags have to be enabled for this to work)
+(This uses MAL's Tag System, so Tags have to be enabled for this to work)
 
 <b>miniMAL:</b>
 <img src='https://raw.githubusercontent.com/Franciscoseipel/Mal-for-Kissanime-Greasymonkey-/master/Screenshots/miniMAL.png'>
