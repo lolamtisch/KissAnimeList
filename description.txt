@@ -82,6 +82,10 @@ Bookmarks not working on:
 Bugs or Questions? (Not reachable from 04.07.2017 to 21.07.2017)
 <a href="https://myanimelist.net/profile/lolamtisch">MAL</a> or lolamtisch@gmail.com
 
+Recommendations:
+<a href="https://greasyfork.org/de/scripts/692-manga-loader">Manga Loader</a>
+<a href="https://greasyfork.org/de/scripts/30964-kissanime-auto-captcha">KissAnime Auto Captcha</a>
+
 My Scripts:
 <a href="https://greasyfork.org/de/scripts/26297-kissthumbnails">KissThumbnails</a>
 <a href="https://greasyfork.org/de/scripts/27780-nokissreload">NoKissReload</a>
