@@ -28,7 +28,7 @@
 <b>Myanimelist:</b>
 <img src='https://raw.githubusercontent.com/Franciscoseipel/Mal-for-Kissanime-Greasymonkey-/master/Screenshots/Myanimelist_sidebar.png'>
 - Adds oneklick search links
-- Shows direct links using an at the moment not completed Database.
+- Shows direct links using an at the moment not complet Database.
 <code>Database: (21.06.2017)
 kissanime 2316 / ~7500
 kissmanga 1363 / ~12500
@@ -41,7 +41,7 @@ masterani 441 / ~2500
 
 <b>miniMAL:</b>
 <img src='https://raw.githubusercontent.com/Franciscoseipel/Mal-for-Kissanime-Greasymonkey-/master/Screenshots/miniMAL.png'>
-- shows a small overview of the opened anime/manga using data from MAL
+- Shows a small overview of the opened anime/manga using data from MAL
 - Holds the settings page
 
 <b>Wrong Recognition:</b>
