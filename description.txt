@@ -62,7 +62,7 @@ masterani 441 / ~2500
 
 <b>ETC:</b>
 - Uses browsers MAL session (Log in credentials never needed)
-- Should work with any Ajax episode loading user scripts ( <a href="https://greasyfork.org/de/scripts/27780-nokissreload">NoKissReload</a> )
+- Should work with any Ajax episode loading user scripts ( <a href="https://greasyfork.org/en/scripts/27780-nokissreload-captcha-skip">NoKissReload [CAPTCHA SKIP]</a> )
 
 The first time executing the script, it will ask you to allow a domain. This is because there are many google domains (.com .en .de ...) and I didn't add all of them.
 
@@ -88,4 +88,4 @@ Recommendations:
 
 My Scripts:
 <a href="https://greasyfork.org/de/scripts/26297-kissthumbnails">KissThumbnails</a>
-<a href="https://greasyfork.org/de/scripts/27780-nokissreload">NoKissReload</a>
+<a href="https://greasyfork.org/en/scripts/27780-nokissreload-captcha-skip">NoKissReload [CAPTCHA SKIP]</a>
