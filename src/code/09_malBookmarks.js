@@ -13,7 +13,8 @@
                             if(url.indexOf("masterani.me") > -1 && url.indexOf("/watch/") > -1){
                                 url = url.replace('/watch/','/info/');
                             }
-                            $(this).parent().parent('div').prepend('<a target="_blank" href="'+url+'">[Continue watching]</a><br/>');
+                            var icon = '<img src="https://www.google.com/s2/favicons?domain='+url.split('/')[2]+'">'
+                            $(this).closest('.list-table-data').find('.data.title .link').after('<a class="stream" title="'+url.split('/')[2]+'" target="_blank" style="margin: 0 5px;" href="'+url+'">'+icon+'</a>');
                             $(this).parent().remove();
                         }
                     });
