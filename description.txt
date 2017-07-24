@@ -29,11 +29,11 @@
 <img src='https://raw.githubusercontent.com/Franciscoseipel/Mal-for-Kissanime-Greasymonkey-/master/Screenshots/Myanimelist_sidebar.png'>
 - Adds oneklick search links
 - Shows direct links using an at the moment not complet Database.
-<code>Database: (21.06.2017)
-kissanime 2316 / ~7500
-kissmanga 1363 / ~12500
-masterani 441 / ~2500
-9anime 397 / ~7500</code>
+<code>Database: (24.07.2017)
+kissanime 2519 / ~7500
+kissmanga 1473 / ~12500
+masterani 430 / ~2500
+9anime 776 / ~7500</code>
 
 <img src='https://raw.githubusercontent.com/Franciscoseipel/Mal-for-Kissanime-Greasymonkey-/master/Screenshots/continue%20watching.png'>
 - Saves the last opened viewing page and displays it on your MAL's Bookmark page
@@ -79,8 +79,8 @@ Tampermonkey (Vivaldi) [v0.86.7 - 21.06.2017 - Steven Dino Windfeld]
 Bookmarks not working on:
 <a href="https://addons.mozilla.org/de/firefox/addon/greasemonkey/">Greasemonkey</a> (Firefox)
 
-Bugs or Questions? (Not reachable from 04.07.2017 to 21.07.2017)
-<a href="https://myanimelist.net/profile/lolamtisch">MAL</a> or lolamtisch@gmail.com
+Bugs or Questions?
+<a href="https://github.com/lolamtisch/KissAnimeList/issues">Github</a> or lolamtisch@gmail.com
 
 Recommendations:
 <a href="https://greasyfork.org/de/scripts/692-manga-loader">Manga Loader</a>
