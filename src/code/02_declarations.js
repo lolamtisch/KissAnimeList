@@ -33,7 +33,7 @@ if (window.top != window.self) {return; }
 
     var currentMalData = null;
 
-    var curVersion = GM_info.script.version; 
+    var curVersion = GM_info.script.version;
     if(curVersion != GM_getValue( 'Version', null ) && GM_getValue( 'Version', null ) != null){
         switch(curVersion) {
             case '0.86.4':
@@ -143,6 +143,10 @@ if (window.top != window.self) {return; }
             return $(".trAnime");
         };
 
+        $.nextEpLink = function(url) {
+            return url+'/'+$('#selectEpisode option:selected').next().val();
+        };
+
         $.fn.classicBookmarkButton = function(checkClassic) {
             this.before('<div><input type="checkbox" id="classicBookmarks" '+checkClassic+' > Classic styling</div><div class="clear2">&nbsp;</div>');
         };
@@ -164,7 +168,7 @@ if (window.top != window.self) {return; }
             optionsTarget.after('<div class="clear2">&nbsp;</div><div><button type="button" id="clearCache">Clear Cache</button></div>');
             $("#clearCache").click( function(){
                 clearCache();
-            });   
+            });
         };
         //###########################
     }else if( window.location.href.indexOf("kissmanga.com") > -1 ){
@@ -289,7 +293,7 @@ if (window.top != window.self) {return; }
             $("#rightside .barContent div").last().after('<div class="clear2">&nbsp;</div><div><button type="button" id="clearCache">Clear Cache</button></div>');
             $("#clearCache").click( function(){
                 clearCache();
-            }); 
+            });
         };
         //###########################
     }else if( window.location.href.indexOf("masterani.me") > -1 ){
@@ -401,6 +405,10 @@ if (window.top != window.self) {return; }
 
         $.bookmarkEntrySelector = function() {
             return $(".trAnime");
+        };
+
+        $.nextEpLink = function(url) {
+            return 'https://www.masterani.me'+$('#watch .anime-info .actions a').last().attr('href');
         };
 
         $.fn.classicBookmarkButton = function(checkfix) {
@@ -516,6 +524,10 @@ if (window.top != window.self) {return; }
             return $(".trAnime");
         };
 
+        $.nextEpLink = function(url) {
+            return 'https://9anime.to'+$("#servers .episodes a.active").parent('li').next().find('a').attr('href');
+        };
+
         $.fn.classicBookmarkButton = function(checkfix) {
         };
         $.fn.bookmarkButton = function(check) {
@@ -561,7 +573,7 @@ if (window.top != window.self) {return; }
         var watching = 'Reading'
     }
     //###########################
-    
+
     $.absoluteLink = function(url) {
         if (typeof url === "undefined") {
             return url;
