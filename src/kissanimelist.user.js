@@ -2281,7 +2281,7 @@
             }else{
                 $(".modal-content").addClass('fullscreen');
                 $(this).find('i').text('fullscreen_exit');
-            } 
+            }
         });
     }
 
@@ -2386,14 +2386,14 @@
                 GM_deleteValue( dbSelector+'/'+$.titleToDbKey($.urlAnimeTitle($.normalUrl()))+'/Mal' );
                 flashm( "MyAnimeList url reset" , false);
                 checkdata();
-            }); 
+            });
 
             $("#info-iframe").contents().find("#malSubmit").click( function(){
                 var murl = $("#info-iframe").contents().find("#malUrlInput").val();
                 local_setValue($.normalUrl()+'#newCorrection', murl);
                 flashm( "new url '"+murl+"' set." , false);
                 checkdata();
-            }); 
+            });
 
             $("#info-iframe").contents().find("#malOffset").on("input", function(){
                 var Offset = $("#info-iframe").contents().find("#malOffset").val();
@@ -2414,7 +2414,7 @@
 
             $("#info-iframe").contents().find("#clearCache").click( function(){
                 clearCache();
-            }); 
+            });
 
             $("#info-iframe").contents().find('#tagLinks').change(function(){
                 if($(this).is(":checked")){
@@ -2472,7 +2472,7 @@
                 }
             });
             $("#info-iframe").contents().find('#malConfig').show();
-        }catch(e) {console.log(e);}  
+        }catch(e) {console.log(e);}
     }
 
     function iframeOverview(url, data){
@@ -2629,13 +2629,15 @@
                     anime['.add_'+listType+'[score]'] = '';
                 }
                 anime['.add_'+listType+'[status]'] = parseInt($("#info-iframe").contents().find('#myinfo_status').val() );
-                anime['forceUpdate'] = 2;
+                if($.isOverviewPage()){
+                  anime['forceUpdate'] = 2;
+                }
                 anime['malurl'] = url;
 
                 setanime(url, anime, null, localListType);
             });
         }catch(e) {console.log(e);}
-        
+
         try{
             $("#info-iframe").contents().find('.stream-block-inner').html('');
             setKissToMal(url);
@@ -2696,7 +2698,7 @@
                 $("#info-iframe").contents().find('#malEpisodes .episode-video, #malEpisodes .episode-forum').remove();
             }catch(e) {console.log(e);}
         });
-        
+
     }
 
     function iframeRecommendations(url, data){
@@ -2767,7 +2769,7 @@
                 $("#info-iframe").contents().find('.lazyload').each(function() { $(this).attr('src', $(this).attr('data-src'));});//TODO: use lazyloading
             }catch(e) {console.log(e);}
         });
-        
+
     }
 
     function executejs(string){
@@ -2797,7 +2799,7 @@
                         </span>\
                     </li>';
         return item;
-    }  
+    }
 
     function getAjaxData(url, callback){
         GM_xmlhttpRequest({
@@ -2808,7 +2810,7 @@
                 "User-Agent": "Mozilla/5.0"
             },
             onload: function(response) {
-                callback(response.responseText);   
+                callback(response.responseText);
             }
         });
     }
