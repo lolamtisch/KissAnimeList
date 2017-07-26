@@ -236,7 +236,7 @@
     }
 
     function setanime(thisUrl ,anime, actual = null, localListType = listType) {
-
+        var undoAnime = $.extend({}, actual);
         if(actual === null){
             var absolute = false;
             if(anime['malurl'] != null){
@@ -304,20 +304,20 @@
                             if (totalEp == 0) totalEp = '?';
                             if(typeof change['.add_anime[status]'] != 'undefined'){
                                 var statusString = "";
-                                switch (parseInt(anime['.add_anime[status]'])) { 
-                                    case 1: 
+                                switch (parseInt(anime['.add_anime[status]'])) {
+                                    case 1:
                                         statusString = watching;
                                         break;
-                                    case 2: 
+                                    case 2:
                                         statusString = 'Completed';
                                         break;
-                                    case 3: 
+                                    case 3:
                                         statusString = 'On-Hold';
                                         break;
-                                    case 4: 
+                                    case 4:
                                         statusString = 'Dropped';
                                         break;
-                                    case 6: 
+                                    case 6:
                                         statusString = planTo;
                                         break;
                                 }
@@ -332,7 +332,16 @@
                                 message += split + 'Rating: ' + anime['.add_anime[score]'];
                                 split = ' | '
                             }
-                            flashm( message , false);
+                            if(anime['checkIncrease'] == 1){
+                                message += '<br><button class="undoButton" style="background-color: transparent; border: none; color: rgb(255,64,129);margin-top: 10px;">Undo</button>';
+                                flashm( message , false);
+                                $('.undoButton').click(function(){
+                                    undoAnime['checkIncrease'] = 0;
+                                    setanime(thisUrl, undoAnime, null, localListType);
+                                });
+                            }else{
+                                flashm( message , false);
+                            }
                         }else{
                             var message = anime['name'];
                             var split = '<br>';
@@ -342,20 +351,20 @@
                             if (totalChap == 0) totalChap = '?';
                             if(typeof change['.add_manga[status]'] != 'undefined'){
                                 var statusString = "";
-                                switch (parseInt(anime['.add_manga[status]'])) { 
-                                    case 1: 
+                                switch (parseInt(anime['.add_manga[status]'])) {
+                                    case 1:
                                         statusString = watching;
                                         break;
-                                    case 2: 
+                                    case 2:
                                         statusString = 'Completed';
                                         break;
-                                    case 3: 
+                                    case 3:
                                         statusString = 'On-Hold';
                                         break;
-                                    case 4: 
+                                    case 4:
                                         statusString = 'Dropped';
                                         break;
-                                    case 6: 
+                                    case 6:
                                         statusString = planTo;
                                         break;
                                 }
@@ -374,10 +383,19 @@
                                 message += split + 'Rating: ' + anime['.add_manga[score]'];
                                 split = ' | '
                             }
-                            flashm( message , false);
+                            if(anime['checkIncrease'] == 1){
+                                message += '<br><button class="undoButton" style="background-color: transparent; border: none; color: rgb(255,64,129);margin-top: 10px;">Undo</button>';
+                                flashm( message , false);
+                                $('.undoButton').click(function(){
+                                    undoAnime['checkIncrease'] = 0;
+                                    setanime(thisUrl, undoAnime, null, localListType);
+                                });
+                            }else{
+                                flashm( message , false);
+                            }
                         }
                     }else{
-                        flashm( "Anime update failed" , true);  
+                        flashm( "Anime update failed" , true);
                         if(anime['checkIncrease'] !== 1){
                             try{
                                 checkdata();
