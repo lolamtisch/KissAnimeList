@@ -42,7 +42,7 @@
             }else{
                 $("#malTotal").text(anime['totalEp']);
                 if(anime['totalEp'] == 0){
-                   $("#malTotal").text('?'); 
+                   $("#malTotal").text('?');
                 }
                 if(anime['forceUpdate'] != 2){
                     $("#malStatus").val(anime['.add_'+listType+'[status]']);
@@ -53,13 +53,13 @@
                     $("#malVolumes").val(anime['.add_manga[num_read_volumes]']);
                     $("#malChapters").val(anime['.add_manga[num_read_chapters]']);
                 }
-                $("#malTotalVol").text(anime['totalVol']); 
+                $("#malTotalVol").text(anime['totalVol']);
                 if(anime['totalVol'] == 0){
-                   $("#malTotalVol").text('?'); 
+                   $("#malTotalVol").text('?');
                 }
-                $("#malTotalCha").text(anime['totalChap']); 
+                $("#malTotalCha").text(anime['totalChap']);
                 if(anime['totalChap'] == 0){
-                   $("#malTotalCha").text('?'); 
+                   $("#malTotalCha").text('?');
                 }
                 //#############
             }
@@ -192,7 +192,7 @@
         return current;
     }
 
-    function handleTag(update, current){
+    function handleTag(update, current, nextEp){
         if(tagLinks == 0){return current;}
         var addition = "last::"+update+"::";
         if(current.indexOf("last::") > -1){
@@ -200,13 +200,19 @@
         }else{
             current = current+','+addition;
         }
+
+        if(update.indexOf("masterani.me") > -1 && update.indexOf("/watch/") > -1){
+            update = update.replace('/watch/','/info/');
+        }
+        GM_setValue( update+'/next', nextEp);
+        GM_setValue( update+'/nextEp', $.nextEpLink(update));
         return current;
     }
 
     function handleanimeupdate( anime, current){
         if(listType == 'anime'){
             if(anime['checkIncrease'] === 1){
-                anime['.add_anime[tags]'] = handleTag($.urlAnimeIdent(window.location.href), current['.add_anime[tags]']);
+                anime['.add_anime[tags]'] = handleTag($.urlAnimeIdent(window.location.href), current['.add_anime[tags]'], anime['.add_anime[num_watched_episodes]']+1);
                 if(current['.add_anime[num_watched_episodes]'] >= anime['.add_anime[num_watched_episodes]']){
                     if((anime['.add_anime[status]'] === 2 || current['.add_anime[status]'] === 2) && anime['.add_anime[num_watched_episodes]'] === 1){
                         if (confirm('Rewatch anime?')) {
@@ -241,7 +247,7 @@
                         }
                     }
                 }
-                if(current['.add_anime[status]'] !== 1 && current['.add_anime[status]'] !== 2 && anime['.add_anime[status]'] !== 2){ 
+                if(current['.add_anime[status]'] !== 1 && current['.add_anime[status]'] !== 2 && anime['.add_anime[status]'] !== 2){
                     if (confirm('Start watching?')) {
                         anime['.add_anime[status]'] = 1;
                     }else{
@@ -297,7 +303,7 @@
                         }
                     }
                 }
-                if(current['.add_manga[status]'] !== 1 && current['.add_manga[status]'] !== 2 && anime['.add_manga[status]'] !== 2){ 
+                if(current['.add_manga[status]'] !== 1 && current['.add_manga[status]'] !== 2 && anime['.add_manga[status]'] !== 2){
                     if (confirm('Start reading?')) {
                         anime['.add_manga[status]'] = 1;
                     }else{

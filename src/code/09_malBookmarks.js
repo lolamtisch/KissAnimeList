@@ -15,6 +15,13 @@
                             }
                             var icon = '<img src="https://www.google.com/s2/favicons?domain='+url.split('/')[2]+'">'
                             $(this).closest('.list-table-data').find('.data.title .link').after('<a class="stream" title="'+url.split('/')[2]+'" target="_blank" style="margin: 0 5px;" href="'+url+'">'+icon+'</a>');
+
+
+                            if(parseInt($(this).closest('.list-table-data').find('.data.progress .link').text())+1 == GM_getValue( url+'/next')){
+                                if(typeof GM_getValue( url+'/nextEp') != 'undefined'){
+                                    $(this).closest('.list-table-data').find('.stream').after('<span class="content-status"><a class="nextStream" title="Next Episode" target="_blank" style="margin: 0 5px; color: #BABABA;" href="'+ GM_getValue( url+'/nextEp')+'">'+'Next Episode'+'</a></span>');
+                                }
+                            }
                             $(this).parent().remove();
                         }
                     });
