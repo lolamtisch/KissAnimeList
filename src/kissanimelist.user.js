@@ -1452,11 +1452,11 @@
             return '';
         }
     }
-
+    
     function flashm(text,error = true){
         con.log("Flash Message: ",text);
         $('.flash').removeClass('flash').fadeOut({
-            duration: 400,
+            duration: 400, 
             queue: false,
             complete: function() { $(this).remove(); }});
         if(error === true){
@@ -1475,7 +1475,7 @@
     function buttonclick(){
         var anime = {};
         if(listType == 'anime'){
-            anime['.add_anime[num_watched_episodes]'] = $("#malEpisodes").val();
+            anime['.add_anime[num_watched_episodes]'] = $("#malEpisodes").val();  
         }else{
             anime['.add_manga[num_read_volumes]'] = $("#malVolumes").val();
             anime['.add_manga[num_read_chapters]'] = $("#malChapters").val();
@@ -2078,7 +2078,7 @@
 
                             if(parseInt($(this).closest('.list-table-data').find('.data.progress .link').text())+1 == GM_getValue( url+'/next')){
                                 if(typeof GM_getValue( url+'/nextEp') != 'undefined'){
-                                    $(this).closest('.list-table-data').find('.stream').after('<span class="content-status"><a class="nextStream" title="Next Episode" target="_blank" style="margin: 0 5px; color: #BABABA;" href="'+ GM_getValue( url+'/nextEp')+'">'+'Next Episode'+'</a></span>');
+                                    $(this).closest('.list-table-data').find('.stream').after('<a class="nextStream" title="Next Episode" target="_blank" style="margin: 0 5px 0 0; color: #BABABA;" href="'+ GM_getValue( url+'/nextEp')+'">'+'<img src="https://raw.githubusercontent.com/lolamtisch/KissAnimeList/master/Screenshots/if_Double_Arrow_Right_1063903.png" width="16" height="16">'+'</a>');
                                 }
                             }
                             if($('#list_surround').length){
