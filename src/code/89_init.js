@@ -73,7 +73,7 @@
             checkdata();
         });
 
-        checkdata();
+        $.init();
 
         window.onpopstate = function (event) {
             checkdata();

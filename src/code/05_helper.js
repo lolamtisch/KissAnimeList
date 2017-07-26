@@ -17,6 +17,9 @@
     function local_setValue( thisUrl, malurl ){
         if( (!(thisUrl.indexOf("myAnimeList.net/") >= 0)) && ( GM_getValue(dbSelector+'/'+$.titleToDbKey($.urlAnimeTitle(thisUrl))+'/Mal' , null) == null || thisUrl.indexOf("#newCorrection") >= 0 )){
             var param = { Kiss: thisUrl, Mal: malurl};
+            if(dbSelector == 'Crunchyroll'){
+                param = { Kiss: window.location.href, Mal: malurl}
+            }
             GM_xmlhttpRequest({
                 url: 'https://kissanimelist.firebaseio.com/Request/'+dbSelector+'Request.json',
                 method: "POST",
@@ -45,11 +48,11 @@
             return '';
         }
     }
-    
+
     function flashm(text,error = true){
         con.log("Flash Message: ",text);
         $('.flash').removeClass('flash').fadeOut({
-            duration: 400, 
+            duration: 400,
             queue: false,
             complete: function() { $(this).remove(); }});
         if(error === true){
@@ -68,7 +71,7 @@
     function buttonclick(){
         var anime = {};
         if(listType == 'anime'){
-            anime['.add_anime[num_watched_episodes]'] = $("#malEpisodes").val();  
+            anime['.add_anime[num_watched_episodes]'] = $("#malEpisodes").val();
         }else{
             anime['.add_manga[num_read_volumes]'] = $("#malVolumes").val();
             anime['.add_manga[num_read_chapters]'] = $("#malChapters").val();

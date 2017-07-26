@@ -58,6 +58,10 @@ if (window.top != window.self) {return; }
         var bookmarkCss = ".listing tr td:nth-child(1){height: 150px;padding-left: 125px;} .listing tr td{vertical-align: top;}";
         var bookmarkFixCss = ".bigBarContainer {margin: 0px; width: 630px !important; text-align: left; float: left;}";
 
+        $.init = function() {
+            checkdata();
+        }
+
         $.fn.imageCache = function() {
             return $('#rightside').find('img').attr('src');
         };
@@ -182,8 +186,11 @@ if (window.top != window.self) {return; }
             bookmarkCss += '#leftside{width: 581px !important;} #rightside{ float: left !important; margin-left: 30px;}';
         }
         var bookmarkFixCss = "";
-        BookmarksStyle =
+        BookmarksStyle = "";
 
+        $.init = function() {
+            checkdata();
+        }
 
         $.fn.imageCache = function() {
             return $('#rightside').find('img').attr('src');
@@ -306,6 +313,10 @@ if (window.top != window.self) {return; }
         var bookmarkFixCss = "";
         var winLoad = 0;
 
+        $.init = function() {
+            checkdata();
+        }
+
         $.fn.imageCache = function() {
             return $('.class').first().find('img').attr('src');
         };
@@ -419,7 +430,7 @@ if (window.top != window.self) {return; }
         $.BookmarksStyleAfterLoad = function() {
         };
         //###########################
-    }else{
+    }else if( window.location.href.indexOf("9anime.to") > -1 ){
         //#########9anime#########
         var domain = 'https://9anime.to';
         var textColor = 'white';
@@ -428,6 +439,10 @@ if (window.top != window.self) {return; }
         var bookmarkCss = "";
         var bookmarkFixCss = "";
         var winLoad = 0;
+
+        $.init = function() {
+            checkdata();
+        }
 
         $.fn.imageCache = function() {
             return $('.class').first().find('img').attr('src');
@@ -554,6 +569,154 @@ if (window.top != window.self) {return; }
                 }
             }
         }, true);
+        //###########################
+    }else if( window.location.href.indexOf("crunchyroll.com") > -1 ){
+        //TODO:
+        //http://www.crunchyroll.com/ace-of-the-diamond
+        //http://www.crunchyroll.com/trinity-seven
+        //#########Crunchyroll#########
+        if(window.location.href == 'http://www.crunchyroll.com/' || typeof window.location.href.split('/')[4] == 'undefined'){
+            return;
+        }
+        var domain = 'http://www.crunchyroll.com';
+        var textColor = 'black';
+        var dbSelector = 'Crunchyroll';
+        var listType = 'anime';
+        var bookmarkCss = "";
+        var bookmarkFixCss = "";
+
+        $.init = function() {
+            $( document).ready(function(){
+                checkdata();
+            });
+        }
+
+        $.fn.imageCache = function() {
+            return $('#rightside').find('img').attr('src');
+        };
+
+        $.isOverviewPage = function() {
+            if(typeof window.location.href.split('/')[4] != 'undefined'){
+                if($('#showmedia_video').length){
+                    return false;
+                }
+            }
+            return true;
+        };
+        $.episodeListSelector = function() {
+            return $("#showview_content_videos .list-of-seasons .group-item a");
+        };
+        $.fn.episodeListElementHref = function() {
+            return $.absoluteLink(this.attr('href'));
+        };
+        $.fn.episodeListElementTitle = function() {
+            return this.find('.series-title').text();
+        };
+        $.fn.episodeListNextElement = function(index) {//TODO
+            if ((index-1) > -1) {
+                return $.episodeListSelector().eq(index-1);
+            }
+            return $();
+        };
+        $.handleNextLink = function(truelink, anime){
+            return truelink;
+        };
+
+        $.urlEpisodePart = function(url) {
+            return url.split("/")[4];
+        };
+        $.urlAnimeIdent = function(url) {
+            return url.split('/').slice(0,4).join('/');
+        };
+        /*$( document).ready(function(){//TODO
+            var seasons = 0;
+            $('.season-dropdown').each(function(index){
+                seasons = 1;
+                checkdata('.season-dropdown:nth-child('+index+') ');
+                $('.season-dropdown:nth-child('+index+')').css('background-color','red');
+                //alert($(this).text());
+            });
+
+            if(seasons == 0){
+                alert($('#source_showview h1 span').text());
+            }
+
+
+            var script = ($("#template_body script")[1]).innerHTML;
+            script = script.split('mediaMetadata =')[1].split('"name":"')[1].split(' -')[0];
+            alert(script);
+        });*/
+        $.urlAnimeTitle = function(url) {
+            var script = ($("#template_body script")[1]).innerHTML;
+            script = script.split('mediaMetadata =')[1].split('"name":"')[1].split(' -')[0];
+            //console.log(script);
+            return script;
+            return url.split("/")[3];
+        };
+
+        $.EpisodePartToEpisode = function(string) {console.log(string);
+            var temp = [];
+            temp = string.match(/[e,E][p,P][i,I]?[s,S]?[o,O]?[d,D]?[e,E]?\D?\d+/);
+            console.log(temp);
+            if(temp !== null){
+                string = temp[0];
+            }else{
+                string = '';
+            }
+            temp = string.match(/\d+/);
+            if(temp === null){
+                string = 1;
+            }else{
+                string = temp[0];
+            }
+            return string;
+        };
+
+        $.fn.uiPos = function() {//TODO
+            //this.insertAfter($("h1.ellipsis"));
+            //this.insertAfter($("#tabs").first());
+            //this.prependTo($('.season-dropdown'));
+        };
+        $.fn.uiWrongPos = function() {//TODO after second element
+            //this.prependTo($("#sidebar_elements").first());
+        };
+        $.fn.uiHeadPos = function() {//TODO
+            //this.appendTo($(".ellipsis").first());
+        };
+
+        $.docReady = function(data) {
+            return $( document).ready(data);
+        };
+
+        $.normalUrl = function(){
+            return $.urlAnimeIdent(window.location.href);
+        };
+
+        $.fn.epListReset = function() {
+            this.css("background-color","initial");
+        };
+        $.fn.epListActive = function() {
+            this.css("background-color","#b2d1ff");
+        };
+
+        $.bookmarkEntrySelector = function() {
+            //return $(".trAnime");
+        };
+
+        $.nextEpLink = function(url) {
+            return 'http://www.crunchyroll.com'+$('.collection-carousel-media-link-current').parent().next().find('.link').attr('href');
+        };
+
+        $.fn.classicBookmarkButton = function(checkClassic) {
+
+        };
+        $.fn.bookmarkButton = function(check) {
+
+        };
+
+        $.BookmarksStyleAfterLoad = function() {
+
+        };
         //###########################
     }
     //#######Anime or Manga######
