@@ -18,7 +18,7 @@
         if( (!(thisUrl.indexOf("myAnimeList.net/") >= 0)) && ( GM_getValue(dbSelector+'/'+$.titleToDbKey($.urlAnimeTitle(thisUrl))+'/Mal' , null) == null || thisUrl.indexOf("#newCorrection") >= 0 )){
             var param = { Kiss: thisUrl, Mal: malurl};
             if(dbSelector == 'Crunchyroll'){
-                param = { Kiss: window.location.href, Mal: malurl}
+                param = { Kiss: window.location.href+'?..'+$.urlAnimeTitle(), Mal: malurl}
             }
             GM_xmlhttpRequest({
                 url: 'https://kissanimelist.firebaseio.com/Request/'+dbSelector+'Request.json',

@@ -54,6 +54,9 @@
             if(nineanimeLinks != 0){
                 sites.push('9anime');
             }
+            if(crunchyrollLinks != 0){
+                sites.push('Crunchyroll');
+            }
             if(searchLinks != 0){
                 $('h2:contains("Information")').before('<h2 id="siteSearch">Search</h2><br>');
                 if(type == 'anime'){

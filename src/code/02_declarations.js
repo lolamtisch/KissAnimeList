@@ -28,6 +28,7 @@ if (window.top != window.self) {return; }
     var kissmangaLinks = GM_getValue( 'kissmangaLinks', 1 );
     var masteraniLinks = GM_getValue( 'masteraniLinks', 1 );
     var nineanimeLinks = GM_getValue( 'nineanimeLinks', 1 );
+    var crunchyrollLinks = GM_getValue( 'crunchyrollLinks', 1 );
 
     var displayFloatButton = GM_getValue( 'displayFloatButton', 1 );
 
@@ -650,7 +651,7 @@ if (window.top != window.self) {return; }
             var script = ($("#template_body script")[1]).innerHTML;
             script = script.split('mediaMetadata =')[1].split('"name":"')[1].split(' -')[0];
             //console.log(script);
-            return script;
+            return encodeURIComponent(script);
             return url.split("/")[3];
         };
 

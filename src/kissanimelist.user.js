@@ -99,6 +99,7 @@ if (window.top != window.self) {return; }
     var kissmangaLinks = GM_getValue( 'kissmangaLinks', 1 );
     var masteraniLinks = GM_getValue( 'masteraniLinks', 1 );
     var nineanimeLinks = GM_getValue( 'nineanimeLinks', 1 );
+    var crunchyrollLinks = GM_getValue( 'crunchyrollLinks', 1 );
 
     var displayFloatButton = GM_getValue( 'displayFloatButton', 1 );
 
@@ -721,7 +722,7 @@ if (window.top != window.self) {return; }
             var script = ($("#template_body script")[1]).innerHTML;
             script = script.split('mediaMetadata =')[1].split('"name":"')[1].split(' -')[0];
             //console.log(script);
-            return script;
+            return encodeURIComponent(script);
             return url.split("/")[3];
         };
 
@@ -1609,7 +1610,7 @@ if (window.top != window.self) {return; }
         if( (!(thisUrl.indexOf("myAnimeList.net/") >= 0)) && ( GM_getValue(dbSelector+'/'+$.titleToDbKey($.urlAnimeTitle(thisUrl))+'/Mal' , null) == null || thisUrl.indexOf("#newCorrection") >= 0 )){
             var param = { Kiss: thisUrl, Mal: malurl};
             if(dbSelector == 'Crunchyroll'){
-                param = { Kiss: window.location.href, Mal: malurl}
+                param = { Kiss: window.location.href+'?..'+$.urlAnimeTitle(), Mal: malurl}
             }
             GM_xmlhttpRequest({
                 url: 'https://kissanimelist.firebaseio.com/Request/'+dbSelector+'Request.json',
@@ -2198,6 +2199,9 @@ if (window.top != window.self) {return; }
             if(nineanimeLinks != 0){
                 sites.push('9anime');
             }
+            if(crunchyrollLinks != 0){
+                sites.push('Crunchyroll');
+            }
             if(searchLinks != 0){
                 $('h2:contains("Information")').before('<h2 id="siteSearch">Search</h2><br>');
                 if(type == 'anime'){
@@ -2576,6 +2580,7 @@ if (window.top != window.self) {return; }
                 settingsUI += materialCheckbox(kissanimeLinks,'kissanimeLinks','Kissanime links');
                 settingsUI += materialCheckbox(masteraniLinks,'masteraniLinks','Masterani.me links');
                 settingsUI += materialCheckbox(nineanimeLinks,'nineanimeLinks','9anime links');
+                settingsUI += materialCheckbox(crunchyrollLinks,'crunchyrollLinks','Crunchyroll links');
                 settingsUI += '</div>';
 
                 settingsUI += '<div class="mdl-cell mdl-cell--12-col mdl-shadow--4dp">\
@@ -2666,6 +2671,15 @@ if (window.top != window.self) {return; }
                 }else{
                     GM_setValue('nineanimeLinks', 0);
                     nineanimeLinks = 0;
+                }
+            });
+            $("#info-iframe").contents().find('#crunchyrollLinks').change(function(){
+                if($(this).is(":checked")){
+                    GM_setValue('crunchyrollLinks', 1);
+                    crunchyrollLinks = 1;
+                }else{
+                    GM_setValue('crunchyrollLinks', 0);
+                    crunchyrollLinks = 0;
                 }
             });
             $("#info-iframe").contents().find('#displayFloatButton').change(function(){
