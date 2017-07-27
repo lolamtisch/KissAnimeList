@@ -117,6 +117,9 @@ if (window.top != window.self) {return; }
             case '0.87.1':
                 alert('Kissanimelist (v0.87.1)\n- Materialize UI\n- Add miniMAL popup');
                 break;
+            case '0.87.3':
+                alert('Kissanimelist (v0.87.3)\n- Crunchyroll Support (Video page only)\n- Added MAL classic bookmark support\n- Added next episode links in MAL bookmarks');
+                break;
         }
     }
     GM_setValue( 'Version', curVersion );
