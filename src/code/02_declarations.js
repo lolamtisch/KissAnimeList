@@ -655,10 +655,9 @@ if (window.top != window.self) {return; }
             return url.split("/")[3];
         };
 
-        $.EpisodePartToEpisode = function(string) {console.log(string);
+        $.EpisodePartToEpisode = function(string) {
             var temp = [];
             temp = string.match(/[e,E][p,P][i,I]?[s,S]?[o,O]?[d,D]?[e,E]?\D?\d+/);
-            console.log(temp);
             if(temp !== null){
                 string = temp[0];
             }else{
