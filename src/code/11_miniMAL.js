@@ -241,6 +241,7 @@
                 settingsUI += materialCheckbox(kissanimeLinks,'kissanimeLinks','Kissanime links');
                 settingsUI += materialCheckbox(masteraniLinks,'masteraniLinks','Masterani.me links');
                 settingsUI += materialCheckbox(nineanimeLinks,'nineanimeLinks','9anime links');
+                settingsUI += materialCheckbox(crunchyrollLinks,'crunchyrollLinks','Crunchyroll links');
                 settingsUI += '</div>';
 
                 settingsUI += '<div class="mdl-cell mdl-cell--12-col mdl-shadow--4dp">\
@@ -331,6 +332,15 @@
                 }else{
                     GM_setValue('nineanimeLinks', 0);
                     nineanimeLinks = 0;
+                }
+            });
+            $("#info-iframe").contents().find('#crunchyrollLinks').change(function(){
+                if($(this).is(":checked")){
+                    GM_setValue('crunchyrollLinks', 1);
+                    crunchyrollLinks = 1;
+                }else{
+                    GM_setValue('crunchyrollLinks', 0);
+                    crunchyrollLinks = 0;
                 }
             });
             $("#info-iframe").contents().find('#displayFloatButton').change(function(){
