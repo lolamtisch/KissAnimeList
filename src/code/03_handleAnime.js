@@ -1,5 +1,5 @@
     function handleanime(anime){
-        $('#MalLogin').css("display","initial");
+        $('.MalLogin').css("display","initial");
         $('#AddMalDiv').remove();
 
         $(".open-info-popup").unbind('click').show().click( function(){
@@ -19,8 +19,8 @@
             }catch(e){}
         }
         if(anime['login'] === 0){
-            $('#MalLogin').css("display","none");
-            $("#MalData").css("display","initial");
+            $('.MalLogin').css("display","none");
+            $("#MalData").css("display","flex");
             $("#MalInfo").text("");
             $("#malRating").attr("href", anime['malurl']);
             $("#malRating").after("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Please log in on <a target='_blank' href='https://myanimelist.net/login.php'>MyAnimeList!<a>");
@@ -31,7 +31,7 @@
             $("#flash").attr("anime", anime['.'+listType+'_id']);
             $("#malRating").attr("href", anime['malurl']);
             if(isNaN(anime['.add_'+listType+'[status]'])){
-                $('#MalLogin').css("display","none");
+                $('.MalLogin').css("display","none");
                 $("#malRating").after("<span id='AddMalDiv'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href='#' id='AddMal' onclick='return false;'>Add to Mal</a></span>")
                 $('#AddMal').click(function() {
                     var anime = {};
@@ -63,7 +63,7 @@
                 }
                 //#############
             }
-            $("#MalData").css("display","initial");
+            $("#MalData").css("display","flex");
             $("#MalInfo").text("");
 
             getcommondata(anime['malurl']);

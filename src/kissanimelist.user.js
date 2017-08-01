@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name        KissAnimeList
-// @version     0.87.3
+// @version     0.87.7
 // @description Integrates MyAnimeList into diverse sites, with auto episode tracking.
 // @author      lolamtisch@gmail.com
 // @license     Creative Commons; http://creativecommons.org/licenses/by/4.0/
@@ -650,7 +650,7 @@ if (window.top != window.self) {return; }
         //http://www.crunchyroll.com/ace-of-the-diamond
         //http://www.crunchyroll.com/trinity-seven
         //#########Crunchyroll#########
-        if(window.location.href == 'http://www.crunchyroll.com/' || typeof window.location.href.split('/')[4] == 'undefined'){
+        if(window.location.href == 'http://www.crunchyroll.com/'){
             return;
         }
         var domain = 'http://www.crunchyroll.com';
@@ -659,6 +659,7 @@ if (window.top != window.self) {return; }
         var listType = 'anime';
         var bookmarkCss = "";
         var bookmarkFixCss = "";
+        GM_addStyle('.headui a {color: black !important;} #malp{margin-bottom: 8px;}');
 
         $.init = function() {
             $( document).ready(function(){
@@ -722,11 +723,24 @@ if (window.top != window.self) {return; }
             alert(script);
         });*/
         $.urlAnimeTitle = function(url) {
-            var script = ($("#template_body script")[1]).innerHTML;
-            script = script.split('mediaMetadata =')[1].split('"name":"')[1].split(' -')[0];
-            //console.log(script);
-            return encodeURIComponent(script);
-            return url.split("/")[3];
+            if($.isOverviewPage()){
+                if( $('.season-dropdown').length > 1){
+                    $('<div>Kissanimelist does not support multiple seasons on one page</div>').uiPos();
+                    throw new Error('Kissanimelist does not support multiple seasons');
+                }else{
+                    if($('.season-dropdown').length){
+                        return $('.season-dropdown').first().text();
+                    }else{
+                        return $('#source_showview h1 span').text();
+                    }
+                }
+            }else{
+                var script = ($("#template_body script")[1]).innerHTML;
+                script = script.split('mediaMetadata =')[1].split('"name":"')[1].split(' -')[0];
+                //console.log(script);
+                return encodeURIComponent(script);
+                return url.split("/")[3];
+            }
         };
 
         $.EpisodePartToEpisode = function(string) {
@@ -747,15 +761,19 @@ if (window.top != window.self) {return; }
         };
 
         $.fn.uiPos = function() {//TODO
-            //this.insertAfter($("h1.ellipsis"));
-            //this.insertAfter($("#tabs").first());
-            //this.prependTo($('.season-dropdown'));
+            if($.isOverviewPage()){
+                //this.insertAfter($("h1.ellipsis"));
+                this.insertBefore($("#tabs").first());
+                $('#malStatus option').css('background-color','#f2f2f2');
+                $('#malUserRating option').css('background-color','#f2f2f2');
+                //this.prependTo($('.season-dropdown'));
+            }
         };
         $.fn.uiWrongPos = function() {//TODO after second element
             //this.prependTo($("#sidebar_elements").first());
         };
         $.fn.uiHeadPos = function() {//TODO
-            //this.appendTo($(".ellipsis").first());
+            this.appendTo($(".ellipsis").first());
         };
 
         $.docReady = function(data) {
@@ -767,7 +785,7 @@ if (window.top != window.self) {return; }
         };
 
         $.fn.epListReset = function() {
-            this.css("background-color","initial");
+            this.css("background-color","#fff");
         };
         $.fn.epListActive = function() {
             this.css("background-color","#b2d1ff");
@@ -829,7 +847,7 @@ if (window.top != window.self) {return; }
     }
 
     function handleanime(anime){
-        $('#MalLogin').css("display","initial");
+        $('.MalLogin').css("display","initial");
         $('#AddMalDiv').remove();
 
         $(".open-info-popup").unbind('click').show().click( function(){
@@ -849,8 +867,8 @@ if (window.top != window.self) {return; }
             }catch(e){}
         }
         if(anime['login'] === 0){
-            $('#MalLogin').css("display","none");
-            $("#MalData").css("display","initial");
+            $('.MalLogin').css("display","none");
+            $("#MalData").css("display","flex");
             $("#MalInfo").text("");
             $("#malRating").attr("href", anime['malurl']);
             $("#malRating").after("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Please log in on <a target='_blank' href='https://myanimelist.net/login.php'>MyAnimeList!<a>");
@@ -861,7 +879,7 @@ if (window.top != window.self) {return; }
             $("#flash").attr("anime", anime['.'+listType+'_id']);
             $("#malRating").attr("href", anime['malurl']);
             if(isNaN(anime['.add_'+listType+'[status]'])){
-                $('#MalLogin').css("display","none");
+                $('.MalLogin').css("display","none");
                 $("#malRating").after("<span id='AddMalDiv'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href='#' id='AddMal' onclick='return false;'>Add to Mal</a></span>")
                 $('#AddMal').click(function() {
                     var anime = {};
@@ -893,7 +911,7 @@ if (window.top != window.self) {return; }
                 }
                 //#############
             }
-            $("#MalData").css("display","initial");
+            $("#MalData").css("display","flex");
             $("#MalInfo").text("");
 
             getcommondata(anime['malurl']);
@@ -1609,10 +1627,18 @@ if (window.top != window.self) {return; }
     }
 
     function local_setValue( thisUrl, malurl ){
-        if( (!(thisUrl.indexOf("myAnimeList.net/") >= 0)) && ( GM_getValue(dbSelector+'/'+$.titleToDbKey($.urlAnimeTitle(thisUrl))+'/Mal' , null) == null || thisUrl.indexOf("#newCorrection") >= 0 )){
+        if( (!(thisUrl.indexOf("myAnimeList.net/") >= 0)) && ( GM_getValue(dbSelector+'/'+$.titleToDbKey($.urlAnimeTitle(thisUrl))+'/Mal' , null) == null || thisUrl.indexOf("#newCorrection") >= 0 || GM_getValue(dbSelector+'/'+$.titleToDbKey($.urlAnimeTitle(thisUrl))+'/Crunch' , null) == 'no')){
             var param = { Kiss: thisUrl, Mal: malurl};
             if(dbSelector == 'Crunchyroll'){
-                param = { Kiss: window.location.href+'?..'+$.urlAnimeTitle(), Mal: malurl}
+                param = { Kiss: window.location.href+'?..'+$.urlAnimeTitle(), Mal: malurl};
+                if($.isOverviewPage()){
+                    param = null;
+                    if(GM_getValue(dbSelector+'/'+$.titleToDbKey($.urlAnimeTitle(thisUrl))+'/Crunch' , null) == null){
+                        GM_setValue( dbSelector+'/'+$.titleToDbKey($.urlAnimeTitle(thisUrl))+'/Crunch', 'no' );
+                    }
+                }else{
+                    GM_setValue( dbSelector+'/'+$.titleToDbKey($.urlAnimeTitle(thisUrl))+'/Crunch', 'yes' );
+                }
             }
             GM_xmlhttpRequest({
                 url: 'https://kissanimelist.firebaseio.com/Request/'+dbSelector+'Request.json',
@@ -1716,44 +1742,23 @@ if (window.top != window.self) {return; }
         }
 
         $.docReady(function() {
-            if(listType == 'anime'){
-                var spacer = '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp';
-                var middle = '';
-                middle += '<span class="info">Episodes: </span>';
-                middle += '<span style="color: '+textColor+'; text-decoration: none; outline: medium none;">';
-                middle += '<input id="malEpisodes" value="0" style="background: transparent; border-width: 1px; border-color: grey; text-align: right; color: '+textColor+'; text-decoration: none; outline: medium none;" type="text" size="1" maxlength="4">';
-                middle += '/<span id="malTotal">0</span>';
-                middle += '</span>';
+            var wrapStart = '<span style="display: inline-block;">';
+            var wrapEnd = '</span>';
 
-            }else{
-                var spacer = '&nbsp;&nbsp;&nbsp;&nbsp';
-                var middle = '';
-                middle += '<span class="info">Volumes: </span>';
-                middle += '<span style="color: '+textColor+'; text-decoration: none; outline: medium none;">';
-                middle += '<input id="malVolumes" value="0" style="background: transparent; border-width: 1px; border-color: grey; text-align: right; color: '+textColor+'; text-decoration: none; outline: medium none;" type="text" size="1" maxlength="4">';
-                middle += '/<span id="malTotalVol">0</span>';
-                middle += '</span>';
-
-                middle += spacer;
-
-                middle += '<span class="info">Chapters: </span>';
-                middle += '<span style="color: '+textColor+'; text-decoration: none; outline: medium none;">';
-                middle += '<input id="malChapters" value="0" style="background: transparent; border-width: 1px; border-color: grey; text-align: right; color: '+textColor+'; text-decoration: none; outline: medium none;" type="text" size="1" maxlength="4">';
-                middle += '/<span id="malTotalCha">0</span>';
-                middle += '</span>';
-            }
             var ui = '<p id="malp">';
             ui += '<span id="MalInfo">Loading</span>';
 
-            ui += '<span id="MalData" style="display: none;">';
+            ui += '<span id="MalData" style="display: none; justify-content: space-between;">';
 
+            ui += wrapStart;
             ui += '<span class="info">Mal Score: </span>';
             ui += '<a id="malRating" style="color: '+textColor+';min-width: 30px;display: inline-block;" target="_blank" href="">____</a>';
+            ui += wrapEnd;
 
-            ui += '<span id="MalLogin">';
+            //ui += '<span id="MalLogin">';
+            wrapStart = '<span style="display: inline-block; display: none;" class="MalLogin">';
 
-            ui += spacer;
-
+            ui += wrapStart;
             ui += '<span class="info">Status: </span>';
             ui += '<select id="malStatus" style="font-size: 12px;background: transparent; border-width: 1px; border-color: grey; color: '+textColor+'; text-decoration: none; outline: medium none;">';
             //ui += '<option value="0" style="background: #111111;color: '+textColor+';"></option>';
@@ -1763,15 +1768,43 @@ if (window.top != window.self) {return; }
             ui += '<option value="4" style="background: #111111;color: '+textColor+';">Dropped</option>';
             ui += '<option value="6" style="background: #111111;color: '+textColor+';">'+planTo+'</option>';
             ui += '</select>';
+            ui += wrapEnd;
 
-            ui += spacer;
+            if(listType == 'anime'){
+                var middle = '';
+                middle += wrapStart;
+                middle += '<span class="info">Episodes: </span>';
+                middle += '<span style="color: '+textColor+'; text-decoration: none; outline: medium none;">';
+                middle += '<input id="malEpisodes" value="0" style="background: transparent; border-width: 1px; border-color: grey; text-align: right; color: '+textColor+'; text-decoration: none; outline: medium none;" type="text" size="1" maxlength="4">';
+                middle += '/<span id="malTotal">0</span>';
+                middle += '</span>';
+                middle += wrapEnd;
+
+            }else{
+                var middle = '';
+                middle += wrapStart;
+                middle += '<span class="info">Volumes: </span>';
+                middle += '<span style="color: '+textColor+'; text-decoration: none; outline: medium none;">';
+                middle += '<input id="malVolumes" value="0" style="background: transparent; border-width: 1px; border-color: grey; text-align: right; color: '+textColor+'; text-decoration: none; outline: medium none;" type="text" size="1" maxlength="4">';
+                middle += '/<span id="malTotalVol">0</span>';
+                middle += '</span>';
+                middle += wrapEnd;
+
+
+                middle += wrapStart;
+                middle += '<span class="info">Chapters: </span>';
+                middle += '<span style="color: '+textColor+'; text-decoration: none; outline: medium none;">';
+                middle += '<input id="malChapters" value="0" style="background: transparent; border-width: 1px; border-color: grey; text-align: right; color: '+textColor+'; text-decoration: none; outline: medium none;" type="text" size="1" maxlength="4">';
+                middle += '/<span id="malTotalCha">0</span>';
+                middle += '</span>';
+                middle += wrapEnd;
+            }
 
             ui += middle;
 
-            ui += spacer;
 
+            ui += wrapStart;
             ui += '<span class="info">Your Score: </span>';
-
             ui += '<select id="malUserRating" style="font-size: 12px;background: transparent; border-width: 1px; border-color: grey; color: '+textColor+'; text-decoration: none; outline: medium none;"><option value="" style="background: #111111;color: '+textColor+';">Select</option>';
             ui += '<option value="10" style="background: #111111;color: '+textColor+';">(10) Masterpiece</option>';
             ui += '<option value="9" style="background: #111111;color: '+textColor+';">(9) Great</option>';
@@ -1784,7 +1817,9 @@ if (window.top != window.self) {return; }
             ui += '<option value="2" style="background: #111111;color: '+textColor+';">(2) Horrible</option>';
             ui += '<option value="1" style="background: #111111;color: '+textColor+';">(1) Appalling</option>';
             ui += '</select>';
-            ui += '</span>';
+            ui += wrapEnd;
+
+            //ui += '</span>';
             ui += '</span>';
             ui += '</p>';
 
@@ -2147,7 +2182,7 @@ if (window.top != window.self) {return; }
     }
     function displaySites(responsearray, page){
         if($('#'+page+'Links').width() == null){
-            $('#siteSearch').before('<h2 id="'+page+'Links">'+page+'</h2><br>');
+            $('#siteSearch').before('<h2 id="'+page+'Links"><img src="https://www.google.com/s2/favicons?domain='+responsearray['url'].split('/')[2]+'"> '+page+'</h2><br>');
         }
         if($("#info-iframe").contents().find('#'+page+'Links').width() == null){
             $("#info-iframe").contents().find('.stream-block-inner').append('<li class="mdl-list__item mdl-list__item--three-line"><span class="mdl-list__item-primary-content"><span>'+page+'</span><span id="'+page+'Links" class="mdl-list__item-text-body"></span></span></li>');
