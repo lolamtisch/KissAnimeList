@@ -124,7 +124,10 @@
               <div class="page-content malClear" id="malConfig"></div>\
             </section>\
           </main>\
-        </div>';
+        </div>\
+        <div id="malIframe" style="height: calc(100% - 60px); width: 100%; position: fixed; top: 60px; z-index: 10; display: none;">\
+        </div>\
+        ';
         //material += '</div>';
         $("#info-iframe").contents().find("body").append(material);
         var modal = document.getElementById('info-popup');
@@ -154,6 +157,27 @@
                 $(this).find('i').text('fullscreen_exit');
             }
         });
+        //malIframe('https://myanimelist.net/anime/genre/5/Dementia');
+    }
+
+    function malIframe(url){
+      $("#info-iframe").contents().find('#malIframe').show();
+      if($("#info-iframe").contents().find('#mal-iframe').length){
+        $("#info-iframe").contents().find('#mal-iframe').attr('src', url);
+      }else{
+        var iframe = document.createElement('iframe');
+        iframe.setAttribute("id", "mal-iframe");
+        iframe.setAttribute("style", "height:100%;width:100%;border:0; background-color: white;");
+        iframe.setAttribute("src", url);
+        iframe.onload = function() {
+          //alert(GM_getValue('iframe'));
+          if(GM_getValue('iframe').match(new RegExp(/net\/anime\/\d*\//g)) || GM_getValue('iframe').match(new RegExp(/net\/manga\/\d*\//g))){
+            fillIframe(GM_getValue('iframe'));
+            $("#info-iframe").contents().find('#malIframe').hide();
+          }
+        };
+        $("#info-iframe").contents().find('#malIframe').append(iframe);
+      }
     }
 
     function fillIframe(url, data = null){
@@ -704,6 +728,10 @@
                 }
                 return "https://myanimelist.net" + value;
             });
+            $(this).click(function(){
+              malIframe($(this).attr('href'));
+              return false;
+            })
         });
         $("#info-iframe").contents().find('a').not(".nojs").attr('target','_blank');
     }

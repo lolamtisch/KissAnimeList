@@ -1,4 +1,9 @@
-if (window.top != window.self) {return; }
+    if (window.top != window.self) {
+        GM_setValue('iframe', window.location.href);
+        if( window.location.href.indexOf("myanimelist.net") > -1 ){}else{
+            return;
+        }
+    }
     var googleover = 0;
 
     var con = console;
