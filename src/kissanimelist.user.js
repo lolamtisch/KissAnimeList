@@ -2156,7 +2156,7 @@ if (window.top != window.self) {return; }
     }
     function displaySites(responsearray, page){
         if($('#'+page+'Links').width() == null){
-            $('#siteSearch').before('<h2 id="'+page+'Links">'+page+'</h2><br>');
+            $('#siteSearch').before('<h2 id="'+page+'Links"><img src="https://www.google.com/s2/favicons?domain='+responsearray['url'].split('/')[2]+'"> '+page+'</h2><br>');
         }
         if($("#info-iframe").contents().find('#'+page+'Links').width() == null){
             $("#info-iframe").contents().find('.stream-block-inner').append('<li class="mdl-list__item mdl-list__item--three-line"><span class="mdl-list__item-primary-content"><span>'+page+'</span><span id="'+page+'Links" class="mdl-list__item-text-body"></span></span></li>');
