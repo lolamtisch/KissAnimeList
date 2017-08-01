@@ -650,7 +650,7 @@ if (window.top != window.self) {return; }
         //http://www.crunchyroll.com/ace-of-the-diamond
         //http://www.crunchyroll.com/trinity-seven
         //#########Crunchyroll#########
-        if(window.location.href == 'http://www.crunchyroll.com/' || typeof window.location.href.split('/')[4] == 'undefined'){
+        if(window.location.href == 'http://www.crunchyroll.com/'){
             return;
         }
         var domain = 'http://www.crunchyroll.com';
@@ -659,6 +659,7 @@ if (window.top != window.self) {return; }
         var listType = 'anime';
         var bookmarkCss = "";
         var bookmarkFixCss = "";
+        GM_addStyle('.headui a {color: black !important;} #malp{margin-bottom: 8px;}');
 
         $.init = function() {
             $( document).ready(function(){
@@ -722,11 +723,24 @@ if (window.top != window.self) {return; }
             alert(script);
         });*/
         $.urlAnimeTitle = function(url) {
-            var script = ($("#template_body script")[1]).innerHTML;
-            script = script.split('mediaMetadata =')[1].split('"name":"')[1].split(' -')[0];
-            //console.log(script);
-            return encodeURIComponent(script);
-            return url.split("/")[3];
+            if($.isOverviewPage()){
+                if( $('.season-dropdown').length > 1){
+                    $('<div>Kissanimelist does not support multiple seasons on one page</div>').uiPos();
+                    throw new Error('Kissanimelist does not support multiple seasons');
+                }else{
+                    if($('.season-dropdown').length){
+                        return $('.season-dropdown').first().text();
+                    }else{
+                        return $('#source_showview h1 span').text();
+                    }
+                }
+            }else{
+                var script = ($("#template_body script")[1]).innerHTML;
+                script = script.split('mediaMetadata =')[1].split('"name":"')[1].split(' -')[0];
+                //console.log(script);
+                return encodeURIComponent(script);
+                return url.split("/")[3];
+            }
         };
 
         $.EpisodePartToEpisode = function(string) {
@@ -747,15 +761,19 @@ if (window.top != window.self) {return; }
         };
 
         $.fn.uiPos = function() {//TODO
-            //this.insertAfter($("h1.ellipsis"));
-            //this.insertAfter($("#tabs").first());
-            //this.prependTo($('.season-dropdown'));
+            if($.isOverviewPage()){
+                //this.insertAfter($("h1.ellipsis"));
+                this.insertBefore($("#tabs").first());
+                $('#malStatus option').css('background-color','#f2f2f2');
+                $('#malUserRating option').css('background-color','#f2f2f2');
+                //this.prependTo($('.season-dropdown'));
+            }
         };
         $.fn.uiWrongPos = function() {//TODO after second element
             //this.prependTo($("#sidebar_elements").first());
         };
         $.fn.uiHeadPos = function() {//TODO
-            //this.appendTo($(".ellipsis").first());
+            this.appendTo($(".ellipsis").first());
         };
 
         $.docReady = function(data) {
@@ -767,7 +785,7 @@ if (window.top != window.self) {return; }
         };
 
         $.fn.epListReset = function() {
-            this.css("background-color","initial");
+            this.css("background-color","#fff");
         };
         $.fn.epListActive = function() {
             this.css("background-color","#b2d1ff");
@@ -1609,10 +1627,18 @@ if (window.top != window.self) {return; }
     }
 
     function local_setValue( thisUrl, malurl ){
-        if( (!(thisUrl.indexOf("myAnimeList.net/") >= 0)) && ( GM_getValue(dbSelector+'/'+$.titleToDbKey($.urlAnimeTitle(thisUrl))+'/Mal' , null) == null || thisUrl.indexOf("#newCorrection") >= 0 )){
+        if( (!(thisUrl.indexOf("myAnimeList.net/") >= 0)) && ( GM_getValue(dbSelector+'/'+$.titleToDbKey($.urlAnimeTitle(thisUrl))+'/Mal' , null) == null || thisUrl.indexOf("#newCorrection") >= 0 || GM_getValue(dbSelector+'/'+$.titleToDbKey($.urlAnimeTitle(thisUrl))+'/Crunch' , null) == 'no')){
             var param = { Kiss: thisUrl, Mal: malurl};
             if(dbSelector == 'Crunchyroll'){
-                param = { Kiss: window.location.href+'?..'+$.urlAnimeTitle(), Mal: malurl}
+                param = { Kiss: window.location.href+'?..'+$.urlAnimeTitle(), Mal: malurl};
+                if($.isOverviewPage()){
+                    param = null;
+                    if(GM_getValue(dbSelector+'/'+$.titleToDbKey($.urlAnimeTitle(thisUrl))+'/Crunch' , null) == null){
+                        GM_setValue( dbSelector+'/'+$.titleToDbKey($.urlAnimeTitle(thisUrl))+'/Crunch', 'no' );
+                    }
+                }else{
+                    GM_setValue( dbSelector+'/'+$.titleToDbKey($.urlAnimeTitle(thisUrl))+'/Crunch', 'yes' );
+                }
             }
             GM_xmlhttpRequest({
                 url: 'https://kissanimelist.firebaseio.com/Request/'+dbSelector+'Request.json',
