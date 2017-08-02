@@ -57,19 +57,39 @@
         }
     }
 
-    function flashm(text,error = true){
+    function flashm(text,error = true, info = false){
+
         con.log("Flash Message: ",text);
-        $('.flash').removeClass('flash').fadeOut({
-            duration: 400,
-            queue: false,
-            complete: function() { $(this).remove(); }});
-        if(error === true){
-            var colorF = "#3e0808";
+        if(info){
+            $('.flashinfo').removeClass('flashinfo').delay(2000).fadeOut({
+                duration: 400,
+                queue: false,
+                complete: function() { $(this).remove(); }});
+            if(error === true){
+                var colorF = "#3e0808";
+            }else{
+                var colorF = "#323232";
+            }
+            $('#flash-div').append('<div class="flashinfo" style="display:none;"><div style="display:table; pointer-events: all; background-color: red;padding: 14px 24px 14px 24px; margin: 0 auto; margin-top: -2px; max-width: 60%; -webkit-border-radius: 20px;-moz-border-radius: 20px;border-radius: 2px;color: white;background:'+colorF+'; ">'+text+'</div></div>');
+            $('.flashinfo').delay(2000).slideDown(800).delay(6000).slideUp(800, function() { $(this).remove(); });
         }else{
-            var colorF = "#323232";
+            $('.flash').removeClass('flash').fadeOut({
+                duration: 400,
+                queue: false,
+                complete: function() { $(this).remove(); }});
+            if(error === true){
+                var colorF = "#3e0808";
+            }else{
+                var colorF = "#323232";
+            }
+            var mess ='<div class="flash" style="display:none;"><div style="display:table; pointer-events: all; background-color: red;padding: 14px 24px 14px 24px; margin: 0 auto; margin-top: 20px; max-width: 60%; -webkit-border-radius: 20px;-moz-border-radius: 20px;border-radius: 2px;color: white;background:'+colorF+'; ">'+text+'</div></div>';
+            if($('.flashinfo').length){
+                $('.flashinfo').before(mess);
+            }else{
+                $('#flash-div').append(mess);
+            }
+            $('.flash').slideDown(800).delay(4000).slideUp(800, function() { $(this).remove(); });
         }
-        $('#flash-div').append('<div class="flash" style="display:none;"><div style="display:table; pointer-events: all; background-color: red;padding: 14px 24px 14px 24px; margin: 0 auto; margin-top: 20px; max-width: 60%; -webkit-border-radius: 20px;-moz-border-radius: 20px;border-radius: 2px;color: white;background:'+colorF+'; ">'+text+'</div></div>');
-        $('.flash').slideDown(800).delay(4000).slideUp(800, function() { $(this).remove(); });
     }
 
     function updatebutton(){
@@ -121,4 +141,47 @@
         //title = title.replace(/[-,.?:'"\\!@#$%^&\-_=+`~;]/g,"");
         con.log("Formated: ",title);
         return title;
+    }
+
+    function episodeInfo(episode, malUrl){
+        con.log('Episode Info',malUrl+'/episode/'+episode);
+        GM_xmlhttpRequest({
+            url: malUrl+'/episode/'+episode,
+            method: "GET",
+            onload: function (response) {
+                if(response.response != null){
+                    var data = response.response;
+                    var synopsis = '';
+                    var epTitle = '';
+                    var epSubTitle = '';
+                    var imgUrl = "";
+                    try{
+                        epTitle = data.split('class="fs18 lh11"')[1].split('</h2>')[0].split('</span>')[1];
+                    }catch(e){}
+
+                    try{
+                        epSubTitle = data.split('<p class="fn-grey2"')[1].split('</p>')[0].split('>')[1].replace(/^\s+/g, "");
+                    }catch(e){}
+
+                    try{
+                        synopsis = data.split('Synopsis</h2>')[1].split('</div>')[0].replace(/^\s+/g, "");
+                    }catch(e){}
+
+                    try{
+                        imgUrl = data.split('"isCurrent":true')[0].split('{').slice(-1)[0].split('"thumbnail":"')[1].split('"')[0].replace(/\\\//g, '/');
+                    }catch(e){}
+
+                    var imgHtml = '';
+                    if(imgUrl != ''){
+                        imgHtml = '<img style = "margin-top: 15px;" src="'+imgUrl+'"/>';
+                    }
+                    var synopsisHtml = '<div style="display: none;">'+synopsis+'</div>';
+
+                    flashm ("<div> #"+episode+" - "+epTitle+"<br> <small>"+epSubTitle+"</small> </div>" + imgHtml + synopsisHtml, false, true);
+                }
+            },
+            onerror: function(error) {
+                con.log("error: "+error);
+            }
+        });
     }
