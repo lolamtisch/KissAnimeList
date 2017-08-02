@@ -31,6 +31,7 @@ if (window.top != window.self) {return; }
     var crunchyrollLinks = GM_getValue( 'crunchyrollLinks', 1 );
 
     var displayFloatButton = GM_getValue( 'displayFloatButton', 1 );
+    var episodeInfoBox = GM_getValue( 'episodeInfoBox', 1 );
 
     var currentMalData = null;
 

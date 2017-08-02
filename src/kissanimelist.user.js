@@ -102,6 +102,7 @@ if (window.top != window.self) {return; }
     var crunchyrollLinks = GM_getValue( 'crunchyrollLinks', 1 );
 
     var displayFloatButton = GM_getValue( 'displayFloatButton', 1 );
+    var episodeInfoBox = GM_getValue( 'episodeInfoBox', 1 );
 
     var currentMalData = null;
 
@@ -1756,46 +1757,50 @@ if (window.top != window.self) {return; }
     }
 
     function episodeInfo(episode, malUrl){
-        con.log('Episode Info',malUrl+'/episode/'+episode);
-        GM_xmlhttpRequest({
-            url: malUrl+'/episode/'+episode,
-            method: "GET",
-            onload: function (response) {
-                if(response.response != null){
-                    var data = response.response;
-                    var synopsis = '';
-                    var epTitle = '';
-                    var epSubTitle = '';
-                    var imgUrl = "";
-                    try{
-                        epTitle = data.split('class="fs18 lh11"')[1].split('</h2>')[0].split('</span>')[1];
-                    }catch(e){}
+        if(episodeInfoBox){
+            con.log('Episode Info',malUrl+'/episode/'+episode);
+            GM_xmlhttpRequest({
+                url: malUrl+'/episode/'+episode,
+                method: "GET",
+                onload: function (response) {
+                    if(response.response != null){
+                        var data = response.response;
+                        var synopsis = '';
+                        var epTitle = '';
+                        var epSubTitle = '';
+                        var imgUrl = "";
+                        try{
+                            epTitle = data.split('class="fs18 lh11"')[1].split('</h2>')[0].split('</span>')[1];
+                        }catch(e){}
 
-                    try{
-                        epSubTitle = data.split('<p class="fn-grey2"')[1].split('</p>')[0].split('>')[1].replace(/^\s+/g, "");
-                    }catch(e){}
+                        try{
+                            epSubTitle = data.split('<p class="fn-grey2"')[1].split('</p>')[0].split('>')[1].replace(/^\s+/g, "");
+                        }catch(e){}
 
-                    try{
-                        synopsis = data.split('Synopsis</h2>')[1].split('</div>')[0].replace(/^\s+/g, "");
-                    }catch(e){}
+                        try{
+                            synopsis = data.split('Synopsis</h2>')[1].split('</div>')[0].replace(/^\s+/g, "");
+                        }catch(e){}
 
-                    try{
-                        imgUrl = data.split('"isCurrent":true')[0].split('{').slice(-1)[0].split('"thumbnail":"')[1].split('"')[0].replace(/\\\//g, '/');
-                    }catch(e){}
+                        try{
+                            imgUrl = data.split('"isCurrent":true')[0].split('{').slice(-1)[0].split('"thumbnail":"')[1].split('"')[0].replace(/\\\//g, '/');
+                        }catch(e){}
 
-                    var imgHtml = '';
-                    if(imgUrl != ''){
-                        imgHtml = '<img style = "margin-top: 15px;" src="'+imgUrl+'"/>';
+                        var imgHtml = '';
+                        if(imgUrl != ''){
+                            imgHtml = '<img style = "margin-top: 15px;" src="'+imgUrl+'"/>';
+                        }
+                        var synopsisHtml = '<div style="display: none;">'+synopsis+'</div>';
+
+                        if(epTitle != ''){
+                            flashm ("<div> #"+episode+" - "+epTitle+"<br> <small>"+epSubTitle+"</small> </div>" + imgHtml + synopsisHtml, false, true);
+                        }
                     }
-                    var synopsisHtml = '<div style="display: none;">'+synopsis+'</div>';
-
-                    flashm ("<div> #"+episode+" - "+epTitle+"<br> <small>"+epSubTitle+"</small> </div>" + imgHtml + synopsisHtml, false, true);
+                },
+                onerror: function(error) {
+                    con.log("error: "+error);
                 }
-            },
-            onerror: function(error) {
-                con.log("error: "+error);
-            }
-        });
+            });
+        }
     }
     function checkdata(){
         if($.normalUrl() !== ""){
@@ -2688,6 +2693,7 @@ if (window.top != window.self) {return; }
                                 <h2 class="mdl-card__title-text">ETC</h2>\
                                 </div>';
                 settingsUI += materialCheckbox(displayFloatButton,'displayFloatButton','Floating menu button');
+                settingsUI += materialCheckbox(episodeInfoBox,'episodeInfoBox','Episode info box');
                 settingsUI += '<li class="mdl-list__item"><button type="button" id="clearCache" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">Clear Cache</button></li>';
                 settingsUI += '</div>';
 
@@ -2789,6 +2795,15 @@ if (window.top != window.self) {return; }
                 }else{
                     GM_setValue('displayFloatButton', 0);
                     displayFloatButton = 0;
+                }
+            });
+            $("#info-iframe").contents().find('#episodeInfoBox').change(function(){
+                if($(this).is(":checked")){
+                    GM_setValue('episodeInfoBox', 1);
+                    episodeInfoBox = 1;
+                }else{
+                    GM_setValue('episodeInfoBox', 0);
+                    episodeInfoBox = 0;
                 }
             });
             $("#info-iframe").contents().find('#malConfig').show();
