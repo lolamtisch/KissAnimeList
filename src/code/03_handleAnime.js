@@ -130,8 +130,8 @@
                 //if(curEpisode > anime['.add_anime[num_watched_episodes]']){
                 var animechange = {};
                 animechange['.add_anime[num_watched_episodes]'] = curEpisode;
-                animechange['checkIncrease'] = 1;
-                setanime( $.normalUrl(),animechange);
+
+                episodeInfo(curEpisode, anime['malurl']);
             }else{
                 //update
                 var curChapter = urlToChapter(window.location.href);
@@ -141,9 +141,9 @@
                 animechange['.add_manga[num_read_chapters]'] = curChapter;
                 animechange['.add_manga[num_read_volumes]'] = curVolume;
                 animechange['.add_manga[comments]'] = handleComment(window.location.href, anime['.add_manga[comments]']);
-                animechange['checkIncrease'] = 1;
-                setanime( $.normalUrl(),animechange);
             }
+            animechange['checkIncrease'] = 1;
+            setanime( $.normalUrl(),animechange);
         }
     }
 
