@@ -249,6 +249,7 @@
                                 <h2 class="mdl-card__title-text">ETC</h2>\
                                 </div>';
                 settingsUI += materialCheckbox(displayFloatButton,'displayFloatButton','Floating menu button');
+                settingsUI += materialCheckbox(episodeInfoBox,'episodeInfoBox','Episode info box');
                 settingsUI += '<li class="mdl-list__item"><button type="button" id="clearCache" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">Clear Cache</button></li>';
                 settingsUI += '</div>';
 
@@ -350,6 +351,15 @@
                 }else{
                     GM_setValue('displayFloatButton', 0);
                     displayFloatButton = 0;
+                }
+            });
+            $("#info-iframe").contents().find('#episodeInfoBox').change(function(){
+                if($(this).is(":checked")){
+                    GM_setValue('episodeInfoBox', 1);
+                    episodeInfoBox = 1;
+                }else{
+                    GM_setValue('episodeInfoBox', 0);
+                    episodeInfoBox = 0;
                 }
             });
             $("#info-iframe").contents().find('#malConfig').show();

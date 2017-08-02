@@ -144,44 +144,48 @@
     }
 
     function episodeInfo(episode, malUrl){
-        con.log('Episode Info',malUrl+'/episode/'+episode);
-        GM_xmlhttpRequest({
-            url: malUrl+'/episode/'+episode,
-            method: "GET",
-            onload: function (response) {
-                if(response.response != null){
-                    var data = response.response;
-                    var synopsis = '';
-                    var epTitle = '';
-                    var epSubTitle = '';
-                    var imgUrl = "";
-                    try{
-                        epTitle = data.split('class="fs18 lh11"')[1].split('</h2>')[0].split('</span>')[1];
-                    }catch(e){}
+        if(episodeInfoBox){
+            con.log('Episode Info',malUrl+'/episode/'+episode);
+            GM_xmlhttpRequest({
+                url: malUrl+'/episode/'+episode,
+                method: "GET",
+                onload: function (response) {
+                    if(response.response != null){
+                        var data = response.response;
+                        var synopsis = '';
+                        var epTitle = '';
+                        var epSubTitle = '';
+                        var imgUrl = "";
+                        try{
+                            epTitle = data.split('class="fs18 lh11"')[1].split('</h2>')[0].split('</span>')[1];
+                        }catch(e){}
 
-                    try{
-                        epSubTitle = data.split('<p class="fn-grey2"')[1].split('</p>')[0].split('>')[1].replace(/^\s+/g, "");
-                    }catch(e){}
+                        try{
+                            epSubTitle = data.split('<p class="fn-grey2"')[1].split('</p>')[0].split('>')[1].replace(/^\s+/g, "");
+                        }catch(e){}
 
-                    try{
-                        synopsis = data.split('Synopsis</h2>')[1].split('</div>')[0].replace(/^\s+/g, "");
-                    }catch(e){}
+                        try{
+                            synopsis = data.split('Synopsis</h2>')[1].split('</div>')[0].replace(/^\s+/g, "");
+                        }catch(e){}
 
-                    try{
-                        imgUrl = data.split('"isCurrent":true')[0].split('{').slice(-1)[0].split('"thumbnail":"')[1].split('"')[0].replace(/\\\//g, '/');
-                    }catch(e){}
+                        try{
+                            imgUrl = data.split('"isCurrent":true')[0].split('{').slice(-1)[0].split('"thumbnail":"')[1].split('"')[0].replace(/\\\//g, '/');
+                        }catch(e){}
 
-                    var imgHtml = '';
-                    if(imgUrl != ''){
-                        imgHtml = '<img style = "margin-top: 15px;" src="'+imgUrl+'"/>';
+                        var imgHtml = '';
+                        if(imgUrl != ''){
+                            imgHtml = '<img style = "margin-top: 15px;" src="'+imgUrl+'"/>';
+                        }
+                        var synopsisHtml = '<div style="display: none;">'+synopsis+'</div>';
+
+                        if(epTitle != ''){
+                            flashm ("<div> #"+episode+" - "+epTitle+"<br> <small>"+epSubTitle+"</small> </div>" + imgHtml + synopsisHtml, false, true);
+                        }
                     }
-                    var synopsisHtml = '<div style="display: none;">'+synopsis+'</div>';
-
-                    flashm ("<div> #"+episode+" - "+epTitle+"<br> <small>"+epSubTitle+"</small> </div>" + imgHtml + synopsisHtml, false, true);
+                },
+                onerror: function(error) {
+                    con.log("error: "+error);
                 }
-            },
-            onerror: function(error) {
-                con.log("error: "+error);
-            }
-        });
+            });
+        }
     }
