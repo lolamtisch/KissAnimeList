@@ -739,7 +739,7 @@
                 var script = ($("#template_body script")[1]).innerHTML;
                 script = script.split('mediaMetadata =')[1].split('"name":"')[1].split(' -')[0];
                 //console.log(script);
-                return encodeURIComponent(script);
+                return script;
                 return url.split("/")[3];
             }
         };
@@ -838,6 +838,9 @@
         return url;
     };
     $.titleToDbKey = function(title) {
+        if( window.location.href.indexOf("crunchyroll.com") > -1 ){
+            return encodeURIComponent(title.toLowerCase().split('#')[0]);
+        }
         return title.toLowerCase().split('#')[0];
     };
 
