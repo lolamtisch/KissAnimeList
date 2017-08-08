@@ -1,4 +1,5 @@
-if (window.top != window.self) {return; }
+//if (window.top != window.self) {return; }
+//TODO: temporary workaround
     var googleover = 0;
 
     var con = console;

@@ -69,7 +69,8 @@
 
 (function() {
     'use strict';
-if (window.top != window.self) {return; }
+//if (window.top != window.self) {return; }
+//TODO: temporary workaround
     var googleover = 0;
 
     var con = console;
@@ -1242,7 +1243,9 @@ if (window.top != window.self) {return; }
                 "User-Agent": "Mozilla/5.0"
             },
             onload: function(response) {
-                url = response.finalUrl;
+                if(response.finalUrl != null){
+                    url = response.finalUrl;
+                }
                 url = firefoxUrl(url, response.responseText);
                 if(url.split("/").length > 6 && url.indexOf("myanimelist.net/"+localListType) > -1 && url.indexOf("google") === -1){
                     var partes = url.split("/");
