@@ -1,50 +1,48 @@
 // ==UserScript==
 // @name        KissAnimeList
-// @version     0.87.7
+// @version     0.87.8
 // @description Integrates MyAnimeList into diverse sites, with auto episode tracking.
 // @author      lolamtisch@gmail.com
 // @license     Creative Commons; http://creativecommons.org/licenses/by/4.0/
-// @include     /https?://kissanime.ru/Anime/*/
-// @include     /https?://kissanime.to/Anime/*/
-// @include     /https?://kissanime.ru/BookmarkList
-// @include     /https?://kissanime.to/BookmarkList
-// @exclude     /https?://kissanime.ru/AnimeList*
+// @include     http://kissanime.ru/Anime/*
+// @include     http://kissanime.to/Anime/*
+// @include     http://kissanime.ru/BookmarkList
+// @include     http://kissanime.to/BookmarkList
+// @exclude     http://kissanime.ru/AnimeList*
 //
-// @include     /https?://kissmanga.com/manga/*/
-// @include     /https?://kissmanga.com/BookmarkList
-// @exclude     /https?://kissmanga.com/MangaList*
+// @include     http://kissmanga.com/manga/*
+// @include     http://kissmanga.com/BookmarkList
+// @exclude     http://kissmanga.com/MangaList*
 //
-// @include     /https?://myanimelist.net/anime/*
-// @include     /https?://myanimelist.net/anime/*/
-// @include     /https?://myanimelist.net/manga/*
-// @include     /https?://myanimelist.net/manga/*/
-// @include     /https?://myanimelist.net/animelist/*/
+// @include     https://myanimelist.net/anime/*
+// @include     https://myanimelist.net/manga/*
+// @include     https://myanimelist.net/animelist/*
 //
-// @include     /https?://www.masterani.me/anime/info/*/
-// @include     /https?://www.masterani.me/anime/watch/*/
+// @include     https://www.masterani.me/anime/info/*
+// @include     https://www.masterani.me/anime/watch/*
 //
-// @include     /https?://9anime.to/watch/*/*/
+// @include     https://9anime.to/watch/*/*
 //
-// @include     /http://www.crunchyroll.com/*/
-// @exclude     /http://www.crunchyroll.com/videos*
-// @exclude     /http://www.crunchyroll.com/news*
-// @exclude     /http://www.crunchyroll.com/anime*
-// @exclude     /http://www.crunchyroll.com/forum*
-// @exclude     /http://www.crunchyroll.com/user*
-// @exclude     /http://www.crunchyroll.com/login*
-// @exclude     /http://www.crunchyroll.com/store*
-// @exclude     /http://www.crunchyroll.com/search*
-// @exclude     /http://www.crunchyroll.com/home*
-// @exclude     /http://www.crunchyroll.com/edit*
-// @exclude     /http://www.crunchyroll.com/acct*
-// @exclude     /http://www.crunchyroll.com/email*
-// @exclude     /http://www.crunchyroll.com/inbox*
-// @exclude     /http://www.crunchyroll.com/newprivate*
-// @exclude     /http://www.crunchyroll.com/outbox*
-// @exclude     /http://www.crunchyroll.com/pm*
-// @exclude     /http://www.crunchyroll.com/notifications*
-// @exclude     /http://www.crunchyroll.com/comics*
-// @exclude     /http://www.crunchyroll.com/order*
+// @include     http://www.crunchyroll.com/*
+// @exclude     http://www.crunchyroll.com/videos*
+// @exclude     http://www.crunchyroll.com/news*
+// @exclude     http://www.crunchyroll.com/anime*
+// @exclude     http://www.crunchyroll.com/forum*
+// @exclude     http://www.crunchyroll.com/user*
+// @exclude     http://www.crunchyroll.com/login*
+// @exclude     http://www.crunchyroll.com/store*
+// @exclude     http://www.crunchyroll.com/search*
+// @exclude     http://www.crunchyroll.com/home*
+// @exclude     http://www.crunchyroll.com/edit*
+// @exclude     http://www.crunchyroll.com/acct*
+// @exclude     http://www.crunchyroll.com/email*
+// @exclude     http://www.crunchyroll.com/inbox*
+// @exclude     http://www.crunchyroll.com/newprivate*
+// @exclude     http://www.crunchyroll.com/outbox*
+// @exclude     http://www.crunchyroll.com/pm*
+// @exclude     http://www.crunchyroll.com/notifications*
+// @exclude     http://www.crunchyroll.com/comics*
+// @exclude     http://www.crunchyroll.com/order*
 //
 // @require     http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js
 // @resource    materialCSS https://code.getmdl.io/1.3.0/material.indigo-pink.min.css
@@ -69,7 +67,8 @@
 
 (function() {
     'use strict';
-if (window.top != window.self) {return; }
+//if (window.top != window.self) {return; }
+//TODO: temporary workaround
     var googleover = 0;
 
     var con = console;
@@ -103,6 +102,8 @@ if (window.top != window.self) {return; }
 
     var displayFloatButton = GM_getValue( 'displayFloatButton', 1 );
 
+    var delay = GM_getValue( 'delay', 3 );
+
     var currentMalData = null;
 
     var curVersion = GM_info.script.version;
@@ -119,6 +120,9 @@ if (window.top != window.self) {return; }
                 break;
             case '0.87.3':
                 alert('Kissanimelist (v0.87.3)\n- Crunchyroll Support (Video page only)\n- Added MAL classic bookmark support\n- Added next episode links in MAL bookmarks');
+                break;
+            case '0.87.8':
+                alert('Kissanimelist (v0.87.8)\n- Android Support\n- Added Autoupdate delay settings');
                 break;
         }
     }
@@ -738,7 +742,7 @@ if (window.top != window.self) {return; }
                 var script = ($("#template_body script")[1]).innerHTML;
                 script = script.split('mediaMetadata =')[1].split('"name":"')[1].split(' -')[0];
                 //console.log(script);
-                return encodeURIComponent(script);
+                return script;
                 return url.split("/")[3];
             }
         };
@@ -837,6 +841,9 @@ if (window.top != window.self) {return; }
         return url;
     };
     $.titleToDbKey = function(title) {
+        if( window.location.href.indexOf("crunchyroll.com") > -1 ){
+            return encodeURIComponent(title.toLowerCase().split('#')[0]);
+        }
         return title.toLowerCase().split('#')[0];
     };
 
@@ -978,8 +985,6 @@ if (window.top != window.self) {return; }
                 //if(curEpisode > anime['.add_anime[num_watched_episodes]']){
                 var animechange = {};
                 animechange['.add_anime[num_watched_episodes]'] = curEpisode;
-                animechange['checkIncrease'] = 1;
-                setanime( $.normalUrl(),animechange);
             }else{
                 //update
                 var curChapter = urlToChapter(window.location.href);
@@ -989,9 +994,11 @@ if (window.top != window.self) {return; }
                 animechange['.add_manga[num_read_chapters]'] = curChapter;
                 animechange['.add_manga[num_read_volumes]'] = curVolume;
                 animechange['.add_manga[comments]'] = handleComment(window.location.href, anime['.add_manga[comments]']);
-                animechange['checkIncrease'] = 1;
-                setanime( $.normalUrl(),animechange);
             }
+            animechange['checkIncrease'] = 1;
+            setTimeout(function() {
+                setanime( $.normalUrl(),animechange);
+            }, delay * 1000);
         }
     }
 
@@ -1109,6 +1116,9 @@ if (window.top != window.self) {return; }
                     anime['.add_anime[start_date][day]'] = Datec.getDate();
                 }
             }
+            if(current['.add_anime[status]'] !== 2 && anime['.add_anime[status]'] == 2 && parseInt(anime['.add_anime[num_watched_episodes]']) !== current['totalEp']){
+                anime['.add_anime[num_watched_episodes]'] = current['totalEp'];
+            }
             return anime;
         }else{
             if(anime['checkIncrease'] === 1){
@@ -1164,6 +1174,10 @@ if (window.top != window.self) {return; }
                     anime['.add_manga[start_date][month]'] = Datec.getMonth()+1;
                     anime['.add_manga[start_date][day]'] = Datec.getDate();
                 }
+            }
+            if(current['.add_manga[status]'] !== 2 && anime['.add_manga[status]'] == 2 && parseInt(anime['.add_manga[num_read_chapters]']) !== current['totalChap']){
+                anime['.add_manga[num_read_chapters]'] = current['totalChap'];
+                anime['.add_manga[num_read_volumes]'] = current['totalVol'];
             }
             return anime;
         }
@@ -1242,7 +1256,9 @@ if (window.top != window.self) {return; }
                 "User-Agent": "Mozilla/5.0"
             },
             onload: function(response) {
-                url = response.finalUrl;
+                if(response.finalUrl != null){
+                    url = response.finalUrl;
+                }
                 url = firefoxUrl(url, response.responseText);
                 if(url.split("/").length > 6 && url.indexOf("myanimelist.net/"+localListType) > -1 && url.indexOf("google") === -1){
                     var partes = url.split("/");
@@ -1748,7 +1764,7 @@ if (window.top != window.self) {return; }
             var ui = '<p id="malp">';
             ui += '<span id="MalInfo">Loading</span>';
 
-            ui += '<span id="MalData" style="display: none; justify-content: space-between;">';
+            ui += '<span id="MalData" style="display: none; justify-content: space-between; flex-wrap: wrap;">';
 
             ui += wrapStart;
             ui += '<span class="info">Mal Score: </span>';
@@ -2377,7 +2393,10 @@ if (window.top != window.self) {return; }
     function createIframe(){
         if( !($('#info-popup').height()) ){
             //var position = 'width: 80%; height: 70%; position: absolute; top: 15%; left: 10%';
-            var position = 'min-width: 500px; width: 30%; height: 90%; position: absolute; top: 10%; left: 0%';//phone
+            var position = 'max-width: 100vw; min-width: 500px; width: 30%; height: 90%; position: absolute; top: 10%; left: 0%';//phone
+            if($(window).width() < 500){
+              position = 'width: 100vw; height: 100%; position: absolute; top: 0%; left: 0%';
+            }
             var material = '<dialog class="modal" id="info-popup" style="pointer-events: none;display: none; position: fixed;z-index: 999;left: 0;top: 0;bottom: 0;width: 100%; height: 100%; background-color: transparent; padding: 0; margin: 0;">';
             material += '<div id="modal-content" class="modal-content" Style="pointer-events: all;background-color: #fefefe; margin: 0; '+position+'">';
             //material += '<iframe id="info-iframe" style="height:100%;width:100%;border:0;"></iframe>';
@@ -2453,7 +2472,7 @@ if (window.top != window.self) {return; }
               <div id="loadOverview" class="mdl-progress mdl-js-progress mdl-progress__indeterminate" style="width: 100%; position: absolute;"></div>\
               <div class="page-content">\
               <div class="mdl-grid">\
-                <div class="mdl-cell mdl-cell--1-col mdl-cell--8-col-tablet mdl-shadow--4dp stats-block malClear" style="min-width: 120px;">\
+                <div class="mdl-cell mdl-cell--1-col mdl-cell--8-col-tablet mdl-cell--6-col-phone mdl-shadow--4dp stats-block malClear" style="min-width: 120px;">\
                     \
                 </div>\
                 <div class="mdl-grid mdl-cell mdl-shadow--4dp coverinfo malClear" style="display:block; flex-grow: 100; min-width: 70%;">\
@@ -2625,6 +2644,12 @@ if (window.top != window.self) {return; }
                                 <h2 class="mdl-card__title-text">ETC</h2>\
                                 </div>';
                 settingsUI += materialCheckbox(displayFloatButton,'displayFloatButton','Floating menu button');
+                settingsUI += '<li class="mdl-list__item">\
+                                  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width: 100%;">\
+                                      <input class="mdl-textfield__input" type="number" step="1" id="malDelay" value="'+delay+'">\
+                                  <label class="mdl-textfield__label" for="malDelay">Autoupdate delay (Seconds)</label>\
+                                  </div>\
+                              </li>';
                 settingsUI += '<li class="mdl-list__item"><button type="button" id="clearCache" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">Clear Cache</button></li>';
                 settingsUI += '</div>';
 
@@ -2641,6 +2666,21 @@ if (window.top != window.self) {return; }
                 local_setValue($.normalUrl()+'#newCorrection', murl);
                 flashm( "new url '"+murl+"' set." , false);
                 checkdata();
+            });
+
+            $("#info-iframe").contents().find("#malDelay").on("input", function(){
+                var tempDelay = $("#info-iframe").contents().find("#malDelay").val();
+                if(tempDelay !== null){
+                    if(tempDelay !== ''){
+                        delay = tempDelay;
+                        GM_setValue( 'delay', tempDelay );
+                        flashm( "New delay ("+delay+") set." , false);
+                    }else{
+                        delay = 3;
+                        GM_deleteValue( 'delay' );
+                        flashm( "Delay reset" , false);
+                    }
+                }
             });
 
             $("#info-iframe").contents().find("#malOffset").on("input", function(){
@@ -2759,7 +2799,7 @@ if (window.top != window.self) {return; }
         try{
             var statsBlock = data.split('<h2>Statistics</h2>')[1].split('<h2>')[0];
             var html = $.parseHTML( statsBlock );
-            var statsHtml = '<ul class="mdl-list mdl-grid mdl-grid--no-spacing mdl-cell mdl-cell--12-col">';
+            var statsHtml = '<ul class="mdl-list mdl-grid mdl-grid--no-spacing mdl-cell mdl-cell--12-col" style="display: flex; justify-content: space-around;">';
             $.each($(html).filter('div').slice(0,5), function( index, value ) {
                 statsHtml += '<li class="mdl-list__item mdl-list__item--two-line" style="padding: 0; padding-left: 10px; padding-right: 3px; min-width: 18%;">';
                     statsHtml += '<span class="mdl-list__item-primary-content">';
