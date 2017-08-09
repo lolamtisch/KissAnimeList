@@ -121,6 +121,9 @@
             case '0.87.3':
                 alert('Kissanimelist (v0.87.3)\n- Crunchyroll Support (Video page only)\n- Added MAL classic bookmark support\n- Added next episode links in MAL bookmarks');
                 break;
+            case '0.87.8':
+                alert('Kissanimelist (v0.87.8)\n- Android Support\n- Added Autoupdate delay settings');
+                break;
         }
     }
     GM_setValue( 'Version', curVersion );
