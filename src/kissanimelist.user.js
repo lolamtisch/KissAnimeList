@@ -102,6 +102,8 @@
 
     var displayFloatButton = GM_getValue( 'displayFloatButton', 1 );
 
+    var delay = GM_getValue( 'delay', 3 );
+
     var currentMalData = null;
 
     var curVersion = GM_info.script.version;
@@ -980,8 +982,6 @@
                 //if(curEpisode > anime['.add_anime[num_watched_episodes]']){
                 var animechange = {};
                 animechange['.add_anime[num_watched_episodes]'] = curEpisode;
-                animechange['checkIncrease'] = 1;
-                setanime( $.normalUrl(),animechange);
             }else{
                 //update
                 var curChapter = urlToChapter(window.location.href);
@@ -991,9 +991,11 @@
                 animechange['.add_manga[num_read_chapters]'] = curChapter;
                 animechange['.add_manga[num_read_volumes]'] = curVolume;
                 animechange['.add_manga[comments]'] = handleComment(window.location.href, anime['.add_manga[comments]']);
-                animechange['checkIncrease'] = 1;
-                setanime( $.normalUrl(),animechange);
             }
+            animechange['checkIncrease'] = 1;
+            setTimeout(function() {
+                setanime( $.normalUrl(),animechange);
+            }, delay * 1000);
         }
     }
 
@@ -2632,6 +2634,12 @@
                                 <h2 class="mdl-card__title-text">ETC</h2>\
                                 </div>';
                 settingsUI += materialCheckbox(displayFloatButton,'displayFloatButton','Floating menu button');
+                settingsUI += '<li class="mdl-list__item">\
+                                  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width: 100%;">\
+                                      <input class="mdl-textfield__input" type="number" step="1" id="malDelay" value="'+delay+'">\
+                                  <label class="mdl-textfield__label" for="malDelay">Autoupdate delay (Seconds)</label>\
+                                  </div>\
+                              </li>';
                 settingsUI += '<li class="mdl-list__item"><button type="button" id="clearCache" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">Clear Cache</button></li>';
                 settingsUI += '</div>';
 
@@ -2648,6 +2656,21 @@
                 local_setValue($.normalUrl()+'#newCorrection', murl);
                 flashm( "new url '"+murl+"' set." , false);
                 checkdata();
+            });
+
+            $("#info-iframe").contents().find("#malDelay").on("input", function(){
+                var tempDelay = $("#info-iframe").contents().find("#malDelay").val();
+                if(tempDelay !== null){
+                    if(tempDelay !== ''){
+                        delay = tempDelay;
+                        GM_setValue( 'delay', tempDelay );
+                        flashm( "New delay ("+delay+") set." , false);
+                    }else{
+                        delay = 3;
+                        GM_deleteValue( 'delay' );
+                        flashm( "Delay reset" , false);
+                    }
+                }
             });
 
             $("#info-iframe").contents().find("#malOffset").on("input", function(){

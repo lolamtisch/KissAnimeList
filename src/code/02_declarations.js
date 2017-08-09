@@ -33,6 +33,8 @@
 
     var displayFloatButton = GM_getValue( 'displayFloatButton', 1 );
 
+    var delay = GM_getValue( 'delay', 3 );
+
     var currentMalData = null;
 
     var curVersion = GM_info.script.version;
