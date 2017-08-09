@@ -1761,7 +1761,7 @@
             var ui = '<p id="malp">';
             ui += '<span id="MalInfo">Loading</span>';
 
-            ui += '<span id="MalData" style="display: none; justify-content: space-between;">';
+            ui += '<span id="MalData" style="display: none; justify-content: space-between; flex-wrap: wrap;">';
 
             ui += wrapStart;
             ui += '<span class="info">Mal Score: </span>';
@@ -2796,7 +2796,7 @@
         try{
             var statsBlock = data.split('<h2>Statistics</h2>')[1].split('<h2>')[0];
             var html = $.parseHTML( statsBlock );
-            var statsHtml = '<ul class="mdl-list mdl-grid mdl-grid--no-spacing mdl-cell mdl-cell--12-col">';
+            var statsHtml = '<ul class="mdl-list mdl-grid mdl-grid--no-spacing mdl-cell mdl-cell--12-col" style="display: flex; justify-content: space-around;">';
             $.each($(html).filter('div').slice(0,5), function( index, value ) {
                 statsHtml += '<li class="mdl-list__item mdl-list__item--two-line" style="padding: 0; padding-left: 10px; padding-right: 3px; min-width: 18%;">';
                     statsHtml += '<span class="mdl-list__item-primary-content">';
