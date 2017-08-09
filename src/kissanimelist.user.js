@@ -2469,7 +2469,7 @@
               <div id="loadOverview" class="mdl-progress mdl-js-progress mdl-progress__indeterminate" style="width: 100%; position: absolute;"></div>\
               <div class="page-content">\
               <div class="mdl-grid">\
-                <div class="mdl-cell mdl-cell--1-col mdl-cell--8-col-tablet mdl-shadow--4dp stats-block malClear" style="min-width: 120px;">\
+                <div class="mdl-cell mdl-cell--1-col mdl-cell--8-col-tablet mdl-cell--6-col-phone mdl-shadow--4dp stats-block malClear" style="min-width: 120px;">\
                     \
                 </div>\
                 <div class="mdl-grid mdl-cell mdl-shadow--4dp coverinfo malClear" style="display:block; flex-grow: 100; min-width: 70%;">\
