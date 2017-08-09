@@ -76,9 +76,10 @@ Just install the Script and be sure to be logged in on MyAnimeList, like you nor
 Tested with:
 <a href="https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo?hl=en">Tampermonkey</a> (Chrome)
 <a href="https://addons.mozilla.org/de/firefox/addon/tampermonkey/">Tampermonkey</a> (Firefox)
+Android (Only works on <a href="https://play.google.com/store/apps/details?id=org.mozilla.firefox">Firefox</a> with the <a href="https://addons.mozilla.org/en-GB/android/addon/userunified-script-injector/">usi (User|Unified Script Injector)</a> extension)
 
 Works on: (Community feedback)
-Tampermonkey (Vivaldi) [v0.86.7 - 21.06.2017 - Steven Dino Windfeld] 
+Tampermonkey (Vivaldi) [v0.86.7 - 21.06.2017 - Steven Dino Windfeld]
 
 Bookmarks not working on:
 <a href="https://addons.mozilla.org/de/firefox/addon/greasemonkey/">Greasemonkey</a> (Firefox)
