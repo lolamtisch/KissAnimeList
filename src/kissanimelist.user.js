@@ -668,7 +668,20 @@
 
         $.init = function() {
             $( document).ready(function(){
-                checkdata();
+                if( $('.season-dropdown').length > 1){
+                    $('.season-dropdown').append('<span class="exclusivMal" style="float: right; margin-right: 20px; color: #0A6DA4;" onclick="return false;">MAL</span>');
+                    $('.exclusivMal').click(function(){
+                        $('#showview_content').before('<div><a href="">Show hidden seasons</a></div>');
+                        var thisparent =  $(this).parent();
+                        $('.season-dropdown').not(thisparent).siblings().remove();
+                        $('.season-dropdown').not(thisparent).remove();
+                        $('.exclusivMal').remove();
+                        checkdata();
+                    });
+                    return;
+                }else{
+                    checkdata();
+                }
             });
         }
 
