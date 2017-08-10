@@ -252,7 +252,7 @@
                                 <h2 class="mdl-card__title-text">ETC</h2>\
                                 </div>';
                 settingsUI += materialCheckbox(displayFloatButton,'displayFloatButton','Floating menu button');
-                settingsUI += materialCheckbox(episodeInfoBox,'episodeInfoBox','Episode info box');
+                //settingsUI += materialCheckbox(episodeInfoBox,'episodeInfoBox','Episode info box');
                 settingsUI += '<li class="mdl-list__item">\
                                   <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width: 100%;">\
                                       <input class="mdl-textfield__input" type="number" step="1" id="malDelay" value="'+delay+'">\
