@@ -1,7 +1,10 @@
     function createIframe(){
         if( !($('#info-popup').height()) ){
             //var position = 'width: 80%; height: 70%; position: absolute; top: 15%; left: 10%';
-            var position = 'min-width: 500px; width: 30%; height: 90%; position: absolute; top: 10%; left: 0%';//phone
+            var position = 'max-width: 100vw; min-width: 500px; width: 30%; height: 90%; position: absolute; top: 10%; left: 0%';//phone
+            if($(window).width() < 500){
+              position = 'width: 100vw; height: 100%; position: absolute; top: 0%; left: 0%';
+            }
             var material = '<dialog class="modal" id="info-popup" style="pointer-events: none;display: none; position: fixed;z-index: 999;left: 0;top: 0;bottom: 0;width: 100%; height: 100%; background-color: transparent; padding: 0; margin: 0;">';
             material += '<div id="modal-content" class="modal-content" Style="pointer-events: all;background-color: #fefefe; margin: 0; '+position+'">';
             //material += '<iframe id="info-iframe" style="height:100%;width:100%;border:0;"></iframe>';
@@ -77,7 +80,7 @@
               <div id="loadOverview" class="mdl-progress mdl-js-progress mdl-progress__indeterminate" style="width: 100%; position: absolute;"></div>\
               <div class="page-content">\
               <div class="mdl-grid">\
-                <div class="mdl-cell mdl-cell--1-col mdl-cell--8-col-tablet mdl-shadow--4dp stats-block malClear" style="min-width: 120px;">\
+                <div class="mdl-cell mdl-cell--1-col mdl-cell--8-col-tablet mdl-cell--6-col-phone mdl-shadow--4dp stats-block malClear" style="min-width: 120px;">\
                     \
                 </div>\
                 <div class="mdl-grid mdl-cell mdl-shadow--4dp coverinfo malClear" style="display:block; flex-grow: 100; min-width: 70%;">\
@@ -250,6 +253,12 @@
                                 </div>';
                 settingsUI += materialCheckbox(displayFloatButton,'displayFloatButton','Floating menu button');
                 settingsUI += materialCheckbox(episodeInfoBox,'episodeInfoBox','Episode info box');
+                settingsUI += '<li class="mdl-list__item">\
+                                  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width: 100%;">\
+                                      <input class="mdl-textfield__input" type="number" step="1" id="malDelay" value="'+delay+'">\
+                                  <label class="mdl-textfield__label" for="malDelay">Autoupdate delay (Seconds)</label>\
+                                  </div>\
+                              </li>';
                 settingsUI += '<li class="mdl-list__item"><button type="button" id="clearCache" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">Clear Cache</button></li>';
                 settingsUI += '</div>';
 
@@ -266,6 +275,21 @@
                 local_setValue($.normalUrl()+'#newCorrection', murl);
                 flashm( "new url '"+murl+"' set." , false);
                 checkdata();
+            });
+
+            $("#info-iframe").contents().find("#malDelay").on("input", function(){
+                var tempDelay = $("#info-iframe").contents().find("#malDelay").val();
+                if(tempDelay !== null){
+                    if(tempDelay !== ''){
+                        delay = tempDelay;
+                        GM_setValue( 'delay', tempDelay );
+                        flashm( "New delay ("+delay+") set." , false);
+                    }else{
+                        delay = 3;
+                        GM_deleteValue( 'delay' );
+                        flashm( "Delay reset" , false);
+                    }
+                }
             });
 
             $("#info-iframe").contents().find("#malOffset").on("input", function(){
@@ -393,7 +417,7 @@
         try{
             var statsBlock = data.split('<h2>Statistics</h2>')[1].split('<h2>')[0];
             var html = $.parseHTML( statsBlock );
-            var statsHtml = '<ul class="mdl-list mdl-grid mdl-grid--no-spacing mdl-cell mdl-cell--12-col">';
+            var statsHtml = '<ul class="mdl-list mdl-grid mdl-grid--no-spacing mdl-cell mdl-cell--12-col" style="display: flex; justify-content: space-around;">';
             $.each($(html).filter('div').slice(0,5), function( index, value ) {
                 statsHtml += '<li class="mdl-list__item mdl-list__item--two-line" style="padding: 0; padding-left: 10px; padding-right: 3px; min-width: 18%;">';
                     statsHtml += '<span class="mdl-list__item-primary-content">';

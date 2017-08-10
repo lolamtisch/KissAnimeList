@@ -130,7 +130,6 @@
                 //if(curEpisode > anime['.add_anime[num_watched_episodes]']){
                 var animechange = {};
                 animechange['.add_anime[num_watched_episodes]'] = curEpisode;
-
                 episodeInfo(curEpisode, anime['malurl']);
             }else{
                 //update
@@ -143,7 +142,9 @@
                 animechange['.add_manga[comments]'] = handleComment(window.location.href, anime['.add_manga[comments]']);
             }
             animechange['checkIncrease'] = 1;
-            setanime( $.normalUrl(),animechange);
+            setTimeout(function() {
+                setanime( $.normalUrl(),animechange);
+            }, delay * 1000);
         }
     }
 
@@ -261,6 +262,9 @@
                     anime['.add_anime[start_date][day]'] = Datec.getDate();
                 }
             }
+            if(current['.add_anime[status]'] !== 2 && anime['.add_anime[status]'] == 2 && parseInt(anime['.add_anime[num_watched_episodes]']) !== current['totalEp']){
+                anime['.add_anime[num_watched_episodes]'] = current['totalEp'];
+            }
             return anime;
         }else{
             if(anime['checkIncrease'] === 1){
@@ -316,6 +320,10 @@
                     anime['.add_manga[start_date][month]'] = Datec.getMonth()+1;
                     anime['.add_manga[start_date][day]'] = Datec.getDate();
                 }
+            }
+            if(current['.add_manga[status]'] !== 2 && anime['.add_manga[status]'] == 2 && parseInt(anime['.add_manga[num_read_chapters]']) !== current['totalChap']){
+                anime['.add_manga[num_read_chapters]'] = current['totalChap'];
+                anime['.add_manga[num_read_volumes]'] = current['totalVol'];
             }
             return anime;
         }
