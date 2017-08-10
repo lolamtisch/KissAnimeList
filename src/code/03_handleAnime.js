@@ -130,7 +130,6 @@
                 //if(curEpisode > anime['.add_anime[num_watched_episodes]']){
                 var animechange = {};
                 animechange['.add_anime[num_watched_episodes]'] = curEpisode;
-                episodeInfo(curEpisode, anime['malurl']);
             }else{
                 //update
                 var curChapter = urlToChapter(window.location.href);

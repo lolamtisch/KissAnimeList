@@ -999,7 +999,6 @@
                 //if(curEpisode > anime['.add_anime[num_watched_episodes]']){
                 var animechange = {};
                 animechange['.add_anime[num_watched_episodes]'] = curEpisode;
-                episodeInfo(curEpisode, anime['malurl']);
             }else{
                 //update
                 var curChapter = urlToChapter(window.location.href);
@@ -1475,11 +1474,15 @@
             return;
         }
 
+        var change = $.extend({},anime);
         if(localListType == 'anime'){
             var url = "https://myanimelist.net/editlist.php?type=anime&id="+actual['.anime_id'];
             if(actual['addanime'] === 1){
                 url = "https://myanimelist.net/ownlist/anime/add?selected_series_id="+actual['.anime_id'];
                 if (!confirm('Add "'+actual['name']+'" to MAL?')) {
+                    if(change['checkIncrease'] == 1){
+                        episodeInfo(change['.add_anime[num_watched_episodes]'], actual['malurl']);
+                    }
                     return;
                 }
             }
@@ -1492,9 +1495,12 @@
                 }
             }
         }
-        var change = anime;
+
         anime = handleanimeupdate( anime, actual );
         if(anime === null){
+            if(change['checkIncrease'] == 1 && localListType == 'anime'){
+                episodeInfo(change['.add_anime[num_watched_episodes]'], actual['malurl']);
+            }
             return;
         }
         $.each( anime, function( index, value ){
@@ -1568,6 +1574,7 @@
                                     undoAnime['checkIncrease'] = 0;
                                     setanime(thisUrl, undoAnime, null, localListType);
                                 });
+                                episodeInfo(change['.add_anime[num_watched_episodes]'], actual['malurl']);
                             }else{
                                 flashm( message , false);
                             }
