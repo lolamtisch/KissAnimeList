@@ -1574,7 +1574,7 @@
                                     undoAnime['checkIncrease'] = 0;
                                     setanime(thisUrl, undoAnime, null, localListType);
                                 });
-                                episodeInfo(change['.add_anime[num_watched_episodes]'], actual['malurl']);
+                                episodeInfo(change['.add_anime[num_watched_episodes]'], actual['malurl'], message);
                             }else{
                                 flashm( message , false);
                             }
@@ -1793,7 +1793,7 @@
         return title;
     }
 
-    function episodeInfo(episode, malUrl){
+    function episodeInfo(episode, malUrl, message = ''){
         if(episodeInfoBox){
             con.log('Episode Info',malUrl+'/episode/'+episode);
             GM_xmlhttpRequest({
@@ -1801,6 +1801,9 @@
                 method: "GET",
                 onload: function (response) {
                     if(response.response != null){
+                        if(message != ''){
+                            message = "<div style='white-space: nowrap; margin-left: 15px;'> "+ message +"</div>";
+                        }
                         var data = response.response;
                         var synopsis = '';
                         var epTitle = '';
@@ -1824,12 +1827,12 @@
 
                         var imgHtml = '';
                         if(imgUrl != ''){
-                            imgHtml = '<img style = "margin-top: 15px;" src="'+imgUrl+'"/>';
+                            imgHtml = '<img style = "margin-top: 15px; height: 100px;" src="'+imgUrl+'"/>';
                         }
                         var synopsisHtml = '<div style="display: none;">'+synopsis+'</div>';
 
                         if(epTitle != ''){
-                            flashm ("<div> #"+episode+" - "+epTitle+"<br> <small>"+epSubTitle+"</small> </div>" + imgHtml + synopsisHtml, false, true);
+                            flashm ( '<div style="display: flex; align-items: center;"><div style="white-space: nowrap;"">#'+episode+" - "+epTitle+"<br> <small>"+epSubTitle+'</small><br>' + imgHtml + "</div>"+ message +" </div>" + synopsisHtml, false, true);
                         }
                     }
                 },
