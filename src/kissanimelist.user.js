@@ -101,7 +101,7 @@
     var crunchyrollLinks = GM_getValue( 'crunchyrollLinks', 1 );
 
     var displayFloatButton = GM_getValue( 'displayFloatButton', 1 );
-    var episodeInfoBox = GM_getValue( 'episodeInfoBox', 1 );
+    var episodeInfoBox = GM_getValue( 'episodeInfoBox', 0 );
 
     var delay = GM_getValue( 'delay', 3 );
 
@@ -2736,7 +2736,7 @@
                                 <h2 class="mdl-card__title-text">ETC</h2>\
                                 </div>';
                 settingsUI += materialCheckbox(displayFloatButton,'displayFloatButton','Floating menu button');
-                settingsUI += materialCheckbox(episodeInfoBox,'episodeInfoBox','Episode info box');
+                //settingsUI += materialCheckbox(episodeInfoBox,'episodeInfoBox','Episode info box');
                 settingsUI += '<li class="mdl-list__item">\
                                   <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width: 100%;">\
                                       <input class="mdl-textfield__input" type="number" step="1" id="malDelay" value="'+delay+'">\
