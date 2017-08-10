@@ -1,4 +1,5 @@
-if (window.top != window.self) {return; }
+//if (window.top != window.self) {return; }
+//TODO: temporary workaround
     var googleover = 0;
 
     var con = console;
@@ -33,6 +34,8 @@ if (window.top != window.self) {return; }
     var displayFloatButton = GM_getValue( 'displayFloatButton', 1 );
     var episodeInfoBox = GM_getValue( 'episodeInfoBox', 1 );
 
+    var delay = GM_getValue( 'delay', 3 );
+
     var currentMalData = null;
 
     var curVersion = GM_info.script.version;
@@ -49,6 +52,9 @@ if (window.top != window.self) {return; }
                 break;
             case '0.87.3':
                 alert('Kissanimelist (v0.87.3)\n- Crunchyroll Support (Video page only)\n- Added MAL classic bookmark support\n- Added next episode links in MAL bookmarks');
+                break;
+            case '0.87.8':
+                alert('Kissanimelist (v0.87.8)\n- Android Support\n- Added Autoupdate delay settings');
                 break;
         }
     }
@@ -668,7 +674,7 @@ if (window.top != window.self) {return; }
                 var script = ($("#template_body script")[1]).innerHTML;
                 script = script.split('mediaMetadata =')[1].split('"name":"')[1].split(' -')[0];
                 //console.log(script);
-                return encodeURIComponent(script);
+                return script;
                 return url.split("/")[3];
             }
         };
@@ -767,6 +773,9 @@ if (window.top != window.self) {return; }
         return url;
     };
     $.titleToDbKey = function(title) {
+        if( window.location.href.indexOf("crunchyroll.com") > -1 ){
+            return encodeURIComponent(title.toLowerCase().split('#')[0]);
+        }
         return title.toLowerCase().split('#')[0];
     };
 
