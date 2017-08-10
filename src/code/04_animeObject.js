@@ -348,7 +348,7 @@
                                     undoAnime['checkIncrease'] = 0;
                                     setanime(thisUrl, undoAnime, null, localListType);
                                 });
-                                episodeInfo(change['.add_anime[num_watched_episodes]'], actual['malurl']);
+                                episodeInfo(change['.add_anime[num_watched_episodes]'], actual['malurl'], message);
                             }else{
                                 flashm( message , false);
                             }
