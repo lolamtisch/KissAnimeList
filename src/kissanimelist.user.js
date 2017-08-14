@@ -883,6 +883,12 @@
             return $();
         };
         $.handleNextLink = function(truelink, anime){
+            if(truelink == null){
+                var nextEp = parseInt(anime['.add_anime[num_watched_episodes]'])+1;
+                if(nextEp <= parseInt(anime['totalEp'])){
+                    return '<a style="color: white;" href="/'+$.normalUrl().split('/')[4]+'-episode-'+nextEp+'">Ep '+nextEp+'</a>';
+                }
+            }
             return truelink;
         };
 
