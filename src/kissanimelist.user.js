@@ -102,6 +102,7 @@
     var masteraniLinks = GM_getValue( 'masteraniLinks', 1 );
     var nineanimeLinks = GM_getValue( 'nineanimeLinks', 1 );
     var crunchyrollLinks = GM_getValue( 'crunchyrollLinks', 1 );
+    var gogoanimeLinks = GM_getValue( 'gogoanimeLinks', 1 );
 
     var displayFloatButton = GM_getValue( 'displayFloatButton', 1 );
     var episodeInfoBox = GM_getValue( 'episodeInfoBox', 0 );
@@ -2454,11 +2455,15 @@
             if(crunchyrollLinks != 0){
                 sites.push('Crunchyroll');
             }
+            if(gogoanimeLinks != 0){
+                sites.push('Gogoanime');
+            }
             if(searchLinks != 0){
                 $('h2:contains("Information")').before('<h2 id="siteSearch">Search</h2><br>');
                 if(type == 'anime'){
                     $('#siteSearch').after('<div></div>');
                     $('#siteSearch').after('<div><a target="_blank" href="http://www.google.com/search?q=site:www.masterani.me/anime/info/+'+encodeURI($('#contentWrapper > div:first-child span').text())+'">Masterani (Google)</a> <a target="_blank" href="https://www.masterani.me/anime?search='+$('#contentWrapper > div:first-child span').text()+'">(Site)</a></div>');
+                    $('#siteSearch').after('<div><a target="_blank" href="http://www.gogoanime.tv/search.html?keyword='+$('#contentWrapper > div:first-child span').text()+'">Gogoanime</a></div>');
                     $('#siteSearch').after('<div><a target="_blank" href="http://www.crunchyroll.com/search?q='+$('#contentWrapper > div:first-child span').text()+'">Crunchyroll</a></div>');
                     $('#siteSearch').after('<div><a target="_blank" href="https://9anime.to/search?keyword='+$('#contentWrapper > div:first-child span').text()+'">9anime</a></div>');
                     $('#siteSearch').after('<form target="_blank" action="http://kissanime.ru/Search/Anime" id="kissanimeSearch" method="post" _lpchecked="1"><a href="#" onclick="return false;" class="submitKissanimeSearch">Kissanime</a><input type="hidden" id="keyword" name="keyword" value="'+$('#contentWrapper > div:first-child span').text()+'"/></form>');
@@ -2836,6 +2841,7 @@
                 settingsUI += materialCheckbox(masteraniLinks,'masteraniLinks','Masterani.me links');
                 settingsUI += materialCheckbox(nineanimeLinks,'nineanimeLinks','9anime links');
                 settingsUI += materialCheckbox(crunchyrollLinks,'crunchyrollLinks','Crunchyroll links');
+                settingsUI += materialCheckbox(gogoanimeLinks,'gogoanimeLinks','Gogoanime links');
                 settingsUI += '</div>';
 
                 settingsUI += '<div class="mdl-cell mdl-cell--12-col mdl-shadow--4dp">\
@@ -2957,6 +2963,15 @@
                 }else{
                     GM_setValue('crunchyrollLinks', 0);
                     crunchyrollLinks = 0;
+                }
+            });
+            $("#info-iframe").contents().find('#gogoanimeLinks').change(function(){
+                if($(this).is(":checked")){
+                    GM_setValue('gogoanimeLinks', 1);
+                    gogoanimeLinks = 1;
+                }else{
+                    GM_setValue('gogoanimeLinks', 0);
+                    gogoanimeLinks = 0;
                 }
             });
             $("#info-iframe").contents().find('#displayFloatButton').change(function(){
