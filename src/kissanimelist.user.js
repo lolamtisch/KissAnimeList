@@ -137,6 +137,9 @@
             case '0.87.8':
                 alert('Kissanimelist (v0.87.8)\n- Android Support\n- Added Autoupdate delay settings');
                 break;
+            case '0.87.9':
+                alert('Kissanimelist (v0.87.9)\n- Gogoanime Support\n- Crunchyroll multiple season support');
+                break;
         }
     }
     GM_setValue( 'Version', curVersion );
