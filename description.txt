@@ -21,6 +21,10 @@
     <td>crunchyroll.com</td>
     <td></td>
   </tr>
+  <tr>
+    <td>goganime.tv/io</td>
+    <td></td>
+  </tr>
   <tr><td>&nbsp;</td></tr>
 </table>
 
@@ -33,11 +37,13 @@
 <img src='https://raw.githubusercontent.com/Franciscoseipel/Mal-for-Kissanime-Greasymonkey-/master/Screenshots/Myanimelist_sidebar.png'>
 - Adds oneklick search links
 - Shows direct links using an at the moment not complet Database.
-<code>Database: (24.07.2017)
-kissanime 2519 / ~7500
-kissmanga 1473 / ~12500
-masterani 430 / ~2500
-9anime 776 / ~7500</code>
+<code>Database: (14.08.2017)
+kissanime 2776 / ~7500
+kissmanga 1665 / ~12500
+masterani 500 / ~2500
+9anime 1006 / ~7500
+crunchyroll 56 / ~1000
+gogoanime 1 / ~4000</code>
 
 <img src='https://raw.githubusercontent.com/Franciscoseipel/Mal-for-Kissanime-Greasymonkey-/master/Screenshots/continue%20watching.png'>
 - Displays the last opened viewing page and a link to the next episode on your MAL Bookmarks page
