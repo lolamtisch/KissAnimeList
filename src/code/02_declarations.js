@@ -762,6 +762,9 @@
         //###########################
     }else if( window.location.href.indexOf("gogoanime.") > -1 ){
         //#########Gogoanime.tv#########
+        if(!window.location.href.split('/')[3]){
+            return;
+        }
         var domain = window.location.href.split('/').slice(0,3).join('/')+'/';
         var textColor = 'white';
         var dbSelector = 'Gogoanime';
