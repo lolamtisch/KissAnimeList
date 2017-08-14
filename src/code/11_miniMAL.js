@@ -245,6 +245,7 @@
                 settingsUI += materialCheckbox(masteraniLinks,'masteraniLinks','Masterani.me links');
                 settingsUI += materialCheckbox(nineanimeLinks,'nineanimeLinks','9anime links');
                 settingsUI += materialCheckbox(crunchyrollLinks,'crunchyrollLinks','Crunchyroll links');
+                settingsUI += materialCheckbox(gogoanimeLinks,'gogoanimeLinks','Gogoanime links');
                 settingsUI += '</div>';
 
                 settingsUI += '<div class="mdl-cell mdl-cell--12-col mdl-shadow--4dp">\
@@ -366,6 +367,15 @@
                 }else{
                     GM_setValue('crunchyrollLinks', 0);
                     crunchyrollLinks = 0;
+                }
+            });
+            $("#info-iframe").contents().find('#gogoanimeLinks').change(function(){
+                if($(this).is(":checked")){
+                    GM_setValue('gogoanimeLinks', 1);
+                    gogoanimeLinks = 1;
+                }else{
+                    GM_setValue('gogoanimeLinks', 0);
+                    gogoanimeLinks = 0;
                 }
             });
             $("#info-iframe").contents().find('#displayFloatButton').change(function(){
