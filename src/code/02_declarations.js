@@ -39,6 +39,8 @@
 
     var currentMalData = null;
 
+    var loadingText = 'Loading';
+
     var curVersion = GM_info.script.version;
     if(curVersion != GM_getValue( 'Version', null ) && GM_getValue( 'Version', null ) != null){
         switch(curVersion) {

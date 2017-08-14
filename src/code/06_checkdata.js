@@ -10,7 +10,7 @@
             var wrapEnd = '</span>';
 
             var ui = '<p id="malp">';
-            ui += '<span id="MalInfo">Loading</span>';
+            ui += '<span id="MalInfo">'+loadingText+'</span>';
 
             ui += '<span id="MalData" style="display: none; justify-content: space-between; flex-wrap: wrap;">';
 
