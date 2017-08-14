@@ -22,7 +22,7 @@
     <td></td>
   </tr>
   <tr>
-    <td>goganime.tv/io</td>
+    <td>gogoanime.tv/io</td>
     <td></td>
   </tr>
   <tr><td>&nbsp;</td></tr>
