@@ -28,17 +28,29 @@
                     GM_setValue( dbSelector+'/'+$.titleToDbKey($.urlAnimeTitle(thisUrl))+'/Crunch', 'yes' );
                 }
             }
-            GM_xmlhttpRequest({
-                url: 'https://kissanimelist.firebaseio.com/Request/'+dbSelector+'Request.json',
-                method: "POST",
-                data: JSON.stringify(param),
-                onload: function () {
-                    con.log("Send to database: ",param);
-                },
-                onerror: function(error) {
-                    con.log("Send to database: ",error);
+
+            var toDB = 1;
+            if(thisUrl.indexOf("#newCorrection") >= 0){
+                toDB = 0;
+                if (confirm('Submit database correction request? \n If it does not exist on MAL, please leave empty.')) {
+                    toDB = 1;
                 }
-            });
+            }
+
+
+            if(toDB == 1){
+                GM_xmlhttpRequest({
+                    url: 'https://kissanimelist.firebaseio.com/Request/'+dbSelector+'Request.json',
+                    method: "POST",
+                    data: JSON.stringify(param),
+                    onload: function () {
+                        con.log("Send to database: ",param);
+                    },
+                    onerror: function(error) {
+                        con.log("Send to database: ",error);
+                    }
+                });
+            }
         }
         GM_setValue( dbSelector+'/'+$.titleToDbKey($.urlAnimeTitle(thisUrl))+'/Mal', malurl );
     }

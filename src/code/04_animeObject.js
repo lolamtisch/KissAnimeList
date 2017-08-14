@@ -21,7 +21,8 @@
             url = absolute;
         }
 
-        if(url === ''){
+        if(url == '' || url == null){
+            loadingText = "No Mal Entry!";
             $("#MalInfo").text("No Mal Entry!");
             return;
         }
