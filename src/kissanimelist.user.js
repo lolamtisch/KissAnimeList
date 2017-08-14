@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name        KissAnimeList
-// @version     0.87.8
+// @version     0.87.9
 // @description Integrates MyAnimeList into diverse sites, with auto episode tracking.
 // @author      lolamtisch@gmail.com
 // @license     Creative Commons; http://creativecommons.org/licenses/by/4.0/
@@ -43,6 +43,15 @@
 // @exclude     http://www.crunchyroll.com/notifications*
 // @exclude     http://www.crunchyroll.com/comics*
 // @exclude     http://www.crunchyroll.com/order*
+//
+// @include     http://www3.gogoanime.tv/*
+// @exclude     http://www3.gogoanime.tv/*.html*
+// @exclude     http://www3.gogoanime.tv/genre/*
+// @exclude     http://www3.gogoanime.tv/sub-category/*
+// @include     https://gogoanime.io/*
+// @exclude     https://gogoanime.io/*.html*
+// @exclude     https://gogoanime.io/genre/*
+// @exclude     https://gogoanime.io/sub-category/*
 //
 // @require     http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js
 // @resource    materialCSS https://code.getmdl.io/1.3.0/material.indigo-pink.min.css
@@ -99,12 +108,16 @@
     var masteraniLinks = GM_getValue( 'masteraniLinks', 1 );
     var nineanimeLinks = GM_getValue( 'nineanimeLinks', 1 );
     var crunchyrollLinks = GM_getValue( 'crunchyrollLinks', 1 );
+    var gogoanimeLinks = GM_getValue( 'gogoanimeLinks', 1 );
 
     var displayFloatButton = GM_getValue( 'displayFloatButton', 1 );
+    var episodeInfoBox = GM_getValue( 'episodeInfoBox', 0 );
 
     var delay = GM_getValue( 'delay', 3 );
 
     var currentMalData = null;
+
+    var loadingText = 'Loading';
 
     var curVersion = GM_info.script.version;
     if(curVersion != GM_getValue( 'Version', null ) && GM_getValue( 'Version', null ) != null){
@@ -123,6 +136,9 @@
                 break;
             case '0.87.8':
                 alert('Kissanimelist (v0.87.8)\n- Android Support\n- Added Autoupdate delay settings');
+                break;
+            case '0.87.9':
+                alert('Kissanimelist (v0.87.9)\n- Gogoanime Support\n- Crunchyroll multiple season support');
                 break;
         }
     }
@@ -667,7 +683,20 @@
 
         $.init = function() {
             $( document).ready(function(){
-                checkdata();
+                if( $('.season-dropdown').length > 1){
+                    $('.season-dropdown').append('<span class="exclusivMal" style="float: right; margin-right: 20px; color: #0A6DA4;" onclick="return false;">MAL</span>');
+                    $('.exclusivMal').click(function(){
+                        $('#showview_content').before('<div><a href="">Show hidden seasons</a></div>');
+                        var thisparent =  $(this).parent();
+                        $('.season-dropdown').not(thisparent).siblings().remove();
+                        $('.season-dropdown').not(thisparent).remove();
+                        $('.exclusivMal').remove();
+                        checkdata();
+                    });
+                    return;
+                }else{
+                    checkdata();
+                }
             });
         }
 
@@ -812,6 +841,119 @@
 
         $.BookmarksStyleAfterLoad = function() {
 
+        };
+        //###########################
+    }else if( window.location.href.indexOf("gogoanime.") > -1 ){
+        //#########Gogoanime.tv#########
+        if(!window.location.href.split('/')[3]){
+            return;
+        }
+        var domain = window.location.href.split('/').slice(0,3).join('/')+'/';
+        var textColor = 'white';
+        var dbSelector = 'Gogoanime';
+        var listType = 'anime';
+        var bookmarkCss = "";
+        var bookmarkFixCss = "";
+        var winLoad = 0;
+        GM_addStyle('.headui a {color: inherit !important;}');
+
+        $.init = function() {
+            checkdata();
+        }
+
+        $.fn.imageCache = function() {
+            return $('.class').first().find('img').attr('src');
+        };
+
+        $.isOverviewPage = function() {
+            if(window.location.href.split('/')[3] === 'category'){
+                return true;
+            }else{
+                return false;
+            }
+        };
+        $.episodeListSelector = function() {
+            return $("#episode_related a");
+        };
+        $.fn.episodeListElementHref = function() {
+            return domain+this.attr('href').replace(' /','');
+        };
+        $.fn.episodeListElementTitle = function() {
+            return this.find("div.name").text();
+        };
+        $.fn.episodeListNextElement = function( index ) {
+            if ((index-1) > -1) {
+                return $.episodeListSelector().eq(index-1);
+            }
+            return $();
+        };
+        $.handleNextLink = function(truelink, anime){
+            if(truelink == null){
+                var nextEp = parseInt(anime['.add_anime[num_watched_episodes]'])+1;
+                if(nextEp <= parseInt(anime['totalEp'])){
+                    return '<a style="color: white;" href="/'+$.normalUrl().split('/')[4]+'-episode-'+nextEp+'">Ep '+nextEp+'</a>';
+                }
+            }
+            return truelink;
+        };
+
+        $.urlEpisodePart = function(url) {
+            return url.split("/")[3].split("?")[0].split('episode-')[1];
+        };
+        $.urlAnimeIdent = function(url) {
+            if(url.split('/')[3] === 'category'){
+                return url.split('/').slice(0,5).join('/');
+            }else{
+                return url.split('/').slice(0,3).join('/') + '/category/' + url.split("/")[3].split("?")[0].split('-episode')[0];
+            }
+        };
+        $.urlAnimeTitle = function(url) {
+            return url.split("/")[4].split("?")[0];
+        };
+
+        $.EpisodePartToEpisode = function(string) {
+            return string;
+        };
+
+        $.fn.uiPos = function() {
+            this.prependTo($(".anime_info_body").first());
+        };
+        $.fn.uiWrongPos = function() {//TODO
+            this.css('margin-top','5px').appendTo($(".ui.info.list").first());
+        };
+        $.fn.uiHeadPos = function() {//TODO
+            this.appendTo($("h1").first());
+        };
+
+        $.docReady = function(data) {
+            return $( document).ready(data);
+        };
+
+        $.normalUrl = function(){
+            return $.urlAnimeIdent(window.location.href);
+        };
+
+        $.fn.epListReset = function() {
+            this.css("background-color","#363636");
+        };
+        $.fn.epListActive = function() {
+            this.css("background-color","#002966");
+        };
+
+        $.bookmarkEntrySelector = function() {
+        };
+
+        $.nextEpLink = function(url) {
+            var url = domain + 's..' + $('.anime_video_body_episodes_r a').last().attr('href');
+            return url.replace('/s..','');
+        };
+
+        $.fn.classicBookmarkButton = function(checkfix) {
+        };
+        $.fn.bookmarkButton = function(check) {
+        };
+
+        $.BookmarksStyleAfterLoad = function() {
         };
         //###########################
     }
@@ -1233,7 +1375,8 @@
             url = absolute;
         }
 
-        if(url === ''){
+        if(url == '' || url == null){
+            loadingText = "No Mal Entry!";
             $("#MalInfo").text("No Mal Entry!");
             return;
         }
@@ -1460,11 +1603,15 @@
             return;
         }
 
+        var change = $.extend({},anime);
         if(localListType == 'anime'){
             var url = "https://myanimelist.net/editlist.php?type=anime&id="+actual['.anime_id'];
             if(actual['addanime'] === 1){
                 url = "https://myanimelist.net/ownlist/anime/add?selected_series_id="+actual['.anime_id'];
                 if (!confirm('Add "'+actual['name']+'" to MAL?')) {
+                    if(change['checkIncrease'] == 1){
+                        episodeInfo(change['.add_anime[num_watched_episodes]'], actual['malurl']);
+                    }
                     return;
                 }
             }
@@ -1477,9 +1624,12 @@
                 }
             }
         }
-        var change = anime;
+
         anime = handleanimeupdate( anime, actual );
         if(anime === null){
+            if(change['checkIncrease'] == 1 && localListType == 'anime'){
+                episodeInfo(change['.add_anime[num_watched_episodes]'], actual['malurl']);
+            }
             return;
         }
         $.each( anime, function( index, value ){
@@ -1553,6 +1703,7 @@
                                     undoAnime['checkIncrease'] = 0;
                                     setanime(thisUrl, undoAnime, null, localListType);
                                 });
+                                episodeInfo(change['.add_anime[num_watched_episodes]'], actual['malurl'], message);
                             }else{
                                 flashm( message , false);
                             }
@@ -1656,17 +1807,29 @@
                     GM_setValue( dbSelector+'/'+$.titleToDbKey($.urlAnimeTitle(thisUrl))+'/Crunch', 'yes' );
                 }
             }
-            GM_xmlhttpRequest({
-                url: 'https://kissanimelist.firebaseio.com/Request/'+dbSelector+'Request.json',
-                method: "POST",
-                data: JSON.stringify(param),
-                onload: function () {
-                    con.log("Send to database: ",param);
-                },
-                onerror: function(error) {
-                    con.log("Send to database: ",error);
+
+            var toDB = 1;
+            if(thisUrl.indexOf("#newCorrection") >= 0){
+                toDB = 0;
+                if (confirm('Submit database correction request? \n If it does not exist on MAL, please leave empty.')) {
+                    toDB = 1;
                 }
-            });
+            }
+
+
+            if(toDB == 1){
+                GM_xmlhttpRequest({
+                    url: 'https://kissanimelist.firebaseio.com/Request/'+dbSelector+'Request.json',
+                    method: "POST",
+                    data: JSON.stringify(param),
+                    onload: function () {
+                        con.log("Send to database: ",param);
+                    },
+                    onerror: function(error) {
+                        con.log("Send to database: ",error);
+                    }
+                });
+            }
         }
         GM_setValue( dbSelector+'/'+$.titleToDbKey($.urlAnimeTitle(thisUrl))+'/Mal', malurl );
     }
@@ -1685,19 +1848,39 @@
         }
     }
 
-    function flashm(text,error = true){
+    function flashm(text,error = true, info = false){
+
         con.log("Flash Message: ",text);
-        $('.flash').removeClass('flash').fadeOut({
-            duration: 400,
-            queue: false,
-            complete: function() { $(this).remove(); }});
-        if(error === true){
-            var colorF = "#3e0808";
+        if(info){
+            $('.flashinfo').removeClass('flashinfo').delay(2000).fadeOut({
+                duration: 400,
+                queue: false,
+                complete: function() { $(this).remove(); }});
+            if(error === true){
+                var colorF = "#3e0808";
+            }else{
+                var colorF = "#323232";
+            }
+            $('#flash-div').append('<div class="flashinfo" style="display:none;"><div style="display:table; pointer-events: all; background-color: red;padding: 14px 24px 14px 24px; margin: 0 auto; margin-top: -2px; max-width: 60%; -webkit-border-radius: 20px;-moz-border-radius: 20px;border-radius: 2px;color: white;background:'+colorF+'; ">'+text+'</div></div>');
+            $('.flashinfo').delay(2000).slideDown(800).delay(6000).slideUp(800, function() { $(this).remove(); });
         }else{
-            var colorF = "#323232";
+            $('.flash').removeClass('flash').fadeOut({
+                duration: 400,
+                queue: false,
+                complete: function() { $(this).remove(); }});
+            if(error === true){
+                var colorF = "#3e0808";
+            }else{
+                var colorF = "#323232";
+            }
+            var mess ='<div class="flash" style="display:none;"><div style="display:table; pointer-events: all; background-color: red;padding: 14px 24px 14px 24px; margin: 0 auto; margin-top: 20px; max-width: 60%; -webkit-border-radius: 20px;-moz-border-radius: 20px;border-radius: 2px;color: white;background:'+colorF+'; ">'+text+'</div></div>';
+            if($('.flashinfo').length){
+                $('.flashinfo').before(mess);
+            }else{
+                $('#flash-div').append(mess);
+            }
+            $('.flash').slideDown(800).delay(4000).slideUp(800, function() { $(this).remove(); });
         }
-        $('#flash-div').append('<div class="flash" style="display:none;"><div style="display:table; pointer-events: all; background-color: red;padding: 14px 24px 14px 24px; margin: 0 auto; margin-top: 20px; max-width: 60%; -webkit-border-radius: 20px;-moz-border-radius: 20px;border-radius: 2px;color: white;background:'+colorF+'; ">'+text+'</div></div>');
-        $('.flash').slideDown(800).delay(4000).slideUp(800, function() { $(this).remove(); });
     }
 
     function updatebutton(){
@@ -1750,6 +1933,56 @@
         con.log("Formated: ",title);
         return title;
     }
+
+    function episodeInfo(episode, malUrl, message = ''){
+        if(episodeInfoBox){
+            con.log('Episode Info',malUrl+'/episode/'+episode);
+            GM_xmlhttpRequest({
+                url: malUrl+'/episode/'+episode,
+                method: "GET",
+                onload: function (response) {
+                    if(response.response != null){
+                        if(message != ''){
+                            message = "<div style='white-space: nowrap; margin-left: 15px;'> "+ message +"</div>";
+                        }
+                        var data = response.response;
+                        var synopsis = '';
+                        var epTitle = '';
+                        var epSubTitle = '';
+                        var imgUrl = "";
+                        try{
+                            epTitle = data.split('class="fs18 lh11"')[1].split('</h2>')[0].split('</span>')[1];
+                        }catch(e){}
+
+                        try{
+                            epSubTitle = data.split('<p class="fn-grey2"')[1].split('</p>')[0].split('>')[1].replace(/^\s+/g, "");
+                        }catch(e){}
+
+                        try{
+                            synopsis = data.split('Synopsis</h2>')[1].split('</div>')[0].replace(/^\s+/g, "");
+                        }catch(e){}
+
+                        try{
+                            imgUrl = data.split('"isCurrent":true')[0].split('{').slice(-1)[0].split('"thumbnail":"')[1].split('"')[0].replace(/\\\//g, '/');
+                        }catch(e){}
+
+                        var imgHtml = '';
+                        if(imgUrl != ''){
+                            imgHtml = '<img style = "margin-top: 15px; height: 100px;" src="'+imgUrl+'"/>';
+                        }
+                        var synopsisHtml = '<div style="display: none;">'+synopsis+'</div>';
+
+                        if(epTitle != ''){
+                            flashm ( '<div style="display: flex; align-items: center;"><div style="white-space: nowrap;"">#'+episode+" - "+epTitle+"<br> <small>"+epSubTitle+'</small><br>' + imgHtml + "</div>"+ message +" </div>" + synopsisHtml, false, true);
+                        }
+                    }
+                },
+                onerror: function(error) {
+                    con.log("error: "+error);
+                }
+            });
+        }
+    }
     function checkdata(){
         if($.normalUrl() !== ""){
             getanime($.normalUrl(), function(anime){handleanime(anime);});
@@ -1762,7 +1995,7 @@
             var wrapEnd = '</span>';
 
             var ui = '<p id="malp">';
-            ui += '<span id="MalInfo">Loading</span>';
+            ui += '<span id="MalInfo">'+loadingText+'</span>';
 
             ui += '<span id="MalData" style="display: none; justify-content: space-between; flex-wrap: wrap;">';
 
@@ -2255,11 +2488,15 @@
             if(crunchyrollLinks != 0){
                 sites.push('Crunchyroll');
             }
+            if(gogoanimeLinks != 0){
+                sites.push('Gogoanime');
+            }
             if(searchLinks != 0){
                 $('h2:contains("Information")').before('<h2 id="siteSearch">Search</h2><br>');
                 if(type == 'anime'){
                     $('#siteSearch').after('<div></div>');
                     $('#siteSearch').after('<div><a target="_blank" href="http://www.google.com/search?q=site:www.masterani.me/anime/info/+'+encodeURI($('#contentWrapper > div:first-child span').text())+'">Masterani (Google)</a> <a target="_blank" href="https://www.masterani.me/anime?search='+$('#contentWrapper > div:first-child span').text()+'">(Site)</a></div>');
+                    $('#siteSearch').after('<div><a target="_blank" href="http://www.gogoanime.tv/search.html?keyword='+$('#contentWrapper > div:first-child span').text()+'">Gogoanime</a></div>');
                     $('#siteSearch').after('<div><a target="_blank" href="http://www.crunchyroll.com/search?q='+$('#contentWrapper > div:first-child span').text()+'">Crunchyroll</a></div>');
                     $('#siteSearch').after('<div><a target="_blank" href="https://9anime.to/search?keyword='+$('#contentWrapper > div:first-child span').text()+'">9anime</a></div>');
                     $('#siteSearch').after('<form target="_blank" action="http://kissanime.ru/Search/Anime" id="kissanimeSearch" method="post" _lpchecked="1"><a href="#" onclick="return false;" class="submitKissanimeSearch">Kissanime</a><input type="hidden" id="keyword" name="keyword" value="'+$('#contentWrapper > div:first-child span').text()+'"/></form>');
@@ -2637,6 +2874,7 @@
                 settingsUI += materialCheckbox(masteraniLinks,'masteraniLinks','Masterani.me links');
                 settingsUI += materialCheckbox(nineanimeLinks,'nineanimeLinks','9anime links');
                 settingsUI += materialCheckbox(crunchyrollLinks,'crunchyrollLinks','Crunchyroll links');
+                settingsUI += materialCheckbox(gogoanimeLinks,'gogoanimeLinks','Gogoanime links');
                 settingsUI += '</div>';
 
                 settingsUI += '<div class="mdl-cell mdl-cell--12-col mdl-shadow--4dp">\
@@ -2644,6 +2882,7 @@
                                 <h2 class="mdl-card__title-text">ETC</h2>\
                                 </div>';
                 settingsUI += materialCheckbox(displayFloatButton,'displayFloatButton','Floating menu button');
+                //settingsUI += materialCheckbox(episodeInfoBox,'episodeInfoBox','Episode info box');
                 settingsUI += '<li class="mdl-list__item">\
                                   <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width: 100%;">\
                                       <input class="mdl-textfield__input" type="number" step="1" id="malDelay" value="'+delay+'">\
@@ -2759,6 +2998,15 @@
                     crunchyrollLinks = 0;
                 }
             });
+            $("#info-iframe").contents().find('#gogoanimeLinks').change(function(){
+                if($(this).is(":checked")){
+                    GM_setValue('gogoanimeLinks', 1);
+                    gogoanimeLinks = 1;
+                }else{
+                    GM_setValue('gogoanimeLinks', 0);
+                    gogoanimeLinks = 0;
+                }
+            });
             $("#info-iframe").contents().find('#displayFloatButton').change(function(){
                 if($(this).is(":checked")){
                     GM_setValue('displayFloatButton', 1);
@@ -2766,6 +3014,15 @@
                 }else{
                     GM_setValue('displayFloatButton', 0);
                     displayFloatButton = 0;
+                }
+            });
+            $("#info-iframe").contents().find('#episodeInfoBox').change(function(){
+                if($(this).is(":checked")){
+                    GM_setValue('episodeInfoBox', 1);
+                    episodeInfoBox = 1;
+                }else{
+                    GM_setValue('episodeInfoBox', 0);
+                    episodeInfoBox = 0;
                 }
             });
             $("#info-iframe").contents().find('#malConfig').show();

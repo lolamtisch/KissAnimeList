@@ -245,6 +245,7 @@
                 settingsUI += materialCheckbox(masteraniLinks,'masteraniLinks','Masterani.me links');
                 settingsUI += materialCheckbox(nineanimeLinks,'nineanimeLinks','9anime links');
                 settingsUI += materialCheckbox(crunchyrollLinks,'crunchyrollLinks','Crunchyroll links');
+                settingsUI += materialCheckbox(gogoanimeLinks,'gogoanimeLinks','Gogoanime links');
                 settingsUI += '</div>';
 
                 settingsUI += '<div class="mdl-cell mdl-cell--12-col mdl-shadow--4dp">\
@@ -252,6 +253,7 @@
                                 <h2 class="mdl-card__title-text">ETC</h2>\
                                 </div>';
                 settingsUI += materialCheckbox(displayFloatButton,'displayFloatButton','Floating menu button');
+                //settingsUI += materialCheckbox(episodeInfoBox,'episodeInfoBox','Episode info box');
                 settingsUI += '<li class="mdl-list__item">\
                                   <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width: 100%;">\
                                       <input class="mdl-textfield__input" type="number" step="1" id="malDelay" value="'+delay+'">\
@@ -367,6 +369,15 @@
                     crunchyrollLinks = 0;
                 }
             });
+            $("#info-iframe").contents().find('#gogoanimeLinks').change(function(){
+                if($(this).is(":checked")){
+                    GM_setValue('gogoanimeLinks', 1);
+                    gogoanimeLinks = 1;
+                }else{
+                    GM_setValue('gogoanimeLinks', 0);
+                    gogoanimeLinks = 0;
+                }
+            });
             $("#info-iframe").contents().find('#displayFloatButton').change(function(){
                 if($(this).is(":checked")){
                     GM_setValue('displayFloatButton', 1);
@@ -374,6 +385,15 @@
                 }else{
                     GM_setValue('displayFloatButton', 0);
                     displayFloatButton = 0;
+                }
+            });
+            $("#info-iframe").contents().find('#episodeInfoBox').change(function(){
+                if($(this).is(":checked")){
+                    GM_setValue('episodeInfoBox', 1);
+                    episodeInfoBox = 1;
+                }else{
+                    GM_setValue('episodeInfoBox', 0);
+                    episodeInfoBox = 0;
                 }
             });
             $("#info-iframe").contents().find('#malConfig').show();

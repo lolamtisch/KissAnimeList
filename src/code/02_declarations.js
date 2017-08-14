@@ -30,12 +30,16 @@
     var masteraniLinks = GM_getValue( 'masteraniLinks', 1 );
     var nineanimeLinks = GM_getValue( 'nineanimeLinks', 1 );
     var crunchyrollLinks = GM_getValue( 'crunchyrollLinks', 1 );
+    var gogoanimeLinks = GM_getValue( 'gogoanimeLinks', 1 );
 
     var displayFloatButton = GM_getValue( 'displayFloatButton', 1 );
+    var episodeInfoBox = GM_getValue( 'episodeInfoBox', 0 );
 
     var delay = GM_getValue( 'delay', 3 );
 
     var currentMalData = null;
+
+    var loadingText = 'Loading';
 
     var curVersion = GM_info.script.version;
     if(curVersion != GM_getValue( 'Version', null ) && GM_getValue( 'Version', null ) != null){
@@ -54,6 +58,9 @@
                 break;
             case '0.87.8':
                 alert('Kissanimelist (v0.87.8)\n- Android Support\n- Added Autoupdate delay settings');
+                break;
+            case '0.87.9':
+                alert('Kissanimelist (v0.87.9)\n- Gogoanime Support\n- Crunchyroll multiple season support');
                 break;
         }
     }
@@ -598,7 +605,20 @@
 
         $.init = function() {
             $( document).ready(function(){
-                checkdata();
+                if( $('.season-dropdown').length > 1){
+                    $('.season-dropdown').append('<span class="exclusivMal" style="float: right; margin-right: 20px; color: #0A6DA4;" onclick="return false;">MAL</span>');
+                    $('.exclusivMal').click(function(){
+                        $('#showview_content').before('<div><a href="">Show hidden seasons</a></div>');
+                        var thisparent =  $(this).parent();
+                        $('.season-dropdown').not(thisparent).siblings().remove();
+                        $('.season-dropdown').not(thisparent).remove();
+                        $('.exclusivMal').remove();
+                        checkdata();
+                    });
+                    return;
+                }else{
+                    checkdata();
+                }
             });
         }
 
@@ -743,6 +763,119 @@
 
         $.BookmarksStyleAfterLoad = function() {
 
+        };
+        //###########################
+    }else if( window.location.href.indexOf("gogoanime.") > -1 ){
+        //#########Gogoanime.tv#########
+        if(!window.location.href.split('/')[3]){
+            return;
+        }
+        var domain = window.location.href.split('/').slice(0,3).join('/')+'/';
+        var textColor = 'white';
+        var dbSelector = 'Gogoanime';
+        var listType = 'anime';
+        var bookmarkCss = "";
+        var bookmarkFixCss = "";
+        var winLoad = 0;
+        GM_addStyle('.headui a {color: inherit !important;}');
+
+        $.init = function() {
+            checkdata();
+        }
+
+        $.fn.imageCache = function() {
+            return $('.class').first().find('img').attr('src');
+        };
+
+        $.isOverviewPage = function() {
+            if(window.location.href.split('/')[3] === 'category'){
+                return true;
+            }else{
+                return false;
+            }
+        };
+        $.episodeListSelector = function() {
+            return $("#episode_related a");
+        };
+        $.fn.episodeListElementHref = function() {
+            return domain+this.attr('href').replace(' /','');
+        };
+        $.fn.episodeListElementTitle = function() {
+            return this.find("div.name").text();
+        };
+        $.fn.episodeListNextElement = function( index ) {
+            if ((index-1) > -1) {
+                return $.episodeListSelector().eq(index-1);
+            }
+            return $();
+        };
+        $.handleNextLink = function(truelink, anime){
+            if(truelink == null){
+                var nextEp = parseInt(anime['.add_anime[num_watched_episodes]'])+1;
+                if(nextEp <= parseInt(anime['totalEp'])){
+                    return '<a style="color: white;" href="/'+$.normalUrl().split('/')[4]+'-episode-'+nextEp+'">Ep '+nextEp+'</a>';
+                }
+            }
+            return truelink;
+        };
+
+        $.urlEpisodePart = function(url) {
+            return url.split("/")[3].split("?")[0].split('episode-')[1];
+        };
+        $.urlAnimeIdent = function(url) {
+            if(url.split('/')[3] === 'category'){
+                return url.split('/').slice(0,5).join('/');
+            }else{
+                return url.split('/').slice(0,3).join('/') + '/category/' + url.split("/")[3].split("?")[0].split('-episode')[0];
+            }
+        };
+        $.urlAnimeTitle = function(url) {
+            return url.split("/")[4].split("?")[0];
+        };
+
+        $.EpisodePartToEpisode = function(string) {
+            return string;
+        };
+
+        $.fn.uiPos = function() {
+            this.prependTo($(".anime_info_body").first());
+        };
+        $.fn.uiWrongPos = function() {//TODO
+            this.css('margin-top','5px').appendTo($(".ui.info.list").first());
+        };
+        $.fn.uiHeadPos = function() {//TODO
+            this.appendTo($("h1").first());
+        };
+
+        $.docReady = function(data) {
+            return $( document).ready(data);
+        };
+
+        $.normalUrl = function(){
+            return $.urlAnimeIdent(window.location.href);
+        };
+
+        $.fn.epListReset = function() {
+            this.css("background-color","#363636");
+        };
+        $.fn.epListActive = function() {
+            this.css("background-color","#002966");
+        };
+
+        $.bookmarkEntrySelector = function() {
+        };
+
+        $.nextEpLink = function(url) {
+            var url = domain + 's..' + $('.anime_video_body_episodes_r a').last().attr('href');
+            return url.replace('/s..','');
+        };
+
+        $.fn.classicBookmarkButton = function(checkfix) {
+        };
+        $.fn.bookmarkButton = function(check) {
+        };
+
+        $.BookmarksStyleAfterLoad = function() {
         };
         //###########################
     }

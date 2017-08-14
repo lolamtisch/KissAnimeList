@@ -57,11 +57,15 @@
             if(crunchyrollLinks != 0){
                 sites.push('Crunchyroll');
             }
+            if(gogoanimeLinks != 0){
+                sites.push('Gogoanime');
+            }
             if(searchLinks != 0){
                 $('h2:contains("Information")').before('<h2 id="siteSearch">Search</h2><br>');
                 if(type == 'anime'){
                     $('#siteSearch').after('<div></div>');
                     $('#siteSearch').after('<div><a target="_blank" href="http://www.google.com/search?q=site:www.masterani.me/anime/info/+'+encodeURI($('#contentWrapper > div:first-child span').text())+'">Masterani (Google)</a> <a target="_blank" href="https://www.masterani.me/anime?search='+$('#contentWrapper > div:first-child span').text()+'">(Site)</a></div>');
+                    $('#siteSearch').after('<div><a target="_blank" href="http://www.gogoanime.tv/search.html?keyword='+$('#contentWrapper > div:first-child span').text()+'">Gogoanime</a></div>');
                     $('#siteSearch').after('<div><a target="_blank" href="http://www.crunchyroll.com/search?q='+$('#contentWrapper > div:first-child span').text()+'">Crunchyroll</a></div>');
                     $('#siteSearch').after('<div><a target="_blank" href="https://9anime.to/search?keyword='+$('#contentWrapper > div:first-child span').text()+'">9anime</a></div>');
                     $('#siteSearch').after('<form target="_blank" action="http://kissanime.ru/Search/Anime" id="kissanimeSearch" method="post" _lpchecked="1"><a href="#" onclick="return false;" class="submitKissanimeSearch">Kissanime</a><input type="hidden" id="keyword" name="keyword" value="'+$('#contentWrapper > div:first-child span').text()+'"/></form>');

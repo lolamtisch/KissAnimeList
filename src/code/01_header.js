@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name        KissAnimeList
-// @version     0.87.8
+// @version     0.87.9
 // @description Integrates MyAnimeList into diverse sites, with auto episode tracking.
 // @author      lolamtisch@gmail.com
 // @license     Creative Commons; http://creativecommons.org/licenses/by/4.0/
@@ -43,6 +43,15 @@
 // @exclude     http://www.crunchyroll.com/notifications*
 // @exclude     http://www.crunchyroll.com/comics*
 // @exclude     http://www.crunchyroll.com/order*
+//
+// @include     http://www3.gogoanime.tv/*
+// @exclude     http://www3.gogoanime.tv/*.html*
+// @exclude     http://www3.gogoanime.tv/genre/*
+// @exclude     http://www3.gogoanime.tv/sub-category/*
+// @include     https://gogoanime.io/*
+// @exclude     https://gogoanime.io/*.html*
+// @exclude     https://gogoanime.io/genre/*
+// @exclude     https://gogoanime.io/sub-category/*
 //
 // @require     http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js
 // @resource    materialCSS https://code.getmdl.io/1.3.0/material.indigo-pink.min.css
