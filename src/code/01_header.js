@@ -44,6 +44,9 @@
 // @exclude     http://www.crunchyroll.com/comics*
 // @exclude     http://www.crunchyroll.com/order*
 //
+// @include     http://www3.gogoanime.tv/*
+// @include     https://gogoanime.io/*
+//
 // @require     http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js
 // @resource    materialCSS https://code.getmdl.io/1.3.0/material.indigo-pink.min.css
 // @resource    materialFont https://fonts.googleapis.com/icon?family=Material+Icons
