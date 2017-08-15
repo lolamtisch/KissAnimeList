@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name        KissAnimeList
-// @version     0.87.9
+// @version     0.88.0
 // @description Integrates MyAnimeList into diverse sites, with auto episode tracking.
 // @author      lolamtisch@gmail.com
 // @license     Creative Commons; http://creativecommons.org/licenses/by/4.0/
@@ -770,6 +770,7 @@
             }else{
                 var script = ($("#template_body script")[1]).innerHTML;
                 script = script.split('mediaMetadata =')[1].split('"name":"')[1].split(' -')[0];
+                script = JSON.parse('"' + script.replace('"', '\\"') + '"');
                 //console.log(script);
                 return script;
                 return url.split("/")[3];

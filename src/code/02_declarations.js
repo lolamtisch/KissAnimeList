@@ -692,6 +692,7 @@
             }else{
                 var script = ($("#template_body script")[1]).innerHTML;
                 script = script.split('mediaMetadata =')[1].split('"name":"')[1].split(' -')[0];
+                script = JSON.parse('"' + script.replace('"', '\\"') + '"');
                 //console.log(script);
                 return script;
                 return url.split("/")[3];
