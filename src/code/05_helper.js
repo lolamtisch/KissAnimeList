@@ -204,3 +204,16 @@
             });
         }
     }
+
+    function miniMalButton(url = null){
+        $(".open-info-popup").unbind('click').show().click( function(){
+            if($('#info-popup').css('display') == 'none'){
+                document.getElementById('info-popup').style.display = "block";
+                fillIframe(url, currentMalData);
+                $('.floatbutton').fadeOut();
+            }else{
+                document.getElementById('info-popup').style.display = "none";
+                $('.floatbutton').fadeIn();
+            }
+        });
+    }

@@ -62,6 +62,7 @@
                         url = 'https://myanimelist.net/'+localListType+'/'+response.response.split('"')[1]+'/'+response.response.split('"')[3];
                         if(response.response.split('"')[1] == 'Not-Found'){
                             $("#MalInfo").text("Not Found!");
+                            miniMalButton(null);
                             return;
                         }
                     }else{
@@ -130,6 +131,7 @@
                             if(url.indexOf("myanimelist.net/"+localListType+".php") > -1) {
                                 $("#MalInfo").text("Not Found!");
                                 flashm( "Anime not found" , true);
+                                miniMalButton(null);
                                 return;
                             }
                             con.log("MalEdit: ",url);

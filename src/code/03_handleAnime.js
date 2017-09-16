@@ -2,16 +2,7 @@
         $('.MalLogin').css("display","initial");
         $('#AddMalDiv').remove();
 
-        $(".open-info-popup").unbind('click').show().click( function(){
-            if($('#info-popup').css('display') == 'none'){
-                document.getElementById('info-popup').style.display = "block";
-                fillIframe(anime['malurl'], currentMalData);
-                $('.floatbutton').fadeOut();
-            }else{
-                document.getElementById('info-popup').style.display = "none";
-                $('.floatbutton').fadeIn();
-            }
-        });
+        miniMalButton(anime['malurl']);
 
         if(GM_getValue( dbSelector+'/'+$.titleToDbKey($.urlAnimeTitle($.urlAnimeIdent($.normalUrl())))+'/image' , null) == null ){
             try{

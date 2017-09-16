@@ -67,15 +67,23 @@
                 </button>\
             </div>\
             <!-- Tabs -->\
-            <div class="mdl-layout__tab-bar mdl-js-ripple-effect">\
+            <div class="mdl-layout__tab-bar mdl-js-ripple-effect">';
+            if(url != null){
+              material += '\
               <a href="#fixed-tab-1" class="mdl-layout__tab is-active">Overview</a>\
               <a href="#fixed-tab-2" class="mdl-layout__tab reviewsTab">Reviews</a>\
               <a href="#fixed-tab-3" class="mdl-layout__tab recommendationTab">Recommendations</a>\
               <!--<a href="#fixed-tab-4" class="mdl-layout__tab">Episodes</a>-->\
-              <a href="#fixed-tab-5" class="mdl-layout__tab">Settings</a>\
+              <a href="#fixed-tab-5" class="mdl-layout__tab">Settings</a>';
+            }else{
+              material += '<a href="#fixed-tab-5" class="mdl-layout__tab is-active">Settings</a>';
+            }
+            material += '\
             </div>\
           </header>\
-          <main class="mdl-layout__content">\
+          <main class="mdl-layout__content">';
+            if(url != null){
+            material += '\
             <section class="mdl-layout__tab-panel is-active" id="fixed-tab-1">\
               <div id="loadOverview" class="mdl-progress mdl-js-progress mdl-progress__indeterminate" style="width: 100%; position: absolute;"></div>\
               <div class="page-content">\
@@ -122,7 +130,9 @@
             <section class="mdl-layout__tab-panel" id="fixed-tab-4">\
               <div id="loadEpisode" class="mdl-progress mdl-js-progress mdl-progress__indeterminate" style="width: 100%; position: absolute;"></div>\
               <div class="page-content malClear" id="malEpisodes"></div>\
-            </section>\
+            </section>';
+            }
+            material +='\
             <section class="mdl-layout__tab-panel" id="fixed-tab-5">\
               <div class="page-content malClear" id="malConfig"></div>\
             </section>\
@@ -162,7 +172,7 @@
     function fillIframe(url, data = null){
         $("#info-iframe").contents().find('.malClear').hide();
         $("#info-iframe").contents().find('.mdl-progress__indeterminate').show();
-        if(data == null){
+        if(data == null && url != null){
             getAjaxData(url, function(newdata){
                 fillIframe(url, newdata);
             });
