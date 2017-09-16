@@ -22,6 +22,7 @@
 // @include     https://www.masterani.me/anime/watch/*
 //
 // @include     https://9anime.to/watch/*/*
+// @include     /https?://9anime.to/watch/*/*/
 //
 // @include     http://www.crunchyroll.com/*
 // @exclude     http://www.crunchyroll.com/videos*
