@@ -133,7 +133,7 @@
             </section>';
             }
             material +='\
-            <section class="mdl-layout__tab-panel" id="fixed-tab-5">\
+            <section class="mdl-layout__tab-panel is-active" id="fixed-tab-5">\
               <div class="page-content malClear" id="malConfig"></div>\
             </section>\
           </main>\
@@ -205,7 +205,14 @@
             if(malUrl == url){
                 settingsUI += '<div class="mdl-cell mdl-cell--12-col mdl-shadow--4dp">\
                                 <div class="mdl-card__title mdl-card--border">\
-                                    <h2 class="mdl-card__title-text">'+data.split('itemprop="name">')[1].split('<')[0]+'</h2>\
+                                    <h2 class="mdl-card__title-text">';
+                                    if(data != null){
+                                      settingsUI += data.split('itemprop="name">')[1].split('<')[0];
+                                    }else{
+                                      settingsUI += 'Not Found';
+                                    }
+                                    settingsUI +=
+                                    '</h2>\
                                 </div>\
                                   <div class="mdl-list__item">\
                                   <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width: 100%;">\
