@@ -35,6 +35,8 @@
     var displayFloatButton = GM_getValue( 'displayFloatButton', 1 );
     var episodeInfoBox = GM_getValue( 'episodeInfoBox', 0 );
 
+    var autoTracking = GM_getValue( 'autoTracking', 1 );
+
     var delay = GM_getValue( 'delay', 3 );
 
     var currentMalData = null;

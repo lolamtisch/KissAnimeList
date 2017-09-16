@@ -229,7 +229,14 @@
                               </div>';
 
             }
-            settingsUI += '<div class="mdl-cell mdl-cell--12-col mdl-shadow--4dp">\
+                settingsUI += '<div class="mdl-cell mdl-cell--12-col mdl-shadow--4dp">\
+                            <div class="mdl-card__title mdl-card--border">\
+                                <h2 class="mdl-card__title-text">General</h2>\
+                                </div>';
+                settingsUI += materialCheckbox(autoTracking,'autoTracking','Autotracking');
+                settingsUI += '</div>';
+
+                settingsUI += '<div class="mdl-cell mdl-cell--12-col mdl-shadow--4dp">\
                             <div class="mdl-card__title mdl-card--border">\
                                 <h2 class="mdl-card__title-text">MAL Bookmark Page</h2>\
                                 </div>';
@@ -314,6 +321,15 @@
                 clearCache();
             });
 
+            $("#info-iframe").contents().find('#autoTracking').change(function(){
+                if($(this).is(":checked")){
+                    GM_setValue('autoTracking', 1);
+                    autoTracking = 1;
+                }else{
+                    GM_setValue('autoTracking', 0);
+                    autoTracking = 0;
+                }
+            });
             $("#info-iframe").contents().find('#tagLinks').change(function(){
                 if($(this).is(":checked")){
                     GM_setValue('tagLinks', 1);

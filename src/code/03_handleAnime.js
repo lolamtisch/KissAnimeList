@@ -210,6 +210,18 @@
     }
 
     function handleanimeupdate( anime, current){
+        if(anime['checkIncrease'] === 1 && autoTracking === 0){
+            delete anime[".add_anime[num_watched_episodes]"];
+            delete anime[".add_anime[score]"];
+            delete anime[".add_anime[status]"];
+            delete anime[".add_manga[num_read_chapters]"];
+            delete anime[".add_manga[num_read_volumes]"];
+            delete anime[".add_manga[score]"];
+            delete anime[".add_manga[status]"];
+            anime['no_flash'] = 1;
+            anime['.add_anime[tags]'] = handleTag($.urlAnimeIdent(window.location.href), current['.add_anime[tags]'], anime['.add_anime[num_watched_episodes]']+1);
+            return anime;
+        }
         if(listType == 'anime'){
             if(anime['checkIncrease'] === 1){
                 anime['.add_anime[tags]'] = handleTag($.urlAnimeIdent(window.location.href), current['.add_anime[tags]'], anime['.add_anime[num_watched_episodes]']+1);
