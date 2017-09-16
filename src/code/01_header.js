@@ -1,9 +1,10 @@
 // ==UserScript==
 // @name        KissAnimeList
-// @version     0.88.1
+// @version     0.88.2
 // @description Integrates MyAnimeList into diverse sites, with auto episode tracking.
 // @author      lolamtisch@gmail.com
 // @license     Creative Commons; http://creativecommons.org/licenses/by/4.0/
+// @supportURL  https://github.com/lolamtisch/KissAnimeList/issues
 // @include     http://kissanime.ru/Anime/*
 // @include     http://kissanime.to/Anime/*
 // @include     http://kissanime.ru/BookmarkList

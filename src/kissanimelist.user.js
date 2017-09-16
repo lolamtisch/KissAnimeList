@@ -1,9 +1,10 @@
 // ==UserScript==
 // @name        KissAnimeList
-// @version     0.88.1
+// @version     0.88.2
 // @description Integrates MyAnimeList into diverse sites, with auto episode tracking.
 // @author      lolamtisch@gmail.com
 // @license     Creative Commons; http://creativecommons.org/licenses/by/4.0/
+// @supportURL  https://github.com/lolamtisch/KissAnimeList/issues
 // @include     http://kissanime.ru/Anime/*
 // @include     http://kissanime.to/Anime/*
 // @include     http://kissanime.ru/BookmarkList
@@ -113,6 +114,8 @@
 
     var displayFloatButton = GM_getValue( 'displayFloatButton', 1 );
     var episodeInfoBox = GM_getValue( 'episodeInfoBox', 0 );
+
+    var autoTracking = GM_getValue( 'autoTracking', 1 );
 
     var delay = GM_getValue( 'delay', 3 );
 
@@ -1209,6 +1212,18 @@
     }
 
     function handleanimeupdate( anime, current){
+        if(anime['checkIncrease'] === 1 && autoTracking === 0){
+            delete anime[".add_anime[num_watched_episodes]"];
+            delete anime[".add_anime[score]"];
+            delete anime[".add_anime[status]"];
+            delete anime[".add_manga[num_read_chapters]"];
+            delete anime[".add_manga[num_read_volumes]"];
+            delete anime[".add_manga[score]"];
+            delete anime[".add_manga[status]"];
+            anime['no_flash'] = 1;
+            anime['.add_anime[tags]'] = handleTag($.urlAnimeIdent(window.location.href), current['.add_anime[tags]'], anime['.add_anime[num_watched_episodes]']+1);
+            return anime;
+        }
         if(listType == 'anime'){
             if(anime['checkIncrease'] === 1){
                 anime['.add_anime[tags]'] = handleTag($.urlAnimeIdent(window.location.href), current['.add_anime[tags]'], anime['.add_anime[num_watched_episodes]']+1);
@@ -2860,7 +2875,14 @@
                               </div>';
 
             }
-            settingsUI += '<div class="mdl-cell mdl-cell--12-col mdl-shadow--4dp">\
+                settingsUI += '<div class="mdl-cell mdl-cell--12-col mdl-shadow--4dp">\
+                            <div class="mdl-card__title mdl-card--border">\
+                                <h2 class="mdl-card__title-text">General</h2>\
+                                </div>';
+                settingsUI += materialCheckbox(autoTracking,'autoTracking','Autotracking');
+                settingsUI += '</div>';
+
+                settingsUI += '<div class="mdl-cell mdl-cell--12-col mdl-shadow--4dp">\
                             <div class="mdl-card__title mdl-card--border">\
                                 <h2 class="mdl-card__title-text">MAL Bookmark Page</h2>\
                                 </div>';
@@ -2945,6 +2967,15 @@
                 clearCache();
             });
 
+            $("#info-iframe").contents().find('#autoTracking').change(function(){
+                if($(this).is(":checked")){
+                    GM_setValue('autoTracking', 1);
+                    autoTracking = 1;
+                }else{
+                    GM_setValue('autoTracking', 0);
+                    autoTracking = 0;
+                }
+            });
             $("#info-iframe").contents().find('#tagLinks').change(function(){
                 if($(this).is(":checked")){
                     GM_setValue('tagLinks', 1);

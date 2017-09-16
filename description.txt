@@ -1,3 +1,8 @@
+<table style="width:100%"><tr>
+  <td><h1>KissAnimeList</h1></td>
+  <td><a href="https://github.com/lolamtisch/KissAnimeList/issues"><img src="https://www.google.com/s2/favicons?domain=github.com"/></a></td>
+  <td><a href="https://discord.gg/cTH4yaw"><img src="https://www.google.com/s2/favicons?domain=discordapp.com"/></a></td>
+</tr></table>
 <img src='https://raw.githubusercontent.com/Franciscoseipel/Mal-for-Kissanime-Greasymonkey-/master/Screenshots/overview.png'>
 <b>Supported Pages:</b>
 <table style="width:100%">
