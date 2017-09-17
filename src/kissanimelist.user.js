@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name        KissAnimeList
-// @version     0.88.2
+// @version     0.88.3
 // @description Integrates MyAnimeList into diverse sites, with auto episode tracking.
 // @author      lolamtisch@gmail.com
 // @license     Creative Commons; http://creativecommons.org/licenses/by/4.0/
@@ -46,14 +46,14 @@
 // @exclude     http://www.crunchyroll.com/comics*
 // @exclude     http://www.crunchyroll.com/order*
 //
-// @include     http://www3.gogoanime.tv/*
-// @exclude     http://www3.gogoanime.tv/*.html*
-// @exclude     http://www3.gogoanime.tv/genre/*
-// @exclude     http://www3.gogoanime.tv/sub-category/*
-// @include     https://gogoanime.io/*
-// @exclude     https://gogoanime.io/*.html*
-// @exclude     https://gogoanime.io/genre/*
-// @exclude     https://gogoanime.io/sub-category/*
+// @include     /https?://.*gogoanime\.tv/.*
+// @exclude     /https?://.*gogoanime\.tv/.*\.html.*
+// @exclude     /https?://.*gogoanime\.tv/genre/.*
+// @exclude     /https?://.*gogoanime\.tv/sub-category/.*
+// @include     /https?://.*gogoanime\.io/.*
+// @exclude     /https?://.*gogoanime\.io/.*\.html*
+// @exclude     /https?://.*gogoanime\.io/genre/.*
+// @exclude     /https?://.*gogoanime\.io/sub-category/.*
 //
 // @require     http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js
 // @resource    materialCSS https://code.getmdl.io/1.3.0/material.indigo-pink.min.css
@@ -594,10 +594,12 @@
             this.prependTo($("#info").first());
         };
         $.fn.uiWrongPos = function() {
-            this.css('font-size','14px').appendTo($(".title").first());
+            this.css('font-size','14px').insertBefore($("#info").first());
+            $('.title').first().css('display', 'inline-block');
         };
         $.fn.uiHeadPos = function() {
-            this.appendTo($("h1").first());
+            this.css('margin','18px 0 9px 0').css('font-weight','400').css('font-size','1.68rem').css('text-transform','uppercase').insertBefore($("#info").first());
+            $('.title').first().css('display', 'inline-block');
         };
 
         $(window).load(function(){
@@ -1004,16 +1006,7 @@
         $('.MalLogin').css("display","initial");
         $('#AddMalDiv').remove();
 
-        $(".open-info-popup").unbind('click').show().click( function(){
-            if($('#info-popup').css('display') == 'none'){
-                document.getElementById('info-popup').style.display = "block";
-                fillIframe(anime['malurl'], currentMalData);
-                $('.floatbutton').fadeOut();
-            }else{
-                document.getElementById('info-popup').style.display = "none";
-                $('.floatbutton').fadeIn();
-            }
-        });
+        miniMalButton(anime['malurl']);
 
         if(GM_getValue( dbSelector+'/'+$.titleToDbKey($.urlAnimeTitle($.urlAnimeIdent($.normalUrl())))+'/image' , null) == null ){
             try{
@@ -1433,6 +1426,7 @@
                         url = 'https://myanimelist.net/'+localListType+'/'+response.response.split('"')[1]+'/'+response.response.split('"')[3];
                         if(response.response.split('"')[1] == 'Not-Found'){
                             $("#MalInfo").text("Not Found!");
+                            miniMalButton(null);
                             return;
                         }
                     }else{
@@ -1501,6 +1495,7 @@
                             if(url.indexOf("myanimelist.net/"+localListType+".php") > -1) {
                                 $("#MalInfo").text("Not Found!");
                                 flashm( "Anime not found" , true);
+                                miniMalButton(null);
                                 return;
                             }
                             con.log("MalEdit: ",url);
@@ -1999,6 +1994,19 @@
                 }
             });
         }
+    }
+
+    function miniMalButton(url = null){
+        $(".open-info-popup").unbind('click').show().click( function(){
+            if($('#info-popup').css('display') == 'none'){
+                document.getElementById('info-popup').style.display = "block";
+                fillIframe(url, currentMalData);
+                $('.floatbutton').fadeOut();
+            }else{
+                document.getElementById('info-popup').style.display = "none";
+                $('.floatbutton').fadeIn();
+            }
+        });
     }
     function checkdata(){
         if($.normalUrl() !== ""){
@@ -2713,15 +2721,23 @@
                 </button>\
             </div>\
             <!-- Tabs -->\
-            <div class="mdl-layout__tab-bar mdl-js-ripple-effect">\
+            <div class="mdl-layout__tab-bar mdl-js-ripple-effect">';
+            if(url != null){
+              material += '\
               <a href="#fixed-tab-1" class="mdl-layout__tab is-active">Overview</a>\
               <a href="#fixed-tab-2" class="mdl-layout__tab reviewsTab">Reviews</a>\
               <a href="#fixed-tab-3" class="mdl-layout__tab recommendationTab">Recommendations</a>\
               <!--<a href="#fixed-tab-4" class="mdl-layout__tab">Episodes</a>-->\
-              <a href="#fixed-tab-5" class="mdl-layout__tab">Settings</a>\
+              <a href="#fixed-tab-5" class="mdl-layout__tab">Settings</a>';
+            }else{
+              material += '<a href="#fixed-tab-5" class="mdl-layout__tab is-active">Settings</a>';
+            }
+            material += '\
             </div>\
           </header>\
-          <main class="mdl-layout__content">\
+          <main class="mdl-layout__content">';
+            if(url != null){
+            material += '\
             <section class="mdl-layout__tab-panel is-active" id="fixed-tab-1">\
               <div id="loadOverview" class="mdl-progress mdl-js-progress mdl-progress__indeterminate" style="width: 100%; position: absolute;"></div>\
               <div class="page-content">\
@@ -2768,8 +2784,10 @@
             <section class="mdl-layout__tab-panel" id="fixed-tab-4">\
               <div id="loadEpisode" class="mdl-progress mdl-js-progress mdl-progress__indeterminate" style="width: 100%; position: absolute;"></div>\
               <div class="page-content malClear" id="malEpisodes"></div>\
-            </section>\
-            <section class="mdl-layout__tab-panel" id="fixed-tab-5">\
+            </section>';
+            }
+            material +='\
+            <section class="mdl-layout__tab-panel is-active" id="fixed-tab-5">\
               <div class="page-content malClear" id="malConfig"></div>\
             </section>\
           </main>\
@@ -2808,7 +2826,7 @@
     function fillIframe(url, data = null){
         $("#info-iframe").contents().find('.malClear').hide();
         $("#info-iframe").contents().find('.mdl-progress__indeterminate').show();
-        if(data == null){
+        if(data == null && url != null){
             getAjaxData(url, function(newdata){
                 fillIframe(url, newdata);
             });
@@ -2841,7 +2859,14 @@
             if(malUrl == url){
                 settingsUI += '<div class="mdl-cell mdl-cell--12-col mdl-shadow--4dp">\
                                 <div class="mdl-card__title mdl-card--border">\
-                                    <h2 class="mdl-card__title-text">'+data.split('itemprop="name">')[1].split('<')[0]+'</h2>\
+                                    <h2 class="mdl-card__title-text">';
+                                    if(data != null){
+                                      settingsUI += data.split('itemprop="name">')[1].split('<')[0];
+                                    }else{
+                                      settingsUI += 'Not Found';
+                                    }
+                                    settingsUI +=
+                                    '</h2>\
                                 </div>\
                                   <div class="mdl-list__item">\
                                   <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width: 100%;">\
