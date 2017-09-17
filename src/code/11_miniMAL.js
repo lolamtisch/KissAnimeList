@@ -32,7 +32,7 @@
             iframe.onload = function() {
                 executejs(GM_getResourceText("materialjs"));
                 var head = $("#info-iframe").contents().find("head");
-                head.append('<style>#material .mdl-card__supporting-text{width: initial}</style>');
+                head.append('<style>#material .mdl-card__supporting-text{width: initial} .mdl-layout__header .mdl-textfield__label:after{background-color: red !important;}</style>');
                 head.append('<style>'+GM_getResourceText("materialCSS")+'</style>');
                 head.append('<style>'+GM_getResourceText("materialFont")+'</style>');
                 //templateIframe(url, data);
@@ -59,6 +59,15 @@
             <button class="mdl-layout__drawer-button" id="backbutton" style="display: none;"><i class="material-icons">arrow_back</i></button>\
             <div class="mdl-layout__header-row">\
                 <!--<span class="mdl-layout-title malTitle malClear"></span>--!>\
+                <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable">\
+                  <label class="mdl-button mdl-js-button mdl-button--icon" for="headMalSearch">\
+                    <i class="material-icons">search</i>\
+                  </label>\
+                  <div class="mdl-textfield__expandable-holder">\
+                    <input class="mdl-textfield__input" type="text" id="headMalSearch">\
+                    <label class="mdl-textfield__label" for="headMalSearch"></label>\
+                  </div>\
+                </div>\
                 <button class="mdl-button mdl-js-button mdl-button--icon mdl-layout__drawer-button" id="material-fullscreen" style="left: initial; right: 40px;">\
                   <i class="material-icons" class="material-icons md-48">fullscreen</i>\
                 </button>\
