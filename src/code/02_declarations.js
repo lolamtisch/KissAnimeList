@@ -514,10 +514,12 @@
             this.prependTo($("#info").first());
         };
         $.fn.uiWrongPos = function() {
-            this.css('font-size','14px').appendTo($(".title").first());
+            this.css('font-size','14px').insertBefore($("#info").first());
+            $('.title').first().css('display', 'inline-block');
         };
         $.fn.uiHeadPos = function() {
-            this.appendTo($("h1").first());
+            this.css('margin','18px 0 9px 0').css('font-weight','400').css('font-size','1.68rem').css('text-transform','uppercase').insertBefore($("#info").first());
+            $('.title').first().css('display', 'inline-block');
         };
 
         $(window).load(function(){
