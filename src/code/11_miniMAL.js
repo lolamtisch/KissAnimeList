@@ -178,6 +178,23 @@
                 $(this).find('i').text('fullscreen_exit');
             }
         });
+        $("#info-iframe").contents().find("#headMalSearch").on("input", function(){
+          if($("#info-iframe").contents().find("#headMalSearch").val() == ''){
+            $("#info-iframe").contents().find('#malSearchPop').hide();
+          }else{
+            $("#info-iframe").contents().find('#malSearchPop').show();
+            searchMal($("#info-iframe").contents().find("#headMalSearch").val(), listType, '#malSearchPop', function(){
+              $("#info-iframe").contents().find("#malSearchPop .searchItem").unbind('click').click(function(event) {
+                $("#info-iframe").contents().find("#headMalSearch").val('').trigger("input").parent().parent().removeClass('is-dirty');
+                $("#info-iframe").contents().find('.malClear').hide();
+                $("#info-iframe").contents().find('.mdl-progress__indeterminate').show();
+                $("#info-iframe").contents().find("#backbutton").show();
+                $("#info-iframe").contents().find('.mdl-layout__tab:eq(0) span').trigger( "click" );
+                fillIframe($(this).attr('malhref'));
+              });
+            });
+          }
+        });
     }
 
     function fillIframe(url, data = null){
@@ -342,7 +359,13 @@
             });
 
             $("#info-iframe").contents().find("#malSearch").on("input", function(){
-                searchMal($("#info-iframe").contents().find("#malSearch").val(), listType);
+              searchMal( $("#info-iframe").contents().find("#malSearch").val(), listType, '.malResults', function(){
+                $("#info-iframe").contents().find("#malSearchResults .searchItem").unbind('click').click(function(event) {
+                  $("#info-iframe").contents().find('#malUrlInput').val($(this).attr('malhref'));
+                  $("#info-iframe").contents().find('#malSearch').val('');
+                  $("#info-iframe").contents().find('#malSearchResults').html('');
+                });
+              });
             });
 
             $("#info-iframe").contents().find("#clearCache").click( function(){
@@ -543,12 +566,12 @@
             relatedHtml += '</ul>';
             $("#info-iframe").contents().find('.related-block').html(relatedHtml).show();
             $("#info-iframe").contents().find('#material .related-block a').each(function() {
-            $(this).click(function(e) {
+              $(this).click(function(e) {
                 $("#info-iframe").contents().find('.malClear').hide();
                 $("#info-iframe").contents().find('.mdl-progress__indeterminate').show();
                 $("#info-iframe").contents().find("#backbutton").show();
                 fillIframe($(this).attr('href'));
-            }).attr('onclick','return false;');
+              }).attr('onclick','return false;');
             });
         }catch(e) {console.log(e);}
 
@@ -796,8 +819,8 @@
         $("#info-iframe").contents().find('a').not(".nojs").attr('target','_blank');
     }
 
-    function searchMal(keyword, type = 'all'){
-        $("#info-iframe").contents().find('.malResults').html('');
+    function searchMal(keyword, type = 'all', selector, callback){
+        $("#info-iframe").contents().find(selector).html('');
         GM_xmlhttpRequest({
             method: "GET",
             url: 'https://myanimelist.net/search/prefix.json?type='+type+'&keyword='+keyword+'&v=1',
@@ -812,12 +835,13 @@
                         $.each(this, function() {
                             $.each(this, function() {
                                 if(typeof this['name'] != 'undefined'){
-                                    $("#info-iframe").contents().find('.malResults').append('<li class="mdl-list__item" onclick="document.getElementById(\'malUrlInput\').value = \''+this['url']+'\'; document.getElementById(\'malSearch\').value = \'\'; document.getElementById(\'malSearchResults\').innerHTML = \'\'">'+this['name']+'</li>');
+                                    $("#info-iframe").contents().find(selector).append('<li class="mdl-list__item searchItem" malhref="'+this['url']+'">'+this['name']+'</li>');
                                 }
                             });
                         });
                     });
                 });
+                callback();
             }
         });
     }
