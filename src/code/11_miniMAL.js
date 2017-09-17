@@ -146,6 +146,8 @@
               <div class="page-content malClear" id="malConfig"></div>\
             </section>\
           </main>\
+        </div>\
+        <div id="malSearchPop" style="height: calc(100% - 60px); width: 100%; position: fixed; top: 60px; z-index: 10; background-color: white; overflow-y: auto; display: none;">\
         </div>';
         //material += '</div>';
         $("#info-iframe").contents().find("body").append(material);
