@@ -839,12 +839,20 @@
             },
             onload: function(response) {
                 var searchResults = $.parseJSON(response.response);
+                $("#info-iframe").contents().find(selector).append('<div class="mdl-grid"></div>');
                 $.each(searchResults, function() {
                     $.each(this, function() {
                         $.each(this, function() {
                             $.each(this, function() {
                                 if(typeof this['name'] != 'undefined'){
-                                    $("#info-iframe").contents().find(selector).append('<li class="mdl-list__item searchItem" malhref="'+this['url']+'">'+this['name']+'</li>');
+                                    $("#info-iframe").contents().find(selector+' > div').append('<div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-shadow--4dp mdl-grid searchItem" malhref="'+this['url']+'" style="cursor: pointer;">\
+                                        <img src="'+this['thumbnail_url']+'" style=""></img>\
+                                        <div style="flex-grow: 100; cursor: pointer; margin-top: 0; margin-bottom: 0;" class="mdl-cell">\
+                                          <span style="font-size: 20px; font-weight: 400; line-height: 1;">'+this['name']+'</span>\
+                                          <p style="margin-bottom: 0;">'+this['payload']['score']+'</p>\
+                                          <p style="margin-bottom: 0;">'+this['payload']['start_year']+'</p>\
+                                        </div>\
+                                      </div>');
                                 }
                             });
                         });
