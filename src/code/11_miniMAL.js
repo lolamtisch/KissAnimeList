@@ -178,22 +178,27 @@
                 $(this).find('i').text('fullscreen_exit');
             }
         });
+
+        var timer;
         $("#info-iframe").contents().find("#headMalSearch").on("input", function(){
-          if($("#info-iframe").contents().find("#headMalSearch").val() == ''){
-            $("#info-iframe").contents().find('#malSearchPop').hide();
-          }else{
-            $("#info-iframe").contents().find('#malSearchPop').show();
-            searchMal($("#info-iframe").contents().find("#headMalSearch").val(), listType, '#malSearchPop', function(){
-              $("#info-iframe").contents().find("#malSearchPop .searchItem").unbind('click').click(function(event) {
-                $("#info-iframe").contents().find("#headMalSearch").val('').trigger("input").parent().parent().removeClass('is-dirty');
-                $("#info-iframe").contents().find('.malClear').hide();
-                $("#info-iframe").contents().find('.mdl-progress__indeterminate').show();
-                $("#info-iframe").contents().find("#backbutton").show();
-                $("#info-iframe").contents().find('.mdl-layout__tab:eq(0) span').trigger( "click" );
-                fillIframe($(this).attr('malhref'));
+          clearTimeout(timer);
+          timer = setTimeout(function(){
+            if($("#info-iframe").contents().find("#headMalSearch").val() == ''){
+              $("#info-iframe").contents().find('#malSearchPop').hide();
+            }else{
+              $("#info-iframe").contents().find('#malSearchPop').show();
+              searchMal($("#info-iframe").contents().find("#headMalSearch").val(), listType, '#malSearchPop', function(){
+                $("#info-iframe").contents().find("#malSearchPop .searchItem").unbind('click').click(function(event) {
+                  $("#info-iframe").contents().find("#headMalSearch").val('').trigger("input").parent().parent().removeClass('is-dirty');
+                  $("#info-iframe").contents().find('.malClear').hide();
+                  $("#info-iframe").contents().find('.mdl-progress__indeterminate').show();
+                  $("#info-iframe").contents().find("#backbutton").show();
+                  $("#info-iframe").contents().find('.mdl-layout__tab:eq(0) span').trigger( "click" );
+                  fillIframe($(this).attr('malhref'));
+                });
               });
-            });
-          }
+            }
+          }, 300);
         });
     }
 
@@ -358,14 +363,18 @@
                 }
             });
 
+            var timer;
             $("#info-iframe").contents().find("#malSearch").on("input", function(){
-              searchMal( $("#info-iframe").contents().find("#malSearch").val(), listType, '.malResults', function(){
-                $("#info-iframe").contents().find("#malSearchResults .searchItem").unbind('click').click(function(event) {
-                  $("#info-iframe").contents().find('#malUrlInput').val($(this).attr('malhref'));
-                  $("#info-iframe").contents().find('#malSearch').val('');
-                  $("#info-iframe").contents().find('#malSearchResults').html('');
+              clearTimeout(timer);
+              timer = setTimeout(function(){
+                searchMal( $("#info-iframe").contents().find("#malSearch").val(), listType, '.malResults', function(){
+                  $("#info-iframe").contents().find("#malSearchResults .searchItem").unbind('click').click(function(event) {
+                    $("#info-iframe").contents().find('#malUrlInput').val($(this).attr('malhref'));
+                    $("#info-iframe").contents().find('#malSearch').val('');
+                    $("#info-iframe").contents().find('#malSearchResults').html('');
+                  });
                 });
-              });
+              }, 300);
             });
 
             $("#info-iframe").contents().find("#clearCache").click( function(){
