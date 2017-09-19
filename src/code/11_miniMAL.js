@@ -32,7 +32,7 @@
             iframe.onload = function() {
                 executejs(GM_getResourceText("materialjs"));
                 var head = $("#info-iframe").contents().find("head");
-                head.append('<style>#material .mdl-card__supporting-text{width: initial}</style>');
+                head.append('<style>#material .mdl-card__supporting-text{width: initial} .mdl-layout__header .mdl-textfield__label:after{background-color: red !important;}</style>');
                 head.append('<style>'+GM_getResourceText("materialCSS")+'</style>');
                 head.append('<style>'+GM_getResourceText("materialFont")+'</style>');
                 //templateIframe(url, data);
@@ -59,6 +59,15 @@
             <button class="mdl-layout__drawer-button" id="backbutton" style="display: none;"><i class="material-icons">arrow_back</i></button>\
             <div class="mdl-layout__header-row">\
                 <!--<span class="mdl-layout-title malTitle malClear"></span>--!>\
+                <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable" id="SearchButton" style="margin-left: -57px; margin-top: 3px;">\
+                  <label class="mdl-button mdl-js-button mdl-button--icon" for="headMalSearch">\
+                    <i class="material-icons">search</i>\
+                  </label>\
+                  <div class="mdl-textfield__expandable-holder">\
+                    <input class="mdl-textfield__input" type="text" id="headMalSearch">\
+                    <label class="mdl-textfield__label" for="headMalSearch"></label>\
+                  </div>\
+                </div>\
                 <button class="mdl-button mdl-js-button mdl-button--icon mdl-layout__drawer-button" id="material-fullscreen" style="left: initial; right: 40px;">\
                   <i class="material-icons" class="material-icons md-48">fullscreen</i>\
                 </button>\
@@ -137,6 +146,8 @@
               <div class="page-content malClear" id="malConfig"></div>\
             </section>\
           </main>\
+        </div>\
+        <div id="malSearchPop" style="height: calc(100% - 60px); width: 100%; position: fixed; top: 60px; z-index: 10; background-color: white; overflow-y: auto; display: none;">\
         </div>';
         //material += '</div>';
         $("#info-iframe").contents().find("body").append(material);
@@ -152,6 +163,7 @@
             //alert();getcommondata();
             $("#info-iframe").contents().find('.mdl-layout__tab:eq(0) span').trigger( "click" );
             $(this).hide();
+            $("#info-iframe").contents().find('#SearchButton').css('margin-left', '-57px');
             if(currentMalData == null){
                 fillIframe(url, data);
             }
@@ -166,6 +178,29 @@
                 $(".modal-content").addClass('fullscreen');
                 $(this).find('i').text('fullscreen_exit');
             }
+        });
+
+        var timer;
+        $("#info-iframe").contents().find("#headMalSearch").on("input", function(){
+          clearTimeout(timer);
+          timer = setTimeout(function(){
+            if($("#info-iframe").contents().find("#headMalSearch").val() == ''){
+              $("#info-iframe").contents().find('#malSearchPop').hide();
+            }else{
+              $("#info-iframe").contents().find('#malSearchPop').show();
+              searchMal($("#info-iframe").contents().find("#headMalSearch").val(), listType, '#malSearchPop', function(){
+                $("#info-iframe").contents().find("#malSearchPop .searchItem").unbind('click').click(function(event) {
+                  $("#info-iframe").contents().find("#headMalSearch").val('').trigger("input").parent().parent().removeClass('is-dirty');
+                  $("#info-iframe").contents().find('.malClear').hide();
+                  $("#info-iframe").contents().find('.mdl-progress__indeterminate').show();
+                  $("#info-iframe").contents().find("#backbutton").show();
+                  $("#info-iframe").contents().find('#SearchButton').css('margin-left', '-17px');
+                  $("#info-iframe").contents().find('.mdl-layout__tab:eq(0) span').trigger( "click" );
+                  fillIframe($(this).attr('malhref'));
+                });
+              });
+            }
+          }, 300);
         });
     }
 
@@ -330,8 +365,18 @@
                 }
             });
 
+            var timer;
             $("#info-iframe").contents().find("#malSearch").on("input", function(){
-                searchMal($("#info-iframe").contents().find("#malSearch").val(), listType);
+              clearTimeout(timer);
+              timer = setTimeout(function(){
+                searchMal( $("#info-iframe").contents().find("#malSearch").val(), listType, '.malResults', function(){
+                  $("#info-iframe").contents().find("#malSearchResults .searchItem").unbind('click').click(function(event) {
+                    $("#info-iframe").contents().find('#malUrlInput').val($(this).attr('malhref'));
+                    $("#info-iframe").contents().find('#malSearch').val('');
+                    $("#info-iframe").contents().find('#malSearchResults').html('');
+                  });
+                });
+              }, 300);
             });
 
             $("#info-iframe").contents().find("#clearCache").click( function(){
@@ -532,12 +577,13 @@
             relatedHtml += '</ul>';
             $("#info-iframe").contents().find('.related-block').html(relatedHtml).show();
             $("#info-iframe").contents().find('#material .related-block a').each(function() {
-            $(this).click(function(e) {
+              $(this).click(function(e) {
                 $("#info-iframe").contents().find('.malClear').hide();
                 $("#info-iframe").contents().find('.mdl-progress__indeterminate').show();
                 $("#info-iframe").contents().find("#backbutton").show();
+                $("#info-iframe").contents().find('#SearchButton').css('margin-left', '-17px');
                 fillIframe($(this).attr('href'));
-            }).attr('onclick','return false;');
+              }).attr('onclick','return false;');
             });
         }catch(e) {console.log(e);}
 
@@ -719,6 +765,7 @@
                         $("#info-iframe").contents().find('.malClear').hide();
                         $("#info-iframe").contents().find('.mdl-progress__indeterminate').show();
                         $("#info-iframe").contents().find("#backbutton").show();
+                        $("#info-iframe").contents().find('#SearchButton').css('margin-left', '-17px');
                         $("#info-iframe").contents().find('.mdl-layout__tab:eq(0) span').trigger( "click" );
                         fillIframe($(this).attr('href'));
                     }).attr('onclick','return false;');
@@ -785,8 +832,8 @@
         $("#info-iframe").contents().find('a').not(".nojs").attr('target','_blank');
     }
 
-    function searchMal(keyword, type = 'all'){
-        $("#info-iframe").contents().find('.malResults').html('');
+    function searchMal(keyword, type = 'all', selector, callback){
+        $("#info-iframe").contents().find(selector).html('');
         GM_xmlhttpRequest({
             method: "GET",
             url: 'https://myanimelist.net/search/prefix.json?type='+type+'&keyword='+keyword+'&v=1',
@@ -796,17 +843,26 @@
             },
             onload: function(response) {
                 var searchResults = $.parseJSON(response.response);
+                $("#info-iframe").contents().find(selector).append('<div class="mdl-grid"></div>');
                 $.each(searchResults, function() {
                     $.each(this, function() {
                         $.each(this, function() {
                             $.each(this, function() {
                                 if(typeof this['name'] != 'undefined'){
-                                    $("#info-iframe").contents().find('.malResults').append('<li class="mdl-list__item" onclick="document.getElementById(\'malUrlInput\').value = \''+this['url']+'\'; document.getElementById(\'malSearch\').value = \'\'; document.getElementById(\'malSearchResults\').innerHTML = \'\'">'+this['name']+'</li>');
+                                    $("#info-iframe").contents().find(selector+' > div').append('<div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-shadow--4dp mdl-grid searchItem" malhref="'+this['url']+'" style="cursor: pointer;">\
+                                        <img src="'+this['thumbnail_url']+'" style=""></img>\
+                                        <div style="flex-grow: 100; cursor: pointer; margin-top: 0; margin-bottom: 0;" class="mdl-cell">\
+                                          <span style="font-size: 20px; font-weight: 400; line-height: 1;">'+this['name']+'</span>\
+                                          <p style="margin-bottom: 0;">'+this['payload']['score']+'</p>\
+                                          <p style="margin-bottom: 0;">'+this['payload']['start_year']+'</p>\
+                                        </div>\
+                                      </div>');
                                 }
                             });
                         });
                     });
                 });
+                callback();
             }
         });
     }
