@@ -41,3 +41,13 @@
             }, 300);
         });
     }
+
+    function detailsPopup(){
+        $(window).load(function(){
+            $('a[href*="editlist.php"]').click(function(){
+                $('.editlist').remove();
+                $('body').after('<div class="editlist" style="position: fixed; width: 80%; height: 60%; top: 20%; left: 10%;"><div onclick="this.parentElement.remove();" style="position: absolute; right: -15px; top: -15px; border-radius: 50%;-moz-border-radius: 50%;-webkit-border-radius: 50%;background-color: black;color: white;height: 30px;width: 30px;" class="closeEditList">X</div><iframe style="border: none; height: 100%; width: 100%;" src="'+$(this).attr('href')+'&hideLayout" /></div>')
+                return false;
+            });
+        });
+    }
