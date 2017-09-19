@@ -8,11 +8,18 @@
                     clearInterval(checkExist);
                     var url = '';
                     //Classic List formating
-                    $('#list_surround table td[class^="td"]:last-child').addClass("tags");  //.css('background-color','red');
+
                     $('#list_surround table').addClass("list-table-data");
                     $('#list_surround table td[class^="td"]:first-child').addClass("title").addClass("data");
                     $('#list_surround table .animetitle').addClass("link");
-                    $('#list_surround table td[class^="td"]:nth-last-child(2)').addClass("progress").addClass("data").find('span a').addClass('link');
+                    $('.table_header').each(function(index){
+                        if($(this).find('strong a:contains(Progress)').height()){
+                            $('#list_surround table td[class^="td"]:nth-child('+(index+1)+')').addClass("progress").addClass("data").find('span a').addClass('link');
+                        }
+                        if($('strong:contains(Tags)').height()){
+                            $('#list_surround table td[class^="td"]:nth-child('+(index+1)+')').addClass("tags");  //.css('background-color','red');
+                        }
+                    })
                     //
                     if( $('.header-title.tags').height() || $('.td1.tags').height()){
                         $('.tags span a').each(function( index ) {
@@ -55,8 +62,12 @@
                 var xml = $(response.responseXML);
                 var title = '';
                 var xmlAnime = '';
+                var span = '';
+                if($('#list_surround').length){
+                    span = 'span';
+                };
                 $('.list-table-data').each(function( index ) {
-                    title = $(this).find('.title .link').text();
+                    title = $(this).find('.title .link '+span).text();
                     xmlAnime = xml.find('series_title:contains('+title+')').first().parent();
                     if(xmlAnime.find('my_tags').text().indexOf("last::") > -1 ){
                         url = xmlAnime.find('my_tags').text().split("last::")[1].split("::")[0];
