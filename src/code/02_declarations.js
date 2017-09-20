@@ -616,6 +616,9 @@
                         var thisparent =  $(this).parent();
                         $('.season-dropdown').not(thisparent).siblings().remove();
                         $('.season-dropdown').not(thisparent).remove();
+                        $('.portrait-grid').css('display','block').find("li.group-item img.landscape").each(function() {
+                            void 0 === $(this).attr("src") && $(this).attr("src", $(this).attr("data-thumbnailUrl"))
+                        }),
                         $('.exclusivMal').remove();
                         checkdata();
                     });
