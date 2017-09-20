@@ -34,7 +34,7 @@
                             }
                         });
                     }else{
-                        alternativTagToContinue();
+                        alternativTagOnSite();
                     }
 
                     return true;
@@ -43,13 +43,27 @@
         });
     }
 
+    function alternativTagOnSite(){
+        if($('.list-table').length){
+            con.log('Modern Tags');
+            var data = $.parseJSON($('.list-table').attr('data-items'));
+            $.each(data,function(index, el) {
+                if(el['tags'].indexOf("last::") > -1 ){
+                    var url = el['tags'].split("last::")[1].split("::")[0];
+                    setStreamLinks(url, $('.list-item a[href^="'+el['anime_url']+'"]').parent().parent('.list-table-data'));
+                }
+            });
+        }else{
+            con.log('Classic Tags');
+            alternativTagToContinue();
+        }
+    }
+
     function alternativTagToContinue(){
         var user = window.location.href.split('/')[4].split('?')[0];
         var listType = window.location.href.split('.net/')[1].split('list')[0];
         url = "https://myanimelist.net/malappinfo.php?u="+user+"&status=all&type="+listType;
         con.log("XML Url:", url);
-//TODO Check if tag system activated
-//TODO cache
         GM_xmlhttpRequest({
             method: "GET",
             url: url,
