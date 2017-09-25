@@ -612,7 +612,7 @@
                 if( $('.season-dropdown').length > 1){
                     $('.season-dropdown').append('<span class="exclusivMal" style="float: right; margin-right: 20px; color: #0A6DA4;" onclick="return false;">MAL</span>');
                     $('.exclusivMal').click(function(){
-                        $('#showview_content').before('<div><a href="">Show hidden seasons</a></div>');
+                        $('#showview_content').before('<div><a href="'+window.location.href.split('?')[0]+'">Show hidden seasons</a></div>');
                         var thisparent =  $(this).parent();
                         $('.season-dropdown').not(thisparent).siblings().remove();
                         $('.season-dropdown').not(thisparent).remove();
@@ -622,6 +622,12 @@
                         $('.exclusivMal').remove();
                         checkdata();
                     });
+                    var season = new RegExp('[\?&]' + 'season' + '=([^&#]*)').exec(window.location.href);
+                    season = season[1] || null;
+                    if(season != null){
+                        season = decodeURIComponent(decodeURI(season));
+                        $('.season-dropdown[title="'+season+'" i] .exclusivMal').first().click();
+                    }
                     return;
                 }else{
                     checkdata();
