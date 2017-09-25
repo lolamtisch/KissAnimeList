@@ -25,6 +25,9 @@
                         con.log(response);
                         if(response.response != null){
                             var responsearray = $.parseJSON(response.response);
+                            if( value == 'Crunchyroll' ){
+                                responsearray['url'] = responsearray['url'] + '?season=' + index;
+                            }
                             GM_setValue( value+'/'+encodeURIComponent(index)+'/MalToKiss', '{"title":"'+responsearray['title']+'","url":"'+responsearray['url']+'"}' );
                             displaySites(responsearray, page);
                         }
