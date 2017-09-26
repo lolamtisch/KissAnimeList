@@ -886,6 +886,9 @@
     }
 
     function iframeBookmarks(element){
+        element.html('<div id="loadRecommendations" class="mdl-progress mdl-js-progress mdl-progress__indeterminate" style="width: 100%; position: absolute;"></div>');
+        executejs('componentHandler.upgradeDom();');
+
         getMalXml("", function(bookXML){
           var bookmarkHtml = '<div class="mdl-grid">';
           bookXML.find('my_status:contains(1)').parent().each(function(){
