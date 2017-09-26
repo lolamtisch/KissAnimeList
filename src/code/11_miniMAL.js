@@ -895,6 +895,7 @@
                 bookmarkHtml +='<span class="link" style="width: 100%; position: absolute; bottom: 0; display: block; background-color: white; padding-top: 5px;">'+$(this).find('series_title').first().text()+'</span>';
                 bookmarkHtml +='<div class="tags" style="display: none;">'+$(this).find('my_tags').first().text()+'</div>';
               bookmarkHtml +='</div>';
+              bookmarkHtml +='<div class="data progress" style="display: none;"><div class="link">'+$(this).find('my_watched_episodes').first().text()+'</div></div>';
             bookmarkHtml +='</div>';
           })
           bookmarkHtml += '</div>'
