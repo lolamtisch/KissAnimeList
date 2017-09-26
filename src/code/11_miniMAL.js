@@ -207,6 +207,17 @@
             }
           }, 300);
         });
+
+        $("#info-iframe").contents().find("#book").click(function() {
+          if($("#info-iframe").contents().find("#book.open").length){
+            $("#info-iframe").contents().find("#book").toggleClass('open');
+            $("#info-iframe").contents().find('#malSearchPop').hide();
+          }else{
+            $("#info-iframe").contents().find("#book").toggleClass('open');
+            $("#info-iframe").contents().find('#malSearchPop').show();
+            iframeBookmarks( $("#info-iframe").contents().find('#malSearchPop') );
+          }
+        });
     }
 
     function fillIframe(url, data = null){
@@ -872,4 +883,8 @@
                 callback();
             }
         });
+    }
+
+    function iframeBookmarks(element){
+        element.html('test');
     }
