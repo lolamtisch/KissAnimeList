@@ -59,7 +59,10 @@
             <button class="mdl-layout__drawer-button" id="backbutton" style="display: none;"><i class="material-icons">arrow_back</i></button>\
             <div class="mdl-layout__header-row">\
                 <!--<span class="mdl-layout-title malTitle malClear"></span>--!>\
-                <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable" id="SearchButton" style="margin-left: -57px; margin-top: 3px;">\
+                <button class="mdl-button mdl-js-button mdl-button--icon mdl-layout__drawer-button" id="book" style="">\
+                  <i class="material-icons" class="material-icons md-48">book</i>\
+                </button>\
+                <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable" id="SearchButton" style="margin-left: -57px; margin-top: 3px; padding-left: 40px;">\
                   <label class="mdl-button mdl-js-button mdl-button--icon" for="headMalSearch">\
                     <i class="material-icons">search</i>\
                   </label>\
@@ -164,6 +167,7 @@
             $("#info-iframe").contents().find('.mdl-layout__tab:eq(0) span').trigger( "click" );
             $(this).hide();
             $("#info-iframe").contents().find('#SearchButton').css('margin-left', '-57px');
+            $("#info-iframe").contents().find('#book').css('left', '0px');
             if(currentMalData == null){
                 fillIframe(url, data);
             }
@@ -195,6 +199,7 @@
                   $("#info-iframe").contents().find('.mdl-progress__indeterminate').show();
                   $("#info-iframe").contents().find("#backbutton").show();
                   $("#info-iframe").contents().find('#SearchButton').css('margin-left', '-17px');
+                  $("#info-iframe").contents().find('#book').css('left', '40px');
                   $("#info-iframe").contents().find('.mdl-layout__tab:eq(0) span').trigger( "click" );
                   fillIframe($(this).attr('malhref'));
                 });
@@ -582,6 +587,7 @@
                 $("#info-iframe").contents().find('.mdl-progress__indeterminate').show();
                 $("#info-iframe").contents().find("#backbutton").show();
                 $("#info-iframe").contents().find('#SearchButton').css('margin-left', '-17px');
+                $("#info-iframe").contents().find('#book').css('left', '40px');
                 fillIframe($(this).attr('href'));
               }).attr('onclick','return false;');
             });
@@ -766,6 +772,7 @@
                         $("#info-iframe").contents().find('.mdl-progress__indeterminate').show();
                         $("#info-iframe").contents().find("#backbutton").show();
                         $("#info-iframe").contents().find('#SearchButton').css('margin-left', '-17px');
+                        $("#info-iframe").contents().find('#book').css('left', '40px');
                         $("#info-iframe").contents().find('.mdl-layout__tab:eq(0) span').trigger( "click" );
                         fillIframe($(this).attr('href'));
                     }).attr('onclick','return false;');
