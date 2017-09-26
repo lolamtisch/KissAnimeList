@@ -867,7 +867,7 @@
                         $.each(this, function() {
                             $.each(this, function() {
                                 if(typeof this['name'] != 'undefined'){
-                                    $("#info-iframe").contents().find(selector+' > div').append('<div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-shadow--4dp mdl-grid searchItem" malhref="'+this['url']+'" style="cursor: pointer;">\
+                                    $("#info-iframe").contents().find(selector+' > div').append('<div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-shadow--2dp mdl-grid searchItem" malhref="'+this['url']+'" style="cursor: pointer;">\
                                         <img src="'+this['thumbnail_url']+'" style=""></img>\
                                         <div style="flex-grow: 100; cursor: pointer; margin-top: 0; margin-bottom: 0;" class="mdl-cell">\
                                           <span style="font-size: 20px; font-weight: 400; line-height: 1;">'+this['name']+'</span>\
@@ -889,9 +889,9 @@
         getMalXml("", function(bookXML){
           var bookmarkHtml = '<div class="mdl-grid">';
           bookXML.find('my_status:contains(1)').parent().each(function(){
-            bookmarkHtml +='<div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-shadow--4dp mdl-grid bookEntry" malhref="" style="cursor: pointer;">';
-              bookmarkHtml +='<div class="data title">';
-                bookmarkHtml +='<span class="link">'+$(this).find('series_title').first().text()+'</span>';
+            bookmarkHtml +='<div class="mdl-cell mdl-cell--2-col mdl-cell--4-col-tablet mdl-cell--6-col-phone mdl-shadow--2dp mdl-grid bookEntry" malhref="" style="cursor: pointer; height: 250px;">';
+              bookmarkHtml +='<div class="data title" style="background-image: url('+$(this).find('series_image').first().text()+'); background-size: cover; background-position: center center; background-repeat: no-repeat; width: 100%; position: relative; padding-top: 5px;">';
+                bookmarkHtml +='<span class="link" style="width: 100%; position: absolute; bottom: 0; display: block; background-color: white; padding-top: 5px;">'+$(this).find('series_title').first().text()+'</span>';
                 bookmarkHtml +='<div class="tags" style="display: none;">'+$(this).find('my_tags').first().text()+'</div>';
               bookmarkHtml +='</div>';
             bookmarkHtml +='</div>';
