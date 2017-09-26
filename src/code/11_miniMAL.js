@@ -887,7 +887,13 @@
 
     function iframeBookmarks(element){
         getMalXml("", function(bookXML){
-          console.log(bookXML);
-          element.html('test');
+          var bookmarkHtml = '<div class="mdl-grid">';
+          bookXML.find('my_status:contains(1)').parent().each(function(){
+            bookmarkHtml +='<div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-shadow--4dp mdl-grid" malhref="" style="cursor: pointer;">';
+              bookmarkHtml +='<span>'+$(this).find('series_title').first().text()+'</span>';
+            bookmarkHtml +='</div>';
+          })
+          bookmarkHtml += '</div>'
+          element.html( bookmarkHtml );
         });
     }
