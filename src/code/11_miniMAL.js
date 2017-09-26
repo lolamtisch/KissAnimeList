@@ -886,5 +886,8 @@
     }
 
     function iframeBookmarks(element){
-        element.html('test');
+        getMalXml("", function(bookXML){
+          console.log(bookXML);
+          element.html('test');
+        });
     }
