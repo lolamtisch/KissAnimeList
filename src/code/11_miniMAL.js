@@ -889,7 +889,8 @@
         getMalXml("", function(bookXML){
           var bookmarkHtml = '<div class="mdl-grid">';
           bookXML.find('my_status:contains(1)').parent().each(function(){
-            bookmarkHtml +='<div class="mdl-cell mdl-cell--2-col mdl-cell--4-col-tablet mdl-cell--6-col-phone mdl-shadow--2dp mdl-grid bookEntry" malhref="" style="cursor: pointer; height: 250px;">';
+            var malUrl = 'https://myanimelist.net/anime/'+$(this).find('series_animedb_id').first().text()+'/'+$(this).find('series_title').first().text();
+            bookmarkHtml +='<div class="mdl-cell mdl-cell--2-col mdl-cell--4-col-tablet mdl-cell--6-col-phone mdl-shadow--2dp mdl-grid bookEntry" malhref="'+malUrl+'" style="cursor: pointer; height: 250px;">';
               bookmarkHtml +='<div class="data title" style="background-image: url('+$(this).find('series_image').first().text()+'); background-size: cover; background-position: center center; background-repeat: no-repeat; width: 100%; position: relative; padding-top: 5px;">';
                 bookmarkHtml +='<span class="link" style="width: 100%; position: absolute; bottom: 0; display: block; background-color: white; padding-top: 5px;">'+$(this).find('series_title').first().text()+'</span>';
                 bookmarkHtml +='<div class="tags" style="display: none;">'+$(this).find('my_tags').first().text()+'</div>';
@@ -904,6 +905,18 @@
               var url = $(this).find('.tags').text().split("last::")[1].split("::")[0];
               setStreamLinks(url, $(this));
             }
-          })
+          });
+
+          $("#info-iframe").contents().find("#malSearchPop .bookEntry").unbind('click').click(function(event) {
+            $("#info-iframe").contents().find('#book').click();
+            $("#info-iframe").contents().find('.malClear').hide();
+            $("#info-iframe").contents().find('.mdl-progress__indeterminate').show();
+            $("#info-iframe").contents().find("#backbutton").show();
+            $("#info-iframe").contents().find('#SearchButton').css('margin-left', '-17px');
+            $("#info-iframe").contents().find('#book').css('left', '40px');
+            $("#info-iframe").contents().find('.mdl-layout__tab:eq(0) span').trigger( "click" );
+            fillIframe($(this).attr('malhref'));
+          });
+
         });
     }
