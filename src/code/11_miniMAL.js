@@ -889,11 +889,21 @@
         getMalXml("", function(bookXML){
           var bookmarkHtml = '<div class="mdl-grid">';
           bookXML.find('my_status:contains(1)').parent().each(function(){
-            bookmarkHtml +='<div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-shadow--4dp mdl-grid" malhref="" style="cursor: pointer;">';
-              bookmarkHtml +='<span>'+$(this).find('series_title').first().text()+'</span>';
+            bookmarkHtml +='<div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-shadow--4dp mdl-grid bookEntry" malhref="" style="cursor: pointer;">';
+              bookmarkHtml +='<div class="data title">';
+                bookmarkHtml +='<span class="link">'+$(this).find('series_title').first().text()+'</span>';
+                bookmarkHtml +='<div class="tags" style="display: none;">'+$(this).find('my_tags').first().text()+'</div>';
+              bookmarkHtml +='</div>';
             bookmarkHtml +='</div>';
           })
           bookmarkHtml += '</div>'
           element.html( bookmarkHtml );
+
+          $("#info-iframe").contents().find('.bookEntry').each(function() {
+            if($(this).find('.tags').text().indexOf("last::") > -1 ){
+              var url = $(this).find('.tags').text().split("last::")[1].split("::")[0];
+              setStreamLinks(url, $(this));
+            }
+          })
         });
     }
