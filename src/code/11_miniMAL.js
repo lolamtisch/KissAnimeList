@@ -895,10 +895,13 @@
             var malUrl = 'https://myanimelist.net/anime/'+$(this).find('series_animedb_id').first().text()+'/'+$(this).find('series_title').first().text();
             bookmarkHtml +='<div class="mdl-cell mdl-cell--2-col mdl-cell--4-col-tablet mdl-cell--6-col-phone mdl-shadow--2dp mdl-grid bookEntry" malhref="'+malUrl+'" style="cursor: pointer; height: 250px;">';
               bookmarkHtml +='<div class="data title" style="background-image: url('+$(this).find('series_image').first().text()+'); background-size: cover; background-position: center center; background-repeat: no-repeat; width: 100%; position: relative; padding-top: 5px;">';
-                bookmarkHtml +='<span class="link" style="width: 100%; position: absolute; bottom: 0; display: block; background-color: white; padding-top: 5px;">'+$(this).find('series_title').first().text()+'</span>';
+                bookmarkHtml +='<span class="" style="width: 100%; position: absolute; bottom: 0; display: block; background-color: white; padding-top: 5px; display: inline-flex; align-items: center; justify-content: space-between;">'+$(this).find('series_title').first().text();
+                  bookmarkHtml +='<div class="data progress mdl-chip mdl-chip--contact" style="float: right; line-height: 20px; height: 20px; padding-right: 4px;">';
+                    bookmarkHtml +='<div class="link mdl-chip__contact mdl-color--teal mdl-color-text--white" style="line-height: 20px; height: 20px; margin-right: 0;">'+$(this).find('my_watched_episodes').first().text()+'</div>';
+                  bookmarkHtml +='</div>';
+                bookmarkHtml +='</span>';
                 bookmarkHtml +='<div class="tags" style="display: none;">'+$(this).find('my_tags').first().text()+'</div>';
               bookmarkHtml +='</div>';
-              bookmarkHtml +='<div class="data progress" style="display: none;"><div class="link">'+$(this).find('my_watched_episodes').first().text()+'</div></div>';
             bookmarkHtml +='</div>';
           })
           bookmarkHtml += '</div>'
