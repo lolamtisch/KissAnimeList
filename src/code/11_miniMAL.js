@@ -144,11 +144,18 @@
               <div class="page-content malClear" id="malEpisodes"></div>\
             </section>';
             }
-            material +='\
-            <section class="mdl-layout__tab-panel is-active" id="fixed-tab-5">\
-              <div class="page-content malClear" id="malConfig"></div>\
-            </section>\
-          </main>\
+            if(url != null){
+              material +='\
+              <section class="mdl-layout__tab-panel" id="fixed-tab-5">\
+                <div class="page-content malClear" id="malConfig"></div>\
+              </section>';
+            }else{
+              material +='\
+              <section class="mdl-layout__tab-panel is-active" id="fixed-tab-5">\
+                <div class="page-content malClear" id="malConfig"></div>\
+              </section>';
+            }
+          material +='</main>\
         </div>\
         <div id="malSearchPop" style="height: calc(100% - 60px); width: 100%; position: fixed; top: 60px; z-index: 10; background-color: white; overflow-y: auto; display: none;">\
         </div>';
