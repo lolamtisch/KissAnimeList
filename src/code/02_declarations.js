@@ -44,29 +44,46 @@
     var loadingText = 'Loading';
 
     var curVersion = GM_info.script.version;
-    if(curVersion != GM_getValue( 'Version', null ) && GM_getValue( 'Version', null ) != null){
-        switch(curVersion) {
-            case '0.86.4':
-                alert('Kissanimelist (v0.86)\n- 9anime Support\n- Link to last streaming page on Myanimelist\'s Animelist (Tags have to be activated)');
-                break;
-            case '0.86.5':
-                alert('Kissanimelist (v0.86.5)\n- add config Page (Can be found in Mal profile settings)');
-                break;
-            case '0.87.1':
-                alert('Kissanimelist (v0.87.1)\n- Materialize UI\n- Add miniMAL popup');
-                break;
-            case '0.87.3':
-                alert('Kissanimelist (v0.87.3)\n- Crunchyroll Support (Video page only)\n- Added MAL classic bookmark support\n- Added next episode links in MAL bookmarks');
-                break;
-            case '0.87.8':
-                alert('Kissanimelist (v0.87.8)\n- Android Support\n- Added Autoupdate delay settings');
-                break;
-            case '0.87.9':
-                alert('Kissanimelist (v0.87.9)\n- Gogoanime Support\n- Crunchyroll multiple season support');
-                break;
+
+    function changelog(){
+        if(curVersion != GM_getValue( 'Version', null )){
+            var message = '<div style="text-align: left;">';
+            if(GM_getValue( 'Version', null ) != null){
+                switch(curVersion) {
+                    case '0.86.4':
+                        message += 'Kissanimelist (v0.86)<br/>- 9anime Support<br/>- Link to last streaming page on Myanimelist\'s Animelist (Tags have to be activated)';
+                        break;
+                    case '0.86.5':
+                        message += 'Kissanimelist (v0.86.5)<br/>- add config Page (Can be found in Mal profile settings)';
+                        break;
+                    case '0.87.1':
+                        message += 'Kissanimelist (v0.87.1)<br/>- Materialize UI<br/>- Add miniMAL popup';
+                        break;
+                    case '0.87.3':
+                        message += 'Kissanimelist (v0.87.3)<br/>- Crunchyroll Support (Video page only)<br/>- Added MAL classic bookmark support<br/>- Added next episode links in MAL bookmarks';
+                        break;
+                    case '0.87.8':
+                        message += 'Kissanimelist (v0.87.8)<br/>- Android Support<br/>- Added Autoupdate delay settings';
+                        break;
+                    case '0.87.9':
+                        message += 'Kissanimelist (v0.87.9)<br/>- Gogoanime Support<br/>- Crunchyroll multiple season support';
+                        break;
+                    case '0.89.0':
+                        message += 'Check out the new <a href="https://discord.gg/cTH4yaw">Discord channel</a>!<br/><br/>Kissanimelist (v0.89.0)</br>- Add Search to miniMAL</br>- Add MyAnimeList Bookmarks to miniMAL</br>- MyAnimeList Tags don\'t need to be activated anymore</br>- Mal2Crunchyroll links now hides remaining seasons</br>';
+                        break;
+                }
+            }else{
+                message += '<h2>Welcome to <a href="https://greasyfork.org/en/scripts/27564-kissanimelist">KissAnimeList</a></h2><br/>Support:<br/><a href="https://discord.gg/cTH4yaw">Discord Channel</a><br/><a href="https://github.com/lolamtisch/KissAnimeList">GitHub</a> <a href="https://github.com/lolamtisch/KissAnimeList/issues">Issues</a>';
+            }
+            message += '</div><br><button class="okChangelog" style="background-color: transparent; border: none; color: rgb(255,64,129);margin-top: 10px;">Ok</button>'
+            flashm(message, false, false, true);
+            $('.okChangelog').click(function(){
+                GM_setValue( 'Version', curVersion );
+                $('.flashPerm').remove();
+            });
         }
     }
-    GM_setValue( 'Version', curVersion );
+
 
     if( window.location.href.indexOf("kissanime.ru") > -1 ){
         //#########Kissanime#########
@@ -612,13 +629,22 @@
                 if( $('.season-dropdown').length > 1){
                     $('.season-dropdown').append('<span class="exclusivMal" style="float: right; margin-right: 20px; color: #0A6DA4;" onclick="return false;">MAL</span>');
                     $('.exclusivMal').click(function(){
-                        $('#showview_content').before('<div><a href="">Show hidden seasons</a></div>');
+                        $('#showview_content').before('<div><a href="'+window.location.href.split('?')[0]+'">Show hidden seasons</a></div>');
                         var thisparent =  $(this).parent();
                         $('.season-dropdown').not(thisparent).siblings().remove();
                         $('.season-dropdown').not(thisparent).remove();
+                        $('.portrait-grid').css('display','block').find("li.group-item img.landscape").each(function() {
+                            void 0 === $(this).attr("src") && $(this).attr("src", $(this).attr("data-thumbnailUrl"))
+                        }),
                         $('.exclusivMal').remove();
                         checkdata();
                     });
+                    var season = new RegExp('[\?&]' + 'season' + '=([^&#]*)').exec(window.location.href);
+                    season = season[1] || null;
+                    if(season != null){
+                        season = decodeURIComponent(decodeURI(season));
+                        $('.season-dropdown[title="'+season+'" i] .exclusivMal').first().click();
+                    }
                     return;
                 }else{
                     checkdata();

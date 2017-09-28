@@ -93,12 +93,6 @@
             uihead += '<p>';
 
             var uiwrong ='';
-            //uiwrong += '<a id="malWrong" href="#" style="display: inline; margin-left: 6px;">';
-            //uiwrong += '[Mal incorrect?]';
-            //uiwrong += '</a>';
-            //uiwrong += '<a id="episodeOffset" href="#" onclick="return false;" style="display: inline; margin-left: 6px;">';
-            //uiwrong += '[Episode Offset]';
-            //uiwrong += '</a>';
 
             uiwrong += '<button class="open-info-popup mdl-button" style="display:none; margin-left: 6px;">MAL</button>';
 
@@ -131,21 +125,8 @@
                     //flashpos = $('#my_video_1');
                 //}
                 flashpos.after('<div id="flash-div" style="text-align: center;pointer-events: none;position: fixed;bottom:0px;width:100%;z-index: 2147483647;left: 0;"><div id="flash" style="display:none;  background-color: red;padding: 20px; margin: 0 auto;max-width: 60%;          -webkit-border-radius: 20px;-moz-border-radius: 20px;border-radius: 20px;background:rgba(227,0,0,0.6);                       "></div></div>');
-                $("#malWrong").click(function() {
-                    var murl = GM_getValue(dbSelector+'/'+$.titleToDbKey($.urlAnimeTitle($.normalUrl()))+'/Mal' , null);
-                    murl = prompt("Please enter the right MyAnimeList url. \nLeave blank for reset",murl);
-                    if(murl !== null){
-                        if(murl !== ''){
-                            GM_setValue( dbSelector+'/'+$.titleToDbKey($.urlAnimeTitle($.normalUrl()))+'/Mal', murl );
-                            flashm( "new url '"+murl+"' set." , false);
-                            checkdata();
-                        }else{
-                            GM_deleteValue( dbSelector+'/'+$.titleToDbKey($.urlAnimeTitle($.normalUrl()))+'/Mal' );
-                            flashm( "MyAnimeList url reset" , false);
-                            checkdata();
-                        }
-                    }
-                });
+
+                changelog();
 
                 createIframe();
                 //#######Kissanime#######

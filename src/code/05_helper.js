@@ -69,38 +69,47 @@
         }
     }
 
-    function flashm(text,error = true, info = false){
-
+    function flashm(text,error = true, info = false, permanent = false){
         con.log("Flash Message: ",text);
-        if(info){
-            $('.flashinfo').removeClass('flashinfo').delay(2000).fadeOut({
-                duration: 400,
-                queue: false,
-                complete: function() { $(this).remove(); }});
+        if(permanent){
             if(error === true){
                 var colorF = "#3e0808";
             }else{
                 var colorF = "#323232";
             }
-            $('#flash-div').append('<div class="flashinfo" style="display:none;"><div style="display:table; pointer-events: all; background-color: red;padding: 14px 24px 14px 24px; margin: 0 auto; margin-top: -2px; max-width: 60%; -webkit-border-radius: 20px;-moz-border-radius: 20px;border-radius: 2px;color: white;background:'+colorF+'; ">'+text+'</div></div>');
-            $('.flashinfo').delay(2000).slideDown(800).delay(6000).slideUp(800, function() { $(this).remove(); });
+            $('#flash-div').append('<div class="flashPerm" style="display:none;"><div style="display:table; pointer-events: all; background-color: red;padding: 14px 24px 14px 24px; margin: 0 auto; margin-top: -2px; max-width: 60%; -webkit-border-radius: 20px;-moz-border-radius: 20px;border-radius: 2px;color: white;background:'+colorF+'; ">'+text+'</div></div>');
+            $('.flashPerm').delay(2000).slideDown(800);
         }else{
-            $('.flash').removeClass('flash').fadeOut({
-                duration: 400,
-                queue: false,
-                complete: function() { $(this).remove(); }});
-            if(error === true){
-                var colorF = "#3e0808";
+            if(info){
+                $('.flashinfo').removeClass('flashinfo').delay(2000).fadeOut({
+                    duration: 400,
+                    queue: false,
+                    complete: function() { $(this).remove(); }});
+                if(error === true){
+                    var colorF = "#3e0808";
+                }else{
+                    var colorF = "#323232";
+                }
+                $('#flash-div').append('<div class="flashinfo" style="display:none;"><div style="display:table; pointer-events: all; background-color: red;padding: 14px 24px 14px 24px; margin: 0 auto; margin-top: -2px; max-width: 60%; -webkit-border-radius: 20px;-moz-border-radius: 20px;border-radius: 2px;color: white;background:'+colorF+'; ">'+text+'</div></div>');
+                $('.flashinfo').delay(2000).slideDown(800).delay(6000).slideUp(800, function() { $(this).remove(); });
             }else{
-                var colorF = "#323232";
+                $('.flash').removeClass('flash').fadeOut({
+                    duration: 400,
+                    queue: false,
+                    complete: function() { $(this).remove(); }});
+                if(error === true){
+                    var colorF = "#3e0808";
+                }else{
+                    var colorF = "#323232";
+                }
+                var mess ='<div class="flash" style="display:none;"><div style="display:table; pointer-events: all; background-color: red;padding: 14px 24px 14px 24px; margin: 0 auto; margin-top: 20px; max-width: 60%; -webkit-border-radius: 20px;-moz-border-radius: 20px;border-radius: 2px;color: white;background:'+colorF+'; ">'+text+'</div></div>';
+                if($('.flashinfo').length){
+                    $('.flashinfo').before(mess);
+                }else{
+                    $('#flash-div').append(mess);
+                }
+                $('.flash').slideDown(800).delay(4000).slideUp(800, function() { $(this).remove(); });
             }
-            var mess ='<div class="flash" style="display:none;"><div style="display:table; pointer-events: all; background-color: red;padding: 14px 24px 14px 24px; margin: 0 auto; margin-top: 20px; max-width: 60%; -webkit-border-radius: 20px;-moz-border-radius: 20px;border-radius: 2px;color: white;background:'+colorF+'; ">'+text+'</div></div>';
-            if($('.flashinfo').length){
-                $('.flashinfo').before(mess);
-            }else{
-                $('#flash-div').append(mess);
-            }
-            $('.flash').slideDown(800).delay(4000).slideUp(800, function() { $(this).remove(); });
         }
     }
 

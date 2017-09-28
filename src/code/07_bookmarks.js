@@ -4,7 +4,7 @@
     //var imageBackup = "Mal-img";
     var image = "image";
 
-    function getMalXml(user = ""){
+    function getMalXml(user = "", callback = null){
         var url = "https://myanimelist.net/editprofile.php?go=privacy";
         if(user !== ""){
             url = "https://myanimelist.net/malappinfo.php?u="+user+"&status=all&type="+listType;
@@ -28,11 +28,15 @@
                         return;
                     }
                     con.log("User:" ,user);
-                    getMalXml(user);
+                    getMalXml(user, callback);
                     return;
                 }
-                xml = $(response.responseXML);
-                setAll();
+                if(callback == null){
+                    xml = $(response.responseXML);
+                    setAll();
+                }else{
+                    callback( $(response.responseXML) );
+                }
             }
         });
     }
@@ -64,12 +68,12 @@
             if(totalEp === '0'){
                 totalEp = "?";
             }
-            
+
             setepisode (xmlAnime.find("my_"+middleVerb+"_"+middleType).first().text(), totalEp , target, baseurl);
             setstatus (xmlAnime.find("my_status").first().text() , target, baseurl);
             setscore (xmlAnime.find("my_score").first().text() , target, baseurl);
         }
-        if(last === 1){ //TODO: 
+        if(last === 1){ //TODO:
             con.log(foundAnime);
             //MalExistsOnKiss(foundAnime);
         }
@@ -200,8 +204,8 @@
                 $(".listing").before(row);
             }
         });
-        
-        
+
+
     }
 
     function getdata(baseurl, callback, parth = ""){
@@ -245,7 +249,7 @@
 
 
                 $(this).find("td").each(function(index){
-                    
+
                     if(index > 0){
                         $(this).appendTo(thistd.find(".kissData"));
                         //text += $(this).html()+"<br/>";
@@ -257,7 +261,7 @@
                 $(this).find("td").first().find("td").append("<br />").contents().unwrap();
             });
             if($("#cssTableSet").height() === null){
-                $.BookmarksStyleAfterLoad(); 
+                $.BookmarksStyleAfterLoad();
             }else{
                 return;
             }
