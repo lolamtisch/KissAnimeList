@@ -46,27 +46,31 @@
     var curVersion = GM_info.script.version;
 
     function changelog(){
-        if(curVersion != GM_getValue( 'Version', null ) && GM_getValue( 'Version', null ) != null){
+        if(curVersion != GM_getValue( 'Version', null )){
             var message = '<div style="text-align: left;">';
-            switch(curVersion) {
-                case '0.86.4':
-                    message += 'Kissanimelist (v0.86)<br/>- 9anime Support<br/>- Link to last streaming page on Myanimelist\'s Animelist (Tags have to be activated)';
-                    break;
-                case '0.86.5':
-                    message += 'Kissanimelist (v0.86.5)<br/>- add config Page (Can be found in Mal profile settings)';
-                    break;
-                case '0.87.1':
-                    message += 'Kissanimelist (v0.87.1)<br/>- Materialize UI<br/>- Add miniMAL popup';
-                    break;
-                case '0.87.3':
-                    message += 'Kissanimelist (v0.87.3)<br/>- Crunchyroll Support (Video page only)<br/>- Added MAL classic bookmark support<br/>- Added next episode links in MAL bookmarks';
-                    break;
-                case '0.87.8':
-                    message += 'Kissanimelist (v0.87.8)<br/>- Android Support<br/>- Added Autoupdate delay settings';
-                    break;
-                case '0.87.9':
-                    message += 'Kissanimelist (v0.87.9)<br/>- Gogoanime Support<br/>- Crunchyroll multiple season support';
-                    break;
+            if(GM_getValue( 'Version', null ) != null){
+                switch(curVersion) {
+                    case '0.86.4':
+                        message += 'Kissanimelist (v0.86)<br/>- 9anime Support<br/>- Link to last streaming page on Myanimelist\'s Animelist (Tags have to be activated)';
+                        break;
+                    case '0.86.5':
+                        message += 'Kissanimelist (v0.86.5)<br/>- add config Page (Can be found in Mal profile settings)';
+                        break;
+                    case '0.87.1':
+                        message += 'Kissanimelist (v0.87.1)<br/>- Materialize UI<br/>- Add miniMAL popup';
+                        break;
+                    case '0.87.3':
+                        message += 'Kissanimelist (v0.87.3)<br/>- Crunchyroll Support (Video page only)<br/>- Added MAL classic bookmark support<br/>- Added next episode links in MAL bookmarks';
+                        break;
+                    case '0.87.8':
+                        message += 'Kissanimelist (v0.87.8)<br/>- Android Support<br/>- Added Autoupdate delay settings';
+                        break;
+                    case '0.87.9':
+                        message += 'Kissanimelist (v0.87.9)<br/>- Gogoanime Support<br/>- Crunchyroll multiple season support';
+                        break;
+                }
+            }else{
+                message += '<h2>Welcome to <a href="https://greasyfork.org/en/scripts/27564-kissanimelist">KissAnimeList</a></h2><br/>Support:<br/><a href="https://discord.gg/cTH4yaw">Discord Channel</a><br/><a href="https://github.com/lolamtisch/KissAnimeList">GitHub</a> <a href="https://github.com/lolamtisch/KissAnimeList/issues">Issues</a>';
             }
             message += '</div><br><button class="okChangelog" style="background-color: transparent; border: none; color: rgb(255,64,129);margin-top: 10px;">Ok</button>'
             flashm(message, false, false, true);
