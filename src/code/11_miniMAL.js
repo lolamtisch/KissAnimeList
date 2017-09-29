@@ -12,7 +12,7 @@
             material += '</dialog>';
             $('body').after(material);
 
-            GM_addStyle('.modal-content.fullscreen{width: 100% !important;height: 100% !important;top: 0 !important;'+( posLeft ? 'left':'right')+': 0 !important;}\
+            GM_addStyle('.modal-content.fullscreen{width: 100% !important;height: 100% !important; bottom: 0 !important;'+( posLeft ? 'left':'right')+': 0 !important;}\
                          .modal-content{-webkit-transition: all 0.5s ease; -moz-transition: all 0.5s ease; -o-transition: all 0.5s ease; transition: all 0.5s ease;}\
                          .floatbutton:hover {background-color:rgb(255,64,129);}\
                          .floatbutton:hover div {background-color:white;}\
