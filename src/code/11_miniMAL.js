@@ -1,7 +1,7 @@
     function createIframe(){
         if( !($('#info-popup').height()) ){
             //var position = 'width: 80%; height: 70%; position: absolute; top: 15%; left: 10%';
-            var position = 'max-width: 100vw; min-width: 500px; width: 30%; height: 90%; position: absolute; top: 10%; '+( posLeft ? 'left':'right')+': 0%';//phone
+            var position = 'max-width: 100vw; min-width: 500px; min-height: 300px; width: '+miniMalWidth+'; height: '+miniMalHeight+'; position: absolute; bottom: 0%; '+( posLeft ? 'left':'right')+': 0%';//phone
             if($(window).width() < 500){
               position = 'width: 100vw; height: 100%; position: absolute; top: 0%; '+( posLeft ? 'left':'right')+': 0%';
             }
@@ -335,6 +335,18 @@
                                   <h2 class="mdl-card__title-text">miniMAL</h2>\
                                 </div>';
                 settingsUI += materialCheckbox(posLeft,'posLeft','Position left');
+                settingsUI += '<li class="mdl-list__item">\
+                                  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width: 100%;">\
+                                      <input class="mdl-textfield__input" type="text" step="1" id="miniMalHeight" value="'+miniMalHeight+'">\
+                                  <label class="mdl-textfield__label" for="miniMalHeight">Height (%/px) [Default:90%]</label>\
+                                  </div>\
+                              </li>';
+                settingsUI += '<li class="mdl-list__item">\
+                                  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width: 100%;">\
+                                      <input class="mdl-textfield__input" type="text" step="1" id="miniMalWidth" value="'+miniMalWidth+'">\
+                                  <label class="mdl-textfield__label" for="miniMalWidth">Width (%/px) [Default:30%]</label>\
+                                  </div>\
+                              </li>';
                 settingsUI += '</div>';
 
                 settingsUI += '<div class="mdl-cell mdl-cell--12-col mdl-shadow--4dp">\
@@ -380,6 +392,36 @@
                         flashm( "Delay reset" , false);
                     }
                 }
+            });
+
+            $("#info-iframe").contents().find("#miniMalWidth").on("input", function(){
+                var miniMalWidth = $("#info-iframe").contents().find("#miniMalWidth").val();
+                if(miniMalWidth !== null){
+                    if(miniMalWidth !== ''){
+                        GM_setValue( 'miniMalWidth', miniMalWidth );
+                        flashm( "New Width ("+miniMalWidth+") set." , false);
+                    }else{
+                        miniMalWidth = '30%';
+                        GM_deleteValue( 'miniMalWidth' );
+                        flashm( "Width reset" , false);
+                    }
+                }
+                $("#modal-content").css('width', miniMalWidth);
+            });
+
+            $("#info-iframe").contents().find("#miniMalHeight").on("input", function(){
+                var miniMalHeight = $("#info-iframe").contents().find("#miniMalHeight").val();
+                if(miniMalHeight !== null){
+                    if(miniMalHeight !== ''){
+                        GM_setValue( 'miniMalHeight', miniMalHeight );
+                        flashm( "New Height ("+miniMalHeight+") set." , false);
+                    }else{
+                        miniMalHeight = '90%';
+                        GM_deleteValue( 'miniMalHeight' );
+                        flashm( "Height reset" , false);
+                    }
+                }
+                $("#modal-content").css('height', miniMalHeight);
             });
 
             $("#info-iframe").contents().find("#malOffset").on("input", function(){

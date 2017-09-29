@@ -33,6 +33,8 @@
     var gogoanimeLinks = GM_getValue( 'gogoanimeLinks', 1 );
 
     var posLeft = GM_getValue( 'posLeft', 1 );
+    var miniMalWidth = GM_getValue( 'miniMalWidth', '30%' );
+    var miniMalHeight = GM_getValue( 'miniMalHeight', '90%' );
 
     var displayFloatButton = GM_getValue( 'displayFloatButton', 1 );
     var episodeInfoBox = GM_getValue( 'episodeInfoBox', 0 );
