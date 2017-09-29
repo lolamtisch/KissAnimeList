@@ -1,9 +1,9 @@
     function createIframe(){
         if( !($('#info-popup').height()) ){
             //var position = 'width: 80%; height: 70%; position: absolute; top: 15%; left: 10%';
-            var position = 'max-width: 100vw; min-width: 500px; width: 30%; height: 90%; position: absolute; top: 10%; left: 0%';//phone
+            var position = 'max-width: 100vw; min-width: 500px; width: 30%; height: 90%; position: absolute; top: 10%; '+( posLeft ? 'left':'right')+': 0%';//phone
             if($(window).width() < 500){
-              position = 'width: 100vw; height: 100%; position: absolute; top: 0%; left: 0%';
+              position = 'width: 100vw; height: 100%; position: absolute; top: 0%; '+( posLeft ? 'left':'right')+': 0%';
             }
             var material = '<dialog class="modal" id="info-popup" style="pointer-events: none;display: none; position: fixed;z-index: 999;left: 0;top: 0;bottom: 0;width: 100%; height: 100%; background-color: transparent; padding: 0; margin: 0;">';
             material += '<div id="modal-content" class="modal-content" Style="pointer-events: all;background-color: #fefefe; margin: 0; '+position+'">';
@@ -12,7 +12,7 @@
             material += '</dialog>';
             $('body').after(material);
 
-            GM_addStyle('.modal-content.fullscreen{width: 100% !important;height: 100% !important;top: 0 !important;left: 0 !important;}\
+            GM_addStyle('.modal-content.fullscreen{width: 100% !important;height: 100% !important;top: 0 !important;'+( posLeft ? 'left':'right')+': 0 !important;}\
                          .modal-content{-webkit-transition: all 0.5s ease; -moz-transition: all 0.5s ease; -o-transition: all 0.5s ease; transition: all 0.5s ease;}\
                          .floatbutton:hover {background-color:rgb(255,64,129);}\
                          .floatbutton:hover div {background-color:white;}\
@@ -331,6 +331,13 @@
                 settingsUI += '</div>';
 
                 settingsUI += '<div class="mdl-cell mdl-cell--12-col mdl-shadow--4dp">\
+                                <div class="mdl-card__title mdl-card--border">\
+                                  <h2 class="mdl-card__title-text">miniMAL</h2>\
+                                </div>';
+                settingsUI += materialCheckbox(posLeft,'posLeft','Position left');
+                settingsUI += '</div>';
+
+                settingsUI += '<div class="mdl-cell mdl-cell--12-col mdl-shadow--4dp">\
                             <div class="mdl-card__title mdl-card--border">\
                                 <h2 class="mdl-card__title-text">ETC</h2>\
                                 </div>';
@@ -477,6 +484,15 @@
                 }else{
                     GM_setValue('gogoanimeLinks', 0);
                     gogoanimeLinks = 0;
+                }
+            });
+            $("#info-iframe").contents().find('#posLeft').change(function(){
+                if($(this).is(":checked")){
+                    GM_setValue('posLeft', 1);
+                    posLeft = 1;
+                }else{
+                    GM_setValue('posLeft', 0);
+                    posLeft = 0;
                 }
             });
             $("#info-iframe").contents().find('#displayFloatButton').change(function(){
