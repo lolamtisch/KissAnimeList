@@ -335,16 +335,16 @@
                                   <h2 class="mdl-card__title-text">miniMAL</h2>\
                                 </div>';
                 settingsUI += materialCheckbox(posLeft,'posLeft','Position left');
-                settingsUI += '<li class="mdl-list__item">\
+                settingsUI += '<li class="mdl-list__item" style="display: inline-block; width: 50%;">\
                                   <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width: 100%;">\
                                       <input class="mdl-textfield__input" type="text" step="1" id="miniMalHeight" value="'+miniMalHeight+'">\
-                                  <label class="mdl-textfield__label" for="miniMalHeight">Height (%/px) [Default:90%]</label>\
+                                  <label class="mdl-textfield__label" for="miniMalHeight">Height (px / %)</label>\
                                   </div>\
                               </li>';
-                settingsUI += '<li class="mdl-list__item">\
+                settingsUI += '<li class="mdl-list__item" style="display: inline-block; width: 50%;">\
                                   <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width: 100%;">\
                                       <input class="mdl-textfield__input" type="text" step="1" id="miniMalWidth" value="'+miniMalWidth+'">\
-                                  <label class="mdl-textfield__label" for="miniMalWidth">Width (%/px) [Default:30%]</label>\
+                                  <label class="mdl-textfield__label" for="miniMalWidth">Width (px / %)</label>\
                                   </div>\
                               </li>';
                 settingsUI += '</div>';
