@@ -258,8 +258,11 @@
         try{
             var settingsUI = '<ul class="demo-list-control mdl-list">\
             <div class="mdl-grid">';
-
-            var malUrl = GM_getValue(dbSelector+'/'+$.titleToDbKey($.urlAnimeTitle($.normalUrl()))+'/Mal' , null);
+            try{
+              var malUrl = GM_getValue(dbSelector+'/'+$.titleToDbKey($.urlAnimeTitle($.normalUrl()))+'/Mal' , null);
+            }catch(e){
+              var malUrl = null;
+            }
             if(malUrl == url){
                 settingsUI += '<div class="mdl-cell mdl-cell--12-col mdl-shadow--4dp">\
                                 <div class="mdl-card__title mdl-card--border">\
