@@ -67,10 +67,12 @@
             tagToContinue();
         }else{
             setKissToMal(window.location.href);
-            $( document).ready(function(){
-                createIframe();
-                miniMalButton(window.location.href.split('/').slice(0,5).join('/'));
-            });
+            if(miniMALonMal){
+                $( document).ready(function(){
+                    createIframe();
+                    miniMalButton(window.location.href.split('/').slice(0,5).join('/'));
+                });
+            }
         }
     }else{
         $("head").click(function() {

@@ -331,6 +331,7 @@
                                 <div class="mdl-card__title mdl-card--border">\
                                   <h2 class="mdl-card__title-text">miniMAL</h2>\
                                 </div>';
+                settingsUI += materialCheckbox(miniMALonMal,'miniMALonMal','Display on MyAnimeList');
                 settingsUI += materialCheckbox(posLeft,'posLeft','Position left');
                 settingsUI += '<li class="mdl-list__item" style="display: inline-block; width: 50%;">\
                                   <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width: 100%;">\
@@ -550,6 +551,15 @@
                 }else{
                     GM_setValue('episodeInfoBox', 0);
                     episodeInfoBox = 0;
+                }
+            });
+            $("#info-iframe").contents().find('#miniMALonMal').change(function(){
+                if($(this).is(":checked")){
+                    GM_setValue('miniMALonMal', 1);
+                    miniMALonMal = 1;
+                }else{
+                    GM_setValue('miniMALonMal', 0);
+                    miniMALonMal = 0;
                 }
             });
             $("#info-iframe").contents().find('#malConfig').show();
