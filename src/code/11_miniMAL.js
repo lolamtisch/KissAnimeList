@@ -677,58 +677,60 @@
         }catch(e) {console.log(e);}
 
         try{
-            var localListType = url.split('/')[3];
-            var dataBlock = data.split('id="addtolist"')[1].split('<div id="myinfoDisplay"')[0];
-            if (~data.indexOf("header-menu-login")){
-                dataBlock = "Please log in on <a target='_blank' href='https://myanimelist.net/login.php'>MyAnimeList!<a>";
-            }else{
-                dataBlock = dataBlock.substring(dataBlock.indexOf(">") + 1);
-            }
-            $("#info-iframe").contents().find('.data-block').html(dataBlock).show();
-            $("#info-iframe").contents().find('.data-block tr:not(:last-child)').each(function(){
-                var label = $(this).find('.spaceit').first().text();
-                //$(this).find('.spaceit').first().html('<span>'+label+'</span>');
-                $(this).replaceWith($('<li class="mdl-list__item mdl-list__item--three-line">\
-                    <span class="mdl-list__item-primary-content">\
-                        <span>'+label+'</span>\
-                        <span class="mdl-list__item-text-body">'+$(this).find('.spaceit').last().html()+'</span>\
-                    </span>\
-                    \</li>'));
-            });
-            $("#info-iframe").contents().find('#myinfo_status,#myinfo_score').addClass('mdl-textfield__input').css('outline', 'none');
-            $("#info-iframe").contents().find('#myinfo_watchedeps,#myinfo_chapters,#myinfo_volumes').addClass('mdl-textfield__input').css('width','35px').css('display','inline-block');
-            $("#info-iframe").contents().find('.inputButton').addClass('mdl-button mdl-js-button mdl-button--raised mdl-button--colored').css('margin-right','5px');
-            $("#info-iframe").contents().find('.data-block li').last().after('<li class="mdl-list__item">'+$("#info-iframe").contents().find('.inputButton').first().parent().html()+'</li>');
-            $("#info-iframe").contents().find('.data-block tr').remove();
-            $("#info-iframe").contents().find('.js-'+localListType+'-update-button, .js-'+localListType+'-add-button').click(function (){
-                var anime = {};
-                if(localListType == 'anime'){
-                    anime['.add_anime[num_watched_episodes]'] = parseInt($("#info-iframe").contents().find('#myinfo_watchedeps').val() );
-                    if(isNaN(anime['.add_anime[num_watched_episodes]'])){
-                        anime['.add_anime[num_watched_episodes]'] = 0;
-                    }
-                }else{
-                    anime['.add_manga[num_read_volumes]'] = parseInt($("#info-iframe").contents().find('#myinfo_volumes').val() );
-                    if(isNaN(anime['.add_manga[num_read_volumes]'])){
-                        anime['.add_manga[num_read_volumes]'] = 0;
-                    }
-                    anime['.add_manga[num_read_chapters]'] = parseInt($("#info-iframe").contents().find('#myinfo_chapters').val() );
-                    if(isNaN(anime['.add_manga[num_read_chapters]'])){
-                        anime['.add_manga[num_read_chapters]'] = 0;
-                    }
-                }
-                anime['.add_'+listType+'[score]'] = parseInt($("#info-iframe").contents().find('#myinfo_score').val() );
-                if(anime['.add_'+listType+'[score]'] == 0){
-                    anime['.add_'+listType+'[score]'] = '';
-                }
-                anime['.add_'+listType+'[status]'] = parseInt($("#info-iframe").contents().find('#myinfo_status').val() );
-                if($.isOverviewPage()){
-                  anime['forceUpdate'] = 2;
-                }
-                anime['malurl'] = url;
+            if( !(window.location.href.indexOf("myanimelist.net") > -1) ){
+              var localListType = url.split('/')[3];
+              var dataBlock = data.split('id="addtolist"')[1].split('<div id="myinfoDisplay"')[0];
+              if (~data.indexOf("header-menu-login")){
+                  dataBlock = "Please log in on <a target='_blank' href='https://myanimelist.net/login.php'>MyAnimeList!<a>";
+              }else{
+                  dataBlock = dataBlock.substring(dataBlock.indexOf(">") + 1);
+              }
+              $("#info-iframe").contents().find('.data-block').html(dataBlock).show();
+              $("#info-iframe").contents().find('.data-block tr:not(:last-child)').each(function(){
+                  var label = $(this).find('.spaceit').first().text();
+                  //$(this).find('.spaceit').first().html('<span>'+label+'</span>');
+                  $(this).replaceWith($('<li class="mdl-list__item mdl-list__item--three-line">\
+                      <span class="mdl-list__item-primary-content">\
+                          <span>'+label+'</span>\
+                          <span class="mdl-list__item-text-body">'+$(this).find('.spaceit').last().html()+'</span>\
+                      </span>\
+                      \</li>'));
+              });
+              $("#info-iframe").contents().find('#myinfo_status,#myinfo_score').addClass('mdl-textfield__input').css('outline', 'none');
+              $("#info-iframe").contents().find('#myinfo_watchedeps,#myinfo_chapters,#myinfo_volumes').addClass('mdl-textfield__input').css('width','35px').css('display','inline-block');
+              $("#info-iframe").contents().find('.inputButton').addClass('mdl-button mdl-js-button mdl-button--raised mdl-button--colored').css('margin-right','5px');
+              $("#info-iframe").contents().find('.data-block li').last().after('<li class="mdl-list__item">'+$("#info-iframe").contents().find('.inputButton').first().parent().html()+'</li>');
+              $("#info-iframe").contents().find('.data-block tr').remove();
+              $("#info-iframe").contents().find('.js-'+localListType+'-update-button, .js-'+localListType+'-add-button').click(function (){
+                  var anime = {};
+                  if(localListType == 'anime'){
+                      anime['.add_anime[num_watched_episodes]'] = parseInt($("#info-iframe").contents().find('#myinfo_watchedeps').val() );
+                      if(isNaN(anime['.add_anime[num_watched_episodes]'])){
+                          anime['.add_anime[num_watched_episodes]'] = 0;
+                      }
+                  }else{
+                      anime['.add_manga[num_read_volumes]'] = parseInt($("#info-iframe").contents().find('#myinfo_volumes').val() );
+                      if(isNaN(anime['.add_manga[num_read_volumes]'])){
+                          anime['.add_manga[num_read_volumes]'] = 0;
+                      }
+                      anime['.add_manga[num_read_chapters]'] = parseInt($("#info-iframe").contents().find('#myinfo_chapters').val() );
+                      if(isNaN(anime['.add_manga[num_read_chapters]'])){
+                          anime['.add_manga[num_read_chapters]'] = 0;
+                      }
+                  }
+                  anime['.add_'+listType+'[score]'] = parseInt($("#info-iframe").contents().find('#myinfo_score').val() );
+                  if(anime['.add_'+listType+'[score]'] == 0){
+                      anime['.add_'+listType+'[score]'] = '';
+                  }
+                  anime['.add_'+listType+'[status]'] = parseInt($("#info-iframe").contents().find('#myinfo_status').val() );
+                  if($.isOverviewPage()){
+                    anime['forceUpdate'] = 2;
+                  }
+                  anime['malurl'] = url;
 
-                setanime(url, anime, null, localListType);
-            });
+                  setanime(url, anime, null, localListType);
+              });
+            }
         }catch(e) {console.log(e);}
 
         try{
