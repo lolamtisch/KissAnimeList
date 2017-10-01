@@ -80,21 +80,16 @@
             </div>\
             <!-- Tabs -->\
             <div class="mdl-layout__tab-bar mdl-js-ripple-effect">';
-            if(url != null){
-              material += '\
-              <a href="#fixed-tab-1" class="mdl-layout__tab is-active">Overview</a>\
-              <a href="#fixed-tab-2" class="mdl-layout__tab reviewsTab">Reviews</a>\
-              <a href="#fixed-tab-3" class="mdl-layout__tab recommendationTab">Recommendations</a>\
-              <!--<a href="#fixed-tab-4" class="mdl-layout__tab">Episodes</a>-->\
-              <a href="#fixed-tab-5" class="mdl-layout__tab">Settings</a>';
-            }else{
-              material += '<a href="#fixed-tab-5" class="mdl-layout__tab is-active">Settings</a>';
-            }
+            material += '\
+            <a href="#fixed-tab-1" class="mdl-layout__tab is-active mal-exists">Overview</a>\
+            <a href="#fixed-tab-2" class="mdl-layout__tab reviewsTab mal-exists">Reviews</a>\
+            <a href="#fixed-tab-3" class="mdl-layout__tab recommendationTab mal-exists">Recommendations</a>\
+            <!--<a href="#fixed-tab-4" class="mdl-layout__tab">Episodes</a>-->\
+            <a href="#fixed-tab-5" class="mdl-layout__tab settingsTab">Settings</a>';
             material += '\
             </div>\
           </header>\
           <main class="mdl-layout__content">';
-            if(url != null){
             material += '\
             <section class="mdl-layout__tab-panel is-active" id="fixed-tab-1">\
               <div id="loadOverview" class="mdl-progress mdl-js-progress mdl-progress__indeterminate" style="width: 100%; position: absolute;"></div>\
@@ -143,18 +138,10 @@
               <div id="loadEpisode" class="mdl-progress mdl-js-progress mdl-progress__indeterminate" style="width: 100%; position: absolute;"></div>\
               <div class="page-content malClear" id="malEpisodes"></div>\
             </section>';
-            }
-            if(url != null){
-              material +='\
-              <section class="mdl-layout__tab-panel" id="fixed-tab-5">\
-                <div class="page-content malClear" id="malConfig"></div>\
-              </section>';
-            }else{
-              material +='\
-              <section class="mdl-layout__tab-panel is-active" id="fixed-tab-5">\
-                <div class="page-content malClear" id="malConfig"></div>\
-              </section>';
-            }
+            material +='\
+            <section class="mdl-layout__tab-panel" id="fixed-tab-5">\
+              <div class="page-content malClear" id="malConfig"></div>\
+            </section>';
           material +='</main>\
         </div>\
         <div id="malSearchPop" style="height: calc(100% - 60px); width: 100%; position: fixed; top: 60px; z-index: 10; background-color: white; overflow-y: auto; display: none;">\
@@ -238,6 +225,13 @@
         }
         if( !($("#info-iframe").contents().find('#material').height()) ){
             templateIframe(url,data);
+        }
+        if(url == null){
+          $("#info-iframe").contents().find('.mal-exists').css('display', 'none');
+          $("#info-iframe").contents().find('.mdl-layout__tab-panel.is-active').removeClass('is-active');
+          $("#info-iframe").contents().find('.mdl-layout__tab-panel').last().addClass('is-active');
+        }else{
+          $("#info-iframe").contents().find('.mal-exists').css('display', 'block');
         }
         iframeConfig(url, data);
         iframeOverview(url, data);
