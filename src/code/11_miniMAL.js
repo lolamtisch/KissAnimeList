@@ -306,6 +306,12 @@
                                 <h2 class="mdl-card__title-text">General</h2>\
                                 </div>';
                 settingsUI += materialCheckbox(autoTracking,'autoTracking','Autotracking');
+                settingsUI += '<li class="mdl-list__item">\
+                                  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width: 100%;">\
+                                      <input class="mdl-textfield__input" type="number" step="1" id="malDelay" value="'+delay+'">\
+                                  <label class="mdl-textfield__label" for="malDelay">Autotracking delay (Seconds)</label>\
+                                  </div>\
+                              </li>';
                 settingsUI += '</div>';
 
                 settingsUI += '<div class="mdl-cell mdl-cell--12-col mdl-shadow--4dp">\
@@ -332,7 +338,8 @@
                                   <h2 class="mdl-card__title-text">miniMAL</h2>\
                                 </div>';
                 settingsUI += materialCheckbox(miniMALonMal,'miniMALonMal','Display on MyAnimeList');
-                settingsUI += materialCheckbox(posLeft,'posLeft','Position left');
+                settingsUI += materialCheckbox(displayFloatButton,'displayFloatButton','Floating menu button');
+                settingsUI += materialCheckbox(posLeft,'posLeft','Left sided');
                 settingsUI += '<li class="mdl-list__item" style="display: inline-block; width: 50%;">\
                                   <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width: 100%;">\
                                       <input class="mdl-textfield__input" type="text" step="1" id="miniMalHeight" value="'+miniMalHeight+'">\
@@ -351,14 +358,7 @@
                             <div class="mdl-card__title mdl-card--border">\
                                 <h2 class="mdl-card__title-text">ETC</h2>\
                                 </div>';
-                settingsUI += materialCheckbox(displayFloatButton,'displayFloatButton','Floating menu button');
                 //settingsUI += materialCheckbox(episodeInfoBox,'episodeInfoBox','Episode info box');
-                settingsUI += '<li class="mdl-list__item">\
-                                  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width: 100%;">\
-                                      <input class="mdl-textfield__input" type="number" step="1" id="malDelay" value="'+delay+'">\
-                                  <label class="mdl-textfield__label" for="malDelay">Autoupdate delay (Seconds)</label>\
-                                  </div>\
-                              </li>';
                 settingsUI += '<li class="mdl-list__item"><button type="button" id="clearCache" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">Clear Cache</button></li>';
                 settingsUI += '</div>';
 
