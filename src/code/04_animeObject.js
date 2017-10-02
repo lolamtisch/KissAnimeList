@@ -256,6 +256,9 @@
             var url = "https://myanimelist.net/editlist.php?type=anime&id="+actual['.anime_id'];
             if(actual['addanime'] === 1){
                 url = "https://myanimelist.net/ownlist/anime/add?selected_series_id="+actual['.anime_id'];
+                if(change['checkIncrease'] == 1 && autoTracking == 0){
+                    return;
+                }
                 if (!confirm('Add "'+actual['name']+'" to MAL?')) {
                     if(change['checkIncrease'] == 1){
                         episodeInfo(change['.add_anime[num_watched_episodes]'], actual['malurl']);
@@ -267,6 +270,9 @@
             var url = "https://myanimelist.net/panel.php?go=editmanga&id="+actual['.manga_id'];
             if(actual['addmanga'] === 1){
                 url = "https://myanimelist.net/ownlist/manga/add?selected_manga_id="+actual['.manga_id'];
+                if(change['checkIncrease'] == 1 && autoTracking == 0){
+                    return;
+                }
                 if (!confirm('Add "'+actual['name']+'" to MAL?')) {
                     return;
                 }
