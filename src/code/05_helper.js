@@ -165,6 +165,7 @@
     }
 
     function episodeInfo(episode, malUrl, message = ''){
+        message = '';
         if(episodeInfoBox){
             con.log('Episode Info',malUrl+'/episode/'+episode);
             GM_xmlhttpRequest({
@@ -200,10 +201,11 @@
                         if(imgUrl != ''){
                             imgHtml = '<img style = "margin-top: 15px; height: 100px;" src="'+imgUrl+'"/>';
                         }
-                        var synopsisHtml = '<div style="display: none;">'+synopsis+'</div>';
+                        var synopsisHtml = '<div style="display: none; text-align: left; border: 1px solid; margin-top: 15px; padding: 8px; max-width: 500px;" class="synopsis">'+synopsis+'</div>';
 
                         if(epTitle != ''){
-                            flashm ( '<div style="display: flex; align-items: center;"><div style="white-space: nowrap;"">#'+episode+" - "+epTitle+"<br> <small>"+epSubTitle+'</small><br>' + imgHtml + "</div>"+ message +" </div>" + synopsisHtml, false, true);
+                            flashm ( '<div class="flasm-hover" style="/*display: flex;*/ align-items: center;"><div style="white-space: nowrap;"">#'+episode+" - "+epTitle+"<br> <small>"+epSubTitle+'</small><br>' + imgHtml + "</div>"+ message +" </div>" + synopsisHtml, false, true);
+                            $('.flashinfo').mouseover(function(){$(this).stop()})
                         }
                     }
                 },
