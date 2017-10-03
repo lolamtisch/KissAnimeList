@@ -352,12 +352,19 @@
                             }
                             if(anime['checkIncrease'] == 1){
                                 message += '<br><button class="undoButton" style="background-color: transparent; border: none; color: rgb(255,64,129);margin-top: 10px;">Undo</button>';
-                                flashm( message , false);
-                                $('.undoButton').click(function(){
-                                    undoAnime['checkIncrease'] = 0;
-                                    setanime(thisUrl, undoAnime, null, localListType);
-                                });
-                                episodeInfo(change['.add_anime[num_watched_episodes]'], actual['malurl'], message);
+                                if(!episodeInfoBox){
+                                    flashm( message , false);
+                                    $('.undoButton').click(function(){
+                                        undoAnime['checkIncrease'] = 0;
+                                        setanime(thisUrl, undoAnime, null, localListType);
+                                    });
+                                }else{
+                                    episodeInfo(change['.add_anime[num_watched_episodes]'], actual['malurl'], message, function(){
+                                        undoAnime['checkIncrease'] = 0;
+                                        setanime(thisUrl, undoAnime, null, localListType);
+                                        $('.info-Mal-undo').remove();
+                                    });
+                                }
                             }else{
                                 flashm( message , false);
                             }
