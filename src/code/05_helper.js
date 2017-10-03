@@ -90,8 +90,8 @@
                 }else{
                     var colorF = "#323232";
                 }
-                $('#flash-div').append('<div class="flashinfo" style="display:none;"><div style="display:table; pointer-events: all; background-color: red;padding: 14px 24px 14px 24px; margin: 0 auto; margin-top: -2px; max-width: 60%; -webkit-border-radius: 20px;-moz-border-radius: 20px;border-radius: 2px;color: white;background:'+colorF+'; ">'+text+'</div></div>');
-                $('.flashinfo').delay(2000).slideDown(800).delay(6000).slideUp(800, function() { $(this).remove(); });
+                $('#flash-div').append('<div class="flashinfo" style="display:none; max-height: 5000px;"><div style="display:table; pointer-events: all; background-color: red;padding: 14px 24px 14px 24px; margin: 0 auto; margin-top: -2px; max-width: 60%; -webkit-border-radius: 20px;-moz-border-radius: 20px;border-radius: 2px;color: white;background:'+colorF+'; ">'+text+'</div></div>');
+                $('.flashinfo').delay(2000).slideDown(800).delay(6000).queue(function() { $(this).css('max-height', '8px'); });
             }else{
                 $('.flash').removeClass('flash').fadeOut({
                     duration: 400,
