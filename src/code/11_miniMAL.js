@@ -30,9 +30,6 @@
                          }\
                          .flashinfo:hover{\
                             max-height:5000px !important;\
-                         }\
-                         .flashinfo div:hover .synopsis{\
-                            display:block !important;\
                          }');
 
             var iframe = document.createElement('iframe');
