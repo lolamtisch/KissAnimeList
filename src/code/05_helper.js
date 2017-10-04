@@ -71,6 +71,7 @@
 
     function flashm(text,error = true, info = false, permanent = false){
         con.log("Flash Message: ",text);
+        $('#flash-div').css('z-index', '2147483647');
         if(permanent){
             if(error === true){
                 var colorF = "#3e0808";
@@ -78,7 +79,7 @@
                 var colorF = "#323232";
             }
             $('#flash-div').append('<div class="flashPerm" style="display:none;"><div style="display:table; pointer-events: all; background-color: red;padding: 14px 24px 14px 24px; margin: 0 auto; margin-top: -2px; max-width: 60%; -webkit-border-radius: 20px;-moz-border-radius: 20px;border-radius: 2px;color: white;background:'+colorF+'; ">'+text+'</div></div>');
-            $('.flashPerm').delay(2000).slideDown(800);
+            $('.flashPerm').delay(2000).slideDown(800).queue(function() { $('#flash-div').css('z-index', '2'); });
         }else{
             if(info){
                 $('.flashinfo').removeClass('flashinfo').delay(2000).fadeOut({
@@ -91,7 +92,7 @@
                     var colorF = "#323232";
                 }
                 $('#flash-div').append('<div class="flashinfo" style="display:none; max-height: 5000px; margin-top: -8px;"><div style="display:table; pointer-events: all; background-color: red;padding: 14px 24px 14px 24px; margin: 0 auto; margin-top: -2px; max-width: 60%; -webkit-border-radius: 20px;-moz-border-radius: 20px;border-radius: 2px;color: white;background:'+colorF+'; ">'+text+'</div></div>');
-                $('.flashinfo').delay(2000).slideDown(800).delay(6000).queue(function() { $(this).css('max-height', '8px'); });
+                $('.flashinfo').delay(2000).slideDown(800).delay(6000).queue(function() { $(this).css('max-height', '8px'); $('#flash-div').css('z-index', '2');});
             }else{
                 $('.flash').removeClass('flash').fadeOut({
                     duration: 400,
@@ -108,7 +109,7 @@
                 }else{
                     $('#flash-div').append(mess);
                 }
-                $('.flash').slideDown(800).delay(4000).slideUp(800, function() { $(this).remove(); });
+                $('.flash').slideDown(800).delay(4000).slideUp(800, function() { $(this).remove(); $('#flash-div').css('z-index', '2'); });
             }
         }
     }
@@ -224,6 +225,7 @@
                             $('.undoButton').click(clickCallback);
 
                             $('.flashinfo').mouseenter(function() {
+                                $('#flash-div').css('z-index', '2147483647');
                                 $(this).find('.synopsis').css('transition','max-width 0s').css('max-width', '500px').css('transition','max-height 2s').css('max-height', '9999px');
                             });
                             $('.flashinfo').mouseleave(function() {
@@ -232,6 +234,7 @@
                                 setTimeout(function() {
                                     if(el.find('.synopsis').css('max-height') == '0px'){
                                         el.find('.synopsis').css('transition','max-width 1s').css('max-width', '0');
+                                        $('#flash-div').css('z-index', '2');
                                     }
                                 }, 2000);
                             });
