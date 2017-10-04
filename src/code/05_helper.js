@@ -173,6 +173,16 @@
                 method: "GET",
                 onload: function (response) {
                     if(response.response != null){
+                        if( response.response.indexOf("Sorry, this anime doesn't seem to have any episode information yet.") > -1 ){
+                            if(message != ''){
+                                flashm( message , false);
+                                $('.undoButton').click(function(){
+                                    undoAnime['checkIncrease'] = 0;
+                                    setanime(thisUrl, undoAnime, null, localListType);
+                                });
+                            }
+                            return;
+                        }
                         if(message != ''){
                             message = "<div class='info-Mal-undo' style='white-space: nowrap; margin-top: 15px; /*margin-left: 15px;*/'> "+ message +"</div>";
                         }
