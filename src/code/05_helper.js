@@ -191,6 +191,11 @@
 
                         try{
                             synopsis = data.split('Synopsis</h2>')[1].split('</div>')[0].replace(/^\s+/g, "");
+                            if( synopsis.indexOf("badresult") > -1 || synopsis == ""){
+                                synopsis = "";
+                            }else{
+                                synopsis = '<div style="border: 1px solid; margin-top: 15px; padding: 8px;">'+synopsis+'</div>';
+                            }
                         }catch(e){}
 
                         try{
@@ -201,7 +206,7 @@
                         if(imgUrl != ''){
                             imgHtml = '<img style = "margin-top: 15px; height: 100px;" src="'+imgUrl+'"/>';
                         }
-                        var synopsisHtml = '<div style="overflow: hidden; text-align: left; max-width: 0; max-height: 0; transition: max-height 2s; transition: max-width 1s;" class="synopsis"><div style="border: 1px solid; margin-top: 15px; padding: 8px;">'+synopsis+'</div></div>';
+                        var synopsisHtml = '<div style="overflow: hidden; text-align: left; max-width: 0; max-height: 0; transition: max-height 2s; transition: max-width 1s;" class="synopsis">'+synopsis+'</div>';
 
                         if(epTitle != ''){
                             flashm ( '<div class="flasm-hover" style="/*display: flex;*/ align-items: center;"><div style="white-space: nowrap;"">#'+episode+" - "+epTitle+"<br> <small>"+epSubTitle+'</small><br>' + imgHtml + "</div>"+ message +" </div>" + synopsisHtml, false, true);
