@@ -202,6 +202,7 @@
 
     function handleanimeupdate( anime, current){
         if(anime['checkIncrease'] === 1 && autoTracking === 0){
+            episodeInfo(anime['.add_anime[num_watched_episodes]'], current['malurl']);
             delete anime[".add_anime[num_watched_episodes]"];
             delete anime[".add_anime[score]"];
             delete anime[".add_anime[status]"];

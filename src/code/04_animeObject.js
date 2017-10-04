@@ -257,6 +257,7 @@
             if(actual['addanime'] === 1){
                 url = "https://myanimelist.net/ownlist/anime/add?selected_series_id="+actual['.anime_id'];
                 if(change['checkIncrease'] == 1 && autoTracking == 0){
+                    episodeInfo(change['.add_anime[num_watched_episodes]'], actual['malurl']);
                     return;
                 }
                 if (!confirm('Add "'+actual['name']+'" to MAL?')) {
@@ -352,12 +353,19 @@
                             }
                             if(anime['checkIncrease'] == 1){
                                 message += '<br><button class="undoButton" style="background-color: transparent; border: none; color: rgb(255,64,129);margin-top: 10px;">Undo</button>';
-                                flashm( message , false);
-                                $('.undoButton').click(function(){
-                                    undoAnime['checkIncrease'] = 0;
-                                    setanime(thisUrl, undoAnime, null, localListType);
-                                });
-                                episodeInfo(change['.add_anime[num_watched_episodes]'], actual['malurl'], message);
+                                if(!episodeInfoBox){
+                                    flashm( message , false);
+                                    $('.undoButton').click(function(){
+                                        undoAnime['checkIncrease'] = 0;
+                                        setanime(thisUrl, undoAnime, null, localListType);
+                                    });
+                                }else{
+                                    episodeInfo(change['.add_anime[num_watched_episodes]'], actual['malurl'], message, function(){
+                                        undoAnime['checkIncrease'] = 0;
+                                        setanime(thisUrl, undoAnime, null, localListType);
+                                        $('.info-Mal-undo').remove();
+                                    });
+                                }
                             }else{
                                 flashm( message , false);
                             }
