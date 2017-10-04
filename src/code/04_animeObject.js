@@ -257,6 +257,7 @@
             if(actual['addanime'] === 1){
                 url = "https://myanimelist.net/ownlist/anime/add?selected_series_id="+actual['.anime_id'];
                 if(change['checkIncrease'] == 1 && autoTracking == 0){
+                    episodeInfo(change['.add_anime[num_watched_episodes]'], actual['malurl']);
                     return;
                 }
                 if (!confirm('Add "'+actual['name']+'" to MAL?')) {
