@@ -364,7 +364,7 @@
                             <div class="mdl-card__title mdl-card--border">\
                                 <h2 class="mdl-card__title-text">ETC</h2>\
                                 </div>';
-                settingsUI += materialCheckbox(episodeInfoBox,'episodeInfoBox','Episode info box');
+                settingsUI += materialCheckbox(episodeInfoBox,'episodeInfoBox','Episode Hoverinfo');
                 settingsUI += '<li class="mdl-list__item"><button type="button" id="clearCache" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">Clear Cache</button></li>';
                 settingsUI += '</div>';
 
