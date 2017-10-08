@@ -942,9 +942,9 @@
     };
     $.titleToDbKey = function(title) {
         if( window.location.href.indexOf("crunchyroll.com") > -1 ){
-            return encodeURIComponent(title.toLowerCase().split('#')[0]);
+            return encodeURIComponent(title.toLowerCase().split('#')[0]).replace(/\./g, '%2E');
         }
-        return title.toLowerCase().split('#')[0];
+        return title.toLowerCase().split('#')[0].replace(/\./g, '%2E');
     };
 
     //ignore loading
