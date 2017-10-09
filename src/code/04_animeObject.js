@@ -260,7 +260,7 @@
                     episodeInfo(change['.add_anime[num_watched_episodes]'], actual['malurl']);
                     return;
                 }
-                if (!confirm('Add "'+actual['name']+'" to MAL?')) {
+                if (!flashConfirm('Add "'+actual['name']+'" to MAL?')) {
                     if(change['checkIncrease'] == 1){
                         episodeInfo(change['.add_anime[num_watched_episodes]'], actual['malurl']);
                     }
