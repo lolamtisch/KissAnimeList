@@ -260,12 +260,12 @@
                     episodeInfo(change['.add_anime[num_watched_episodes]'], actual['malurl']);
                     return;
                 }
-                if (!confirm('Add "'+actual['name']+'" to MAL?')) {
+                flashConfirm('Add "'+actual['name']+'" to MAL?', function(){continueCall();}, function(){
                     if(change['checkIncrease'] == 1){
                         episodeInfo(change['.add_anime[num_watched_episodes]'], actual['malurl']);
                     }
-                    return;
-                }
+                });
+                return;
             }
         }else{
             var url = "https://myanimelist.net/panel.php?go=editmanga&id="+actual['.manga_id'];
@@ -274,168 +274,169 @@
                 if(change['checkIncrease'] == 1 && autoTracking == 0){
                     return;
                 }
-                if (!confirm('Add "'+actual['name']+'" to MAL?')) {
-                    return;
-                }
+                flashConfirm('Add "'+actual['name']+'" to MAL?', function(){continueCall();}, function(){});
+                return;
             }
         }
 
-        anime = handleanimeupdate( anime, actual );
-        if(anime === null){
-            if(change['checkIncrease'] == 1 && localListType == 'anime'){
-                episodeInfo(change['.add_anime[num_watched_episodes]'], actual['malurl']);
-            }
-            return;
-        }
-        $.each( anime, function( index, value ){
-            actual[index] = value;
-        });
-        anime = actual;
-        var parameter = "";
-
-
-        $.each( anime, function( index, value ){
-            if(index.charAt(0) == "."){
-                if(!( (index === '.add_anime[is_rewatching]' || index === '.add_manga[is_rereading]') && parseInt(anime[index]) === 0)){
-                    parameter += encodeURIComponent (index.substring(1))+"="+encodeURIComponent (value)+"&";
+        function continueCall(){
+            anime = handleanimeupdate( anime, actual );
+            if(anime === null){
+                if(change['checkIncrease'] == 1 && localListType == 'anime'){
+                    episodeInfo(change['.add_anime[num_watched_episodes]'], actual['malurl']);
                 }
+                return;
             }
-        });
+            $.each( anime, function( index, value ){
+                actual[index] = value;
+            });
+            anime = actual;
+            var parameter = "";
 
-        GM_xmlhttpRequest({
-            method: "POST",
-            url: url,
-            synchronous: false,
-            data: parameter,
-            headers: {
-                "User-Agent": "Mozilla/5.0",
-                "Content-Type": "application/x-www-form-urlencoded",
-                "accept":"text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8"
-            },
-            onload: function(response) {
-                //con.log(response);//.responseText);
-                if(anime['no_flash'] !== 1){
-                    if(response.responseText.indexOf('Successfully') >= 0){
-                        if(localListType == 'anime'){
-                            var message = anime['name'];
-                            var split = '<br>';
-                            var totalEp = anime['totalEp'];
-                            if (totalEp == 0) totalEp = '?';
-                            if(typeof change['.add_anime[status]'] != 'undefined'){
-                                var statusString = "";
-                                switch (parseInt(anime['.add_anime[status]'])) {
-                                    case 1:
-                                        statusString = watching;
-                                        break;
-                                    case 2:
-                                        statusString = 'Completed';
-                                        break;
-                                    case 3:
-                                        statusString = 'On-Hold';
-                                        break;
-                                    case 4:
-                                        statusString = 'Dropped';
-                                        break;
-                                    case 6:
-                                        statusString = planTo;
-                                        break;
+
+            $.each( anime, function( index, value ){
+                if(index.charAt(0) == "."){
+                    if(!( (index === '.add_anime[is_rewatching]' || index === '.add_manga[is_rereading]') && parseInt(anime[index]) === 0)){
+                        parameter += encodeURIComponent (index.substring(1))+"="+encodeURIComponent (value)+"&";
+                    }
+                }
+            });
+
+            GM_xmlhttpRequest({
+                method: "POST",
+                url: url,
+                synchronous: false,
+                data: parameter,
+                headers: {
+                    "User-Agent": "Mozilla/5.0",
+                    "Content-Type": "application/x-www-form-urlencoded",
+                    "accept":"text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8"
+                },
+                onload: function(response) {
+                    //con.log(response);//.responseText);
+                    if(anime['no_flash'] !== 1){
+                        if(response.responseText.indexOf('Successfully') >= 0){
+                            if(localListType == 'anime'){
+                                var message = anime['name'];
+                                var split = '<br>';
+                                var totalEp = anime['totalEp'];
+                                if (totalEp == 0) totalEp = '?';
+                                if(typeof change['.add_anime[status]'] != 'undefined'){
+                                    var statusString = "";
+                                    switch (parseInt(anime['.add_anime[status]'])) {
+                                        case 1:
+                                            statusString = watching;
+                                            break;
+                                        case 2:
+                                            statusString = 'Completed';
+                                            break;
+                                        case 3:
+                                            statusString = 'On-Hold';
+                                            break;
+                                        case 4:
+                                            statusString = 'Dropped';
+                                            break;
+                                        case 6:
+                                            statusString = planTo;
+                                            break;
+                                    }
+                                    message += split + statusString;
+                                    split = ' | '
                                 }
-                                message += split + statusString;
-                                split = ' | '
-                            }
-                            if(typeof change['.add_anime[num_watched_episodes]'] != 'undefined'){
-                                message += split + 'Episode: ' + anime['.add_anime[num_watched_episodes]']+"/"+totalEp;
-                                split = ' | '
-                            }
-                            if(typeof change['.add_anime[score]'] != 'undefined' && anime['.add_anime[score]'] != ''){
-                                message += split + 'Rating: ' + anime['.add_anime[score]'];
-                                split = ' | '
-                            }
-                            if(anime['checkIncrease'] == 1){
-                                message += '<br><button class="undoButton" style="background-color: transparent; border: none; color: rgb(255,64,129);margin-top: 10px;">Undo</button>';
-                                if(!episodeInfoBox){
+                                if(typeof change['.add_anime[num_watched_episodes]'] != 'undefined'){
+                                    message += split + 'Episode: ' + anime['.add_anime[num_watched_episodes]']+"/"+totalEp;
+                                    split = ' | '
+                                }
+                                if(typeof change['.add_anime[score]'] != 'undefined' && anime['.add_anime[score]'] != ''){
+                                    message += split + 'Rating: ' + anime['.add_anime[score]'];
+                                    split = ' | '
+                                }
+                                if(anime['checkIncrease'] == 1){
+                                    message += '<br><button class="undoButton" style="background-color: transparent; border: none; color: rgb(255,64,129);margin-top: 10px;">Undo</button>';
+                                    if(!episodeInfoBox){
+                                        flashm( message , false);
+                                        $('.undoButton').click(function(){
+                                            undoAnime['checkIncrease'] = 0;
+                                            setanime(thisUrl, undoAnime, null, localListType);
+                                        });
+                                    }else{
+                                        episodeInfo(change['.add_anime[num_watched_episodes]'], actual['malurl'], message, function(){
+                                            undoAnime['checkIncrease'] = 0;
+                                            setanime(thisUrl, undoAnime, null, localListType);
+                                            $('.info-Mal-undo').remove();
+                                        });
+                                    }
+                                }else{
+                                    flashm( message , false);
+                                }
+                            }else{
+                                var message = anime['name'];
+                                var split = '<br>';
+                                var totalVol = anime['totalVol'];
+                                if (totalVol == 0) totalVol = '?';
+                                var totalChap = anime['totalChap'];
+                                if (totalChap == 0) totalChap = '?';
+                                if(typeof change['.add_manga[status]'] != 'undefined'){
+                                    var statusString = "";
+                                    switch (parseInt(anime['.add_manga[status]'])) {
+                                        case 1:
+                                            statusString = watching;
+                                            break;
+                                        case 2:
+                                            statusString = 'Completed';
+                                            break;
+                                        case 3:
+                                            statusString = 'On-Hold';
+                                            break;
+                                        case 4:
+                                            statusString = 'Dropped';
+                                            break;
+                                        case 6:
+                                            statusString = planTo;
+                                            break;
+                                    }
+                                    message += split + statusString;
+                                    split = ' | '
+                                }
+                                if(typeof change['.add_manga[num_read_volumes]'] != 'undefined'){
+                                    message += split + 'Volume: ' + anime['.add_manga[num_read_volumes]']+"/"+totalVol;
+                                    split = ' | '
+                                }
+                                if(typeof change['.add_manga[num_read_chapters]'] != 'undefined'){
+                                    message += split + 'Chapter: ' + anime['.add_manga[num_read_chapters]']+"/"+totalChap;
+                                    split = ' | '
+                                }
+                                if(typeof change['.add_manga[score]'] != 'undefined' && anime['.add_manga[score]'] != ''){
+                                    message += split + 'Rating: ' + anime['.add_manga[score]'];
+                                    split = ' | '
+                                }
+                                if(anime['checkIncrease'] == 1){
+                                    message += '<br><button class="undoButton" style="background-color: transparent; border: none; color: rgb(255,64,129);margin-top: 10px;">Undo</button>';
                                     flashm( message , false);
                                     $('.undoButton').click(function(){
                                         undoAnime['checkIncrease'] = 0;
                                         setanime(thisUrl, undoAnime, null, localListType);
                                     });
                                 }else{
-                                    episodeInfo(change['.add_anime[num_watched_episodes]'], actual['malurl'], message, function(){
-                                        undoAnime['checkIncrease'] = 0;
-                                        setanime(thisUrl, undoAnime, null, localListType);
-                                        $('.info-Mal-undo').remove();
-                                    });
+                                    flashm( message , false);
                                 }
-                            }else{
-                                flashm( message , false);
                             }
                         }else{
-                            var message = anime['name'];
-                            var split = '<br>';
-                            var totalVol = anime['totalVol'];
-                            if (totalVol == 0) totalVol = '?';
-                            var totalChap = anime['totalChap'];
-                            if (totalChap == 0) totalChap = '?';
-                            if(typeof change['.add_manga[status]'] != 'undefined'){
-                                var statusString = "";
-                                switch (parseInt(anime['.add_manga[status]'])) {
-                                    case 1:
-                                        statusString = watching;
-                                        break;
-                                    case 2:
-                                        statusString = 'Completed';
-                                        break;
-                                    case 3:
-                                        statusString = 'On-Hold';
-                                        break;
-                                    case 4:
-                                        statusString = 'Dropped';
-                                        break;
-                                    case 6:
-                                        statusString = planTo;
-                                        break;
-                                }
-                                message += split + statusString;
-                                split = ' | '
-                            }
-                            if(typeof change['.add_manga[num_read_volumes]'] != 'undefined'){
-                                message += split + 'Volume: ' + anime['.add_manga[num_read_volumes]']+"/"+totalVol;
-                                split = ' | '
-                            }
-                            if(typeof change['.add_manga[num_read_chapters]'] != 'undefined'){
-                                message += split + 'Chapter: ' + anime['.add_manga[num_read_chapters]']+"/"+totalChap;
-                                split = ' | '
-                            }
-                            if(typeof change['.add_manga[score]'] != 'undefined' && anime['.add_manga[score]'] != ''){
-                                message += split + 'Rating: ' + anime['.add_manga[score]'];
-                                split = ' | '
-                            }
-                            if(anime['checkIncrease'] == 1){
-                                message += '<br><button class="undoButton" style="background-color: transparent; border: none; color: rgb(255,64,129);margin-top: 10px;">Undo</button>';
-                                flashm( message , false);
-                                $('.undoButton').click(function(){
-                                    undoAnime['checkIncrease'] = 0;
-                                    setanime(thisUrl, undoAnime, null, localListType);
-                                });
-                            }else{
-                                flashm( message , false);
+                            flashm( "Anime update failed" , true);
+                            if(anime['checkIncrease'] !== 1){
+                                try{
+                                    checkdata();
+                                }catch(e){}
                             }
                         }
-                    }else{
-                        flashm( "Anime update failed" , true);
-                        if(anime['checkIncrease'] !== 1){
+                        if(anime['forceUpdate'] == 1 || anime['forceUpdate'] == 2){
                             try{
                                 checkdata();
                             }catch(e){}
                         }
                     }
-                    if(anime['forceUpdate'] == 1 || anime['forceUpdate'] == 2){
-                        try{
-                            checkdata();
-                        }catch(e){}
-                    }
                 }
-            }
-        });
+            });
+        }
 
     }

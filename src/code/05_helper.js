@@ -114,6 +114,20 @@
         }
     }
 
+    function flashConfirm(message, yesCall, cancelCall){
+        var rNumber = Math.floor((Math.random() * 1000) + 1);
+        message = '<div style="text-align: left;">' + message + '</div><div style="display: flex; justify-content: space-around;"><button class="Yes'+rNumber+'" style="background-color: transparent; border: none; color: rgb(255,64,129);margin-top: 10px; cursor:pointer;">OK</button><button class="Cancel'+rNumber+'" style="background-color: transparent; border: none; color: rgb(255,64,129);margin-top: 10px; cursor:pointer;">CANCEL</button></div>';
+        flashm(message, false, false, true);
+        $( '.Yes'+rNumber ).click(function(){
+            $('.flashPerm').remove();
+            yesCall();
+        });
+        $( '.Cancel'+rNumber ).click(function(){
+            $('.flashPerm').remove();
+            cancelCall();
+        });
+    }
+
     function updatebutton(){
         buttonclick();
     }
