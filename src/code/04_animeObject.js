@@ -279,6 +279,8 @@
             }
         }
 
+        continueCall();
+
         function continueCall(){
             anime = handleanimeupdate( anime, actual );
             if(anime === null){
