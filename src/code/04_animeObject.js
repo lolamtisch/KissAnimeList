@@ -6,7 +6,7 @@
         if(absolute === false){
             //url = "http://myanimelist.net/anime.php?q=" + encodeURI(formattitle(title));
             //url = "http://www.google.com/search?btnI&q=site:myanimelist.net/Anime/+-site:myanimelist.net/Anime/genre/+-site:myanimelist.net/anime/season/+"+encodeURI(formattitle(title));
-            url = 'https://kissanimelist.firebaseio.com/Prototyp/'+dbSelector+'/'+encodeURIComponent($.titleToDbKey($.urlAnimeTitle(thisUrl))).toLowerCase()+'/Mal.json';
+            url = 'https://kissanimelist.firebaseio.com/Data/'+dbSelector+'/'+encodeURIComponent($.titleToDbKey($.urlAnimeTitle(thisUrl))).toLowerCase()+'/Mal.json';
             if(GM_getValue( dbSelector+'/'+$.titleToDbKey($.urlAnimeTitle(thisUrl))+'/Mal' , null) !== null ){
                 //if(con != console){
                     url = GM_getValue( dbSelector+'/'+$.titleToDbKey($.urlAnimeTitle(thisUrl))+'/Mal' , null);

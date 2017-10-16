@@ -215,7 +215,7 @@
             callback(value);
         }else{
             con.log("db:", dbSelector+'/'+$.titleToDbKey($.urlAnimeTitle(baseurl))+'/'+parth);
-            var url = 'https://kissanimelist.firebaseio.com/Prototyp/'+dbSelector+'/'+encodeURIComponent(encodeURIComponent($.titleToDbKey($.urlAnimeTitle(baseurl)))).toLowerCase()+'/'+parth+'.json';
+            var url = 'https://kissanimelist.firebaseio.com/Data/'+dbSelector+'/'+encodeURIComponent(encodeURIComponent($.titleToDbKey($.urlAnimeTitle(baseurl)))).toLowerCase()+'/'+parth+'.json';
             GM_xmlhttpRequest({
                 method: "GET",
                 url: url,
