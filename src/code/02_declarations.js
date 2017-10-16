@@ -404,7 +404,7 @@
             return url.split('/').slice(0,6).join('/');
         };
         $.urlAnimeTitle = function(url) {
-            return url.split("/")[5].replace(/^\d+[-]?/, '');
+            return url.split("/")[5];
         };
 
         $.EpisodePartToEpisode = function(string) {
