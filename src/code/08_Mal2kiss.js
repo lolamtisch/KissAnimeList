@@ -19,7 +19,7 @@
                 displaySites(responsearray, page);
             }else{
                 GM_xmlhttpRequest({
-                    url: 'https://kissanimelist.firebaseio.com/Prototyp/'+value+'/'+encodeURIComponent(index)+'.json',
+                    url: 'https://kissanimelist.firebaseio.com/Data/'+value+'/'+encodeURIComponent(index)+'.json',
                     method: "GET",
                     onload: function (response) {
                         con.log(response);
@@ -85,7 +85,7 @@
                 $('h2:contains("Information")').before('<div id="siteSearch"></div>');
             }
             $.each( sites, function( index, page ){
-                var url = 'https://kissanimelist.firebaseio.com/Prototyp/Mal'+type+'/'+uid+'/Sites/'+page+'.json';
+                var url = 'https://kissanimelist.firebaseio.com/Data/Mal'+type+'/'+uid+'/Sites/'+page+'.json';
                 GM_xmlhttpRequest({
                     url: url,
                     method: "GET",
