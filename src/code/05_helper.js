@@ -40,7 +40,7 @@
 
             if(toDB == 1){
                 GM_xmlhttpRequest({
-                    url: 'https://kissanimelist.firebaseio.com/Request/'+dbSelector+'Request.json',
+                    url: 'https://kissanimelist.firebaseio.com/Data/Request/'+dbSelector+'Request.json',
                     method: "POST",
                     data: JSON.stringify(param),
                     onload: function () {
