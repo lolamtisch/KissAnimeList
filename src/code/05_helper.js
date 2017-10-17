@@ -212,31 +212,39 @@
                             }
                         }catch(e){}
 
-                        try{
-                            epSubTitle = data.split('<p class="fn-grey2"')[1].split('</p>')[0].split('>')[1].replace(/^\s+/g, "");
-                        }catch(e){}
+                        if(episodeInfoSubtitle){
+                            try{
+                                epSubTitle = data.split('<p class="fn-grey2"')[1].split('</p>')[0].split('>')[1].replace(/^\s+/g, "");
+                                epSubTitle = " <small>"+epSubTitle+'</small><br>';
+                            }catch(e){}
+                        }
 
-                        try{
-                            synopsis = data.split('Synopsis</h2>')[1].split('</div>')[0].replace(/^\s+/g, "");
-                            if( synopsis.indexOf("badresult") > -1 || synopsis == ""){
-                                synopsis = "";
-                            }else{
-                                synopsis = '<div style="border: 1px solid; margin-top: 15px; padding: 8px;">'+synopsis+'</div>';
-                            }
-                        }catch(e){}
-
-                        try{
-                            imgUrl = data.split('"isCurrent":true')[0].split('{').slice(-1)[0].split('"thumbnail":"')[1].split('"')[0].replace(/\\\//g, '/');
-                        }catch(e){}
+                        if(episodeInfoSynopsis){
+                            try{
+                                synopsis = data.split('Synopsis</h2>')[1].split('</div>')[0].replace(/^\s+/g, "");
+                                if( synopsis.indexOf("badresult") > -1 || synopsis == ""){
+                                    synopsis = "";
+                                }else{
+                                    synopsis = '<div style="border: 1px solid; margin-top: 15px; padding: 8px;">'+synopsis+'</div>';
+                                }
+                            }catch(e){}
+                        }
 
                         var imgHtml = '';
-                        if(imgUrl != ''){
-                            imgHtml = '<img style = "margin-top: 15px; height: 100px;" src="'+imgUrl+'"/>';
+                        if(episodeInfoImage){
+                            try{
+                                imgUrl = data.split('"isCurrent":true')[0].split('{').slice(-1)[0].split('"thumbnail":"')[1].split('"')[0].replace(/\\\//g, '/');
+                            }catch(e){}
+
+
+                            if(imgUrl != ''){
+                                imgHtml = '<img style = "margin-top: 15px; height: 100px;" src="'+imgUrl+'"/>';
+                            }
                         }
                         var synopsisHtml = '<div style="overflow: hidden; text-align: left; max-width: 0; max-height: 0; transition: max-height 2s; transition: max-width 1s;" class="synopsis">'+synopsis+'</div>';
 
                         if(epTitle != ''){
-                            flashm ( '<div class="flasm-hover" style="/*display: flex;*/ align-items: center;"><div style="white-space: nowrap;"">'+epTitle+" <small>"+epSubTitle+'</small><br>' + imgHtml + "</div>"+ message +" </div>" + synopsisHtml, false, true);
+                            flashm ( '<div class="flasm-hover" style="/*display: flex;*/ align-items: center;"><div style="white-space: nowrap;"">'+epTitle + epSubTitle + imgHtml + "</div>"+ message +" </div>" + synopsisHtml, false, true);
                         }else if( message != '' ){
                             flashm ( message , false, true);
                         }
