@@ -357,11 +357,18 @@
                               </li>';
                 settingsUI += '</div>';
 
+                settingsUI += '<div class="mdl-cell mdl-cell--12-col mdl-shadow--4dp hoverinfoDeact">';
+                settingsUI += materialCheckbox(episodeInfoBox,'episodeInfoBox','Episode Hoverinfo');
+                settingsUI += '<div class="mdl-card__title mdl-card--border" style="padding: 0;"></div>';
+                settingsUI += materialCheckbox(episodeInfoSynopsis,'episodeInfoSynopsis','Synopsis');
+                settingsUI += materialCheckbox(episodeInfoImage,'episodeInfoImage','Image');
+                settingsUI += materialCheckbox(episodeInfoSubtitle,'episodeInfoSubtitle','Subtitle');
+                settingsUI += '</div>';
+
                 settingsUI += '<div class="mdl-cell mdl-cell--12-col mdl-shadow--4dp">\
                             <div class="mdl-card__title mdl-card--border">\
                                 <h2 class="mdl-card__title-text">ETC</h2>\
                                 </div>';
-                settingsUI += materialCheckbox(episodeInfoBox,'episodeInfoBox','Episode Hoverinfo');
                 settingsUI += '<li class="mdl-list__item"><button type="button" id="clearCache" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">Clear Cache</button></li>';
                 settingsUI += '</div>';
 
@@ -554,8 +561,40 @@
                 }else{
                     GM_setValue('episodeInfoBox', 0);
                     episodeInfoBox = 0;
+                    $('.hoverinfoDeact')
                 }
             });
+            $("#info-iframe").contents().find('#episodeInfoSynopsis').change(function(){
+                if($(this).is(":checked")){
+                    GM_setValue('episodeInfoSynopsis', 1);
+                    episodeInfoSynopsis = 1;
+                }else{
+                    GM_setValue('episodeInfoSynopsis', 0);
+                    episodeInfoSynopsis = 0;
+                    $('.hoverinfoDeact')
+                }
+            });
+            $("#info-iframe").contents().find('#episodeInfoImage').change(function(){
+                if($(this).is(":checked")){
+                    GM_setValue('episodeInfoImage', 1);
+                    episodeInfoImage = 1;
+                }else{
+                    GM_setValue('episodeInfoImage', 0);
+                    episodeInfoImage = 0;
+                    $('.hoverinfoDeact')
+                }
+            });
+            $("#info-iframe").contents().find('#episodeInfoSubtitle').change(function(){
+                if($(this).is(":checked")){
+                    GM_setValue('episodeInfoSubtitle', 1);
+                    episodeInfoSubtitle = 1;
+                }else{
+                    GM_setValue('episodeInfoSubtitle', 0);
+                    episodeInfoSubtitle = 0;
+                    $('.hoverinfoDeact')
+                }
+            });
+
             $("#info-iframe").contents().find('#miniMALonMal').change(function(){
                 if($(this).is(":checked")){
                     GM_setValue('miniMALonMal', 1);
