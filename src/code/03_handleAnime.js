@@ -229,7 +229,7 @@
                     }
                 }
             }
-            if(current['.add_anime[status]'] !== 2 && parseInt(anime['.add_anime[num_watched_episodes]']) === current['totalEp']){
+            if(current['.add_anime[status]'] !== 2 && parseInt(anime['.add_anime[num_watched_episodes]']) === current['totalEp'] && parseInt(anime['.add_anime[num_watched_episodes]']) != 0 ){
                 if (confirm('Set as completed?')) {
                     anime['.add_anime[status]'] = 2;
                     if(current['.add_anime[finish_date][day]'] === ''){
@@ -288,7 +288,7 @@
                     }
                 }
             }
-            if(current['.add_manga[status]'] !== 2 && parseInt(anime['.add_manga[num_read_chapters]']) === current['totalChap']){
+            if(current['.add_manga[status]'] !== 2 && parseInt(anime['.add_manga[num_read_chapters]']) === current['totalChap'] && parseInt(anime['.add_manga[num_read_chapters]']) != 0){
                 if (confirm('Set as completed?')) {
                     anime['.add_manga[status]'] = 2;
                     if(current['.add_manga[finish_date][day]'] === ''){
