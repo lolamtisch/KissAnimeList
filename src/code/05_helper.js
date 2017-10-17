@@ -189,14 +189,10 @@
                 onload: function (response) {
                     if(response.response != null){
                         if( response.response.indexOf("Sorry, this anime doesn't seem to have any episode information yet.") > -1 ){
-                            if(message != ''){
-                                flashm( message , false);
-                                $('.undoButton').click(function(){
-                                    undoAnime['checkIncrease'] = 0;
-                                    setanime(thisUrl, undoAnime, null, localListType);
-                                });
+                            if(message == ''){
+                                return;
+
                             }
-                            return;
                         }
                         if(message != ''){
                             message = "<div class='info-Mal-undo' style='white-space: nowrap; margin-top: 15px; /*margin-left: 15px;*/'> "+ message +"</div>";
@@ -208,6 +204,12 @@
                         var imgUrl = "";
                         try{
                             epTitle = data.split('class="fs18 lh11"')[1].split('</h2>')[0].split('</span>')[1];
+                            console.log(epTitle);
+                            if(epTitle.trim() != '<span class="ml8 icon-episode-type-bg">'){
+                                epTitle = '#'+episode+" - "+epTitle+'<br>';
+                            }else{
+                                epTitle = '';
+                            }
                         }catch(e){}
 
                         try{
@@ -234,8 +236,10 @@
                         var synopsisHtml = '<div style="overflow: hidden; text-align: left; max-width: 0; max-height: 0; transition: max-height 2s; transition: max-width 1s;" class="synopsis">'+synopsis+'</div>';
 
                         if(epTitle != ''){
-                            flashm ( '<div class="flasm-hover" style="/*display: flex;*/ align-items: center;"><div style="white-space: nowrap;"">#'+episode+" - "+epTitle+"<br> <small>"+epSubTitle+'</small><br>' + imgHtml + "</div>"+ message +" </div>" + synopsisHtml, false, true);
-
+                            flashm ( '<div class="flasm-hover" style="/*display: flex;*/ align-items: center;"><div style="white-space: nowrap;"">'+epTitle+" <small>"+epSubTitle+'</small><br>' + imgHtml + "</div>"+ message +" </div>" + synopsisHtml, false, true);
+                        }else if( message != '' ){
+                            flashm ( message , false, true);
+                        }
                             $('.undoButton').click(clickCallback);
 
                             $('.flashinfo').mouseenter(function() {
@@ -252,7 +256,7 @@
                                     }
                                 }, 2000);
                             });
-                        }
+
                     }
                 },
                 onerror: function(error) {

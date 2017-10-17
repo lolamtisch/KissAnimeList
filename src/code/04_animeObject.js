@@ -366,6 +366,9 @@
                                             undoAnime['checkIncrease'] = 0;
                                             setanime(thisUrl, undoAnime, null, localListType);
                                             $('.info-Mal-undo').remove();
+                                            if($('.flashinfo>div').html() == ''){
+                                                $('.flashinfo').remove();
+                                            }
                                         });
                                     }
                                 }else{
