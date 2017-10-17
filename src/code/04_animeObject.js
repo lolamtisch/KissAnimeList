@@ -354,7 +354,7 @@
                                     split = ' | '
                                 }
                                 if(anime['checkIncrease'] == 1){
-                                    message += '<br><button class="undoButton" style="background-color: transparent; border: none; color: rgb(255,64,129);margin-top: 10px;">Undo</button>';
+                                    message += '<br><button class="undoButton" style="background-color: transparent; border: none; color: rgb(255,64,129);margin-top: 10px;cursor: pointer;">Undo</button>';
                                     if(!episodeInfoBox){
                                         flashm( message , false);
                                         $('.undoButton').click(function(){
@@ -416,7 +416,7 @@
                                     split = ' | '
                                 }
                                 if(anime['checkIncrease'] == 1){
-                                    message += '<br><button class="undoButton" style="background-color: transparent; border: none; color: rgb(255,64,129);margin-top: 10px;">Undo</button>';
+                                    message += '<br><button class="undoButton" style="background-color: transparent; border: none; color: rgb(255,64,129);margin-top: 10px;cursor: pointer;">Undo</button>';
                                     flashm( message , false);
                                     $('.undoButton').click(function(){
                                         undoAnime['checkIncrease'] = 0;
