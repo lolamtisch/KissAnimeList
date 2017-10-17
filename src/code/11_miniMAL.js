@@ -25,9 +25,6 @@
                             background: #3f51b5; color: #fff;box-shadow: 0 2px 2px 0 rgba(0,0,0,.14), 0 3px 1px -2px rgba(0,0,0,.2), 0 1px 5px 0 rgba(0,0,0,.12);\
                             border: none; border-radius: 2px;\
                          }\
-                         .flashinfo{\
-                            transition: 2s;\
-                         }\
                          .flashinfo:hover{\
                             max-height:5000px !important;\
                          }');
@@ -360,11 +357,18 @@
                               </li>';
                 settingsUI += '</div>';
 
+                settingsUI += '<div class="mdl-cell mdl-cell--12-col mdl-shadow--4dp hoverinfoDeact">';
+                settingsUI += materialCheckbox(episodeInfoBox,'episodeInfoBox','Episode Hoverinfo');
+                settingsUI += '<div class="mdl-card__title mdl-card--border" style="padding: 0;"></div>';
+                settingsUI += materialCheckbox(episodeInfoSynopsis,'episodeInfoSynopsis','Synopsis');
+                settingsUI += materialCheckbox(episodeInfoImage,'episodeInfoImage','Image');
+                settingsUI += materialCheckbox(episodeInfoSubtitle,'episodeInfoSubtitle','Subtitle');
+                settingsUI += '</div>';
+
                 settingsUI += '<div class="mdl-cell mdl-cell--12-col mdl-shadow--4dp">\
                             <div class="mdl-card__title mdl-card--border">\
                                 <h2 class="mdl-card__title-text">ETC</h2>\
                                 </div>';
-                settingsUI += materialCheckbox(episodeInfoBox,'episodeInfoBox','Episode Hoverinfo');
                 settingsUI += '<li class="mdl-list__item"><button type="button" id="clearCache" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">Clear Cache</button></li>';
                 settingsUI += '</div>';
 
@@ -559,6 +563,34 @@
                     episodeInfoBox = 0;
                 }
             });
+            $("#info-iframe").contents().find('#episodeInfoSynopsis').change(function(){
+                if($(this).is(":checked")){
+                    GM_setValue('episodeInfoSynopsis', 1);
+                    episodeInfoSynopsis = 1;
+                }else{
+                    GM_setValue('episodeInfoSynopsis', 0);
+                    episodeInfoSynopsis = 0;
+                }
+            });
+            $("#info-iframe").contents().find('#episodeInfoImage').change(function(){
+                if($(this).is(":checked")){
+                    GM_setValue('episodeInfoImage', 1);
+                    episodeInfoImage = 1;
+                }else{
+                    GM_setValue('episodeInfoImage', 0);
+                    episodeInfoImage = 0;
+                }
+            });
+            $("#info-iframe").contents().find('#episodeInfoSubtitle').change(function(){
+                if($(this).is(":checked")){
+                    GM_setValue('episodeInfoSubtitle', 1);
+                    episodeInfoSubtitle = 1;
+                }else{
+                    GM_setValue('episodeInfoSubtitle', 0);
+                    episodeInfoSubtitle = 0;
+                }
+            });
+
             $("#info-iframe").contents().find('#miniMALonMal').change(function(){
                 if($(this).is(":checked")){
                     GM_setValue('miniMALonMal', 1);

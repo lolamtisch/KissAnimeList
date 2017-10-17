@@ -92,7 +92,7 @@
                     var colorF = "#323232";
                 }
                 $('#flash-div').append('<div class="flashinfo" style="display:none; max-height: 5000px; margin-top: -8px;"><div style="display:table; pointer-events: all; background-color: red;padding: 14px 24px 14px 24px; margin: 0 auto; margin-top: -2px; max-width: 60%; -webkit-border-radius: 20px;-moz-border-radius: 20px;border-radius: 2px;color: white;background:'+colorF+'; ">'+text+'</div></div>');
-                $('.flashinfo').delay(2000).slideDown(800).delay(6000).queue(function() { $(this).css('max-height', '8px'); $('#flash-div').css('z-index', '2');});
+                $('.flashinfo').slideDown(800).delay(4000).queue(function() { $(this).css('transition','max-height 2s').css('max-height', '8px'); setTimeout(function() {$('#flash-div').css('z-index', '2');}, 2000);});
             }else{
                 $('.flash').removeClass('flash').fadeOut({
                     duration: 400,
@@ -189,14 +189,10 @@
                 onload: function (response) {
                     if(response.response != null){
                         if( response.response.indexOf("Sorry, this anime doesn't seem to have any episode information yet.") > -1 ){
-                            if(message != ''){
-                                flashm( message , false);
-                                $('.undoButton').click(function(){
-                                    undoAnime['checkIncrease'] = 0;
-                                    setanime(thisUrl, undoAnime, null, localListType);
-                                });
+                            if(message == ''){
+                                return;
+
                             }
-                            return;
                         }
                         if(message != ''){
                             message = "<div class='info-Mal-undo' style='white-space: nowrap; margin-top: 15px; /*margin-left: 15px;*/'> "+ message +"</div>";
@@ -208,34 +204,50 @@
                         var imgUrl = "";
                         try{
                             epTitle = data.split('class="fs18 lh11"')[1].split('</h2>')[0].split('</span>')[1];
-                        }catch(e){}
-
-                        try{
-                            epSubTitle = data.split('<p class="fn-grey2"')[1].split('</p>')[0].split('>')[1].replace(/^\s+/g, "");
-                        }catch(e){}
-
-                        try{
-                            synopsis = data.split('Synopsis</h2>')[1].split('</div>')[0].replace(/^\s+/g, "");
-                            if( synopsis.indexOf("badresult") > -1 || synopsis == ""){
-                                synopsis = "";
+                            console.log(epTitle);
+                            if(epTitle.trim() != '<span class="ml8 icon-episode-type-bg">'){
+                                epTitle = '#'+episode+" - "+epTitle+'<br>';
                             }else{
-                                synopsis = '<div style="border: 1px solid; margin-top: 15px; padding: 8px;">'+synopsis+'</div>';
+                                epTitle = '';
                             }
                         }catch(e){}
 
-                        try{
-                            imgUrl = data.split('"isCurrent":true')[0].split('{').slice(-1)[0].split('"thumbnail":"')[1].split('"')[0].replace(/\\\//g, '/');
-                        }catch(e){}
+                        if(episodeInfoSubtitle){
+                            try{
+                                epSubTitle = data.split('<p class="fn-grey2"')[1].split('</p>')[0].split('>')[1].replace(/^\s+/g, "");
+                                epSubTitle = " <small>"+epSubTitle+'</small><br>';
+                            }catch(e){}
+                        }
+
+                        if(episodeInfoSynopsis){
+                            try{
+                                synopsis = data.split('Synopsis</h2>')[1].split('</div>')[0].replace(/^\s+/g, "");
+                                if( synopsis.indexOf("badresult") > -1 || synopsis == ""){
+                                    synopsis = "";
+                                }else{
+                                    synopsis = '<div style="border: 1px solid; margin-top: 15px; padding: 8px;">'+synopsis+'</div>';
+                                }
+                            }catch(e){}
+                        }
 
                         var imgHtml = '';
-                        if(imgUrl != ''){
-                            imgHtml = '<img style = "margin-top: 15px; height: 100px;" src="'+imgUrl+'"/>';
+                        if(episodeInfoImage){
+                            try{
+                                imgUrl = data.split('"isCurrent":true')[0].split('{').slice(-1)[0].split('"thumbnail":"')[1].split('"')[0].replace(/\\\//g, '/');
+                            }catch(e){}
+
+
+                            if(imgUrl != ''){
+                                imgHtml = '<img style = "margin-top: 15px; height: 100px;" src="'+imgUrl+'"/>';
+                            }
                         }
                         var synopsisHtml = '<div style="overflow: hidden; text-align: left; max-width: 0; max-height: 0; transition: max-height 2s; transition: max-width 1s;" class="synopsis">'+synopsis+'</div>';
 
                         if(epTitle != ''){
-                            flashm ( '<div class="flasm-hover" style="/*display: flex;*/ align-items: center;"><div style="white-space: nowrap;"">#'+episode+" - "+epTitle+"<br> <small>"+epSubTitle+'</small><br>' + imgHtml + "</div>"+ message +" </div>" + synopsisHtml, false, true);
-
+                            flashm ( '<div class="flasm-hover" style="/*display: flex;*/ align-items: center;"><div style="white-space: nowrap;"">'+epTitle + epSubTitle + imgHtml + "</div>"+ message +" </div>" + synopsisHtml, false, true);
+                        }else if( message != '' ){
+                            flashm ( message , false, true);
+                        }
                             $('.undoButton').click(clickCallback);
 
                             $('.flashinfo').mouseenter(function() {
@@ -252,7 +264,7 @@
                                     }
                                 }, 2000);
                             });
-                        }
+
                     }
                 },
                 onerror: function(error) {
