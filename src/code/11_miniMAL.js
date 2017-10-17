@@ -561,7 +561,6 @@
                 }else{
                     GM_setValue('episodeInfoBox', 0);
                     episodeInfoBox = 0;
-                    $('.hoverinfoDeact')
                 }
             });
             $("#info-iframe").contents().find('#episodeInfoSynopsis').change(function(){
@@ -571,7 +570,6 @@
                 }else{
                     GM_setValue('episodeInfoSynopsis', 0);
                     episodeInfoSynopsis = 0;
-                    $('.hoverinfoDeact')
                 }
             });
             $("#info-iframe").contents().find('#episodeInfoImage').change(function(){
@@ -581,7 +579,6 @@
                 }else{
                     GM_setValue('episodeInfoImage', 0);
                     episodeInfoImage = 0;
-                    $('.hoverinfoDeact')
                 }
             });
             $("#info-iframe").contents().find('#episodeInfoSubtitle').change(function(){
@@ -591,7 +588,6 @@
                 }else{
                     GM_setValue('episodeInfoSubtitle', 0);
                     episodeInfoSubtitle = 0;
-                    $('.hoverinfoDeact')
                 }
             });
 
