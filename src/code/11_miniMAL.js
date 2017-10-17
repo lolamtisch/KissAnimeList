@@ -358,7 +358,7 @@
                 settingsUI += '</div>';
 
                 settingsUI += '<div class="mdl-cell mdl-cell--12-col mdl-shadow--4dp hoverinfoDeact">';
-                settingsUI += materialCheckbox(episodeInfoBox,'episodeInfoBox','Episode Hoverinfo');
+                settingsUI += materialCheckbox(episodeInfoBox,'episodeInfoBox','Episode Hoverinfo', true);
                 settingsUI += '<div class="mdl-card__title mdl-card--border" style="padding: 0;"></div>';
                 settingsUI += materialCheckbox(episodeInfoSynopsis,'episodeInfoSynopsis','Synopsis');
                 settingsUI += materialCheckbox(episodeInfoImage,'episodeInfoImage','Image');
@@ -920,11 +920,13 @@
         framedoc.body.appendChild(script);
     }
 
-    function materialCheckbox(option, string, text){
+    function materialCheckbox(option, string, text, header = false){
         var check = '';
+        var sty = '';
         if(option == 1) check = 'checked';
+        if(header) sty = 'font-size: 24px; font-weight: 300; line-height: normal;';
         var item =  '<li class="mdl-list__item">\
-                        <span class="mdl-list__item-primary-content">\
+                        <span class="mdl-list__item-primary-content" style="'+sty+'">\
                             '+text+'\
                         </span>\
                         <span class="mdl-list__item-secondary-action">\
