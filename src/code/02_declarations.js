@@ -42,7 +42,7 @@
     var episodeInfoBox = GM_getValue( 'episodeInfoBox', 0 );
     var episodeInfoSynopsis = GM_getValue( 'episodeInfoSynopsis', 1 );
     var episodeInfoImage = GM_getValue( 'episodeInfoImage', 1 );
-    var episodeInfoSubtitle = GM_getValue( 'episodeInfoSubtitle', 0 );
+    var episodeInfoSubtitle = GM_getValue( 'episodeInfoSubtitle', 1 );
 
     var autoTracking = GM_getValue( 'autoTracking', 1 );
 
