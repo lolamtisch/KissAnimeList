@@ -342,7 +342,7 @@
                                 </div>';
                 settingsUI += materialCheckbox(miniMALonMal,'miniMALonMal','Display on MyAnimeList');
                 settingsUI += materialCheckbox(displayFloatButton,'displayFloatButton','Floating menu button');
-                settingsUI += materialCheckbox(posLeft,'posLeft','Left sided');
+                settingsUI += materialCheckbox(posLeft,'posLeft','Left-sided');
                 settingsUI += '<li class="mdl-list__item" style="display: inline-block; width: 50%;">\
                                   <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width: 100%;">\
                                       <input class="mdl-textfield__input" type="text" step="1" id="miniMalHeight" value="'+miniMalHeight+'">\
