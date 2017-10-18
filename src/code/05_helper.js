@@ -40,7 +40,7 @@
 
             if(toDB == 1){
                 GM_xmlhttpRequest({
-                    url: 'https://kissanimelist.firebaseio.com/Request/'+dbSelector+'Request.json',
+                    url: 'https://kissanimelist.firebaseio.com/Data/Request/'+dbSelector+'Request.json',
                     method: "POST",
                     data: JSON.stringify(param),
                     onload: function () {
@@ -71,13 +71,14 @@
 
     function flashm(text,error = true, info = false, permanent = false){
         con.log("Flash Message: ",text);
+        $('#flash-div').css('z-index', '2147483647');
         if(permanent){
             if(error === true){
                 var colorF = "#3e0808";
             }else{
                 var colorF = "#323232";
             }
-            $('#flash-div').append('<div class="flashPerm" style="display:none;"><div style="display:table; pointer-events: all; background-color: red;padding: 14px 24px 14px 24px; margin: 0 auto; margin-top: -2px; max-width: 60%; -webkit-border-radius: 20px;-moz-border-radius: 20px;border-radius: 2px;color: white;background:'+colorF+'; ">'+text+'</div></div>');
+            $('#flash-div-top').prepend('<div class="flashPerm" style="display:none;"><div style="display:table; pointer-events: all; background-color: red;padding: 14px 24px 14px 24px; margin: 0 auto; margin-top: -2px; max-width: 60%; -webkit-border-radius: 20px;-moz-border-radius: 20px;border-radius: 2px;color: white;background:'+colorF+'; ">'+text+'</div></div>');
             $('.flashPerm').delay(2000).slideDown(800);
         }else{
             if(info){
@@ -90,8 +91,8 @@
                 }else{
                     var colorF = "#323232";
                 }
-                $('#flash-div').append('<div class="flashinfo" style="display:none;"><div style="display:table; pointer-events: all; background-color: red;padding: 14px 24px 14px 24px; margin: 0 auto; margin-top: -2px; max-width: 60%; -webkit-border-radius: 20px;-moz-border-radius: 20px;border-radius: 2px;color: white;background:'+colorF+'; ">'+text+'</div></div>');
-                $('.flashinfo').delay(2000).slideDown(800).delay(6000).slideUp(800, function() { $(this).remove(); });
+                $('#flash-div').append('<div class="flashinfo" style="display:none; max-height: 5000px; margin-top: -8px;"><div style="display:table; pointer-events: all; background-color: red;padding: 14px 24px 14px 24px; margin: 0 auto; margin-top: -2px; max-width: 60%; -webkit-border-radius: 20px;-moz-border-radius: 20px;border-radius: 2px;color: white;background:'+colorF+'; ">'+text+'</div></div>');
+                $('.flashinfo').slideDown(800).delay(4000).queue(function() { $(this).css('transition','max-height 2s').css('max-height', '8px'); setTimeout(function() {$('#flash-div').css('z-index', '2');}, 2000);});
             }else{
                 $('.flash').removeClass('flash').fadeOut({
                     duration: 400,
@@ -108,9 +109,23 @@
                 }else{
                     $('#flash-div').append(mess);
                 }
-                $('.flash').slideDown(800).delay(4000).slideUp(800, function() { $(this).remove(); });
+                $('.flash').slideDown(800).delay(4000).slideUp(800, function() { $(this).remove(); $('#flash-div').css('z-index', '2'); });
             }
         }
+    }
+
+    function flashConfirm(message, yesCall, cancelCall){
+        var rNumber = Math.floor((Math.random() * 1000) + 1);
+        message = '<div style="text-align: left;">' + message + '</div><div style="display: flex; justify-content: space-around;"><button class="Yes'+rNumber+'" style="background-color: transparent; border: none; color: rgb(255,64,129);margin-top: 10px; cursor:pointer;">OK</button><button class="Cancel'+rNumber+'" style="background-color: transparent; border: none; color: rgb(255,64,129);margin-top: 10px; cursor:pointer;">CANCEL</button></div>';
+        flashm(message, false, false, true);
+        $( '.Yes'+rNumber ).click(function(){
+            $('.flashPerm').remove();
+            yesCall();
+        });
+        $( '.Cancel'+rNumber ).click(function(){
+            $('.flashPerm').remove();
+            cancelCall();
+        });
     }
 
     function updatebutton(){
@@ -164,7 +179,8 @@
         return title;
     }
 
-    function episodeInfo(episode, malUrl, message = ''){
+    function episodeInfo(episode, malUrl, message = '', clickCallback = function(){}){
+        //message = '';
         if(episodeInfoBox){
             con.log('Episode Info',malUrl+'/episode/'+episode);
             GM_xmlhttpRequest({
@@ -172,8 +188,14 @@
                 method: "GET",
                 onload: function (response) {
                     if(response.response != null){
+                        if( response.response.indexOf("Sorry, this anime doesn't seem to have any episode information yet.") > -1 ){
+                            if(message == ''){
+                                return;
+
+                            }
+                        }
                         if(message != ''){
-                            message = "<div style='white-space: nowrap; margin-left: 15px;'> "+ message +"</div>";
+                            message = "<div class='info-Mal-undo' style='white-space: nowrap; margin-top: 15px; /*margin-left: 15px;*/'> "+ message +"</div>";
                         }
                         var data = response.response;
                         var synopsis = '';
@@ -182,29 +204,67 @@
                         var imgUrl = "";
                         try{
                             epTitle = data.split('class="fs18 lh11"')[1].split('</h2>')[0].split('</span>')[1];
+                            console.log(epTitle);
+                            if(epTitle.trim() != '<span class="ml8 icon-episode-type-bg">'){
+                                epTitle = '#'+episode+" - "+epTitle+'<br>';
+                            }else{
+                                epTitle = '';
+                            }
                         }catch(e){}
 
-                        try{
-                            epSubTitle = data.split('<p class="fn-grey2"')[1].split('</p>')[0].split('>')[1].replace(/^\s+/g, "");
-                        }catch(e){}
+                        if(episodeInfoSubtitle){
+                            try{
+                                epSubTitle = data.split('<p class="fn-grey2"')[1].split('</p>')[0].split('>')[1].replace(/^\s+/g, "");
+                                epSubTitle = " <small>"+epSubTitle+'</small><br>';
+                            }catch(e){}
+                        }
 
-                        try{
-                            synopsis = data.split('Synopsis</h2>')[1].split('</div>')[0].replace(/^\s+/g, "");
-                        }catch(e){}
-
-                        try{
-                            imgUrl = data.split('"isCurrent":true')[0].split('{').slice(-1)[0].split('"thumbnail":"')[1].split('"')[0].replace(/\\\//g, '/');
-                        }catch(e){}
+                        if(episodeInfoSynopsis){
+                            try{
+                                synopsis = data.split('Synopsis</h2>')[1].split('</div>')[0].replace(/^\s+/g, "");
+                                if( synopsis.indexOf("badresult") > -1 || synopsis == ""){
+                                    synopsis = "";
+                                }else{
+                                    synopsis = '<div style="border: 1px solid; margin-top: 15px; padding: 8px;">'+synopsis+'</div>';
+                                }
+                            }catch(e){}
+                        }
 
                         var imgHtml = '';
-                        if(imgUrl != ''){
-                            imgHtml = '<img style = "margin-top: 15px; height: 100px;" src="'+imgUrl+'"/>';
+                        if(episodeInfoImage){
+                            try{
+                                imgUrl = data.split('"isCurrent":true')[0].split('{').slice(-1)[0].split('"thumbnail":"')[1].split('"')[0].replace(/\\\//g, '/');
+                            }catch(e){}
+
+
+                            if(imgUrl != ''){
+                                imgHtml = '<img style = "margin-top: 15px; height: 100px;" src="'+imgUrl+'"/>';
+                            }
                         }
-                        var synopsisHtml = '<div style="display: none;">'+synopsis+'</div>';
+                        var synopsisHtml = '<div style="overflow: hidden; text-align: left; max-width: 0; max-height: 0; transition: max-height 2s; transition: max-width 1s;" class="synopsis">'+synopsis+'</div>';
 
                         if(epTitle != ''){
-                            flashm ( '<div style="display: flex; align-items: center;"><div style="white-space: nowrap;"">#'+episode+" - "+epTitle+"<br> <small>"+epSubTitle+'</small><br>' + imgHtml + "</div>"+ message +" </div>" + synopsisHtml, false, true);
+                            flashm ( '<div class="flasm-hover" style="/*display: flex;*/ align-items: center;"><div style="white-space: nowrap;"">'+epTitle + epSubTitle + imgHtml + "</div>"+ message +" </div>" + synopsisHtml, false, true);
+                        }else if( message != '' ){
+                            flashm ( message , false, true);
                         }
+                            $('.undoButton').click(clickCallback);
+
+                            $('.flashinfo').mouseenter(function() {
+                                $('#flash-div').css('z-index', '2147483647');
+                                $(this).find('.synopsis').css('transition','max-width 0s').css('max-width', '500px').css('transition','max-height 2s').css('max-height', '9999px');
+                            });
+                            $('.flashinfo').mouseleave(function() {
+                                var el = $(this);
+                                $(this).find('.synopsis').css('transition','max-height 2s').css('max-height', '0')
+                                setTimeout(function() {
+                                    if(el.find('.synopsis').css('max-height') == '0px'){
+                                        el.find('.synopsis').css('transition','max-width 1s').css('max-width', '0');
+                                        $('#flash-div').css('z-index', '2');
+                                    }
+                                }, 2000);
+                            });
+
                     }
                 },
                 onerror: function(error) {
@@ -224,5 +284,18 @@
                 document.getElementById('info-popup').style.display = "none";
                 $('.floatbutton').fadeIn();
             }
+        });
+
+        $(document).keydown(function(e) {
+          if (e.ctrlKey && e.keyCode === 77) {
+            if($('#info-popup').css('display') == 'none'){
+                document.getElementById('info-popup').style.display = "block";
+                fillIframe(url, currentMalData);
+                $('.floatbutton').fadeOut();
+            }else{
+                document.getElementById('info-popup').style.display = "none";
+                $('.floatbutton').fadeIn();
+            }
+          }
         });
     }

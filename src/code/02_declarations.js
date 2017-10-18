@@ -32,8 +32,17 @@
     var crunchyrollLinks = GM_getValue( 'crunchyrollLinks', 1 );
     var gogoanimeLinks = GM_getValue( 'gogoanimeLinks', 1 );
 
+    var miniMALonMal = GM_getValue( 'miniMALonMal', 0 );
+    var posLeft = GM_getValue( 'posLeft', 1 );
+    var miniMalWidth = GM_getValue( 'miniMalWidth', '30%' );
+    var miniMalHeight = GM_getValue( 'miniMalHeight', '90%' );
+
     var displayFloatButton = GM_getValue( 'displayFloatButton', 1 );
+
     var episodeInfoBox = GM_getValue( 'episodeInfoBox', 0 );
+    var episodeInfoSynopsis = GM_getValue( 'episodeInfoSynopsis', 1 );
+    var episodeInfoImage = GM_getValue( 'episodeInfoImage', 1 );
+    var episodeInfoSubtitle = GM_getValue( 'episodeInfoSubtitle', 1 );
 
     var autoTracking = GM_getValue( 'autoTracking', 1 );
 
@@ -71,16 +80,23 @@
                     case '0.89.0':
                         message += 'Check out the new <a href="https://discord.gg/cTH4yaw">Discord channel</a>!<br/><br/>Kissanimelist (v0.89.0)</br>- Add Search to miniMAL</br>- Add MyAnimeList Bookmarks to miniMAL</br>- MyAnimeList Tags don\'t need to be activated anymore</br>- Mal2Crunchyroll links now hides remaining seasons</br>';
                         break;
+                    case '0.90.0':
+                        message += 'Changelog (v0.90.0):<br/>    - Added a shortcut for MiniMAL ( CTRL + M )<br/>    - Added MiniMAL position and dimension settings<br/>    - Added an option for displaying \'Episode Hoverinfo\'<br/>    - Added miniMAL to MyAnimeList<br/>    - Changed the \'Add to Mal\'-message, to a non-blocking message<br/>    - Fixed the database structure<br/><br/>New on KissAnimeLists <a href="https://discord.gg/cTH4yaw">Discord</a>:<br/>    - Feed showing newly added episodes for each of the supported streaming sites.';
+                        break;
                 }
             }else{
                 message += '<h2>Welcome to <a href="https://greasyfork.org/en/scripts/27564-kissanimelist">KissAnimeList</a></h2><br/>Support:<br/><a href="https://discord.gg/cTH4yaw">Discord Channel</a><br/><a href="https://github.com/lolamtisch/KissAnimeList">GitHub</a> <a href="https://github.com/lolamtisch/KissAnimeList/issues">Issues</a>';
             }
-            message += '</div><br><button class="okChangelog" style="background-color: transparent; border: none; color: rgb(255,64,129);margin-top: 10px;">Ok</button>'
-            flashm(message, false, false, true);
-            $('.okChangelog').click(function(){
+            if(message != '<div style="text-align: left;">'){
+                message += '</div><button class="okChangelog" style="background-color: transparent; border: none; color: rgb(255,64,129);margin-top: 10px;cursor: pointer;">Ok</button>'
+                flashm(message, false, false, true);
+                $('.okChangelog').click(function(){
+                    GM_setValue( 'Version', curVersion );
+                    $('.flashPerm').remove();
+                });
+            }else{
                 GM_setValue( 'Version', curVersion );
-                $('.flashPerm').remove();
-            });
+            }
         }
     }
 
@@ -399,7 +415,7 @@
             return url.split('/').slice(0,6).join('/');
         };
         $.urlAnimeTitle = function(url) {
-            return url.split("/")[5].replace(/^\d+[-]?/, '');
+            return url.split("/")[5];
         };
 
         $.EpisodePartToEpisode = function(string) {
@@ -520,7 +536,7 @@
             return url.split('/').slice(0,5).join('/');
         };
         $.urlAnimeTitle = function(url) {
-            return url.split("/")[4].replace(/.[^\.]*$/, '');
+            return url.split("/")[4];
         };
 
         $.EpisodePartToEpisode = function(string) {
@@ -937,9 +953,9 @@
     };
     $.titleToDbKey = function(title) {
         if( window.location.href.indexOf("crunchyroll.com") > -1 ){
-            return encodeURIComponent(title.toLowerCase().split('#')[0]);
+            return encodeURIComponent(title.toLowerCase().split('#')[0]).replace(/\./g, '%2E');
         }
-        return title.toLowerCase().split('#')[0];
+        return title.toLowerCase().split('#')[0].replace(/\./g, '%2E');
     };
 
     //ignore loading

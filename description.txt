@@ -42,13 +42,13 @@
 <img src='https://raw.githubusercontent.com/Franciscoseipel/Mal-for-Kissanime-Greasymonkey-/master/Screenshots/Myanimelist_sidebar.png'>
 - Adds oneklick search links
 - Shows direct links using a Database.
-<code>Database: (28.09.2017)
-kissanime 4425 / ~7500
-kissmanga 2093 / ~12500
-masterani 856 / ~2500
+<code>Database: (18.10.2017)
+kissanime 4574 / ~7500
+kissmanga 2487 / ~12500
+masterani 99% / ~2500
 9anime 99% / ~7500
 crunchyroll 99% / ~1000
-gogoanime 134 / ~4000</code>
+gogoanime 193 / ~4000</code>
 
 <img src='https://raw.githubusercontent.com/Franciscoseipel/Mal-for-Kissanime-Greasymonkey-/master/Screenshots/continue%20watching.png'>
 - Displays the last opened viewing page and a link to the next episode on your MAL Bookmarks page
@@ -57,6 +57,8 @@ gogoanime 134 / ~4000</code>
 <b>miniMAL:</b>
 <img src='https://raw.githubusercontent.com/Franciscoseipel/Mal-for-Kissanime-Greasymonkey-/master/Screenshots/miniMAL.png'>
 - Shows a small overview of the opened anime/manga using data from MAL
+- Add the posibility to search for anime
+- Shows your MyAnimeList Bookmarklist
 - Holds the settings page
 
 <b>Wrong Recognition:</b>
@@ -66,7 +68,7 @@ gogoanime 134 / ~4000</code>
 <img src='https://github.com/Franciscoseipel/Mal-for-Kissanime-Greasymonkey-/raw/master/Screenshots/Wrong%20recognition.gif'>
 </details>
 <details>
-<summary>Wrong offset: [click]</summary>
+<summary>Wrong Episode offset: [click]</summary>
 <img src='https://github.com/Franciscoseipel/Mal-for-Kissanime-Greasymonkey-/raw/master/Screenshots/offset.gif'>
 </details>
 
