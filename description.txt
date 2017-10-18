@@ -57,6 +57,8 @@ gogoanime 193 / ~4000</code>
 <b>miniMAL:</b>
 <img src='https://raw.githubusercontent.com/Franciscoseipel/Mal-for-Kissanime-Greasymonkey-/master/Screenshots/miniMAL.png'>
 - Shows a small overview of the opened anime/manga using data from MAL
+- Add the posibility to search for anime
+- Shows your MyAnimeList Bookmarklist
 - Holds the settings page
 
 <b>Wrong Recognition:</b>
@@ -66,7 +68,7 @@ gogoanime 193 / ~4000</code>
 <img src='https://github.com/Franciscoseipel/Mal-for-Kissanime-Greasymonkey-/raw/master/Screenshots/Wrong%20recognition.gif'>
 </details>
 <details>
-<summary>Wrong offset: [click]</summary>
+<summary>Wrong Episode offset: [click]</summary>
 <img src='https://github.com/Franciscoseipel/Mal-for-Kissanime-Greasymonkey-/raw/master/Screenshots/offset.gif'>
 </details>
 
