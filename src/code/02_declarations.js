@@ -152,7 +152,7 @@
             return url.split('/').slice(0,5).join('/');
         };
         $.urlAnimeTitle = function(url) {
-            return url.split("/")[4];
+            return url.split("/")[4].split("?")[0];
         };
 
         $.EpisodePartToEpisode = function(string) {
