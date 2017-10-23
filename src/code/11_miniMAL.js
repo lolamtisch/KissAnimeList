@@ -339,6 +339,7 @@
                 settingsUI += '<div class="mdl-cell mdl-cell--12-col mdl-shadow--4dp">\
                                 <div class="mdl-card__title mdl-card--border">\
                                   <h2 class="mdl-card__title-text">miniMAL</h2>\
+                                  <span style="margin-left: auto; color: #7f7f7f;">Shortcut: Ctrl + m</span>\
                                 </div>';
                 settingsUI += materialCheckbox(miniMALonMal,'miniMALonMal','Display on MyAnimeList');
                 settingsUI += materialCheckbox(displayFloatButton,'displayFloatButton','Floating menu button');
