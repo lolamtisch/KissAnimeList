@@ -1,7 +1,7 @@
 <table style="width:100%"><tr>
   <td><h1>KissAnimeList</h1></td>
-  <td><a href="https://github.com/lolamtisch/KissAnimeList/issues"><img src="https://www.google.com/s2/favicons?domain=github.com"/></a></td>
-  <td><a href="https://discord.gg/cTH4yaw"><img src="https://www.google.com/s2/favicons?domain=discordapp.com"/></a></td>
+  <td><a href="https://discord.gg/cTH4yaw"><img src="https://discordapp.com/api/guilds/358599430502481920/widget.png"/></a></td>
+  <td><a href="https://github.com/lolamtisch/KissAnimeList/issues"><img src="https://img.shields.io/badge/Issues--green.svg?style=social&logo=github"/></a></td>
 </tr></table>
 <img src='https://raw.githubusercontent.com/Franciscoseipel/Mal-for-Kissanime-Greasymonkey-/master/Screenshots/overview.png'>
 <b>Supported Pages:</b>
