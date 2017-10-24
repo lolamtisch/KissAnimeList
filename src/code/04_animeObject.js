@@ -299,6 +299,9 @@
                 }
             });
 
+            con.log('[SET] URL:', url);
+            con.log('[SET] Object:', anime);
+
             GM_xmlhttpRequest({
                 method: "POST",
                 url: url,
