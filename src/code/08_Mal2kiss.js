@@ -96,7 +96,7 @@
                         }
                     },
                     onerror: function(error) {
-                        con.log("error: "+error);
+                        con.log("[setKissToMal] error:",error);
                     }
                 });
             });

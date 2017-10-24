@@ -602,7 +602,7 @@
                 }
             });
             $("#info-iframe").contents().find('#malConfig').show();
-        }catch(e) {console.log(e);}
+        }catch(e) {console.log('[iframeConfig] Error:',e);}
     }
 
     function iframeOverview(url, data){
@@ -611,23 +611,23 @@
             var image = data.split('js-scrollfix-bottom')[1].split('<img src="')[1].split('"')[0];
             $("#info-iframe").contents().find('.malImage').attr("src",image).show();
             $("#info-iframe").contents().find('.coverinfo').show();
-        }catch(e) {console.log(e);}
+        }catch(e) {console.log('[iframeOverview] Error:',e);}
 
         try{
             var title = data.split('itemprop="name">')[1].split('<')[0];
             $("#info-iframe").contents().find('.malTitle').html(title).show();
             $("#info-iframe").contents().find('.coverinfo').show();
-        }catch(e) {console.log(e);}
+        }catch(e) {console.log('[iframeOverview] Error:',e);}
 
         try{
             $("#info-iframe").contents().find('.malLink').attr('href',url).show();
-        }catch(e) {console.log(e);}
+        }catch(e) {console.log('[iframeOverview] Error:',e);}
 
         try{
             var description = data.split('itemprop="description">')[1].split('</span')[0];
             $("#info-iframe").contents().find('.malDescription').html('<p style="color: black;">'+description+'</p>').show();
             $("#info-iframe").contents().find('.coverinfo').show();
-        }catch(e) {console.log(e);}
+        }catch(e) {console.log('[iframeOverview] Error:',e);}
 
         try{
             var statsBlock = data.split('<h2>Statistics</h2>')[1].split('<h2>')[0];
@@ -647,7 +647,7 @@
             });
             statsHtml += '</ul>';
             $("#info-iframe").contents().find('.stats-block').html(statsHtml).show();
-        }catch(e) {console.log(e);}
+        }catch(e) {console.log('[iframeOverview] Error:',e);}
 
         try{
             var altTitle = data.split('<h2>Alternative Titles</h2>')[1].split('<h2>')[0];
@@ -657,7 +657,7 @@
                 return this.nodeType == 3 && $.trim(this.textContent) != '';
             }).wrap('<span class="mdl-chip__text" />');
             $("#info-iframe").contents().find('.malAltTitle').show();
-        }catch(e) {console.log(e);}
+        }catch(e) {console.log('[iframeOverview] Error:',e);}
 
         try{
             var infoBlock = data.split('<h2>Information</h2>')[1].split('<h2>')[0];
@@ -683,7 +683,7 @@
             });
             infoHtml += '</ul>';
             $("#info-iframe").contents().find('.info-block').html(infoHtml).show();
-        }catch(e) {console.log(e);}
+        }catch(e) {console.log('[iframeOverview] Error:',e);}
 
         try{
             var relatedBlock = data.split('Related ')[1].split('</h2>')[1].split('<h2>')[0];
@@ -713,7 +713,7 @@
                 fillIframe($(this).attr('href'));
               }).attr('onclick','return false;');
             });
-        }catch(e) {console.log(e);}
+        }catch(e) {console.log('[iframeOverview] Error:',e);}
 
         try{
             if( !(window.location.href.indexOf("myanimelist.net") > -1) ){
@@ -770,12 +770,12 @@
                   setanime(url, anime, null, localListType);
               });
             }
-        }catch(e) {console.log(e);}
+        }catch(e) {console.log('[iframeOverview] Error:',e);}
 
         try{
             $("#info-iframe").contents().find('.stream-block-inner').html('');
             setKissToMal(url);
-        }catch(e) {console.log(e);}
+        }catch(e) {console.log('[iframeOverview] Error:',e);}
     }
 
     function iframeReview(url, data){
@@ -815,7 +815,7 @@
                 var revID = $(this).attr('onclick').split("$('")[1].split("'")[0];
                 $("#info-iframe").contents().find(revID).toggle();
             });
-        }catch(e) {console.log(e);}
+        }catch(e) {console.log('[iframeReview] Error:',e);}
     }
 
     function iframeEpisode(url, data){
@@ -830,7 +830,7 @@
                     </div>';
                 $("#info-iframe").contents().find('#malEpisodes').html(episodesHtml).show();
                 $("#info-iframe").contents().find('#malEpisodes .episode-video, #malEpisodes .episode-forum').remove();
-            }catch(e) {console.log(e);}
+            }catch(e) {console.log('[iframeEpisode] Error:',e);}
         });
 
     }
@@ -903,7 +903,7 @@
                 });
                 $("#info-iframe").contents().find('#malRecommendations .more .borderClass').addClass('mdl-shadow--2dp').css('padding','10px');
                 $("#info-iframe").contents().find('.lazyload').each(function() { $(this).attr('src', $(this).attr('data-src'));});//TODO: use lazyloading
-            }catch(e) {console.log(e);}
+            }catch(e) {console.log('[iframeRecommendations] Error:',e);}
         });
 
     }
