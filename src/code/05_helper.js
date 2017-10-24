@@ -148,7 +148,7 @@
     }
 
     function formattitle(title) {
-        con.log("Title: ",title);
+        con.log("[TITLE] Title:",title);
 
         if(title.substr(title.length - 4)=="-Dub"){
             title=title.slice(0,-4);
@@ -175,7 +175,7 @@
         title = title.replace(" s8"," 8nd season");
         title = title.replace(" s9"," 9nd season");
         //title = title.replace(/[-,.?:'"\\!@#$%^&\-_=+`~;]/g,"");
-        con.log("Formated: ",title);
+        con.log("[TITLE] Formated:",title);
         return title;
     }
 
