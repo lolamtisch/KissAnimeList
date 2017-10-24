@@ -195,7 +195,6 @@
                         var imgUrl = "";
                         try{
                             epTitle = data.split('class="fs18 lh11"')[1].split('</h2>')[0].split('</span>')[1];
-                            console.log('[Hover] '+epTitle);
                             if(epTitle.trim() != '<span class="ml8 icon-episode-type-bg">'){
                                 epTitle = '#'+episode+" - "+epTitle+'<br>';
                             }else{
