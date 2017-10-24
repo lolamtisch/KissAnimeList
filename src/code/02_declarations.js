@@ -20,7 +20,7 @@
         }
       }
     });
-    console.log('%cKissAnimeList', element);
+    console.log('%cKissAnimeList ['+GM_info.script.version+']', element,);
 
     var malBookmarks = GM_getValue( 'malBookmarks', 1 );
     var classicBookmarks = GM_getValue( 'classicBookmarks', 0 );
