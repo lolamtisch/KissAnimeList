@@ -5,15 +5,6 @@
         return url;
     }
 
-    function staticUrl(title){
-        switch(title) {
-            case 'Blood': return 'https://myanimelist.net/anime/150/Blood_';
-            case 'K': return 'https://myanimelist.net/anime/14467/K';
-            case 'Morita-san-wa-Mukuchi': return 'https://myanimelist.net/anime/10671/Morita-san_wa_Mukuchi';
-            default:  return null;
-        }
-    }
-
     function local_setValue( thisUrl, malurl ){
         if( (!(thisUrl.indexOf("myAnimeList.net/") >= 0)) && ( GM_getValue(dbSelector+'/'+$.titleToDbKey($.urlAnimeTitle(thisUrl))+'/Mal' , null) == null || thisUrl.indexOf("#newCorrection") >= 0 || GM_getValue(dbSelector+'/'+$.titleToDbKey($.urlAnimeTitle(thisUrl))+'/Crunch' , null) == 'no')){
             var param = { Kiss: thisUrl, Mal: malurl};

@@ -14,9 +14,6 @@
                 con.log('[GET] Cache:', url);
             }
 
-            if(staticUrl(formattitle(title)) !== null){
-                url = staticUrl(formattitle(title));
-            }
         }else{
             url = absolute;
         }
