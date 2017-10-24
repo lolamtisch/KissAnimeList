@@ -12,9 +12,8 @@
 
     function getSites(sites, page){
         $.each(sites, function(index, value){
-            con.log( index + ": " + value );
             if( GM_getValue( value+'/'+encodeURIComponent(index)+'/MalToKiss', null) != null ){
-                con.log('Cached');
+                con.log('[2Kiss] Cache' );
                 var responsearray = $.parseJSON(GM_getValue( value+'/'+encodeURIComponent(index)+'/MalToKiss', null));
                 displaySites(responsearray, page);
             }else{
@@ -22,7 +21,7 @@
                     url: 'https://kissanimelist.firebaseio.com/Data/'+value+'/'+encodeURIComponent(index)+'.json',
                     method: "GET",
                     onload: function (response) {
-                        con.log(response);
+                        con.log('[2Kiss] ',response.response);
                         if(response.response != null){
                             var responsearray = $.parseJSON(response.response);
                             if( value == 'Crunchyroll' ){
@@ -91,14 +90,13 @@
                     url: url,
                     method: "GET",
                     onload: function (response) {
-                        con.log('Url',url);
-                        con.log(response);
+                        con.log('[2Kiss]', url, response.response);
                         if(response.response != 'null'){
                             getSites($.parseJSON(response.response), page);
                         }
                     },
                     onerror: function(error) {
-                        con.log("error: "+error);
+                        con.log("[setKissToMal] error:",error);
                     }
                 });
             });
