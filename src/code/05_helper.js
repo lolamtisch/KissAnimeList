@@ -35,10 +35,10 @@
                     method: "POST",
                     data: JSON.stringify(param),
                     onload: function () {
-                        con.log("Send to database: ",param);
+                        con.log("[DB] Send to database:",param);
                     },
                     onerror: function(error) {
-                        con.log("Send to database: ",error);
+                        con.log("[DB] Send to database:",error);
                     }
                 });
             }
@@ -61,7 +61,7 @@
     }
 
     function flashm(text,error = true, info = false, permanent = false){
-        con.log("Flash Message: ",text);
+        con.log("[Flash] Message:",text);
         $('#flash-div').css('z-index', '2147483647');
         if(permanent){
             if(error === true){
@@ -173,7 +173,7 @@
     function episodeInfo(episode, malUrl, message = '', clickCallback = function(){}){
         //message = '';
         if(episodeInfoBox){
-            con.log('Episode Info',malUrl+'/episode/'+episode);
+            con.log('[Hover] Episode:',malUrl+'/episode/'+episode);
             GM_xmlhttpRequest({
                 url: malUrl+'/episode/'+episode,
                 method: "GET",
@@ -195,7 +195,7 @@
                         var imgUrl = "";
                         try{
                             epTitle = data.split('class="fs18 lh11"')[1].split('</h2>')[0].split('</span>')[1];
-                            console.log(epTitle);
+                            console.log('[Hover] '+epTitle);
                             if(epTitle.trim() != '<span class="ml8 icon-episode-type-bg">'){
                                 epTitle = '#'+episode+" - "+epTitle+'<br>';
                             }else{
