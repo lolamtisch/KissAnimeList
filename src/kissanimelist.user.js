@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name        KissAnimeList
-// @version     0.90.0
+// @version     0.90.1
 // @description Integrates MyAnimeList into diverse sites, with auto episode tracking.
 // @author      lolamtisch@gmail.com
 // @license     Creative Commons; http://creativecommons.org/licenses/by/4.0/
@@ -92,10 +92,15 @@
     var element = new Image();
     Object.defineProperty(element, 'id', {
       get: function () {
-        con = console;
+        con.log = function(){
+            var args = Array.prototype.slice.call(arguments);
+            args.unshift("color: blue;");
+            args.unshift("%c[KAL]");
+            console.log.apply(console, args);
+        }
       }
     });
-    console.log('%cKissAnimeList', element);
+    console.log('%cKissAnimeList ['+GM_info.script.version+']', element,);
 
     var malBookmarks = GM_getValue( 'malBookmarks', 1 );
     var classicBookmarks = GM_getValue( 'classicBookmarks', 0 );
@@ -232,7 +237,7 @@
             return url.split('/').slice(0,5).join('/');
         };
         $.urlAnimeTitle = function(url) {
-            return url.split("/")[4];
+            return url.split("/")[4].split("?")[0];
         };
 
         $.EpisodePartToEpisode = function(string) {
@@ -361,7 +366,7 @@
             return url.split('/').slice(0,5).join('/');
         };
         $.urlAnimeTitle = function(url) {
-            return url.split("/")[4];
+            return url.split("/")[4].split("?")[0];
         };
 
         $.EpisodePartToEpisode = function(string) {
@@ -495,7 +500,7 @@
             return url.split('/').slice(0,6).join('/');
         };
         $.urlAnimeTitle = function(url) {
-            return url.split("/")[5];
+            return url.split("/")[5].split("?")[0];
         };
 
         $.EpisodePartToEpisode = function(string) {
@@ -616,7 +621,7 @@
             return url.split('/').slice(0,5).join('/');
         };
         $.urlAnimeTitle = function(url) {
-            return url.split("/")[4];
+            return url.split("/")[4].split('?')[0];
         };
 
         $.EpisodePartToEpisode = function(string) {
@@ -736,10 +741,12 @@
                         checkdata();
                     });
                     var season = new RegExp('[\?&]' + 'season' + '=([^&#]*)').exec(window.location.href);
-                    season = season[1] || null;
                     if(season != null){
-                        season = decodeURIComponent(decodeURI(season));
-                        $('.season-dropdown[title="'+season+'" i] .exclusivMal').first().click();
+                        season = season[1] || null;
+                        if(season != null){
+                            season = decodeURIComponent(decodeURI(season));
+                            $('.season-dropdown[title="'+season+'" i] .exclusivMal').first().click();
+                        }
                     }
                     return;
                 }else{
@@ -1418,12 +1425,9 @@
                 //if(con != console){
                     url = GM_getValue( dbSelector+'/'+$.titleToDbKey($.urlAnimeTitle(thisUrl))+'/Mal' , null);
                 //}
-                con.log('local Found', url);
+                con.log('[GET] Cache:', url);
             }
 
-            if(staticUrl(formattitle(title)) !== null){
-                url = staticUrl(formattitle(title));
-            }
         }else{
             url = absolute;
         }
@@ -1435,14 +1439,14 @@
         }
 
         if(url.indexOf("myanimelist.net/"+localListType+"/") > -1 && url.indexOf("google") === -1) {
-            con.log("Mal: ", url);
+            con.log("[GET] MyAnimeList: ", url);
             if(googleover === 0){
                 local_setValue( thisUrl, url );
             }
             malurl = url;
             url = 'https://myanimelist.net/ownlist/'+localListType+'/'+url.split('/')[4]+'/edit?hideLayout';//TODOsplit4 ersetzten
         }
-        con.log("url",url);
+        con.log("[GET] Request:",url);
 
         GM_xmlhttpRequest({
             method: "GET",
@@ -1464,6 +1468,7 @@
                 }
 
                 if(url.indexOf("kissanimelist.firebaseio.com") > -1) {
+                    con.log("[GET] Firebase:",response.response);
                     if(response.response !== 'null' && !(response.response.indexOf("error") > -1)){
                         //url = response.response.replace('"', '').replace('"', '');
                         url = 'https://myanimelist.net/'+localListType+'/'+response.response.split('"')[1]+'/'+response.response.split('"')[3];
@@ -1520,7 +1525,7 @@
                     }
                 } else {
                     if(url.indexOf("myanimelist.net/"+localListType+"/") > -1) {
-                        con.log("Mal: ",url);
+                        con.log("[GET] Mal: ",url);
                         if(googleover === 0){
                             local_setValue( thisUrl, url );
                         }
@@ -1541,7 +1546,6 @@
                                 miniMalButton(null);
                                 return;
                             }
-                            con.log("MalEdit: ",url);
                             var anime = getObject(response.responseText,malurl,localListType);
                             $.docReady(function() {
                                 callback(anime);
@@ -1557,7 +1561,6 @@
 
     function getObject(data,url,localListType){
         if(localListType == 'anime'){
-            //con.log(data);
             var anime = {};
             anime['malurl'] = url;
             anime['.csrf_token'] =  data.split('\'csrf_token\'')[1].split('\'')[1].split('\'')[0];
@@ -1596,10 +1599,9 @@
             anime['.add_anime[is_asked_to_discuss]'] = getselect(data,'add_anime[is_asked_to_discuss]');
             anime['.add_anime[sns_post_type]'] = getselect(data,'add_anime[sns_post_type]');
             anime['.submitIt'] = data.split('name="submitIt"')[1].split('value="')[1].split('"')[0];
-            con.log(anime);
+            con.log('[GET] Object:',anime);
             return anime;
         }else{
-            //con.log(data);
             var anime = {};
             anime['malurl'] = url;
             anime['.csrf_token'] =  data.split('\'csrf_token\'')[1].split('\'')[1].split('\'')[0];
@@ -1642,7 +1644,7 @@
             anime['.add_manga[is_asked_to_discuss]'] = getselect(data,'add_manga[is_asked_to_discuss]');
             anime['.add_manga[sns_post_type]'] = getselect(data,'add_manga[sns_post_type]');
             anime['.submitIt'] = data.split('name="submitIt"')[1].split('value="')[1].split('"')[0];
-            con.log(anime);
+            con.log('[GET] Object:', anime);
             return anime;
         }
     }
@@ -1710,6 +1712,9 @@
                     }
                 }
             });
+
+            con.log('[SET] URL:', url);
+            con.log('[SET] Object:', anime);
 
             GM_xmlhttpRequest({
                 method: "POST",
@@ -1859,15 +1864,6 @@
         return url;
     }
 
-    function staticUrl(title){
-        switch(title) {
-            case 'Blood': return 'https://myanimelist.net/anime/150/Blood_';
-            case 'K': return 'https://myanimelist.net/anime/14467/K';
-            case 'Morita-san-wa-Mukuchi': return 'https://myanimelist.net/anime/10671/Morita-san_wa_Mukuchi';
-            default:  return null;
-        }
-    }
-
     function local_setValue( thisUrl, malurl ){
         if( (!(thisUrl.indexOf("myAnimeList.net/") >= 0)) && ( GM_getValue(dbSelector+'/'+$.titleToDbKey($.urlAnimeTitle(thisUrl))+'/Mal' , null) == null || thisUrl.indexOf("#newCorrection") >= 0 || GM_getValue(dbSelector+'/'+$.titleToDbKey($.urlAnimeTitle(thisUrl))+'/Crunch' , null) == 'no')){
             var param = { Kiss: thisUrl, Mal: malurl};
@@ -1898,10 +1894,10 @@
                     method: "POST",
                     data: JSON.stringify(param),
                     onload: function () {
-                        con.log("Send to database: ",param);
+                        con.log("[DB] Send to database:",param);
                     },
                     onerror: function(error) {
-                        con.log("Send to database: ",error);
+                        con.log("[DB] Send to database:",error);
                     }
                 });
             }
@@ -1924,7 +1920,7 @@
     }
 
     function flashm(text,error = true, info = false, permanent = false){
-        con.log("Flash Message: ",text);
+        con.log("[Flash] Message:",text);
         $('#flash-div').css('z-index', '2147483647');
         if(permanent){
             if(error === true){
@@ -2002,7 +1998,7 @@
     }
 
     function formattitle(title) {
-        con.log("Title: ",title);
+        con.log("[TITLE] Title:",title);
 
         if(title.substr(title.length - 4)=="-Dub"){
             title=title.slice(0,-4);
@@ -2029,14 +2025,14 @@
         title = title.replace(" s8"," 8nd season");
         title = title.replace(" s9"," 9nd season");
         //title = title.replace(/[-,.?:'"\\!@#$%^&\-_=+`~;]/g,"");
-        con.log("Formated: ",title);
+        con.log("[TITLE] Formated:",title);
         return title;
     }
 
     function episodeInfo(episode, malUrl, message = '', clickCallback = function(){}){
         //message = '';
         if(episodeInfoBox){
-            con.log('Episode Info',malUrl+'/episode/'+episode);
+            con.log('[Hover] Episode:',malUrl+'/episode/'+episode);
             GM_xmlhttpRequest({
                 url: malUrl+'/episode/'+episode,
                 method: "GET",
@@ -2058,7 +2054,6 @@
                         var imgUrl = "";
                         try{
                             epTitle = data.split('class="fs18 lh11"')[1].split('</h2>')[0].split('</span>')[1];
-                            console.log(epTitle);
                             if(epTitle.trim() != '<span class="ml8 icon-episode-type-bg">'){
                                 epTitle = '#'+episode+" - "+epTitle+'<br>';
                             }else{
@@ -2122,7 +2117,7 @@
                     }
                 },
                 onerror: function(error) {
-                    con.log("error: "+error);
+                    con.log("[episodeInfo] error:",error);
                 }
             });
         }
@@ -2140,18 +2135,26 @@
             }
         });
 
-        $(document).keydown(function(e) {
-          if (e.ctrlKey && e.keyCode === 77) {
-            if($('#info-popup').css('display') == 'none'){
-                document.getElementById('info-popup').style.display = "block";
-                fillIframe(url, currentMalData);
-                $('.floatbutton').fadeOut();
-            }else{
-                document.getElementById('info-popup').style.display = "none";
-                $('.floatbutton').fadeIn();
-            }
-          }
+        $("#info-iframe").contents().keydown(function(e) {
+            keys(e);
         });
+
+        $(document).keydown(function(e) {
+            keys(e);
+        });
+
+        function keys(e){
+            if (e.ctrlKey && e.keyCode === 77) {
+                if($('#info-popup').css('display') == 'none'){
+                    document.getElementById('info-popup').style.display = "block";
+                    fillIframe(url, currentMalData);
+                    $('.floatbutton').fadeOut();
+                }else{
+                    document.getElementById('info-popup').style.display = "none";
+                    $('.floatbutton').fadeIn();
+                }
+            }
+        }
     }
     function checkdata(){
         if($.normalUrl() !== ""){
@@ -2586,21 +2589,20 @@
     }
     function displaySites(responsearray, page){
         if($('#'+page+'Links').width() == null){
-            $('#siteSearch').before('<h2 id="'+page+'Links"><img src="https://www.google.com/s2/favicons?domain='+responsearray['url'].split('/')[2]+'"> '+page+'</h2><br>');
+            $('#siteSearch').before('<h2 id="'+page+'Links" class="mal_links"><img src="https://www.google.com/s2/favicons?domain='+responsearray['url'].split('/')[2]+'"> '+page+'</h2><br class="mal_links" />');
         }
         if($("#info-iframe").contents().find('#'+page+'Links').width() == null){
             $("#info-iframe").contents().find('.stream-block-inner').append('<li class="mdl-list__item mdl-list__item--three-line"><span class="mdl-list__item-primary-content"><span>'+page+'</span><span id="'+page+'Links" class="mdl-list__item-text-body"></span></span></li>');
         }
-        $('#'+page+'Links').after('<div><a target="_blank" href="'+responsearray['url']+'">'+responsearray['title']+'</a><div>');
+        $('#'+page+'Links').after('<div class="mal_links"><a target="_blank" href="'+responsearray['url']+'">'+responsearray['title']+'</a><div>');
         $("#info-iframe").contents().find('#'+page+'Links').append('<div><a target="_blank" href="'+responsearray['url']+'">'+responsearray['title']+'</a><div>');
         $("#info-iframe").contents().find('.stream-block').show();
     }
 
     function getSites(sites, page){
         $.each(sites, function(index, value){
-            con.log( index + ": " + value );
             if( GM_getValue( value+'/'+encodeURIComponent(index)+'/MalToKiss', null) != null ){
-                con.log('Cached');
+                con.log('[2Kiss] Cache' );
                 var responsearray = $.parseJSON(GM_getValue( value+'/'+encodeURIComponent(index)+'/MalToKiss', null));
                 displaySites(responsearray, page);
             }else{
@@ -2608,7 +2610,7 @@
                     url: 'https://kissanimelist.firebaseio.com/Data/'+value+'/'+encodeURIComponent(index)+'.json',
                     method: "GET",
                     onload: function (response) {
-                        con.log(response);
+                        con.log('[2Kiss] ',response.response);
                         if(response.response != null){
                             var responsearray = $.parseJSON(response.response);
                             if( value == 'Crunchyroll' ){
@@ -2628,6 +2630,7 @@
 
     function setKissToMal(malUrl){
         $(document).ready(function() {
+            $('.mal_links').remove();
             var type = malUrl.split('/')[3];
             var uid = malUrl.split('/')[4];
             var sites = new Array();
@@ -2650,25 +2653,25 @@
                 sites.push('Gogoanime');
             }
             if(searchLinks != 0){
-                $('h2:contains("Information")').before('<h2 id="siteSearch">Search</h2><br>');
+                $('h2:contains("Information")').before('<h2 id="siteSearch" class="mal_links">Search</h2><br class="mal_links" />');
                 if(type == 'anime'){
-                    $('#siteSearch').after('<div></div>');
-                    $('#siteSearch').after('<div><a target="_blank" href="http://www.google.com/search?q=site:www.masterani.me/anime/info/+'+encodeURI($('#contentWrapper > div:first-child span').text())+'">Masterani (Google)</a> <a target="_blank" href="https://www.masterani.me/anime?search='+$('#contentWrapper > div:first-child span').text()+'">(Site)</a></div>');
-                    $('#siteSearch').after('<div><a target="_blank" href="http://www.gogoanime.tv/search.html?keyword='+$('#contentWrapper > div:first-child span').text()+'">Gogoanime</a></div>');
-                    $('#siteSearch').after('<div><a target="_blank" href="http://www.crunchyroll.com/search?q='+$('#contentWrapper > div:first-child span').text()+'">Crunchyroll</a></div>');
-                    $('#siteSearch').after('<div><a target="_blank" href="https://9anime.to/search?keyword='+$('#contentWrapper > div:first-child span').text()+'">9anime</a></div>');
-                    $('#siteSearch').after('<form target="_blank" action="http://kissanime.ru/Search/Anime" id="kissanimeSearch" method="post" _lpchecked="1"><a href="#" onclick="return false;" class="submitKissanimeSearch">Kissanime</a><input type="hidden" id="keyword" name="keyword" value="'+$('#contentWrapper > div:first-child span').text()+'"/></form>');
+                    $('#siteSearch').after('<div class="mal_links"></div>');
+                    $('#siteSearch').after('<div class="mal_links"><a target="_blank" href="http://www.google.com/search?q=site:www.masterani.me/anime/info/+'+encodeURI($('#contentWrapper > div:first-child span').text())+'">Masterani (Google)</a> <a target="_blank" href="https://www.masterani.me/anime?search='+$('#contentWrapper > div:first-child span').text()+'">(Site)</a></div>');
+                    $('#siteSearch').after('<div class="mal_links"><a target="_blank" href="http://www.gogoanime.tv/search.html?keyword='+$('#contentWrapper > div:first-child span').text()+'">Gogoanime</a></div>');
+                    $('#siteSearch').after('<div class="mal_links"><a target="_blank" href="http://www.crunchyroll.com/search?q='+$('#contentWrapper > div:first-child span').text()+'">Crunchyroll</a></div>');
+                    $('#siteSearch').after('<div class="mal_links"><a target="_blank" href="https://9anime.to/search?keyword='+$('#contentWrapper > div:first-child span').text()+'">9anime</a></div>');
+                    $('#siteSearch').after('<form class="mal_links" target="_blank" action="http://kissanime.ru/Search/Anime" id="kissanimeSearch" method="post" _lpchecked="1"><a href="#" onclick="return false;" class="submitKissanimeSearch">Kissanime</a><input type="hidden" id="keyword" name="keyword" value="'+$('#contentWrapper > div:first-child span').text()+'"/></form>');
                     $('.submitKissanimeSearch').click(function(){
                       $('#kissanimeSearch').submit();
                     });
                 }else{
-                    $('#siteSearch').after('<form target="_blank" action="http://kissmanga.com/Search/Manga" id="kissmangaSearch" method="post" _lpchecked="1"><a href="#" onclick="return false;" class="submitKissmangaSearch">Kissmanga</a><input type="hidden" id="keyword" name="keyword" value="'+$('#contentWrapper > div:first-child span').text()+'"/></form>');
+                    $('#siteSearch').after('<form class="mal_links" target="_blank" action="http://kissmanga.com/Search/Manga" id="kissmangaSearch" method="post" _lpchecked="1"><a href="#" onclick="return false;" class="submitKissmangaSearch">Kissmanga</a><input type="hidden" id="keyword" name="keyword" value="'+$('#contentWrapper > div:first-child span').text()+'"/></form>');
                     $('.submitKissmangaSearch').click(function(){
                       $('#kissmangaSearch').submit();
                     });
                 }
             }else{
-                $('h2:contains("Information")').before('<div id="siteSearch"></div>');
+                $('h2:contains("Information")').before('<div class="mal_links" id="siteSearch"></div>');
             }
             $.each( sites, function( index, page ){
                 var url = 'https://kissanimelist.firebaseio.com/Data/Mal'+type+'/'+uid+'/Sites/'+page+'.json';
@@ -2676,14 +2679,13 @@
                     url: url,
                     method: "GET",
                     onload: function (response) {
-                        con.log('Url',url);
-                        con.log(response);
+                        con.log('[2Kiss]', url, response.response);
                         if(response.response != 'null'){
                             getSites($.parseJSON(response.response), page);
                         }
                     },
                     onerror: function(error) {
-                        con.log("error: "+error);
+                        con.log("[setKissToMal] error:",error);
                     }
                 });
             });
@@ -2737,7 +2739,7 @@
 
     function alternativTagOnSite(){
         if($('.list-table').length){
-            con.log('Modern Tags');
+            con.log('[BOOK] Modern Tags');
             var data = $.parseJSON($('.list-table').attr('data-items'));
             $.each(data,function(index, el) {
                 if(el['tags'].indexOf("last::") > -1 ){
@@ -2746,7 +2748,7 @@
                 }
             });
         }else{
-            con.log('Classic Tags');
+            con.log('[BOOK] Classic Tags');
             alternativTagToContinue();
         }
     }
@@ -2755,7 +2757,7 @@
         var user = window.location.href.split('/')[4].split('?')[0];
         var listType = window.location.href.split('.net/')[1].split('list')[0];
         url = "https://myanimelist.net/malappinfo.php?u="+user+"&status=all&type="+listType;
-        con.log("XML Url:", url);
+        con.log("[BOOK] XML Url:", url);
         GM_xmlhttpRequest({
             method: "GET",
             url: url,
@@ -2764,7 +2766,7 @@
                 "User-Agent": "Mozilla/5.0"
             },
             onload: function(response) {
-                con.log(response);
+                //con.log(response);
                 var xml = $(response.responseXML);
                 var title = '';
                 var xmlAnime = '';
@@ -3201,6 +3203,7 @@
                 settingsUI += '<div class="mdl-cell mdl-cell--12-col mdl-shadow--4dp">\
                                 <div class="mdl-card__title mdl-card--border">\
                                   <h2 class="mdl-card__title-text">miniMAL</h2>\
+                                  <span style="margin-left: auto; color: #7f7f7f;">Shortcut: Ctrl + m</span>\
                                 </div>';
                 settingsUI += materialCheckbox(miniMALonMal,'miniMALonMal','Display on MyAnimeList');
                 settingsUI += materialCheckbox(displayFloatButton,'displayFloatButton','Floating menu button');
@@ -3463,7 +3466,7 @@
                 }
             });
             $("#info-iframe").contents().find('#malConfig').show();
-        }catch(e) {console.log(e);}
+        }catch(e) {console.log('[iframeConfig] Error:',e);}
     }
 
     function iframeOverview(url, data){
@@ -3472,23 +3475,23 @@
             var image = data.split('js-scrollfix-bottom')[1].split('<img src="')[1].split('"')[0];
             $("#info-iframe").contents().find('.malImage').attr("src",image).show();
             $("#info-iframe").contents().find('.coverinfo').show();
-        }catch(e) {console.log(e);}
+        }catch(e) {console.log('[iframeOverview] Error:',e);}
 
         try{
             var title = data.split('itemprop="name">')[1].split('<')[0];
             $("#info-iframe").contents().find('.malTitle').html(title).show();
             $("#info-iframe").contents().find('.coverinfo').show();
-        }catch(e) {console.log(e);}
+        }catch(e) {console.log('[iframeOverview] Error:',e);}
 
         try{
             $("#info-iframe").contents().find('.malLink').attr('href',url).show();
-        }catch(e) {console.log(e);}
+        }catch(e) {console.log('[iframeOverview] Error:',e);}
 
         try{
             var description = data.split('itemprop="description">')[1].split('</span')[0];
             $("#info-iframe").contents().find('.malDescription').html('<p style="color: black;">'+description+'</p>').show();
             $("#info-iframe").contents().find('.coverinfo').show();
-        }catch(e) {console.log(e);}
+        }catch(e) {console.log('[iframeOverview] Error:',e);}
 
         try{
             var statsBlock = data.split('<h2>Statistics</h2>')[1].split('<h2>')[0];
@@ -3508,7 +3511,7 @@
             });
             statsHtml += '</ul>';
             $("#info-iframe").contents().find('.stats-block').html(statsHtml).show();
-        }catch(e) {console.log(e);}
+        }catch(e) {console.log('[iframeOverview] Error:',e);}
 
         try{
             var altTitle = data.split('<h2>Alternative Titles</h2>')[1].split('<h2>')[0];
@@ -3518,7 +3521,7 @@
                 return this.nodeType == 3 && $.trim(this.textContent) != '';
             }).wrap('<span class="mdl-chip__text" />');
             $("#info-iframe").contents().find('.malAltTitle').show();
-        }catch(e) {console.log(e);}
+        }catch(e) {console.log('[iframeOverview] Error:',e);}
 
         try{
             var infoBlock = data.split('<h2>Information</h2>')[1].split('<h2>')[0];
@@ -3544,7 +3547,7 @@
             });
             infoHtml += '</ul>';
             $("#info-iframe").contents().find('.info-block').html(infoHtml).show();
-        }catch(e) {console.log(e);}
+        }catch(e) {console.log('[iframeOverview] Error:',e);}
 
         try{
             var relatedBlock = data.split('Related ')[1].split('</h2>')[1].split('<h2>')[0];
@@ -3574,7 +3577,7 @@
                 fillIframe($(this).attr('href'));
               }).attr('onclick','return false;');
             });
-        }catch(e) {console.log(e);}
+        }catch(e) {console.log('[iframeOverview] Error:',e);}
 
         try{
             if( !(window.location.href.indexOf("myanimelist.net") > -1) ){
@@ -3631,12 +3634,12 @@
                   setanime(url, anime, null, localListType);
               });
             }
-        }catch(e) {console.log(e);}
+        }catch(e) {console.log('[iframeOverview] Error:',e);}
 
         try{
             $("#info-iframe").contents().find('.stream-block-inner').html('');
             setKissToMal(url);
-        }catch(e) {console.log(e);}
+        }catch(e) {console.log('[iframeOverview] Error:',e);}
     }
 
     function iframeReview(url, data){
@@ -3676,7 +3679,7 @@
                 var revID = $(this).attr('onclick').split("$('")[1].split("'")[0];
                 $("#info-iframe").contents().find(revID).toggle();
             });
-        }catch(e) {console.log(e);}
+        }catch(e) {console.log('[iframeReview] Error:',e);}
     }
 
     function iframeEpisode(url, data){
@@ -3691,7 +3694,7 @@
                     </div>';
                 $("#info-iframe").contents().find('#malEpisodes').html(episodesHtml).show();
                 $("#info-iframe").contents().find('#malEpisodes .episode-video, #malEpisodes .episode-forum').remove();
-            }catch(e) {console.log(e);}
+            }catch(e) {console.log('[iframeEpisode] Error:',e);}
         });
 
     }
@@ -3764,7 +3767,7 @@
                 });
                 $("#info-iframe").contents().find('#malRecommendations .more .borderClass').addClass('mdl-shadow--2dp').css('padding','10px');
                 $("#info-iframe").contents().find('.lazyload').each(function() { $(this).attr('src', $(this).attr('data-src'));});//TODO: use lazyloading
-            }catch(e) {console.log(e);}
+            }catch(e) {console.log('[iframeRecommendations] Error:',e);}
         });
 
     }

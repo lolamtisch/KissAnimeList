@@ -11,12 +11,9 @@
                 //if(con != console){
                     url = GM_getValue( dbSelector+'/'+$.titleToDbKey($.urlAnimeTitle(thisUrl))+'/Mal' , null);
                 //}
-                con.log('local Found', url);
+                con.log('[GET] Cache:', url);
             }
 
-            if(staticUrl(formattitle(title)) !== null){
-                url = staticUrl(formattitle(title));
-            }
         }else{
             url = absolute;
         }
@@ -28,14 +25,14 @@
         }
 
         if(url.indexOf("myanimelist.net/"+localListType+"/") > -1 && url.indexOf("google") === -1) {
-            con.log("Mal: ", url);
+            con.log("[GET] MyAnimeList: ", url);
             if(googleover === 0){
                 local_setValue( thisUrl, url );
             }
             malurl = url;
             url = 'https://myanimelist.net/ownlist/'+localListType+'/'+url.split('/')[4]+'/edit?hideLayout';//TODOsplit4 ersetzten
         }
-        con.log("url",url);
+        con.log("[GET] Request:",url);
 
         GM_xmlhttpRequest({
             method: "GET",
@@ -57,6 +54,7 @@
                 }
 
                 if(url.indexOf("kissanimelist.firebaseio.com") > -1) {
+                    con.log("[GET] Firebase:",response.response);
                     if(response.response !== 'null' && !(response.response.indexOf("error") > -1)){
                         //url = response.response.replace('"', '').replace('"', '');
                         url = 'https://myanimelist.net/'+localListType+'/'+response.response.split('"')[1]+'/'+response.response.split('"')[3];
@@ -113,7 +111,7 @@
                     }
                 } else {
                     if(url.indexOf("myanimelist.net/"+localListType+"/") > -1) {
-                        con.log("Mal: ",url);
+                        con.log("[GET] Mal: ",url);
                         if(googleover === 0){
                             local_setValue( thisUrl, url );
                         }
@@ -134,7 +132,6 @@
                                 miniMalButton(null);
                                 return;
                             }
-                            con.log("MalEdit: ",url);
                             var anime = getObject(response.responseText,malurl,localListType);
                             $.docReady(function() {
                                 callback(anime);
@@ -150,7 +147,6 @@
 
     function getObject(data,url,localListType){
         if(localListType == 'anime'){
-            //con.log(data);
             var anime = {};
             anime['malurl'] = url;
             anime['.csrf_token'] =  data.split('\'csrf_token\'')[1].split('\'')[1].split('\'')[0];
@@ -189,10 +185,9 @@
             anime['.add_anime[is_asked_to_discuss]'] = getselect(data,'add_anime[is_asked_to_discuss]');
             anime['.add_anime[sns_post_type]'] = getselect(data,'add_anime[sns_post_type]');
             anime['.submitIt'] = data.split('name="submitIt"')[1].split('value="')[1].split('"')[0];
-            con.log(anime);
+            con.log('[GET] Object:',anime);
             return anime;
         }else{
-            //con.log(data);
             var anime = {};
             anime['malurl'] = url;
             anime['.csrf_token'] =  data.split('\'csrf_token\'')[1].split('\'')[1].split('\'')[0];
@@ -235,7 +230,7 @@
             anime['.add_manga[is_asked_to_discuss]'] = getselect(data,'add_manga[is_asked_to_discuss]');
             anime['.add_manga[sns_post_type]'] = getselect(data,'add_manga[sns_post_type]');
             anime['.submitIt'] = data.split('name="submitIt"')[1].split('value="')[1].split('"')[0];
-            con.log(anime);
+            con.log('[GET] Object:', anime);
             return anime;
         }
     }
@@ -303,6 +298,9 @@
                     }
                 }
             });
+
+            con.log('[SET] URL:', url);
+            con.log('[SET] Object:', anime);
 
             GM_xmlhttpRequest({
                 method: "POST",

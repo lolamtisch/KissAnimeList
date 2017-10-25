@@ -12,10 +12,15 @@
     var element = new Image();
     Object.defineProperty(element, 'id', {
       get: function () {
-        con = console;
+        con.log = function(){
+            var args = Array.prototype.slice.call(arguments);
+            args.unshift("color: blue;");
+            args.unshift("%c[KAL]");
+            console.log.apply(console, args);
+        }
       }
     });
-    console.log('%cKissAnimeList', element);
+    console.log('%cKissAnimeList ['+GM_info.script.version+']', element,);
 
     var malBookmarks = GM_getValue( 'malBookmarks', 1 );
     var classicBookmarks = GM_getValue( 'classicBookmarks', 0 );
@@ -152,7 +157,7 @@
             return url.split('/').slice(0,5).join('/');
         };
         $.urlAnimeTitle = function(url) {
-            return url.split("/")[4];
+            return url.split("/")[4].split("?")[0];
         };
 
         $.EpisodePartToEpisode = function(string) {
@@ -281,7 +286,7 @@
             return url.split('/').slice(0,5).join('/');
         };
         $.urlAnimeTitle = function(url) {
-            return url.split("/")[4];
+            return url.split("/")[4].split("?")[0];
         };
 
         $.EpisodePartToEpisode = function(string) {
@@ -415,7 +420,7 @@
             return url.split('/').slice(0,6).join('/');
         };
         $.urlAnimeTitle = function(url) {
-            return url.split("/")[5];
+            return url.split("/")[5].split("?")[0];
         };
 
         $.EpisodePartToEpisode = function(string) {
@@ -536,7 +541,7 @@
             return url.split('/').slice(0,5).join('/');
         };
         $.urlAnimeTitle = function(url) {
-            return url.split("/")[4];
+            return url.split("/")[4].split('?')[0];
         };
 
         $.EpisodePartToEpisode = function(string) {
@@ -656,10 +661,12 @@
                         checkdata();
                     });
                     var season = new RegExp('[\?&]' + 'season' + '=([^&#]*)').exec(window.location.href);
-                    season = season[1] || null;
                     if(season != null){
-                        season = decodeURIComponent(decodeURI(season));
-                        $('.season-dropdown[title="'+season+'" i] .exclusivMal').first().click();
+                        season = season[1] || null;
+                        if(season != null){
+                            season = decodeURIComponent(decodeURI(season));
+                            $('.season-dropdown[title="'+season+'" i] .exclusivMal').first().click();
+                        }
                     }
                     return;
                 }else{

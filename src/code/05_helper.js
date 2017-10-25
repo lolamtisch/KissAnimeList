@@ -5,15 +5,6 @@
         return url;
     }
 
-    function staticUrl(title){
-        switch(title) {
-            case 'Blood': return 'https://myanimelist.net/anime/150/Blood_';
-            case 'K': return 'https://myanimelist.net/anime/14467/K';
-            case 'Morita-san-wa-Mukuchi': return 'https://myanimelist.net/anime/10671/Morita-san_wa_Mukuchi';
-            default:  return null;
-        }
-    }
-
     function local_setValue( thisUrl, malurl ){
         if( (!(thisUrl.indexOf("myAnimeList.net/") >= 0)) && ( GM_getValue(dbSelector+'/'+$.titleToDbKey($.urlAnimeTitle(thisUrl))+'/Mal' , null) == null || thisUrl.indexOf("#newCorrection") >= 0 || GM_getValue(dbSelector+'/'+$.titleToDbKey($.urlAnimeTitle(thisUrl))+'/Crunch' , null) == 'no')){
             var param = { Kiss: thisUrl, Mal: malurl};
@@ -44,10 +35,10 @@
                     method: "POST",
                     data: JSON.stringify(param),
                     onload: function () {
-                        con.log("Send to database: ",param);
+                        con.log("[DB] Send to database:",param);
                     },
                     onerror: function(error) {
-                        con.log("Send to database: ",error);
+                        con.log("[DB] Send to database:",error);
                     }
                 });
             }
@@ -70,7 +61,7 @@
     }
 
     function flashm(text,error = true, info = false, permanent = false){
-        con.log("Flash Message: ",text);
+        con.log("[Flash] Message:",text);
         $('#flash-div').css('z-index', '2147483647');
         if(permanent){
             if(error === true){
@@ -148,7 +139,7 @@
     }
 
     function formattitle(title) {
-        con.log("Title: ",title);
+        con.log("[TITLE] Title:",title);
 
         if(title.substr(title.length - 4)=="-Dub"){
             title=title.slice(0,-4);
@@ -175,14 +166,14 @@
         title = title.replace(" s8"," 8nd season");
         title = title.replace(" s9"," 9nd season");
         //title = title.replace(/[-,.?:'"\\!@#$%^&\-_=+`~;]/g,"");
-        con.log("Formated: ",title);
+        con.log("[TITLE] Formated:",title);
         return title;
     }
 
     function episodeInfo(episode, malUrl, message = '', clickCallback = function(){}){
         //message = '';
         if(episodeInfoBox){
-            con.log('Episode Info',malUrl+'/episode/'+episode);
+            con.log('[Hover] Episode:',malUrl+'/episode/'+episode);
             GM_xmlhttpRequest({
                 url: malUrl+'/episode/'+episode,
                 method: "GET",
@@ -204,7 +195,6 @@
                         var imgUrl = "";
                         try{
                             epTitle = data.split('class="fs18 lh11"')[1].split('</h2>')[0].split('</span>')[1];
-                            console.log(epTitle);
                             if(epTitle.trim() != '<span class="ml8 icon-episode-type-bg">'){
                                 epTitle = '#'+episode+" - "+epTitle+'<br>';
                             }else{
@@ -268,7 +258,7 @@
                     }
                 },
                 onerror: function(error) {
-                    con.log("error: "+error);
+                    con.log("[episodeInfo] error:",error);
                 }
             });
         }
@@ -286,16 +276,24 @@
             }
         });
 
-        $(document).keydown(function(e) {
-          if (e.ctrlKey && e.keyCode === 77) {
-            if($('#info-popup').css('display') == 'none'){
-                document.getElementById('info-popup').style.display = "block";
-                fillIframe(url, currentMalData);
-                $('.floatbutton').fadeOut();
-            }else{
-                document.getElementById('info-popup').style.display = "none";
-                $('.floatbutton').fadeIn();
-            }
-          }
+        $("#info-iframe").contents().keydown(function(e) {
+            keys(e);
         });
+
+        $(document).keydown(function(e) {
+            keys(e);
+        });
+
+        function keys(e){
+            if (e.ctrlKey && e.keyCode === 77) {
+                if($('#info-popup').css('display') == 'none'){
+                    document.getElementById('info-popup').style.display = "block";
+                    fillIframe(url, currentMalData);
+                    $('.floatbutton').fadeOut();
+                }else{
+                    document.getElementById('info-popup').style.display = "none";
+                    $('.floatbutton').fadeIn();
+                }
+            }
+        }
     }
