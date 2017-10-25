@@ -661,10 +661,12 @@
                         checkdata();
                     });
                     var season = new RegExp('[\?&]' + 'season' + '=([^&#]*)').exec(window.location.href);
-                    season = season[1] || null;
                     if(season != null){
-                        season = decodeURIComponent(decodeURI(season));
-                        $('.season-dropdown[title="'+season+'" i] .exclusivMal').first().click();
+                        season = season[1] || null;
+                        if(season != null){
+                            season = decodeURIComponent(decodeURI(season));
+                            $('.season-dropdown[title="'+season+'" i] .exclusivMal').first().click();
+                        }
                     }
                     return;
                 }else{
