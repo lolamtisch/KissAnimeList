@@ -1032,7 +1032,7 @@
 
           $("#info-iframe").contents().find('.bookEntry').each(function() {
             if($(this).find('.tags').text().indexOf("last::") > -1 ){
-              var url = $(this).find('.tags').text().split("last::")[1].split("::")[0];
+              var url = atobURL( $(this).find('.tags').text().split("last::")[1].split("::")[0] );
               setStreamLinks(url, $(this));
             }
           });

@@ -297,3 +297,11 @@
             }
         }
     }
+
+    function atobURL( encoded ){
+        try{
+            return atob( encoded );
+        }catch(e){
+            return encoded;
+        }
+    }
