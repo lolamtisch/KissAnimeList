@@ -43,7 +43,7 @@
         $(document).ready(function() {
             $('.mal_links').remove();
             var type = malUrl.split('/')[3];
-            var uid = malUrl.split('/')[4];
+            var uid = malUrl.split('/')[4].split("?")[0];
             var sites = new Array();
             if(kissanimeLinks != 0){
                 sites.push('Kissanime');
