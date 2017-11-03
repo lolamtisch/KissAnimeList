@@ -2,7 +2,10 @@
 		var time = 0;
 
 		getMalXml("", function(bookXML){
-			bookXML.find('my_status:contains(1)').parent().each(function(){
+			$('body').before('<div style="z-index: 20000000000; height: 5px; position: fixed; top: 0; left: 0; right: 0;"><div id="checkProgress" style="width: 0%;background-color: #3f51b5; height: 100%; transition: width 1s;"></div></div>');
+			var totalEntrys = bookXML.find('my_status:contains(1)').parent().length;
+			bookXML.find('my_status:contains(1)').parent().each(function(index){
+
 				if($(this).find('my_tags').first().text().indexOf("last::") > -1 ){
 					var url = atobURL( $(this).find('my_tags').first().text().split("last::")[1].split("::")[0] );
 					var title = $(this).find('series_title').first().text();
@@ -26,6 +29,7 @@
 
 
 					setTimeout( function(){
+						$('#checkProgress').css('width', ((index+1)/totalEntrys*100) + '%');
 						con.log('[EpCheck]', title, url );
 						GM_xmlhttpRequest({//TODO: Cloudflare handling
 							method: "GET",
@@ -44,8 +48,14 @@
 						});
 
 					}, time);
-					time += 5000;
+					time += 1000;
 				}
 			});
+			setTimeout( function(){
+				$('#checkProgress').parent().fadeOut({
+                    duration: 400,
+                    queue: false,
+                    complete: function() { $(this).remove(); }});
+			}, time);
 		});
 	}
