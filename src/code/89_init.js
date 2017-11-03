@@ -70,6 +70,7 @@
         }
         if(window.location.href.indexOf("myanimelist.net/animelist") > -1 ){
             tagToContinue();
+            checkForNewEpisodes();
         }else{
             setKissToMal(window.location.href);
             if(miniMALonMal){
