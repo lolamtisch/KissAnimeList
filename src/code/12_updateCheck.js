@@ -12,6 +12,11 @@
 					var id = $(this).find('series_animedb_id').first().text();
 					var selector = '';
 
+					if( GM_getValue('newEp_'+url+'_finished', false) == true){
+						con.log('[EpCheck] [Finished]', title);
+						return true;
+					}
+
 					if( url.indexOf("kissanime.ru") > -1 ){
 					    selector = ".listing a";
 					}else if( url.indexOf("kissmanga.com") > -1 ){
@@ -49,6 +54,23 @@
 										alert(title);
 									}
 									GM_setValue('newEp_'+url+'_number', EpNumber);
+								}
+							}
+						});
+
+						malinfourl = 'https://myanimelist.net/includes/ajax.inc.php?t=64&id='+id;
+						GM_xmlhttpRequest({
+							method: "GET",
+							url: malinfourl,
+							synchronous: false,
+							onload: function(response) {
+								if(response.status != 200){
+									con.log('[EpCheck] [ERROR]', response);
+								}else{
+									if(' Finished Airing' == response.response.split('Status:</span>')[1].split('<')[0]){
+										con.log('[EpCheck] [SetFinished]', title);
+										GM_setValue('newEp_'+url+'_finished', true);
+									}
 								}
 							}
 						});
