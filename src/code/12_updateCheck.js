@@ -31,19 +31,23 @@
 					setTimeout( function(){
 						$('#checkProgress').css('width', ((index+1)/totalEntrys*100) + '%');
 						con.log('[EpCheck]', title, url );
-						GM_xmlhttpRequest({//TODO: Cloudflare handling
+						GM_xmlhttpRequest({
 							method: "GET",
 							url: url,
 							synchronous: false,
 							onload: function(response) {
-								var parsed  = $.parseHTML(response.response);
-								var EpNumber = $(parsed).find( selector ).length;
-								con.log('[EpCheck]', GM_getValue('newEp_'+url+'_number',null), EpNumber);
-								if( GM_getValue('newEp_'+url+'_number', EpNumber) < EpNumber){
-									con.log('[NewEP]', url);
-									alert('change');
+								if(response.status != 200){//TODO: Cloudflare handling
+									con.log('[EpCheck] [ERROR]', response);
+								}else{
+									var parsed  = $.parseHTML(response.response);
+									var EpNumber = $(parsed).find( selector ).length;
+									con.log('[EpCheck]', GM_getValue('newEp_'+url+'_number',null), EpNumber);
+									if( GM_getValue('newEp_'+url+'_number', EpNumber) < EpNumber){
+										con.log('[NewEP]', url);
+										alert('change');
+									}
+									GM_setValue('newEp_'+url+'_number', EpNumber);
 								}
-								GM_setValue('newEp_'+url+'_number', EpNumber);
 							}
 						});
 
