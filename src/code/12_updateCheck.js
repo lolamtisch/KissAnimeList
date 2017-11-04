@@ -9,6 +9,7 @@
 				if($(this).find('my_tags').first().text().indexOf("last::") > -1 ){
 					var url = atobURL( $(this).find('my_tags').first().text().split("last::")[1].split("::")[0] );
 					var title = $(this).find('series_title').first().text();
+					var id = $(this).find('series_animedb_id').first().text();
 					var selector = '';
 
 					if( url.indexOf("kissanime.ru") > -1 ){
@@ -44,7 +45,8 @@
 									con.log('[EpCheck]', GM_getValue('newEp_'+url+'_number',null), EpNumber);
 									if( GM_getValue('newEp_'+url+'_number', EpNumber) < EpNumber){
 										con.log('[NewEP]', url);
-										alert('change');
+										$('.data.title a[href^="/anime/'+id+'/"]').css('background-color', 'red').css('color', 'white');
+										alert(title);
 									}
 									GM_setValue('newEp_'+url+'_number', EpNumber);
 								}
