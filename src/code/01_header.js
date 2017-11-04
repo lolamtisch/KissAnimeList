@@ -43,6 +43,11 @@
 // @connect     ipv4.google.com
 // @connect     myanimelist.net
 // @connect     kissanimelist.firebaseio.com
+// @connect     www.crunchyroll.com
+// @connect     kissanime.ru
+// @connect     9anime.to
+// @connect     www3.gogoanime.tv
+// @connect     www.masterani.me
 // @connect     *
 // @grant       GM_xmlhttpRequest
 // @grant       GM_getValue
