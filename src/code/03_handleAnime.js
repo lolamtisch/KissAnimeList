@@ -65,7 +65,7 @@
             $('.lastOpen').remove();
             $.episodeListSelector().each(function( index ) {
                 if(listType == 'anime'){
-                    if(con == console){
+                    if(debug){
                         $(this).after('  Episode: '+urlToEpisode($(this).episodeListElementHref()));
                     }
                     try{
@@ -81,7 +81,7 @@
                         }
                     }
                 }else{
-                    if(con == console){
+                    if(debug){
                         $(this).after('   Chapter: '+urlToChapter($(this).episodeListElementHref()));
                         $(this).after('Volume: '+urlToVolume($(this).episodeListElementHref()));
                     }

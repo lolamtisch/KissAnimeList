@@ -1,6 +1,7 @@
 //if (window.top != window.self) {return; }
 //TODO: temporary workaround
     var googleover = 0;
+    var debug = 0;
 
     var con = console;
     con = {
@@ -12,6 +13,7 @@
     var element = new Image();
     Object.defineProperty(element, 'id', {
       get: function () {
+        debug = 1;
         con.log = function(){
             var args = Array.prototype.slice.call(arguments);
             args.unshift("color: blue;");

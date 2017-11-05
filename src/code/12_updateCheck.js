@@ -14,7 +14,7 @@
 
 					if( GM_getValue('newEp_'+url+'_finished', false) == true){
 						con.log('[EpCheck] [Finished]', title);
-						if(con == console){ $('.data.title a[href^="/anime/'+id+'/"]').parent().parent().attr('style', 'border: 2px solid green !important');}
+						if(debug){ $('.data.title a[href^="/anime/'+id+'/"]').parent().parent().attr('style', 'border: 2px solid green !important');}
 						return true;
 					}
 
@@ -54,7 +54,7 @@
 										$('.data.title a[href^="/anime/'+id+'/"]').parent().parent().attr('style', 'border: 2px solid red !important');
 										alert(title);
 									}else{
-										if(con == console){ $('.data.title a[href^="/anime/'+id+'/"]').parent().parent().attr('style', 'border: 2px solid yellow !important');}
+										if(debug){ $('.data.title a[href^="/anime/'+id+'/"]').parent().parent().attr('style', 'border: 2px solid yellow !important');}
 									}
 									GM_setValue('newEp_'+url+'_number', EpNumber);
 								}
