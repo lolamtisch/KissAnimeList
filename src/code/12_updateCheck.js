@@ -12,18 +12,13 @@
 					var id = $(this).find('series_animedb_id').first().text();
 					var selector = '';
 
-					if( GM_getValue('newEp_'+url+'_finished', false) == true){
-						con.log('[EpCheck] [Finished]', title);
-						if(debug){ $('.data.title a[href^="/anime/'+id+'/"]').parent().parent().attr('style', 'border: 2px solid green !important');}
-						return true;
-					}
-
 					if( url.indexOf("kissanime.ru") > -1 ){
 					    selector = ".listing a";
 					}else if( url.indexOf("kissmanga.com") > -1 ){
 					    selector = ".listing a";
 					}else if( url.indexOf("masterani.me") > -1 ){
-						return true;//TODO
+						var masterid = url.split('/')[5].split('-')[0];
+						url = 'https://www.masterani.me/api/anime/'+masterid+'/detailed';
 					    selector = ".thumbnail a.title";
 					}else if( url.indexOf("9anime.to") > -1 ){
 					    selector = "#servers .episodes:first a";
@@ -34,6 +29,11 @@
 					    selector = "#episode_related a";
 					}
 
+					if( GM_getValue('newEp_'+url+'_finished', false) == true){
+						con.log('[EpCheck] [Finished]', title);
+						if(debug){ $('.data.title a[href^="/anime/'+id+'/"]').parent().parent().attr('style', 'border: 2px solid green !important');}
+						return true;
+					}
 
 					setTimeout( function(){
 						$('#checkProgress').css('width', ((index+1)/totalEntrys*100) + '%');
@@ -46,8 +46,14 @@
 								if(response.status != 200){//TODO: Cloudflare handling
 									con.log('[EpCheck] [ERROR]', response);
 								}else{
-									var parsed  = $.parseHTML(response.response);
-									var EpNumber = $(parsed).find( selector ).length;
+									if( url.indexOf("masterani.me") > -1 ){
+										var parsed  = $.parseJSON(response.response);
+										console.log(parsed['episodes'].length);
+										var EpNumber = parsed['episodes'].length;
+									}else{
+										var parsed  = $.parseHTML(response.response);
+										var EpNumber = $(parsed).find( selector ).length;
+									}
 									con.log('[EpCheck]', GM_getValue('newEp_'+url+'_number',null), EpNumber);
 									if( GM_getValue('newEp_'+url+'_number', EpNumber) < EpNumber){
 										con.log('[NewEP]', url);
