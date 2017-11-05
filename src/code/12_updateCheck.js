@@ -25,8 +25,7 @@
 					}else if( url.indexOf("crunchyroll.com") > -1 ){
 					    selector = "#showview_content_videos .list-of-seasons .group-item a";
 					}else if( url.indexOf("gogoanime.") > -1 ){
-						return true;//TODO
-					    selector = "#episode_related a";
+					    selector = "#episode_page a:last";
 					}
 
 					if( GM_getValue('newEp_'+url+'_finished', false) == true){
@@ -48,8 +47,11 @@
 								}else{
 									if( url.indexOf("masterani.me") > -1 ){
 										var parsed  = $.parseJSON(response.response);
-										console.log(parsed['episodes'].length);
 										var EpNumber = parsed['episodes'].length;
+									}else if( url.indexOf("gogoanime.") > -1 ){
+										var parsed  = $.parseHTML(response.response);
+										var EpNumber = $(parsed).find( selector ).text();
+										EpNumber = parseInt(EpNumber.split('-')[1]);
 									}else{
 										var parsed  = $.parseHTML(response.response);
 										var EpNumber = $(parsed).find( selector ).length;
