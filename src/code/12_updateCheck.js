@@ -52,11 +52,18 @@
 									if( GM_getValue('newEp_'+url+'_number', EpNumber) < EpNumber){
 										con.log('[NewEP]', url);
 										$('.data.title a[href^="/anime/'+id+'/"]').parent().parent().attr('style', 'border: 2px solid red !important');
-										alert(title);
+										//alert(title);
+										$('.data.title a[href^="/anime/'+id+'/"]').parent().parent().parent().one('click', function(){
+											GM_setValue('newEp_'+url+'_number', EpNumber);
+											$('.data.title a[href^="/anime/'+id+'/"]').parent().parent().attr('style', '');
+											return false;
+										});
 									}else{
+										if(GM_getValue('newEp_'+url+'_number', null) == null){
+											GM_setValue('newEp_'+url+'_number', EpNumber);
+										}
 										if(debug){ $('.data.title a[href^="/anime/'+id+'/"]').parent().parent().attr('style', 'border: 2px solid yellow !important');}
 									}
-									GM_setValue('newEp_'+url+'_number', EpNumber);
 								}
 							}
 						});
