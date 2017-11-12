@@ -3,7 +3,8 @@
 // @version     0.90.1
 // @description Integrates MyAnimeList into various sites, with auto episode tracking.
 // @author      lolamtisch@gmail.com
-// @license     Creative Commons; http://creativecommons.org/licenses/by/4.0/
+// @license 	CC-BY-4.0; https://creativecommons.org/licenses/by/4.0/legalcode
+// @license 	MIT
 // @supportURL  https://github.com/lolamtisch/KissAnimeList/issues
 // @include     http://kissanime.ru/Anime/*
 // @include     http://kissanime.to/Anime/*
