@@ -487,9 +487,9 @@
         $.BookmarksStyleAfterLoad = function() {
         };
         //###########################
-    }else if( window.location.href.indexOf("9anime.to") > -1 ){
+    }else if( window.location.href.indexOf("9anime.") > -1 ){
         //#########9anime#########
-        var domain = 'https://9anime.to';
+        var domain = 'https://'+window.location.hostname;
         var textColor = 'white';
         var dbSelector = '9anime';
         var listType = 'anime';
@@ -599,7 +599,7 @@
         };
 
         $.nextEpLink = function(url) {
-            return 'https://9anime.to'+$("#servers .episodes a.active").parent('li').next().find('a').attr('href');
+            return domain+$("#servers .episodes a.active").parent('li').next().find('a').attr('href');
         };
 
         $.fn.classicBookmarkButton = function(checkfix) {

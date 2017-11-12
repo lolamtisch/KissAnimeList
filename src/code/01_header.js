@@ -27,6 +27,12 @@
 // @include     https://9anime.to/watch/*/*
 // @include     /https?://9anime.to/watch/*/*/
 //
+// @include     https://9anime.is/watch/*/*
+// @include     /https?://9anime.is/watch/*/*/
+//
+// @include     https://9anime.ru/watch/*/*
+// @include     /https?://9anime.ru/watch/*/*/
+//
 // @include     http://www.crunchyroll.com/*
 // @exclude     http://www.crunchyroll.com/videos*
 // @exclude     http://www.crunchyroll.com/news*
