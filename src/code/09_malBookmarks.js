@@ -24,7 +24,7 @@
                     if( $('.header-title.tags').height() || $('.td1.tags').height()){
                         $('.tags span a').each(function( index ) {
                             if($(this).text().indexOf("last::") > -1 ){
-                                url = $(this).text().split("last::")[1].split("::")[0];
+                                url = atobURL( $(this).text().split("last::")[1].split("::")[0] );
                                 setStreamLinks(url, $(this).closest('.list-table-data'));
                                 if($('#list_surround').length){
                                     $(this).remove();
@@ -49,7 +49,7 @@
             var data = $.parseJSON($('.list-table').attr('data-items'));
             $.each(data,function(index, el) {
                 if(el['tags'].indexOf("last::") > -1 ){
-                    var url = el['tags'].split("last::")[1].split("::")[0];
+                    var url = atobURL( el['tags'].split("last::")[1].split("::")[0] );
                     setStreamLinks(url, $('.list-item a[href^="'+el['anime_url']+'"]').parent().parent('.list-table-data'));
                 }
             });
@@ -84,7 +84,7 @@
                     title = $(this).find('.title .link '+span).text();
                     xmlAnime = xml.find('series_title:contains('+title+')').first().parent();
                     if(xmlAnime.find('my_tags').text().indexOf("last::") > -1 ){
-                        url = xmlAnime.find('my_tags').text().split("last::")[1].split("::")[0];
+                        url = atobURL( xmlAnime.find('my_tags').text().split("last::")[1].split("::")[0] );
                         setStreamLinks(url, $(this));
                     }
                 });

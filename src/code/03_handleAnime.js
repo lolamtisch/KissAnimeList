@@ -185,7 +185,7 @@
 
     function handleTag(update, current, nextEp){
         if(tagLinks == 0){return current;}
-        var addition = "last::"+update+"::";
+        var addition = "last::"+ btoa(update) +"::";
         if(current.indexOf("last::") > -1){
             current = current.replace(/last::[^\^]*\:\:/,addition);
         }else{

@@ -63,6 +63,12 @@
             getMalXml();
         }
     }else if(window.location.href.indexOf("myanimelist.net") > -1 ){
+        if(window.location.href.indexOf("myanimelist.net/anime.php") > -1){
+            window.history.replaceState(null, null, '/anime/'+$.urlParam('id') );
+        }
+        if(window.location.href.indexOf("myanimelist.net/manga.php") > -1){
+            window.history.replaceState(null, null, '/manga/'+$.urlParam('id') );
+        }
         if(window.location.href.indexOf("myanimelist.net/animelist") > -1 ){
             tagToContinue();
         }else{
@@ -70,7 +76,7 @@
             if(miniMALonMal){
                 $( document).ready(function(){
                     createIframe();
-                    miniMalButton(window.location.href.split('/').slice(0,5).join('/'));
+                    miniMalButton(window.location.href.split('/').slice(0,5).join('/').split("?")[0]);
                 });
             }
         }

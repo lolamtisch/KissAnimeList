@@ -106,6 +106,7 @@
     }
 
     function flashConfirm(message, yesCall, cancelCall){
+        $('.flashPerm').remove();
         var rNumber = Math.floor((Math.random() * 1000) + 1);
         message = '<div style="text-align: left;">' + message + '</div><div style="display: flex; justify-content: space-around;"><button class="Yes'+rNumber+'" style="background-color: transparent; border: none; color: rgb(255,64,129);margin-top: 10px; cursor:pointer;">OK</button><button class="Cancel'+rNumber+'" style="background-color: transparent; border: none; color: rgb(255,64,129);margin-top: 10px; cursor:pointer;">CANCEL</button></div>';
         flashm(message, false, false, true);
@@ -295,5 +296,23 @@
                     $('.floatbutton').fadeIn();
                 }
             }
+        }
+    }
+
+    function atobURL( encoded ){
+        try{
+            return atob( encoded );
+        }catch(e){
+            return encoded;
+        }
+    }
+
+    $.urlParam = function(name){
+        var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
+        if (results==null){
+           return null;
+        }
+        else{
+           return decodeURI(results[1]) || 0;
         }
     }

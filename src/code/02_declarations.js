@@ -88,6 +88,9 @@
                     case '0.90.0':
                         message += 'Changelog (v0.90.0):<br/>    - Added a shortcut for MiniMAL ( CTRL + M )<br/>    - Added MiniMAL position and dimension settings<br/>    - Added an option for displaying \'Episode Hoverinfo\'<br/>    - Added miniMAL to MyAnimeList<br/>    - Changed the \'Add to Mal\'-message, to a non-blocking message<br/>    - Fixed the database structure<br/><br/>New on KissAnimeLists <a href="https://discord.gg/cTH4yaw">Discord</a>:<br/>    - Feed showing newly added episodes for each of the supported streaming sites.';
                         break;
+                    case '0.90.2':
+                        message += 'KissAnimeList (v0.90.2):<br/>    - Added support for 9anime.is and 9anime.ru';
+                        break;
                 }
             }else{
                 message += '<h2>Welcome to <a href="https://greasyfork.org/en/scripts/27564-kissanimelist">KissAnimeList</a></h2><br/>Support:<br/><a href="https://discord.gg/cTH4yaw">Discord Channel</a><br/><a href="https://github.com/lolamtisch/KissAnimeList">GitHub</a> <a href="https://github.com/lolamtisch/KissAnimeList/issues">Issues</a>';
@@ -487,9 +490,9 @@
         $.BookmarksStyleAfterLoad = function() {
         };
         //###########################
-    }else if( window.location.href.indexOf("9anime.to") > -1 ){
+    }else if( window.location.href.indexOf("9anime.") > -1 ){
         //#########9anime#########
-        var domain = 'https://9anime.to';
+        var domain = 'https://'+window.location.hostname;
         var textColor = 'white';
         var dbSelector = '9anime';
         var listType = 'anime';
@@ -599,7 +602,7 @@
         };
 
         $.nextEpLink = function(url) {
-            return 'https://9anime.to'+$("#servers .episodes a.active").parent('li').next().find('a').attr('href');
+            return domain+$("#servers .episodes a.active").parent('li').next().find('a').attr('href');
         };
 
         $.fn.classicBookmarkButton = function(checkfix) {

@@ -1,9 +1,10 @@
 // ==UserScript==
 // @name        KissAnimeList
-// @version     0.90.1
-// @description Integrates MyAnimeList into diverse sites, with auto episode tracking.
+// @version     0.90.2
+// @description Integrates MyAnimeList into various sites, with auto episode tracking.
 // @author      lolamtisch@gmail.com
-// @license     Creative Commons; http://creativecommons.org/licenses/by/4.0/
+// @license 	CC-BY-4.0; https://creativecommons.org/licenses/by/4.0/legalcode
+// @license 	MIT
 // @supportURL  https://github.com/lolamtisch/KissAnimeList/issues
 // @include     http://kissanime.ru/Anime/*
 // @include     http://kissanime.to/Anime/*
@@ -18,12 +19,20 @@
 // @include     https://myanimelist.net/anime/*
 // @include     https://myanimelist.net/manga/*
 // @include     https://myanimelist.net/animelist/*
+// @include     https://myanimelist.net/anime.php?*id=*
+// @include     https://myanimelist.net/manga.php?*id=*
 //
 // @include     https://www.masterani.me/anime/info/*
 // @include     https://www.masterani.me/anime/watch/*
 //
 // @include     https://9anime.to/watch/*/*
 // @include     /https?://9anime.to/watch/*/*/
+//
+// @include     https://9anime.is/watch/*/*
+// @include     /https?://9anime.is/watch/*/*/
+//
+// @include     https://9anime.ru/watch/*/*
+// @include     /https?://9anime.ru/watch/*/*/
 //
 // @include     http://www.crunchyroll.com/*
 // @exclude     http://www.crunchyroll.com/videos*
@@ -167,6 +176,9 @@
                         break;
                     case '0.90.0':
                         message += 'Changelog (v0.90.0):<br/>    - Added a shortcut for MiniMAL ( CTRL + M )<br/>    - Added MiniMAL position and dimension settings<br/>    - Added an option for displaying \'Episode Hoverinfo\'<br/>    - Added miniMAL to MyAnimeList<br/>    - Changed the \'Add to Mal\'-message, to a non-blocking message<br/>    - Fixed the database structure<br/><br/>New on KissAnimeLists <a href="https://discord.gg/cTH4yaw">Discord</a>:<br/>    - Feed showing newly added episodes for each of the supported streaming sites.';
+                        break;
+                    case '0.90.2':
+                        message += 'KissAnimeList (v0.90.2):<br/>    - Added support for 9anime.is and 9anime.ru';
                         break;
                 }
             }else{
@@ -567,9 +579,9 @@
         $.BookmarksStyleAfterLoad = function() {
         };
         //###########################
-    }else if( window.location.href.indexOf("9anime.to") > -1 ){
+    }else if( window.location.href.indexOf("9anime.") > -1 ){
         //#########9anime#########
-        var domain = 'https://9anime.to';
+        var domain = 'https://'+window.location.hostname;
         var textColor = 'white';
         var dbSelector = '9anime';
         var listType = 'anime';
@@ -679,7 +691,7 @@
         };
 
         $.nextEpLink = function(url) {
-            return 'https://9anime.to'+$("#servers .episodes a.active").parent('li').next().find('a').attr('href');
+            return domain+$("#servers .episodes a.active").parent('li').next().find('a').attr('href');
         };
 
         $.fn.classicBookmarkButton = function(checkfix) {
@@ -1238,7 +1250,7 @@
 
     function handleTag(update, current, nextEp){
         if(tagLinks == 0){return current;}
-        var addition = "last::"+update+"::";
+        var addition = "last::"+ btoa(update) +"::";
         if(current.indexOf("last::") > -1){
             current = current.replace(/last::[^\^]*\:\:/,addition);
         }else{
@@ -1965,6 +1977,7 @@
     }
 
     function flashConfirm(message, yesCall, cancelCall){
+        $('.flashPerm').remove();
         var rNumber = Math.floor((Math.random() * 1000) + 1);
         message = '<div style="text-align: left;">' + message + '</div><div style="display: flex; justify-content: space-around;"><button class="Yes'+rNumber+'" style="background-color: transparent; border: none; color: rgb(255,64,129);margin-top: 10px; cursor:pointer;">OK</button><button class="Cancel'+rNumber+'" style="background-color: transparent; border: none; color: rgb(255,64,129);margin-top: 10px; cursor:pointer;">CANCEL</button></div>';
         flashm(message, false, false, true);
@@ -2154,6 +2167,24 @@
                     $('.floatbutton').fadeIn();
                 }
             }
+        }
+    }
+
+    function atobURL( encoded ){
+        try{
+            return atob( encoded );
+        }catch(e){
+            return encoded;
+        }
+    }
+
+    $.urlParam = function(name){
+        var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
+        if (results==null){
+           return null;
+        }
+        else{
+           return decodeURI(results[1]) || 0;
         }
     }
     function checkdata(){
@@ -2632,7 +2663,7 @@
         $(document).ready(function() {
             $('.mal_links').remove();
             var type = malUrl.split('/')[3];
-            var uid = malUrl.split('/')[4];
+            var uid = malUrl.split('/')[4].split("?")[0];
             var sites = new Array();
             if(kissanimeLinks != 0){
                 sites.push('Kissanime');
@@ -2718,7 +2749,7 @@
                     if( $('.header-title.tags').height() || $('.td1.tags').height()){
                         $('.tags span a').each(function( index ) {
                             if($(this).text().indexOf("last::") > -1 ){
-                                url = $(this).text().split("last::")[1].split("::")[0];
+                                url = atobURL( $(this).text().split("last::")[1].split("::")[0] );
                                 setStreamLinks(url, $(this).closest('.list-table-data'));
                                 if($('#list_surround').length){
                                     $(this).remove();
@@ -2743,7 +2774,7 @@
             var data = $.parseJSON($('.list-table').attr('data-items'));
             $.each(data,function(index, el) {
                 if(el['tags'].indexOf("last::") > -1 ){
-                    var url = el['tags'].split("last::")[1].split("::")[0];
+                    var url = atobURL( el['tags'].split("last::")[1].split("::")[0] );
                     setStreamLinks(url, $('.list-item a[href^="'+el['anime_url']+'"]').parent().parent('.list-table-data'));
                 }
             });
@@ -2778,7 +2809,7 @@
                     title = $(this).find('.title .link '+span).text();
                     xmlAnime = xml.find('series_title:contains('+title+')').first().parent();
                     if(xmlAnime.find('my_tags').text().indexOf("last::") > -1 ){
-                        url = xmlAnime.find('my_tags').text().split("last::")[1].split("::")[0];
+                        url = atobURL( xmlAnime.find('my_tags').text().split("last::")[1].split("::")[0] );
                         setStreamLinks(url, $(this));
                     }
                 });
@@ -3872,9 +3903,11 @@
           var bookmarkHtml = '<div class="mdl-grid" style="justify-content: center;">';
           bookXML.find('my_status:contains(1)').parent().each(function(){
             var malUrl = 'https://myanimelist.net/anime/'+$(this).find('series_animedb_id').first().text()+'/'+$(this).find('series_title').first().text();
+            var progressProcent = ( $(this).find('my_watched_episodes').first().text() / $(this).find('series_episodes').first().text() ) * 100;
             bookmarkHtml +='<div class="mdl-cell mdl-cell--2-col mdl-cell--4-col-tablet mdl-cell--6-col-phone mdl-shadow--2dp mdl-grid bookEntry" malhref="'+malUrl+'" style="cursor: pointer; height: 250px; padding: 0; width: 210px; height: 293px;">';
               bookmarkHtml +='<div class="data title" style="background-image: url('+$(this).find('series_image').first().text()+'); background-size: cover; background-position: center center; background-repeat: no-repeat; width: 100%; position: relative; padding-top: 5px;">';
                 bookmarkHtml +='<span class="mdl-shadow--2dp" style="position: absolute; bottom: 0; display: block; background-color: rgba(255, 255, 255, 0.9); padding-top: 5px; display: inline-flex; align-items: center; justify-content: space-between; left: 0; right: 0; padding-right: 8px; padding-left: 8px; padding-bottom: 8px;">'+$(this).find('series_title').first().text();
+                  bookmarkHtml +='<div id="p1" class="mdl-progress" style="position: absolute; top: -4px; left: 0;"><div class="progressbar bar bar1" style="width: '+progressProcent+'%;"></div><div class="bufferbar bar bar2" style="width: 100%;"></div><div class="auxbar bar bar3" style="width: 0%;"></div></div>';
                   bookmarkHtml +='<div class="data progress mdl-chip mdl-chip--contact mdl-color--indigo-100" style="float: right; line-height: 20px; height: 20px; padding-right: 4px; margin-left: 5px;">';
                     bookmarkHtml +='<div class="link mdl-chip__contact mdl-color--primary mdl-color-text--white" style="line-height: 20px; height: 20px; margin-right: 0;">'+$(this).find('my_watched_episodes').first().text()+'</div>';
                   bookmarkHtml +='</div>';
@@ -3894,7 +3927,7 @@
 
           $("#info-iframe").contents().find('.bookEntry').each(function() {
             if($(this).find('.tags').text().indexOf("last::") > -1 ){
-              var url = $(this).find('.tags').text().split("last::")[1].split("::")[0];
+              var url = atobURL( $(this).find('.tags').text().split("last::")[1].split("::")[0] );
               setStreamLinks(url, $(this));
             }
           });
@@ -3977,6 +4010,12 @@
             getMalXml();
         }
     }else if(window.location.href.indexOf("myanimelist.net") > -1 ){
+        if(window.location.href.indexOf("myanimelist.net/anime.php") > -1){
+            window.history.replaceState(null, null, '/anime/'+$.urlParam('id') );
+        }
+        if(window.location.href.indexOf("myanimelist.net/manga.php") > -1){
+            window.history.replaceState(null, null, '/manga/'+$.urlParam('id') );
+        }
         if(window.location.href.indexOf("myanimelist.net/animelist") > -1 ){
             tagToContinue();
         }else{
@@ -3984,7 +4023,7 @@
             if(miniMALonMal){
                 $( document).ready(function(){
                     createIframe();
-                    miniMalButton(window.location.href.split('/').slice(0,5).join('/'));
+                    miniMalButton(window.location.href.split('/').slice(0,5).join('/').split("?")[0]);
                 });
             }
         }
