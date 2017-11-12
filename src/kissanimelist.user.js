@@ -19,11 +19,11 @@
 // @include     https://myanimelist.net/anime/*
 // @include     https://myanimelist.net/manga/*
 // @include     https://myanimelist.net/animelist/*
+// @include     https://myanimelist.net/anime.php?*id=*
+// @include     https://myanimelist.net/manga.php?*id=*
 //
 // @include     https://www.masterani.me/anime/info/*
 // @include     https://www.masterani.me/anime/watch/*
-// @include     https://myanimelist.net/anime.php?*id=*
-// @include     https://myanimelist.net/manga.php?*id=*
 //
 // @include     https://9anime.to/watch/*/*
 // @include     /https?://9anime.to/watch/*/*/
@@ -178,7 +178,7 @@
                         message += 'Changelog (v0.90.0):<br/>    - Added a shortcut for MiniMAL ( CTRL + M )<br/>    - Added MiniMAL position and dimension settings<br/>    - Added an option for displaying \'Episode Hoverinfo\'<br/>    - Added miniMAL to MyAnimeList<br/>    - Changed the \'Add to Mal\'-message, to a non-blocking message<br/>    - Fixed the database structure<br/><br/>New on KissAnimeLists <a href="https://discord.gg/cTH4yaw">Discord</a>:<br/>    - Feed showing newly added episodes for each of the supported streaming sites.';
                         break;
                     case '0.90.2':
-                        message += 'KissAnimeList (v0.90.2):<br/>    - Add support for 9anime.is and 9anime.ru';
+                        message += 'KissAnimeList (v0.90.2):<br/>    - Added support for 9anime.is and 9anime.ru';
                         break;
                 }
             }else{

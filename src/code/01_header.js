@@ -19,11 +19,11 @@
 // @include     https://myanimelist.net/anime/*
 // @include     https://myanimelist.net/manga/*
 // @include     https://myanimelist.net/animelist/*
+// @include     https://myanimelist.net/anime.php?*id=*
+// @include     https://myanimelist.net/manga.php?*id=*
 //
 // @include     https://www.masterani.me/anime/info/*
 // @include     https://www.masterani.me/anime/watch/*
-// @include     https://myanimelist.net/anime.php?*id=*
-// @include     https://myanimelist.net/manga.php?*id=*
 //
 // @include     https://9anime.to/watch/*/*
 // @include     /https?://9anime.to/watch/*/*/
