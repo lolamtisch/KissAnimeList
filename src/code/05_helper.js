@@ -63,12 +63,13 @@
     function flashm(text,error = true, info = false, permanent = false){
         con.log("[Flash] Message:",text);
         $('#flash-div').css('z-index', '2147483647');
+        if(error === true){
+            var colorF = "#3e0808";
+        }else{
+            var colorF = "#323232";
+        }
+
         if(permanent){
-            if(error === true){
-                var colorF = "#3e0808";
-            }else{
-                var colorF = "#323232";
-            }
             $('#flash-div-top').prepend('<div class="flashPerm" style="display:none;"><div style="display:table; pointer-events: all; background-color: red;padding: 14px 24px 14px 24px; margin: 0 auto; margin-top: -2px; max-width: 60%; -webkit-border-radius: 20px;-moz-border-radius: 20px;border-radius: 2px;color: white;background:'+colorF+'; ">'+text+'</div></div>');
             $('.flashPerm').delay(2000).slideDown(800);
         }else{
@@ -77,11 +78,6 @@
                     duration: 400,
                     queue: false,
                     complete: function() { $(this).remove(); }});
-                if(error === true){
-                    var colorF = "#3e0808";
-                }else{
-                    var colorF = "#323232";
-                }
                 $('#flash-div').append('<div class="flashinfo" style="display:none; max-height: 5000px; margin-top: -8px;"><div style="display:table; pointer-events: all; background-color: red;padding: 14px 24px 14px 24px; margin: 0 auto; margin-top: -2px; max-width: 60%; -webkit-border-radius: 20px;-moz-border-radius: 20px;border-radius: 2px;color: white;background:'+colorF+'; ">'+text+'</div></div>');
                 $('.flashinfo').slideDown(800).delay(4000).queue(function() { $(this).css('transition','max-height 2s').css('max-height', '8px'); setTimeout(function() {$('#flash-div').css('z-index', '2');}, 2000);});
             }else{
@@ -89,11 +85,6 @@
                     duration: 400,
                     queue: false,
                     complete: function() { $(this).remove(); }});
-                if(error === true){
-                    var colorF = "#3e0808";
-                }else{
-                    var colorF = "#323232";
-                }
                 var mess ='<div class="flash" style="display:none;"><div style="display:table; pointer-events: all; background-color: red;padding: 14px 24px 14px 24px; margin: 0 auto; margin-top: 20px; max-width: 60%; -webkit-border-radius: 20px;-moz-border-radius: 20px;border-radius: 2px;color: white;background:'+colorF+'; ">'+text+'</div></div>';
                 if($('.flashinfo').length){
                     $('.flashinfo').before(mess);
