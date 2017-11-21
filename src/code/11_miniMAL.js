@@ -25,8 +25,27 @@
                             background: #3f51b5; color: #fff;box-shadow: 0 2px 2px 0 rgba(0,0,0,.14), 0 3px 1px -2px rgba(0,0,0,.2), 0 1px 5px 0 rgba(0,0,0,.12);\
                             border: none; border-radius: 2px;\
                          }\
+                         .flashinfo{\
+                            transition: max-height 2s;\
+                         }\
                          .flashinfo:hover{\
                             max-height:5000px !important;\
+                            z-index: 2147483647;\
+                         }\
+                         .flashinfo .synopsis{\
+                            transition: max-height 2s, max-width 2s ease 2s;\
+                         }\
+                         .flashinfo:hover .synopsis{\
+                            max-height:9999px !important;\
+                            max-width: 500px !important;\
+                            transition: max-height 2s;\
+                         }\
+                         #flashinfo-div{\
+                          z-index: 2;\
+                          transition: 2s;\
+                         }\
+                         #flashinfo-div:hover{\
+                          z-index: 2147483647;\
                          }');
 
             var iframe = document.createElement('iframe');
