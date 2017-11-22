@@ -44,7 +44,7 @@
                           z-index: 2;\
                           transition: 2s;\
                          }\
-                         #flashinfo-div:hover{\
+                         #flashinfo-div:hover, #flashinfo-div.hover{\
                           z-index: 2147483647;\
                          }');
 
