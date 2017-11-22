@@ -1,9 +1,14 @@
 	function checkForNewEpisodes(){
 		var time = 0;
+		var newEpUpdate = 0;
 
 		getMalXml("", function(bookXML){
 			$('body').before('<div style="z-index: 20000000000; height: 5px; position: fixed; top: 0; left: 0; right: 0;"><div id="checkProgress" style="width: 0%;background-color: #3f51b5; height: 100%; transition: width 1s;"></div></div>');
 			var totalEntrys = bookXML.find('my_status:contains(1)').parent().length;
+			if( $.now() - GM_getValue('newEp_last_update', 0) > 21600000){ //6 Hours
+				newEpUpdate = 1;
+				GM_setValue('newEp_last_update', $.now());
+			}
 			bookXML.find('my_status:contains(1)').parent().each(function(index){
 
 				if($(this).find('my_tags').first().text().indexOf("last::") > -1 ){
@@ -88,46 +93,49 @@
 					}
 
 					setBorder(GM_getValue('newEp_'+url+'_cache', 0));
-					setTimeout( function(){
-						$('#checkProgress').css('width', ((index+1)/totalEntrys*100) + '%');
-						con.log('[EpCheck]', title, url );
-						GM_xmlhttpRequest({
-							method: "GET",
-							url: url,
-							synchronous: false,
-							onload: function(response) {
-								if(response.status != 200){//TODO: Cloudflare handling
-									con.log('[EpCheck] [ERROR]', response);
-								}else{
-									if( url.indexOf("masterani.me") > -1 ){
-										var parsed  = $.parseJSON(response.response);
-										var EpNumber = parsed['episodes'].length;
-										var complete = checkAiringState(parsed, response.response);
-									}else if( url.indexOf("gogoanime.") > -1 ){
-										var parsed  = $.parseHTML(response.response);
-										var EpNumber = $(parsed).find( selector ).text();
-										EpNumber = parseInt(EpNumber.split('-')[1]);
-										var complete = checkAiringState(parsed, response.response);
+					if(newEpUpdate){
+						setTimeout( function(){
+							$('#checkProgress').css('width', ((index+1)/totalEntrys*100) + '%');
+							con.log('[EpCheck]', title, url );
+							GM_xmlhttpRequest({
+								method: "GET",
+								url: url,
+								synchronous: false,
+								onload: function(response) {
+									if(response.status != 200){//TODO: Cloudflare handling
+									    GM_deleteValue('newEp_last_update');
+										con.log('[EpCheck] [ERROR]', response);
 									}else{
-										var parsed  = $.parseHTML(response.response);
-										var EpNumber = $(parsed).find( selector ).length;
-										var complete = checkAiringState(parsed, response.response);
+										if( url.indexOf("masterani.me") > -1 ){
+											var parsed  = $.parseJSON(response.response);
+											var EpNumber = parsed['episodes'].length;
+											var complete = checkAiringState(parsed, response.response);
+										}else if( url.indexOf("gogoanime.") > -1 ){
+											var parsed  = $.parseHTML(response.response);
+											var EpNumber = $(parsed).find( selector ).text();
+											EpNumber = parseInt(EpNumber.split('-')[1]);
+											var complete = checkAiringState(parsed, response.response);
+										}else{
+											var parsed  = $.parseHTML(response.response);
+											var EpNumber = $(parsed).find( selector ).length;
+											var complete = checkAiringState(parsed, response.response);
+										}
+
+										if(complete){
+											con.log('[EpCheck] [SetFinished]', title);
+											GM_setValue('newEp_'+url+'_finished', true);
+											return;
+										}
+
+										setBorder(EpNumber);
+
 									}
-
-									if(complete){
-										con.log('[EpCheck] [SetFinished]', title);
-										GM_setValue('newEp_'+url+'_finished', true);
-										return;
-									}
-
-									setBorder(EpNumber);
-
 								}
-							}
-						});
+							});
 
-					}, time);
-					time += 1000;
+						}, time);
+						time += 1000;
+					}
 
 					function setBorder(EpNumber){
 						con.log('[EpCheck]', GM_getValue('newEp_'+url+'_number',null), EpNumber);
