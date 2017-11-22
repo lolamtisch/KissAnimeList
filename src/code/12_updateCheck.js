@@ -87,6 +87,7 @@
 						return true;
 					}
 
+					setBorder(GM_getValue('newEp_'+url+'_cache', 0));
 					setTimeout( function(){
 						$('#checkProgress').css('width', ((index+1)/totalEntrys*100) + '%');
 						con.log('[EpCheck]', title, url );
@@ -119,28 +120,33 @@
 										return;
 									}
 
-									con.log('[EpCheck]', GM_getValue('newEp_'+url+'_number',null), EpNumber);
-									if( GM_getValue('newEp_'+url+'_number', EpNumber) < EpNumber){
-										con.log('[NewEP]', url);
-										$('.data.title a[href^="/anime/'+id+'/"]').parent().parent().attr('style', 'border: 2px solid red !important');
-										//alert(title);
-										$('.data.title a[href^="/anime/'+id+'/"]').parent().parent().parent().one('click', function(){
-											GM_setValue('newEp_'+url+'_number', EpNumber);
-											$('.data.title a[href^="/anime/'+id+'/"]').parent().parent().attr('style', '');
-											return false;
-										});
-									}else{
-										if(GM_getValue('newEp_'+url+'_number', null) == null){
-											GM_setValue('newEp_'+url+'_number', EpNumber);
-										}
-										if(debug){ $('.data.title a[href^="/anime/'+id+'/"]').parent().parent().attr('style', 'border: 2px solid yellow !important');}
-									}
+									setBorder(EpNumber);
+
 								}
 							}
 						});
 
 					}, time);
 					time += 1000;
+
+					function setBorder(EpNumber){
+						con.log('[EpCheck]', GM_getValue('newEp_'+url+'_number',null), EpNumber);
+						if( GM_getValue('newEp_'+url+'_number', EpNumber) < EpNumber){
+							con.log('[NewEP]', url);
+							GM_setValue('newEp_'+url+'_cache', EpNumber);
+							$('.data.title a[href^="/anime/'+id+'/"]').parent().parent().attr('style', 'border: 2px solid red !important');
+							$('.data.title a[href^="/anime/'+id+'/"]').parent().parent().parent().one('click', function(){
+								GM_setValue('newEp_'+url+'_number', EpNumber);
+								$('.data.title a[href^="/anime/'+id+'/"]').parent().parent().attr('style', '');
+								return false;
+							});
+						}else{
+							if(GM_getValue('newEp_'+url+'_number', null) == null){
+								GM_setValue('newEp_'+url+'_number', EpNumber);
+							}
+							if(debug){ $('.data.title a[href^="/anime/'+id+'/"]').parent().parent().attr('style', 'border: 2px solid yellow !important');}
+						}
+					}
 				}
 			});
 			setTimeout( function(){
