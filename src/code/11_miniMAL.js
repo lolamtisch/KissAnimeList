@@ -415,6 +415,18 @@
                                 <h2 class="mdl-card__title-text">MAL Bookmark Page</h2>\
                                 </div>';
                 settingsUI += materialCheckbox(tagLinks,'tagLinks','Continue watching links'+getTooltip('If enabled: On your MAL Anime List and the bookmark list in miniMAL, an icon-link will be added to the last used streaming site you were using to watch an anime.<br>Simply click the icon to continue watching the anime.'));
+                settingsUI += '<li class="mdl-list__item">\
+                                  <span class="mdl-list__item-primary-content">\
+                                      Check for new episodes\
+                                  </span>\
+                                  <span class="mdl-list__item-secondary-action">\
+                                    <select name="myinfo_score" id="newEpInterval" class="inputtext mdl-textfield__input" style="outline: none;">\
+                                      <option value="null">Never</option>\
+                                      <option value="21600000">6 Hours</option>\
+                                      <option value="0">Always</option>\
+                                    </select>\
+                                  </span>\
+                              </li>';
                 settingsUI += '</div>';
 
                 settingsUI += '<div class="mdl-cell mdl-cell--12-col mdl-shadow--4dp">\
@@ -743,6 +755,11 @@
             $("#info-iframe").contents().find("#malThumbnail").val(malThumbnail);
             $("#info-iframe").contents().find("#malThumbnail").change(function(){
               GM_setValue( 'malThumbnail', $("#info-iframe").contents().find("#malThumbnail").val() );
+            });
+
+            $("#info-iframe").contents().find("#newEpInterval").val(newEpInterval);
+            $("#info-iframe").contents().find("#newEpInterval").change(function(){
+              GM_setValue( 'newEpInterval', $("#info-iframe").contents().find("#newEpInterval").val() );
             });
 
             $("#info-iframe").contents().find('#malConfig').show();

@@ -1,11 +1,14 @@
 	function checkForNewEpisodes(){
+		if(newEpInterval == 'null'){
+			return;
+		}
 		var time = 0;
 		var newEpUpdate = 0;
 
 		getMalXml("", function(bookXML){
 			$('body').before('<div style="z-index: 20000000000; height: 5px; position: fixed; top: 0; left: 0; right: 0;"><div id="checkProgress" style="width: 0%;background-color: #3f51b5; height: 100%; transition: width 1s;"></div></div>');
 			var totalEntrys = bookXML.find('my_status:contains(1)').parent().length;
-			if( $.now() - GM_getValue('newEp_last_update', 0) > 21600000){ //6 Hours
+			if( $.now() - GM_getValue('newEp_last_update', 0) > newEpInterval){
 				newEpUpdate = 1;
 				GM_setValue('newEp_last_update', $.now());
 			}
