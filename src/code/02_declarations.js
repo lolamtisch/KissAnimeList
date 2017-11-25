@@ -31,7 +31,7 @@
     }
 
     var tagLinks = GM_getValue( 'tagLinks', 1 );
-    var newEpInterval = GM_getValue( 'newEpInterval', 21600000 );
+    var newEpInterval = GM_getValue( 'newEpInterval', 43200000 );
 
     var searchLinks = GM_getValue( 'searchLinks', 1 );
     var kissanimeLinks = GM_getValue( 'kissanimeLinks', 1 );

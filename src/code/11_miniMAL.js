@@ -421,8 +421,9 @@
                                   </span>\
                                   <span class="mdl-list__item-secondary-action">\
                                     <select name="myinfo_score" id="newEpInterval" class="inputtext mdl-textfield__input" style="outline: none;">\
-                                      <option value="null">Never</option>\
-                                      <option value="21600000">6 Hours</option>\
+                                      <option value="null">Off</option>\
+                                      <option value="3600000">1 Hour</option>\
+                                      <option value="43200000">12 Hour</option>\
                                       <option value="0">Always</option>\
                                     </select>\
                                   </span>\
