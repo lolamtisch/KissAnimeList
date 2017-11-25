@@ -95,7 +95,7 @@
 						return true;
 					}
 
-					setBorder(GM_getValue('newEp_'+url+'_cache', 0));
+					setBorder(GM_getValue('newEp_'+url+'_cache', null));
 					if(newEpUpdate){
 						setTimeout( function(){
 							$('#checkProgress').css('width', ((index+1)/totalEntrys*100) + '%');
@@ -141,6 +141,9 @@
 					}
 
 					function setBorder(EpNumber){
+						if(EpNumber === null){
+							return;
+						}
 						con.log('[EpCheck]', GM_getValue('newEp_'+url+'_number',null), EpNumber);
 						if( GM_getValue('newEp_'+url+'_number', EpNumber) < EpNumber){
 							con.log('[NewEP]', url);
