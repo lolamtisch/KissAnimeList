@@ -154,6 +154,7 @@
 								$('.data.title a[href^="/anime/'+id+'/"]').parent().parent().attr('style', '');
 								return false;
 							});
+							$('.data.title a[href^="/anime/'+id+'/"]').parent().parent().append('<div class="newEp"></div>');
 						}else{
 							if(GM_getValue('newEp_'+url+'_number', null) == null){
 								GM_setValue('newEp_'+url+'_number', EpNumber);
