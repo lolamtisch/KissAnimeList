@@ -428,6 +428,14 @@
                                     </select>\
                                   </span>\
                               </li>';
+                settingsUI += '<!--<li class="mdl-list__item">\
+                                  <span class="mdl-list__item-primary-content">\
+                                    Border Color (<a href="https://www.webpagefx.com/web-design/color-picker/" target="_blank">HEX</a>)\
+                                  </span>\
+                                  <div class="mdl-list__item-secondary-action">\
+                                      <input class="mdl-textfield__input" type="text" id="newEpBorder" size="6" maxlength="6" value="'+newEpBorder+'">\
+                                  </div>\
+                              </li>-->';
                 settingsUI += '</div>';
 
                 settingsUI += '<div class="mdl-cell mdl-cell--12-col mdl-shadow--4dp">\
@@ -761,6 +769,10 @@
             $("#info-iframe").contents().find("#newEpInterval").val(newEpInterval);
             $("#info-iframe").contents().find("#newEpInterval").change(function(){
               GM_setValue( 'newEpInterval', $("#info-iframe").contents().find("#newEpInterval").val() );
+            });
+
+            $("#info-iframe").contents().find("#newEpBorder").change(function(){
+              GM_setValue( 'newEpBorder', $("#info-iframe").contents().find("#newEpBorder").val() );
             });
 
             $("#info-iframe").contents().find('#malConfig').show();

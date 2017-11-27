@@ -148,7 +148,7 @@
 						if( GM_getValue('newEp_'+url+'_number', EpNumber) < EpNumber){
 							con.log('[NewEP]', url);
 							GM_setValue('newEp_'+url+'_cache', EpNumber);
-							$('.data.title a[href^="/anime/'+id+'/"]').parent().parent().attr('style', 'border: 2px solid red !important');
+							$('.data.title a[href^="/anime/'+id+'/"]').parent().parent().attr('style', 'border: 2px solid #'+newEpBorder+' !important');
 							$('.data.title a[href^="/anime/'+id+'/"]').parent().parent().parent().one('click', function(){
 								GM_setValue('newEp_'+url+'_number', EpNumber);
 								$('.data.title a[href^="/anime/'+id+'/"]').parent().parent().attr('style', '');

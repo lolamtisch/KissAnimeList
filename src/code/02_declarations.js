@@ -32,6 +32,7 @@
 
     var tagLinks = GM_getValue( 'tagLinks', 1 );
     var newEpInterval = GM_getValue( 'newEpInterval', 43200000 );
+    var newEpBorder = GM_getValue( 'newEpBorder', 'ff0000' );
 
     var searchLinks = GM_getValue( 'searchLinks', 1 );
     var kissanimeLinks = GM_getValue( 'kissanimeLinks', 1 );
