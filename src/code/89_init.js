@@ -72,7 +72,7 @@
             tagToContinue();
             $( document).ready(function(){
                 if(!$('.username').first().attr('href')){
-                    checkForNewEpisodes();
+                    checkForNewEpisodes(); //ll
                 }
             });
         }else{

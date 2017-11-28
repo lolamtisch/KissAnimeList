@@ -26,6 +26,7 @@
                             if($(this).text().indexOf("last::") > -1 ){
                                 url = atobURL( $(this).text().split("last::")[1].split("::")[0] );
                                 setStreamLinks(url, $(this).closest('.list-table-data'));
+                                checkForNewEpisodes(url, $(this).closest('.list-table-data'))
                                 if($('#list_surround').length){
                                     $(this).remove();
                                 }else{
@@ -51,6 +52,7 @@
                 if(el['tags'].indexOf("last::") > -1 ){
                     var url = atobURL( el['tags'].split("last::")[1].split("::")[0] );
                     setStreamLinks(url, $('.list-item a[href^="'+el['anime_url']+'"]').parent().parent('.list-table-data'));
+                    checkForNewEpisodes(url, $('.list-item a[href^="'+el['anime_url']+'"]').parent().parent('.list-table-data'))
                 }
             });
         }else{
@@ -86,6 +88,7 @@
                     if(xmlAnime.find('my_tags').text().indexOf("last::") > -1 ){
                         url = atobURL( xmlAnime.find('my_tags').text().split("last::")[1].split("::")[0] );
                         setStreamLinks(url, $(this));
+                        checkForNewEpisodes(url, $(this))
                     }
                 });
             }
