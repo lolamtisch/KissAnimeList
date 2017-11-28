@@ -70,11 +70,6 @@
         }
         if(window.location.href.indexOf("myanimelist.net/animelist") > -1 ){
             tagToContinue();
-            $( document).ready(function(){
-                if(!$('.username').first().attr('href')){
-                    checkForNewEpisodes(); //ll
-                }
-            });
         }else{
             setKissToMal(window.location.href);
             if(miniMALonMal){
