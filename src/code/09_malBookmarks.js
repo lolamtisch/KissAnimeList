@@ -22,16 +22,16 @@
                     })
                     //
                     if( $('.header-title.tags').height() || $('.td1.tags').height()){
-                        $('.tags span a').each(function( index ) {
-                            if($(this).text().indexOf("last::") > -1 ){
-                                url = atobURL( $(this).text().split("last::")[1].split("::")[0] );
-                                setStreamLinks(url, $(this).closest('.list-table-data'));
-                                checkForNewEpisodes(url, $(this).closest('.list-table-data'))
-                                if($('#list_surround').length){
-                                    $(this).remove();
-                                }else{
-                                    $(this).parent().remove();
-                                }
+                        var data = $('.tags span a').filter(function(el) {return $(this).text().indexOf("last::") > -1 });
+                        var totalEntrys = data.length;
+                        $.each(data, function( index ) {
+                            url = atobURL( $(this).text().split("last::")[1].split("::")[0] );
+                            setStreamLinks(url, $(this).closest('.list-table-data'));
+                            checkForNewEpisodes(url, $(this).closest('.list-table-data'), (index+1)/totalEntrys*100)
+                            if($('#list_surround').length){
+                                $(this).remove();
+                            }else{
+                                $(this).parent().remove();
                             }
                         });
                     }else{
@@ -48,12 +48,12 @@
         if($('.list-table').length){
             con.log('[BOOK] Modern Tags');
             var data = $.parseJSON($('.list-table').attr('data-items'));
+            data = $.grep(data, function(el) {return el['tags'].indexOf("last::") > -1 });
+            var totalEntrys = data.length;
             $.each(data,function(index, el) {
-                if(el['tags'].indexOf("last::") > -1 ){
-                    var url = atobURL( el['tags'].split("last::")[1].split("::")[0] );
-                    setStreamLinks(url, $('.list-item a[href^="'+el['anime_url']+'"]').parent().parent('.list-table-data'));
-                    checkForNewEpisodes(url, $('.list-item a[href^="'+el['anime_url']+'"]').parent().parent('.list-table-data'))
-                }
+                var url = atobURL( el['tags'].split("last::")[1].split("::")[0] );
+                setStreamLinks(url, $('.list-item a[href^="'+el['anime_url']+'"]').parent().parent('.list-table-data'));
+                checkForNewEpisodes(url, $('.list-item a[href^="'+el['anime_url']+'"]').parent().parent('.list-table-data'), (index+1)/totalEntrys*100);
             });
         }else{
             con.log('[BOOK] Classic Tags');
@@ -82,13 +82,21 @@
                 if($('#list_surround').length){
                     span = 'span';
                 };
+                var totalEntrys = 0;
+                $('.list-table-data').each(function( index ) {
+                    title = $(this).find('.title .link '+span).text();
+                    xmlAnime = xml.find('series_title:contains('+title+')').first().parent();
+                    if(xmlAnime.find('my_tags').text().indexOf("last::") > -1 ){
+                        totalEntrys++;
+                    }
+                });
                 $('.list-table-data').each(function( index ) {
                     title = $(this).find('.title .link '+span).text();
                     xmlAnime = xml.find('series_title:contains('+title+')').first().parent();
                     if(xmlAnime.find('my_tags').text().indexOf("last::") > -1 ){
                         url = atobURL( xmlAnime.find('my_tags').text().split("last::")[1].split("::")[0] );
                         setStreamLinks(url, $(this));
-                        checkForNewEpisodes(url, $(this))
+                        checkForNewEpisodes(url, $(this), (index+1)/totalEntrys*100)
                     }
                 });
             }

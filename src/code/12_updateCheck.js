@@ -1,29 +1,19 @@
-	/*function checkForNewEpisodes(){
-		return; //ll
-		if(newEpInterval == 'null'){
-			return;
-		}
-		var time = 0;
-		var newEpUpdate = 0;
-
-		getMalXml("", function(bookXML){
-			var totalEntrys = bookXML.find('my_status:contains(1)').parent().length;
-		});
-		setTimeout( function(){
-			$('#checkProgress').parent().fadeOut({
-				duration: 400,
-				queue: false,
-				complete: function() { $(this).remove(); }});
-		}, time);
-	}*/
 	var newEPTime = 0;
 	var newEpUpdate = 0;
-	function checkForNewEpisodes(url, entrySelector){
+	function checkForNewEpisodes(url, entrySelector, progress){
 		if(newEpInterval == 'null'){
 			return;
 		}
+		if(progress == 100){
+			setTimeout( function(){
+				$('#checkProgress').css('width', '100%');
+				$('#checkProgress').parent().fadeOut({
+					duration: 2500,
+					queue: false,
+					complete: function() { $(this).remove(); }});
+			}, newEPTime);
+		}
 		var title = ''; //ll
-		var progress = '23'; //ll
 		var selector = '';
 
 		if(newEPTime == 0){
