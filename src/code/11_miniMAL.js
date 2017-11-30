@@ -786,6 +786,8 @@
 
                   setanime(url, anime, null, localListType);
               });
+            }else{
+              $("#info-iframe").contents().find('.data-block').css('display', 'none');
             }
         }catch(e) {console.log('[iframeOverview] Error:',e);}
 
