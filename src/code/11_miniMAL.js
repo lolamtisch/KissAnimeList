@@ -5,7 +5,7 @@
             if($(window).width() < 500){
               position = 'width: 100vw; height: 100%; position: absolute; top: 0%; '+( posLeft ? 'left':'right')+': 0%';
             }
-            var material = '<dialog class="modal" id="info-popup" style="pointer-events: none;display: none; position: fixed;z-index: 999;left: 0;top: 0;bottom: 0;width: 100%; height: 100%; background-color: transparent; padding: 0; margin: 0;">';
+            var material = '<dialog class="modal" id="info-popup" style="pointer-events: none;display: none; position: fixed;z-index: 999;left: 0;top: 0;bottom: 0;width: 100%; height: 100%; background-color: transparent; padding: 0; margin: 0; border: 0;">';
             material += '<div id="modal-content" class="modal-content" Style="pointer-events: all;background-color: #fefefe; margin: 0; '+position+'">';
             //material += '<iframe id="info-iframe" style="height:100%;width:100%;border:0;"></iframe>';
             material += '</div>';
