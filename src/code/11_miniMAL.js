@@ -59,6 +59,19 @@
                                 white-space: normal;\
                                 line-height: 24px;\
                               }\
+                              \
+                              \
+                              .mdl-layout__content::-webkit-scrollbar-track{\
+                                -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);\
+                                background-color: #F5F5F5;\
+                              }\
+                              .mdl-layout__content::-webkit-scrollbar{\
+                                width: 10px;\
+                                background-color: #F5F5F5;\
+                              }\
+                              .mdl-layout__content::-webkit-scrollbar-thumb{\
+                                background-color: #c1c1c1;\
+                              }\
                             </style>');
                 head.append('<style>'+GM_getResourceText("materialCSS")+'</style>');
                 head.append('<style>'+GM_getResourceText("materialFont")+'</style>');
