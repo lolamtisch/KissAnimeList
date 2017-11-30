@@ -51,6 +51,14 @@
                               .alternative-list .mdl-list__item-text-body{\
                                 height: auto !important;\
                               }\
+                              \
+                              .coverinfo .mdl-chip{\
+                                height: auto;\
+                              }\
+                              .coverinfo .mdl-chip .mdl-chip__text{\
+                                white-space: normal;\
+                                line-height: 24px;\
+                              }\
                             </style>');
                 head.append('<style>'+GM_getResourceText("materialCSS")+'</style>');
                 head.append('<style>'+GM_getResourceText("materialFont")+'</style>');
