@@ -33,6 +33,25 @@
                 executejs(GM_getResourceText("materialjs"));
                 var head = $("#info-iframe").contents().find("head");
                 head.append('<style>#material .mdl-card__supporting-text{width: initial} .mdl-layout__header .mdl-textfield__label:after{background-color: red !important;}</style>');
+                head.append('<style>\
+                              .alternative-list .mdl-list{\
+                                max-width: 100%;\
+                                margin: 0;\
+                                padding: 0;\
+                              }\
+                              .alternative-list .mdl-list__item{\
+                                height: auto;\
+                              }\
+                              .alternative-list .mdl-list__item-primary-content{\
+                                height: auto !important;\
+                              }\
+                              .alternative-list .mdl-list__item-primary-content a{\
+                                display: block;\
+                              }\
+                              .alternative-list .mdl-list__item-text-body{\
+                                height: auto !important;\
+                              }\
+                            </style>');
                 head.append('<style>'+GM_getResourceText("materialCSS")+'</style>');
                 head.append('<style>'+GM_getResourceText("materialFont")+'</style>');
                 //templateIframe(url, data);
@@ -112,10 +131,10 @@
                 <div class="mdl-cell mdl-cell--4-col mdl-cell--8-col-tablet mdl-shadow--4dp data-block mdl-grid mdl-grid--no-spacing malClear">\
                     \
                 </div>\
-                <div class="mdl-grid mdl-grid--no-spacing mdl-cell mdl-cell--4-col mdl-cell--8-col-tablet mdl-shadow--4dp related-block mdl-grid malClear">\
+                <div class="mdl-grid mdl-grid--no-spacing mdl-cell mdl-cell--4-col mdl-cell--8-col-tablet mdl-shadow--4dp related-block alternative-list mdl-grid malClear">\
                     \
                 </div>\
-                <div style="display: none;" class="mdl-grid mdl-grid--no-spacing mdl-cell mdl-cell--4-col mdl-cell--8-col-tablet mdl-shadow--4dp mdl-grid stream-block malClear">\
+                <div style="display: none;" class="mdl-grid mdl-grid--no-spacing mdl-cell mdl-cell--4-col mdl-cell--8-col-tablet mdl-shadow--4dp mdl-grid alternative-list stream-block malClear">\
                     <ul class="mdl-list stream-block-inner">\
                     \
                     </ul>\
@@ -700,6 +719,7 @@
             });
             relatedHtml += '</ul>';
             $("#info-iframe").contents().find('.related-block').html(relatedHtml).show();
+            $("#info-iframe").contents().find('.related-block .mdl-list__item-sub-title').html($("#info-iframe").contents().find('.related-block .mdl-list__item-sub-title').children())
             $("#info-iframe").contents().find('#material .related-block a').each(function() {
               $(this).click(function(e) {
                 $("#info-iframe").contents().find('.malClear').hide();
