@@ -5,7 +5,7 @@
             if($(window).width() < 500){
               position = 'width: 100vw; height: 100%; position: absolute; top: 0%; '+( posLeft ? 'left':'right')+': 0%';
             }
-            var material = '<dialog class="modal" id="info-popup" style="pointer-events: none;display: none; position: fixed;z-index: 999;left: 0;top: 0;bottom: 0;width: 100%; height: 100%; background-color: transparent; padding: 0; margin: 0;">';
+            var material = '<dialog class="modal" id="info-popup" style="pointer-events: none;display: none; position: fixed;z-index: 999;left: 0;top: 0;bottom: 0;width: 100%; height: 100%; background-color: transparent; padding: 0; margin: 0; border: 0;">';
             material += '<div id="modal-content" class="modal-content" Style="pointer-events: all;background-color: #fefefe; margin: 0; '+position+'">';
             //material += '<iframe id="info-iframe" style="height:100%;width:100%;border:0;"></iframe>';
             material += '</div>';
@@ -31,10 +31,72 @@
             iframe.setAttribute("style", "height:100%;width:100%;border:0;");
             iframe.onload = function() {
                 executejs(GM_getResourceText("materialjs"));
+                executejs(GM_getResourceText("simpleBarjs"));
                 var head = $("#info-iframe").contents().find("head");
                 head.append('<style>#material .mdl-card__supporting-text{width: initial} .mdl-layout__header .mdl-textfield__label:after{background-color: red !important;}</style>');
+                head.append('<style>\
+                              .alternative-list .mdl-list{\
+                                max-width: 100%;\
+                                margin: 0;\
+                                padding: 0;\
+                              }\
+                              .alternative-list .mdl-list__item{\
+                                height: auto;\
+                              }\
+                              .alternative-list .mdl-list__item-primary-content{\
+                                height: auto !important;\
+                              }\
+                              .alternative-list .mdl-list__item-primary-content a{\
+                                display: block;\
+                              }\
+                              .alternative-list .mdl-list__item-text-body{\
+                                height: auto !important;\
+                              }\
+                              \
+                              .coverinfo .mdl-chip{\
+                                height: auto;\
+                              }\
+                              .coverinfo .mdl-chip .mdl-chip__text{\
+                                white-space: normal;\
+                                line-height: 24px;\
+                              }\
+                              \
+                              \
+                              .mdl-layout__content::-webkit-scrollbar{\
+                                width: 10px !important;\
+                                background-color: #F5F5F5;\
+                              }\
+                              .mdl-layout__content::-webkit-scrollbar-thumb{\
+                                background-color: #c1c1c1 !important;\
+                              }\
+                              .simplebar-track{\
+                                width: 10px !important;\
+                                background-color: #F5F5F5;\
+                              }\
+                              .simplebar-scrollbar{\
+                                background-color: #c1c1c1 !important;\
+                              }\
+                              .simplebar-track.horizontal{\
+                                display: none;\
+                              }\
+                              \
+                              .simplebar-scrollbar{\
+                                border-radius: 0px !important;\
+                                right: 0 !important;\
+                                width: 100% !important;\
+                                opacity: 1 !important;\
+                              }\
+                              .simplebar-content{\
+                                margin-right: -7px !important;\
+                              }\
+                              .simplebar-track{\
+                                margin-top: -2px;\
+                                margin-bottom: -2px;\
+                              }\
+                            </style>');
                 head.append('<style>'+GM_getResourceText("materialCSS")+'</style>');
                 head.append('<style>'+GM_getResourceText("materialFont")+'</style>');
+                head.append('<style>'+GM_getResourceText("simpleBarCSS")+'</style>');
                 //templateIframe(url, data);
                 if(displayFloatButton == 1){
                     var floatbutton = '<button class="open-info-popup floatbutton" style="">';
@@ -89,7 +151,7 @@
             material += '\
             </div>\
           </header>\
-          <main class="mdl-layout__content">';
+          <main class="mdl-layout__content" data-simplebar>';
             material += '\
             <section class="mdl-layout__tab-panel is-active" id="fixed-tab-1">\
               <div id="loadOverview" class="mdl-progress mdl-js-progress mdl-progress__indeterminate" style="width: 100%; position: absolute;"></div>\
@@ -112,10 +174,10 @@
                 <div class="mdl-cell mdl-cell--4-col mdl-cell--8-col-tablet mdl-shadow--4dp data-block mdl-grid mdl-grid--no-spacing malClear">\
                     \
                 </div>\
-                <div class="mdl-grid mdl-grid--no-spacing mdl-cell mdl-cell--4-col mdl-cell--8-col-tablet mdl-shadow--4dp related-block mdl-grid malClear">\
+                <div class="mdl-grid mdl-grid--no-spacing mdl-cell mdl-cell--4-col mdl-cell--8-col-tablet mdl-shadow--4dp related-block alternative-list mdl-grid malClear">\
                     \
                 </div>\
-                <div style="display: none;" class="mdl-grid mdl-grid--no-spacing mdl-cell mdl-cell--4-col mdl-cell--8-col-tablet mdl-shadow--4dp mdl-grid stream-block malClear">\
+                <div style="display: none;" class="mdl-grid mdl-grid--no-spacing mdl-cell mdl-cell--4-col mdl-cell--8-col-tablet mdl-shadow--4dp mdl-grid alternative-list stream-block malClear">\
                     <ul class="mdl-list stream-block-inner">\
                     \
                     </ul>\
@@ -144,7 +206,8 @@
             </section>';
           material +='</main>\
         </div>\
-        <div id="malSearchPop" style="height: calc(100% - 60px); width: 100%; position: fixed; top: 60px; z-index: 10; background-color: white; overflow-y: auto; display: none;">\
+        <div data-simplebar id="malSearchPop" style="height: calc(100% - 60px); width: 100%; position: fixed; top: 60px; z-index: 10; background-color: white; display: none;">\
+          <div id="malSearchPopInner"></div>\
         </div>';
         //material += '</div>';
         $("#info-iframe").contents().find("body").append(material);
@@ -186,7 +249,7 @@
               $("#info-iframe").contents().find('#malSearchPop').hide();
             }else{
               $("#info-iframe").contents().find('#malSearchPop').show();
-              searchMal($("#info-iframe").contents().find("#headMalSearch").val(), listType, '#malSearchPop', function(){
+              searchMal($("#info-iframe").contents().find("#headMalSearch").val(), listType, '#malSearchPopInner', function(){
                 $("#info-iframe").contents().find("#malSearchPop .searchItem").unbind('click').click(function(event) {
                   $("#info-iframe").contents().find("#headMalSearch").val('').trigger("input").parent().parent().removeClass('is-dirty');
                   $("#info-iframe").contents().find('.malClear').hide();
@@ -209,7 +272,7 @@
           }else{
             $("#info-iframe").contents().find("#book").toggleClass('open');
             $("#info-iframe").contents().find('#malSearchPop').show();
-            iframeBookmarks( $("#info-iframe").contents().find('#malSearchPop') );
+            iframeBookmarks( $("#info-iframe").contents().find('#malSearchPopInner') );
           }
         });
     }
@@ -250,7 +313,7 @@
 
     function iframeConfig(url, data){
         try{
-            var settingsUI = '<ul class="demo-list-control mdl-list">\
+            var settingsUI = '<ul class="demo-list-control mdl-list" style="margin: 0px; padding: 0px;">\
             <div class="mdl-grid">';
             try{
               var malUrl = GM_getValue(dbSelector+'/'+$.titleToDbKey($.urlAnimeTitle($.normalUrl()))+'/Mal' , null);
@@ -700,6 +763,7 @@
             });
             relatedHtml += '</ul>';
             $("#info-iframe").contents().find('.related-block').html(relatedHtml).show();
+            $("#info-iframe").contents().find('.related-block .mdl-list__item-sub-title').each(function(){$(this).html($(this).children()); });
             $("#info-iframe").contents().find('#material .related-block a').each(function() {
               $(this).click(function(e) {
                 $("#info-iframe").contents().find('.malClear').hide();
@@ -766,6 +830,8 @@
 
                   setanime(url, anime, null, localListType);
               });
+            }else{
+              $("#info-iframe").contents().find('.data-block').css('display', 'none');
             }
         }catch(e) {console.log('[iframeOverview] Error:',e);}
 
