@@ -62,16 +62,22 @@
                               }\
                               \
                               \
-                              .mdl-layout__content::-webkit-scrollbar-track, .simplebar-track{\
-                                -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3) !important;\
-                                background-color: #F5F5F5;\
-                              }\
-                              .mdl-layout__content::-webkit-scrollbar, .simplebar-track{\
+                              .mdl-layout__content::-webkit-scrollbar{\
                                 width: 10px !important;\
                                 background-color: #F5F5F5;\
                               }\
-                              .mdl-layout__content::-webkit-scrollbar-thumb, .simplebar-scrollbar{\
+                              .mdl-layout__content::-webkit-scrollbar-thumb{\
                                 background-color: #c1c1c1 !important;\
+                              }\
+                              .simplebar-track{\
+                                width: 10px !important;\
+                                background-color: #F5F5F5;\
+                              }\
+                              .simplebar-scrollbar{\
+                                background-color: #c1c1c1 !important;\
+                              }\
+                              .simplebar-track.horizontal{\
+                                display: none;\
                               }\
                               \
                               .simplebar-scrollbar{\
