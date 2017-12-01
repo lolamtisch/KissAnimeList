@@ -102,6 +102,9 @@
                     var floatbutton = '<button class="open-info-popup floatbutton" style="">';
                     floatbutton += '<i class="my-float" style="margin-top:22px;"><div style="width: 100%; height: 4px; margin-bottom: 15%;"></div><div style="width: 100%; height: 4px; margin-bottom: 15%;"></div><div style="width: 100%; height: 4px"></div></i></button>';
                     $('#info-popup').after(floatbutton);
+                    if(miniMalButtonLate != ''){
+                      miniMalButton(miniMalButtonLate);
+                    }
                     /*$('.open-info-popup').click(function() {
                         if($('#info-popup').css('display') == 'none'){
                             $('.floatbutton').fadeOut();

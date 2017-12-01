@@ -240,7 +240,10 @@
         }
     }
 
+    var miniMalButtonLate = '';
+    var miniMalButtonKey = 0;
     function miniMalButton(url = null){
+        miniMalButtonLate = url;
         $(".open-info-popup").unbind('click').show().click( function(){
             if($('#info-popup').css('display') == 'none'){
                 document.getElementById('info-popup').style.display = "block";
@@ -252,13 +255,16 @@
             }
         });
 
-        $("#info-iframe").contents().keydown(function(e) {
-            keys(e);
-        });
+        if(!miniMalButtonKey){
+            miniMalButtonKey = 1;
+            $("#info-iframe").contents().keydown(function(e) {
+                keys(e);
+            });
 
-        $(document).keydown(function(e) {
-            keys(e);
-        });
+            $(document).keydown(function(e) {
+                keys(e);
+            });
+        }
 
         function keys(e){
             if (e.ctrlKey && e.keyCode === 77) {
