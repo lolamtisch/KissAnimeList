@@ -68,6 +68,8 @@
 // @resource    materialCSS https://code.getmdl.io/1.3.0/material.indigo-pink.min.css
 // @resource    materialFont https://fonts.googleapis.com/icon?family=Material+Icons
 // @resource    materialjs https://code.getmdl.io/1.3.0/material.min.js
+// @resource    simpleBarCSS https://unpkg.com/simplebar@latest/dist/simplebar.css
+// @resource    simpleBarjs https://unpkg.com/simplebar@latest/dist/simplebar.js
 //
 // @connect     www.google.com
 // @connect     ipv4.google.com

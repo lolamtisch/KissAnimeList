@@ -31,6 +31,7 @@
             iframe.setAttribute("style", "height:100%;width:100%;border:0;");
             iframe.onload = function() {
                 executejs(GM_getResourceText("materialjs"));
+                executejs(GM_getResourceText("simpleBarjs"));
                 var head = $("#info-iframe").contents().find("head");
                 head.append('<style>#material .mdl-card__supporting-text{width: initial} .mdl-layout__header .mdl-textfield__label:after{background-color: red !important;}</style>');
                 head.append('<style>\
@@ -72,9 +73,17 @@
                               .mdl-layout__content::-webkit-scrollbar-thumb{\
                                 background-color: #c1c1c1;\
                               }\
+                              \
+                              .mdl-layout__container:hover .simplebar-scrollbar {\
+                                opacity: 0.5;\
+                              }\
+                              .simplebar-scrollbar{\
+                                border-radius: 0px !important;\
+                              }\
                             </style>');
                 head.append('<style>'+GM_getResourceText("materialCSS")+'</style>');
                 head.append('<style>'+GM_getResourceText("materialFont")+'</style>');
+                head.append('<style>'+GM_getResourceText("simpleBarCSS")+'</style>');
                 //templateIframe(url, data);
                 if(displayFloatButton == 1){
                     var floatbutton = '<button class="open-info-popup floatbutton" style="">';
@@ -129,7 +138,7 @@
             material += '\
             </div>\
           </header>\
-          <main class="mdl-layout__content">';
+          <main class="mdl-layout__content" data-simplebar>';
             material += '\
             <section class="mdl-layout__tab-panel is-active" id="fixed-tab-1">\
               <div id="loadOverview" class="mdl-progress mdl-js-progress mdl-progress__indeterminate" style="width: 100%; position: absolute;"></div>\
