@@ -62,23 +62,30 @@
                               }\
                               \
                               \
-                              .mdl-layout__content::-webkit-scrollbar-track{\
-                                -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);\
+                              .mdl-layout__content::-webkit-scrollbar-track, .simplebar-track{\
+                                -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3) !important;\
                                 background-color: #F5F5F5;\
                               }\
-                              .mdl-layout__content::-webkit-scrollbar{\
-                                width: 10px;\
+                              .mdl-layout__content::-webkit-scrollbar, .simplebar-track{\
+                                width: 10px !important;\
                                 background-color: #F5F5F5;\
                               }\
-                              .mdl-layout__content::-webkit-scrollbar-thumb{\
-                                background-color: #c1c1c1;\
+                              .mdl-layout__content::-webkit-scrollbar-thumb, .simplebar-scrollbar{\
+                                background-color: #c1c1c1 !important;\
                               }\
                               \
-                              .mdl-layout__container:hover .simplebar-scrollbar {\
-                                opacity: 0.5;\
-                              }\
                               .simplebar-scrollbar{\
                                 border-radius: 0px !important;\
+                                right: 0 !important;\
+                                width: 100% !important;\
+                                opacity: 1 !important;\
+                              }\
+                              .simplebar-content{\
+                                margin-right: -7px !important;\
+                              }\
+                              .simplebar-track{\
+                                margin-top: -2px;\
+                                margin-bottom: -2px;\
                               }\
                             </style>');
                 head.append('<style>'+GM_getResourceText("materialCSS")+'</style>');
