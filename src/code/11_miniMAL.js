@@ -740,7 +740,7 @@
             });
             relatedHtml += '</ul>';
             $("#info-iframe").contents().find('.related-block').html(relatedHtml).show();
-            $("#info-iframe").contents().find('.related-block .mdl-list__item-sub-title').html($("#info-iframe").contents().find('.related-block .mdl-list__item-sub-title').children())
+            $("#info-iframe").contents().find('.related-block .mdl-list__item-sub-title').each(function(){$(this).html($(this).children()); });
             $("#info-iframe").contents().find('#material .related-block a').each(function() {
               $(this).click(function(e) {
                 $("#info-iframe").contents().find('.malClear').hide();
