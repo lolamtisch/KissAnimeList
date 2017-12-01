@@ -313,7 +313,7 @@
 
     function iframeConfig(url, data){
         try{
-            var settingsUI = '<ul class="demo-list-control mdl-list">\
+            var settingsUI = '<ul class="demo-list-control mdl-list" style="margin: 0px; padding: 0px;">\
             <div class="mdl-grid">';
             try{
               var malUrl = GM_getValue(dbSelector+'/'+$.titleToDbKey($.urlAnimeTitle($.normalUrl()))+'/Mal' , null);
