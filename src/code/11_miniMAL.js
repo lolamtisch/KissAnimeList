@@ -206,7 +206,8 @@
             </section>';
           material +='</main>\
         </div>\
-        <div id="malSearchPop" style="height: calc(100% - 60px); width: 100%; position: fixed; top: 60px; z-index: 10; background-color: white; overflow-y: auto; display: none;">\
+        <div data-simplebar id="malSearchPop" style="height: calc(100% - 60px); width: 100%; position: fixed; top: 60px; z-index: 10; background-color: white; display: none;">\
+          <div id="malSearchPopInner"></div>\
         </div>';
         //material += '</div>';
         $("#info-iframe").contents().find("body").append(material);
@@ -248,7 +249,7 @@
               $("#info-iframe").contents().find('#malSearchPop').hide();
             }else{
               $("#info-iframe").contents().find('#malSearchPop').show();
-              searchMal($("#info-iframe").contents().find("#headMalSearch").val(), listType, '#malSearchPop', function(){
+              searchMal($("#info-iframe").contents().find("#headMalSearch").val(), listType, '#malSearchPopInner', function(){
                 $("#info-iframe").contents().find("#malSearchPop .searchItem").unbind('click').click(function(event) {
                   $("#info-iframe").contents().find("#headMalSearch").val('').trigger("input").parent().parent().removeClass('is-dirty');
                   $("#info-iframe").contents().find('.malClear').hide();
@@ -271,7 +272,7 @@
           }else{
             $("#info-iframe").contents().find("#book").toggleClass('open');
             $("#info-iframe").contents().find('#malSearchPop').show();
-            iframeBookmarks( $("#info-iframe").contents().find('#malSearchPop') );
+            iframeBookmarks( $("#info-iframe").contents().find('#malSearchPopInner') );
           }
         });
     }
