@@ -145,6 +145,9 @@
         if( Offset != null){
             string = parseInt(string)+parseInt(Offset);
         }
+        if(parseInt(string) == 0){
+            string = 1;
+        }
         return parseInt(string);
     }
 
