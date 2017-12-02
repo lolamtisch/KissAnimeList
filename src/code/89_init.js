@@ -112,6 +112,26 @@
                      }\
                      #flashinfo-div:hover, #flashinfo-div.hover{\
                       z-index: 2147483647;\
+                     }\
+                     \
+                     #flash-div-top, #flash-div, #flashinfo-div{\
+                        font-family: "Helvetica","Arial",sans-serif;\
+                        color: white;\
+                        font-size: 14px;\
+                        font-weight: 400;\
+                        line-height: 17px;\
+                     }\
+                     #flash-div-top h2, #flash-div h2, #flashinfo-div h2{\
+                        font-family: "Helvetica","Arial",sans-serif;\
+                        color: white;\
+                        font-size: 14px;\
+                        font-weight: 700;\
+                        line-height: 17px;\
+                        padding: 0;\
+                        margin: 0;\
+                     }\
+                     #flash-div-top a, #flash-div a, #flashinfo-div a{\
+                        color: #DF6300;\
                      }');
 
         $('body').after('<div id="flash-div-top" style="text-align: center;pointer-events: none;position: fixed;top:0px;width:100%;z-index: 2147483647;left: 0;"></div>\
