@@ -46,6 +46,8 @@
 // @connect     www.crunchyroll.com
 // @connect     kissanime.ru
 // @connect     9anime.to
+// @connect     9anime.is
+// @connect     9anime.ru
 // @connect     www3.gogoanime.tv
 // @connect     www.masterani.me
 // @connect     *
