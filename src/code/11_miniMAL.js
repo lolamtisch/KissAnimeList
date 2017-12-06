@@ -428,14 +428,20 @@
                                     </select>\
                                   </span>\
                               </li>';
-                settingsUI += '<!--<li class="mdl-list__item">\
+                settingsUI += '<li class="mdl-list__item">\
                                   <span class="mdl-list__item-primary-content">\
-                                    Border Color (<a href="https://www.webpagefx.com/web-design/color-picker/" target="_blank">HEX</a>)\
+                                    Border Color <a href="https://www.webpagefx.com/web-design/color-picker/" target="_blank"><div id="newEpBorder_color" style="width: 20px; border: 1px solid grey; height: 20px; margin-left: 5px; background-color: #'+newEpBorder+'"/></a>\
                                   </span>\
                                   <div class="mdl-list__item-secondary-action">\
+                                      <select name="newEpBorder_dropdown" id="newEpBorder_dropdown" class="inputtext mdl-textfield__input" style="outline: none;">\
+                                        <option value="c">Custom</option>\
+                                        <option value="ff0000">Red</option>\
+                                        <option value="2e51a2">MAL Blue</option>\
+                                        <option value=" ">Off</option>\
+                                      </select>\
                                       <input class="mdl-textfield__input" type="text" id="newEpBorder" size="6" maxlength="6" value="'+newEpBorder+'">\
                                   </div>\
-                              </li>-->';
+                              </li>';
                 settingsUI += '</div>';
 
                 settingsUI += '<div class="mdl-cell mdl-cell--12-col mdl-shadow--4dp">\
@@ -773,7 +779,25 @@
 
             $("#info-iframe").contents().find("#newEpBorder").change(function(){
               GM_setValue( 'newEpBorder', $("#info-iframe").contents().find("#newEpBorder").val() );
+              $("#info-iframe").contents().find('#newEpBorder_color').css('background-color', '#'+$("#info-iframe").contents().find("#newEpBorder").val());
             });
+
+            $("#info-iframe").contents().find("#newEpBorder_dropdown").val(newEpBorder);
+            $("#info-iframe").contents().find("#newEpBorder_dropdown").change(function(){
+              var dvalue=  $("#info-iframe").contents().find("#newEpBorder_dropdown").val();
+              if(dvalue == 'c'){
+                $("#info-iframe").contents().find("#newEpBorder").show();
+              }else{
+                $("#info-iframe").contents().find("#newEpBorder").hide();
+
+                $("#info-iframe").contents().find("#newEpBorder").val( dvalue );
+                $("#info-iframe").contents().find("#newEpBorder").trigger("change");
+                if(dvalue == ' '){
+                  $("#info-iframe").contents().find('#newEpBorder_color').css('background-color','transparent');
+                }
+              }
+            });
+            $("#info-iframe").contents().find("#newEpBorder_dropdown").trigger("change");
 
             $("#info-iframe").contents().find('#malConfig').show();
         }catch(e) {console.log('[iframeConfig] Error:',e);}
