@@ -116,6 +116,21 @@
 						if(response.status != 200){//TODO: Cloudflare handling
 							GM_deleteValue('newEp_last_update');
 							con.log('[EpCheck] [ERROR]', response);
+							var message = '<div>Coud Not Check</div><div class="errorpage"></div>'//;<button class="okChangelog" style="background-color: transparent; border: none; color: rgb(255,64,129);margin-top: 10px;cursor: pointer;">Ok</button></div>';
+							if( !$('.errorpage').length ){
+								flashm(message,false,false,true);
+							}
+							var erClass = url.split('/')[2].replace(".", "");
+							if(!($('.'+erClass).length)){
+								$('.errorpage').prepend('<a target="_blank" class="'+erClass+'" href="'+url+'">'+url.split('/')[2]+'</a><br class="'+erClass+'" />');
+								$('.'+erClass).click(function(){
+									$(this).remove();
+									if($('.errorpage').text() == ''){
+										$('.flashPerm').remove();
+									}
+								});
+							}
+
 						}else{
 							if( url.indexOf("masterani.me") > -1 ){
 								var parsed  = $.parseJSON(response.response);
