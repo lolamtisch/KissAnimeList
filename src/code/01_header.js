@@ -6,6 +6,8 @@
 // @license 	CC-BY-4.0; https://creativecommons.org/licenses/by/4.0/legalcode
 // @license 	MIT
 // @supportURL  https://github.com/lolamtisch/KissAnimeList/issues
+// @downloadURL https://greasyfork.org/scripts/27564-kissanimelist/code/KissAnimeList.user.js
+// @updateURL	https://greasyfork.org/scripts/27564-kissanimelist/code/KissAnimeList.meta.js
 // @include     http://kissanime.ru/Anime/*
 // @include     http://kissanime.to/Anime/*
 // @include     http://kissanime.ru/BookmarkList
