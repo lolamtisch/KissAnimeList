@@ -528,6 +528,7 @@
                             <div class="mdl-card__title mdl-card--border">\
                                 <h2 class="mdl-card__title-text">ETC</h2>\
                                 </div>';
+                settingsUI += materialCheckbox(debugging,'debugging','Debugging ');
                 settingsUI += '<li class="mdl-list__item"><button type="button" id="clearCache" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">Clear Cache</button></li>';
                 settingsUI += '</div>';
 
@@ -770,6 +771,16 @@
             $("#info-iframe").contents().find("#malThumbnail").val(malThumbnail);
             $("#info-iframe").contents().find("#malThumbnail").change(function(){
               GM_setValue( 'malThumbnail', $("#info-iframe").contents().find("#malThumbnail").val() );
+            });
+
+            $("#info-iframe").contents().find('#debugging').change(function(){
+                if($(this).is(":checked")){
+                    GM_setValue('debugging', 1);
+                    debugging = 1;
+                }else{
+                    GM_setValue('debugging', 0);
+                    debugging = 0;
+                }
             });
 
             $("#info-iframe").contents().find("#newEpInterval").val(newEpInterval);

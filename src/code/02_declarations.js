@@ -11,8 +11,10 @@
     };
 
     var element = new Image();
-    Object.defineProperty(element, 'id', {
-      get: function () {
+
+    debugging = GM_getValue('debugging', 0 );
+
+    if(debugging){
         debug = 1;
         con.log = function(){
             var args = Array.prototype.slice.call(arguments);
@@ -20,9 +22,22 @@
             args.unshift("%c[KAL]");
             console.log.apply(console, args);
         }
-      }
-    });
+    }else{
+        Object.defineProperty(element, 'id', {
+          get: function () {
+            debug = 1;
+            con.log = function(){
+                var args = Array.prototype.slice.call(arguments);
+                args.unshift("color: blue;");
+                args.unshift("%c[KAL]");
+                console.log.apply(console, args);
+            }
+          }
+        });
+    }
     console.log('%cKissAnimeList ['+GM_info.script.version+']', element,);
+
+
 
     var malBookmarks = GM_getValue( 'malBookmarks', 1 );
     var classicBookmarks = GM_getValue( 'classicBookmarks', 0 );
