@@ -113,6 +113,9 @@
 					url: url,
 					synchronous: false,
 					onload: function(response) {
+						if(response.response.indexOf('Your detected location is United States of America') == -1 && url.indexOf("crunchyroll.com") > -1){
+							response.status = 502;
+						}
 						if(response.status != 200){//TODO: Cloudflare handling
 							GM_deleteValue('newEp_last_update');
 							con.log('[EpCheck] [ERROR]', response);
@@ -120,7 +123,7 @@
 							if( !$('.errorpage').length ){
 								flashm(message,false,false,true);
 							}
-							var erClass = url.split('/')[2].replace(".", "");
+							var erClass = url.split('/')[2].replace(".", "").replace(".", "");
 							if(!($('.'+erClass).length)){
 								$('.errorpage').prepend('<a target="_blank" class="'+erClass+'" href="'+url+'">'+url.split('/')[2]+'</a><br class="'+erClass+'" />');
 								$('.'+erClass).click(function(){
