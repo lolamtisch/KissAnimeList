@@ -3,7 +3,7 @@
             $('#siteSearch').before('<h2 id="'+page+'Links" class="mal_links"><img src="https://www.google.com/s2/favicons?domain='+responsearray['url'].split('/')[2]+'"> '+page+'</h2><br class="mal_links" />');
         }
         if($("#info-iframe").contents().find('#'+page+'Links').width() == null){
-            $("#info-iframe").contents().find('.stream-block-inner').append('<li class="mdl-list__item mdl-list__item--three-line"><span class="mdl-list__item-primary-content"><span>'+page+'</span><span id="'+page+'Links" class="mdl-list__item-text-body"></span></span></li>');
+            $("#info-iframe").contents().find('.stream-block-inner').append('<li class="mdl-list__item mdl-list__item--three-line"><span class="mdl-list__item-primary-content"><span><img style="padding-bottom: 3px;" src="https://www.google.com/s2/favicons?domain='+responsearray['url'].split('/')[2]+'"> '+page+'</span><span id="'+page+'Links" class="mdl-list__item-text-body"></span></span></li>');
         }
         $('#'+page+'Links').after('<div class="mal_links"><a target="_blank" href="'+responsearray['url']+'">'+responsearray['title']+'</a><div>');
         $("#info-iframe").contents().find('#'+page+'Links').append('<div><a target="_blank" href="'+responsearray['url']+'">'+responsearray['title']+'</a><div>');
