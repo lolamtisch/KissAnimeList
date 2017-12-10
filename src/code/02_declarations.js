@@ -29,7 +29,6 @@
     }
 
     var tagLinks = GM_getValue( 'tagLinks', 1 );
-    var searchLinks = GM_getValue( 'searchLinks', 1 );
     var kissanimeLinks = GM_getValue( 'kissanimeLinks', 1 );
     var kissmangaLinks = GM_getValue( 'kissmangaLinks', 1 );
     var masteraniLinks = GM_getValue( 'masteraniLinks', 1 );

@@ -391,12 +391,12 @@
                             <div class="mdl-card__title mdl-card--border">\
                                 <h2 class="mdl-card__title-text">Overview Page</h2>\
                                 </div>';
-                settingsUI += materialCheckbox(searchLinks,'searchLinks','Search links');
                 settingsUI += materialCheckbox(kissanimeLinks,'kissanimeLinks','Kissanime links');
                 settingsUI += materialCheckbox(masteraniLinks,'masteraniLinks','Masterani.me links');
                 settingsUI += materialCheckbox(nineanimeLinks,'nineanimeLinks','9anime links');
                 settingsUI += materialCheckbox(crunchyrollLinks,'crunchyrollLinks','Crunchyroll links');
                 settingsUI += materialCheckbox(gogoanimeLinks,'gogoanimeLinks','Gogoanime links');
+                settingsUI += materialCheckbox(kissmangaLinks,'kissmangaLinks','Kissmanga links');
                 settingsUI += '</div>';
 
                 settingsUI += '<div class="mdl-cell mdl-cell--12-col mdl-shadow--4dp">\
@@ -545,13 +545,13 @@
                     tagLinks = 0;
                 }
             });
-            $("#info-iframe").contents().find('#searchLinks').change(function(){
+            $("#info-iframe").contents().find('#kissmangaLinks').change(function(){
                 if($(this).is(":checked")){
-                    GM_setValue('searchLinks', 1);
-                    searchLinks = 1;
+                    GM_setValue('kissmangaLinks', 1);
+                    kissmangaLinks = 1;
                 }else{
-                    GM_setValue('searchLinks', 0);
-                    searchLinks = 0;
+                    GM_setValue('kissmangaLinks', 0);
+                    kissmangaLinks = 0;
                 }
             });
 
