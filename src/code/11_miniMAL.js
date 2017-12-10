@@ -389,14 +389,14 @@
 
                 settingsUI += '<div class="mdl-cell mdl-cell--12-col mdl-shadow--4dp">\
                             <div class="mdl-card__title mdl-card--border">\
-                                <h2 class="mdl-card__title-text">Overview Page</h2>\
+                                <h2 class="mdl-card__title-text">Streaming Site Links</h2>\
                                 </div>';
-                settingsUI += materialCheckbox(kissanimeLinks,'kissanimeLinks','Kissanime links');
-                settingsUI += materialCheckbox(masteraniLinks,'masteraniLinks','Masterani.me links');
-                settingsUI += materialCheckbox(nineanimeLinks,'nineanimeLinks','9anime links');
-                settingsUI += materialCheckbox(crunchyrollLinks,'crunchyrollLinks','Crunchyroll links');
-                settingsUI += materialCheckbox(gogoanimeLinks,'gogoanimeLinks','Gogoanime links');
-                settingsUI += materialCheckbox(kissmangaLinks,'kissmangaLinks','Kissmanga links');
+                settingsUI += materialCheckbox(kissanimeLinks,'kissanimeLinks','KissAnime');
+                settingsUI += materialCheckbox(masteraniLinks,'masteraniLinks','MasterAnime');
+                settingsUI += materialCheckbox(nineanimeLinks,'nineanimeLinks','9anime');
+                settingsUI += materialCheckbox(crunchyrollLinks,'crunchyrollLinks','Crunchyroll');
+                settingsUI += materialCheckbox(gogoanimeLinks,'gogoanimeLinks','Gogoanime');
+                settingsUI += materialCheckbox(kissmangaLinks,'kissmangaLinks','KissManga');
                 settingsUI += '</div>';
 
                 settingsUI += '<div class="mdl-cell mdl-cell--12-col mdl-shadow--4dp">\
