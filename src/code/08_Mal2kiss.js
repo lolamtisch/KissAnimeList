@@ -124,7 +124,10 @@
         if(window.location.href.indexOf("/pics") > -1){
             return;
         }
-        var height = 144;
+        if(malThumbnail == "0"){
+            return;
+        }
+        var height = parseInt(malThumbnail);
         var width = Math.floor(height/144*100);
 
         var surHeight = height+4;
