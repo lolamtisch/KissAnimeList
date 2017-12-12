@@ -1,5 +1,6 @@
 	var newEPTime = 0;
 	var newEpUpdate = 0;
+	var checkFail = [];
 	function checkForNewEpisodes(url, entrySelector, progress){
 		if(newEpInterval == 'null'){
 			return;
@@ -11,7 +12,25 @@
 					duration: 2500,
 					queue: false,
 					complete: function() { $(this).remove(); }});
+
+				function checkFailBackground(){
+					if(checkFail.length){
+						var tab = GM_openInTab(checkFail[0]);
+						checkFail.shift();
+						console.log(tab);
+						setTimeout(function(){
+						    tab.close();
+						    checkFailBackground();
+						}, 10000);
+					}else{
+						tagToContinue();
+					}
+				}
+				if(checkFail.length){
+					checkFailBackground();
+				}
 			}, newEPTime);
+
 		}
 		var title = ''; //ll
 		var selector = '';
@@ -132,6 +151,8 @@
 										$('.flashPerm').remove();
 									}
 								});
+
+								checkFail.push(url);
 							}
 
 						}else{
