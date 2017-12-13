@@ -93,6 +93,12 @@
                                 margin-top: -2px;\
                                 margin-bottom: -2px;\
                               }\
+                              a{\
+                                text-decoration: none;\
+                              }\
+                              .mdl-layout__tab-panel a:hover{\
+                                text-decoration: underline;\
+                              }\
                             </style>');
                 head.append('<style>'+GM_getResourceText("materialCSS")+'</style>');
                 head.append('<style>'+GM_getResourceText("materialFont")+'</style>');
