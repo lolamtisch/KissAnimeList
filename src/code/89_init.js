@@ -61,6 +61,7 @@
             getMalXml();
         }
     }else if(window.location.href.indexOf("myanimelist.net") > -1 ){
+        malThumbnails();
         if(window.location.href.indexOf("myanimelist.net/anime.php") > -1){
             window.history.replaceState(null, null, '/anime/'+$.urlParam('id') );
         }

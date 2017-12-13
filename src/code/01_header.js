@@ -23,6 +23,9 @@
 // @include     https://myanimelist.net/animelist/*
 // @include     https://myanimelist.net/anime.php?*id=*
 // @include     https://myanimelist.net/manga.php?*id=*
+// @include     https://myanimelist.net/character*
+// @include     https://myanimelist.net/search*
+// @include     https://myanimelist.net/people*
 //
 // @include     https://www.masterani.me/anime/info/*
 // @include     https://www.masterani.me/anime/watch/*

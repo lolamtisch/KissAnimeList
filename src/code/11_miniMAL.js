@@ -400,6 +400,25 @@
                 settingsUI += '</div>';
 
                 settingsUI += '<div class="mdl-cell mdl-cell--12-col mdl-shadow--4dp">\
+                            <div class="mdl-card__title mdl-card--border">\
+                                <h2 class="mdl-card__title-text">MyAnimeList</h2>\
+                                </div>';
+                settingsUI += '<li class="mdl-list__item">\
+                                  <span class="mdl-list__item-primary-content">\
+                                      Thumbnails\
+                                  </span>\
+                                  <span class="mdl-list__item-secondary-action">\
+                                    <select name="myinfo_score" id="malThumbnail" class="inputtext mdl-textfield__input" style="outline: none;">\
+                                      <option value="144">Large</option>\
+                                      <option value="100">Medium</option>\
+                                      <option value="60">Small</option>\
+                                      <option value="0">MAL Default</option>\
+                                    </select>\
+                                  </span>\
+                              </li>';
+                settingsUI += '</div>';
+
+                settingsUI += '<div class="mdl-cell mdl-cell--12-col mdl-shadow--4dp">\
                                 <div class="mdl-card__title mdl-card--border">\
                                   <h2 class="mdl-card__title-text">miniMAL</h2>\
                                   <span style="margin-left: auto; color: #7f7f7f;">Shortcut: Ctrl + m</span>\
@@ -664,6 +683,12 @@
                     miniMALonMal = 0;
                 }
             });
+
+            $("#info-iframe").contents().find("#malThumbnail").val(malThumbnail);
+            $("#info-iframe").contents().find("#malThumbnail").change(function(){
+              GM_setValue( 'malThumbnail', $("#info-iframe").contents().find("#malThumbnail").val() );
+            });
+
             $("#info-iframe").contents().find('#malConfig').show();
         }catch(e) {console.log('[iframeConfig] Error:',e);}
     }

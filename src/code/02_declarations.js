@@ -36,6 +36,8 @@
     var crunchyrollLinks = GM_getValue( 'crunchyrollLinks', 1 );
     var gogoanimeLinks = GM_getValue( 'gogoanimeLinks', 1 );
 
+    var malThumbnail = GM_getValue( 'malThumbnail', 100 );
+
     var miniMALonMal = GM_getValue( 'miniMALonMal', 0 );
     var posLeft = GM_getValue( 'posLeft', 1 );
     var miniMalWidth = GM_getValue( 'miniMalWidth', '30%' );
