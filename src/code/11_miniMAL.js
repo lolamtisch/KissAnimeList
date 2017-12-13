@@ -1154,7 +1154,6 @@
     function outOfTheWay(){
       $(document).ready(function(){
         try{
-          var videoSelector = '.html5-video-player';
           var minimalSelector = '#modal-content';
 
           reposition();

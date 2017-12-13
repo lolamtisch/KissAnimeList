@@ -118,6 +118,7 @@
         var listType = 'anime';
         var bookmarkCss = ".listing tr td:nth-child(1){height: 150px;padding-left: 125px;} .listing tr td{vertical-align: top;}";
         var bookmarkFixCss = ".bigBarContainer {margin: 0px; width: 630px !important; text-align: left; float: left;}";
+        var videoSelector = '#divContentVideo';
 
         $.init = function() {
             checkdata();
@@ -372,6 +373,7 @@
         var listType = 'anime';
         var bookmarkCss = "";
         var bookmarkFixCss = "";
+        var videoSelector = '.ui.embed';
         var winLoad = 0;
 
         $.init = function() {
@@ -499,6 +501,7 @@
         var listType = 'anime';
         var bookmarkCss = "";
         var bookmarkFixCss = "";
+        var videoSelector = '#player';
         var winLoad = 0;
 
         $.init = function() {
@@ -647,6 +650,7 @@
         var listType = 'anime';
         var bookmarkCss = "";
         var bookmarkFixCss = "";
+        var videoSelector = '#showmedia_video_box_wide';
         GM_addStyle('.headui a {color: black !important;} #malp{margin-bottom: 8px;}');
 
         $.init = function() {
@@ -834,6 +838,7 @@
         var listType = 'anime';
         var bookmarkCss = "";
         var bookmarkFixCss = "";
+        var videoSelector = '.anime_video_body_watch_items';
         var winLoad = 0;
         GM_addStyle('.headui a {color: inherit !important;}');
 
