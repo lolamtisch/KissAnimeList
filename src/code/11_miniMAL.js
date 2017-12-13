@@ -390,9 +390,8 @@
                 settingsUI += '<div class="mdl-cell mdl-cell--12-col mdl-shadow--4dp">\
                             <div class="mdl-card__title mdl-card--border">\
                                 <h2 class="mdl-card__title-text">Streaming Site Links</h2>\
-                                    <!-- Multiline Tooltip -->
-                                    <div id="tt4" class="icon material-icons">info_outline</div>
-                                    <div class="mdl-tooltip" for="tt4"
+                                    <div id="tt4" class="icon material-icons">info_outline</div>\
+                                    <div class="mdl-tooltip" for="tt4"\
                                     If disabled, the streaming site will no longer appear in an anime's sidebar on MAL.
                                     </div>
                                 </div>';
