@@ -1168,6 +1168,9 @@
                     reposition();
                 }
             });
+            $(document).on('mozfullscreenchange webkitfullscreenchange fullscreenchange',function(){
+              reposition();
+            });
           }
 
           function reposition(){
