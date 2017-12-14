@@ -432,8 +432,9 @@
                                   <span style="margin-left: auto; color: #7f7f7f;">Shortcut: Ctrl + m</span>\
                                 </div>';
                 settingsUI += materialCheckbox(miniMALonMal,'miniMALonMal','Display on MyAnimeList');
-                settingsUI += materialCheckbox(displayFloatButton,'displayFloatButton','Floating menu button');
                 settingsUI += materialCheckbox(posLeft,'posLeft','Left-sided');
+                settingsUI += materialCheckbox(displayFloatButton,'displayFloatButton','Floating menu button');
+                settingsUI += materialCheckbox(outWay,'outWay','Move video out of the way');
                 settingsUI += '<li class="mdl-list__item" style="display: inline-block; width: 50%;">\
                                   <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width: 100%;">\
                                       <input class="mdl-textfield__input" type="text" step="1" id="miniMalHeight" value="'+miniMalHeight+'">\
@@ -689,6 +690,16 @@
                 }else{
                     GM_setValue('miniMALonMal', 0);
                     miniMALonMal = 0;
+                }
+            });
+
+            $("#info-iframe").contents().find('#outWay').change(function(){
+                if($(this).is(":checked")){
+                    GM_setValue('outWay', 1);
+                    outWay = 1;
+                }else{
+                    GM_setValue('outWay', 0);
+                    outWay = 0;
                 }
             });
 
@@ -1152,6 +1163,7 @@
 
     var outOfTheWayLoad = 0;
     function outOfTheWay(){
+      if(outWay != 1) return;
       $(document).ready(function(){
         try{
           var minimalSelector = '#modal-content';
