@@ -650,7 +650,7 @@
         var listType = 'anime';
         var bookmarkCss = "";
         var bookmarkFixCss = "";
-        var videoSelector = '#showmedia_video_box_wide';
+        var videoSelector = '#showmedia_video_box_wide,#showmedia_video_box';
         GM_addStyle('.headui a {color: black !important;} #malp{margin-bottom: 8px;}');
 
         $.init = function() {
