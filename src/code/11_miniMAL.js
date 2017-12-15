@@ -225,6 +225,7 @@
         $("#info-iframe").contents().find("#close-info-popup").click( function(){
             modal.style.display = "none";
             $('.floatbutton').fadeIn();
+            outOfTheWay();
             //$('body').css('overflow','initial');
         });
 
@@ -287,6 +288,7 @@
     }
 
     function fillIframe(url, data = null){
+        outOfTheWay();
         $("#info-iframe").contents().find('.malClear').hide();
         $("#info-iframe").contents().find('.mdl-progress__indeterminate').show();
         if(data == null && url != null){
@@ -430,8 +432,9 @@
                                   <span style="margin-left: auto; color: #7f7f7f;">Shortcut: Ctrl + m</span>\
                                 </div>';
                 settingsUI += materialCheckbox(miniMALonMal,'miniMALonMal','Display on MyAnimeList');
-                settingsUI += materialCheckbox(displayFloatButton,'displayFloatButton','Floating menu button');
                 settingsUI += materialCheckbox(posLeft,'posLeft','Left-sided');
+                settingsUI += materialCheckbox(displayFloatButton,'displayFloatButton','Floating menu button');
+                settingsUI += materialCheckbox(outWay,'outWay','Move video out of the way');
                 settingsUI += '<li class="mdl-list__item" style="display: inline-block; width: 50%;">\
                                   <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width: 100%;">\
                                       <input class="mdl-textfield__input" type="text" step="1" id="miniMalHeight" value="'+miniMalHeight+'">\
@@ -687,6 +690,16 @@
                 }else{
                     GM_setValue('miniMALonMal', 0);
                     miniMALonMal = 0;
+                }
+            });
+
+            $("#info-iframe").contents().find('#outWay').change(function(){
+                if($(this).is(":checked")){
+                    GM_setValue('outWay', 1);
+                    outWay = 1;
+                }else{
+                    GM_setValue('outWay', 0);
+                    outWay = 0;
                 }
             });
 
@@ -1146,4 +1159,76 @@
           });
 
         });
+    }
+
+    var outOfTheWayLoad = 0;
+    function outOfTheWay(){
+      if(outWay != 1) return;
+      $(document).ready(function(){
+        try{
+          var minimalSelector = '#modal-content';
+
+          reposition();
+          if(outOfTheWayLoad == 0){
+            outOfTheWayLoad = 1;
+            $( window ).resize(function(){reposition();});
+            var lastScrollLeft = 0;
+            $(window).scroll(function() {
+                var documentScrollLeft = $(document).scrollLeft();
+                if (lastScrollLeft != documentScrollLeft) {
+                    lastScrollLeft = documentScrollLeft;
+                    reposition();
+                }
+            });
+            $(document).on('mozfullscreenchange webkitfullscreenchange fullscreenchange',function(){
+              reposition();
+            });
+          }
+
+          function reposition(){
+              $(videoSelector).css('transform', '');
+
+              if(!$(minimalSelector).is(":visible")){
+                  return;
+              }
+
+              var videoLeft = $(videoSelector).offset().left;
+              var videoWidth = $(videoSelector).width();
+              var videoRight = videoLeft + videoWidth;
+            var minimalLeft = $(minimalSelector).offset().left;
+            var minimalRight = minimalLeft + $(minimalSelector).width();
+            var viewportWidth = $(window).width() - $(minimalSelector).width();
+
+            if( minimalLeft == $(window).scrollLeft()){
+                if( minimalRight > videoLeft){
+                    var tempVideoLeft = minimalRight;
+                    if(videoWidth > viewportWidth){
+                          setVideo(tempVideoLeft, viewportWidth);
+                    }else{
+                          setVideo(tempVideoLeft, videoWidth);
+                      }
+                }
+            }else{
+                if(minimalLeft < videoRight){
+
+                      if(videoWidth > viewportWidth){
+                          var tempVideoLeft = minimalLeft - viewportWidth;
+                          setVideo(tempVideoLeft, viewportWidth);
+                      }else{
+                          var tempVideoLeft = minimalLeft - videoWidth;
+                          setVideo(tempVideoLeft, videoWidth);
+                      }
+                }
+            }
+
+            function setVideo(Left, Width){
+                var scale = Width / videoWidth;
+                Left = Left - videoLeft;
+                Left = Left / scale;
+                $(videoSelector).css('transform', 'scale('+scale+') translateX('+Left+'px)');
+                $(videoSelector).css('transform-origin', '0% 50%');
+            }
+          }
+        }catch(e){}
+      });
     }
