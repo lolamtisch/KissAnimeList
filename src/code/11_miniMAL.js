@@ -356,7 +356,7 @@
                                   Search\
                                 </label>\
                                   <input class="mdl-textfield__input" style="padding-right: 18px;" type="text" id="malSearch">\
-                                  '+getTooltip('To make a search, simply begin typing the name of an anime, and a list with results will automatically appear as you type.','float: right; margin-top: -17px;','left')+'\
+                                  '+getTooltip('This field is for finding an anime, when you need to replace the "MyAnimeList Url" shown above.<br>To make a search, simply begin typing the name of an anime, and a list with results will automatically appear as you type.','float: right; margin-top: -17px;','left')+'\
                               </div>\
                               </div>\
                               <div class="mdl-list__item" style="min-height: 0; padding-bottom: 0; padding-top: 0;">\
