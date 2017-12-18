@@ -339,14 +339,14 @@
                                   <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width: 100%;">\
                                       <input class="mdl-textfield__input" type="number" step="1" id="malOffset" value="'+GM_getValue(dbSelector+'/'+$.titleToDbKey($.urlAnimeTitle($.normalUrl()))+'/Offset' , '')+'">\
                                   <label class="mdl-textfield__label" for="malOffset">Episode Offset</label>\
-                                    '+getTooltip('Input the episode offset, if an anime has 12 episodes, but uses the numbers 0-11 rather than 1-12, you simply type " +1 " in the episode offset.','float: right; margin-top: -17px;')+'\
+                                    '+getTooltip('Input the episode offset, if an anime has 12 episodes, but uses the numbers 0-11 rather than 1-12, you simply type " +1 " in the episode offset.','float: right; margin-top: -17px;','left')+'\
                                   </div>\
                                 </div>\
                                 <div class="mdl-list__item" style="padding-bottom: 0;padding-top: 0;">\
                                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width: 100%;">\
                                     <input class="mdl-textfield__input" type="text" id="malUrlInput" value="'+malUrl+'">\
                                 <label class="mdl-textfield__label" for="malUrlInput">MyAnimeList Url</label>\
-                                  '+getTooltip('Only change this URL if it points to the wrong anime page on MAL.','float: right; margin-top: -17px;')+'\
+                                  '+getTooltip('Only change this URL if it points to the wrong anime page on MAL.','float: right; margin-top: -17px;','left')+'\
                                 </div>\
                               </div>\
                               \
@@ -356,7 +356,7 @@
                                   Search\
                                 </label>\
                                   <input class="mdl-textfield__input" type="text" id="malSearch">\
-                                  '+getTooltip('To make a search, simply begin typing the name of an anime, and a list with results will automatically appear as you type.','float: right; margin-top: -17px;')+'\
+                                  '+getTooltip('To make a search, simply begin typing the name of an anime, and a list with results will automatically appear as you type.','float: right; margin-top: -17px;','left')+'\
                               </div>\
                               </div>\
                               <div class="mdl-list__item" style="min-height: 0; padding-bottom: 0; padding-top: 0;">\
@@ -374,7 +374,7 @@
                             <div class="mdl-card__title mdl-card--border">\
                                 <h2 class="mdl-card__title-text">General</h2>\
                                 </div>';
-                settingsUI += materialCheckbox(autoTracking,'autoTracking','Autotracking'+getTooltip('Autotracking is the function where this script automatically updates the anime´s you watch with your MAL account.'));
+                settingsUI += materialCheckbox(autoTracking,'autoTracking','Autotracking'+getTooltip('Autotracking is the function where this script automatically updates the anime´s you watch with your MAL account.','','bottom'));
                 settingsUI += '<li class="mdl-list__item">\
                                   <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width: 100%;">\
                                       <input class="mdl-textfield__input" type="number" step="1" id="malDelay" value="'+delay+'">\
