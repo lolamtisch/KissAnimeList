@@ -297,3 +297,9 @@
            return decodeURI(results[1]) || 0;
         }
     }
+
+    function getTooltip(text, style = ''){
+        var rNumber = Math.floor((Math.random() * 1000) + 1);
+        return '<div id="tt'+rNumber+'" class="icon material-icons" style="font-size:16px; line-height: 0; color: #7f7f7f; padding-bottom: 20px; padding-left: 3px; '+style+'"> &#x1F6C8;</div>\
+        <div class="mdl-tooltip mdl-tooltip--top mdl-tooltip--large" for="tt'+rNumber+'">'+text+'</div>';
+    }

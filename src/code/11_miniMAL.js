@@ -391,9 +391,7 @@
                             <div class="mdl-card__title mdl-card--border">\
                                 <h2 class="mdl-card__title-text">Streaming Site Links</h2>';
 
-                settingsUI += '<div id="tt4" class="icon material-icons" style="font-size:16px; line-height: 0; color: #7f7f7f; padding-bottom: 20px; padding-left: 3px;"> &#x1F6C8;</div>\
-                                <div class="mdl-tooltip mdl-tooltip--top mdl-tooltip--large" for="tt4">If disabled, the streaming site will no longer appear in an animes sidebar on MAL.</span>\
-                                </div>';
+                settingsUI += getTooltip('If disabled, the streaming site will no longer appear in an animes sidebar on MAL.');
 
                 settingsUI += '</div>';
 
