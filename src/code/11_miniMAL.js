@@ -453,7 +453,6 @@
                               </li>';
                 settingsUI += materialCheckbox(miniMALonMal,'miniMALonMal','Display on MyAnimeList');
                 settingsUI += materialCheckbox(displayFloatButton,'displayFloatButton','Floating menu button');
-                settingsUI += materialCheckbox(posLeft,'posLeft','Left-sided');
 
                 settingsUI += materialCheckbox(outWay,'outWay','Move video out of the way');
                 settingsUI += '<li class="mdl-list__item" style="display: inline-block; width: 50%;">\
