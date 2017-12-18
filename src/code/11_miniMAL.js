@@ -338,19 +338,22 @@
                                   <div class="mdl-list__item">\
                                   <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width: 100%;">\
                                       <input class="mdl-textfield__input" type="number" step="1" id="malOffset" value="'+GM_getValue(dbSelector+'/'+$.titleToDbKey($.urlAnimeTitle($.normalUrl()))+'/Offset' , '')+'">\
-                                  <label class="mdl-textfield__label" for="malOffset">Episode Offset</label>\
+                                  <label class="mdl-textfield__label" for="malOffset">Episode Offset</label>';
+                settingsUI += getTooltip('Input the episode offset, if an anime has 12 episodes, but uses the numbers 0-11 rather than 1-12, you simply type " +1 " in the episode offset.');
                                   </div>\
                                 </div>\
                                 <div class="mdl-list__item" style="padding-bottom: 0;padding-top: 0;">\
                                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width: 100%;">\
                                     <input class="mdl-textfield__input" type="text" id="malUrlInput" value="'+malUrl+'">\
                                 <label class="mdl-textfield__label" for="malUrlInput">MyAnimeList Url</label>\
+                settingsUI += getTooltip('Only change this URL if it points to the wrong anime page on MAL.');
                                 </div>\
                               </div>\
                               \
                               <div class="mdl-list__item" style="padding-bottom: 0;padding-top: 0;">\
                               <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width: 100%;">\
                                 <label class="mdl-textfield__label" for="malSearch">\
+                settingsUI += getTooltip('To make a search, simply begin typing the name of an anime, and a list with results will automatically appear as you type.');
                                   Search\
                                 </label>\
                                   <input class="mdl-textfield__input" type="text" id="malSearch">\
@@ -364,7 +367,7 @@
                                 <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" id="malSubmit">Update</button>\
                                 <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent" id="malReset" style="margin-left: 5px;">Reset</button>\
                                 </div>\
-                              </div>';
+                              </div>;
 
             }
                 settingsUI += '<div class="mdl-cell mdl-cell--12-col mdl-shadow--4dp">\
@@ -372,6 +375,7 @@
                                 <h2 class="mdl-card__title-text">General</h2>\
                                 </div>';
                 settingsUI += materialCheckbox(autoTracking,'autoTracking','Autotracking');
+                settingsUI += getTooltip('Autotracking is the function where this script automatically updates the anime´s you watch with your MAL account.');
                 settingsUI += '<li class="mdl-list__item">\
                                   <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width: 100%;">\
                                       <input class="mdl-textfield__input" type="number" step="1" id="malDelay" value="'+delay+'">\
@@ -385,6 +389,7 @@
                                 <h2 class="mdl-card__title-text">MAL Bookmark Page</h2>\
                                 </div>';
                 settingsUI += materialCheckbox(tagLinks,'tagLinks','Continue watching links');
+                settingsUI += getTooltip('If enabled: On your MAL Anime List and the bookmark list in miniMAL, an icon-link will be added to the last used streaming site you were using to watch an anime.<br>Simply click the icon to continue watching the anime.');
                 settingsUI += '</div>';
 
                 settingsUI += '<div class="mdl-cell mdl-cell--12-col mdl-shadow--4dp">\
@@ -406,8 +411,11 @@
 
                 settingsUI += '<div class="mdl-cell mdl-cell--12-col mdl-shadow--4dp">\
                             <div class="mdl-card__title mdl-card--border">\
-                                <h2 class="mdl-card__title-text">MyAnimeList</h2>\
-                                </div>';
+                                <h2 class="mdl-card__title-text">MyAnimeList</h2>';
+
+                settingsUI += getTooltip('The option below, is for resizing thumbnails on MAL.<br>Like thumbnails for characters, people, recommendations, etc.');
+
+                                '</div>';
                 settingsUI += '<li class="mdl-list__item">\
                                   <span class="mdl-list__item-primary-content">\
                                       Thumbnails\
@@ -431,11 +439,14 @@
                 settingsUI += materialCheckbox(miniMALonMal,'miniMALonMal','Display on MyAnimeList');
                 settingsUI += materialCheckbox(displayFloatButton,'displayFloatButton','Floating menu button');
                 settingsUI += materialCheckbox(posLeft,'posLeft','Left-sided');
+                settingsUI += getTooltip('By default(enabled), miniMAL will be aligned to the right side of the screen.<br>If you disable this options, miniMAL will align to the left side of the screen instead.');
+
                 settingsUI += '<li class="mdl-list__item" style="display: inline-block; width: 50%;">\
                                   <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width: 100%;">\
                                       <input class="mdl-textfield__input" type="text" step="1" id="miniMalHeight" value="'+miniMalHeight+'">\
-                                  <label class="mdl-textfield__label" for="miniMalHeight">Height (px / %)</label>\
-                                  </div>\
+                                  <label class="mdl-textfield__label" for="miniMalHeight">Height (px / %)</label>';
+                settingsUI += getTooltip('Adjust the size of miniMAL to your liking.<br>There is both an upper-limit and a lower-limit in place, so it will never become larger than the visible part of the page, nor will it become so small that you won´t be able to easily change it back.');
+                                  </div>'\
                               </li>';
                 settingsUI += '<li class="mdl-list__item" style="display: inline-block; width: 50%;">\
                                   <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width: 100%;">\
@@ -447,10 +458,14 @@
 
                 settingsUI += '<div class="mdl-cell mdl-cell--12-col mdl-shadow--4dp hoverinfoDeact">';
                 settingsUI += materialCheckbox(episodeInfoBox,'episodeInfoBox','Episode Hoverinfo', true);
+                settingsUI += getTooltip('<img src="https://github.com/lolamtisch/KissAnimeList/blob/miniMAL-tooltips/Screenshots/2fhq9cL.gif" alt="Episode Hoverinfo">');
                 settingsUI += '<div class="mdl-card__title mdl-card--border" style="padding: 0;"></div>';
                 settingsUI += materialCheckbox(episodeInfoSynopsis,'episodeInfoSynopsis','Synopsis');
+                settingsUI += getTooltip('If enabled, the episode-synopsis from MAL will be displayed in the Episode Hoverinfo.');
                 settingsUI += materialCheckbox(episodeInfoImage,'episodeInfoImage','Image');
+                settingsUI += getTooltip('If enabled, the episode-image from MAL will be displayed in the Episode Hoverinfo.');
                 settingsUI += materialCheckbox(episodeInfoSubtitle,'episodeInfoSubtitle','Subtitle');
+                settingsUI += getTooltip('If enabled, the episode-subtitle from MAL will be displayed in the Episode Hoverinfo. Example using the anime "Fate/Apocrypha":<br>Title: "Apocrypha: The Great Holy Grail War"<br>Subtitle: "Gaiten: Seihai Taisen (外典:聖杯大戦)"');
                 settingsUI += '</div>';
 
                 settingsUI += '<div class="mdl-cell mdl-cell--12-col mdl-shadow--4dp">\
