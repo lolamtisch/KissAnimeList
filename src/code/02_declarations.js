@@ -39,7 +39,7 @@
     var malThumbnail = GM_getValue( 'malThumbnail', 100 );
 
     var miniMALonMal = GM_getValue( 'miniMALonMal', 0 );
-    var posLeft = GM_getValue( 'posLeft', 1 );
+    var posLeft = GM_getValue( 'posLeft', 'left' );
     var outWay = GM_getValue( 'outWay', 1 );
     var miniMalWidth = GM_getValue( 'miniMalWidth', '30%' );
     var miniMalHeight = GM_getValue( 'miniMalHeight', '90%' );

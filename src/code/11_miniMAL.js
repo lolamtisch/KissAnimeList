@@ -1,9 +1,9 @@
     function createIframe(){
         if( !($('#info-popup').height()) ){
             //var position = 'width: 80%; height: 70%; position: absolute; top: 15%; left: 10%';
-            var position = 'max-width: 100%; max-height: 100%; min-width: 500px; min-height: 300px; width: '+miniMalWidth+'; height: '+miniMalHeight+'; position: absolute; bottom: 0%; '+( posLeft ? 'left':'right')+': 0%';//phone
+            var position = 'max-width: 100%; max-height: 100%; min-width: 500px; min-height: 300px; width: '+miniMalWidth+'; height: '+miniMalHeight+'; position: absolute; bottom: 0%; '+ posLeft +': 0%';//phone
             if($(window).width() < 500){
-              position = 'width: 100vw; height: 100%; position: absolute; top: 0%; '+( posLeft ? 'left':'right')+': 0%';
+              position = 'width: 100vw; height: 100%; position: absolute; top: 0%; '+ posLeft +': 0%';
             }
             var material = '<dialog class="modal" id="info-popup" style="pointer-events: none;display: none; position: fixed;z-index: 999;left: 0;top: 0;bottom: 0;width: 100%; height: 100%; background-color: transparent; padding: 0; margin: 0; border: 0;">';
             material += '<div id="modal-content" class="modal-content" Style="pointer-events: all;background-color: #fefefe; margin: 0; '+position+'">';
@@ -12,7 +12,7 @@
             material += '</dialog>';
             $('body').after(material);
 
-            GM_addStyle('.modal-content.fullscreen{width: 100% !important;height: 100% !important; bottom: 0 !important;'+( posLeft ? 'left':'right')+': 0 !important;}\
+            GM_addStyle('.modal-content.fullscreen{width: 100% !important;height: 100% !important; bottom: 0 !important;'+ posLeft +': 0 !important;}\
                          .modal-content{-webkit-transition: all 0.5s ease; -moz-transition: all 0.5s ease; -o-transition: all 0.5s ease; transition: all 0.5s ease;}\
                          .floatbutton:hover {background-color:rgb(63,81,181);}\
                          .floatbutton:hover div {background-color:white;}\
@@ -431,8 +431,18 @@
                                   <h2 class="mdl-card__title-text">miniMAL</h2>\
                                   <span style="margin-left: auto; color: #7f7f7f;">Shortcut: Ctrl + m</span>\
                                 </div>';
+                settingsUI += '<li class="mdl-list__item">\
+                                  <span class="mdl-list__item-primary-content">\
+                                      Display to the\
+                                  </span>\
+                                  <span class="mdl-list__item-secondary-action">\
+                                    <select name="myinfo_score" id="posLeft" class="inputtext mdl-textfield__input" style="outline: none;">\
+                                      <option value="left">Left</option>\
+                                      <option value="right">Right</option>\
+                                    </select>\
+                                  </span>\
+                              </li>';
                 settingsUI += materialCheckbox(miniMALonMal,'miniMALonMal','Display on MyAnimeList');
-                settingsUI += materialCheckbox(posLeft,'posLeft','Left-sided');
                 settingsUI += materialCheckbox(displayFloatButton,'displayFloatButton','Floating menu button');
                 settingsUI += materialCheckbox(outWay,'outWay','Move video out of the way');
                 settingsUI += '<li class="mdl-list__item" style="display: inline-block; width: 50%;">\
@@ -628,15 +638,12 @@
                     gogoanimeLinks = 0;
                 }
             });
-            $("#info-iframe").contents().find('#posLeft').change(function(){
-                if($(this).is(":checked")){
-                    GM_setValue('posLeft', 1);
-                    posLeft = 1;
-                }else{
-                    GM_setValue('posLeft', 0);
-                    posLeft = 0;
-                }
+
+            $("#info-iframe").contents().find("#posLeft").val(posLeft);
+            $("#info-iframe").contents().find("#posLeft").change(function(){
+              GM_setValue( 'posLeft', $("#info-iframe").contents().find("#posLeft").val() );
             });
+
             $("#info-iframe").contents().find('#displayFloatButton').change(function(){
                 if($(this).is(":checked")){
                     GM_setValue('displayFloatButton', 1);
