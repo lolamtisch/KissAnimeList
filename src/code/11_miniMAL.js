@@ -1,9 +1,9 @@
     function createIframe(){
         if( !($('#info-popup').height()) ){
             //var position = 'width: 80%; height: 70%; position: absolute; top: 15%; left: 10%';
-            var position = 'max-width: 100%; max-height: 100%; min-width: 500px; min-height: 300px; width: '+miniMalWidth+'; height: '+miniMalHeight+'; position: absolute; bottom: 0%; '+( posLeft ? 'left':'right')+': 0%';//phone
+            var position = 'max-width: 100%; max-height: 100%; min-width: 500px; min-height: 300px; width: '+miniMalWidth+'; height: '+miniMalHeight+'; position: absolute; bottom: 0%; '+ posLeft +': 0%';//phone
             if($(window).width() < 500){
-              position = 'width: 100vw; height: 100%; position: absolute; top: 0%; '+( posLeft ? 'left':'right')+': 0%';
+              position = 'width: 100vw; height: 100%; position: absolute; top: 0%; '+ posLeft +': 0%';
             }
             var material = '<dialog class="modal" id="info-popup" style="pointer-events: none;display: none; position: fixed;z-index: 999;left: 0;top: 0;bottom: 0;width: 100%; height: 100%; background-color: transparent; padding: 0; margin: 0; border: 0;">';
             material += '<div id="modal-content" class="modal-content" Style="pointer-events: all;background-color: #fefefe; margin: 0; '+position+'">';
@@ -12,9 +12,9 @@
             material += '</dialog>';
             $('body').after(material);
 
-            GM_addStyle('.modal-content.fullscreen{width: 100% !important;height: 100% !important; bottom: 0 !important;'+( posLeft ? 'left':'right')+': 0 !important;}\
+            GM_addStyle('.modal-content.fullscreen{width: 100% !important;height: 100% !important; bottom: 0 !important;'+ posLeft +': 0 !important;}\
                          .modal-content{-webkit-transition: all 0.5s ease; -moz-transition: all 0.5s ease; -o-transition: all 0.5s ease; transition: all 0.5s ease;}\
-                         .floatbutton:hover {background-color:rgb(255,64,129);}\
+                         .floatbutton:hover {background-color:rgb(63,81,181);}\
                          .floatbutton:hover div {background-color:white;}\
                          .floatbutton div {background-color:black;-webkit-transition: all 0.5s ease;-moz-transition: all 0.5s ease;-o-transition: all 0.5s ease;transition: all 0.5s ease;}\
                          .floatbutton {\
@@ -92,6 +92,12 @@
                               .simplebar-track{\
                                 margin-top: -2px;\
                                 margin-bottom: -2px;\
+                              }\
+                              a{\
+                                text-decoration: none;\
+                              }\
+                              .mdl-layout__tab-panel a:hover{\
+                                text-decoration: underline;\
                               }\
                             </style>');
                 head.append('<style>'+GM_getResourceText("materialCSS")+'</style>');
@@ -219,6 +225,7 @@
         $("#info-iframe").contents().find("#close-info-popup").click( function(){
             modal.style.display = "none";
             $('.floatbutton').fadeIn();
+            outOfTheWay();
             //$('body').css('overflow','initial');
         });
 
@@ -281,6 +288,7 @@
     }
 
     function fillIframe(url, data = null){
+        outOfTheWay();
         $("#info-iframe").contents().find('.malClear').hide();
         $("#info-iframe").contents().find('.mdl-progress__indeterminate').show();
         if(data == null && url != null){
@@ -432,10 +440,22 @@
                                   <h2 class="mdl-card__title-text">miniMAL</h2>\
                                   <span style="margin-left: auto; color: #7f7f7f;">Shortcut: Ctrl + m</span>\
                                 </div>';
+                settingsUI += '<li class="mdl-list__item">\
+                                  <span class="mdl-list__item-primary-content">\
+                                      Display to the\
+                                  </span>\
+                                  <span class="mdl-list__item-secondary-action">\
+                                    <select name="myinfo_score" id="posLeft" class="inputtext mdl-textfield__input" style="outline: none;">\
+                                      <option value="left">Left</option>\
+                                      <option value="right">Right</option>\
+                                    </select>\
+                                  </span>\
+                              </li>';
                 settingsUI += materialCheckbox(miniMALonMal,'miniMALonMal','Display on MyAnimeList');
                 settingsUI += materialCheckbox(displayFloatButton,'displayFloatButton','Floating menu button');
                 settingsUI += materialCheckbox(posLeft,'posLeft','Left-sided');
 
+                settingsUI += materialCheckbox(outWay,'outWay','Move video out of the way');
                 settingsUI += '<li class="mdl-list__item" style="display: inline-block; width: 50%;">\
                                   <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width: 100%;">\
                                       <input class="mdl-textfield__input" type="text" step="1" id="miniMalHeight" value="'+miniMalHeight+'">\
@@ -630,15 +650,12 @@
                     gogoanimeLinks = 0;
                 }
             });
-            $("#info-iframe").contents().find('#posLeft').change(function(){
-                if($(this).is(":checked")){
-                    GM_setValue('posLeft', 1);
-                    posLeft = 1;
-                }else{
-                    GM_setValue('posLeft', 0);
-                    posLeft = 0;
-                }
+
+            $("#info-iframe").contents().find("#posLeft").val(posLeft);
+            $("#info-iframe").contents().find("#posLeft").change(function(){
+              GM_setValue( 'posLeft', $("#info-iframe").contents().find("#posLeft").val() );
             });
+
             $("#info-iframe").contents().find('#displayFloatButton').change(function(){
                 if($(this).is(":checked")){
                     GM_setValue('displayFloatButton', 1);
@@ -692,6 +709,16 @@
                 }else{
                     GM_setValue('miniMALonMal', 0);
                     miniMALonMal = 0;
+                }
+            });
+
+            $("#info-iframe").contents().find('#outWay').change(function(){
+                if($(this).is(":checked")){
+                    GM_setValue('outWay', 1);
+                    outWay = 1;
+                }else{
+                    GM_setValue('outWay', 0);
+                    outWay = 0;
                 }
             });
 
@@ -1151,4 +1178,76 @@
           });
 
         });
+    }
+
+    var outOfTheWayLoad = 0;
+    function outOfTheWay(){
+      if(outWay != 1) return;
+      $(document).ready(function(){
+        try{
+          var minimalSelector = '#modal-content';
+
+          reposition();
+          if(outOfTheWayLoad == 0){
+            outOfTheWayLoad = 1;
+            $( window ).resize(function(){reposition();});
+            var lastScrollLeft = 0;
+            $(window).scroll(function() {
+                var documentScrollLeft = $(document).scrollLeft();
+                if (lastScrollLeft != documentScrollLeft) {
+                    lastScrollLeft = documentScrollLeft;
+                    reposition();
+                }
+            });
+            $(document).on('mozfullscreenchange webkitfullscreenchange fullscreenchange',function(){
+              reposition();
+            });
+          }
+
+          function reposition(){
+              $(videoSelector).css('transform', '');
+
+              if(!$(minimalSelector).is(":visible")){
+                  return;
+              }
+
+              var videoLeft = $(videoSelector).offset().left;
+              var videoWidth = $(videoSelector).width();
+              var videoRight = videoLeft + videoWidth;
+            var minimalLeft = $(minimalSelector).offset().left;
+            var minimalRight = minimalLeft + $(minimalSelector).width();
+            var viewportWidth = $(window).width() - $(minimalSelector).width();
+
+            if( minimalLeft == $(window).scrollLeft()){
+                if( minimalRight > videoLeft){
+                    var tempVideoLeft = minimalRight;
+                    if(videoWidth > viewportWidth){
+                          setVideo(tempVideoLeft, viewportWidth);
+                    }else{
+                          setVideo(tempVideoLeft, videoWidth);
+                      }
+                }
+            }else{
+                if(minimalLeft < videoRight){
+
+                      if(videoWidth > viewportWidth){
+                          var tempVideoLeft = minimalLeft - viewportWidth;
+                          setVideo(tempVideoLeft, viewportWidth);
+                      }else{
+                          var tempVideoLeft = minimalLeft - videoWidth;
+                          setVideo(tempVideoLeft, videoWidth);
+                      }
+                }
+            }
+
+            function setVideo(Left, Width){
+                var scale = Width / videoWidth;
+                Left = Left - videoLeft;
+                Left = Left / scale;
+                $(videoSelector).css('transform', 'scale('+scale+') translateX('+Left+'px)');
+                $(videoSelector).css('transform-origin', '0% 50%');
+            }
+          }
+        }catch(e){}
+      });
     }
