@@ -345,14 +345,16 @@
                                 </div>\
                                   <div class="mdl-list__item">\
                                   <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width: 100%;">\
-                                      <input class="mdl-textfield__input" type="number" step="1" id="malOffset" value="'+GM_getValue(dbSelector+'/'+$.titleToDbKey($.urlAnimeTitle($.normalUrl()))+'/Offset' , '')+'">\
+                                      <input class="mdl-textfield__input" style="padding-right: 18px;" type="number" step="1" id="malOffset" value="'+GM_getValue(dbSelector+'/'+$.titleToDbKey($.urlAnimeTitle($.normalUrl()))+'/Offset' , '')+'">\
                                   <label class="mdl-textfield__label" for="malOffset">Episode Offset</label>\
+                                    '+getTooltip('Input the episode offset, if an anime has 12 episodes, but uses the numbers 0-11 rather than 1-12, you simply type " +1 " in the episode offset.','float: right; margin-top: -17px;','left')+'\
                                   </div>\
                                 </div>\
                                 <div class="mdl-list__item" style="padding-bottom: 0;padding-top: 0;">\
                                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width: 100%;">\
-                                    <input class="mdl-textfield__input" type="text" id="malUrlInput" value="'+malUrl+'">\
+                                    <input class="mdl-textfield__input" style="padding-right: 18px;" type="text" id="malUrlInput" value="'+malUrl+'">\
                                 <label class="mdl-textfield__label" for="malUrlInput">MyAnimeList Url</label>\
+                                  '+getTooltip('Only change this URL if it points to the wrong anime page on MAL.','float: right; margin-top: -17px;','left')+'\
                                 </div>\
                               </div>\
                               \
@@ -361,7 +363,8 @@
                                 <label class="mdl-textfield__label" for="malSearch">\
                                   Search\
                                 </label>\
-                                  <input class="mdl-textfield__input" type="text" id="malSearch">\
+                                  <input class="mdl-textfield__input" style="padding-right: 18px;" type="text" id="malSearch">\
+                                  '+getTooltip('This field is for finding an anime, when you need to replace the "MyAnimeList Url" shown above.<br>To make a search, simply begin typing the name of an anime, and a list with results will automatically appear as you type.','float: right; margin-top: -17px;','left')+'\
                               </div>\
                               </div>\
                               <div class="mdl-list__item" style="min-height: 0; padding-bottom: 0; padding-top: 0;">\
@@ -379,7 +382,7 @@
                             <div class="mdl-card__title mdl-card--border">\
                                 <h2 class="mdl-card__title-text">General</h2>\
                                 </div>';
-                settingsUI += materialCheckbox(autoTracking,'autoTracking','Autotracking');
+                settingsUI += materialCheckbox(autoTracking,'autoTracking','Autotracking'+getTooltip('Autotracking is the function where this script automatically updates the anime´s you watch with your MAL account.','','bottom'));
                 settingsUI += '<li class="mdl-list__item">\
                                   <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width: 100%;">\
                                       <input class="mdl-textfield__input" type="number" step="1" id="malDelay" value="'+delay+'">\
@@ -392,13 +395,18 @@
                             <div class="mdl-card__title mdl-card--border">\
                                 <h2 class="mdl-card__title-text">MAL Bookmark Page</h2>\
                                 </div>';
-                settingsUI += materialCheckbox(tagLinks,'tagLinks','Continue watching links');
+                settingsUI += materialCheckbox(tagLinks,'tagLinks','Continue watching links'+getTooltip('If enabled: On your MAL Anime List and the bookmark list in miniMAL, an icon-link will be added to the last used streaming site you were using to watch an anime.<br>Simply click the icon to continue watching the anime.'));
                 settingsUI += '</div>';
 
                 settingsUI += '<div class="mdl-cell mdl-cell--12-col mdl-shadow--4dp">\
                             <div class="mdl-card__title mdl-card--border">\
-                                <h2 class="mdl-card__title-text">Streaming Site Links</h2>\
-                                </div>';
+                                <h2 class="mdl-card__title-text">Streaming Site Links</h2>';
+
+                settingsUI += getTooltip('If disabled, the streaming site will no longer appear in an animes sidebar on MAL.');
+
+                settingsUI += '</div>';
+
+
                 settingsUI += materialCheckbox(kissanimeLinks,'kissanimeLinks','KissAnime');
                 settingsUI += materialCheckbox(masteraniLinks,'masteraniLinks','MasterAnime');
                 settingsUI += materialCheckbox(nineanimeLinks,'nineanimeLinks','9anime');
@@ -410,10 +418,11 @@
                 settingsUI += '<div class="mdl-cell mdl-cell--12-col mdl-shadow--4dp">\
                             <div class="mdl-card__title mdl-card--border">\
                                 <h2 class="mdl-card__title-text">MyAnimeList</h2>\
-                                </div>';
+                                    </div>';
                 settingsUI += '<li class="mdl-list__item">\
                                   <span class="mdl-list__item-primary-content">\
                                       Thumbnails\
+                                  '+getTooltip('The option is for resizing the thumbnails on MAL.<br>Like thumbnails for characters, people, recommendations, etc.')+'\
                                   </span>\
                                   <span class="mdl-list__item-secondary-action">\
                                     <select name="myinfo_score" id="malThumbnail" class="inputtext mdl-textfield__input" style="outline: none;">\
@@ -444,11 +453,14 @@
                               </li>';
                 settingsUI += materialCheckbox(miniMALonMal,'miniMALonMal','Display on MyAnimeList');
                 settingsUI += materialCheckbox(displayFloatButton,'displayFloatButton','Floating menu button');
+                settingsUI += materialCheckbox(posLeft,'posLeft','Left-sided');
+
                 settingsUI += materialCheckbox(outWay,'outWay','Move video out of the way');
                 settingsUI += '<li class="mdl-list__item" style="display: inline-block; width: 50%;">\
                                   <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width: 100%;">\
                                       <input class="mdl-textfield__input" type="text" step="1" id="miniMalHeight" value="'+miniMalHeight+'">\
-                                  <label class="mdl-textfield__label" for="miniMalHeight">Height (px / %)</label>\
+                                  <label class="mdl-textfield__label" for="miniMalHeight">Height (px / %)\
+                                  </label>\
                                   </div>\
                               </li>';
                 settingsUI += '<li class="mdl-list__item" style="display: inline-block; width: 50%;">\
@@ -460,11 +472,11 @@
                 settingsUI += '</div>';
 
                 settingsUI += '<div class="mdl-cell mdl-cell--12-col mdl-shadow--4dp hoverinfoDeact">';
-                settingsUI += materialCheckbox(episodeInfoBox,'episodeInfoBox','Episode Hoverinfo', true);
+                settingsUI += materialCheckbox(episodeInfoBox,'episodeInfoBox','Episode Hoverinfo'+getTooltip('<img style="width: 200%; margin-bottom: -16px; margin-top: -16px; margin-left: -200px; margin-right: -200px;" src="https://raw.githubusercontent.com/lolamtisch/KissAnimeList/miniMAL-tooltips/Screenshots/2fhq9cL.gif" alt="Episode Hoverinfo">'), true);
                 settingsUI += '<div class="mdl-card__title mdl-card--border" style="padding: 0;"></div>';
-                settingsUI += materialCheckbox(episodeInfoSynopsis,'episodeInfoSynopsis','Synopsis');
-                settingsUI += materialCheckbox(episodeInfoImage,'episodeInfoImage','Image');
-                settingsUI += materialCheckbox(episodeInfoSubtitle,'episodeInfoSubtitle','Subtitle');
+                settingsUI += materialCheckbox(episodeInfoSynopsis,'episodeInfoSynopsis','Synopsis'+getTooltip('If enabled, the episode-synopsis from MAL will be displayed in the Episode Hoverinfo.'));
+                settingsUI += materialCheckbox(episodeInfoImage,'episodeInfoImage','Image'+getTooltip('If enabled, the episode-image from MAL will be displayed in the Episode Hoverinfo.'));
+                settingsUI += materialCheckbox(episodeInfoSubtitle,'episodeInfoSubtitle','Subtitle'+getTooltip('If enabled, the episode-subtitle from MAL will be displayed in the Episode Hoverinfo. Example using the anime "Fate/Apocrypha":<br>Title: "Apocrypha: The Great Holy Grail War"<br>Subtitle: "Gaiten: Seihai Taisen (外典:聖杯大戦)"'));
                 settingsUI += '</div>';
 
                 settingsUI += '<div class="mdl-cell mdl-cell--12-col mdl-shadow--4dp">\
