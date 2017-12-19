@@ -16,9 +16,11 @@
 				function checkFailBackground(){
 					if(checkFail.length){
 						var rNumber = Math.floor((Math.random() * 1000) + 1);
-						var url = checkFail[0]+'?id='+rNumber;
+						var url = checkFail[0];
+						var erClass = url.split('/')[2].replace(".", "").replace(".", "");
+						$('.'+erClass).click();
 						GM_setValue( 'checkFail', rNumber );
-						var tab = GM_openInTab(url);
+						var tab = GM_openInTab(url+'?id='+rNumber);
 						checkFail.shift();
 						console.log(tab);
 						var timeou = setTimeout(function(){
