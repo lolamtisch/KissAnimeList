@@ -23,6 +23,8 @@
 						    checkFailBackground();
 						}, 10000);
 					}else{
+						newEPTime = 0;
+						newEpUpdate = 0;
 						tagToContinue();
 					}
 				}

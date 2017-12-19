@@ -1,6 +1,12 @@
+    var tagToContinueNumber = 0;
     function tagToContinue(){
+        tagToContinueNumber++;
         if(tagLinks == 0){
             return false;
+        }
+        if(tagToContinueNumber > 1){
+            alternativTagOnSite();
+            return true;
         }
         $(window).load(function(){
             var checkExist = setInterval(function() {
