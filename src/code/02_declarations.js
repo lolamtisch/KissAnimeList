@@ -1061,3 +1061,9 @@
         return;
     }
 
+    if( window.location.href.indexOf("id="+GM_getValue( 'checkFail', 0 )) > -1 ){
+        $(window).load(function(){
+            GM_setValue( 'checkFail', 0 )
+        });
+    }
+

@@ -15,13 +15,30 @@
 
 				function checkFailBackground(){
 					if(checkFail.length){
-						var tab = GM_openInTab(checkFail[0]);
+						var rNumber = Math.floor((Math.random() * 1000) + 1);
+						var url = checkFail[0]+'?id='+rNumber;
+						GM_setValue( 'checkFail', rNumber );
+						var tab = GM_openInTab(url);
 						checkFail.shift();
 						console.log(tab);
-						setTimeout(function(){
+						var timeou = setTimeout(function(){
 						    tab.close();
 						    checkFailBackground();
-						}, 10000);
+						}, 60000);
+						var index = 0;
+						var inter = setInterval(function(){
+							index++;
+							if(index > 59){
+								clearInterval(inter);
+							}
+							if(GM_getValue( 'checkFail', 0 ) == 0){
+								clearInterval(inter);
+								clearTimeout(timeou);
+								tab.close();
+								checkFailBackground();
+							}
+						}, 1000);
+
 					}else{
 						newEPTime = 0;
 						newEpUpdate = 0;
