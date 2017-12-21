@@ -336,26 +336,25 @@
     }
 
     function getcommondata(url){
+        var requestUrl = url
+        id = requestUrl.split('/')[4];
+        if(requestUrl.split('/')[3].toLowerCase() == 'anime'){
+            requestUrl = 'https://myanimelist.net/includes/ajax.inc.php?t=64&id='+id;
+        }else{
+            requestUrl = 'https://myanimelist.net/includes/ajax.inc.php?t=65&id='+id;
+        }
         GM_xmlhttpRequest({
             method: "GET",
-            url: url,
+            url: requestUrl,
             synchronous: false,
             headers: {
                 "User-Agent": "Mozilla/5.0"
             },
             onload: function(response) {
                 var data = response.responseText;
-                currentMalData = data;
-                var rating = data.split('class="dark_text">Score')[1].split('<span')[1].split('>')[1].split('<')[0];
+                //currentMalData = data;
+                var rating = data.split('Score:</span>')[1].split('<')[0];
                 $("#malRating").attr("href", url).text(rating);
-                try{//TODO: Play button and optional lightbox
-                    var video = data.split('class="video-promotion">')[1].split('href="')[1].split('"')[0];
-                    con.log("video", video);
-                    $("#rightside .rightBox .barContent img").wrap("<a target='_blank' href='"+video+"'></a>");
-                }catch(e){
-                    con.log('video', 'NoN');
-                }
-
                 if($('#info-popup').css('display') == 'block' && $("#info-iframe").contents().find('#backbutton').css('display') == 'none'){
                     fillIframe(url, currentMalData);
                 }
