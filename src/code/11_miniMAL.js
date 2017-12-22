@@ -842,7 +842,6 @@
         }catch(e) {console.log('[iframeOverview] Error:',e);}
 
         try{
-            if( !(window.location.href.indexOf("myanimelist.net") > -1) ){
               var localListType = url.split('/')[3];
               var dataBlock = data.split('id="addtolist"')[1].split('<div id="myinfoDisplay"')[0];
               if (~data.indexOf("header-menu-login")){
@@ -883,11 +882,11 @@
                           anime['.add_manga[num_read_chapters]'] = 0;
                       }
                   }
-                  anime['.add_'+listType+'[score]'] = parseInt($("#info-iframe").contents().find('#myinfo_score').val() );
-                  if(anime['.add_'+listType+'[score]'] == 0){
-                      anime['.add_'+listType+'[score]'] = '';
+                  anime['.add_'+localListType+'[score]'] = parseInt($("#info-iframe").contents().find('#myinfo_score').val() );
+                  if(anime['.add_'+localListType+'[score]'] == 0){
+                      anime['.add_'+localListType+'[score]'] = '';
                   }
-                  anime['.add_'+listType+'[status]'] = parseInt($("#info-iframe").contents().find('#myinfo_status').val() );
+                  anime['.add_'+localListType+'[status]'] = parseInt($("#info-iframe").contents().find('#myinfo_status').val() );
                   if($.isOverviewPage()){
                     anime['forceUpdate'] = 2;
                   }
@@ -895,9 +894,6 @@
 
                   setanime(url, anime, null, localListType);
               });
-            }else{
-              $("#info-iframe").contents().find('.data-block').css('display', 'none');
-            }
         }catch(e) {console.log('[iframeOverview] Error:',e);}
 
         try{
