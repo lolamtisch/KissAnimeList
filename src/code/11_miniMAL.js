@@ -907,7 +907,7 @@
                   $("#info-iframe").contents().find('.malDescription').first().append(continueHtml);
                   setStreamLinks(url, $("#info-iframe").contents().find('.malDescription').first());
 
-                  $("#info-iframe").contents().find('.malDescription .stream, .malDescription .nextStream').addClass('mdl-button mdl-button--colored mdl-js-button mdl-button--raised').css('color', 'white').find('img').css('padding-bottom', '3px').css('padding-right', '3px');
+                  $("#info-iframe").contents().find('.malDescription .stream, .malDescription .nextStream').addClass('mdl-button mdl-button--colored mdl-js-button mdl-button--raised').css('color', 'white').find('img').css('padding-bottom', '3px').css('padding-right', '6px').css('margin-left', '-3px');
                   $("#info-iframe").contents().find('.malDescription .nextStream').append('Next Episode');
                   $("#info-iframe").contents().find('.malDescription .stream').append('Continue Watching');
               }
