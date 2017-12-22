@@ -897,6 +897,25 @@
         }catch(e) {console.log('[iframeOverview] Error:',e);}
 
         try{
+          var continueHtml = '';
+          continueHtml +='<div class="mdl-card__actions mdl-card--border" style="padding-left: 0;">'
+          continueHtml += '<div class="data title progress" style="display: inline-block; position: relative; top: 2px; margin-left: -2px;"><div class="link" style="display: none;">'+$("#info-iframe").contents().find('#myinfo_watchedeps').val()+'</div></div>';
+          continueHtml +='</div>';
+          getanime(url, function(actual){
+              console.log(actual['.add_anime[tags]']);
+              if(actual['.add_anime[tags]'].indexOf("last::") > -1 ){
+                  var url = atobURL( actual['.add_anime[tags]'].split("last::")[1].split("::")[0] );
+                  $("#info-iframe").contents().find('.malDescription').first().append(continueHtml);
+                  setStreamLinks(url, $("#info-iframe").contents().find('.malDescription').first());
+
+                  $("#info-iframe").contents().find('.malDescription .stream, .malDescription .nextStream').addClass('mdl-button mdl-button--colored mdl-js-button mdl-button--raised').css('color', 'white').find('img').css('padding-bottom', '3px').css('padding-right', '3px');
+                  $("#info-iframe").contents().find('.malDescription .nextStream').append('Next Episode');
+                  $("#info-iframe").contents().find('.malDescription .stream').append('Continue Watching');
+              }
+          }, url, url.split('/')[3]);
+        }catch(e) {console.log('[iframeOverview] Error:',e);}
+
+        try{
             $("#info-iframe").contents().find('.stream-block-inner').html('');
             setKissToMal(url);
         }catch(e) {console.log('[iframeOverview] Error:',e);}
