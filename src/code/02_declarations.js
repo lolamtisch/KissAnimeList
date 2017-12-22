@@ -943,11 +943,12 @@
         };
         //###########################
     }else if( window.location.href.indexOf("myanimelist.net") > -1 ){
+        googleover = 1;
         $.isOverviewPage = function() {
             return false;
         };
         $.urlAnimeTitle = function(url) {
-            return $('.h1').first().text();
+            return $('.h1 span').first().text();
         };
         $.docReady = function(data) {
             return $( document).ready(data);
