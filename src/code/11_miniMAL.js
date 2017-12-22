@@ -902,7 +902,6 @@
           continueHtml += '<div class="data title progress" style="display: inline-block; position: relative; top: 2px; margin-left: -2px;"><div class="link" style="display: none;">'+$("#info-iframe").contents().find('#myinfo_watchedeps').val()+'</div></div>';
           continueHtml +='</div>';
           getanime(url, function(actual){
-              console.log(actual['.add_anime[tags]']);
               if(actual['.add_anime[tags]'].indexOf("last::") > -1 ){
                   var url = atobURL( actual['.add_anime[tags]'].split("last::")[1].split("::")[0] );
                   $("#info-iframe").contents().find('.malDescription').first().append(continueHtml);
