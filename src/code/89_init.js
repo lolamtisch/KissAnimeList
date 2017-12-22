@@ -78,6 +78,16 @@
                     miniMalButton(window.location.href.split('/').slice(0,6).join('/').split("?")[0]);
                 });
             }
+
+            $( document).ready(function(){
+                getanime(window.location.href, function(actual){
+                    if(actual['.add_anime[tags]'].indexOf("last::") > -1 ){
+                        var url = atobURL( actual['.add_anime[tags]'].split("last::")[1].split("::")[0] );
+                        $('.h1 span').first().after('<div class="data title progress" style="display: inline-block; position: relative; top: 2px;"><div class="link" style="display: none;">'+$('#myinfo_watchedeps').first().val()+'</div></div>');
+                        setStreamLinks(url, $('.h1').first().parent());
+                    }
+                }, window.location.href, window.location.href.split('/')[3]);
+            });
         }
     }else{
         $("head").click(function() {

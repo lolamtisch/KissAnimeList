@@ -842,7 +842,6 @@
         }catch(e) {console.log('[iframeOverview] Error:',e);}
 
         try{
-            if( !(window.location.href.indexOf("myanimelist.net") > -1) ){
               var localListType = url.split('/')[3];
               var dataBlock = data.split('id="addtolist"')[1].split('<div id="myinfoDisplay"')[0];
               if (~data.indexOf("header-menu-login")){
@@ -883,11 +882,11 @@
                           anime['.add_manga[num_read_chapters]'] = 0;
                       }
                   }
-                  anime['.add_'+listType+'[score]'] = parseInt($("#info-iframe").contents().find('#myinfo_score').val() );
-                  if(anime['.add_'+listType+'[score]'] == 0){
-                      anime['.add_'+listType+'[score]'] = '';
+                  anime['.add_'+localListType+'[score]'] = parseInt($("#info-iframe").contents().find('#myinfo_score').val() );
+                  if(anime['.add_'+localListType+'[score]'] == 0){
+                      anime['.add_'+localListType+'[score]'] = '';
                   }
-                  anime['.add_'+listType+'[status]'] = parseInt($("#info-iframe").contents().find('#myinfo_status').val() );
+                  anime['.add_'+localListType+'[status]'] = parseInt($("#info-iframe").contents().find('#myinfo_status').val() );
                   if($.isOverviewPage()){
                     anime['forceUpdate'] = 2;
                   }
@@ -895,9 +894,24 @@
 
                   setanime(url, anime, null, localListType);
               });
-            }else{
-              $("#info-iframe").contents().find('.data-block').css('display', 'none');
-            }
+        }catch(e) {console.log('[iframeOverview] Error:',e);}
+
+        try{
+          var continueHtml = '';
+          continueHtml +='<div class="mdl-card__actions mdl-card--border" style="padding-left: 0;">'
+          continueHtml += '<div class="data title progress" style="display: inline-block; position: relative; top: 2px; margin-left: -2px;"><div class="link" style="display: none;">'+$("#info-iframe").contents().find('#myinfo_watchedeps').val()+'</div></div>';
+          continueHtml +='</div>';
+          getanime(url, function(actual){
+              if(actual['.add_anime[tags]'].indexOf("last::") > -1 ){
+                  var url = atobURL( actual['.add_anime[tags]'].split("last::")[1].split("::")[0] );
+                  $("#info-iframe").contents().find('.malDescription').first().append(continueHtml);
+                  setStreamLinks(url, $("#info-iframe").contents().find('.malDescription').first());
+
+                  $("#info-iframe").contents().find('.malDescription .stream, .malDescription .nextStream').addClass('mdl-button mdl-button--colored mdl-js-button mdl-button--raised').css('color', 'white').find('img').css('padding-bottom', '3px').css('padding-right', '6px').css('margin-left', '-3px');
+                  $("#info-iframe").contents().find('.malDescription .nextStream').append('Next Episode');
+                  $("#info-iframe").contents().find('.malDescription .stream').append('Continue Watching');
+              }
+          }, url, url.split('/')[3]);
         }catch(e) {console.log('[iframeOverview] Error:',e);}
 
         try{
