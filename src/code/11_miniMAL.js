@@ -1259,6 +1259,7 @@
                 Left = Left / scale;
                 $(videoSelector).css('transform', 'scale('+scale+') translateX('+Left+'px)');
                 $(videoSelector).css('transform-origin', '0% 50%');
+                $(videoSelector).css('transition', '0s');
             }
           }
         }catch(e){}
