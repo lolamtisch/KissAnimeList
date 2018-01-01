@@ -30,7 +30,7 @@
 // @exclude     /http://www.crunchyroll.com\/(acct|anime|comics|edit|email|forum|home|inbox|login|manga|newprivate|news|notifications|order|outbox|pm|search|store|user|videos)\*/
 //
 // @include     /http://www3.gogoanime.tv/.*/
-// @include     /http://www3.gogoanime.tv/.*/
+// @include     /http://www3.gogoanime.io/.*/
 // @exclude     /http://www3.gogoanime\.(tv|io)/.*\.html.*/
 // @exclude     /http://www3.gogoanime\.(tv|io)\/(genre|sub-category)/.*/
 //
