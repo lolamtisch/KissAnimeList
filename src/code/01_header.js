@@ -10,66 +10,29 @@
 // @iconURL     https://raw.githubusercontent.com/lolamtisch/KissAnimeList/dev/Screenshots/KAL_Logo.png
 // @downloadURL https://greasyfork.org/scripts/27564-kissanimelist/code/KissAnimeList.user.js
 // @updateURL	https://greasyfork.org/scripts/27564-kissanimelist/code/KissAnimeList.meta.js
-// @include     http://kissanime.ru/Anime/*
-// @include     http://kissanime.to/Anime/*
-// @include     http://kissanime.ru/BookmarkList
-// @include     http://kissanime.to/BookmarkList
-// @exclude     http://kissanime.ru/AnimeList*
 //
-// @include     http://kissmanga.com/manga/*
-// @include     http://kissmanga.com/BookmarkList
-// @exclude     http://kissmanga.com/MangaList*
+// @include     /http://kissanime.ru\/(Anime|BookmarkList)\/*/
+// @include     /http://kissanime.to\/(Anime|BookmarkList)\/*/
+// @exclude     /http:\/\/(kissanime\/.(ru|to)\/AnimeList*/
 //
-// @include     https://myanimelist.net/anime/*
-// @include     https://myanimelist.net/manga/*
-// @include     https://myanimelist.net/animelist/*
-// @include     https://myanimelist.net/anime.php?*id=*
-// @include     https://myanimelist.net/manga.php?*id=*
-// @include     https://myanimelist.net/character*
-// @include     https://myanimelist.net/search*
-// @include     https://myanimelist.net/people*
+// @include     /http:\/\/kissmanga.com\/(manga|BookmarkList)\/*/
+// @exclude     /http:/\/\kissmanga.com\/MangaList*/
 //
-// @include     https://www.masterani.me/anime/info/*
-// @include     https://www.masterani.me/anime/watch/*
+// @include     /^https?:\/\/myanimelist.net\/(anime|animelist|character|manga|people|search)(\.php\?id=|\/)\d+/
 //
-// @include     https://9anime.to/watch/*/*
-// @include     /https?://9anime.to/watch/*/*/
+// @include     /https:\/\/www.masterani.me/anime\/(info|watch)\/*/
 //
-// @include     https://9anime.is/watch/*/*
-// @include     /https?://9anime.is/watch/*/*/
+// @include     /https?:\/\/9anime.to/watch\/*\/*\/?/
+// @include     /https?:\/\/9anime.is/watch\/*\/*\/?/
+// @include     /https?:\/\/9anime.ru/watch\/*\/*\/?/
 //
-// @include     https://9anime.ru/watch/*/*
-// @include     /https?://9anime.ru/watch/*/*/
+// @include     /http://www.crunchyroll.com/*\/?/
+// @exclude     /http://www.crunchyroll.com\/(acct|anime|comics|edit|email|forum|home|inbox|login|manga|newprivate|news|notifications|order|outbox|pm|search|store|user|videos)\*/
 //
-// @include     http://www.crunchyroll.com/*
-// @exclude     http://www.crunchyroll.com/videos*
-// @exclude     http://www.crunchyroll.com/news*
-// @exclude     http://www.crunchyroll.com/anime*
-// @exclude     http://www.crunchyroll.com/forum*
-// @exclude     http://www.crunchyroll.com/user*
-// @exclude     http://www.crunchyroll.com/login*
-// @exclude     http://www.crunchyroll.com/store*
-// @exclude     http://www.crunchyroll.com/search*
-// @exclude     http://www.crunchyroll.com/home*
-// @exclude     http://www.crunchyroll.com/edit*
-// @exclude     http://www.crunchyroll.com/acct*
-// @exclude     http://www.crunchyroll.com/email*
-// @exclude     http://www.crunchyroll.com/inbox*
-// @exclude     http://www.crunchyroll.com/newprivate*
-// @exclude     http://www.crunchyroll.com/outbox*
-// @exclude     http://www.crunchyroll.com/pm*
-// @exclude     http://www.crunchyroll.com/notifications*
-// @exclude     http://www.crunchyroll.com/comics*
-// @exclude     http://www.crunchyroll.com/order*
-//
-// @include     /https?://.*gogoanime\.tv/.*
-// @exclude     /https?://.*gogoanime\.tv/.*\.html.*
-// @exclude     /https?://.*gogoanime\.tv/genre/.*
-// @exclude     /https?://.*gogoanime\.tv/sub-category/.*
-// @include     /https?://.*gogoanime\.io/.*
-// @exclude     /https?://.*gogoanime\.io/.*\.html*
-// @exclude     /https?://.*gogoanime\.io/genre/.*
-// @exclude     /https?://.*gogoanime\.io/sub-category/.*
+// @include     /http://www3.gogoanime.tv/.*/
+// @include     /http://www3.gogoanime.tv/.*/
+// @exclude     /http://www3.gogoanime\.(tv|io)/.*\.html.*/
+// @exclude     /http://www3.gogoanime\.(tv|io)\/(genre|sub-category)/.*/
 //
 // @require     http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js
 // @resource    materialCSS https://code.getmdl.io/1.3.0/material.indigo-pink.min.css
