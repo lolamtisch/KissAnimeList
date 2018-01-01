@@ -1,11 +1,15 @@
 // ==UserScript==
 // @name        KissAnimeList
-// @version     0.90.2
+// @version     0.91.0
 // @description Integrates MyAnimeList into various sites, with auto episode tracking.
 // @author      lolamtisch@gmail.com
 // @license 	CC-BY-4.0; https://creativecommons.org/licenses/by/4.0/legalcode
 // @license 	MIT
 // @supportURL  https://github.com/lolamtisch/KissAnimeList/issues
+// @homepageURL https://github.com/lolamtisch/KissAnimeList
+// @iconURL     https://raw.githubusercontent.com/lolamtisch/KissAnimeList/dev/Screenshots/KAL_Logo.png
+// @downloadURL https://greasyfork.org/scripts/27564-kissanimelist/code/KissAnimeList.user.js
+// @updateURL	https://greasyfork.org/scripts/27564-kissanimelist/code/KissAnimeList.meta.js
 // @include     http://kissanime.ru/Anime/*
 // @include     http://kissanime.to/Anime/*
 // @include     http://kissanime.ru/BookmarkList
@@ -21,6 +25,9 @@
 // @include     https://myanimelist.net/animelist/*
 // @include     https://myanimelist.net/anime.php?*id=*
 // @include     https://myanimelist.net/manga.php?*id=*
+// @include     https://myanimelist.net/character*
+// @include     https://myanimelist.net/search*
+// @include     https://myanimelist.net/people*
 //
 // @include     https://www.masterani.me/anime/info/*
 // @include     https://www.masterani.me/anime/watch/*
@@ -68,6 +75,8 @@
 // @resource    materialCSS https://code.getmdl.io/1.3.0/material.indigo-pink.min.css
 // @resource    materialFont https://fonts.googleapis.com/icon?family=Material+Icons
 // @resource    materialjs https://code.getmdl.io/1.3.0/material.min.js
+// @resource    simpleBarCSS https://unpkg.com/simplebar@latest/dist/simplebar.css
+// @resource    simpleBarjs https://unpkg.com/simplebar@latest/dist/simplebar.js
 //
 // @connect     www.google.com
 // @connect     ipv4.google.com
@@ -118,7 +127,6 @@
     }
 
     var tagLinks = GM_getValue( 'tagLinks', 1 );
-    var searchLinks = GM_getValue( 'searchLinks', 1 );
     var kissanimeLinks = GM_getValue( 'kissanimeLinks', 1 );
     var kissmangaLinks = GM_getValue( 'kissmangaLinks', 1 );
     var masteraniLinks = GM_getValue( 'masteraniLinks', 1 );
@@ -126,8 +134,11 @@
     var crunchyrollLinks = GM_getValue( 'crunchyrollLinks', 1 );
     var gogoanimeLinks = GM_getValue( 'gogoanimeLinks', 1 );
 
+    var malThumbnail = GM_getValue( 'malThumbnail', 100 );
+
     var miniMALonMal = GM_getValue( 'miniMALonMal', 0 );
-    var posLeft = GM_getValue( 'posLeft', 1 );
+    var posLeft = GM_getValue( 'posLeft', 'left' );
+    var outWay = GM_getValue( 'outWay', 1 );
     var miniMalWidth = GM_getValue( 'miniMalWidth', '30%' );
     var miniMalHeight = GM_getValue( 'miniMalHeight', '90%' );
 
@@ -180,12 +191,15 @@
                     case '0.90.2':
                         message += 'KissAnimeList (v0.90.2):<br/>    - Added support for 9anime.is and 9anime.ru';
                         break;
+                    case '0.91.0':
+                        message += 'Changelog (v0.91.0):<br/><br/> [Added]  <br/> - Feature: Thumbnails on MAL have been enlarged, with added resizing options. <br/> - Feature: "Move out of the way"-feature, which moves the video when miniMAL is opened. <br/> - Feature: "Continue watching"-links has been added to both the Overview-tab in miniMAL, and to the details-tab on MAL. <br/> - Info-bubbles has been added to the settings tab in miniMAL. <br/><br/> [Changed] <br/> - Updated the miniMAL styling. <br/><br/> [Fixed] <br/> - miniMAL-button didn\'t always appear.';
+                        break;
                 }
             }else{
                 message += '<h2>Welcome to <a href="https://greasyfork.org/en/scripts/27564-kissanimelist">KissAnimeList</a></h2><br/>Support:<br/><a href="https://discord.gg/cTH4yaw">Discord Channel</a><br/><a href="https://github.com/lolamtisch/KissAnimeList">GitHub</a> <a href="https://github.com/lolamtisch/KissAnimeList/issues">Issues</a>';
             }
             if(message != '<div style="text-align: left;">'){
-                message += '</div><button class="okChangelog" style="background-color: transparent; border: none; color: rgb(255,64,129);margin-top: 10px;cursor: pointer;">Ok</button>'
+                message += '</div><button class="okChangelog" style="background-color: transparent; border: none; color: rgb(255,64,129);margin-top: 10px;cursor: pointer;">Close</button>'
                 flashm(message, false, false, true);
                 $('.okChangelog').click(function(){
                     GM_setValue( 'Version', curVersion );
@@ -206,6 +220,7 @@
         var listType = 'anime';
         var bookmarkCss = ".listing tr td:nth-child(1){height: 150px;padding-left: 125px;} .listing tr td{vertical-align: top;}";
         var bookmarkFixCss = ".bigBarContainer {margin: 0px; width: 630px !important; text-align: left; float: left;}";
+        var videoSelector = '#divContentVideo';
 
         $.init = function() {
             checkdata();
@@ -460,6 +475,7 @@
         var listType = 'anime';
         var bookmarkCss = "";
         var bookmarkFixCss = "";
+        var videoSelector = '.ui.embed';
         var winLoad = 0;
 
         $.init = function() {
@@ -587,6 +603,7 @@
         var listType = 'anime';
         var bookmarkCss = "";
         var bookmarkFixCss = "";
+        var videoSelector = '#player';
         var winLoad = 0;
 
         $.init = function() {
@@ -735,6 +752,7 @@
         var listType = 'anime';
         var bookmarkCss = "";
         var bookmarkFixCss = "";
+        var videoSelector = '#showmedia_video_box_wide,#showmedia_video_box';
         GM_addStyle('.headui a {color: black !important;} #malp{margin-bottom: 8px;}');
 
         $.init = function() {
@@ -922,6 +940,7 @@
         var listType = 'anime';
         var bookmarkCss = "";
         var bookmarkFixCss = "";
+        var videoSelector = '.anime_video_body_watch_items';
         var winLoad = 0;
         GM_addStyle('.headui a {color: inherit !important;}');
 
@@ -1024,6 +1043,17 @@
         $.BookmarksStyleAfterLoad = function() {
         };
         //###########################
+    }else if( window.location.href.indexOf("myanimelist.net") > -1 ){
+        googleover = 1;
+        $.isOverviewPage = function() {
+            return false;
+        };
+        $.urlAnimeTitle = function(url) {
+            return $('.h1 span').first().text();
+        };
+        $.docReady = function(data) {
+            return $( document).ready(data);
+        };
     }
     //#######Anime or Manga######
     if(listType == 'anime'){
@@ -1209,6 +1239,9 @@
         var Offset = GM_getValue(dbSelector+'/'+$.titleToDbKey($.urlAnimeTitle($.urlAnimeIdent(url)))+'/Offset' , null);
         if( Offset != null){
             string = parseInt(string)+parseInt(Offset);
+        }
+        if(parseInt(string) == 0){
+            string = 1;
         }
         return parseInt(string);
     }
@@ -1398,26 +1431,25 @@
     }
 
     function getcommondata(url){
+        var requestUrl = url
+        id = requestUrl.split('/')[4];
+        if(requestUrl.split('/')[3].toLowerCase() == 'anime'){
+            requestUrl = 'https://myanimelist.net/includes/ajax.inc.php?t=64&id='+id;
+        }else{
+            requestUrl = 'https://myanimelist.net/includes/ajax.inc.php?t=65&id='+id;
+        }
         GM_xmlhttpRequest({
             method: "GET",
-            url: url,
+            url: requestUrl,
             synchronous: false,
             headers: {
                 "User-Agent": "Mozilla/5.0"
             },
             onload: function(response) {
                 var data = response.responseText;
-                currentMalData = data;
-                var rating = data.split('class="dark_text">Score')[1].split('<span')[1].split('>')[1].split('<')[0];
+                //currentMalData = data;
+                var rating = data.split('Score:</span>')[1].split('<')[0];
                 $("#malRating").attr("href", url).text(rating);
-                try{//TODO: Play button and optional lightbox
-                    var video = data.split('class="video-promotion">')[1].split('href="')[1].split('"')[0];
-                    con.log("video", video);
-                    $("#rightside .rightBox .barContent img").wrap("<a target='_blank' href='"+video+"'></a>");
-                }catch(e){
-                    con.log('video', 'NoN');
-                }
-
                 if($('#info-popup').css('display') == 'block' && $("#info-iframe").contents().find('#backbutton').css('display') == 'none'){
                     fillIframe(url, currentMalData);
                 }
@@ -1668,7 +1700,7 @@
             if(anime['malurl'] != null){
                 absolute = anime['malurl'];
             }
-            getanime(thisUrl, function(actual){setanime(thisUrl , anime, actual);}, absolute, localListType);
+            getanime(thisUrl, function(actual){setanime(thisUrl , anime, actual, localListType);}, absolute, localListType);
             return;
         }
 
@@ -1933,13 +1965,13 @@
 
     function flashm(text,error = true, info = false, permanent = false){
         con.log("[Flash] Message:",text);
-        $('#flash-div').css('z-index', '2147483647');
+        if(error === true){
+            var colorF = "#3e0808";
+        }else{
+            var colorF = "#323232";
+        }
+
         if(permanent){
-            if(error === true){
-                var colorF = "#3e0808";
-            }else{
-                var colorF = "#323232";
-            }
             $('#flash-div-top').prepend('<div class="flashPerm" style="display:none;"><div style="display:table; pointer-events: all; background-color: red;padding: 14px 24px 14px 24px; margin: 0 auto; margin-top: -2px; max-width: 60%; -webkit-border-radius: 20px;-moz-border-radius: 20px;border-radius: 2px;color: white;background:'+colorF+'; ">'+text+'</div></div>');
             $('.flashPerm').delay(2000).slideDown(800);
         }else{
@@ -1948,30 +1980,20 @@
                     duration: 400,
                     queue: false,
                     complete: function() { $(this).remove(); }});
-                if(error === true){
-                    var colorF = "#3e0808";
-                }else{
-                    var colorF = "#323232";
-                }
-                $('#flash-div').append('<div class="flashinfo" style="display:none; max-height: 5000px; margin-top: -8px;"><div style="display:table; pointer-events: all; background-color: red;padding: 14px 24px 14px 24px; margin: 0 auto; margin-top: -2px; max-width: 60%; -webkit-border-radius: 20px;-moz-border-radius: 20px;border-radius: 2px;color: white;background:'+colorF+'; ">'+text+'</div></div>');
-                $('.flashinfo').slideDown(800).delay(4000).queue(function() { $(this).css('transition','max-height 2s').css('max-height', '8px'); setTimeout(function() {$('#flash-div').css('z-index', '2');}, 2000);});
+                $('#flashinfo-div').addClass('hover').append('<div class="flashinfo" style="display:none; max-height: 5000px; margin-top: -8px;"><div style="display:table; pointer-events: all; background-color: red; margin: 0 auto; margin-top: -2px; max-width: 60%; -webkit-border-radius: 20px;-moz-border-radius: 20px;border-radius: 2px;color: white;background:'+colorF+'; "><div style="max-height: 60vh; overflow-y: auto; padding: 14px 24px 14px 24px;">'+text+'</div></div></div>');
+                $('.flashinfo').slideDown(800).delay(4000).queue(function() { $('#flashinfo-div').removeClass('hover'); $(this).css('max-height', '8px');});
             }else{
                 $('.flash').removeClass('flash').fadeOut({
                     duration: 400,
                     queue: false,
                     complete: function() { $(this).remove(); }});
-                if(error === true){
-                    var colorF = "#3e0808";
-                }else{
-                    var colorF = "#323232";
-                }
                 var mess ='<div class="flash" style="display:none;"><div style="display:table; pointer-events: all; background-color: red;padding: 14px 24px 14px 24px; margin: 0 auto; margin-top: 20px; max-width: 60%; -webkit-border-radius: 20px;-moz-border-radius: 20px;border-radius: 2px;color: white;background:'+colorF+'; ">'+text+'</div></div>';
                 if($('.flashinfo').length){
                     $('.flashinfo').before(mess);
                 }else{
                     $('#flash-div').append(mess);
                 }
-                $('.flash').slideDown(800).delay(4000).slideUp(800, function() { $(this).remove(); $('#flash-div').css('z-index', '2'); });
+                $('.flash').slideDown(800).delay(4000).slideUp(800, function() { $(this).remove(); });
             }
         }
     }
@@ -1982,11 +2004,11 @@
         message = '<div style="text-align: left;">' + message + '</div><div style="display: flex; justify-content: space-around;"><button class="Yes'+rNumber+'" style="background-color: transparent; border: none; color: rgb(255,64,129);margin-top: 10px; cursor:pointer;">OK</button><button class="Cancel'+rNumber+'" style="background-color: transparent; border: none; color: rgb(255,64,129);margin-top: 10px; cursor:pointer;">CANCEL</button></div>';
         flashm(message, false, false, true);
         $( '.Yes'+rNumber ).click(function(){
-            $('.flashPerm').remove();
+            $(this).parentsUntil('.flashPerm').remove();
             yesCall();
         });
         $( '.Cancel'+rNumber ).click(function(){
-            $('.flashPerm').remove();
+            $(this).parentsUntil('.flashPerm').remove();
             cancelCall();
         });
     }
@@ -2103,30 +2125,15 @@
                                 imgHtml = '<img style = "margin-top: 15px; height: 100px;" src="'+imgUrl+'"/>';
                             }
                         }
-                        var synopsisHtml = '<div style="overflow: hidden; text-align: left; max-width: 0; max-height: 0; transition: max-height 2s; transition: max-width 1s;" class="synopsis">'+synopsis+'</div>';
+                        var synopsisHtml = '<div style="overflow: hidden; text-align: left; max-width: 0; max-height: 0;" class="synopsis">'+synopsis+'</div>';
 
                         if(epTitle != ''){
                             flashm ( '<div class="flasm-hover" style="/*display: flex;*/ align-items: center;"><div style="white-space: nowrap;"">'+epTitle + epSubTitle + imgHtml + "</div>"+ message +" </div>" + synopsisHtml, false, true);
                         }else if( message != '' ){
                             flashm ( message , false, true);
                         }
-                            $('.undoButton').click(clickCallback);
 
-                            $('.flashinfo').mouseenter(function() {
-                                $('#flash-div').css('z-index', '2147483647');
-                                $(this).find('.synopsis').css('transition','max-width 0s').css('max-width', '500px').css('transition','max-height 2s').css('max-height', '9999px');
-                            });
-                            $('.flashinfo').mouseleave(function() {
-                                var el = $(this);
-                                $(this).find('.synopsis').css('transition','max-height 2s').css('max-height', '0')
-                                setTimeout(function() {
-                                    if(el.find('.synopsis').css('max-height') == '0px'){
-                                        el.find('.synopsis').css('transition','max-width 1s').css('max-width', '0');
-                                        $('#flash-div').css('z-index', '2');
-                                    }
-                                }, 2000);
-                            });
-
+                        $('.undoButton').click(clickCallback);
                     }
                 },
                 onerror: function(error) {
@@ -2136,7 +2143,10 @@
         }
     }
 
+    var miniMalButtonLate = '';
+    var miniMalButtonKey = 0;
     function miniMalButton(url = null){
+        miniMalButtonLate = url;
         $(".open-info-popup").unbind('click').show().click( function(){
             if($('#info-popup').css('display') == 'none'){
                 document.getElementById('info-popup').style.display = "block";
@@ -2148,13 +2158,16 @@
             }
         });
 
-        $("#info-iframe").contents().keydown(function(e) {
-            keys(e);
-        });
+        if(!miniMalButtonKey){
+            miniMalButtonKey = 1;
+            $("#info-iframe").contents().keydown(function(e) {
+                keys(e);
+            });
 
-        $(document).keydown(function(e) {
-            keys(e);
-        });
+            $(document).keydown(function(e) {
+                keys(e);
+            });
+        }
 
         function keys(e){
             if (e.ctrlKey && e.keyCode === 77) {
@@ -2187,6 +2200,14 @@
            return decodeURI(results[1]) || 0;
         }
     }
+
+    function getTooltip(text, style = '', direction = 'top'){
+        var rNumber = Math.floor((Math.random() * 1000) + 1);
+        return '<div id="tt'+rNumber+'" class="icon material-icons" style="font-size:16px; line-height: 0; color: #7f7f7f; padding-bottom: 20px; padding-left: 3px; '+style+'"> &#x1F6C8;</div>\
+        <div class="mdl-tooltip mdl-tooltip--'+direction+' mdl-tooltip--large" for="tt'+rNumber+'">'+text+'</div>';
+    }
+    var uiLoaded = 0;
+
     function checkdata(){
         if($.normalUrl() !== ""){
             getanime($.normalUrl(), function(anime){handleanime(anime);});
@@ -2286,7 +2307,8 @@
             uiwrong += '<button class="open-info-popup mdl-button" style="display:none; margin-left: 6px;">MAL</button>';
 
 
-            if($("#flash").width() === null){
+            if(!uiLoaded){
+                uiLoaded = 1;
                 $(ui).uiPos();
                 $(uiwrong).uiWrongPos();
                 $(uihead).uiHeadPos();
@@ -2308,14 +2330,6 @@
                 $( "#malStatus" ).change(function() {
                     updatebutton();
                 });
-
-                var flashpos = $('body');
-                //if($('#my_video_1').width() !== null){
-                    //flashpos = $('#my_video_1');
-                //}
-                flashpos.after('<div id="flash-div-top" style="text-align: center;pointer-events: none;position: fixed;top:0px;width:100%;z-index: 2147483647;left: 0;"></div><div id="flash-div" style="text-align: center;pointer-events: none;position: fixed;bottom:0px;width:100%;z-index: 2147483647;left: 0;"><div id="flash" style="display:none;  background-color: red;padding: 20px; margin: 0 auto;max-width: 60%;          -webkit-border-radius: 20px;-moz-border-radius: 20px;border-radius: 20px;background:rgba(227,0,0,0.6);                       "></div></div>');
-
-                changelog();
 
                 createIframe();
                 //#######Kissanime#######
@@ -2623,7 +2637,7 @@
             $('#siteSearch').before('<h2 id="'+page+'Links" class="mal_links"><img src="https://www.google.com/s2/favicons?domain='+responsearray['url'].split('/')[2]+'"> '+page+'</h2><br class="mal_links" />');
         }
         if($("#info-iframe").contents().find('#'+page+'Links').width() == null){
-            $("#info-iframe").contents().find('.stream-block-inner').append('<li class="mdl-list__item mdl-list__item--three-line"><span class="mdl-list__item-primary-content"><span>'+page+'</span><span id="'+page+'Links" class="mdl-list__item-text-body"></span></span></li>');
+            $("#info-iframe").contents().find('.stream-block-inner').append('<li class="mdl-list__item mdl-list__item--three-line"><span class="mdl-list__item-primary-content"><span><img style="padding-bottom: 3px;" src="https://www.google.com/s2/favicons?domain='+responsearray['url'].split('/')[2]+'"> '+page+'</span><span id="'+page+'Links" class="mdl-list__item-text-body"></span></span></li>');
         }
         $('#'+page+'Links').after('<div class="mal_links"><a target="_blank" href="'+responsearray['url']+'">'+responsearray['title']+'</a><div>');
         $("#info-iframe").contents().find('#'+page+'Links').append('<div><a target="_blank" href="'+responsearray['url']+'">'+responsearray['title']+'</a><div>');
@@ -2665,38 +2679,55 @@
             var type = malUrl.split('/')[3];
             var uid = malUrl.split('/')[4].split("?")[0];
             var sites = new Array();
-            if(kissanimeLinks != 0){
-                sites.push('Kissanime');
-            }
-            if(kissmangaLinks != 0){
-                sites.push('Kissmanga');
-            }
-            if(masteraniLinks != 0){
-                sites.push('Masterani');
-            }
-            if(nineanimeLinks != 0){
-                sites.push('9anime');
-            }
-            if(crunchyrollLinks != 0){
-                sites.push('Crunchyroll');
-            }
-            if(gogoanimeLinks != 0){
-                sites.push('Gogoanime');
+            var sitesName = new Array();
+            var searchLinks = 0;
+            if(type == 'anime'){
+                if(kissanimeLinks != 0){
+                    sites.push('Kissanime');
+                    sitesName['Kissanime'] = 'KissAnime';
+                    searchLinks = 1;
+                }
+                if(masteraniLinks != 0){
+                    sites.push('Masterani');
+                    sitesName['Masterani'] = 'MasterAnime';
+                    searchLinks = 1;
+                }
+                if(nineanimeLinks != 0){
+                    sites.push('9anime');
+                    sitesName['9anime'] = '9anime';
+                    searchLinks = 1;
+                }
+                if(crunchyrollLinks != 0){
+                    sites.push('Crunchyroll');
+                    sitesName['Crunchyroll'] = 'Crunchyroll';
+                    searchLinks = 1;
+                }
+                if(gogoanimeLinks != 0){
+                    sites.push('Gogoanime');
+                    sitesName['Gogoanime'] = 'Gogoanime';
+                    searchLinks = 1;
+                }
+            }else{
+                if(kissmangaLinks != 0){
+                    sites.push('Kissmanga');
+                    sitesName['Kissmanga'] = 'KissManga';
+                    searchLinks = 1;
+                }
             }
             if(searchLinks != 0){
                 $('h2:contains("Information")').before('<h2 id="siteSearch" class="mal_links">Search</h2><br class="mal_links" />');
                 if(type == 'anime'){
                     $('#siteSearch').after('<div class="mal_links"></div>');
-                    $('#siteSearch').after('<div class="mal_links"><a target="_blank" href="http://www.google.com/search?q=site:www.masterani.me/anime/info/+'+encodeURI($('#contentWrapper > div:first-child span').text())+'">Masterani (Google)</a> <a target="_blank" href="https://www.masterani.me/anime?search='+$('#contentWrapper > div:first-child span').text()+'">(Site)</a></div>');
-                    $('#siteSearch').after('<div class="mal_links"><a target="_blank" href="http://www.gogoanime.tv/search.html?keyword='+$('#contentWrapper > div:first-child span').text()+'">Gogoanime</a></div>');
-                    $('#siteSearch').after('<div class="mal_links"><a target="_blank" href="http://www.crunchyroll.com/search?q='+$('#contentWrapper > div:first-child span').text()+'">Crunchyroll</a></div>');
-                    $('#siteSearch').after('<div class="mal_links"><a target="_blank" href="https://9anime.to/search?keyword='+$('#contentWrapper > div:first-child span').text()+'">9anime</a></div>');
-                    $('#siteSearch').after('<form class="mal_links" target="_blank" action="http://kissanime.ru/Search/Anime" id="kissanimeSearch" method="post" _lpchecked="1"><a href="#" onclick="return false;" class="submitKissanimeSearch">Kissanime</a><input type="hidden" id="keyword" name="keyword" value="'+$('#contentWrapper > div:first-child span').text()+'"/></form>');
+                    if(masteraniLinks != 0) $('#siteSearch').after('<div class="mal_links"><a target="_blank" href="http://www.google.com/search?q=site:www.masterani.me/anime/info/+'+encodeURI($('#contentWrapper > div:first-child span').text())+'">MasterAnime (Google)</a> <a target="_blank" href="https://www.masterani.me/anime?search='+$('#contentWrapper > div:first-child span').text()+'">(Site)</a></div>');
+                    if(gogoanimeLinks != 0) $('#siteSearch').after('<div class="mal_links"><a target="_blank" href="http://www.gogoanime.tv/search.html?keyword='+$('#contentWrapper > div:first-child span').text()+'">Gogoanime</a></div>');
+                    if(crunchyrollLinks != 0) $('#siteSearch').after('<div class="mal_links"><a target="_blank" href="http://www.crunchyroll.com/search?q='+$('#contentWrapper > div:first-child span').text()+'">Crunchyroll</a></div>');
+                    if(nineanimeLinks != 0) $('#siteSearch').after('<div class="mal_links"><a target="_blank" href="https://9anime.to/search?keyword='+$('#contentWrapper > div:first-child span').text()+'">9anime</a></div>');
+                    if(kissanimeLinks != 0) $('#siteSearch').after('<form class="mal_links" target="_blank" action="http://kissanime.ru/Search/Anime" id="kissanimeSearch" method="post" _lpchecked="1"><a href="#" onclick="return false;" class="submitKissanimeSearch">KissAnime</a><input type="hidden" id="keyword" name="keyword" value="'+$('#contentWrapper > div:first-child span').text()+'"/></form>');
                     $('.submitKissanimeSearch').click(function(){
                       $('#kissanimeSearch').submit();
                     });
                 }else{
-                    $('#siteSearch').after('<form class="mal_links" target="_blank" action="http://kissmanga.com/Search/Manga" id="kissmangaSearch" method="post" _lpchecked="1"><a href="#" onclick="return false;" class="submitKissmangaSearch">Kissmanga</a><input type="hidden" id="keyword" name="keyword" value="'+$('#contentWrapper > div:first-child span').text()+'"/></form>');
+                    $('#siteSearch').after('<form class="mal_links" target="_blank" action="http://kissmanga.com/Search/Manga" id="kissmangaSearch" method="post" _lpchecked="1"><a href="#" onclick="return false;" class="submitKissmangaSearch">KissManga</a><input type="hidden" id="keyword" name="keyword" value="'+$('#contentWrapper > div:first-child span').text()+'"/></form>');
                     $('.submitKissmangaSearch').click(function(){
                       $('#kissmangaSearch').submit();
                     });
@@ -2712,7 +2743,7 @@
                     onload: function (response) {
                         con.log('[2Kiss]', url, response.response);
                         if(response.response != 'null'){
-                            getSites($.parseJSON(response.response), page);
+                            getSites($.parseJSON(response.response), sitesName[page]);
                         }
                     },
                     onerror: function(error) {
@@ -2723,6 +2754,51 @@
        });
     }
 
+    function malThumbnails(){
+        if(window.location.href.indexOf("/pics") > -1){
+            return;
+        }
+        if(malThumbnail == "0"){
+            return;
+        }
+        var height = parseInt(malThumbnail);
+        var width = Math.floor(height/144*100);
+
+        var surHeight = height+4;
+        var surWidth = width+4;
+        GM_addStyle('.picSurround img:not(.noKal){height: '+height+'px !important; width: '+width+'px !important;}');
+        GM_addStyle('.picSurround img.lazyloaded.kal{width: auto !important;}');
+        GM_addStyle('.picSurround:not(.noKal) a{height: '+surHeight+'px; width: '+surWidth+'px; overflow: hidden; display: flex; justify-content: center;}');
+        window.onload = function(){ overrideLazyload(); };
+        document.onload = function(){ overrideLazyload(); };
+
+        function overrideLazyload() {
+            var tags = document.querySelectorAll(".picSurround img:not(.kal)");
+            var url = '';
+            for (var i = 0; i < tags.length; i++) {
+                var regexDimensions = /\/r\/\d*x\d*/g;
+                if(tags[i].hasAttribute("data-src")){
+                    url = tags[i].getAttribute("data-src");
+                }else{
+                    url = tags[i].getAttribute("src");
+                }
+
+                if ( regexDimensions.test(url) || /voiceactors.*v.jpg$/g.test(url) ) {
+                    if(!(url.indexOf("100x140") > -1)){
+                        tags[i].setAttribute("data-src", url);
+                        url = url.replace(/v.jpg$/g, '.jpg');
+                        tags[i].setAttribute("data-srcset", url.replace(regexDimensions, ''));
+                        tags[i].classList.add('lazyload');
+                    }
+                    tags[i].classList.add('kal');
+                }else{
+                    tags[i].closest(".picSurround").classList.add('noKal');
+                    tags[i].classList.add('kal');
+                    tags[i].classList.add('noKal');
+                }
+            }
+        }
+    }
     function tagToContinue(){
         if(tagLinks == 0){
             return false;
@@ -2896,20 +2972,20 @@
     function createIframe(){
         if( !($('#info-popup').height()) ){
             //var position = 'width: 80%; height: 70%; position: absolute; top: 15%; left: 10%';
-            var position = 'max-width: 100%; max-height: 100%; min-width: 500px; min-height: 300px; width: '+miniMalWidth+'; height: '+miniMalHeight+'; position: absolute; bottom: 0%; '+( posLeft ? 'left':'right')+': 0%';//phone
+            var position = 'max-width: 100%; max-height: 100%; min-width: 500px; min-height: 300px; width: '+miniMalWidth+'; height: '+miniMalHeight+'; position: absolute; bottom: 0%; '+ posLeft +': 0%';//phone
             if($(window).width() < 500){
-              position = 'width: 100vw; height: 100%; position: absolute; top: 0%; '+( posLeft ? 'left':'right')+': 0%';
+              position = 'width: 100vw; height: 100%; position: absolute; top: 0%; '+ posLeft +': 0%';
             }
-            var material = '<dialog class="modal" id="info-popup" style="pointer-events: none;display: none; position: fixed;z-index: 999;left: 0;top: 0;bottom: 0;width: 100%; height: 100%; background-color: transparent; padding: 0; margin: 0;">';
+            var material = '<dialog class="modal" id="info-popup" style="pointer-events: none;display: none; position: fixed;z-index: 999;left: 0;top: 0;bottom: 0;width: 100%; height: 100%; background-color: transparent; padding: 0; margin: 0; border: 0;">';
             material += '<div id="modal-content" class="modal-content" Style="pointer-events: all;background-color: #fefefe; margin: 0; '+position+'">';
             //material += '<iframe id="info-iframe" style="height:100%;width:100%;border:0;"></iframe>';
             material += '</div>';
             material += '</dialog>';
             $('body').after(material);
 
-            GM_addStyle('.modal-content.fullscreen{width: 100% !important;height: 100% !important; bottom: 0 !important;'+( posLeft ? 'left':'right')+': 0 !important;}\
+            GM_addStyle('.modal-content.fullscreen{width: 100% !important;height: 100% !important; bottom: 0 !important;'+ posLeft +': 0 !important;}\
                          .modal-content{-webkit-transition: all 0.5s ease; -moz-transition: all 0.5s ease; -o-transition: all 0.5s ease; transition: all 0.5s ease;}\
-                         .floatbutton:hover {background-color:rgb(255,64,129);}\
+                         .floatbutton:hover {background-color:rgb(63,81,181);}\
                          .floatbutton:hover div {background-color:white;}\
                          .floatbutton div {background-color:black;-webkit-transition: all 0.5s ease;-moz-transition: all 0.5s ease;-o-transition: all 0.5s ease;transition: all 0.5s ease;}\
                          .floatbutton {\
@@ -2919,9 +2995,6 @@
                          .mdl-button{\
                             background: #3f51b5; color: #fff;box-shadow: 0 2px 2px 0 rgba(0,0,0,.14), 0 3px 1px -2px rgba(0,0,0,.2), 0 1px 5px 0 rgba(0,0,0,.12);\
                             border: none; border-radius: 2px;\
-                         }\
-                         .flashinfo:hover{\
-                            max-height:5000px !important;\
                          }');
 
             var iframe = document.createElement('iframe');
@@ -2929,15 +3002,86 @@
             iframe.setAttribute("style", "height:100%;width:100%;border:0;");
             iframe.onload = function() {
                 executejs(GM_getResourceText("materialjs"));
+                executejs(GM_getResourceText("simpleBarjs"));
                 var head = $("#info-iframe").contents().find("head");
                 head.append('<style>#material .mdl-card__supporting-text{width: initial} .mdl-layout__header .mdl-textfield__label:after{background-color: red !important;}</style>');
+                head.append('<style>\
+                              .alternative-list .mdl-list{\
+                                max-width: 100%;\
+                                margin: 0;\
+                                padding: 0;\
+                              }\
+                              .alternative-list .mdl-list__item{\
+                                height: auto;\
+                              }\
+                              .alternative-list .mdl-list__item-primary-content{\
+                                height: auto !important;\
+                              }\
+                              .alternative-list .mdl-list__item-primary-content a{\
+                                display: block;\
+                              }\
+                              .alternative-list .mdl-list__item-text-body{\
+                                height: auto !important;\
+                              }\
+                              \
+                              .coverinfo .mdl-chip{\
+                                height: auto;\
+                              }\
+                              .coverinfo .mdl-chip .mdl-chip__text{\
+                                white-space: normal;\
+                                line-height: 24px;\
+                              }\
+                              \
+                              \
+                              .mdl-layout__content::-webkit-scrollbar{\
+                                width: 10px !important;\
+                                background-color: #F5F5F5;\
+                              }\
+                              .mdl-layout__content::-webkit-scrollbar-thumb{\
+                                background-color: #c1c1c1 !important;\
+                              }\
+                              .simplebar-track{\
+                                width: 10px !important;\
+                                background-color: #F5F5F5;\
+                              }\
+                              .simplebar-scrollbar{\
+                                background-color: #c1c1c1 !important;\
+                              }\
+                              .simplebar-track.horizontal{\
+                                display: none;\
+                              }\
+                              \
+                              .simplebar-scrollbar{\
+                                border-radius: 0px !important;\
+                                right: 0 !important;\
+                                width: 100% !important;\
+                                opacity: 1 !important;\
+                              }\
+                              .simplebar-content{\
+                                margin-right: -7px !important;\
+                              }\
+                              .simplebar-track{\
+                                margin-top: -2px;\
+                                margin-bottom: -2px;\
+                              }\
+                              a{\
+                                text-decoration: none;\
+                              }\
+                              .mdl-layout__tab-panel a:hover{\
+                                text-decoration: underline;\
+                              }\
+                            </style>');
                 head.append('<style>'+GM_getResourceText("materialCSS")+'</style>');
                 head.append('<style>'+GM_getResourceText("materialFont")+'</style>');
+                head.append('<style>'+GM_getResourceText("simpleBarCSS")+'</style>');
                 //templateIframe(url, data);
                 if(displayFloatButton == 1){
                     var floatbutton = '<button class="open-info-popup floatbutton" style="">';
                     floatbutton += '<i class="my-float" style="margin-top:22px;"><div style="width: 100%; height: 4px; margin-bottom: 15%;"></div><div style="width: 100%; height: 4px; margin-bottom: 15%;"></div><div style="width: 100%; height: 4px"></div></i></button>';
                     $('#info-popup').after(floatbutton);
+                    if(miniMalButtonLate != ''){
+                      miniMalButton(miniMalButtonLate);
+                    }
                     /*$('.open-info-popup').click(function() {
                         if($('#info-popup').css('display') == 'none'){
                             $('.floatbutton').fadeOut();
@@ -2987,7 +3131,7 @@
             material += '\
             </div>\
           </header>\
-          <main class="mdl-layout__content">';
+          <main class="mdl-layout__content" data-simplebar>';
             material += '\
             <section class="mdl-layout__tab-panel is-active" id="fixed-tab-1">\
               <div id="loadOverview" class="mdl-progress mdl-js-progress mdl-progress__indeterminate" style="width: 100%; position: absolute;"></div>\
@@ -3010,10 +3154,10 @@
                 <div class="mdl-cell mdl-cell--4-col mdl-cell--8-col-tablet mdl-shadow--4dp data-block mdl-grid mdl-grid--no-spacing malClear">\
                     \
                 </div>\
-                <div class="mdl-grid mdl-grid--no-spacing mdl-cell mdl-cell--4-col mdl-cell--8-col-tablet mdl-shadow--4dp related-block mdl-grid malClear">\
+                <div class="mdl-grid mdl-grid--no-spacing mdl-cell mdl-cell--4-col mdl-cell--8-col-tablet mdl-shadow--4dp related-block alternative-list mdl-grid malClear">\
                     \
                 </div>\
-                <div style="display: none;" class="mdl-grid mdl-grid--no-spacing mdl-cell mdl-cell--4-col mdl-cell--8-col-tablet mdl-shadow--4dp mdl-grid stream-block malClear">\
+                <div style="display: none;" class="mdl-grid mdl-grid--no-spacing mdl-cell mdl-cell--4-col mdl-cell--8-col-tablet mdl-shadow--4dp mdl-grid alternative-list stream-block malClear">\
                     <ul class="mdl-list stream-block-inner">\
                     \
                     </ul>\
@@ -3042,7 +3186,8 @@
             </section>';
           material +='</main>\
         </div>\
-        <div id="malSearchPop" style="height: calc(100% - 60px); width: 100%; position: fixed; top: 60px; z-index: 10; background-color: white; overflow-y: auto; display: none;">\
+        <div data-simplebar id="malSearchPop" style="height: calc(100% - 60px); width: 100%; position: fixed; top: 60px; z-index: 10; background-color: white; display: none;">\
+          <div id="malSearchPopInner"></div>\
         </div>';
         //material += '</div>';
         $("#info-iframe").contents().find("body").append(material);
@@ -3051,6 +3196,7 @@
         $("#info-iframe").contents().find("#close-info-popup").click( function(){
             modal.style.display = "none";
             $('.floatbutton').fadeIn();
+            outOfTheWay();
             //$('body').css('overflow','initial');
         });
 
@@ -3084,7 +3230,7 @@
               $("#info-iframe").contents().find('#malSearchPop').hide();
             }else{
               $("#info-iframe").contents().find('#malSearchPop').show();
-              searchMal($("#info-iframe").contents().find("#headMalSearch").val(), listType, '#malSearchPop', function(){
+              searchMal($("#info-iframe").contents().find("#headMalSearch").val(), listType, '#malSearchPopInner', function(){
                 $("#info-iframe").contents().find("#malSearchPop .searchItem").unbind('click').click(function(event) {
                   $("#info-iframe").contents().find("#headMalSearch").val('').trigger("input").parent().parent().removeClass('is-dirty');
                   $("#info-iframe").contents().find('.malClear').hide();
@@ -3107,12 +3253,13 @@
           }else{
             $("#info-iframe").contents().find("#book").toggleClass('open');
             $("#info-iframe").contents().find('#malSearchPop').show();
-            iframeBookmarks( $("#info-iframe").contents().find('#malSearchPop') );
+            iframeBookmarks( $("#info-iframe").contents().find('#malSearchPopInner') );
           }
         });
     }
 
     function fillIframe(url, data = null){
+        outOfTheWay();
         $("#info-iframe").contents().find('.malClear').hide();
         $("#info-iframe").contents().find('.mdl-progress__indeterminate').show();
         if(data == null && url != null){
@@ -3148,7 +3295,7 @@
 
     function iframeConfig(url, data){
         try{
-            var settingsUI = '<ul class="demo-list-control mdl-list">\
+            var settingsUI = '<ul class="demo-list-control mdl-list" style="margin: 0px; padding: 0px;">\
             <div class="mdl-grid">';
             try{
               var malUrl = GM_getValue(dbSelector+'/'+$.titleToDbKey($.urlAnimeTitle($.normalUrl()))+'/Mal' , null);
@@ -3169,14 +3316,16 @@
                                 </div>\
                                   <div class="mdl-list__item">\
                                   <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width: 100%;">\
-                                      <input class="mdl-textfield__input" type="number" step="1" id="malOffset" value="'+GM_getValue(dbSelector+'/'+$.titleToDbKey($.urlAnimeTitle($.normalUrl()))+'/Offset' , '')+'">\
+                                      <input class="mdl-textfield__input" style="padding-right: 18px;" type="number" step="1" id="malOffset" value="'+GM_getValue(dbSelector+'/'+$.titleToDbKey($.urlAnimeTitle($.normalUrl()))+'/Offset' , '')+'">\
                                   <label class="mdl-textfield__label" for="malOffset">Episode Offset</label>\
+                                    '+getTooltip('Input the episode offset, if an anime has 12 episodes, but uses the numbers 0-11 rather than 1-12, you simply type " +1 " in the episode offset.','float: right; margin-top: -17px;','left')+'\
                                   </div>\
                                 </div>\
                                 <div class="mdl-list__item" style="padding-bottom: 0;padding-top: 0;">\
                                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width: 100%;">\
-                                    <input class="mdl-textfield__input" type="text" id="malUrlInput" value="'+malUrl+'">\
+                                    <input class="mdl-textfield__input" style="padding-right: 18px;" type="text" id="malUrlInput" value="'+malUrl+'">\
                                 <label class="mdl-textfield__label" for="malUrlInput">MyAnimeList Url</label>\
+                                  '+getTooltip('Only change this URL if it points to the wrong anime page on MAL.','float: right; margin-top: -17px;','left')+'\
                                 </div>\
                               </div>\
                               \
@@ -3185,7 +3334,8 @@
                                 <label class="mdl-textfield__label" for="malSearch">\
                                   Search\
                                 </label>\
-                                  <input class="mdl-textfield__input" type="text" id="malSearch">\
+                                  <input class="mdl-textfield__input" style="padding-right: 18px;" type="text" id="malSearch">\
+                                  '+getTooltip('This field is for finding an anime, when you need to replace the "MyAnimeList Url" shown above.<br>To make a search, simply begin typing the name of an anime, and a list with results will automatically appear as you type.','float: right; margin-top: -17px;','left')+'\
                               </div>\
                               </div>\
                               <div class="mdl-list__item" style="min-height: 0; padding-bottom: 0; padding-top: 0;">\
@@ -3203,7 +3353,7 @@
                             <div class="mdl-card__title mdl-card--border">\
                                 <h2 class="mdl-card__title-text">General</h2>\
                                 </div>';
-                settingsUI += materialCheckbox(autoTracking,'autoTracking','Autotracking');
+                settingsUI += materialCheckbox(autoTracking,'autoTracking','Autotracking'+getTooltip('Autotracking is the function where this script automatically updates the anime´s you watch with your MAL account.','','bottom'));
                 settingsUI += '<li class="mdl-list__item">\
                                   <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width: 100%;">\
                                       <input class="mdl-textfield__input" type="number" step="1" id="malDelay" value="'+delay+'">\
@@ -3216,19 +3366,44 @@
                             <div class="mdl-card__title mdl-card--border">\
                                 <h2 class="mdl-card__title-text">MAL Bookmark Page</h2>\
                                 </div>';
-                settingsUI += materialCheckbox(tagLinks,'tagLinks','Continue watching links');
+                settingsUI += materialCheckbox(tagLinks,'tagLinks','Continue watching links'+getTooltip('If enabled: On your MAL Anime List and the bookmark list in miniMAL, an icon-link will be added to the last used streaming site you were using to watch an anime.<br>Simply click the icon to continue watching the anime.'));
                 settingsUI += '</div>';
 
                 settingsUI += '<div class="mdl-cell mdl-cell--12-col mdl-shadow--4dp">\
                             <div class="mdl-card__title mdl-card--border">\
-                                <h2 class="mdl-card__title-text">Overview Page</h2>\
-                                </div>';
-                settingsUI += materialCheckbox(searchLinks,'searchLinks','Search links');
-                settingsUI += materialCheckbox(kissanimeLinks,'kissanimeLinks','Kissanime links');
-                settingsUI += materialCheckbox(masteraniLinks,'masteraniLinks','Masterani.me links');
-                settingsUI += materialCheckbox(nineanimeLinks,'nineanimeLinks','9anime links');
-                settingsUI += materialCheckbox(crunchyrollLinks,'crunchyrollLinks','Crunchyroll links');
-                settingsUI += materialCheckbox(gogoanimeLinks,'gogoanimeLinks','Gogoanime links');
+                                <h2 class="mdl-card__title-text">Streaming Site Links</h2>';
+
+                settingsUI += getTooltip('If disabled, the streaming site will no longer appear in an animes sidebar on MAL.');
+
+                settingsUI += '</div>';
+
+
+                settingsUI += materialCheckbox(kissanimeLinks,'kissanimeLinks','KissAnime');
+                settingsUI += materialCheckbox(masteraniLinks,'masteraniLinks','MasterAnime');
+                settingsUI += materialCheckbox(nineanimeLinks,'nineanimeLinks','9anime');
+                settingsUI += materialCheckbox(crunchyrollLinks,'crunchyrollLinks','Crunchyroll');
+                settingsUI += materialCheckbox(gogoanimeLinks,'gogoanimeLinks','Gogoanime');
+                settingsUI += materialCheckbox(kissmangaLinks,'kissmangaLinks','KissManga');
+                settingsUI += '</div>';
+
+                settingsUI += '<div class="mdl-cell mdl-cell--12-col mdl-shadow--4dp">\
+                            <div class="mdl-card__title mdl-card--border">\
+                                <h2 class="mdl-card__title-text">MyAnimeList</h2>\
+                                    </div>';
+                settingsUI += '<li class="mdl-list__item">\
+                                  <span class="mdl-list__item-primary-content">\
+                                      Thumbnails\
+                                  '+getTooltip('The option is for resizing the thumbnails on MAL.<br>Like thumbnails for characters, people, recommendations, etc.')+'\
+                                  </span>\
+                                  <span class="mdl-list__item-secondary-action">\
+                                    <select name="myinfo_score" id="malThumbnail" class="inputtext mdl-textfield__input" style="outline: none;">\
+                                      <option value="144">Large</option>\
+                                      <option value="100">Medium</option>\
+                                      <option value="60">Small</option>\
+                                      <option value="0">MAL Default</option>\
+                                    </select>\
+                                  </span>\
+                              </li>';
                 settingsUI += '</div>';
 
                 settingsUI += '<div class="mdl-cell mdl-cell--12-col mdl-shadow--4dp">\
@@ -3236,13 +3411,26 @@
                                   <h2 class="mdl-card__title-text">miniMAL</h2>\
                                   <span style="margin-left: auto; color: #7f7f7f;">Shortcut: Ctrl + m</span>\
                                 </div>';
+                settingsUI += '<li class="mdl-list__item">\
+                                  <span class="mdl-list__item-primary-content">\
+                                      Display to the\
+                                  </span>\
+                                  <span class="mdl-list__item-secondary-action">\
+                                    <select name="myinfo_score" id="posLeft" class="inputtext mdl-textfield__input" style="outline: none;">\
+                                      <option value="left">Left</option>\
+                                      <option value="right">Right</option>\
+                                    </select>\
+                                  </span>\
+                              </li>';
                 settingsUI += materialCheckbox(miniMALonMal,'miniMALonMal','Display on MyAnimeList');
                 settingsUI += materialCheckbox(displayFloatButton,'displayFloatButton','Floating menu button');
-                settingsUI += materialCheckbox(posLeft,'posLeft','Left-sided');
+
+                settingsUI += materialCheckbox(outWay,'outWay','Move video out of the way');
                 settingsUI += '<li class="mdl-list__item" style="display: inline-block; width: 50%;">\
                                   <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width: 100%;">\
                                       <input class="mdl-textfield__input" type="text" step="1" id="miniMalHeight" value="'+miniMalHeight+'">\
-                                  <label class="mdl-textfield__label" for="miniMalHeight">Height (px / %)</label>\
+                                  <label class="mdl-textfield__label" for="miniMalHeight">Height (px / %)\
+                                  </label>\
                                   </div>\
                               </li>';
                 settingsUI += '<li class="mdl-list__item" style="display: inline-block; width: 50%;">\
@@ -3254,11 +3442,11 @@
                 settingsUI += '</div>';
 
                 settingsUI += '<div class="mdl-cell mdl-cell--12-col mdl-shadow--4dp hoverinfoDeact">';
-                settingsUI += materialCheckbox(episodeInfoBox,'episodeInfoBox','Episode Hoverinfo', true);
+                settingsUI += materialCheckbox(episodeInfoBox,'episodeInfoBox','Episode Hoverinfo'+getTooltip('<img style="width: 200%; margin-bottom: -16px; margin-top: -16px; margin-left: -200px; margin-right: -200px;" src="https://raw.githubusercontent.com/lolamtisch/KissAnimeList/dev/Screenshots/2fhq9cL.gif" alt="Episode Hoverinfo">'), true);
                 settingsUI += '<div class="mdl-card__title mdl-card--border" style="padding: 0;"></div>';
-                settingsUI += materialCheckbox(episodeInfoSynopsis,'episodeInfoSynopsis','Synopsis');
-                settingsUI += materialCheckbox(episodeInfoImage,'episodeInfoImage','Image');
-                settingsUI += materialCheckbox(episodeInfoSubtitle,'episodeInfoSubtitle','Subtitle');
+                settingsUI += materialCheckbox(episodeInfoSynopsis,'episodeInfoSynopsis','Synopsis'+getTooltip('If enabled, the episode-synopsis from MAL will be displayed in the Episode Hoverinfo.'));
+                settingsUI += materialCheckbox(episodeInfoImage,'episodeInfoImage','Image'+getTooltip('If enabled, the episode-image from MAL will be displayed in the Episode Hoverinfo.'));
+                settingsUI += materialCheckbox(episodeInfoSubtitle,'episodeInfoSubtitle','Subtitle'+getTooltip('If enabled, the episode-subtitle from MAL will be displayed in the Episode Hoverinfo. Example using the anime "Fate/Apocrypha":<br>Title: "Apocrypha: The Great Holy Grail War"<br>Subtitle: "Gaiten: Seihai Taisen (外典:聖杯大戦)"'));
                 settingsUI += '</div>';
 
                 settingsUI += '<div class="mdl-cell mdl-cell--12-col mdl-shadow--4dp">\
@@ -3377,13 +3565,13 @@
                     tagLinks = 0;
                 }
             });
-            $("#info-iframe").contents().find('#searchLinks').change(function(){
+            $("#info-iframe").contents().find('#kissmangaLinks').change(function(){
                 if($(this).is(":checked")){
-                    GM_setValue('searchLinks', 1);
-                    searchLinks = 1;
+                    GM_setValue('kissmangaLinks', 1);
+                    kissmangaLinks = 1;
                 }else{
-                    GM_setValue('searchLinks', 0);
-                    searchLinks = 0;
+                    GM_setValue('kissmangaLinks', 0);
+                    kissmangaLinks = 0;
                 }
             });
 
@@ -3432,15 +3620,12 @@
                     gogoanimeLinks = 0;
                 }
             });
-            $("#info-iframe").contents().find('#posLeft').change(function(){
-                if($(this).is(":checked")){
-                    GM_setValue('posLeft', 1);
-                    posLeft = 1;
-                }else{
-                    GM_setValue('posLeft', 0);
-                    posLeft = 0;
-                }
+
+            $("#info-iframe").contents().find("#posLeft").val(posLeft);
+            $("#info-iframe").contents().find("#posLeft").change(function(){
+              GM_setValue( 'posLeft', $("#info-iframe").contents().find("#posLeft").val() );
             });
+
             $("#info-iframe").contents().find('#displayFloatButton').change(function(){
                 if($(this).is(":checked")){
                     GM_setValue('displayFloatButton', 1);
@@ -3496,6 +3681,22 @@
                     miniMALonMal = 0;
                 }
             });
+
+            $("#info-iframe").contents().find('#outWay').change(function(){
+                if($(this).is(":checked")){
+                    GM_setValue('outWay', 1);
+                    outWay = 1;
+                }else{
+                    GM_setValue('outWay', 0);
+                    outWay = 0;
+                }
+            });
+
+            $("#info-iframe").contents().find("#malThumbnail").val(malThumbnail);
+            $("#info-iframe").contents().find("#malThumbnail").change(function(){
+              GM_setValue( 'malThumbnail', $("#info-iframe").contents().find("#malThumbnail").val() );
+            });
+
             $("#info-iframe").contents().find('#malConfig').show();
         }catch(e) {console.log('[iframeConfig] Error:',e);}
     }
@@ -3598,6 +3799,7 @@
             });
             relatedHtml += '</ul>';
             $("#info-iframe").contents().find('.related-block').html(relatedHtml).show();
+            $("#info-iframe").contents().find('.related-block .mdl-list__item-sub-title').each(function(){$(this).html($(this).children()); });
             $("#info-iframe").contents().find('#material .related-block a').each(function() {
               $(this).click(function(e) {
                 $("#info-iframe").contents().find('.malClear').hide();
@@ -3611,7 +3813,6 @@
         }catch(e) {console.log('[iframeOverview] Error:',e);}
 
         try{
-            if( !(window.location.href.indexOf("myanimelist.net") > -1) ){
               var localListType = url.split('/')[3];
               var dataBlock = data.split('id="addtolist"')[1].split('<div id="myinfoDisplay"')[0];
               if (~data.indexOf("header-menu-login")){
@@ -3652,11 +3853,11 @@
                           anime['.add_manga[num_read_chapters]'] = 0;
                       }
                   }
-                  anime['.add_'+listType+'[score]'] = parseInt($("#info-iframe").contents().find('#myinfo_score').val() );
-                  if(anime['.add_'+listType+'[score]'] == 0){
-                      anime['.add_'+listType+'[score]'] = '';
+                  anime['.add_'+localListType+'[score]'] = parseInt($("#info-iframe").contents().find('#myinfo_score').val() );
+                  if(anime['.add_'+localListType+'[score]'] == 0){
+                      anime['.add_'+localListType+'[score]'] = '';
                   }
-                  anime['.add_'+listType+'[status]'] = parseInt($("#info-iframe").contents().find('#myinfo_status').val() );
+                  anime['.add_'+localListType+'[status]'] = parseInt($("#info-iframe").contents().find('#myinfo_status').val() );
                   if($.isOverviewPage()){
                     anime['forceUpdate'] = 2;
                   }
@@ -3664,7 +3865,24 @@
 
                   setanime(url, anime, null, localListType);
               });
-            }
+        }catch(e) {console.log('[iframeOverview] Error:',e);}
+
+        try{
+          var continueHtml = '';
+          continueHtml +='<div class="mdl-card__actions mdl-card--border" style="padding-left: 0;">'
+          continueHtml += '<div class="data title progress" style="display: inline-block; position: relative; top: 2px; margin-left: -2px;"><div class="link" style="display: none;">'+$("#info-iframe").contents().find('#myinfo_watchedeps').val()+'</div></div>';
+          continueHtml +='</div>';
+          getanime(url, function(actual){
+              if(actual['.add_anime[tags]'].indexOf("last::") > -1 ){
+                  var url = atobURL( actual['.add_anime[tags]'].split("last::")[1].split("::")[0] );
+                  $("#info-iframe").contents().find('.malDescription').first().append(continueHtml);
+                  setStreamLinks(url, $("#info-iframe").contents().find('.malDescription').first());
+
+                  $("#info-iframe").contents().find('.malDescription .stream, .malDescription .nextStream').addClass('mdl-button mdl-button--colored mdl-js-button mdl-button--raised').css('color', 'white').find('img').css('padding-bottom', '3px').css('padding-right', '6px').css('margin-left', '-3px');
+                  $("#info-iframe").contents().find('.malDescription .nextStream').append('Next Episode');
+                  $("#info-iframe").contents().find('.malDescription .stream').append('Continue Watching');
+              }
+          }, url, url.split('/')[3]);
         }catch(e) {console.log('[iframeOverview] Error:',e);}
 
         try{
@@ -3945,6 +4163,79 @@
 
         });
     }
+
+    var outOfTheWayLoad = 0;
+    function outOfTheWay(){
+      if(outWay != 1) return;
+      $(document).ready(function(){
+        try{
+          var minimalSelector = '#modal-content';
+
+          reposition();
+          if(outOfTheWayLoad == 0){
+            outOfTheWayLoad = 1;
+            $( window ).resize(function(){reposition();});
+            var lastScrollLeft = 0;
+            $(window).scroll(function() {
+                var documentScrollLeft = $(document).scrollLeft();
+                if (lastScrollLeft != documentScrollLeft) {
+                    lastScrollLeft = documentScrollLeft;
+                    reposition();
+                }
+            });
+            $(document).on('mozfullscreenchange webkitfullscreenchange fullscreenchange',function(){
+              reposition();
+            });
+          }
+
+          function reposition(){
+              $(videoSelector).css('transform', '');
+
+              if(!$(minimalSelector).is(":visible")){
+                  return;
+              }
+
+              var videoLeft = $(videoSelector).offset().left;
+              var videoWidth = $(videoSelector).width();
+              var videoRight = videoLeft + videoWidth;
+            var minimalLeft = $(minimalSelector).offset().left;
+            var minimalRight = minimalLeft + $(minimalSelector).width();
+            var viewportWidth = $(window).width() - $(minimalSelector).width();
+
+            if( minimalLeft == $(window).scrollLeft()){
+                if( minimalRight > videoLeft){
+                    var tempVideoLeft = minimalRight;
+                    if(videoWidth > viewportWidth){
+                          setVideo(tempVideoLeft, viewportWidth);
+                    }else{
+                          setVideo(tempVideoLeft, videoWidth);
+                      }
+                }
+            }else{
+                if(minimalLeft < videoRight){
+
+                      if(videoWidth > viewportWidth){
+                          var tempVideoLeft = minimalLeft - viewportWidth;
+                          setVideo(tempVideoLeft, viewportWidth);
+                      }else{
+                          var tempVideoLeft = minimalLeft - videoWidth;
+                          setVideo(tempVideoLeft, videoWidth);
+                      }
+                }
+            }
+
+            function setVideo(Left, Width){
+                var scale = Width / videoWidth;
+                Left = Left - videoLeft;
+                Left = Left / scale;
+                $(videoSelector).css('transform', 'scale('+scale+') translateX('+Left+'px)');
+                $(videoSelector).css('transform-origin', '0% 50%');
+                $(videoSelector).css('transition', '0s');
+            }
+          }
+        }catch(e){}
+      });
+    }
     if(window.location.href.indexOf("/BookmarkList") > -1 ){
         $.docReady(function() {
             var optionsTarget = $("#divEmailNotify");
@@ -3992,8 +4283,6 @@
                     }
                 });
             }
-            var flashpos = $('body');
-            flashpos.prepend('<div id="flash-div" style="text-align: center;position: fixed;bottom:10px;width:100%;z-index: 100000;left: 0;"><div id="flash" style="display:none;  background-color: red;padding: 20px; margin: 0 auto;max-width: 60%;          -webkit-border-radius: 20px;-moz-border-radius: 20px;border-radius: 20px;background:rgba(227,0,0,0.6);                       "></div></div>');
         });
         if(malBookmarks == 1){
             try{
@@ -4010,6 +4299,7 @@
             getMalXml();
         }
     }else if(window.location.href.indexOf("myanimelist.net") > -1 ){
+        malThumbnails();
         if(window.location.href.indexOf("myanimelist.net/anime.php") > -1){
             window.history.replaceState(null, null, '/anime/'+$.urlParam('id') );
         }
@@ -4023,9 +4313,19 @@
             if(miniMALonMal){
                 $( document).ready(function(){
                     createIframe();
-                    miniMalButton(window.location.href.split('/').slice(0,5).join('/').split("?")[0]);
+                    miniMalButton(window.location.href.split('/').slice(0,6).join('/').split("?")[0]);
                 });
             }
+
+            $( document).ready(function(){
+                getanime(window.location.href, function(actual){
+                    if(actual['.add_anime[tags]'].indexOf("last::") > -1 ){
+                        var url = atobURL( actual['.add_anime[tags]'].split("last::")[1].split("::")[0] );
+                        $('.h1 span').first().after('<div class="data title progress" style="display: inline-block; position: relative; top: 2px;"><div class="link" style="display: none;">'+$('#myinfo_watchedeps').first().val()+'</div></div>');
+                        setStreamLinks(url, $('.h1').first().parent());
+                    }
+                }, window.location.href, window.location.href.split('/')[3]);
+            });
         }
     }else{
         $("head").click(function() {
@@ -4038,6 +4338,57 @@
             checkdata();
         };
     }
+
+    $(document).ready(function(){
+        GM_addStyle('.flashinfo{\
+                        transition: max-height 2s;\
+                     }\
+                     .flashinfo:hover{\
+                        max-height:5000px !important;\
+                        z-index: 2147483647;\
+                     }\
+                     .flashinfo .synopsis{\
+                        transition: max-height 2s, max-width 2s ease 2s;\
+                     }\
+                     .flashinfo:hover .synopsis{\
+                        max-height:9999px !important;\
+                        max-width: 500px !important;\
+                        transition: max-height 2s;\
+                     }\
+                     #flashinfo-div{\
+                      z-index: 2;\
+                      transition: 2s;\
+                     }\
+                     #flashinfo-div:hover, #flashinfo-div.hover{\
+                      z-index: 2147483647;\
+                     }\
+                     \
+                     #flash-div-top, #flash-div, #flashinfo-div{\
+                        font-family: "Helvetica","Arial",sans-serif;\
+                        color: white;\
+                        font-size: 14px;\
+                        font-weight: 400;\
+                        line-height: 17px;\
+                     }\
+                     #flash-div-top h2, #flash-div h2, #flashinfo-div h2{\
+                        font-family: "Helvetica","Arial",sans-serif;\
+                        color: white;\
+                        font-size: 14px;\
+                        font-weight: 700;\
+                        line-height: 17px;\
+                        padding: 0;\
+                        margin: 0;\
+                     }\
+                     #flash-div-top a, #flash-div a, #flashinfo-div a{\
+                        color: #DF6300;\
+                     }');
+
+        $('body').after('<div id="flash-div-top" style="text-align: center;pointer-events: none;position: fixed;top:0px;width:100%;z-index: 2147483647;left: 0;"></div>\
+            <div id="flash-div" style="text-align: center;pointer-events: none;position: fixed;bottom:0px;width:100%;z-index: 2147483647;left: 0;"><div id="flash" style="display:none;  background-color: red;padding: 20px; margin: 0 auto;max-width: 60%;          -webkit-border-radius: 20px;-moz-border-radius: 20px;border-radius: 20px;background:rgba(227,0,0,0.6);"></div></div>\
+            <div id="flashinfo-div" style="text-align: center;pointer-events: none;position: fixed;bottom:0px;width:100%;left: 0;">');
+
+        changelog();
+    });
 })();
 
 /**

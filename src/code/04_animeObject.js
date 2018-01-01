@@ -242,7 +242,7 @@
             if(anime['malurl'] != null){
                 absolute = anime['malurl'];
             }
-            getanime(thisUrl, function(actual){setanime(thisUrl , anime, actual);}, absolute, localListType);
+            getanime(thisUrl, function(actual){setanime(thisUrl , anime, actual, localListType);}, absolute, localListType);
             return;
         }
 

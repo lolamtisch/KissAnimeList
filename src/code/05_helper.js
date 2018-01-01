@@ -62,13 +62,13 @@
 
     function flashm(text,error = true, info = false, permanent = false){
         con.log("[Flash] Message:",text);
-        $('#flash-div').css('z-index', '2147483647');
+        if(error === true){
+            var colorF = "#3e0808";
+        }else{
+            var colorF = "#323232";
+        }
+
         if(permanent){
-            if(error === true){
-                var colorF = "#3e0808";
-            }else{
-                var colorF = "#323232";
-            }
             $('#flash-div-top').prepend('<div class="flashPerm" style="display:none;"><div style="display:table; pointer-events: all; background-color: red;padding: 14px 24px 14px 24px; margin: 0 auto; margin-top: -2px; max-width: 60%; -webkit-border-radius: 20px;-moz-border-radius: 20px;border-radius: 2px;color: white;background:'+colorF+'; ">'+text+'</div></div>');
             $('.flashPerm').delay(2000).slideDown(800);
         }else{
@@ -77,30 +77,20 @@
                     duration: 400,
                     queue: false,
                     complete: function() { $(this).remove(); }});
-                if(error === true){
-                    var colorF = "#3e0808";
-                }else{
-                    var colorF = "#323232";
-                }
-                $('#flash-div').append('<div class="flashinfo" style="display:none; max-height: 5000px; margin-top: -8px;"><div style="display:table; pointer-events: all; background-color: red;padding: 14px 24px 14px 24px; margin: 0 auto; margin-top: -2px; max-width: 60%; -webkit-border-radius: 20px;-moz-border-radius: 20px;border-radius: 2px;color: white;background:'+colorF+'; ">'+text+'</div></div>');
-                $('.flashinfo').slideDown(800).delay(4000).queue(function() { $(this).css('transition','max-height 2s').css('max-height', '8px'); setTimeout(function() {$('#flash-div').css('z-index', '2');}, 2000);});
+                $('#flashinfo-div').addClass('hover').append('<div class="flashinfo" style="display:none; max-height: 5000px; margin-top: -8px;"><div style="display:table; pointer-events: all; background-color: red; margin: 0 auto; margin-top: -2px; max-width: 60%; -webkit-border-radius: 20px;-moz-border-radius: 20px;border-radius: 2px;color: white;background:'+colorF+'; "><div style="max-height: 60vh; overflow-y: auto; padding: 14px 24px 14px 24px;">'+text+'</div></div></div>');
+                $('.flashinfo').slideDown(800).delay(4000).queue(function() { $('#flashinfo-div').removeClass('hover'); $(this).css('max-height', '8px');});
             }else{
                 $('.flash').removeClass('flash').fadeOut({
                     duration: 400,
                     queue: false,
                     complete: function() { $(this).remove(); }});
-                if(error === true){
-                    var colorF = "#3e0808";
-                }else{
-                    var colorF = "#323232";
-                }
                 var mess ='<div class="flash" style="display:none;"><div style="display:table; pointer-events: all; background-color: red;padding: 14px 24px 14px 24px; margin: 0 auto; margin-top: 20px; max-width: 60%; -webkit-border-radius: 20px;-moz-border-radius: 20px;border-radius: 2px;color: white;background:'+colorF+'; ">'+text+'</div></div>';
                 if($('.flashinfo').length){
                     $('.flashinfo').before(mess);
                 }else{
                     $('#flash-div').append(mess);
                 }
-                $('.flash').slideDown(800).delay(4000).slideUp(800, function() { $(this).remove(); $('#flash-div').css('z-index', '2'); });
+                $('.flash').slideDown(800).delay(4000).slideUp(800, function() { $(this).remove(); });
             }
         }
     }
@@ -111,11 +101,11 @@
         message = '<div style="text-align: left;">' + message + '</div><div style="display: flex; justify-content: space-around;"><button class="Yes'+rNumber+'" style="background-color: transparent; border: none; color: rgb(255,64,129);margin-top: 10px; cursor:pointer;">OK</button><button class="Cancel'+rNumber+'" style="background-color: transparent; border: none; color: rgb(255,64,129);margin-top: 10px; cursor:pointer;">CANCEL</button></div>';
         flashm(message, false, false, true);
         $( '.Yes'+rNumber ).click(function(){
-            $('.flashPerm').remove();
+            $(this).parentsUntil('.flashPerm').remove();
             yesCall();
         });
         $( '.Cancel'+rNumber ).click(function(){
-            $('.flashPerm').remove();
+            $(this).parentsUntil('.flashPerm').remove();
             cancelCall();
         });
     }
@@ -232,30 +222,15 @@
                                 imgHtml = '<img style = "margin-top: 15px; height: 100px;" src="'+imgUrl+'"/>';
                             }
                         }
-                        var synopsisHtml = '<div style="overflow: hidden; text-align: left; max-width: 0; max-height: 0; transition: max-height 2s; transition: max-width 1s;" class="synopsis">'+synopsis+'</div>';
+                        var synopsisHtml = '<div style="overflow: hidden; text-align: left; max-width: 0; max-height: 0;" class="synopsis">'+synopsis+'</div>';
 
                         if(epTitle != ''){
                             flashm ( '<div class="flasm-hover" style="/*display: flex;*/ align-items: center;"><div style="white-space: nowrap;"">'+epTitle + epSubTitle + imgHtml + "</div>"+ message +" </div>" + synopsisHtml, false, true);
                         }else if( message != '' ){
                             flashm ( message , false, true);
                         }
-                            $('.undoButton').click(clickCallback);
 
-                            $('.flashinfo').mouseenter(function() {
-                                $('#flash-div').css('z-index', '2147483647');
-                                $(this).find('.synopsis').css('transition','max-width 0s').css('max-width', '500px').css('transition','max-height 2s').css('max-height', '9999px');
-                            });
-                            $('.flashinfo').mouseleave(function() {
-                                var el = $(this);
-                                $(this).find('.synopsis').css('transition','max-height 2s').css('max-height', '0')
-                                setTimeout(function() {
-                                    if(el.find('.synopsis').css('max-height') == '0px'){
-                                        el.find('.synopsis').css('transition','max-width 1s').css('max-width', '0');
-                                        $('#flash-div').css('z-index', '2');
-                                    }
-                                }, 2000);
-                            });
-
+                        $('.undoButton').click(clickCallback);
                     }
                 },
                 onerror: function(error) {
@@ -265,7 +240,10 @@
         }
     }
 
+    var miniMalButtonLate = '';
+    var miniMalButtonKey = 0;
     function miniMalButton(url = null){
+        miniMalButtonLate = url;
         $(".open-info-popup").unbind('click').show().click( function(){
             if($('#info-popup').css('display') == 'none'){
                 document.getElementById('info-popup').style.display = "block";
@@ -277,13 +255,16 @@
             }
         });
 
-        $("#info-iframe").contents().keydown(function(e) {
-            keys(e);
-        });
+        if(!miniMalButtonKey){
+            miniMalButtonKey = 1;
+            $("#info-iframe").contents().keydown(function(e) {
+                keys(e);
+            });
 
-        $(document).keydown(function(e) {
-            keys(e);
-        });
+            $(document).keydown(function(e) {
+                keys(e);
+            });
+        }
 
         function keys(e){
             if (e.ctrlKey && e.keyCode === 77) {
@@ -315,4 +296,10 @@
         else{
            return decodeURI(results[1]) || 0;
         }
+    }
+
+    function getTooltip(text, style = '', direction = 'top'){
+        var rNumber = Math.floor((Math.random() * 1000) + 1);
+        return '<div id="tt'+rNumber+'" class="icon material-icons" style="font-size:16px; line-height: 0; color: #7f7f7f; padding-bottom: 20px; padding-left: 3px; '+style+'"> &#x1F6C8;</div>\
+        <div class="mdl-tooltip mdl-tooltip--'+direction+' mdl-tooltip--large" for="tt'+rNumber+'">'+text+'</div>';
     }

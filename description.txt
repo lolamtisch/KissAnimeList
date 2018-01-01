@@ -41,14 +41,15 @@
 <b>Myanimelist:</b>
 <img src='https://raw.githubusercontent.com/Franciscoseipel/Mal-for-Kissanime-Greasymonkey-/master/Screenshots/Myanimelist_sidebar.png'>
 - Adds oneklick search links
+- Enlarge Thumbnails on MAL
 - Shows direct links using a Database.
-<code>Database: (18.10.2017)
-kissanime 4574 / ~7500
-kissmanga 2487 / ~12500
+<code>Database: (01.01.2018)
+kissanime 6429 / ~7500
+kissmanga 3163 / ~12500
 masterani 99% / ~2500
 9anime 99% / ~7500
 crunchyroll 99% / ~1000
-gogoanime 193 / ~4000</code>
+gogoanime 444 / ~4000</code>
 
 <img src='https://raw.githubusercontent.com/Franciscoseipel/Mal-for-Kissanime-Greasymonkey-/master/Screenshots/continue%20watching.png'>
 - Displays the last opened viewing page and a link to the next episode on your MAL Bookmarks page
@@ -92,7 +93,7 @@ Tested with:
 Android (Only works on <a href="https://play.google.com/store/apps/details?id=org.mozilla.firefox">Firefox</a> with the <a href="https://addons.mozilla.org/en-GB/android/addon/userunified-script-injector/">usi (User|Unified Script Injector)</a> extension)
 
 Works on: (Community feedback)
-Tampermonkey (Vivaldi) [v0.86.7 - 21.06.2017 - Steven Dino Windfeld]
+Tampermonkey (Vivaldi) [v0.86.7 - 21.06.2017 - dinosw]
 
 Bookmarks not working on:
 <a href="https://addons.mozilla.org/de/firefox/addon/greasemonkey/">Greasemonkey</a> (Firefox)

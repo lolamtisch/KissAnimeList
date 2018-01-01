@@ -29,7 +29,6 @@
     }
 
     var tagLinks = GM_getValue( 'tagLinks', 1 );
-    var searchLinks = GM_getValue( 'searchLinks', 1 );
     var kissanimeLinks = GM_getValue( 'kissanimeLinks', 1 );
     var kissmangaLinks = GM_getValue( 'kissmangaLinks', 1 );
     var masteraniLinks = GM_getValue( 'masteraniLinks', 1 );
@@ -37,8 +36,11 @@
     var crunchyrollLinks = GM_getValue( 'crunchyrollLinks', 1 );
     var gogoanimeLinks = GM_getValue( 'gogoanimeLinks', 1 );
 
+    var malThumbnail = GM_getValue( 'malThumbnail', 100 );
+
     var miniMALonMal = GM_getValue( 'miniMALonMal', 0 );
-    var posLeft = GM_getValue( 'posLeft', 1 );
+    var posLeft = GM_getValue( 'posLeft', 'left' );
+    var outWay = GM_getValue( 'outWay', 1 );
     var miniMalWidth = GM_getValue( 'miniMalWidth', '30%' );
     var miniMalHeight = GM_getValue( 'miniMalHeight', '90%' );
 
@@ -91,12 +93,15 @@
                     case '0.90.2':
                         message += 'KissAnimeList (v0.90.2):<br/>    - Added support for 9anime.is and 9anime.ru';
                         break;
+                    case '0.91.0':
+                        message += 'Changelog (v0.91.0):<br/><br/> [Added]  <br/> - Feature: Thumbnails on MAL have been enlarged, with added resizing options. <br/> - Feature: "Move out of the way"-feature, which moves the video when miniMAL is opened. <br/> - Feature: "Continue watching"-links has been added to both the Overview-tab in miniMAL, and to the details-tab on MAL. <br/> - Info-bubbles has been added to the settings tab in miniMAL. <br/><br/> [Changed] <br/> - Updated the miniMAL styling. <br/><br/> [Fixed] <br/> - miniMAL-button didn\'t always appear.';
+                        break;
                 }
             }else{
                 message += '<h2>Welcome to <a href="https://greasyfork.org/en/scripts/27564-kissanimelist">KissAnimeList</a></h2><br/>Support:<br/><a href="https://discord.gg/cTH4yaw">Discord Channel</a><br/><a href="https://github.com/lolamtisch/KissAnimeList">GitHub</a> <a href="https://github.com/lolamtisch/KissAnimeList/issues">Issues</a>';
             }
             if(message != '<div style="text-align: left;">'){
-                message += '</div><button class="okChangelog" style="background-color: transparent; border: none; color: rgb(255,64,129);margin-top: 10px;cursor: pointer;">Ok</button>'
+                message += '</div><button class="okChangelog" style="background-color: transparent; border: none; color: rgb(255,64,129);margin-top: 10px;cursor: pointer;">Close</button>'
                 flashm(message, false, false, true);
                 $('.okChangelog').click(function(){
                     GM_setValue( 'Version', curVersion );
@@ -117,6 +122,7 @@
         var listType = 'anime';
         var bookmarkCss = ".listing tr td:nth-child(1){height: 150px;padding-left: 125px;} .listing tr td{vertical-align: top;}";
         var bookmarkFixCss = ".bigBarContainer {margin: 0px; width: 630px !important; text-align: left; float: left;}";
+        var videoSelector = '#divContentVideo';
 
         $.init = function() {
             checkdata();
@@ -371,6 +377,7 @@
         var listType = 'anime';
         var bookmarkCss = "";
         var bookmarkFixCss = "";
+        var videoSelector = '.ui.embed';
         var winLoad = 0;
 
         $.init = function() {
@@ -498,6 +505,7 @@
         var listType = 'anime';
         var bookmarkCss = "";
         var bookmarkFixCss = "";
+        var videoSelector = '#player';
         var winLoad = 0;
 
         $.init = function() {
@@ -646,6 +654,7 @@
         var listType = 'anime';
         var bookmarkCss = "";
         var bookmarkFixCss = "";
+        var videoSelector = '#showmedia_video_box_wide,#showmedia_video_box';
         GM_addStyle('.headui a {color: black !important;} #malp{margin-bottom: 8px;}');
 
         $.init = function() {
@@ -833,6 +842,7 @@
         var listType = 'anime';
         var bookmarkCss = "";
         var bookmarkFixCss = "";
+        var videoSelector = '.anime_video_body_watch_items';
         var winLoad = 0;
         GM_addStyle('.headui a {color: inherit !important;}');
 
@@ -935,6 +945,17 @@
         $.BookmarksStyleAfterLoad = function() {
         };
         //###########################
+    }else if( window.location.href.indexOf("myanimelist.net") > -1 ){
+        googleover = 1;
+        $.isOverviewPage = function() {
+            return false;
+        };
+        $.urlAnimeTitle = function(url) {
+            return $('.h1 span').first().text();
+        };
+        $.docReady = function(data) {
+            return $( document).ready(data);
+        };
     }
     //#######Anime or Manga######
     if(listType == 'anime'){
