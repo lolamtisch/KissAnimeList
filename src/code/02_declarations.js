@@ -500,7 +500,7 @@
     }else if( window.location.href.indexOf("9anime.") > -1 ){
         //#########9anime#########
         var domain = 'https://'+window.location.hostname;
-        var textColor = 'white';
+        var textColor = '#694ba1';
         var dbSelector = '9anime';
         var listType = 'anime';
         var bookmarkCss = "";
@@ -560,7 +560,7 @@
         };
 
         $.fn.uiPos = function() {
-            this.prependTo($("#info").first());
+            $('<div class="widget info"><div class="widget-body"> '+this.html()+'</div></div>').insertBefore($(".widget.info").first());
         };
         $.fn.uiWrongPos = function() {
             this.css('font-size','14px').insertBefore($("#info").first());
