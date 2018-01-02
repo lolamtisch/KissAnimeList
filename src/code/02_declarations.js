@@ -500,13 +500,14 @@
     }else if( window.location.href.indexOf("9anime.") > -1 ){
         //#########9anime#########
         var domain = 'https://'+window.location.hostname;
-        var textColor = 'white';
+        var textColor = '#694ba1';
         var dbSelector = '9anime';
         var listType = 'anime';
         var bookmarkCss = "";
         var bookmarkFixCss = "";
         var videoSelector = '#player';
         var winLoad = 0;
+        GM_addStyle('.headui a {color: inherit !important;}');
 
         $.init = function() {
             checkdata();
@@ -524,7 +525,7 @@
             }
         };
         $.episodeListSelector = function() {
-            return $("#servers .episodes a");
+            return $(".servers .episodes a");
         };
         $.fn.episodeListElementHref = function() {
             return $.absoluteLink(this.attr('href'))+'?ep='+this.attr('data-base');
@@ -560,15 +561,14 @@
         };
 
         $.fn.uiPos = function() {
-            this.prependTo($("#info").first());
+            $('<div class="widget info"><div class="widget-body"> '+this.html()+'</div></div>').insertBefore($(".widget.info").first());
         };
         $.fn.uiWrongPos = function() {
             this.css('font-size','14px').insertBefore($("#info").first());
             $('.title').first().css('display', 'inline-block');
         };
         $.fn.uiHeadPos = function() {
-            this.css('margin','18px 0 9px 0').css('font-weight','400').css('font-size','1.68rem').css('text-transform','uppercase').insertBefore($("#info").first());
-            $('.title').first().css('display', 'inline-block');
+            this.addClass('title').css('margin-right','0').appendTo($(".widget.player .widget-title").first());
         };
 
         $(window).load(function(){
@@ -610,7 +610,7 @@
         };
 
         $.nextEpLink = function(url) {
-            return domain+$("#servers .episodes a.active").parent('li').next().find('a').attr('href');
+            return domain+$(".servers .episodes a.active").parent('li').next().find('a').attr('href');
         };
 
         $.fn.classicBookmarkButton = function(checkfix) {
@@ -621,24 +621,26 @@
         $.BookmarksStyleAfterLoad = function() {
         };
 
-        var address = "";
-        document.addEventListener("load", event =>{
-            if(window.location.href !== address){
-                address =  window.location.href;
-                if($('#servers').height() == null){
-                    address = "";
-                    return;
+        var tempEpisode = "";
+        $.docReady(function(){
+            document.addEventListener("load", event =>{
+                var curEpisode = $(".servers .episodes a.active").attr('data-base');
+                if(curEpisode !== tempEpisode){
+                    tempEpisode =  curEpisode;
+                    if($('.servers').height() == null){
+                        tempEpisode = "";
+                        return;
+                    }
+                    if(curEpisode != ''){
+                        var animechange = {};
+                        animechange['.add_anime[num_watched_episodes]'] = parseInt(curEpisode);
+                        animechange['checkIncrease'] = 1;
+                        animechange['forceUpdate'] = 1;
+                        setanime( $.normalUrl(),animechange);
+                    }
                 }
-                var curEpisode = $("#servers .episodes a.active").attr('data-base');
-                if(curEpisode != ''){
-                    var animechange = {};
-                    animechange['.add_anime[num_watched_episodes]'] = parseInt(curEpisode);
-                    animechange['checkIncrease'] = 1;
-                    animechange['forceUpdate'] = 1;
-                    setanime( $.normalUrl(),animechange);
-                }
-            }
-        }, true);
+            }, true);
+        });
         //###########################
     }else if( window.location.href.indexOf("crunchyroll.com") > -1 ){
         //TODO:
