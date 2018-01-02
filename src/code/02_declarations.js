@@ -507,6 +507,7 @@
         var bookmarkFixCss = "";
         var videoSelector = '#player';
         var winLoad = 0;
+        GM_addStyle('.headui a {color: inherit !important;}');
 
         $.init = function() {
             checkdata();
@@ -567,8 +568,7 @@
             $('.title').first().css('display', 'inline-block');
         };
         $.fn.uiHeadPos = function() {
-            this.css('margin','18px 0 9px 0').css('font-weight','400').css('font-size','1.68rem').css('text-transform','uppercase').insertBefore($("#info").first());
-            $('.title').first().css('display', 'inline-block');
+            this.addClass('title').css('margin-right','0').appendTo($(".widget.player .widget-title").first());
         };
 
         $(window).load(function(){
