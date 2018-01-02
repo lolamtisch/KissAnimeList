@@ -524,7 +524,7 @@
             }
         };
         $.episodeListSelector = function() {
-            return $("#servers .episodes a");
+            return $(".servers .episodes a");
         };
         $.fn.episodeListElementHref = function() {
             return $.absoluteLink(this.attr('href'))+'?ep='+this.attr('data-base');
@@ -610,7 +610,7 @@
         };
 
         $.nextEpLink = function(url) {
-            return domain+$("#servers .episodes a.active").parent('li').next().find('a').attr('href');
+            return domain+$(".servers .episodes a.active").parent('li').next().find('a').attr('href');
         };
 
         $.fn.classicBookmarkButton = function(checkfix) {
@@ -621,24 +621,26 @@
         $.BookmarksStyleAfterLoad = function() {
         };
 
-        var address = "";
-        document.addEventListener("load", event =>{
-            if(window.location.href !== address){
-                address =  window.location.href;
-                if($('#servers').height() == null){
-                    address = "";
-                    return;
+        var tempEpisode = "";
+        $.docReady(function(){
+            document.addEventListener("load", event =>{
+                var curEpisode = $(".servers .episodes a.active").attr('data-base');
+                if(curEpisode !== tempEpisode){
+                    tempEpisode =  curEpisode;
+                    if($('.servers').height() == null){
+                        tempEpisode = "";
+                        return;
+                    }
+                    if(curEpisode != ''){
+                        var animechange = {};
+                        animechange['.add_anime[num_watched_episodes]'] = parseInt(curEpisode);
+                        animechange['checkIncrease'] = 1;
+                        animechange['forceUpdate'] = 1;
+                        setanime( $.normalUrl(),animechange);
+                    }
                 }
-                var curEpisode = $("#servers .episodes a.active").attr('data-base');
-                if(curEpisode != ''){
-                    var animechange = {};
-                    animechange['.add_anime[num_watched_episodes]'] = parseInt(curEpisode);
-                    animechange['checkIncrease'] = 1;
-                    animechange['forceUpdate'] = 1;
-                    setanime( $.normalUrl(),animechange);
-                }
-            }
-        }, true);
+            }, true);
+        });
         //###########################
     }else if( window.location.href.indexOf("crunchyroll.com") > -1 ){
         //TODO:
