@@ -337,7 +337,7 @@
 
     function getcommondata(url){
         var requestUrl = url
-        id = requestUrl.split('/')[4];
+        var id = requestUrl.split('/')[4];
         if(requestUrl.split('/')[3].toLowerCase() == 'anime'){
             requestUrl = 'https://myanimelist.net/includes/ajax.inc.php?t=64&id='+id;
         }else{
