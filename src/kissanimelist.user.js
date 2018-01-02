@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name        KissAnimeList
-// @version     0.91.0
+// @version     0.91.1
 // @description Integrates MyAnimeList into various sites, with auto episode tracking.
 // @author      lolamtisch@gmail.com
 // @license 	CC-BY-4.0; https://creativecommons.org/licenses/by/4.0/legalcode
@@ -193,6 +193,9 @@
                         break;
                     case '0.91.0':
                         message += 'Changelog (v0.91.0):<br/><br/> [Added]  <br/> - Feature: Thumbnails on MAL have been enlarged, with added resizing options. <br/> - Feature: "Move out of the way"-feature, which moves the video when miniMAL is opened. <br/> - Feature: "Continue watching"-links has been added to both the Overview-tab in miniMAL, and to the details-tab on MAL. <br/> - Info-bubbles has been added to the settings tab in miniMAL. <br/><br/> [Changed] <br/> - Updated the miniMAL styling. <br/><br/> [Fixed] <br/> - miniMAL-button didn\'t always appear.';
+                        break;
+                    case '0.91.1':
+                        message += 'KissAnimeList (v0.91.1):<br/><br/>  [Fixed] <br/> - KAL now works with 9anime\'s new layout';
                         break;
                 }
             }else{
@@ -598,13 +601,14 @@
     }else if( window.location.href.indexOf("9anime.") > -1 ){
         //#########9anime#########
         var domain = 'https://'+window.location.hostname;
-        var textColor = 'white';
+        var textColor = '#694ba1';
         var dbSelector = '9anime';
         var listType = 'anime';
         var bookmarkCss = "";
         var bookmarkFixCss = "";
         var videoSelector = '#player';
         var winLoad = 0;
+        GM_addStyle('.headui a {color: inherit !important;}');
 
         $.init = function() {
             checkdata();
@@ -622,7 +626,7 @@
             }
         };
         $.episodeListSelector = function() {
-            return $("#servers .episodes a");
+            return $(".servers .episodes a");
         };
         $.fn.episodeListElementHref = function() {
             return $.absoluteLink(this.attr('href'))+'?ep='+this.attr('data-base');
@@ -658,15 +662,14 @@
         };
 
         $.fn.uiPos = function() {
-            this.prependTo($("#info").first());
+            $('<div class="widget info"><div class="widget-body"> '+this.html()+'</div></div>').insertBefore($(".widget.info").first());
         };
         $.fn.uiWrongPos = function() {
             this.css('font-size','14px').insertBefore($("#info").first());
             $('.title').first().css('display', 'inline-block');
         };
         $.fn.uiHeadPos = function() {
-            this.css('margin','18px 0 9px 0').css('font-weight','400').css('font-size','1.68rem').css('text-transform','uppercase').insertBefore($("#info").first());
-            $('.title').first().css('display', 'inline-block');
+            this.addClass('title').css('margin-right','0').appendTo($(".widget.player .widget-title").first());
         };
 
         $(window).load(function(){
@@ -708,7 +711,7 @@
         };
 
         $.nextEpLink = function(url) {
-            return domain+$("#servers .episodes a.active").parent('li').next().find('a').attr('href');
+            return domain+$(".servers .episodes a.active").parent('li').next().find('a').attr('href');
         };
 
         $.fn.classicBookmarkButton = function(checkfix) {
@@ -719,24 +722,26 @@
         $.BookmarksStyleAfterLoad = function() {
         };
 
-        var address = "";
-        document.addEventListener("load", event =>{
-            if(window.location.href !== address){
-                address =  window.location.href;
-                if($('#servers').height() == null){
-                    address = "";
-                    return;
+        var tempEpisode = "";
+        $.docReady(function(){
+            document.addEventListener("load", event =>{
+                var curEpisode = $(".servers .episodes a.active").attr('data-base');
+                if(curEpisode !== tempEpisode){
+                    tempEpisode =  curEpisode;
+                    if($('.servers').height() == null){
+                        tempEpisode = "";
+                        return;
+                    }
+                    if(curEpisode != ''){
+                        var animechange = {};
+                        animechange['.add_anime[num_watched_episodes]'] = parseInt(curEpisode);
+                        animechange['checkIncrease'] = 1;
+                        animechange['forceUpdate'] = 1;
+                        setanime( $.normalUrl(),animechange);
+                    }
                 }
-                var curEpisode = $("#servers .episodes a.active").attr('data-base');
-                if(curEpisode != ''){
-                    var animechange = {};
-                    animechange['.add_anime[num_watched_episodes]'] = parseInt(curEpisode);
-                    animechange['checkIncrease'] = 1;
-                    animechange['forceUpdate'] = 1;
-                    setanime( $.normalUrl(),animechange);
-                }
-            }
-        }, true);
+            }, true);
+        });
         //###########################
     }else if( window.location.href.indexOf("crunchyroll.com") > -1 ){
         //TODO:
@@ -1432,7 +1437,7 @@
 
     function getcommondata(url){
         var requestUrl = url
-        id = requestUrl.split('/')[4];
+        var id = requestUrl.split('/')[4];
         if(requestUrl.split('/')[3].toLowerCase() == 'anime'){
             requestUrl = 'https://myanimelist.net/includes/ajax.inc.php?t=64&id='+id;
         }else{
