@@ -556,7 +556,11 @@
             return url.split('/').slice(0,5).join('/');
         };
         $.urlAnimeTitle = function(url) {
-            return url.split("/")[4].split('?')[0];
+                url = url.split("/")[4].split("?")[0];
+            if( url.indexOf(".") > -1 ){
+                url = url.split(".")[1];
+            }
+            return url;
         };
 
         $.EpisodePartToEpisode = function(string) {
