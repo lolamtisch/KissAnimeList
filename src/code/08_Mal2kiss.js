@@ -18,7 +18,7 @@
                 displaySites(responsearray, page);
             }else{
                 GM_xmlhttpRequest({
-                    url: 'https://kissanimelist.firebaseio.com/Data/'+value+'/'+encodeURIComponent(index)+'.json',
+                    url: 'https://kissanimelist.firebaseio.com/Data2/'+value+'/'+encodeURIComponent(index)+'.json',
                     method: "GET",
                     onload: function (response) {
                         con.log('[2Kiss] ',response.response);
@@ -102,7 +102,7 @@
                 $('h2:contains("Information")').before('<div class="mal_links" id="siteSearch"></div>');
             }
             $.each( sites, function( index, page ){
-                var url = 'https://kissanimelist.firebaseio.com/Data/Mal'+type+'/'+uid+'/Sites/'+page+'.json';
+                var url = 'https://kissanimelist.firebaseio.com/Data2/Mal'+type+'/'+uid+'/Sites/'+page+'.json';
                 GM_xmlhttpRequest({
                     url: url,
                     method: "GET",
