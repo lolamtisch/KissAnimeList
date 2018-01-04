@@ -471,7 +471,7 @@
                 settingsUI += '</div>';
 
                 settingsUI += '<div class="mdl-cell mdl-cell--12-col mdl-shadow--4dp hoverinfoDeact">';
-                settingsUI += materialCheckbox(episodeInfoBox,'episodeInfoBox','Episode Hoverinfo'+getTooltip('<img style="width: 200%; margin-bottom: -16px; margin-top: -16px; margin-left: -200px; margin-right: -200px;" src="https://raw.githubusercontent.com/lolamtisch/KissAnimeList/dev/Screenshots/2fhq9cL.gif" alt="Episode Hoverinfo">'), true);
+                settingsUI += materialCheckbox(episodeInfoBox,'episodeInfoBox','Episode Hoverinfo'+getTooltip('<img style="width: 200%; margin-bottom: -16px; margin-top: -16px; margin-left: -200px; margin-right: -200px;" src="https://raw.githubusercontent.com/lolamtisch/KissAnimeList/master/Screenshots/2fhq9cL.gif" alt="Episode Hoverinfo">'), true);
                 settingsUI += '<div class="mdl-card__title mdl-card--border" style="padding: 0;"></div>';
                 settingsUI += materialCheckbox(episodeInfoSynopsis,'episodeInfoSynopsis','Synopsis'+getTooltip('If enabled, the episode-synopsis from MAL will be displayed in the Episode Hoverinfo.'));
                 settingsUI += materialCheckbox(episodeInfoImage,'episodeInfoImage','Image'+getTooltip('If enabled, the episode-image from MAL will be displayed in the Episode Hoverinfo.'));
