@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name        KissAnimeList
-// @version     0.91.1
+// @version     0.91.2
 // @description Integrates MyAnimeList into various sites, with auto episode tracking.
 // @author      lolamtisch@gmail.com
 // @license 	CC-BY-4.0; https://creativecommons.org/licenses/by/4.0/legalcode
@@ -196,6 +196,9 @@
                         break;
                     case '0.91.1':
                         message += 'KissAnimeList (v0.91.1):<br/><br/>  [Fixed] <br/> - KAL now works with 9anime\'s new layout';
+                        break;
+                    case '0.91.2':
+                        message += 'KissAnimeList (v0.91.2):<br/><br/>  [Fixed] <br/> - New database-structure for 9anime urls';
                         break;
                 }
             }else{
@@ -654,7 +657,11 @@
             return url.split('/').slice(0,5).join('/');
         };
         $.urlAnimeTitle = function(url) {
-            return url.split("/")[4].split('?')[0];
+                url = url.split("/")[4].split("?")[0];
+            if( url.indexOf(".") > -1 ){
+                url = url.split(".")[1];
+            }
+            return url;
         };
 
         $.EpisodePartToEpisode = function(string) {
@@ -1469,7 +1476,7 @@
         if(absolute === false){
             //url = "http://myanimelist.net/anime.php?q=" + encodeURI(formattitle(title));
             //url = "http://www.google.com/search?btnI&q=site:myanimelist.net/Anime/+-site:myanimelist.net/Anime/genre/+-site:myanimelist.net/anime/season/+"+encodeURI(formattitle(title));
-            url = 'https://kissanimelist.firebaseio.com/Data/'+dbSelector+'/'+encodeURIComponent($.titleToDbKey($.urlAnimeTitle(thisUrl))).toLowerCase()+'/Mal.json';
+            url = 'https://kissanimelist.firebaseio.com/Data2/'+dbSelector+'/'+encodeURIComponent($.titleToDbKey($.urlAnimeTitle(thisUrl))).toLowerCase()+'/Mal.json';
             if(GM_getValue( dbSelector+'/'+$.titleToDbKey($.urlAnimeTitle(thisUrl))+'/Mal' , null) !== null ){
                 //if(con != console){
                     url = GM_getValue( dbSelector+'/'+$.titleToDbKey($.urlAnimeTitle(thisUrl))+'/Mal' , null);
@@ -1939,7 +1946,7 @@
 
             if(toDB == 1){
                 GM_xmlhttpRequest({
-                    url: 'https://kissanimelist.firebaseio.com/Data/Request/'+dbSelector+'Request.json',
+                    url: 'https://kissanimelist.firebaseio.com/Data2/Request/'+dbSelector+'Request.json',
                     method: "POST",
                     data: JSON.stringify(param),
                     onload: function () {
@@ -2574,7 +2581,7 @@
             callback(value);
         }else{
             con.log("db:", dbSelector+'/'+$.titleToDbKey($.urlAnimeTitle(baseurl))+'/'+parth);
-            var url = 'https://kissanimelist.firebaseio.com/Data/'+dbSelector+'/'+encodeURIComponent(encodeURIComponent($.titleToDbKey($.urlAnimeTitle(baseurl)))).toLowerCase()+'/'+parth+'.json';
+            var url = 'https://kissanimelist.firebaseio.com/Data2/'+dbSelector+'/'+encodeURIComponent(encodeURIComponent($.titleToDbKey($.urlAnimeTitle(baseurl)))).toLowerCase()+'/'+parth+'.json';
             GM_xmlhttpRequest({
                 method: "GET",
                 url: url,
@@ -2657,7 +2664,7 @@
                 displaySites(responsearray, page);
             }else{
                 GM_xmlhttpRequest({
-                    url: 'https://kissanimelist.firebaseio.com/Data/'+value+'/'+encodeURIComponent(index)+'.json',
+                    url: 'https://kissanimelist.firebaseio.com/Data2/'+value+'/'+encodeURIComponent(index)+'.json',
                     method: "GET",
                     onload: function (response) {
                         con.log('[2Kiss] ',response.response);
@@ -2741,7 +2748,7 @@
                 $('h2:contains("Information")').before('<div class="mal_links" id="siteSearch"></div>');
             }
             $.each( sites, function( index, page ){
-                var url = 'https://kissanimelist.firebaseio.com/Data/Mal'+type+'/'+uid+'/Sites/'+page+'.json';
+                var url = 'https://kissanimelist.firebaseio.com/Data2/Mal'+type+'/'+uid+'/Sites/'+page+'.json';
                 GM_xmlhttpRequest({
                     url: url,
                     method: "GET",
@@ -2981,7 +2988,7 @@
             if($(window).width() < 500){
               position = 'width: 100vw; height: 100%; position: absolute; top: 0%; '+ posLeft +': 0%';
             }
-            var material = '<dialog class="modal" id="info-popup" style="pointer-events: none;display: none; position: fixed;z-index: 999;left: 0;top: 0;bottom: 0;width: 100%; height: 100%; background-color: transparent; padding: 0; margin: 0; border: 0;">';
+            var material = '<dialog class="modal" id="info-popup" style="pointer-events: none;display: none; position: fixed;z-index: 9999;left: 0;top: 0;bottom: 0;width: 100%; height: 100%; background-color: transparent; padding: 0; margin: 0; border: 0;">';
             material += '<div id="modal-content" class="modal-content" Style="pointer-events: all;background-color: #fefefe; margin: 0; '+position+'">';
             //material += '<iframe id="info-iframe" style="height:100%;width:100%;border:0;"></iframe>';
             material += '</div>';
@@ -2994,7 +3001,7 @@
                          .floatbutton:hover div {background-color:white;}\
                          .floatbutton div {background-color:black;-webkit-transition: all 0.5s ease;-moz-transition: all 0.5s ease;-o-transition: all 0.5s ease;transition: all 0.5s ease;}\
                          .floatbutton {\
-                            z-index: 999;display: none; position:fixed; bottom:40px; right:40px; border-radius: 50%; font-size: 24px; height: 56px; margin: auto; min-width: 56px; width: 56px; padding: 0; overflow: hidden; background: rgba(158,158,158,.2); box-shadow: 0 1px 1.5px 0 rgba(0,0,0,.12), 0 1px 1px 0 rgba(0,0,0,.24); line-height: normal; border: none;\
+                            z-index: 9999;display: none; position:fixed; bottom:40px; right:40px; border-radius: 50%; font-size: 24px; height: 56px; margin: auto; min-width: 56px; width: 56px; padding: 0; overflow: hidden; background: rgba(158,158,158,.2); box-shadow: 0 1px 1.5px 0 rgba(0,0,0,.12), 0 1px 1px 0 rgba(0,0,0,.24); line-height: normal; border: none;\
                             font-weight: 500; text-transform: uppercase; letter-spacing: 0; will-change: box-shadow; transition: box-shadow .2s cubic-bezier(.4,0,1,1),background-color .2s cubic-bezier(.4,0,.2,1),color .2s cubic-bezier(.4,0,.2,1); outline: none; cursor: pointer; text-decoration: none; text-align: center; vertical-align: middle; padding: 16px;\
                          }\
                          .mdl-button{\
@@ -3447,7 +3454,7 @@
                 settingsUI += '</div>';
 
                 settingsUI += '<div class="mdl-cell mdl-cell--12-col mdl-shadow--4dp hoverinfoDeact">';
-                settingsUI += materialCheckbox(episodeInfoBox,'episodeInfoBox','Episode Hoverinfo'+getTooltip('<img style="width: 200%; margin-bottom: -16px; margin-top: -16px; margin-left: -200px; margin-right: -200px;" src="https://raw.githubusercontent.com/lolamtisch/KissAnimeList/dev/Screenshots/2fhq9cL.gif" alt="Episode Hoverinfo">'), true);
+                settingsUI += materialCheckbox(episodeInfoBox,'episodeInfoBox','Episode Hoverinfo'+getTooltip('<img style="width: 200%; margin-bottom: -16px; margin-top: -16px; margin-left: -200px; margin-right: -200px;" src="https://raw.githubusercontent.com/lolamtisch/KissAnimeList/master/Screenshots/2fhq9cL.gif" alt="Episode Hoverinfo">'), true);
                 settingsUI += '<div class="mdl-card__title mdl-card--border" style="padding: 0;"></div>';
                 settingsUI += materialCheckbox(episodeInfoSynopsis,'episodeInfoSynopsis','Synopsis'+getTooltip('If enabled, the episode-synopsis from MAL will be displayed in the Episode Hoverinfo.'));
                 settingsUI += materialCheckbox(episodeInfoImage,'episodeInfoImage','Image'+getTooltip('If enabled, the episode-image from MAL will be displayed in the Episode Hoverinfo.'));
