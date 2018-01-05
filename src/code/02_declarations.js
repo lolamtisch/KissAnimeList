@@ -174,6 +174,9 @@
         $.urlAnimeSelector = function(url) {
             return url.split("/")[4].split("?")[0];
         };
+        $.urlAnimeTitle = function(url) {
+            $.urlAnimeSelector(url);
+        };
 
         $.EpisodePartToEpisode = function(string) {
             var temp = [];
@@ -302,6 +305,9 @@
         };
         $.urlAnimeSelector = function(url) {
             return url.split("/")[4].split("?")[0];
+        };
+        $.urlAnimeTitle = function(url) {
+            $.urlAnimeSelector(url);
         };
 
         $.EpisodePartToEpisode = function(string) {
@@ -438,6 +444,9 @@
         $.urlAnimeSelector = function(url) {
             return url.split("/")[5].split("?")[0];
         };
+        $.urlAnimeTitle = function(url) {
+            $.urlAnimeSelector(url);
+        };
 
         $.EpisodePartToEpisode = function(string) {
             return string;
@@ -564,6 +573,9 @@
                 url = url.split(".")[1];
             }
             return url;
+        };
+        $.urlAnimeTitle = function(url) {
+            $.urlAnimeSelector(url);
         };
 
         $.EpisodePartToEpisode = function(string) {
@@ -775,6 +787,9 @@
                 return url.split("/")[3];
             }
         };
+        $.urlAnimeTitle = function(url) {
+            $.urlAnimeSelector(url);
+        };
 
         $.EpisodePartToEpisode = function(string) {
             var temp = [];
@@ -911,6 +926,9 @@
         $.urlAnimeSelector = function(url) {
             return url.split("/")[4].split("?")[0];
         };
+        $.urlAnimeTitle = function(url) {
+            $.urlAnimeSelector(url);
+        };
 
         $.EpisodePartToEpisode = function(string) {
             return string;
@@ -964,6 +982,9 @@
         };
         $.urlAnimeSelector = function(url) {
             return $('.h1 span').first().text();
+        };
+        $.urlAnimeTitle = function(url) {
+            $.urlAnimeSelector(url);
         };
         $.docReady = function(data) {
             return $( document).ready(data);

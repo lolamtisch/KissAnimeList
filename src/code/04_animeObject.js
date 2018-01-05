@@ -2,7 +2,7 @@
         var thisUrl = thisUrl;
         var url = '';
         var malurl = '';
-        var title = $.urlAnimeSelector(thisUrl);
+        var title = $.urlAnimeTitle(thisUrl);
         if(absolute === false){
             //url = "http://myanimelist.net/anime.php?q=" + encodeURI(formattitle(title));
             //url = "http://www.google.com/search?btnI&q=site:myanimelist.net/Anime/+-site:myanimelist.net/Anime/genre/+-site:myanimelist.net/anime/season/+"+encodeURI(formattitle(title));
