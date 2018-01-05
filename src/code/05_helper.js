@@ -132,12 +132,10 @@
     function formattitle(title) {
         con.log("[TITLE] Title:",title);
 
-        if(title.substr(title.length - 4)=="-Dub"){
-            title=title.slice(0,-4);
-        }
-        if(title.substr(title.length - 4)=="-Sub"){
-            title=title.slice(0,-4);
-        }
+        title = title.replace(/-dub$/i,'');
+        title = title.replace(/-sub$/i,'');
+        title = title.replace(/\(dub\)$/i,'');
+        title = title.replace(/\(sub\)$/i,'');
 
         title = title.replace(' ','-');
         title = title.replace(' ','-');
@@ -148,14 +146,14 @@
         title = title.replace(' ','-');
         title = title.replace(' ','-');
         title = title.replace(' ','-');
-        title = title.replace(" s2"," 2nd season");
-        title = title.replace(" s3"," 3nd season");
-        title = title.replace(" s4"," 4nd season");
-        title = title.replace(" s5"," 5nd season");
-        title = title.replace(" s6"," 6nd season");
-        title = title.replace(" s7"," 7nd season");
-        title = title.replace(" s8"," 8nd season");
-        title = title.replace(" s9"," 9nd season");
+        title = title.replace("s2"," 2nd season");
+        title = title.replace("s3"," 3nd season");
+        title = title.replace("s4"," 4nd season");
+        title = title.replace("s5"," 5nd season");
+        title = title.replace("s6"," 6nd season");
+        title = title.replace("s7"," 7nd season");
+        title = title.replace("s8"," 8nd season");
+        title = title.replace("s9"," 9nd season");
         //title = title.replace(/[-,.?:'"\\!@#$%^&\-_=+`~;]/g,"");
         con.log("[TITLE] Formated:",title);
         return title;
