@@ -6,17 +6,17 @@
     }
 
     function local_setValue( thisUrl, malurl ){
-        if( (!(thisUrl.indexOf("myAnimeList.net/") >= 0)) && ( GM_getValue(dbSelector+'/'+$.titleToDbKey($.urlAnimeTitle(thisUrl))+'/Mal' , null) == null || thisUrl.indexOf("#newCorrection") >= 0 || GM_getValue(dbSelector+'/'+$.titleToDbKey($.urlAnimeTitle(thisUrl))+'/Crunch' , null) == 'no')){
+        if( (!(thisUrl.indexOf("myAnimeList.net/") >= 0)) && ( GM_getValue(dbSelector+'/'+$.titleToDbKey($.urlAnimeSelector(thisUrl))+'/Mal' , null) == null || thisUrl.indexOf("#newCorrection") >= 0 || GM_getValue(dbSelector+'/'+$.titleToDbKey($.urlAnimeSelector(thisUrl))+'/Crunch' , null) == 'no')){
             var param = { Kiss: thisUrl, Mal: malurl};
             if(dbSelector == 'Crunchyroll'){
-                param = { Kiss: window.location.href+'?..'+$.titleToDbKey($.urlAnimeTitle()), Mal: malurl};
+                param = { Kiss: window.location.href+'?..'+$.titleToDbKey($.urlAnimeSelector()), Mal: malurl};
                 if($.isOverviewPage()){
                     param = null;
-                    if(GM_getValue(dbSelector+'/'+$.titleToDbKey($.urlAnimeTitle(thisUrl))+'/Crunch' , null) == null){
-                        GM_setValue( dbSelector+'/'+$.titleToDbKey($.urlAnimeTitle(thisUrl))+'/Crunch', 'no' );
+                    if(GM_getValue(dbSelector+'/'+$.titleToDbKey($.urlAnimeSelector(thisUrl))+'/Crunch' , null) == null){
+                        GM_setValue( dbSelector+'/'+$.titleToDbKey($.urlAnimeSelector(thisUrl))+'/Crunch', 'no' );
                     }
                 }else{
-                    GM_setValue( dbSelector+'/'+$.titleToDbKey($.urlAnimeTitle(thisUrl))+'/Crunch', 'yes' );
+                    GM_setValue( dbSelector+'/'+$.titleToDbKey($.urlAnimeSelector(thisUrl))+'/Crunch', 'yes' );
                 }
             }
 
@@ -43,7 +43,7 @@
                 });
             }
         }
-        GM_setValue( dbSelector+'/'+$.titleToDbKey($.urlAnimeTitle(thisUrl))+'/Mal', malurl );
+        GM_setValue( dbSelector+'/'+$.titleToDbKey($.urlAnimeSelector(thisUrl))+'/Mal', malurl );
     }
 
     function getselect(data, name){
@@ -132,12 +132,10 @@
     function formattitle(title) {
         con.log("[TITLE] Title:",title);
 
-        if(title.substr(title.length - 4)=="-Dub"){
-            title=title.slice(0,-4);
-        }
-        if(title.substr(title.length - 4)=="-Sub"){
-            title=title.slice(0,-4);
-        }
+        title = title.replace(/-dub$/i,'');
+        title = title.replace(/-sub$/i,'');
+        title = title.replace(/\(dub\)$/i,'');
+        title = title.replace(/\(sub\)$/i,'');
 
         title = title.replace(' ','-');
         title = title.replace(' ','-');
@@ -148,14 +146,14 @@
         title = title.replace(' ','-');
         title = title.replace(' ','-');
         title = title.replace(' ','-');
-        title = title.replace(" s2"," 2nd season");
-        title = title.replace(" s3"," 3nd season");
-        title = title.replace(" s4"," 4nd season");
-        title = title.replace(" s5"," 5nd season");
-        title = title.replace(" s6"," 6nd season");
-        title = title.replace(" s7"," 7nd season");
-        title = title.replace(" s8"," 8nd season");
-        title = title.replace(" s9"," 9nd season");
+        title = title.replace("s2"," 2nd season");
+        title = title.replace("s3"," 3nd season");
+        title = title.replace("s4"," 4nd season");
+        title = title.replace("s5"," 5nd season");
+        title = title.replace("s6"," 6nd season");
+        title = title.replace("s7"," 7nd season");
+        title = title.replace("s8"," 8nd season");
+        title = title.replace("s9"," 9nd season");
         //title = title.replace(/[-,.?:'"\\!@#$%^&\-_=+`~;]/g,"");
         con.log("[TITLE] Formated:",title);
         return title;

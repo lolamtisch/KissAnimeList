@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name        KissAnimeList
-// @version     0.91.2
+// @version     0.91.3
 // @description Integrates MyAnimeList into various sites, with auto episode tracking.
 // @author      lolamtisch@gmail.com
 // @license 	CC-BY-4.0; https://creativecommons.org/licenses/by/4.0/legalcode
@@ -200,6 +200,9 @@
                     case '0.91.2':
                         message += 'KissAnimeList (v0.91.2):<br/><br/>  [Fixed] <br/> - New database-structure for 9anime urls';
                         break;
+                    case '0.91.3':
+                        message += 'KissAnimeList (v0.91.3):<br/><br/>  [Fixed] <br/> - Improved title recognition on 9anime & MasterAnime';
+                        break;
                 }
             }else{
                 message += '<h2>Welcome to <a href="https://greasyfork.org/en/scripts/27564-kissanimelist">KissAnimeList</a></h2><br/>Support:<br/><a href="https://discord.gg/cTH4yaw">Discord Channel</a><br/><a href="https://github.com/lolamtisch/KissAnimeList">GitHub</a> <a href="https://github.com/lolamtisch/KissAnimeList/issues">Issues</a>';
@@ -269,8 +272,11 @@
         $.urlAnimeIdent = function(url) {
             return url.split('/').slice(0,5).join('/');
         };
-        $.urlAnimeTitle = function(url) {
+        $.urlAnimeSelector = function(url) {
             return url.split("/")[4].split("?")[0];
+        };
+        $.urlAnimeTitle = function(url) {
+            return $.urlAnimeSelector(url);
         };
 
         $.EpisodePartToEpisode = function(string) {
@@ -398,8 +404,11 @@
         $.urlAnimeIdent = function(url) {
             return url.split('/').slice(0,5).join('/');
         };
-        $.urlAnimeTitle = function(url) {
+        $.urlAnimeSelector = function(url) {
             return url.split("/")[4].split("?")[0];
+        };
+        $.urlAnimeTitle = function(url) {
+            return $.urlAnimeSelector(url);
         };
 
         $.EpisodePartToEpisode = function(string) {
@@ -533,8 +542,11 @@
         $.urlAnimeIdent = function(url) {
             return url.split('/').slice(0,6).join('/');
         };
-        $.urlAnimeTitle = function(url) {
+        $.urlAnimeSelector = function(url) {
             return url.split("/")[5].split("?")[0];
+        };
+        $.urlAnimeTitle = function(url) {
+            return $.urlAnimeSelector(url).replace(/^\d*-/,'');
         };
 
         $.EpisodePartToEpisode = function(string) {
@@ -656,12 +668,15 @@
         $.urlAnimeIdent = function(url) {
             return url.split('/').slice(0,5).join('/');
         };
-        $.urlAnimeTitle = function(url) {
+        $.urlAnimeSelector = function(url) {
                 url = url.split("/")[4].split("?")[0];
             if( url.indexOf(".") > -1 ){
                 url = url.split(".")[1];
             }
             return url;
+        };
+        $.urlAnimeTitle = function(url) {
+            return url.split("/")[4].split("?")[0].split(".")[0];
         };
 
         $.EpisodePartToEpisode = function(string) {
@@ -852,7 +867,7 @@
             script = script.split('mediaMetadata =')[1].split('"name":"')[1].split(' -')[0];
             alert(script);
         });*/
-        $.urlAnimeTitle = function(url) {
+        $.urlAnimeSelector = function(url) {
             if($.isOverviewPage()){
                 if( $('.season-dropdown').length > 1){
                     $('<div>Kissanimelist does not support multiple seasons on one page</div>').uiPos();
@@ -872,6 +887,9 @@
                 return script;
                 return url.split("/")[3];
             }
+        };
+        $.urlAnimeTitle = function(url) {
+            return $.urlAnimeSelector(url);
         };
 
         $.EpisodePartToEpisode = function(string) {
@@ -1006,8 +1024,11 @@
                 return url.split('/').slice(0,3).join('/') + '/category/' + url.split("/")[3].split("?")[0].split('-episode')[0];
             }
         };
-        $.urlAnimeTitle = function(url) {
+        $.urlAnimeSelector = function(url) {
             return url.split("/")[4].split("?")[0];
+        };
+        $.urlAnimeTitle = function(url) {
+            return $.urlAnimeSelector(url);
         };
 
         $.EpisodePartToEpisode = function(string) {
@@ -1060,8 +1081,11 @@
         $.isOverviewPage = function() {
             return false;
         };
-        $.urlAnimeTitle = function(url) {
+        $.urlAnimeSelector = function(url) {
             return $('.h1 span').first().text();
+        };
+        $.urlAnimeTitle = function(url) {
+            return $.urlAnimeSelector(url);
         };
         $.docReady = function(data) {
             return $( document).ready(data);
@@ -1111,9 +1135,9 @@
 
         miniMalButton(anime['malurl']);
 
-        if(GM_getValue( dbSelector+'/'+$.titleToDbKey($.urlAnimeTitle($.urlAnimeIdent($.normalUrl())))+'/image' , null) == null ){
+        if(GM_getValue( dbSelector+'/'+$.titleToDbKey($.urlAnimeSelector($.urlAnimeIdent($.normalUrl())))+'/image' , null) == null ){
             try{
-                GM_setValue( dbSelector+'/'+$.titleToDbKey($.urlAnimeTitle($.urlAnimeIdent($.normalUrl())))+'/image', $().imageCache() );
+                GM_setValue( dbSelector+'/'+$.titleToDbKey($.urlAnimeSelector($.urlAnimeIdent($.normalUrl())))+'/image', $().imageCache() );
             }catch(e){}
         }
         if(anime['login'] === 0){
@@ -1248,7 +1272,7 @@
     function urlToEpisode(url){
         var string = $.urlEpisodePart(url);
         string = $.EpisodePartToEpisode(string);
-        var Offset = GM_getValue(dbSelector+'/'+$.titleToDbKey($.urlAnimeTitle($.urlAnimeIdent(url)))+'/Offset' , null);
+        var Offset = GM_getValue(dbSelector+'/'+$.titleToDbKey($.urlAnimeSelector($.urlAnimeIdent(url)))+'/Offset' , null);
         if( Offset != null){
             string = parseInt(string)+parseInt(Offset);
         }
@@ -1476,10 +1500,10 @@
         if(absolute === false){
             //url = "http://myanimelist.net/anime.php?q=" + encodeURI(formattitle(title));
             //url = "http://www.google.com/search?btnI&q=site:myanimelist.net/Anime/+-site:myanimelist.net/Anime/genre/+-site:myanimelist.net/anime/season/+"+encodeURI(formattitle(title));
-            url = 'https://kissanimelist.firebaseio.com/Data2/'+dbSelector+'/'+encodeURIComponent($.titleToDbKey($.urlAnimeTitle(thisUrl))).toLowerCase()+'/Mal.json';
-            if(GM_getValue( dbSelector+'/'+$.titleToDbKey($.urlAnimeTitle(thisUrl))+'/Mal' , null) !== null ){
+            url = 'https://kissanimelist.firebaseio.com/Data2/'+dbSelector+'/'+encodeURIComponent($.titleToDbKey($.urlAnimeSelector(thisUrl))).toLowerCase()+'/Mal.json';
+            if(GM_getValue( dbSelector+'/'+$.titleToDbKey($.urlAnimeSelector(thisUrl))+'/Mal' , null) !== null ){
                 //if(con != console){
-                    url = GM_getValue( dbSelector+'/'+$.titleToDbKey($.urlAnimeTitle(thisUrl))+'/Mal' , null);
+                    url = GM_getValue( dbSelector+'/'+$.titleToDbKey($.urlAnimeSelector(thisUrl))+'/Mal' , null);
                 //}
                 con.log('[GET] Cache:', url);
             }
@@ -1921,17 +1945,17 @@
     }
 
     function local_setValue( thisUrl, malurl ){
-        if( (!(thisUrl.indexOf("myAnimeList.net/") >= 0)) && ( GM_getValue(dbSelector+'/'+$.titleToDbKey($.urlAnimeTitle(thisUrl))+'/Mal' , null) == null || thisUrl.indexOf("#newCorrection") >= 0 || GM_getValue(dbSelector+'/'+$.titleToDbKey($.urlAnimeTitle(thisUrl))+'/Crunch' , null) == 'no')){
+        if( (!(thisUrl.indexOf("myAnimeList.net/") >= 0)) && ( GM_getValue(dbSelector+'/'+$.titleToDbKey($.urlAnimeSelector(thisUrl))+'/Mal' , null) == null || thisUrl.indexOf("#newCorrection") >= 0 || GM_getValue(dbSelector+'/'+$.titleToDbKey($.urlAnimeSelector(thisUrl))+'/Crunch' , null) == 'no')){
             var param = { Kiss: thisUrl, Mal: malurl};
             if(dbSelector == 'Crunchyroll'){
-                param = { Kiss: window.location.href+'?..'+$.titleToDbKey($.urlAnimeTitle()), Mal: malurl};
+                param = { Kiss: window.location.href+'?..'+$.titleToDbKey($.urlAnimeSelector()), Mal: malurl};
                 if($.isOverviewPage()){
                     param = null;
-                    if(GM_getValue(dbSelector+'/'+$.titleToDbKey($.urlAnimeTitle(thisUrl))+'/Crunch' , null) == null){
-                        GM_setValue( dbSelector+'/'+$.titleToDbKey($.urlAnimeTitle(thisUrl))+'/Crunch', 'no' );
+                    if(GM_getValue(dbSelector+'/'+$.titleToDbKey($.urlAnimeSelector(thisUrl))+'/Crunch' , null) == null){
+                        GM_setValue( dbSelector+'/'+$.titleToDbKey($.urlAnimeSelector(thisUrl))+'/Crunch', 'no' );
                     }
                 }else{
-                    GM_setValue( dbSelector+'/'+$.titleToDbKey($.urlAnimeTitle(thisUrl))+'/Crunch', 'yes' );
+                    GM_setValue( dbSelector+'/'+$.titleToDbKey($.urlAnimeSelector(thisUrl))+'/Crunch', 'yes' );
                 }
             }
 
@@ -1958,7 +1982,7 @@
                 });
             }
         }
-        GM_setValue( dbSelector+'/'+$.titleToDbKey($.urlAnimeTitle(thisUrl))+'/Mal', malurl );
+        GM_setValue( dbSelector+'/'+$.titleToDbKey($.urlAnimeSelector(thisUrl))+'/Mal', malurl );
     }
 
     function getselect(data, name){
@@ -2047,12 +2071,10 @@
     function formattitle(title) {
         con.log("[TITLE] Title:",title);
 
-        if(title.substr(title.length - 4)=="-Dub"){
-            title=title.slice(0,-4);
-        }
-        if(title.substr(title.length - 4)=="-Sub"){
-            title=title.slice(0,-4);
-        }
+        title = title.replace(/-dub$/i,'');
+        title = title.replace(/-sub$/i,'');
+        title = title.replace(/\(dub\)$/i,'');
+        title = title.replace(/\(sub\)$/i,'');
 
         title = title.replace(' ','-');
         title = title.replace(' ','-');
@@ -2063,14 +2085,14 @@
         title = title.replace(' ','-');
         title = title.replace(' ','-');
         title = title.replace(' ','-');
-        title = title.replace(" s2"," 2nd season");
-        title = title.replace(" s3"," 3nd season");
-        title = title.replace(" s4"," 4nd season");
-        title = title.replace(" s5"," 5nd season");
-        title = title.replace(" s6"," 6nd season");
-        title = title.replace(" s7"," 7nd season");
-        title = title.replace(" s8"," 8nd season");
-        title = title.replace(" s9"," 9nd season");
+        title = title.replace("s2"," 2nd season");
+        title = title.replace("s3"," 3nd season");
+        title = title.replace("s4"," 4nd season");
+        title = title.replace("s5"," 5nd season");
+        title = title.replace("s6"," 6nd season");
+        title = title.replace("s7"," 7nd season");
+        title = title.replace("s8"," 8nd season");
+        title = title.replace("s9"," 9nd season");
         //title = title.replace(/[-,.?:'"\\!@#$%^&\-_=+`~;]/g,"");
         con.log("[TITLE] Formated:",title);
         return title;
@@ -2575,13 +2597,13 @@
     }
 
     function getdata(baseurl, callback, parth = ""){
-        if(GM_getValue(dbSelector+'/'+$.titleToDbKey($.urlAnimeTitle(baseurl))+'/'+parth , null) !== null ){
-            con.log("cache:", dbSelector+'/'+$.titleToDbKey($.urlAnimeTitle(baseurl))+'/'+parth);
-            var value = GM_getValue( dbSelector+'/'+$.titleToDbKey($.urlAnimeTitle(baseurl))+'/'+parth , null);
+        if(GM_getValue(dbSelector+'/'+$.titleToDbKey($.urlAnimeSelector(baseurl))+'/'+parth , null) !== null ){
+            con.log("cache:", dbSelector+'/'+$.titleToDbKey($.urlAnimeSelector(baseurl))+'/'+parth);
+            var value = GM_getValue( dbSelector+'/'+$.titleToDbKey($.urlAnimeSelector(baseurl))+'/'+parth , null);
             callback(value);
         }else{
-            con.log("db:", dbSelector+'/'+$.titleToDbKey($.urlAnimeTitle(baseurl))+'/'+parth);
-            var url = 'https://kissanimelist.firebaseio.com/Data2/'+dbSelector+'/'+encodeURIComponent(encodeURIComponent($.titleToDbKey($.urlAnimeTitle(baseurl)))).toLowerCase()+'/'+parth+'.json';
+            con.log("db:", dbSelector+'/'+$.titleToDbKey($.urlAnimeSelector(baseurl))+'/'+parth);
+            var url = 'https://kissanimelist.firebaseio.com/Data2/'+dbSelector+'/'+encodeURIComponent(encodeURIComponent($.titleToDbKey($.urlAnimeSelector(baseurl)))).toLowerCase()+'/'+parth+'.json';
             GM_xmlhttpRequest({
                 method: "GET",
                 url: url,
@@ -2596,7 +2618,7 @@
                         if(parth == 'Mal'){
                             newResponse = 'https://myanimelist.net/'+listType+'/'+response.responseText.split('"')[1]+'/'+response.responseText.split('"')[3];
                         }
-                        GM_setValue(dbSelector+'/'+$.titleToDbKey($.urlAnimeTitle(baseurl))+'/'+parth , newResponse);
+                        GM_setValue(dbSelector+'/'+$.titleToDbKey($.urlAnimeSelector(baseurl))+'/'+parth , newResponse);
                         callback(newResponse);
                     }
                 }
@@ -2942,11 +2964,11 @@
                 GM_setValue(dbSelector+'catOptions',catOptions);
                 $('.trAnime').each(function(){
                     var aurl = $.absoluteLink($(this).find('.aAnime').attr('href'));
-                    con.log(dbSelector+'/'+$.titleToDbKey($.urlAnimeTitle($.urlAnimeIdent(aurl)))+'/bdid',$(this).find('.aCategory').attr('bdid'));
-                    GM_setValue(dbSelector+'/'+$.titleToDbKey($.urlAnimeTitle($.urlAnimeIdent(aurl)))+'/bdid',$(this).find('.aCategory').attr('bdid'));
+                    con.log(dbSelector+'/'+$.titleToDbKey($.urlAnimeSelector($.urlAnimeIdent(aurl)))+'/bdid',$(this).find('.aCategory').attr('bdid'));
+                    GM_setValue(dbSelector+'/'+$.titleToDbKey($.urlAnimeSelector($.urlAnimeIdent(aurl)))+'/bdid',$(this).find('.aCategory').attr('bdid'));
                 });
             }else{
-                var bdid = GM_getValue( dbSelector+'/'+$.titleToDbKey($.urlAnimeTitle($.urlAnimeIdent($.normalUrl())))+'/bdid', null);
+                var bdid = GM_getValue( dbSelector+'/'+$.titleToDbKey($.urlAnimeSelector($.urlAnimeIdent($.normalUrl())))+'/bdid', null);
                 if(bdid != null){
                     $('#spanBookmarkManager').before('<a class="aCategory" href="#" onclick="return false;" title="Move to other folder"><img border="0" style="vertical-align:middle" src="/Content/Images/folder.png"> Folder</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;');
                     $('.aCategory').click(function () {
@@ -3310,7 +3332,7 @@
             var settingsUI = '<ul class="demo-list-control mdl-list" style="margin: 0px; padding: 0px;">\
             <div class="mdl-grid">';
             try{
-              var malUrl = GM_getValue(dbSelector+'/'+$.titleToDbKey($.urlAnimeTitle($.normalUrl()))+'/Mal' , null);
+              var malUrl = GM_getValue(dbSelector+'/'+$.titleToDbKey($.urlAnimeSelector($.normalUrl()))+'/Mal' , null);
             }catch(e){
               var malUrl = null;
             }
@@ -3328,7 +3350,7 @@
                                 </div>\
                                   <div class="mdl-list__item">\
                                   <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width: 100%;">\
-                                      <input class="mdl-textfield__input" style="padding-right: 18px;" type="number" step="1" id="malOffset" value="'+GM_getValue(dbSelector+'/'+$.titleToDbKey($.urlAnimeTitle($.normalUrl()))+'/Offset' , '')+'">\
+                                      <input class="mdl-textfield__input" style="padding-right: 18px;" type="number" step="1" id="malOffset" value="'+GM_getValue(dbSelector+'/'+$.titleToDbKey($.urlAnimeSelector($.normalUrl()))+'/Offset' , '')+'">\
                                   <label class="mdl-textfield__label" for="malOffset">Episode Offset</label>\
                                     '+getTooltip('Input the episode offset, if an anime has 12 episodes, but uses the numbers 0-11 rather than 1-12, you simply type " +1 " in the episode offset.','float: right; margin-top: -17px;','left')+'\
                                   </div>\
@@ -3471,7 +3493,7 @@
             $("#info-iframe").contents().find('#malConfig').html(settingsUI);
 
             $("#info-iframe").contents().find("#malReset").click( function(){
-                GM_deleteValue( dbSelector+'/'+$.titleToDbKey($.urlAnimeTitle($.normalUrl()))+'/Mal' );
+                GM_deleteValue( dbSelector+'/'+$.titleToDbKey($.urlAnimeSelector($.normalUrl()))+'/Mal' );
                 flashm( "MyAnimeList url reset" , false);
                 checkdata();
             });
@@ -3532,10 +3554,10 @@
                 var Offset = $("#info-iframe").contents().find("#malOffset").val();
                 if(Offset !== null){
                     if(Offset !== ''){
-                        GM_setValue( dbSelector+'/'+$.titleToDbKey($.urlAnimeTitle($.normalUrl()))+'/Offset', Offset );
+                        GM_setValue( dbSelector+'/'+$.titleToDbKey($.urlAnimeSelector($.normalUrl()))+'/Offset', Offset );
                         flashm( "New Offset ("+Offset+") set." , false);
                     }else{
-                        GM_deleteValue( dbSelector+'/'+$.titleToDbKey($.urlAnimeTitle($.normalUrl()))+'/Offset' );
+                        GM_deleteValue( dbSelector+'/'+$.titleToDbKey($.urlAnimeSelector($.normalUrl()))+'/Offset' );
                         flashm( "Offset reset" , false);
                     }
                 }

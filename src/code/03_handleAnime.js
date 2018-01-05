@@ -4,9 +4,9 @@
 
         miniMalButton(anime['malurl']);
 
-        if(GM_getValue( dbSelector+'/'+$.titleToDbKey($.urlAnimeTitle($.urlAnimeIdent($.normalUrl())))+'/image' , null) == null ){
+        if(GM_getValue( dbSelector+'/'+$.titleToDbKey($.urlAnimeSelector($.urlAnimeIdent($.normalUrl())))+'/image' , null) == null ){
             try{
-                GM_setValue( dbSelector+'/'+$.titleToDbKey($.urlAnimeTitle($.urlAnimeIdent($.normalUrl())))+'/image', $().imageCache() );
+                GM_setValue( dbSelector+'/'+$.titleToDbKey($.urlAnimeSelector($.urlAnimeIdent($.normalUrl())))+'/image', $().imageCache() );
             }catch(e){}
         }
         if(anime['login'] === 0){
@@ -141,7 +141,7 @@
     function urlToEpisode(url){
         var string = $.urlEpisodePart(url);
         string = $.EpisodePartToEpisode(string);
-        var Offset = GM_getValue(dbSelector+'/'+$.titleToDbKey($.urlAnimeTitle($.urlAnimeIdent(url)))+'/Offset' , null);
+        var Offset = GM_getValue(dbSelector+'/'+$.titleToDbKey($.urlAnimeSelector($.urlAnimeIdent(url)))+'/Offset' , null);
         if( Offset != null){
             string = parseInt(string)+parseInt(Offset);
         }
