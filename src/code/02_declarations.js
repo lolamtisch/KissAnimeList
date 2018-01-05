@@ -445,7 +445,7 @@
             return url.split("/")[5].split("?")[0];
         };
         $.urlAnimeTitle = function(url) {
-            return $.urlAnimeSelector(url);
+            return $.urlAnimeSelector(url).replace(/^\d*-/,'');
         };
 
         $.EpisodePartToEpisode = function(string) {
@@ -575,7 +575,7 @@
             return url;
         };
         $.urlAnimeTitle = function(url) {
-            return $.urlAnimeSelector(url);
+            return url.split("/")[4].split("?")[0].split(".")[0];
         };
 
         $.EpisodePartToEpisode = function(string) {
