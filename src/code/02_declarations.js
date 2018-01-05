@@ -175,7 +175,7 @@
             return url.split("/")[4].split("?")[0];
         };
         $.urlAnimeTitle = function(url) {
-            $.urlAnimeSelector(url);
+            return $.urlAnimeSelector(url);
         };
 
         $.EpisodePartToEpisode = function(string) {
@@ -307,7 +307,7 @@
             return url.split("/")[4].split("?")[0];
         };
         $.urlAnimeTitle = function(url) {
-            $.urlAnimeSelector(url);
+            return $.urlAnimeSelector(url);
         };
 
         $.EpisodePartToEpisode = function(string) {
@@ -445,7 +445,7 @@
             return url.split("/")[5].split("?")[0];
         };
         $.urlAnimeTitle = function(url) {
-            $.urlAnimeSelector(url);
+            return $.urlAnimeSelector(url);
         };
 
         $.EpisodePartToEpisode = function(string) {
@@ -575,7 +575,7 @@
             return url;
         };
         $.urlAnimeTitle = function(url) {
-            $.urlAnimeSelector(url);
+            return $.urlAnimeSelector(url);
         };
 
         $.EpisodePartToEpisode = function(string) {
@@ -788,7 +788,7 @@
             }
         };
         $.urlAnimeTitle = function(url) {
-            $.urlAnimeSelector(url);
+            return $.urlAnimeSelector(url);
         };
 
         $.EpisodePartToEpisode = function(string) {
@@ -927,7 +927,7 @@
             return url.split("/")[4].split("?")[0];
         };
         $.urlAnimeTitle = function(url) {
-            $.urlAnimeSelector(url);
+            return $.urlAnimeSelector(url);
         };
 
         $.EpisodePartToEpisode = function(string) {
@@ -984,7 +984,7 @@
             return $('.h1 span').first().text();
         };
         $.urlAnimeTitle = function(url) {
-            $.urlAnimeSelector(url);
+            return $.urlAnimeSelector(url);
         };
         $.docReady = function(data) {
             return $( document).ready(data);
