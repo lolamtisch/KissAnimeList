@@ -171,7 +171,7 @@
         $.urlAnimeIdent = function(url) {
             return url.split('/').slice(0,5).join('/');
         };
-        $.urlAnimeTitle = function(url) {
+        $.urlAnimeSelector = function(url) {
             return url.split("/")[4].split("?")[0];
         };
 
@@ -300,7 +300,7 @@
         $.urlAnimeIdent = function(url) {
             return url.split('/').slice(0,5).join('/');
         };
-        $.urlAnimeTitle = function(url) {
+        $.urlAnimeSelector = function(url) {
             return url.split("/")[4].split("?")[0];
         };
 
@@ -435,7 +435,7 @@
         $.urlAnimeIdent = function(url) {
             return url.split('/').slice(0,6).join('/');
         };
-        $.urlAnimeTitle = function(url) {
+        $.urlAnimeSelector = function(url) {
             return url.split("/")[5].split("?")[0];
         };
 
@@ -558,7 +558,7 @@
         $.urlAnimeIdent = function(url) {
             return url.split('/').slice(0,5).join('/');
         };
-        $.urlAnimeTitle = function(url) {
+        $.urlAnimeSelector = function(url) {
                 url = url.split("/")[4].split("?")[0];
             if( url.indexOf(".") > -1 ){
                 url = url.split(".")[1];
@@ -754,7 +754,7 @@
             script = script.split('mediaMetadata =')[1].split('"name":"')[1].split(' -')[0];
             alert(script);
         });*/
-        $.urlAnimeTitle = function(url) {
+        $.urlAnimeSelector = function(url) {
             if($.isOverviewPage()){
                 if( $('.season-dropdown').length > 1){
                     $('<div>Kissanimelist does not support multiple seasons on one page</div>').uiPos();
@@ -908,7 +908,7 @@
                 return url.split('/').slice(0,3).join('/') + '/category/' + url.split("/")[3].split("?")[0].split('-episode')[0];
             }
         };
-        $.urlAnimeTitle = function(url) {
+        $.urlAnimeSelector = function(url) {
             return url.split("/")[4].split("?")[0];
         };
 
@@ -962,7 +962,7 @@
         $.isOverviewPage = function() {
             return false;
         };
-        $.urlAnimeTitle = function(url) {
+        $.urlAnimeSelector = function(url) {
             return $('.h1 span').first().text();
         };
         $.docReady = function(data) {

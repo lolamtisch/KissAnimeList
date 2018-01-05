@@ -209,13 +209,13 @@
     }
 
     function getdata(baseurl, callback, parth = ""){
-        if(GM_getValue(dbSelector+'/'+$.titleToDbKey($.urlAnimeTitle(baseurl))+'/'+parth , null) !== null ){
-            con.log("cache:", dbSelector+'/'+$.titleToDbKey($.urlAnimeTitle(baseurl))+'/'+parth);
-            var value = GM_getValue( dbSelector+'/'+$.titleToDbKey($.urlAnimeTitle(baseurl))+'/'+parth , null);
+        if(GM_getValue(dbSelector+'/'+$.titleToDbKey($.urlAnimeSelector(baseurl))+'/'+parth , null) !== null ){
+            con.log("cache:", dbSelector+'/'+$.titleToDbKey($.urlAnimeSelector(baseurl))+'/'+parth);
+            var value = GM_getValue( dbSelector+'/'+$.titleToDbKey($.urlAnimeSelector(baseurl))+'/'+parth , null);
             callback(value);
         }else{
-            con.log("db:", dbSelector+'/'+$.titleToDbKey($.urlAnimeTitle(baseurl))+'/'+parth);
-            var url = 'https://kissanimelist.firebaseio.com/Data2/'+dbSelector+'/'+encodeURIComponent(encodeURIComponent($.titleToDbKey($.urlAnimeTitle(baseurl)))).toLowerCase()+'/'+parth+'.json';
+            con.log("db:", dbSelector+'/'+$.titleToDbKey($.urlAnimeSelector(baseurl))+'/'+parth);
+            var url = 'https://kissanimelist.firebaseio.com/Data2/'+dbSelector+'/'+encodeURIComponent(encodeURIComponent($.titleToDbKey($.urlAnimeSelector(baseurl)))).toLowerCase()+'/'+parth+'.json';
             GM_xmlhttpRequest({
                 method: "GET",
                 url: url,
@@ -230,7 +230,7 @@
                         if(parth == 'Mal'){
                             newResponse = 'https://myanimelist.net/'+listType+'/'+response.responseText.split('"')[1]+'/'+response.responseText.split('"')[3];
                         }
-                        GM_setValue(dbSelector+'/'+$.titleToDbKey($.urlAnimeTitle(baseurl))+'/'+parth , newResponse);
+                        GM_setValue(dbSelector+'/'+$.titleToDbKey($.urlAnimeSelector(baseurl))+'/'+parth , newResponse);
                         callback(newResponse);
                     }
                 }
