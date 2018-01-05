@@ -327,7 +327,7 @@
             var settingsUI = '<ul class="demo-list-control mdl-list" style="margin: 0px; padding: 0px;">\
             <div class="mdl-grid">';
             try{
-              var malUrl = GM_getValue(dbSelector+'/'+$.titleToDbKey($.urlAnimeTitle($.normalUrl()))+'/Mal' , null);
+              var malUrl = GM_getValue(dbSelector+'/'+$.titleToDbKey($.urlAnimeSelector($.normalUrl()))+'/Mal' , null);
             }catch(e){
               var malUrl = null;
             }
@@ -345,7 +345,7 @@
                                 </div>\
                                   <div class="mdl-list__item">\
                                   <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width: 100%;">\
-                                      <input class="mdl-textfield__input" style="padding-right: 18px;" type="number" step="1" id="malOffset" value="'+GM_getValue(dbSelector+'/'+$.titleToDbKey($.urlAnimeTitle($.normalUrl()))+'/Offset' , '')+'">\
+                                      <input class="mdl-textfield__input" style="padding-right: 18px;" type="number" step="1" id="malOffset" value="'+GM_getValue(dbSelector+'/'+$.titleToDbKey($.urlAnimeSelector($.normalUrl()))+'/Offset' , '')+'">\
                                   <label class="mdl-textfield__label" for="malOffset">Episode Offset</label>\
                                     '+getTooltip('Input the episode offset, if an anime has 12 episodes, but uses the numbers 0-11 rather than 1-12, you simply type " +1 " in the episode offset.','float: right; margin-top: -17px;','left')+'\
                                   </div>\
@@ -488,7 +488,7 @@
             $("#info-iframe").contents().find('#malConfig').html(settingsUI);
 
             $("#info-iframe").contents().find("#malReset").click( function(){
-                GM_deleteValue( dbSelector+'/'+$.titleToDbKey($.urlAnimeTitle($.normalUrl()))+'/Mal' );
+                GM_deleteValue( dbSelector+'/'+$.titleToDbKey($.urlAnimeSelector($.normalUrl()))+'/Mal' );
                 flashm( "MyAnimeList url reset" , false);
                 checkdata();
             });
@@ -549,10 +549,10 @@
                 var Offset = $("#info-iframe").contents().find("#malOffset").val();
                 if(Offset !== null){
                     if(Offset !== ''){
-                        GM_setValue( dbSelector+'/'+$.titleToDbKey($.urlAnimeTitle($.normalUrl()))+'/Offset', Offset );
+                        GM_setValue( dbSelector+'/'+$.titleToDbKey($.urlAnimeSelector($.normalUrl()))+'/Offset', Offset );
                         flashm( "New Offset ("+Offset+") set." , false);
                     }else{
-                        GM_deleteValue( dbSelector+'/'+$.titleToDbKey($.urlAnimeTitle($.normalUrl()))+'/Offset' );
+                        GM_deleteValue( dbSelector+'/'+$.titleToDbKey($.urlAnimeSelector($.normalUrl()))+'/Offset' );
                         flashm( "Offset reset" , false);
                     }
                 }
