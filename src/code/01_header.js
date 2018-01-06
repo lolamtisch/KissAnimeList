@@ -14,8 +14,7 @@
 // @include     /^https?:\/\/kissanime\.ru\/(Anime\/|BookmarkList)/
 // @include     /^https?:\/\/kissanime\.to\/(Anime\/|BookmarkList)/
 //
-// @include     /^https?:\/\/kissmanga.com\/(manga|BookmarkList)\/*/
-// @exclude     /^https?:\/\/kissmanga.com\/MangaList*/
+// @include     /^https?:\/\/kissmanga\.com\/(manga\/|BookmarkList)/
 //
 // @include     /^https?:\/\/myanimelist.net\/((anime(list)?|manga)(.php?id=|\/)|character|people|search)/
 //
