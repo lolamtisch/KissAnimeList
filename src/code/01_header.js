@@ -18,7 +18,7 @@
 //
 // @include     /^https?:\/\/myanimelist.net\/((anime(list)?|manga)(.php?id=|\/)|character|people|search)/
 //
-// @include     /^https?:\/\/www.masterani.me/anime\/(info|watch)\/*/
+// @include     /^https?://www.masterani.me\/anime\/(info|watch)\//
 //
 // @include     /^https?:\/\/9anime\.to\/watch\//
 // @include     /^https?:\/\/9anime\.is\/watch\//
