@@ -11,9 +11,8 @@
 // @downloadURL https://greasyfork.org/scripts/27564-kissanimelist/code/KissAnimeList.user.js
 // @updateURL	https://greasyfork.org/scripts/27564-kissanimelist/code/KissAnimeList.meta.js
 //
-// @include     /^https?:\/\/kissanime.ru\/(Anime|BookmarkList)\/*/
-// @include     /^https?:\/\/kissanime.to\/(Anime|BookmarkList)\/*/
-// @exclude     /^https?:\/\/(kissanime\/.(ru|to)\/AnimeList*/
+// @include     /^https?:\/\/kissanime\.ru\/(Anime\/|BookmarkList)/
+// @include     /^https?:\/\/kissanime\.to\/(Anime\/|BookmarkList)/
 //
 // @include     /^https?:\/\/kissmanga.com\/(manga|BookmarkList)\/*/
 // @exclude     /^https?:\/\/kissmanga.com\/MangaList*/
