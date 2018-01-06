@@ -11,28 +11,28 @@
 // @downloadURL https://greasyfork.org/scripts/27564-kissanimelist/code/KissAnimeList.user.js
 // @updateURL	https://greasyfork.org/scripts/27564-kissanimelist/code/KissAnimeList.meta.js
 //
-// @include     /http://kissanime.ru\/(Anime|BookmarkList)\/*/
-// @include     /http://kissanime.to\/(Anime|BookmarkList)\/*/
-// @exclude     /http:\/\/(kissanime\/.(ru|to)\/AnimeList*/
+// @include     /^https?:\/\/kissanime.ru\/(Anime|BookmarkList)\/*/
+// @include     /^https?:\/\/kissanime.to\/(Anime|BookmarkList)\/*/
+// @exclude     /^https?:\/\/(kissanime\/.(ru|to)\/AnimeList*/
 //
-// @include     /http:\/\/kissmanga.com\/(manga|BookmarkList)\/*/
-// @exclude     /http:/\/\kissmanga.com\/MangaList*/
+// @include     /^https?:\/\/kissmanga.com\/(manga|BookmarkList)\/*/
+// @exclude     /^https?:\/\/kissmanga.com\/MangaList*/
 //
 // @include     /^https?:\/\/myanimelist.net\/((anime(list)?|manga)(.php?id=|\/)|character|people|search)/
 //
-// @include     /https:\/\/www.masterani.me/anime\/(info|watch)\/*/
+// @include     /^https?:\/\/www.masterani.me/anime\/(info|watch)\/*/
 //
-// @include     /https?:\/\/9anime.to/watch\/*\/*\/?/
-// @include     /https?:\/\/9anime.is/watch\/*\/*\/?/
-// @include     /https?:\/\/9anime.ru/watch\/*\/*\/?/
+// @include     /^https?:\/\/9anime.to/watch\/*\/*\/?/
+// @include     /^https?:\/\/9anime.is/watch\/*\/*\/?/
+// @include     /^https?:\/\/9anime.ru/watch\/*\/*\/?/
 //
-// @include     /http://www.crunchyroll.com/*\/?/
-// @exclude     /http://www.crunchyroll.com\/(acct|anime|comics|edit|email|forum|home|inbox|login|manga|newprivate|news|notifications|order|outbox|pm|search|store|user|videos)\*/
+// @include     /^http:\/\/www.crunchyroll.com/*\/?/
+// @exclude     /^http:\/\/www.crunchyroll.com\/(acct|anime|comics|edit|email|forum|home|inbox|login|manga|newprivate|news|notifications|order|outbox|pm|search|store|user|videos)\*/
 //
-// @include     /http://www3.gogoanime.tv/.*/
-// @include     /http://www3.gogoanime.io/.*/
-// @exclude     /http://www3.gogoanime\.(tv|io)/.*\.html.*/
-// @exclude     /http://www3.gogoanime\.(tv|io)\/(genre|sub-category)/.*/
+// @include     /^https?:\/\/www3.gogoanime.tv/.*/
+// @include     /^https?:\/\/www3.gogoanime.io/.*/
+// @exclude     /^https?:\/\/www3.gogoanime\.(tv|io)/.*\.html.*/
+// @exclude     /^https?:\/\/www3.gogoanime\.(tv|io)\/(genre|sub-category)/.*/
 //
 // @require     http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js
 // @resource    materialCSS https://code.getmdl.io/1.3.0/material.indigo-pink.min.css
