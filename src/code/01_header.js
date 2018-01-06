@@ -27,10 +27,9 @@
 // @include     /^http:\/\/www.crunchyroll.com/*\/?/
 // @exclude     /^http:\/\/www.crunchyroll.com\/(acct|anime|comics|edit|email|forum|home|inbox|login|manga|newprivate|news|notifications|order|outbox|pm|search|store|user|videos)\*/
 //
-// @include     /^https?:\/\/www3.gogoanime.tv/.*/
-// @include     /^https?:\/\/www3.gogoanime.io/.*/
-// @exclude     /^https?:\/\/www3.gogoanime\.(tv|io)/.*\.html.*/
-// @exclude     /^https?:\/\/www3.gogoanime\.(tv|io)\/(genre|sub-category)/.*/
+// @include     /^https?:\/\/(www.?\.)?gogoanime\.tv\/([^/]+$|category\/)/
+// @include     /^https?:\/\/(www.?\.)?gogoanime\.io\/([^/]+$|category\/)/
+// @exclude     /^https?:\/\/(www.?\.)?gogoanime\.(tv|io)\/(.*.html|anime-List)/
 //
 // @require     http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js
 // @resource    materialCSS https://code.getmdl.io/1.3.0/material.indigo-pink.min.css
