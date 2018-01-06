@@ -18,7 +18,7 @@
 // @include     /http:\/\/kissmanga.com\/(manga|BookmarkList)\/*/
 // @exclude     /http:/\/\kissmanga.com\/MangaList*/
 //
-// @include     /^https?:\/\/myanimelist.net\/(anime|animelist|character|manga|people|search)(\.php\?id=|\/).*/
+// @include     /^https?:\/\/myanimelist.net\/((anime(list)?|manga(list)?)(.php?id=|\/)|character|people|search)/
 //
 // @include     /https:\/\/www.masterani.me/anime\/(info|watch)\/*/
 //
