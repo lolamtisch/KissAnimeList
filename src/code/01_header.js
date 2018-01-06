@@ -20,9 +20,9 @@
 //
 // @include     /^https?:\/\/www.masterani.me/anime\/(info|watch)\/*/
 //
-// @include     /^https?:\/\/9anime.to/watch\/*\/*\/?/
-// @include     /^https?:\/\/9anime.is/watch\/*\/*\/?/
-// @include     /^https?:\/\/9anime.ru/watch\/*\/*\/?/
+// @include     /^https?:\/\/9anime\.to\/watch\//
+// @include     /^https?:\/\/9anime\.is\/watch\//
+// @include     /^https?:\/\/9anime\.ru\/watch\//
 //
 // @include     /^http:\/\/www.crunchyroll.com/*\/?/
 // @exclude     /^http:\/\/www.crunchyroll.com\/(acct|anime|comics|edit|email|forum|home|inbox|login|manga|newprivate|news|notifications|order|outbox|pm|search|store|user|videos)\*/
