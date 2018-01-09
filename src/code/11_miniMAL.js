@@ -288,6 +288,11 @@
     }
 
     function fillIframe(url, data = null){
+        // Iframe is missing
+        if(!$("#info-iframe").length){
+            $('#info-popup').remove();
+            alert('The miniMAL iframe could not be loaded.\nThis could be caused by an AdBlocker, such as 9anime Companion\'s AdBlock-option.');
+        }
         outOfTheWay();
         $("#info-iframe").contents().find('.malClear').hide();
         $("#info-iframe").contents().find('.mdl-progress__indeterminate').show();
