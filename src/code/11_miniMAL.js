@@ -5,15 +5,15 @@
             if($(window).width() < 500){
               position = 'width: 100vw; height: 100%; position: absolute; top: 0%; '+ posLeft +': 0%';
             }
-            var material = '<dialog class="modal" id="info-popup" style="pointer-events: none;display: none; position: fixed;z-index: 9999;left: 0;top: 0;bottom: 0;width: 100%; height: 100%; background-color: transparent; padding: 0; margin: 0; border: 0;">';
-            material += '<div id="modal-content" class="modal-content" Style="pointer-events: all;background-color: #fefefe; margin: 0; '+position+'">';
+            var material = '<dialog class="modal-kal" id="info-popup" style="pointer-events: none;display: none; position: fixed;z-index: 9999;left: 0;top: 0;bottom: 0;width: 100%; height: 100%; background-color: transparent; padding: 0; margin: 0; border: 0;">';
+            material += '<div id="modal-content" class="modal-content-kal" Style="pointer-events: all;background-color: #fefefe; margin: 0; '+position+'">';
             //material += '<iframe id="info-iframe" style="height:100%;width:100%;border:0;"></iframe>';
             material += '</div>';
             material += '</dialog>';
             $('body').after(material);
 
-            GM_addStyle('.modal-content.fullscreen{width: 100% !important;height: 100% !important; bottom: 0 !important;'+ posLeft +': 0 !important;}\
-                         .modal-content{-webkit-transition: all 0.5s ease; -moz-transition: all 0.5s ease; -o-transition: all 0.5s ease; transition: all 0.5s ease;}\
+            GM_addStyle('.modal-content-kal.fullscreen{width: 100% !important;height: 100% !important; bottom: 0 !important;'+ posLeft +': 0 !important;}\
+                         .modal-content-kal{-webkit-transition: all 0.5s ease; -moz-transition: all 0.5s ease; -o-transition: all 0.5s ease; transition: all 0.5s ease;}\
                          .floatbutton:hover {background-color:rgb(63,81,181);}\
                          .floatbutton:hover div {background-color:white;}\
                          .floatbutton div {background-color:black;-webkit-transition: all 0.5s ease;-moz-transition: all 0.5s ease;-o-transition: all 0.5s ease;transition: all 0.5s ease;}\
@@ -242,11 +242,11 @@
         });
 
         $("#info-iframe").contents().find("#material-fullscreen").click( function(){
-            if($('.modal-content.fullscreen').height()){
-                $(".modal-content").removeClass('fullscreen');
+            if($('.modal-content-kal.fullscreen').height()){
+                $(".modal-content-kal").removeClass('fullscreen');
                 $(this).find('i').text('fullscreen');
             }else{
-                $(".modal-content").addClass('fullscreen');
+                $(".modal-content-kal").addClass('fullscreen');
                 $(this).find('i').text('fullscreen_exit');
             }
         });
