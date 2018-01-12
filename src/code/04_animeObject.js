@@ -19,8 +19,10 @@
         }
 
         if(url == '' || url == null){
+            GM_setValue(dbSelector+'/'+$.titleToDbKey($.urlAnimeSelector($.normalUrl()))+'/Mal' , null);
             loadingText = "No Mal Entry!";
             $("#MalInfo").text("No Mal Entry!");
+            miniMalButton(null);
             return;
         }
 

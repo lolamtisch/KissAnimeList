@@ -5,15 +5,16 @@
             if($(window).width() < 500){
               position = 'width: 100vw; height: 100%; position: absolute; top: 0%; '+ posLeft +': 0%';
             }
-            var material = '<dialog class="modal" id="info-popup" style="pointer-events: none;display: none; position: fixed;z-index: 9999;left: 0;top: 0;bottom: 0;width: 100%; height: 100%; background-color: transparent; padding: 0; margin: 0; border: 0;">';
-            material += '<div id="modal-content" class="modal-content" Style="pointer-events: all;background-color: #fefefe; margin: 0; '+position+'">';
+            var material = '<dialog class="modal-kal" id="info-popup" style="pointer-events: none;display: none; position: fixed;z-index: 9999;left: 0;top: 0;bottom: 0;width: 100%; height: 100%; background-color: transparent; padding: 0; margin: 0; border: 0;">';
+            material += '<div id="modal-content" class="modal-content-kal" Style="pointer-events: all;background-color: #fefefe; margin: 0; '+position+'">';
             //material += '<iframe id="info-iframe" style="height:100%;width:100%;border:0;"></iframe>';
+            material += '<div class="kal-tempHeader" style="position:  absolute; width: 100%; height:  103px; background-color: rgb(63,81,181); "></div>';
             material += '</div>';
             material += '</dialog>';
             $('body').after(material);
 
-            GM_addStyle('.modal-content.fullscreen{width: 100% !important;height: 100% !important; bottom: 0 !important;'+ posLeft +': 0 !important;}\
-                         .modal-content{-webkit-transition: all 0.5s ease; -moz-transition: all 0.5s ease; -o-transition: all 0.5s ease; transition: all 0.5s ease;}\
+            GM_addStyle('.modal-content-kal.fullscreen{width: 100% !important;height: 100% !important; bottom: 0 !important;'+ posLeft +': 0 !important;}\
+                         .modal-content-kal{-webkit-transition: all 0.5s ease; -moz-transition: all 0.5s ease; -o-transition: all 0.5s ease; transition: all 0.5s ease;}\
                          .floatbutton:hover {background-color:rgb(63,81,181);}\
                          .floatbutton:hover div {background-color:white;}\
                          .floatbutton div {background-color:black;-webkit-transition: all 0.5s ease;-moz-transition: all 0.5s ease;-o-transition: all 0.5s ease;transition: all 0.5s ease;}\
@@ -99,6 +100,10 @@
                               .mdl-layout__tab-panel a:hover{\
                                 text-decoration: underline;\
                               }\
+                              \
+                              #material.simple-header .mdl-layout__header .mdl-layout__tab-bar-container{\
+                                display: none;\
+                              }\
                             </style>');
                 head.append('<style>'+GM_getResourceText("materialCSS")+'</style>');
                 head.append('<style>'+GM_getResourceText("materialFont")+'</style>');
@@ -152,9 +157,9 @@
             <!-- Tabs -->\
             <div class="mdl-layout__tab-bar mdl-js-ripple-effect">';
             material += '\
-            <a href="#fixed-tab-1" class="mdl-layout__tab is-active mal-exists">Overview</a>\
-            <a href="#fixed-tab-2" class="mdl-layout__tab reviewsTab mal-exists">Reviews</a>\
-            <a href="#fixed-tab-3" class="mdl-layout__tab recommendationTab mal-exists">Recommendations</a>\
+            <a href="#fixed-tab-1" class="mdl-layout__tab is-active">Overview</a>\
+            <a href="#fixed-tab-2" class="mdl-layout__tab reviewsTab">Reviews</a>\
+            <a href="#fixed-tab-3" class="mdl-layout__tab recommendationTab">Recommendations</a>\
             <!--<a href="#fixed-tab-4" class="mdl-layout__tab">Episodes</a>-->\
             <a href="#fixed-tab-5" class="mdl-layout__tab settingsTab">Settings</a>';
             material += '\
@@ -242,11 +247,11 @@
         });
 
         $("#info-iframe").contents().find("#material-fullscreen").click( function(){
-            if($('.modal-content.fullscreen').height()){
-                $(".modal-content").removeClass('fullscreen');
+            if($('.modal-content-kal.fullscreen').height()){
+                $(".modal-content-kal").removeClass('fullscreen');
                 $(this).find('i').text('fullscreen');
             }else{
-                $(".modal-content").addClass('fullscreen');
+                $(".modal-content-kal").addClass('fullscreen');
                 $(this).find('i').text('fullscreen_exit');
             }
         });
@@ -285,13 +290,25 @@
             iframeBookmarks( $("#info-iframe").contents().find('#malSearchPopInner') );
           }
         });
+        $('.kal-tempHeader').remove();
     }
 
     function fillIframe(url, data = null){
+        // Iframe is missing
+        if(!$("#info-iframe").length){
+            $('#info-popup').remove();
+            alert('The miniMAL iframe could not be loaded.\nThis could be caused by an AdBlocker, such as 9anime Companion\'s AdBlock-option.');
+        }
         outOfTheWay();
         $("#info-iframe").contents().find('.malClear').hide();
         $("#info-iframe").contents().find('.mdl-progress__indeterminate').show();
-        if(data == null && url != null){
+
+        if( !/\/(manga|anime)\//i.test(url) && url != null){
+          //alert(url);
+          url = '';
+        }
+
+        if(data == null && url != null && url != ''){
             getAjaxData(url, function(newdata){
                 fillIframe(url, newdata);
             });
@@ -300,13 +317,15 @@
         if( !($("#info-iframe").contents().find('#material').height()) ){
             templateIframe(url,data);
         }
-        if(url == null){
-          $("#info-iframe").contents().find('.mal-exists').css('display', 'none');
+
+        if(url == null | url == ''){
+          $("#info-iframe").contents().find('#material').addClass('simple-header');
           $("#info-iframe").contents().find('.mdl-layout__tab-panel.is-active').removeClass('is-active');
           $("#info-iframe").contents().find('.mdl-layout__tab-panel').last().addClass('is-active');
         }else{
-          $("#info-iframe").contents().find('.mal-exists').css('display', 'block');
+          $("#info-iframe").contents().find('#material').removeClass('simple-header');
         }
+
         iframeConfig(url, data);
         iframeOverview(url, data);
         $("#info-iframe").contents().find('.reviewsTab').off('click').one('click',function(){
@@ -475,7 +494,7 @@
                 settingsUI += '<div class="mdl-card__title mdl-card--border" style="padding: 0;"></div>';
                 settingsUI += materialCheckbox(episodeInfoSynopsis,'episodeInfoSynopsis','Synopsis'+getTooltip('If enabled, the episode-synopsis from MAL will be displayed in the Episode Hoverinfo.'));
                 settingsUI += materialCheckbox(episodeInfoImage,'episodeInfoImage','Image'+getTooltip('If enabled, the episode-image from MAL will be displayed in the Episode Hoverinfo.'));
-                settingsUI += materialCheckbox(episodeInfoSubtitle,'episodeInfoSubtitle','Subtitle'+getTooltip('If enabled, the episode-subtitle from MAL will be displayed in the Episode Hoverinfo. Example using the anime "Fate/Apocrypha":<br>Title: "Apocrypha: The Great Holy Grail War"<br>Subtitle: "Gaiten: Seihai Taisen (外典:聖杯大戦)"'));
+                settingsUI += materialCheckbox(episodeInfoSubtitle,'episodeInfoSubtitle','Alternative Title'+getTooltip('If enabled, the alternative title for the episode, will be displayed in the Episode Hoverinfo. Example using the anime "Fate/Apocrypha":<br>Title: "Apocrypha: The Great Holy Grail War"<br>Subtitle: "Gaiten: Seihai Taisen (外典:聖杯大戦)"'));
                 settingsUI += '</div>';
 
                 settingsUI += '<div class="mdl-cell mdl-cell--12-col mdl-shadow--4dp">\
@@ -1097,12 +1116,14 @@
 
     function fixIframeLink(){
         $("#info-iframe").contents().find('#material a').not('[href^="http"],[href^="https"],[href^="mailto:"],[href^="#"],[href^="javascript"]').each(function() {
-            $(this).attr('href', function(index, value) {
-                if (value.substr(0,1) !== "/") {
-                    value = window.location.pathname + value;
-                }
-                return "https://myanimelist.net" + value;
-            });
+            try{
+                $(this).attr('href', function(index, value) {
+                    if (value.substr(0,1) !== "/") {
+                        value = window.location.pathname + value;
+                    }
+                    return "https://myanimelist.net" + value;
+                });
+            }catch(e){}
         });
         $("#info-iframe").contents().find('a').not(".nojs").attr('target','_blank');
     }

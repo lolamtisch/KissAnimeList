@@ -124,6 +124,9 @@
         if(window.location.href.indexOf("/pics") > -1){
             return;
         }
+        if(window.location.href.indexOf("/pictures") > -1){
+            return;
+        }
         if(malThumbnail == "0"){
             return;
         }
@@ -135,8 +138,13 @@
         GM_addStyle('.picSurround img:not(.noKal){height: '+height+'px !important; width: '+width+'px !important;}');
         GM_addStyle('.picSurround img.lazyloaded.kal{width: auto !important;}');
         GM_addStyle('.picSurround:not(.noKal) a{height: '+surHeight+'px; width: '+surWidth+'px; overflow: hidden; display: flex; justify-content: center;}');
-        window.onload = function(){ overrideLazyload(); };
-        document.onload = function(){ overrideLazyload(); };
+
+        try{
+            window.onload = function(){ overrideLazyload(); };
+            document.onload = function(){ overrideLazyload(); };
+        }catch(e){
+            $(document).ready(function(){ overrideLazyload(); });
+        }
 
         function overrideLazyload() {
             var tags = document.querySelectorAll(".picSurround img:not(.kal)");

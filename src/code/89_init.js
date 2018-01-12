@@ -96,9 +96,11 @@
 
         $.init();
 
-        window.onpopstate = function (event) {
-            checkdata();
-        };
+        try{
+            window.onpopstate = function (event) {
+                checkdata();
+            };
+        }catch(e){}
     }
 
     $(document).ready(function(){
