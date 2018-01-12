@@ -100,6 +100,10 @@
                               .mdl-layout__tab-panel a:hover{\
                                 text-decoration: underline;\
                               }\
+                              \
+                              #material.simple-header .mdl-layout__header .mdl-layout__tab-bar-container{\
+                                display: none;\
+                              }\
                             </style>');
                 head.append('<style>'+GM_getResourceText("materialCSS")+'</style>');
                 head.append('<style>'+GM_getResourceText("materialFont")+'</style>');
@@ -153,9 +157,9 @@
             <!-- Tabs -->\
             <div class="mdl-layout__tab-bar mdl-js-ripple-effect">';
             material += '\
-            <a href="#fixed-tab-1" class="mdl-layout__tab is-active mal-exists">Overview</a>\
-            <a href="#fixed-tab-2" class="mdl-layout__tab reviewsTab mal-exists">Reviews</a>\
-            <a href="#fixed-tab-3" class="mdl-layout__tab recommendationTab mal-exists">Recommendations</a>\
+            <a href="#fixed-tab-1" class="mdl-layout__tab is-active">Overview</a>\
+            <a href="#fixed-tab-2" class="mdl-layout__tab reviewsTab">Reviews</a>\
+            <a href="#fixed-tab-3" class="mdl-layout__tab recommendationTab">Recommendations</a>\
             <!--<a href="#fixed-tab-4" class="mdl-layout__tab">Episodes</a>-->\
             <a href="#fixed-tab-5" class="mdl-layout__tab settingsTab">Settings</a>';
             material += '\
@@ -313,13 +317,7 @@
         if( !($("#info-iframe").contents().find('#material').height()) ){
             templateIframe(url,data);
         }
-        if(url == null | url == ''){
-          $("#info-iframe").contents().find('.mal-exists').css('display', 'none');
-          $("#info-iframe").contents().find('.mdl-layout__tab-panel.is-active').removeClass('is-active');
-          $("#info-iframe").contents().find('.mdl-layout__tab-panel').last().addClass('is-active');
-        }else{
-          $("#info-iframe").contents().find('.mal-exists').css('display', 'block');
-        }
+
         iframeConfig(url, data);
         iframeOverview(url, data);
         $("#info-iframe").contents().find('.reviewsTab').off('click').one('click',function(){
@@ -332,6 +330,13 @@
         });
         $("#info-iframe").contents().find('.mdl-layout__tab.is-active').trigger( "click" );
         executejs('componentHandler.upgradeDom();');
+        if(url == null | url == ''){
+          $("#info-iframe").contents().find('#material').addClass('simple-header');
+          $("#info-iframe").contents().find('.mdl-layout__tab-panel.is-active').removeClass('is-active');
+          $("#info-iframe").contents().find('.mdl-layout__tab-panel').last().addClass('is-active');
+        }else{
+          $("#info-iframe").contents().find('#material').removeClass('simple-header');
+        }
         fixIframeLink();
     }
 
