@@ -298,7 +298,13 @@
         outOfTheWay();
         $("#info-iframe").contents().find('.malClear').hide();
         $("#info-iframe").contents().find('.mdl-progress__indeterminate').show();
-        if(data == null && url != null){
+
+        if( !/\/(manga|anime)\//i.test(url) && url != null){
+          //alert(url);
+          url = '';
+        }
+
+        if(data == null && url != null && url != ''){
             getAjaxData(url, function(newdata){
                 fillIframe(url, newdata);
             });
@@ -307,7 +313,7 @@
         if( !($("#info-iframe").contents().find('#material').height()) ){
             templateIframe(url,data);
         }
-        if(url == null){
+        if(url == null | url == ''){
           $("#info-iframe").contents().find('.mal-exists').css('display', 'none');
           $("#info-iframe").contents().find('.mdl-layout__tab-panel.is-active').removeClass('is-active');
           $("#info-iframe").contents().find('.mdl-layout__tab-panel').last().addClass('is-active');
