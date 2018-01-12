@@ -189,7 +189,12 @@
             }
             temp = string.match(/\d{3}/);
             if(temp === null){
-                string = 0;
+                temp = string.match(/\d{2,}\-/);
+                if(temp === null){
+                    string = 0;
+                }else{
+                    string = temp[0];
+                }
             }else{
                 string = temp[0];
             }
