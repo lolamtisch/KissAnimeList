@@ -318,6 +318,14 @@
             templateIframe(url,data);
         }
 
+        if(url == null | url == ''){
+          $("#info-iframe").contents().find('#material').addClass('simple-header');
+          $("#info-iframe").contents().find('.mdl-layout__tab-panel.is-active').removeClass('is-active');
+          $("#info-iframe").contents().find('.mdl-layout__tab-panel').last().addClass('is-active');
+        }else{
+          $("#info-iframe").contents().find('#material').removeClass('simple-header');
+        }
+
         iframeConfig(url, data);
         iframeOverview(url, data);
         $("#info-iframe").contents().find('.reviewsTab').off('click').one('click',function(){
@@ -330,13 +338,6 @@
         });
         $("#info-iframe").contents().find('.mdl-layout__tab.is-active').trigger( "click" );
         executejs('componentHandler.upgradeDom();');
-        if(url == null | url == ''){
-          $("#info-iframe").contents().find('#material').addClass('simple-header');
-          $("#info-iframe").contents().find('.mdl-layout__tab-panel.is-active').removeClass('is-active');
-          $("#info-iframe").contents().find('.mdl-layout__tab-panel').last().addClass('is-active');
-        }else{
-          $("#info-iframe").contents().find('#material').removeClass('simple-header');
-        }
         fixIframeLink();
     }
 
