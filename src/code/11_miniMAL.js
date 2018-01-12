@@ -1104,12 +1104,14 @@
 
     function fixIframeLink(){
         $("#info-iframe").contents().find('#material a').not('[href^="http"],[href^="https"],[href^="mailto:"],[href^="#"],[href^="javascript"]').each(function() {
-            $(this).attr('href', function(index, value) {
-                if (value.substr(0,1) !== "/") {
-                    value = window.location.pathname + value;
-                }
-                return "https://myanimelist.net" + value;
-            });
+            try{
+                $(this).attr('href', function(index, value) {
+                    if (value.substr(0,1) !== "/") {
+                        value = window.location.pathname + value;
+                    }
+                    return "https://myanimelist.net" + value;
+                });
+            }catch(e){}
         });
         $("#info-iframe").contents().find('a').not(".nojs").attr('target','_blank');
     }
