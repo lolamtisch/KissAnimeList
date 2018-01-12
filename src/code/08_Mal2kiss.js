@@ -124,6 +124,9 @@
         if(window.location.href.indexOf("/pics") > -1){
             return;
         }
+        if(window.location.href.indexOf("/pictures") > -1){
+            return;
+        }
         if(malThumbnail == "0"){
             return;
         }
