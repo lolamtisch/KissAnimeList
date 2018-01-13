@@ -213,13 +213,15 @@
 				return;
 			}
 			con.log('[EpCheck]', GM_getValue('newEp_'+url+'_number',null), EpNumber);
-			if(GM_getValue('newEp_'+url+'_cache', null) != EpNumber){
-				try{
-					GM_notification({text: "New episode got released!", timeout: 0});
-				}catch(e){con.log('[ERROR] Could not execute GM_notification');}
-			}
 			if( GM_getValue('newEp_'+url+'_number', EpNumber) < EpNumber){
 				con.log('[NewEP]', url);
+
+				if(GM_getValue('newEp_'+url+'_cache', null) != EpNumber){
+					try{
+						GM_notification({text: "New episode got released!", timeout: 0});
+					}catch(e){console.log('[ERROR] Could not execute GM_notification');}
+				}
+
 				GM_setValue('newEp_'+url+'_cache', EpNumber);
 				$(entrySelector).attr('style', 'border: 2px solid #'+newEpBorder+' !important');
 				$(entrySelector).parent().one('click', function(){
