@@ -59,6 +59,7 @@
 // @grant       GM_addStyle
 // @grant       GM_getResourceText
 // @grant       GM_openInTab
+// @grant       GM_notification
 // @run-at      document-start
 // @namespace https://greasyfork.org/users/92233
 // ==/UserScript==

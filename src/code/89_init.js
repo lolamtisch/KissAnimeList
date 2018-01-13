@@ -62,6 +62,30 @@
         }
     }else if(window.location.href.indexOf("myanimelist.net") > -1 ){
         malThumbnails();
+        $( document).ready(function(){
+            $('body').before('<div><div class="update-Tester" href="http://kissanime.ru/Anime/No-Game-No-Life-Dub">http://kissanime.ru/Anime/No-Game-No-Life-Dub</div></div>');
+            $('body').before('<div><div class="update-Tester" href="http://www3.gogoanime.tv/category/no-game-no-life">http://www3.gogoanime.tv/category/no-game-no-life</div></div>');
+            $('body').before('<div><div class="update-Tester" href="http://www.crunchyroll.com/no-game-no-life">http://www.crunchyroll.com/no-game-no-life</div></div>');
+            $('body').before('<div><div class="update-Tester" href="https://www.masterani.me/anime/info/55-no-game-no-life">https://www.masterani.me/anime/info/55-no-game-no-life</div></div>');
+            $('body').before('<div><div class="update-Tester" href="https://9anime.is/watch/no-game-no-life.4qkm">https://9anime.is/watch/no-game-no-life.4qkm</div></div>');
+            $('body').before('<div><div class="update-Tester" href="https://www.masterani.me/anime/info/64-one-piece">https://www.masterani.me/anime/info/64-one-piece</div></div>');
+            $('body').before('<div><div class="update-Tester" href="https://9anime.is/watch/one-piece.ov8">https://9anime.is/watch/one-piece.ov8</div></div>');
+            $('body').before('<div><div class="update-Tester" href="http://www3.gogoanime.tv/category/one-piece">http://www3.gogoanime.tv/category/one-piece</div></div>');
+            $('body').before('<div><div class="update-Tester" href="http://www.crunchyroll.com/one-piece">http://www.crunchyroll.com/one-piece</div></div>');
+            $('body').before('<div><div class="update-Tester" href="http://kissanime.ru/Anime/One-Piece">http://kissanime.ru/Anime/One-Piece</div></div>');
+            $('.update-Tester').each(function(){
+                var el = $(this);
+                var url = el.attr('href');
+                if( url.indexOf("masterani.me") > -1 ){
+                    var masterid = url.split('/')[5].split('-')[0];
+                    url = 'https://www.masterani.me/api/anime/'+masterid+'/detailed';
+                }
+                //GM_setValue('newEp_'+url+'_finished', false);
+                //GM_setValue('newEp_'+url+'_number', GM_getValue('newEp_'+url+'_number', 1)-1);
+                GM_setValue('newEp_'+url+'_cache', null);
+                checkForNewEpisodes(url, el, 0);
+            });
+        });
         if(window.location.href.indexOf("myanimelist.net/anime.php") > -1){
             window.history.replaceState(null, null, '/anime/'+$.urlParam('id') );
         }
