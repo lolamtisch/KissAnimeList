@@ -218,7 +218,7 @@
 
 				if(GM_getValue('newEp_'+url+'_cache', null) != EpNumber){
 					try{
-						GM_notification({text: "New episode got released!", timeout: 0});
+						GM_notification({text: "New episode got released! \n"+url, timeout: 0});
 					}catch(e){console.log('[ERROR] Could not execute GM_notification');}
 				}
 
