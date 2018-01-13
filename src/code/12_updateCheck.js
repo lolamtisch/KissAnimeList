@@ -1,7 +1,7 @@
 	var newEPTime = 0;
 	var newEpUpdate = 0;
 	var checkFail = [];
-	function checkForNewEpisodes(url, entrySelector, progress){
+	function checkForNewEpisodes(url, entrySelector, progress, title = '', img = ''){
 		if(newEpInterval == 'null'){
 			return;
 		}
@@ -53,7 +53,6 @@
 			}, newEPTime);
 
 		}
-		var title = ''; //ll
 		var selector = '';
 
 		if(newEPTime == 0){
@@ -218,7 +217,7 @@
 
 				if(GM_getValue('newEp_'+url+'_cache', null) != EpNumber){
 					try{
-						GM_notification({text: "New episode got released! \n"+url, timeout: 0, onclick: function(){location.href = url;} });
+						GM_notification({text: "New episode got released!", title: title, image: img, timeout: 0, onclick: function(){location.href = url;} });
 					}catch(e){console.log('[ERROR] Could not execute GM_notification');}
 				}
 
