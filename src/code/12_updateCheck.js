@@ -214,7 +214,9 @@
 			}
 			con.log('[EpCheck]', GM_getValue('newEp_'+url+'_number',null), EpNumber);
 			if(GM_getValue('newEp_'+url+'_cache', null) != EpNumber){
-				GM_notification("New episode got released!");
+				try{
+					GM_notification({text: "New episode got released!", timeout: 0});
+				}catch(e){con.log('[ERROR] Could not execute GM_notification');}
 			}
 			if( GM_getValue('newEp_'+url+'_number', EpNumber) < EpNumber){
 				con.log('[NewEP]', url);
