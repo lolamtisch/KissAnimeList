@@ -217,7 +217,12 @@
 
 				if(GM_getValue('newEp_'+url+'_cache', null) != EpNumber){
 					try{
-						GM_notification({text: "New episode got released!", title: title, image: img, timeout: 0, onclick: function(){location.href = url;} });
+						GM_notification({text: "New episode got released!", title: title, image: img, timeout: 0, onclick: function(){
+							try{
+								GM_setValue('newEp_'+url+'_number', EpNumber);
+							}catch(e){}
+							location.href = url;
+						} });
 					}catch(e){
 						console.log('[ERROR] Could not execute GM_notification');
 						alert('New episode for '+title+' released');
