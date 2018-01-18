@@ -96,8 +96,8 @@
 				}
 				return false;
 			}
-		}else if( url.indexOf("9anime.to") > -1 ){
-			selector = "#servers .episodes:first a";
+		}else if( url.indexOf("9anime.") > -1 ){
+			selector = ".server:first-child .episodes a";
 			function checkAiringState(parsed, html){
 				try{
 					if(html.split('<dt>Status:</dt>')[1].split('</dl>')[0].indexOf("Completed") > -1){

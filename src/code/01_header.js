@@ -48,6 +48,7 @@
 // @connect     9anime.to
 // @connect     9anime.is
 // @connect     9anime.ru
+// @connect     9anime.ch
 // @connect     www3.gogoanime.tv
 // @connect     www.masterani.me
 // @connect     *
