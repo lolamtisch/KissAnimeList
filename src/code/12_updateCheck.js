@@ -1,58 +1,13 @@
 	var newEPTime = 0;
 	var newEpUpdate = 0;
 	var checkFail = [];
-	function checkForNewEpisodes(url, entrySelector, progress, title = '', img = ''){
+	var NexEpProcessed = 0;
+	var NexEpFinished = 0;
+	function checkForNewEpisodes(url, entrySelector, totalEntrys, title = '', img = ''){
 		if(newEpInterval == 'null'){
 			return;
 		}
-		if(progress == 100){
-			setTimeout( function(){
-				$('#checkProgress').css('width', '100%');
-				$('#checkProgress').parent().fadeOut({
-					duration: 2500,
-					queue: false,
-					complete: function() { $(this).remove(); }});
 
-				function checkFailBackground(){
-					if(checkFail.length){
-						var rNumber = Math.floor((Math.random() * 1000) + 1);
-						var url = checkFail[0];
-						var erClass = url.split('/')[2].replace(".", "").replace(".", "");
-						$('.'+erClass).click();
-						GM_setValue( 'checkFail', rNumber );
-						var tab = GM_openInTab(url+'?id='+rNumber);
-						checkFail.shift();
-						console.log(tab);
-						var timeou = setTimeout(function(){
-						    tab.close();
-						    checkFailBackground();
-						}, 60000);
-						var index = 0;
-						var inter = setInterval(function(){
-							index++;
-							if(index > 59){
-								clearInterval(inter);
-							}
-							if(GM_getValue( 'checkFail', 0 ) == 0){
-								clearInterval(inter);
-								clearTimeout(timeou);
-								tab.close();
-								checkFailBackground();
-							}
-						}, 1000);
-
-					}else{
-						newEPTime = 0;
-						newEpUpdate = 0;
-						tagToContinue();
-					}
-				}
-				if(checkFail.length){
-					checkFailBackground();
-				}
-			}, newEPTime);
-
-		}
 		var selector = '';
 
 		if(newEPTime == 0){
@@ -80,6 +35,7 @@
 				return false;
 			}
 		}else if( url.indexOf("kissmanga.com") > -1 ){
+			checkForNewEpisodesDone(totalEntrys, true);
 			return;
 			selector = ".listing a";
 		}else if( url.indexOf("masterani.me") > -1 ){
@@ -133,19 +89,20 @@
 				return false;
 			}
 		}else{
+			checkForNewEpisodesDone(totalEntrys, true);
 			return;
 		}
 
 		if( GM_getValue('newEp_'+url+'_finished', false) == true){
 			con.log('[EpCheck] [Finished]', title);
 			if(debug){ $(entrySelector).attr('style', 'border: 2px solid green !important');}
+			checkForNewEpisodesDone(totalEntrys, true);
 			return true;
 		}
 
 		setBorder(GM_getValue('newEp_'+url+'_cache', null));
 		if(newEpUpdate){
 			setTimeout( function(){
-				$('#checkProgress').css('width', progress + '%');
 				con.log('[EpCheck]', title, url );
 				GM_xmlhttpRequest({
 					method: "GET",
@@ -194,12 +151,12 @@
 							if(complete){
 								con.log('[EpCheck] [SetFinished]', title);
 								GM_setValue('newEp_'+url+'_finished', true);
-								return;
+							}else{
+								setBorder(EpNumber);
 							}
 
-							setBorder(EpNumber);
-
 						}
+						checkForNewEpisodesDone(totalEntrys);
 					}
 				});
 
@@ -243,6 +200,61 @@
 					GM_setValue('newEp_'+url+'_number', EpNumber);
 				}
 				if(debug){ $(entrySelector).attr('style', 'border: 2px solid yellow !important');}
+			}
+		}
+
+		function checkForNewEpisodesDone(totalEntrys, finishedCache = false){
+			NexEpProcessed++;
+			if(finishedCache) NexEpFinished++;
+			con.log('[EpCheck]','('+ NexEpProcessed+'/'+totalEntrys+')');
+			$('#checkProgress').css('width', ((NexEpProcessed - NexEpFinished)/( totalEntrys - NexEpFinished)*100) + '%');
+
+			if(NexEpProcessed === totalEntrys){
+				NexEpProcessed = 0;
+				NexEpFinished = 0;
+
+				$('#checkProgress').parent().fadeOut({
+					duration: 2500,
+					queue: false,
+					complete: function() { $(this).remove(); }});
+
+				function checkFailBackground(){
+					if(checkFail.length){
+						var rNumber = Math.floor((Math.random() * 1000) + 1);
+						var url = checkFail[0];
+						var erClass = url.split('/')[2].replace(".", "").replace(".", "");
+						$('.'+erClass).click();
+						GM_setValue( 'checkFail', rNumber );
+						var tab = GM_openInTab(url+'?id='+rNumber);
+						checkFail.shift();
+						console.log(tab);
+						var timeou = setTimeout(function(){
+						    tab.close();
+						    checkFailBackground();
+						}, 60000);
+						var index = 0;
+						var inter = setInterval(function(){
+							index++;
+							if(index > 59){
+								clearInterval(inter);
+							}
+							if(GM_getValue( 'checkFail', 0 ) == 0){
+								clearInterval(inter);
+								clearTimeout(timeou);
+								tab.close();
+								checkFailBackground();
+							}
+						}, 1000);
+
+					}else{
+						newEPTime = 0;
+						newEpUpdate = 0;
+						tagToContinue();
+					}
+				}
+				if(checkFail.length){
+					checkFailBackground();
+				}
 			}
 		}
 	};

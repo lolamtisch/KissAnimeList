@@ -59,7 +59,7 @@
             $.each(data,function(index, el) {
                 var url = atobURL( el['tags'].split("last::")[1].split("::")[0] );
                 setStreamLinks(url, $('.list-item a[href^="'+el['anime_url']+'"]').parent().parent('.list-table-data'));
-                checkForNewEpisodes(url, $('.list-item a[href^="'+el['anime_url']+'"]').parent().parent('.list-table-data'), (index+1)/totalEntrys*100, el['anime_title'], el['anime_image_path']);
+                checkForNewEpisodes(url, $('.list-item a[href^="'+el['anime_url']+'"]').parent().parent('.list-table-data'), totalEntrys, el['anime_title'], el['anime_image_path']);
             });
         }else{
             con.log('[BOOK] Classic Tags');
@@ -102,7 +102,7 @@
                     if(xmlAnime.find('my_tags').text().indexOf("last::") > -1 ){
                         url = atobURL( xmlAnime.find('my_tags').text().split("last::")[1].split("::")[0] );
                         setStreamLinks(url, $(this));
-                        checkForNewEpisodes(url, $(this), (index+1)/totalEntrys*100)
+                        checkForNewEpisodes(url, $(this), totalEntrys);
                     }
                 });
             }
