@@ -16,7 +16,7 @@
                     //Classic List formating
 
                     $('#list_surround table').addClass("list-table-data");
-                    $('#list_surround table td[class^="td"]:first-child').addClass("title").addClass("data");
+                    $('#list_surround table .animetitle').parent().addClass("title").addClass("data");
                     $('#list_surround table .animetitle').addClass("link");
                     $('.table_header').each(function(index){
                         if($(this).find('strong a:contains(Progress)').height()){
@@ -33,7 +33,7 @@
                         $.each(data, function( index ) {
                             url = atobURL( $(this).text().split("last::")[1].split("::")[0] );
                             setStreamLinks(url, $(this).closest('.list-table-data'));
-                            checkForNewEpisodes(url, $(this).closest('.list-table-data'), (index+1)/totalEntrys*100)
+                            checkForNewEpisodes(url, $(this).closest('.list-table-data'), totalEntrys);
                             if($('#list_surround').length){
                                 $(this).remove();
                             }else{
@@ -102,7 +102,7 @@
                     if(xmlAnime.find('my_tags').text().indexOf("last::") > -1 ){
                         url = atobURL( xmlAnime.find('my_tags').text().split("last::")[1].split("::")[0] );
                         setStreamLinks(url, $(this));
-                        checkForNewEpisodes(url, $(this), totalEntrys);
+                        checkForNewEpisodes(url, $(this), totalEntrys, xmlAnime.find('series_title').text(), xmlAnime.find('series_image').text());
                     }
                 });
             }
