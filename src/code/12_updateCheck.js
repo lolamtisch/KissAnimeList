@@ -95,7 +95,7 @@
 
 		if( GM_getValue('newEp_'+url+'_finished', false) == true){
 			con.log('[EpCheck] [Finished]', title);
-			if(debug){ $(entrySelector).attr('style', 'border: 2px solid green !important');}
+			if(debug){ $(entrySelector).attr('style', 'border-left: 4px solid green !important');}
 			checkForNewEpisodesDone(totalEntrys, true);
 			return true;
 		}
@@ -187,7 +187,7 @@
 				}
 
 				GM_setValue('newEp_'+url+'_cache', EpNumber);
-				$(entrySelector).attr('style', 'border: 2px solid #'+newEpBorder+' !important');
+				$(entrySelector).attr('style', 'border: 3px solid #'+newEpBorder+' !important');
 				$(entrySelector).parent().one('click', function(){
 					GM_setValue('newEp_'+url+'_number', EpNumber);
 					$(entrySelector).attr('style', '');
@@ -199,7 +199,7 @@
 				if(GM_getValue('newEp_'+url+'_number', null) == null){
 					GM_setValue('newEp_'+url+'_number', EpNumber);
 				}
-				if(debug){ $(entrySelector).attr('style', 'border: 2px solid yellow !important');}
+				if(debug){ $(entrySelector).attr('style', 'border-left: 4px solid yellow !important');}
 			}
 		}
 
