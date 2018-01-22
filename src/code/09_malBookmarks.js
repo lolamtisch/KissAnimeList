@@ -15,6 +15,11 @@
                     var url = '';
                     //Classic List formating
 
+                    var span = '';
+                    if($('#list_surround').length){
+                        span = 'span';
+                    };
+
                     $('#list_surround table').addClass("list-table-data");
                     $('#list_surround table .animetitle').parent().addClass("title").addClass("data");
                     $('#list_surround table .animetitle').addClass("link");
@@ -33,7 +38,7 @@
                         $.each(data, function( index ) {
                             url = atobURL( $(this).text().split("last::")[1].split("::")[0] );
                             setStreamLinks(url, $(this).closest('.list-table-data'));
-                            checkForNewEpisodes(url, $(this).closest('.list-table-data'), totalEntrys);
+                            checkForNewEpisodes(url, $(this).closest('.list-table-data'), totalEntrys, $(this).closest('.list-table-data').find('.title .link '+span).text(), $(this).closest('.list-table-data').find('.link img.image').attr('src'));
                             if($('#list_surround').length){
                                 $(this).remove();
                             }else{
