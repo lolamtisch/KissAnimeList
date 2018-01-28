@@ -192,7 +192,7 @@
 					GM_setValue('newEp_'+url+'_number', EpNumber);
 					$(entrySelector).attr('style', '');
 					$(entrySelector).find('.newEp').remove();
-					return false;
+					return true;
 				});
 				$(entrySelector).append('<div class="newEp"></div>');
 			}else{
