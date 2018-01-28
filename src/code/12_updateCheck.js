@@ -10,6 +10,9 @@
 
 		var selector = '';
 
+		var hasStyle = 0;
+		if($(entrySelector).attr('style')) hasStyle = 1;
+
 		if(newEPTime == 0){
 			if($('.username').first().attr('href')){
 				return;
@@ -95,7 +98,7 @@
 
 		if( GM_getValue('newEp_'+url+'_finished', false) == true){
 			con.log('[EpCheck] [Finished]', title);
-			if(debug){ $(entrySelector).attr('style', 'border-left: 4px solid green !important');}
+			if(debug && !hasStyle){ $(entrySelector).attr('style', 'border-left: 4px solid green !important');}
 			checkForNewEpisodesDone(totalEntrys, true);
 			return true;
 		}
@@ -187,19 +190,19 @@
 				}
 
 				GM_setValue('newEp_'+url+'_cache', EpNumber);
-				$(entrySelector).attr('style', 'border: 3px solid #'+newEpBorder+' !important');
+				if(!hasStyle) $(entrySelector).attr('style', 'border: 3px solid #'+newEpBorder+' !important');
 				$(entrySelector).one('click', function(){
 					GM_setValue('newEp_'+url+'_number', EpNumber);
-					$(entrySelector).attr('style', '');
+					if(!hasStyle) $(entrySelector).attr('style', '');
 					$(entrySelector).find('.newEp').remove();
 					return true;
 				});
-				$(entrySelector).append('<div class="newEp"></div>');
+				$(entrySelector).append('<div class="newEp"><i class="material-icons">update</i></div>');
 			}else{
 				if(GM_getValue('newEp_'+url+'_number', null) == null){
 					GM_setValue('newEp_'+url+'_number', EpNumber);
 				}
-				if(debug){ $(entrySelector).attr('style', 'border-left: 4px solid yellow !important');}
+				if(debug && !hasStyle){ $(entrySelector).attr('style', 'border-left: 4px solid yellow !important');}
 			}
 		}
 

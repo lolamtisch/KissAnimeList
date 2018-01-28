@@ -104,6 +104,20 @@
                               #material.simple-header .mdl-layout__header .mdl-layout__tab-bar-container{\
                                 display: none;\
                               }\
+                              \
+                              .newEp {\
+                                  position: absolute;\
+                                  filter: invert(100%);\
+                                  background-color: #464fbb;\
+                                  height: 25px;\
+                                  width: 29px;\
+                                  top: 3px;\
+                                  right: -4px;\
+                                  background-repeat: no-repeat;\
+                                  background-position: 3px center;\
+                                  background-size: 20px 20px;\
+                                  background-image: url(https://cdn.discordapp.com/attachments/367335377461313536/384811687414464512/ic_autorenew_black_24dp_1x.png);\
+                              }\
                             </style>');
                 head.append('<style>'+GM_getResourceText("materialCSS")+'</style>');
                 head.append('<style>'+GM_getResourceText("materialFont")+'</style>');
@@ -1239,7 +1253,7 @@
           bookXML.find('my_status:contains(1)').parent().each(function(){
             var malUrl = 'https://myanimelist.net/anime/'+$(this).find('series_animedb_id').first().text()+'/'+$(this).find('series_title').first().text();
             var progressProcent = ( $(this).find('my_watched_episodes').first().text() / $(this).find('series_episodes').first().text() ) * 100;
-            bookmarkHtml +='<div class="mdl-cell mdl-cell--2-col mdl-cell--4-col-tablet mdl-cell--6-col-phone mdl-shadow--2dp mdl-grid bookEntry" malhref="'+malUrl+'" style="cursor: pointer; height: 250px; padding: 0; width: 210px; height: 293px;">';
+            bookmarkHtml +='<div class="mdl-cell mdl-cell--2-col mdl-cell--4-col-tablet mdl-cell--6-col-phone mdl-shadow--2dp mdl-grid bookEntry" malhref="'+malUrl+'" style="position: relative; cursor: pointer; height: 250px; padding: 0; width: 210px; height: 293px;">';
               bookmarkHtml +='<div class="data title" style="background-image: url('+$(this).find('series_image').first().text()+'); background-size: cover; background-position: center center; background-repeat: no-repeat; width: 100%; position: relative; padding-top: 5px;">';
                 bookmarkHtml +='<span class="mdl-shadow--2dp" style="position: absolute; bottom: 0; display: block; background-color: rgba(255, 255, 255, 0.9); padding-top: 5px; display: inline-flex; align-items: center; justify-content: space-between; left: 0; right: 0; padding-right: 8px; padding-left: 8px; padding-bottom: 8px;">'+$(this).find('series_title').first().text();
                   bookmarkHtml +='<div id="p1" class="mdl-progress" style="position: absolute; top: -4px; left: 0;"><div class="progressbar bar bar1" style="width: '+progressProcent+'%;"></div><div class="bufferbar bar bar2" style="width: 100%;"></div><div class="auxbar bar bar3" style="width: 0%;"></div></div>';
@@ -1264,6 +1278,7 @@
             if($(this).find('.tags').text().indexOf("last::") > -1 ){
               var url = atobURL( $(this).find('.tags').text().split("last::")[1].split("::")[0] );
               setStreamLinks(url, $(this));
+              checkForNewEpisodes(url, $(this));
             }
           });
 
