@@ -30,7 +30,7 @@
 						return true;
 					}
 				}catch(e){
-					con.log([ERROR],e);
+					con.log('[ERROR]',e);
 				}
 				return false;
 			}
@@ -48,7 +48,7 @@
 						return true;
 					}
 				}catch(e){
-					con.log([ERROR],e);
+					con.log('[ERROR]',e);
 				}
 				return false;
 			}
@@ -60,7 +60,7 @@
 						return true;
 					}
 				}catch(e){
-					con.log([ERROR],e);
+					con.log('[ERROR]',e);
 				}
 				return false;
 			}
@@ -72,7 +72,7 @@
 						return true;
 					}
 				}catch(e){
-					con.log([ERROR],e);
+					con.log('[ERROR]',e);
 				}
 				return false;
 			}
@@ -84,7 +84,7 @@
 						return true;
 					}
 				}catch(e){
-					con.log([ERROR],e);
+					con.log('[ERROR]',e);
 				}
 				return false;
 			}
