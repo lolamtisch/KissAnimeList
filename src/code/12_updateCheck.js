@@ -188,7 +188,7 @@
 
 				GM_setValue('newEp_'+url+'_cache', EpNumber);
 				$(entrySelector).attr('style', 'border: 3px solid #'+newEpBorder+' !important');
-				$(entrySelector).parent().one('click', function(){
+				$(entrySelector).one('click', function(){
 					GM_setValue('newEp_'+url+'_number', EpNumber);
 					$(entrySelector).attr('style', '');
 					$(entrySelector).find('.newEp').remove();
