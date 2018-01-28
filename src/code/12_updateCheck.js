@@ -197,7 +197,7 @@
 					$(entrySelector).find('.newEp').remove();
 					return true;
 				});
-				$(entrySelector).append('<div class="newEp"><i class="material-icons">update</i></div>');
+				$(entrySelector).append('<div class="newEp"></div>');
 			}else{
 				if(GM_getValue('newEp_'+url+'_number', null) == null){
 					GM_setValue('newEp_'+url+'_number', EpNumber);

@@ -107,16 +107,14 @@
                               \
                               .newEp {\
                                   position: absolute;\
-                                  filter: invert(100%);\
-                                  background-color: #464fbb;\
+                                  background-color: #dedede;\
                                   height: 25px;\
                                   width: 29px;\
                                   top: 3px;\
                                   right: -4px;\
                                   background-repeat: no-repeat;\
-                                  background-position: 3px center;\
-                                  background-size: 20px 20px;\
-                                  background-image: url(https://cdn.discordapp.com/attachments/367335377461313536/384811687414464512/ic_autorenew_black_24dp_1x.png);\
+                                  background-position: 4px 3px;\
+                                  background-image: url(https://github.com/google/material-design-icons/blob/master/social/1x_web/ic_notifications_none_black_18dp.png?raw=true);\
                               }\
                             </style>');
                 head.append('<style>'+GM_getResourceText("materialCSS")+'</style>');
