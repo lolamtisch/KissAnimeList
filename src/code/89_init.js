@@ -74,8 +74,10 @@
             setKissToMal(window.location.href);
             if(miniMALonMal){
                 $( document).ready(function(){
-                    createIframe();
-                    miniMalButton(window.location.href.split('/').slice(0,6).join('/').split("?")[0]);
+                    setTimeout(function(){
+                        createIframe();
+                        miniMalButton(window.location.href.split('/').slice(0,6).join('/').split("?")[0]);
+                    }, 4000);
                 });
             }
 
