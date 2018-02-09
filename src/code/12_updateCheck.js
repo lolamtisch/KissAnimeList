@@ -11,32 +11,26 @@
 	}
 
 	function startCheckForNewEpisodes(){
+		if(newEpInterval == 'null'){
+			return;
+		}
+		if($('.username').first().attr('href')){
+			return;
+		}
+		if( $.now() - GM_getValue('newEp_last_update', 0) > newEpInterval){
+			$('body').before('<div style="z-index: 20000000000; height: 5px; position: fixed; top: 0; left: 0; right: 0;"><div id="checkProgress" style="width: 0%;background-color: #3f51b5; height: 100%; transition: width 1s;"></div></div>');
+			newEpUpdate = 1;
+			GM_setValue('newEp_last_update', $.now());
+		}
 		for(i=0 ; i < checkArray.length ; i++){
 			checkArray[i](checkArray.length);
 		}
 	}
 
 	function checkForNewEpisode(url, entrySelector, totalEntrys, title = '', img = ''){
-		if(newEpInterval == 'null'){
-			return;
-		}
-
 		var selector = '';
-
 		var hasStyle = 0;
 		if($(entrySelector).attr('style')) hasStyle = 1;
-
-		if(newEPTime == 0){
-			if($('.username').first().attr('href')){
-				return;
-			}
-			if( $.now() - GM_getValue('newEp_last_update', 0) > newEpInterval){
-				$('body').before('<div style="z-index: 20000000000; height: 5px; position: fixed; top: 0; left: 0; right: 0;"><div id="checkProgress" style="width: 0%;background-color: #3f51b5; height: 100%; transition: width 1s;"></div></div>');
-				newEpUpdate = 1;
-				GM_setValue('newEp_last_update', $.now());
-			}
-			newEPTime = 1;
-		}
 
 		if( url.indexOf("kissanime.ru") > -1 ){
 			selector = ".listing a";
