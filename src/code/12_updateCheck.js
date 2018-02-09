@@ -20,7 +20,6 @@
 		if( $.now() - GM_getValue('newEp_last_update', 0) > newEpInterval){
 			$('body').before('<div style="z-index: 20000000000; height: 5px; position: fixed; top: 0; left: 0; right: 0;"><div id="checkProgress" style="width: 0%;background-color: #3f51b5; height: 100%; transition: width 1s;"></div></div>');
 			newEpUpdate = 1;
-			GM_setValue('newEp_last_update', $.now());
 		}
 		for(i=0 ; i < checkArray.length ; i++){
 			checkArray[i](checkArray.length);
@@ -123,7 +122,6 @@
 							response.status = 502;
 						}
 						if(response.status != 200){//TODO: Cloudflare handling
-							GM_deleteValue('newEp_last_update');
 							con.log('[EpCheck] [ERROR]', response);
 							var message = '<div>Coud Not Check</div><div class="errorpage"></div>'//;<button class="okChangelog" style="background-color: transparent; border: none; color: rgb(255,64,129);margin-top: 10px;cursor: pointer;">Ok</button></div>';
 							if( !$('.errorpage').length ){
@@ -264,6 +262,8 @@
 				}
 				if(checkFail.length){
 					checkFailBackground();
+				}else{
+					GM_setValue('newEp_last_update', $.now());
 				}
 			}
 		}
