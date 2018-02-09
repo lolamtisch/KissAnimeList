@@ -7,7 +7,7 @@
 
 	var checkArray = [];
 	function checkForNewEpisodes(url, entrySelector, title = '', img = ''){
-		checkArray.push(function(totalEntrys){checkForNewEpisode(url, entrySelector, totalEntrys, title = '', img = '');});
+		checkArray.push(function(totalEntrys){checkForNewEpisode(url, entrySelector, totalEntrys, title, img);});
 	}
 
 	function startCheckForNewEpisodes(){
