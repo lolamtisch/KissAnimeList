@@ -21,8 +21,10 @@
 			$('body').before('<div style="z-index: 20000000000; height: 5px; position: fixed; top: 0; left: 0; right: 0;"><div id="checkProgress" style="width: 0%;background-color: #3f51b5; height: 100%; transition: width 1s;"></div></div>');
 			newEpUpdate = 1;
 		}
-		for(i=0 ; i < checkArray.length ; i++){
-			checkArray[i](checkArray.length);
+		var tempArray = checkArray;
+		checkArray = [];
+		for(i=0 ; i < tempArray.length ; i++){
+			tempArray[i](tempArray.length);
 		}
 	}
 
@@ -139,6 +141,8 @@
 
 								checkFail.push(url);
 							}
+
+							checkForNewEpisodes(url, entrySelector, title, img);
 
 						}else{
 							if( url.indexOf("masterani.me") > -1 ){
@@ -257,7 +261,7 @@
 					}else{
 						newEPTime = 0;
 						newEpUpdate = 0;
-						tagToContinue();
+						startCheckForNewEpisodes();
 					}
 				}
 				if(checkFail.length){
