@@ -206,7 +206,7 @@
 					$(entrySelector).find('.newEp').remove();
 					return true;
 				});
-				$(entrySelector).append('<div class="newEp"></div>');
+				if(!$(entrySelector).find('.newEp').length) $(entrySelector).append('<div class="newEp"></div>');
 			}else{
 				if(GM_getValue('newEp_'+url+'_number', null) == null){
 					GM_setValue('newEp_'+url+'_number', EpNumber);
