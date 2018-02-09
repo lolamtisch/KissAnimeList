@@ -119,6 +119,10 @@
 					method: "GET",
 					url: url,
 					synchronous: false,
+					onerror: function(response) {
+						con.log('[ERROR]',url+' could not be loaded');
+						checkForNewEpisodesDone(totalEntrys, true);
+					},
 					onload: function(response) {
 						if(response.response.indexOf('Your detected location is United States of America') == -1 && url.indexOf("crunchyroll.com") > -1){
 							response.status = 502;
