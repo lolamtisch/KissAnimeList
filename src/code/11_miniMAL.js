@@ -1272,20 +1272,14 @@
           bookmarkHtml += '</div>'
           element.html( bookmarkHtml );
 
-          var totalEntrys = 0;
-          $("#info-iframe").contents().find('.bookEntry').each(function() {
-              if($(this).find('.tags').text().indexOf("last::") > -1 ){
-                  totalEntrys++;
-              }
-          });
-
           $("#info-iframe").contents().find('.bookEntry').each(function() {
             if($(this).find('.tags').text().indexOf("last::") > -1 ){
               var url = atobURL( $(this).find('.tags').text().split("last::")[1].split("::")[0] );
               setStreamLinks(url, $(this));
-              checkForNewEpisodes(url, $(this), totalEntrys, $(this).attr('maltitle'), $(this).attr('malimage'));
+              checkForNewEpisodes(url, $(this), $(this).attr('maltitle'), $(this).attr('malimage'));
             }
           });
+          startCheckForNewEpisodes();
 
           $("#info-iframe").contents().find("#malSearchPop .bookEntry").unbind('click').click(function(event) {
             $("#info-iframe").contents().find('#book').click();

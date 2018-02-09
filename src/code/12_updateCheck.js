@@ -3,7 +3,20 @@
 	var checkFail = [];
 	var NexEpProcessed = 0;
 	var NexEpFinished = 0;
-	function checkForNewEpisodes(url, entrySelector, totalEntrys, title = '', img = ''){
+
+
+	var checkArray = [];
+	function checkForNewEpisodes(url, entrySelector, title = '', img = ''){
+		checkArray.push(function(totalEntrys){checkForNewEpisode(url, entrySelector, totalEntrys, title = '', img = '');});
+	}
+
+	function startCheckForNewEpisodes(){
+		for(i=0 ; i < checkArray.length ; i++){
+			checkArray[i](checkArray.length);
+		}
+	}
+
+	function checkForNewEpisode(url, entrySelector, totalEntrys, title = '', img = ''){
 		if(newEpInterval == 'null'){
 			return;
 		}

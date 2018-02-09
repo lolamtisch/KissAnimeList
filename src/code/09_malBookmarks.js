@@ -33,18 +33,19 @@
                     })
                     //
                     if( $('.header-title.tags').height() || $('.td1.tags').height()){
-                        var data = $('.tags span a').filter(function(el) {return $(this).text().indexOf("last::") > -1 });
-                        var totalEntrys = data.length;
-                        $.each(data, function( index ) {
-                            url = atobURL( $(this).text().split("last::")[1].split("::")[0] );
-                            setStreamLinks(url, $(this).closest('.list-table-data'));
-                            checkForNewEpisodes(url, $(this).closest('.list-table-data'), totalEntrys, $(this).closest('.list-table-data').find('.title .link '+span).text(), $(this).closest('.list-table-data').find('.link img.image').attr('src'));
-                            if($('#list_surround').length){
-                                $(this).remove();
-                            }else{
-                                $(this).parent().remove();
+                        $('.tags span a').each(function( index ) {
+                            if($(this).text().indexOf("last::") > -1 ){
+                                url = atobURL( $(this).text().split("last::")[1].split("::")[0] );
+                                setStreamLinks(url, $(this).closest('.list-table-data'));
+                                checkForNewEpisodes(url, $(this).closest('.list-table-data'), $(this).closest('.list-table-data').find('.title .link '+span).text(), $(this).closest('.list-table-data').find('.link img.image').attr('src'));
+                                if($('#list_surround').length){
+                                    $(this).remove();
+                                }else{
+                                    $(this).parent().remove();
+                                }
                             }
                         });
+                        startCheckForNewEpisodes();
                     }else{
                         alternativTagOnSite();
                     }
@@ -59,13 +60,14 @@
         if($('.list-table').length){
             con.log('[BOOK] Modern Tags');
             var data = $.parseJSON($('.list-table').attr('data-items'));
-            data = $.grep(data, function(el) {return el['tags'].indexOf("last::") > -1 });
-            var totalEntrys = data.length;
             $.each(data,function(index, el) {
-                var url = atobURL( el['tags'].split("last::")[1].split("::")[0] );
-                setStreamLinks(url, $('.list-item a[href^="'+el['anime_url']+'"]').parent().parent('.list-table-data'));
-                checkForNewEpisodes(url, $('.list-item a[href^="'+el['anime_url']+'"]').parent().parent('.list-table-data'), totalEntrys, el['anime_title'], el['anime_image_path']);
+                if(el['tags'].indexOf("last::") > -1){
+                    var url = atobURL( el['tags'].split("last::")[1].split("::")[0] );
+                    setStreamLinks(url, $('.list-item a[href^="'+el['anime_url']+'"]').parent().parent('.list-table-data'));
+                    checkForNewEpisodes(url, $('.list-item a[href^="'+el['anime_url']+'"]').parent().parent('.list-table-data'), el['anime_title'], el['anime_image_path']);
+                }
             });
+            startCheckForNewEpisodes();
         }else{
             con.log('[BOOK] Classic Tags');
             alternativTagToContinue();
@@ -93,23 +95,16 @@
                 if($('#list_surround').length){
                     span = 'span';
                 };
-                var totalEntrys = 0;
-                $('.list-table-data').each(function( index ) {
-                    title = $(this).find('.title .link '+span).text();
-                    xmlAnime = xml.find('series_title:contains('+title+')').first().parent();
-                    if(xmlAnime.find('my_tags').text().indexOf("last::") > -1 ){
-                        totalEntrys++;
-                    }
-                });
                 $('.list-table-data').each(function( index ) {
                     title = $(this).find('.title .link '+span).text();
                     xmlAnime = xml.find('series_title:contains('+title+')').first().parent();
                     if(xmlAnime.find('my_tags').text().indexOf("last::") > -1 ){
                         url = atobURL( xmlAnime.find('my_tags').text().split("last::")[1].split("::")[0] );
                         setStreamLinks(url, $(this));
-                        checkForNewEpisodes(url, $(this), totalEntrys, xmlAnime.find('series_title').text(), xmlAnime.find('series_image').text());
+                        checkForNewEpisodes(url, $(this), xmlAnime.find('series_title').text(), xmlAnime.find('series_image').text());
                     }
                 });
+                startCheckForNewEpisodes();
             }
         });
     }
