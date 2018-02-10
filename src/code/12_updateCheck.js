@@ -3,7 +3,7 @@
 	var checkFail = [];
 	var NexEpProcessed = 0;
 	var NexEpFinished = 0;
-
+	var newEpRetrys = 0;
 
 	var checkArray = [];
 	function checkForNewEpisodes(url, entrySelector, title = '', img = ''){
@@ -11,6 +11,7 @@
 	}
 
 	function startCheckForNewEpisodes(){
+		newEpRetrys++;
 		if(newEpInterval == 'null'){
 			return;
 		}
@@ -268,9 +269,10 @@
 						startCheckForNewEpisodes();
 					}
 				}
-				if(checkFail.length){
+				if(checkFail.length && newEpRetrys < 3){
 					checkFailBackground();
 				}else{
+					newEpRetrys = 0;
 					GM_setValue('newEp_last_update', $.now());
 				}
 			}
