@@ -125,8 +125,10 @@
 						checkForNewEpisodesDone(totalEntrys, true);
 					},
 					onload: function(response) {
-						if(response.response.indexOf('Your detected location is United States of America') == -1 && url.indexOf("crunchyroll.com") > -1){
-							response.status = 502;
+						if(newEpCR){
+							if(response.response.indexOf('Your detected location is United States of America') == -1 && url.indexOf("crunchyroll.com") > -1){
+								response.status = 502;
+							}
 						}
 						if(response.status != 200){//TODO: Cloudflare handling
 							con.log('[EpCheck] [ERROR]', response);

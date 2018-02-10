@@ -454,6 +454,7 @@
                                       <input class="mdl-textfield__input" type="text" id="newEpBorder" size="6" maxlength="6" value="'+newEpBorder+'">\
                                   </div>\
                               </li>';
+                settingsUI += materialCheckbox(newEpCR,'newEpCR','CR-Unblocker Extension');
                 settingsUI += '</div>';
 
                 settingsUI += '<div class="mdl-cell mdl-cell--12-col mdl-shadow--4dp">\
@@ -653,6 +654,17 @@
                     tagLinks = 0;
                 }
             });
+            $("#info-iframe").contents().find('#newEpCR').change(function(){
+                if($(this).is(":checked")){
+                    alert('Only activate this option if you have the Extension CR-Unblocker installed!');
+                    GM_setValue('newEpCR', 1);
+                    newEpCR = 1;
+                }else{
+                    GM_setValue('newEpCR', 0);
+                    newEpCR = 0;
+                }
+            });
+
             $("#info-iframe").contents().find('#kissmangaLinks').change(function(){
                 if($(this).is(":checked")){
                     GM_setValue('kissmangaLinks', 1);
