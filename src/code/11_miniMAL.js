@@ -363,7 +363,7 @@
               var malUrl = null;
             }
             if(malUrl == url){
-                settingsUI += '<div class="mdl-cell mdl-cell--12-col mdl-shadow--4dp">\
+                settingsUI += '<div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-shadow--4dp">\
                                 <div class="mdl-card__title mdl-card--border">\
                                     <h2 class="mdl-card__title-text">';
                                     if(data != null){
@@ -409,7 +409,7 @@
                               </div>';
 
             }
-                settingsUI += '<div class="mdl-cell mdl-cell--12-col mdl-shadow--4dp">\
+                settingsUI += '<div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-shadow--4dp">\
                             <div class="mdl-card__title mdl-card--border">\
                                 <h2 class="mdl-card__title-text">General</h2>\
                                 </div>';
@@ -422,7 +422,7 @@
                               </li>';
                 settingsUI += '</div>';
 
-                settingsUI += '<div class="mdl-cell mdl-cell--12-col mdl-shadow--4dp">\
+                settingsUI += '<div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-shadow--4dp">\
                             <div class="mdl-card__title mdl-card--border">\
                                 <h2 class="mdl-card__title-text">MAL Bookmark Page</h2>\
                                 </div>';
@@ -457,7 +457,7 @@
                 settingsUI += materialCheckbox(newEpCR,'newEpCR','CR-Unblocker Extension');
                 settingsUI += '</div>';
 
-                settingsUI += '<div class="mdl-cell mdl-cell--12-col mdl-shadow--4dp">\
+                settingsUI += '<div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-shadow--4dp">\
                             <div class="mdl-card__title mdl-card--border">\
                                 <h2 class="mdl-card__title-text">Streaming Site Links</h2>';
 
@@ -474,7 +474,7 @@
                 settingsUI += materialCheckbox(kissmangaLinks,'kissmangaLinks','KissManga');
                 settingsUI += '</div>';
 
-                settingsUI += '<div class="mdl-cell mdl-cell--12-col mdl-shadow--4dp">\
+                settingsUI += '<div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-shadow--4dp">\
                             <div class="mdl-card__title mdl-card--border">\
                                 <h2 class="mdl-card__title-text">MyAnimeList</h2>\
                                     </div>';
@@ -494,7 +494,7 @@
                               </li>';
                 settingsUI += '</div>';
 
-                settingsUI += '<div class="mdl-cell mdl-cell--12-col mdl-shadow--4dp">\
+                settingsUI += '<div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-shadow--4dp">\
                                 <div class="mdl-card__title mdl-card--border">\
                                   <h2 class="mdl-card__title-text">miniMAL</h2>\
                                   <span style="margin-left: auto; color: #7f7f7f;">Shortcut: Ctrl + m</span>\
@@ -529,7 +529,7 @@
                               </li>';
                 settingsUI += '</div>';
 
-                settingsUI += '<div class="mdl-cell mdl-cell--12-col mdl-shadow--4dp hoverinfoDeact">';
+                settingsUI += '<div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-shadow--4dp hoverinfoDeact">';
                 settingsUI += materialCheckbox(episodeInfoBox,'episodeInfoBox','Episode Hoverinfo'+getTooltip('<img style="width: 200%; margin-bottom: -16px; margin-top: -16px; margin-left: -200px; margin-right: -200px;" src="https://raw.githubusercontent.com/lolamtisch/KissAnimeList/master/Screenshots/2fhq9cL.gif" alt="Episode Hoverinfo">'), true);
                 settingsUI += '<div class="mdl-card__title mdl-card--border" style="padding: 0;"></div>';
                 settingsUI += materialCheckbox(episodeInfoSynopsis,'episodeInfoSynopsis','Synopsis'+getTooltip('If enabled, the episode-synopsis from MAL will be displayed in the Episode Hoverinfo.'));
@@ -537,7 +537,7 @@
                 settingsUI += materialCheckbox(episodeInfoSubtitle,'episodeInfoSubtitle','Alternative Title'+getTooltip('If enabled, the alternative title for the episode, will be displayed in the Episode Hoverinfo. Example using the anime "Fate/Apocrypha":<br>Title: "Apocrypha: The Great Holy Grail War"<br>Subtitle: "Gaiten: Seihai Taisen (外典:聖杯大戦)"'));
                 settingsUI += '</div>';
 
-                settingsUI += '<div class="mdl-cell mdl-cell--12-col mdl-shadow--4dp">\
+                settingsUI += '<div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-shadow--4dp">\
                             <div class="mdl-card__title mdl-card--border">\
                                 <h2 class="mdl-card__title-text">ETC</h2>\
                                 </div>';
