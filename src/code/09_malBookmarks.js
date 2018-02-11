@@ -37,7 +37,9 @@
                             if($(this).text().indexOf("last::") > -1 ){
                                 url = atobURL( $(this).text().split("last::")[1].split("::")[0] );
                                 setStreamLinks(url, $(this).closest('.list-table-data'));
-                                checkForNewEpisodes(url, $(this).closest('.list-table-data'), $(this).closest('.list-table-data').find('.title .link '+span).text(), $(this).closest('.list-table-data').find('.link img.image').attr('src'));
+                                if($(this).closest('.list-table-data').find('.watching').length || $('#list_surround').length){
+                                    checkForNewEpisodes(url, $(this).closest('.list-table-data'), $(this).closest('.list-table-data').find('.title .link '+span).text(), $(this).closest('.list-table-data').find('.link img.image').attr('src'));
+                                }
                                 if($('#list_surround').length){
                                     $(this).remove();
                                 }else{
@@ -64,7 +66,9 @@
                 if(el['tags'].indexOf("last::") > -1){
                     var url = atobURL( el['tags'].split("last::")[1].split("::")[0] );
                     setStreamLinks(url, $('.list-item a[href^="'+el['anime_url']+'"]').parent().parent('.list-table-data'));
-                    checkForNewEpisodes(url, $('.list-item a[href^="'+el['anime_url']+'"]').parent().parent('.list-table-data'), el['anime_title'], el['anime_image_path']);
+                    if( parseInt(el['status']) === 1 ){
+                        checkForNewEpisodes(url, $('.list-item a[href^="'+el['anime_url']+'"]').parent().parent('.list-table-data'), el['anime_title'], el['anime_image_path']);
+                    }
                 }
             });
             startCheckForNewEpisodes();
@@ -101,7 +105,9 @@
                     if(xmlAnime.find('my_tags').text().indexOf("last::") > -1 ){
                         url = atobURL( xmlAnime.find('my_tags').text().split("last::")[1].split("::")[0] );
                         setStreamLinks(url, $(this));
-                        checkForNewEpisodes(url, $(this), xmlAnime.find('series_title').text(), xmlAnime.find('series_image').text());
+                        if(parseInt(xmlAnime.find('my_status').text()) === 1){
+                            checkForNewEpisodes(url, $(this), xmlAnime.find('series_title').text(), xmlAnime.find('series_image').text());
+                        }
                     }
                 });
                 startCheckForNewEpisodes();
