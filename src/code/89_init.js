@@ -80,6 +80,20 @@
             }
 
             $( document).ready(function(){
+
+                epPrediction(window.location.href.split('/')[4], function(timestamp, airing, diffWeeks, diffDays, diffHours, diffMinutes){
+                    if(airing){
+                        diffWeeks = diffWeeks - (new Date().getFullYear() - new Date(timestamp).getFullYear()); //Remove 1 week between years
+                        var titleMsg = 'Next episode estimated in '+diffDays+'d '+diffHours+'h '+diffMinutes+'m' ;
+                        if(diffWeeks < 50){
+                            $('[id="curEps"]').before('<span title="'+titleMsg+'">['+(diffWeeks+1)+']</span> ');
+                        }
+                        $('#addtolist').prev().before('<span>'+titleMsg+'</span>');
+                    }else{
+                        $('#addtolist').prev().before('<span>Airing in '+((diffWeeks*7)+diffDays)+'d '+diffHours+'h '+diffMinutes+'m </span>');
+                    }
+                });
+
                 getanime(window.location.href, function(actual){
                     if(actual['.add_anime[tags]'].indexOf("last::") > -1 ){
                         var url = atobURL( actual['.add_anime[tags]'].split("last::")[1].split("::")[0] );
