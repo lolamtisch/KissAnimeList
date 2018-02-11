@@ -52,6 +52,8 @@
                         alternativTagOnSite();
                     }
 
+                    tagToContinueEpPrediction();
+
                     return true;
                 }
             }, 300);
@@ -138,4 +140,37 @@
                 return false;
             });
         });
+    }
+
+    function tagToContinueEpPrediction(){
+        var modernList = 0;
+        $('.list-table .list-item').each(function(){
+            modernList = 1;
+            var el = $(this);
+            var malid = el.find('.link').first().attr('href').split('/')[2];
+            epPrediction( malid , function(timestamp, airing, diffWeeks, diffDays, diffHours, diffMinutes){
+                el.find('.data.progress span').first().after( epPredictionMessage(timestamp, airing, diffWeeks, diffDays, diffHours, diffMinutes) );
+            });
+        });
+
+        if(modernList) return;
+
+        //Classic
+        $('.progress.data').each(function(){
+            var el = $(this).closest('.list-table-data');
+            var malid = el.find('.link').first().attr('href').split('/')[2];
+            epPrediction( malid , function(timestamp, airing, diffWeeks, diffDays, diffHours, diffMinutes){
+                el.find('.data.progress').first().prepend( epPredictionMessage(timestamp, airing, diffWeeks, diffDays, diffHours, diffMinutes) );
+            });
+        });
+
+        function epPredictionMessage(timestamp, airing, diffWeeks, diffDays, diffHours, diffMinutes){
+            if(airing){
+                diffWeeks = diffWeeks - (new Date().getFullYear() - new Date(timestamp).getFullYear()); //Remove 1 week between years
+                if(diffWeeks < 50){
+                    var titleMsg = 'Next episode estimated in '+diffDays+'d '+diffHours+'h '+diffMinutes+'m';
+                    return '<a title="'+titleMsg+'">['+(diffWeeks+1)+']</a> ';
+                }
+            }
+        }
     }
