@@ -1002,6 +1002,16 @@
 
                   setanime(url, anime, null, localListType);
               });
+              epPrediction(url.split('/')[4], function(timestamp, airing, diffWeeks, diffDays, diffHours, diffMinutes){
+                alert(timestamp);
+                if(airing){
+                    diffWeeks = diffWeeks - (new Date().getFullYear() - new Date(timestamp).getFullYear()); //Remove 1 week between years
+                    if(diffWeeks < 50){
+                        var titleMsg = 'Next episode estimated in '+diffDays+'d '+diffHours+'h '+diffMinutes+'m';
+                        $("#info-iframe").contents().find('[id="curEps"]').before('<span title="'+titleMsg+'">['+(diffWeeks+1)+']</span> ');
+                    }
+                }
+              });
         }catch(e) {console.log('[iframeOverview] Error:',e);}
 
         try{
