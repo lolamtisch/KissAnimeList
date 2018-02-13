@@ -317,11 +317,13 @@
 	        if(airing){
 	        	episode = diffWeeks - (new Date().getFullYear() - new Date(timestamp).getFullYear()); //Remove 1 week between years
 	    		episode++;
-	    		if( !(episode < GM_getValue('mal/'+malId+'/eps', 100000) && episode < 50) ){
+	    		if( episode > 50 ){
 	    			episode = 0;
 	    		}
 	    	}
-	        callback(timestamp, airing, diffWeeks, diffDays, diffHours, diffMinutes, episode);
+	    	if(episode < GM_getValue('mal/'+malId+'/eps', 100000)){
+	        	callback(timestamp, airing, diffWeeks, diffDays, diffHours, diffMinutes, episode);
+	    	}
 	    }
 	}
 
