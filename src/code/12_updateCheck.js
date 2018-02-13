@@ -287,6 +287,7 @@
 	    var timestamp = GM_getValue('mal/'+malId+'/release', false);
 	    if(timestamp){
 	        var airing = 1;
+	        var episode = 0;
 	        if(Date.now() < timestamp) airing = 0;
 
 	        if(airing){
@@ -313,7 +314,14 @@
 	        var diffMinutes = Math.floor(delta / 60) % 60;
 	        delta -= diffMinutes * 60;
 
-	        callback(timestamp, airing, diffWeeks, diffDays, diffHours, diffMinutes);
+	        if(airing){
+	        	episode = diffWeeks - (new Date().getFullYear() - new Date(timestamp).getFullYear()); //Remove 1 week between years
+	    		episode++;
+	    		if( !(episode < GM_getValue('mal/'+malId+'/eps', 100000) && episode < 50) ){
+	    			episode = 0;
+	    		}
+	    	}
+	        callback(timestamp, airing, diffWeeks, diffDays, diffHours, diffMinutes, episode);
 	    }
 	}
 
@@ -355,7 +363,7 @@
 	                    //timezone
 	                    var timestamp = toTimestamp(year,month,day,hour,minute,0);
 	                    GM_setValue('mal/'+malId+'/release', timestamp);
-	                    var episode = $(this).find('.eps a span').text();
+	                    var episode = $(this).find('.eps a span').last().text();
 	                    if(episode.match(/^\d+/)){
 	                    	GM_setValue('mal/'+malId+'/eps', parseInt( episode.match(/^\d+/)[0]) );
 	                    }

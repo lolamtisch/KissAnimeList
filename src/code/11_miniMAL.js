@@ -1002,12 +1002,11 @@
 
                   setanime(url, anime, null, localListType);
               });
-              epPrediction(url.split('/')[4], function(timestamp, airing, diffWeeks, diffDays, diffHours, diffMinutes){
+              epPrediction(url.split('/')[4], function(timestamp, airing, diffWeeks, diffDays, diffHours, diffMinutes, episode){
                 if(airing){
-                    diffWeeks = diffWeeks - (new Date().getFullYear() - new Date(timestamp).getFullYear()); //Remove 1 week between years
-                    if(diffWeeks < 50){
+                    if(episode){
                         var titleMsg = 'Next episode estimated in '+diffDays+'d '+diffHours+'h '+diffMinutes+'m';
-                        $("#info-iframe").contents().find('[id="curEps"]').before('<span title="'+titleMsg+'">['+(diffWeeks+1)+']</span> ');
+                        $("#info-iframe").contents().find('[id="curEps"]').before('<span title="'+titleMsg+'">['+episode+']</span> ');
                     }
                 }
               });
@@ -1301,13 +1300,12 @@
             }
 
             var el = $(this);
-            epPrediction(el.attr('malhref').split('/')[4], function(timestamp, airing, diffWeeks, diffDays, diffHours, diffMinutes){
+            epPrediction(el.attr('malhref').split('/')[4], function(timestamp, airing, diffWeeks, diffDays, diffHours, diffMinutes, episode){
               if(airing){
-                  diffWeeks = diffWeeks - (new Date().getFullYear() - new Date(timestamp).getFullYear()); //Remove 1 week between years
-                  if(diffWeeks < 50){
+                  if(episode){
                       var titleMsg = 'Next episode estimated in '+diffDays+'d '+diffHours+'h '+diffMinutes+'m';
                       var progressBar = el.find('.mdl-progress');
-                      var predictionProgress = ( (diffWeeks+1) / progressBar.attr('series_episodes') ) * 100;
+                      var predictionProgress = ( episode / progressBar.attr('series_episodes') ) * 100;
                       progressBar.prepend('<div class="predictionbar bar" style="width: '+predictionProgress+'%; background-color: red; z-index: 1; left: 0;"></div>');
                       el.attr('title', titleMsg);
                   }

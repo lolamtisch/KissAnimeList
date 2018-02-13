@@ -81,12 +81,11 @@
 
             $( document).ready(function(){
 
-                epPrediction(window.location.href.split('/')[4], function(timestamp, airing, diffWeeks, diffDays, diffHours, diffMinutes){
+                epPrediction(window.location.href.split('/')[4], function(timestamp, airing, diffWeeks, diffDays, diffHours, diffMinutes, episode){
                     if(airing){
-                        diffWeeks = diffWeeks - (new Date().getFullYear() - new Date(timestamp).getFullYear()); //Remove 1 week between years
                         var titleMsg = 'Next episode estimated in '+diffDays+'d '+diffHours+'h '+diffMinutes+'m' ;
-                        if(diffWeeks < 50){
-                            $('[id="curEps"]').before('<span title="'+titleMsg+'">['+(diffWeeks+1)+']</span> ');
+                        if(episode){
+                            $('[id="curEps"]').before('<span title="'+titleMsg+'">['+episode+']</span> ');
                         }
                         $('#addtolist').prev().before('<span>'+titleMsg+'</span>');
                     }else{
