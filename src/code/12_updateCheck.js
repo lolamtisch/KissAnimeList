@@ -341,7 +341,6 @@
 	                if($(this).find('.info .remain-time').text().match(/\w+\ \d+.\ \d+,\ \d+:\d+\ \(JST\)/i)){
 	                    var malId = $(this).find('a.link-title').attr('href').split('/')[4];
 	                    var jpdate = $(this).find('.info .remain-time').text().trim();
-	                    $(this).css('background-color', 'red');
 	                    //day
 	                    var day = jpdate.split(' ')[1].replace(',','').trim();
 	                    //month
@@ -356,6 +355,10 @@
 	                    //timezone
 	                    var timestamp = toTimestamp(year,month,day,hour,minute,0);
 	                    GM_setValue('mal/'+malId+'/release', timestamp);
+	                    var episode = $(this).find('.eps a span').text();
+	                    if(episode.match(/^\d+/)){
+	                    	GM_setValue('mal/'+malId+'/eps', parseInt( episode.match(/^\d+/)[0]) );
+	                    }
 	                }
 	            });
 
