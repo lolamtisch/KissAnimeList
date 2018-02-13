@@ -104,6 +104,18 @@
                               #material.simple-header .mdl-layout__header .mdl-layout__tab-bar-container{\
                                 display: none;\
                               }\
+                              \
+                              .newEp {\
+                                  position: absolute;\
+                                  background-color: #dedede;\
+                                  height: 25px;\
+                                  width: 29px;\
+                                  top: 3px;\
+                                  right: -4px;\
+                                  background-repeat: no-repeat;\
+                                  background-position: 4px 3px;\
+                                  background-image: url(https://github.com/google/material-design-icons/blob/master/social/1x_web/ic_notifications_none_black_18dp.png?raw=true);\
+                              }\
                             </style>');
                 head.append('<style>'+GM_getResourceText("materialCSS")+'</style>');
                 head.append('<style>'+GM_getResourceText("materialFont")+'</style>');
@@ -351,7 +363,7 @@
               var malUrl = null;
             }
             if(malUrl == url){
-                settingsUI += '<div class="mdl-cell mdl-cell--12-col mdl-shadow--4dp">\
+                settingsUI += '<div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-shadow--4dp">\
                                 <div class="mdl-card__title mdl-card--border">\
                                     <h2 class="mdl-card__title-text">';
                                     if(data != null){
@@ -397,7 +409,7 @@
                               </div>';
 
             }
-                settingsUI += '<div class="mdl-cell mdl-cell--12-col mdl-shadow--4dp">\
+                settingsUI += '<div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-shadow--4dp">\
                             <div class="mdl-card__title mdl-card--border">\
                                 <h2 class="mdl-card__title-text">General</h2>\
                                 </div>';
@@ -410,14 +422,42 @@
                               </li>';
                 settingsUI += '</div>';
 
-                settingsUI += '<div class="mdl-cell mdl-cell--12-col mdl-shadow--4dp">\
+                settingsUI += '<div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-shadow--4dp">\
                             <div class="mdl-card__title mdl-card--border">\
                                 <h2 class="mdl-card__title-text">MAL Bookmark Page</h2>\
                                 </div>';
                 settingsUI += materialCheckbox(tagLinks,'tagLinks','Continue watching links'+getTooltip('If enabled: On your MAL Anime List and the bookmark list in miniMAL, an icon-link will be added to the last used streaming site you were using to watch an anime.<br>Simply click the icon to continue watching the anime.'));
+                settingsUI += '<li class="mdl-list__item">\
+                                  <span class="mdl-list__item-primary-content">\
+                                      Check for new episodes\
+                                  </span>\
+                                  <span class="mdl-list__item-secondary-action">\
+                                    <select name="myinfo_score" id="newEpInterval" class="inputtext mdl-textfield__input" style="outline: none;">\
+                                      <option value="null">Off</option>\
+                                      <option value="3600000">1 Hour</option>\
+                                      <option value="43200000">12 Hour</option>\
+                                      <option value="0">Always</option>\
+                                    </select>\
+                                  </span>\
+                              </li>';
+                settingsUI += '<li class="mdl-list__item">\
+                                  <span class="mdl-list__item-primary-content">\
+                                    Border Color <a href="https://www.webpagefx.com/web-design/color-picker/" target="_blank"><div id="newEpBorder_color" style="width: 20px; border: 1px solid grey; height: 20px; margin-left: 5px; background-color: #'+newEpBorder+'"/></a>\
+                                  </span>\
+                                  <div class="mdl-list__item-secondary-action">\
+                                      <select name="newEpBorder_dropdown" id="newEpBorder_dropdown" class="inputtext mdl-textfield__input" style="outline: none;">\
+                                        <option value="c">Custom</option>\
+                                        <option value="ff0000">Red</option>\
+                                        <option value="2e51a2">MAL Blue</option>\
+                                        <option value=" ">Off</option>\
+                                      </select>\
+                                      <input class="mdl-textfield__input" type="text" id="newEpBorder" size="6" maxlength="6" value="'+newEpBorder+'">\
+                                  </div>\
+                              </li>';
+                settingsUI += materialCheckbox(newEpCR,'newEpCR','CR-Unblocker Extension');
                 settingsUI += '</div>';
 
-                settingsUI += '<div class="mdl-cell mdl-cell--12-col mdl-shadow--4dp">\
+                settingsUI += '<div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-shadow--4dp">\
                             <div class="mdl-card__title mdl-card--border">\
                                 <h2 class="mdl-card__title-text">Streaming Site Links</h2>';
 
@@ -434,7 +474,7 @@
                 settingsUI += materialCheckbox(kissmangaLinks,'kissmangaLinks','KissManga');
                 settingsUI += '</div>';
 
-                settingsUI += '<div class="mdl-cell mdl-cell--12-col mdl-shadow--4dp">\
+                settingsUI += '<div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-shadow--4dp">\
                             <div class="mdl-card__title mdl-card--border">\
                                 <h2 class="mdl-card__title-text">MyAnimeList</h2>\
                                     </div>';
@@ -454,7 +494,7 @@
                               </li>';
                 settingsUI += '</div>';
 
-                settingsUI += '<div class="mdl-cell mdl-cell--12-col mdl-shadow--4dp">\
+                settingsUI += '<div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-shadow--4dp">\
                                 <div class="mdl-card__title mdl-card--border">\
                                   <h2 class="mdl-card__title-text">miniMAL</h2>\
                                   <span style="margin-left: auto; color: #7f7f7f;">Shortcut: Ctrl + m</span>\
@@ -489,7 +529,7 @@
                               </li>';
                 settingsUI += '</div>';
 
-                settingsUI += '<div class="mdl-cell mdl-cell--12-col mdl-shadow--4dp hoverinfoDeact">';
+                settingsUI += '<div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-shadow--4dp hoverinfoDeact">';
                 settingsUI += materialCheckbox(episodeInfoBox,'episodeInfoBox','Episode Hoverinfo'+getTooltip('<img style="width: 200%; margin-bottom: -16px; margin-top: -16px; margin-left: -200px; margin-right: -200px;" src="https://raw.githubusercontent.com/lolamtisch/KissAnimeList/master/Screenshots/2fhq9cL.gif" alt="Episode Hoverinfo">'), true);
                 settingsUI += '<div class="mdl-card__title mdl-card--border" style="padding: 0;"></div>';
                 settingsUI += materialCheckbox(episodeInfoSynopsis,'episodeInfoSynopsis','Synopsis'+getTooltip('If enabled, the episode-synopsis from MAL will be displayed in the Episode Hoverinfo.'));
@@ -497,10 +537,11 @@
                 settingsUI += materialCheckbox(episodeInfoSubtitle,'episodeInfoSubtitle','Alternative Title'+getTooltip('If enabled, the alternative title for the episode, will be displayed in the Episode Hoverinfo. Example using the anime "Fate/Apocrypha":<br>Title: "Apocrypha: The Great Holy Grail War"<br>Subtitle: "Gaiten: Seihai Taisen (外典:聖杯大戦)"'));
                 settingsUI += '</div>';
 
-                settingsUI += '<div class="mdl-cell mdl-cell--12-col mdl-shadow--4dp">\
+                settingsUI += '<div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-shadow--4dp">\
                             <div class="mdl-card__title mdl-card--border">\
                                 <h2 class="mdl-card__title-text">ETC</h2>\
                                 </div>';
+                settingsUI += materialCheckbox(debugging,'debugging','Debugging');
                 settingsUI += '<li class="mdl-list__item"><button type="button" id="clearCache" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">Clear Cache</button></li>';
                 settingsUI += '</div>';
 
@@ -613,6 +654,17 @@
                     tagLinks = 0;
                 }
             });
+            $("#info-iframe").contents().find('#newEpCR').change(function(){
+                if($(this).is(":checked")){
+                    alert('Only activate this option if you have the Extension CR-Unblocker installed!');
+                    GM_setValue('newEpCR', 1);
+                    newEpCR = 1;
+                }else{
+                    GM_setValue('newEpCR', 0);
+                    newEpCR = 0;
+                }
+            });
+
             $("#info-iframe").contents().find('#kissmangaLinks').change(function(){
                 if($(this).is(":checked")){
                     GM_setValue('kissmangaLinks', 1);
@@ -744,6 +796,43 @@
             $("#info-iframe").contents().find("#malThumbnail").change(function(){
               GM_setValue( 'malThumbnail', $("#info-iframe").contents().find("#malThumbnail").val() );
             });
+
+            $("#info-iframe").contents().find('#debugging').change(function(){
+                if($(this).is(":checked")){
+                    GM_setValue('debugging', 1);
+                    debugging = 1;
+                }else{
+                    GM_setValue('debugging', 0);
+                    debugging = 0;
+                }
+            });
+
+            $("#info-iframe").contents().find("#newEpInterval").val(newEpInterval);
+            $("#info-iframe").contents().find("#newEpInterval").change(function(){
+              GM_setValue( 'newEpInterval', $("#info-iframe").contents().find("#newEpInterval").val() );
+            });
+
+            $("#info-iframe").contents().find("#newEpBorder").change(function(){
+              GM_setValue( 'newEpBorder', $("#info-iframe").contents().find("#newEpBorder").val() );
+              $("#info-iframe").contents().find('#newEpBorder_color').css('background-color', '#'+$("#info-iframe").contents().find("#newEpBorder").val());
+            });
+
+            $("#info-iframe").contents().find("#newEpBorder_dropdown").val(newEpBorder);
+            $("#info-iframe").contents().find("#newEpBorder_dropdown").change(function(){
+              var dvalue=  $("#info-iframe").contents().find("#newEpBorder_dropdown").val();
+              if(dvalue == 'c'){
+                $("#info-iframe").contents().find("#newEpBorder").show();
+              }else{
+                $("#info-iframe").contents().find("#newEpBorder").hide();
+
+                $("#info-iframe").contents().find("#newEpBorder").val( dvalue );
+                $("#info-iframe").contents().find("#newEpBorder").trigger("change");
+                if(dvalue == ' '){
+                  $("#info-iframe").contents().find('#newEpBorder_color').css('background-color','transparent');
+                }
+              }
+            });
+            $("#info-iframe").contents().find("#newEpBorder_dropdown").trigger("change");
 
             $("#info-iframe").contents().find('#malConfig').show();
         }catch(e) {console.log('[iframeConfig] Error:',e);}
@@ -921,6 +1010,7 @@
           continueHtml += '<div class="data title progress" style="display: inline-block; position: relative; top: 2px; margin-left: -2px;"><div class="link" style="display: none;">'+$("#info-iframe").contents().find('#myinfo_watchedeps').val()+'</div></div>';
           continueHtml +='</div>';
           getanime(url, function(actual){
+            try{
               if(actual['.add_anime[tags]'].indexOf("last::") > -1 ){
                   var url = atobURL( actual['.add_anime[tags]'].split("last::")[1].split("::")[0] );
                   $("#info-iframe").contents().find('.malDescription').first().append(continueHtml);
@@ -930,6 +1020,7 @@
                   $("#info-iframe").contents().find('.malDescription .nextStream').append('Next Episode');
                   $("#info-iframe").contents().find('.malDescription .stream').append('Continue Watching');
               }
+            }catch(e) {console.log('[iframeOverview] Error:',e);}
           }, url, url.split('/')[3]);
         }catch(e) {console.log('[iframeOverview] Error:',e);}
 
@@ -1172,7 +1263,7 @@
           bookXML.find('my_status:contains(1)').parent().each(function(){
             var malUrl = 'https://myanimelist.net/anime/'+$(this).find('series_animedb_id').first().text()+'/'+$(this).find('series_title').first().text();
             var progressProcent = ( $(this).find('my_watched_episodes').first().text() / $(this).find('series_episodes').first().text() ) * 100;
-            bookmarkHtml +='<div class="mdl-cell mdl-cell--2-col mdl-cell--4-col-tablet mdl-cell--6-col-phone mdl-shadow--2dp mdl-grid bookEntry" malhref="'+malUrl+'" style="cursor: pointer; height: 250px; padding: 0; width: 210px; height: 293px;">';
+            bookmarkHtml +='<div class="mdl-cell mdl-cell--2-col mdl-cell--4-col-tablet mdl-cell--6-col-phone mdl-shadow--2dp mdl-grid bookEntry" malhref="'+malUrl+'" maltitle="'+$(this).find('series_title').first().text()+'" malimage="'+$(this).find('series_image').first().text()+'" style="position: relative; cursor: pointer; height: 250px; padding: 0; width: 210px; height: 293px;">';
               bookmarkHtml +='<div class="data title" style="background-image: url('+$(this).find('series_image').first().text()+'); background-size: cover; background-position: center center; background-repeat: no-repeat; width: 100%; position: relative; padding-top: 5px;">';
                 bookmarkHtml +='<span class="mdl-shadow--2dp" style="position: absolute; bottom: 0; display: block; background-color: rgba(255, 255, 255, 0.9); padding-top: 5px; display: inline-flex; align-items: center; justify-content: space-between; left: 0; right: 0; padding-right: 8px; padding-left: 8px; padding-bottom: 8px;">'+$(this).find('series_title').first().text();
                   bookmarkHtml +='<div id="p1" class="mdl-progress" style="position: absolute; top: -4px; left: 0;"><div class="progressbar bar bar1" style="width: '+progressProcent+'%;"></div><div class="bufferbar bar bar2" style="width: 100%;"></div><div class="auxbar bar bar3" style="width: 0%;"></div></div>';
@@ -1197,8 +1288,10 @@
             if($(this).find('.tags').text().indexOf("last::") > -1 ){
               var url = atobURL( $(this).find('.tags').text().split("last::")[1].split("::")[0] );
               setStreamLinks(url, $(this));
+              checkForNewEpisodes(url, $(this), $(this).attr('maltitle'), $(this).attr('malimage'));
             }
           });
+          startCheckForNewEpisodes();
 
           $("#info-iframe").contents().find("#malSearchPop .bookEntry").unbind('click').click(function(event) {
             $("#info-iframe").contents().find('#book').click();

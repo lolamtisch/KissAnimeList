@@ -176,6 +176,9 @@
             if(/^[^/]+\/[^/]+\/image$/.test(cache)){
                 GM_deleteValue(cache);
             }
+            if(/^newEp_.*/.test(cache)){
+                GM_deleteValue(cache);
+            }
         });
         con.log('After',GM_listValues());
         flashm( "Cache Cleared" , false);

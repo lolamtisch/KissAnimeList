@@ -1,6 +1,8 @@
 //if (window.top != window.self) {return; }
 //TODO: temporary workaround
+
     var googleover = 0;
+    var debug = 0;
 
     var con = console;
     con = {
@@ -10,17 +12,33 @@
     };
 
     var element = new Image();
-    Object.defineProperty(element, 'id', {
-      get: function () {
+
+    debugging = GM_getValue('debugging', 0 );
+
+    if(debugging){
+        debug = 1;
         con.log = function(){
             var args = Array.prototype.slice.call(arguments);
             args.unshift("color: blue;");
             args.unshift("%c[KAL]");
             console.log.apply(console, args);
         }
-      }
-    });
+    }else{
+        Object.defineProperty(element, 'id', {
+          get: function () {
+            debug = 1;
+            con.log = function(){
+                var args = Array.prototype.slice.call(arguments);
+                args.unshift("color: blue;");
+                args.unshift("%c[KAL]");
+                console.log.apply(console, args);
+            }
+          }
+        });
+    }
     console.log('%cKissAnimeList ['+GM_info.script.version+']', element,);
+
+
 
     var malBookmarks = GM_getValue( 'malBookmarks', 1 );
     var classicBookmarks = GM_getValue( 'classicBookmarks', 0 );
@@ -29,6 +47,11 @@
     }
 
     var tagLinks = GM_getValue( 'tagLinks', 1 );
+    var newEpInterval = GM_getValue( 'newEpInterval', 43200000 );
+    var newEpBorder = GM_getValue( 'newEpBorder', 'ff0000' );
+    var newEpCR = GM_getValue( 'newEpCR', 0 );
+
+    var searchLinks = GM_getValue( 'searchLinks', 1 );
     var kissanimeLinks = GM_getValue( 'kissanimeLinks', 1 );
     var kissmangaLinks = GM_getValue( 'kissmangaLinks', 1 );
     var masteraniLinks = GM_getValue( 'masteraniLinks', 1 );
@@ -1037,5 +1060,11 @@
     if(document.title == "Please wait 5 seconds..."){
         con.log("loading");
         return;
+    }
+
+    if( window.location.href.indexOf("id="+GM_getValue( 'checkFail', 0 )) > -1 ){
+        $(window).load(function(){
+            GM_setValue( 'checkFail', 0 )
+        });
     }
 

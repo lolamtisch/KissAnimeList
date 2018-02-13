@@ -1,6 +1,12 @@
+    var tagToContinueNumber = 0;
     function tagToContinue(){
+        tagToContinueNumber++;
         if(tagLinks == 0){
             return false;
+        }
+        if(tagToContinueNumber > 1){
+            alternativTagOnSite();
+            return true;
         }
         $(window).load(function(){
             var checkExist = setInterval(function() {
@@ -9,8 +15,13 @@
                     var url = '';
                     //Classic List formating
 
+                    var span = '';
+                    if($('#list_surround').length){
+                        span = 'span';
+                    };
+
                     $('#list_surround table').addClass("list-table-data");
-                    $('#list_surround table td[class^="td"]:first-child').addClass("title").addClass("data");
+                    $('#list_surround table .animetitle').parent().addClass("title").addClass("data");
                     $('#list_surround table .animetitle').addClass("link");
                     $('.table_header').each(function(index){
                         if($(this).find('strong a:contains(Progress)').height()){
@@ -26,6 +37,9 @@
                             if($(this).text().indexOf("last::") > -1 ){
                                 url = atobURL( $(this).text().split("last::")[1].split("::")[0] );
                                 setStreamLinks(url, $(this).closest('.list-table-data'));
+                                if($(this).closest('.list-table-data').find('.watching').length || $('#list_surround').length){
+                                    checkForNewEpisodes(url, $(this).closest('.list-table-data'), $(this).closest('.list-table-data').find('.title .link '+span).text(), $(this).closest('.list-table-data').find('.link img.image').attr('src'));
+                                }
                                 if($('#list_surround').length){
                                     $(this).remove();
                                 }else{
@@ -33,6 +47,7 @@
                                 }
                             }
                         });
+                        startCheckForNewEpisodes();
                     }else{
                         alternativTagOnSite();
                     }
@@ -48,11 +63,15 @@
             con.log('[BOOK] Modern Tags');
             var data = $.parseJSON($('.list-table').attr('data-items'));
             $.each(data,function(index, el) {
-                if(el['tags'].indexOf("last::") > -1 ){
+                if(el['tags'].indexOf("last::") > -1){
                     var url = atobURL( el['tags'].split("last::")[1].split("::")[0] );
                     setStreamLinks(url, $('.list-item a[href^="'+el['anime_url']+'"]').parent().parent('.list-table-data'));
+                    if( parseInt(el['status']) === 1 ){
+                        checkForNewEpisodes(url, $('.list-item a[href^="'+el['anime_url']+'"]').parent().parent('.list-table-data'), el['anime_title'], el['anime_image_path']);
+                    }
                 }
             });
+            startCheckForNewEpisodes();
         }else{
             con.log('[BOOK] Classic Tags');
             alternativTagToContinue();
@@ -86,8 +105,12 @@
                     if(xmlAnime.find('my_tags').text().indexOf("last::") > -1 ){
                         url = atobURL( xmlAnime.find('my_tags').text().split("last::")[1].split("::")[0] );
                         setStreamLinks(url, $(this));
+                        if(parseInt(xmlAnime.find('my_status').text()) === 1){
+                            checkForNewEpisodes(url, $(this), xmlAnime.find('series_title').text(), xmlAnime.find('series_image').text());
+                        }
                     }
                 });
+                startCheckForNewEpisodes();
             }
         });
     }
