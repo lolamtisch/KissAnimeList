@@ -1,6 +1,4 @@
 <table style="width:100%"><tr>
-<td><a href="https://greasyfork.org/en/scripts/27564-kissanimelist"><img src="https://img.shields.io/badge/Download-Greasyfork-brightgreen.svg?style=flat-square"/></a></td>
-<td><a href="https://openuserjs.org/scripts/lolamtisch/KissAnimeList"><img src="https://img.shields.io/badge/Download-OpenUserJS-yellow.svg?style=flat-square"/></a></td>
 <td><a href="https://discordapp.com/invite/cTH4yaw"><img src="https://img.shields.io/discord/358599430502481920.svg?style=flat-square&logo=discord&label=Chat%20%2F%20Support"/></a></td>
 <td><a href="https://github.com/lolamtisch/KissAnimeList/wiki/Troubleshooting"><img src="https://img.shields.io/badge/Wiki-Troubleshooting-yellowgreen.svg?style=flat-square"/></a></td>
 <td><a href="https://github.com/lolamtisch/KissAnimeList/issues"><img src="https://img.shields.io/github/issues/lolamtisch/KissAnimeList.svg?style=flat-square"/></a></td>
