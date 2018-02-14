@@ -281,3 +281,99 @@
 		}
 	};
 
+	//EP_Prediction
+	function epPrediction( malId , callback){
+	    timestampUpdate();
+	    var timestamp = GM_getValue('mal/'+malId+'/release', false);
+	    if(timestamp){
+	        var airing = 1;
+	        var episode = 0;
+	        if(Date.now() < timestamp) airing = 0;
+
+	        if(airing){
+	            var delta = Math.abs(Date.now() - timestamp) / 1000;
+	        }else{
+	            var delta = Math.abs(timestamp - Date.now()) / 1000;
+	        }
+
+
+	        var diffWeeks = Math.floor(delta / (86400 * 7));
+	        delta -= diffWeeks * (86400 * 7);
+
+	        if(airing){
+	            //We need the time until the week is complete
+	            delta = (86400 * 7) - delta;
+	        }
+
+	        var diffDays = Math.floor(delta / 86400);
+	        delta -= diffDays * 86400;
+
+	        var diffHours = Math.floor(delta / 3600) % 24;
+	        delta -= diffHours * 3600;
+
+	        var diffMinutes = Math.floor(delta / 60) % 60;
+	        delta -= diffMinutes * 60;
+
+	        if(airing){
+	        	episode = diffWeeks - (new Date().getFullYear() - new Date(timestamp).getFullYear()); //Remove 1 week between years
+	    		episode++;
+	    		if( episode > 50 ){
+	    			episode = 0;
+	    		}
+	    	}
+	    	if(episode < GM_getValue('mal/'+malId+'/eps', 100000)){
+	        	callback(timestamp, airing, diffWeeks, diffDays, diffHours, diffMinutes, episode);
+	    	}
+	    }
+	}
+
+	function timestampUpdate(){
+	    function toTimestamp(year,month,day,hour,minute,second){
+	        var datum = new Date(Date.UTC(year,month-1,day,hour,minute,second));
+	        return (datum.getTime())-32400000;//for GMT
+	    }
+
+	    if( $.now() - GM_getValue('timestampUpdate/release', 0) < 345600000){
+	        return 0;
+	    }
+	    GM_setValue('timestampUpdate/release', $.now());
+
+	    var url = 'https://myanimelist.net/anime/season/schedule';
+	    GM_xmlhttpRequest({
+	        method: "GET",
+	        url: url,
+	        synchronous: false,
+	        onload: function(response) {
+	            var parsed = $.parseHTML(response.response);
+	            var se = '.js-seasonal-anime-list-key-';
+	            se = se+'monday, '+se+'tuesday ,'+se+'wednesday ,'+se+'thursday ,'+se+'friday ,'+se+'saturday ,'+se+'sunday';
+	            $(parsed).find(se).find('.seasonal-anime').each(function(){
+	                if($(this).find('.info .remain-time').text().match(/\w+\ \d+.\ \d+,\ \d+:\d+\ \(JST\)/i)){
+	                    var malId = $(this).find('a.link-title').attr('href').split('/')[4];
+	                    var jpdate = $(this).find('.info .remain-time').text().trim();
+	                    //day
+	                    var day = jpdate.split(' ')[1].replace(',','').trim();
+	                    //month
+	                    var month = jpdate.split(' ')[0].trim();
+	                    month = ("JanFebMarAprMayJunJulAugSepOctNovDec".indexOf(month) / 3 + 1);
+	                    //year
+	                    var year = jpdate.split(' ')[2].replace(',','').trim();
+	                    //time
+	                    var time = jpdate.split(' ')[3].trim();
+	                    var minute = time.split(':')[1];
+	                    var hour = time.split(':')[0];
+	                    //timezone
+	                    var timestamp = toTimestamp(year,month,day,hour,minute,0);
+	                    GM_setValue('mal/'+malId+'/release', timestamp);
+	                    var episode = $(this).find('.eps a span').last().text();
+	                    if(episode.match(/^\d+/)){
+	                    	GM_setValue('mal/'+malId+'/eps', parseInt( episode.match(/^\d+/)[0]) );
+	                    }
+	                }
+	            });
+
+	        }
+	    });
+	    return 1;
+	}
+

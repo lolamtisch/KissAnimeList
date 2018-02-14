@@ -1002,6 +1002,14 @@
 
                   setanime(url, anime, null, localListType);
               });
+              epPrediction(url.split('/')[4], function(timestamp, airing, diffWeeks, diffDays, diffHours, diffMinutes, episode){
+                if(airing){
+                    if(episode){
+                        var titleMsg = 'Next episode estimated in '+diffDays+'d '+diffHours+'h '+diffMinutes+'m';
+                        $("#info-iframe").contents().find('[id="curEps"]').before('<span title="'+titleMsg+'">['+episode+']</span> ');
+                    }
+                }
+              });
         }catch(e) {console.log('[iframeOverview] Error:',e);}
 
         try{
@@ -1266,7 +1274,7 @@
             bookmarkHtml +='<div class="mdl-cell mdl-cell--2-col mdl-cell--4-col-tablet mdl-cell--6-col-phone mdl-shadow--2dp mdl-grid bookEntry" malhref="'+malUrl+'" maltitle="'+$(this).find('series_title').first().text()+'" malimage="'+$(this).find('series_image').first().text()+'" style="position: relative; cursor: pointer; height: 250px; padding: 0; width: 210px; height: 293px;">';
               bookmarkHtml +='<div class="data title" style="background-image: url('+$(this).find('series_image').first().text()+'); background-size: cover; background-position: center center; background-repeat: no-repeat; width: 100%; position: relative; padding-top: 5px;">';
                 bookmarkHtml +='<span class="mdl-shadow--2dp" style="position: absolute; bottom: 0; display: block; background-color: rgba(255, 255, 255, 0.9); padding-top: 5px; display: inline-flex; align-items: center; justify-content: space-between; left: 0; right: 0; padding-right: 8px; padding-left: 8px; padding-bottom: 8px;">'+$(this).find('series_title').first().text();
-                  bookmarkHtml +='<div id="p1" class="mdl-progress" style="position: absolute; top: -4px; left: 0;"><div class="progressbar bar bar1" style="width: '+progressProcent+'%;"></div><div class="bufferbar bar bar2" style="width: 100%;"></div><div class="auxbar bar bar3" style="width: 0%;"></div></div>';
+                  bookmarkHtml +='<div id="p1" class="mdl-progress" series_episodes="'+$(this).find('series_episodes').first().text()+'" style="position: absolute; top: -4px; left: 0;"><div class="progressbar bar bar1" style="width: '+progressProcent+'%;"></div><div class="bufferbar bar bar2" style="width: 100%;"></div><div class="auxbar bar bar3" style="width: 0%;"></div></div>';
                   bookmarkHtml +='<div class="data progress mdl-chip mdl-chip--contact mdl-color--indigo-100" style="float: right; line-height: 20px; height: 20px; padding-right: 4px; margin-left: 5px;">';
                     bookmarkHtml +='<div class="link mdl-chip__contact mdl-color--primary mdl-color-text--white" style="line-height: 20px; height: 20px; margin-right: 0;">'+$(this).find('my_watched_episodes').first().text()+'</div>';
                   bookmarkHtml +='</div>';
@@ -1290,6 +1298,19 @@
               setStreamLinks(url, $(this));
               checkForNewEpisodes(url, $(this), $(this).attr('maltitle'), $(this).attr('malimage'));
             }
+
+            var el = $(this);
+            epPrediction(el.attr('malhref').split('/')[4], function(timestamp, airing, diffWeeks, diffDays, diffHours, diffMinutes, episode){
+              if(airing){
+                  if(episode){
+                      var titleMsg = 'Next episode estimated in '+diffDays+'d '+diffHours+'h '+diffMinutes+'m';
+                      var progressBar = el.find('.mdl-progress');
+                      var predictionProgress = ( episode / progressBar.attr('series_episodes') ) * 100;
+                      progressBar.prepend('<div class="predictionbar bar" style="width: '+predictionProgress+'%; background-color: red; z-index: 1; left: 0;"></div>');
+                      el.attr('title', titleMsg);
+                  }
+              }
+            });
           });
           startCheckForNewEpisodes();
 
