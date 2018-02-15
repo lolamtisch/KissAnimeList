@@ -237,6 +237,7 @@
         }
     }
 
+    var continueAllowed = 1;
     function setanime(thisUrl ,anime, actual = null, localListType = listType) {
         var undoAnime = $.extend({}, actual);
         if(actual === null){
@@ -249,14 +250,31 @@
         }
 
         var change = $.extend({},anime);
+
+        if(anime['checkIncrease'] === 1 && autoTracking === 0 && continueAllowed){
+            if(actual['.add_anime[num_watched_episodes]'] < anime['.add_anime[num_watched_episodes]'] ||
+               actual['.add_manga[num_read_chapters]'] < anime['.add_manga[num_read_chapters]']){
+                if(localListType == 'anime'){
+                    var epis = 'episode: '+anime['.add_anime[num_watched_episodes]'];
+                }else{
+                    var epis = 'chapter: <b>'+anime['.add_manga[num_read_chapters]']+'</b>';
+                }
+                message = '<button class="sync" style="margin-bottom: 8px; background-color: transparent; border: none; color: rgb(255,64,129);margin-top: 10px;cursor: pointer;">Update MAL to '+epis+'</button>';
+                flashm( message , true, true );
+                $('.sync').click(function(){
+                    $('.flashinfo').remove();
+                    continueAllowed = 0;
+                    setanime(thisUrl ,anime, actual, localListType);
+                });
+            }
+            return;
+        }
+        continueAllowed = 1;
+
         if(localListType == 'anime'){
             var url = "https://myanimelist.net/editlist.php?type=anime&id="+actual['.anime_id'];
             if(actual['addanime'] === 1){
                 url = "https://myanimelist.net/ownlist/anime/add?selected_series_id="+actual['.anime_id'];
-                if(change['checkIncrease'] == 1 && autoTracking == 0){
-                    episodeInfo(change['.add_anime[num_watched_episodes]'], actual['malurl']);
-                    return;
-                }
                 flashConfirm('Add "'+actual['name']+'" to MAL?', function(){continueCall();}, function(){
                     if(change['checkIncrease'] == 1){
                         episodeInfo(change['.add_anime[num_watched_episodes]'], actual['malurl']);
@@ -268,9 +286,6 @@
             var url = "https://myanimelist.net/panel.php?go=editmanga&id="+actual['.manga_id'];
             if(actual['addmanga'] === 1){
                 url = "https://myanimelist.net/ownlist/manga/add?selected_manga_id="+actual['.manga_id'];
-                if(change['checkIncrease'] == 1 && autoTracking == 0){
-                    return;
-                }
                 flashConfirm('Add "'+actual['name']+'" to MAL?', function(){continueCall();}, function(){});
                 return;
             }
