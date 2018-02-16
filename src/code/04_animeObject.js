@@ -1,3 +1,4 @@
+    var fireExists = 0;
     function getanime(thisUrl , callback, absolute = false, localListType = listType) {
         var thisUrl = thisUrl;
         var url = '';
@@ -58,6 +59,7 @@
                 if(url.indexOf("kissanimelist.firebaseio.com") > -1) {
                     con.log("[GET] Firebase:",response.response);
                     if(response.response !== 'null' && !(response.response.indexOf("error") > -1)){
+                        fireExists = 1;
                         //url = response.response.replace('"', '').replace('"', '');
                         url = 'https://myanimelist.net/'+localListType+'/'+response.response.split('"')[1]+'/'+response.response.split('"')[3];
                         if(response.response.split('"')[1] == 'Not-Found'){

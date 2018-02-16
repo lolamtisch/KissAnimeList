@@ -21,6 +21,9 @@
             }
 
             var toDB = 1;
+
+            if(fireExists) toDB = 0;
+
             if(newCorrection){
                 toDB = 0;
                 if (confirm('Submit database correction request? \n If it does not exist on MAL, please leave empty.')) {
