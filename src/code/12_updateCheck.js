@@ -336,7 +336,6 @@
 	    if( $.now() - GM_getValue('timestampUpdate/release', 0) < 345600000){
 	        return 0;
 	    }
-	    GM_setValue('timestampUpdate/release', $.now());
 
 	    var url = 'https://myanimelist.net/anime/season/schedule';
 	    GM_xmlhttpRequest({
@@ -344,10 +343,12 @@
 	        url: url,
 	        synchronous: false,
 	        onload: function(response) {
+	        	var found = 0;
 	            var parsed = $.parseHTML(response.response);
 	            var se = '.js-seasonal-anime-list-key-';
 	            se = se+'monday, '+se+'tuesday ,'+se+'wednesday ,'+se+'thursday ,'+se+'friday ,'+se+'saturday ,'+se+'sunday';
 	            $(parsed).find(se).find('.seasonal-anime').each(function(){
+	            	found = 1;
 	                if($(this).find('.info .remain-time').text().match(/\w+\ \d+.\ \d+,\ \d+:\d+\ \(JST\)/i)){
 	                    var malId = $(this).find('a.link-title').attr('href').split('/')[4];
 	                    var jpdate = $(this).find('.info .remain-time').text().trim();
@@ -371,6 +372,9 @@
 	                    }
 	                }
 	            });
+	            if(found){
+	            	GM_setValue('timestampUpdate/release', $.now());
+	        	}
 
 	        }
 	    });
