@@ -13,7 +13,7 @@
 
     var element = new Image();
 
-    debugging = GM_getValue('debugging', 0 );
+    var debugging = GM_getValue('debugging', 0 );
 
     if(debugging){
         debug = 1;
