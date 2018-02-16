@@ -5,8 +5,8 @@
         return url;
     }
 
-    function local_setValue( thisUrl, malurl ){
-        if( (!(thisUrl.indexOf("myAnimeList.net/") >= 0)) && ( GM_getValue(dbSelector+'/'+$.titleToDbKey($.urlAnimeSelector(thisUrl))+'/Mal' , null) == null || thisUrl.indexOf("#newCorrection") >= 0 || GM_getValue(dbSelector+'/'+$.titleToDbKey($.urlAnimeSelector(thisUrl))+'/Crunch' , null) == 'no')){
+    function local_setValue( thisUrl, malurl, newCorrection = false){
+        if( (!(thisUrl.indexOf("myAnimeList.net/") >= 0)) && ( GM_getValue(dbSelector+'/'+$.titleToDbKey($.urlAnimeSelector(thisUrl))+'/Mal' , null) == null || newCorrection || GM_getValue(dbSelector+'/'+$.titleToDbKey($.urlAnimeSelector(thisUrl))+'/Crunch' , null) == 'no')){
             var param = { Kiss: thisUrl, Mal: malurl};
             if(dbSelector == 'Crunchyroll'){
                 param = { Kiss: window.location.href+'?..'+$.titleToDbKey($.urlAnimeSelector()), Mal: malurl};
@@ -21,10 +21,11 @@
             }
 
             var toDB = 1;
-            if(thisUrl.indexOf("#newCorrection") >= 0){
+            if(newCorrection){
                 toDB = 0;
                 if (confirm('Submit database correction request? \n If it does not exist on MAL, please leave empty.')) {
                     toDB = 1;
+                    param['newCorrection'] = true;
                 }
             }
 

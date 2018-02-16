@@ -555,7 +555,7 @@
 
             $("#info-iframe").contents().find("#malSubmit").click( function(){
                 var murl = $("#info-iframe").contents().find("#malUrlInput").val();
-                local_setValue($.normalUrl()+'#newCorrection', murl);
+                local_setValue($.normalUrl(), murl, true);
                 flashm( "new url '"+murl+"' set." , false);
                 checkdata();
             });
