@@ -238,6 +238,7 @@
 					complete: function() { $(this).remove(); }});
 
 				function checkFailBackground(){
+					if(!openInBg) return;
 					if(checkFail.length){
 						var rNumber = Math.floor((Math.random() * 1000) + 1);
 						var url = checkFail[0];
