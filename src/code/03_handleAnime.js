@@ -262,6 +262,7 @@
         }else{
             if(anime['checkIncrease'] === 1){
                 current['checkIncrease'] = 1;
+                anime['.add_manga[tags]'] = handleTag($.urlAnimeIdent(window.location.href), current['.add_manga[tags]'], anime['.add_manga[num_read_chapters]']+1);
                 if(current['.add_manga[num_read_chapters]'] >= anime['.add_manga[num_read_chapters]']){
                     if((anime['.add_manga[status]'] === 2 || current['.add_manga[status]'] === 2) && anime['.add_manga[num_read_chapters]'] === 1){
                         if (confirm('Reread Manga?')) {

@@ -399,6 +399,10 @@
             return $(".listing tr:not(.head)");
         };
 
+        $.nextEpLink = function(url) {
+            return window.location.href;
+        };
+
         $.fn.classicBookmarkButton = function(checkClassic) {
             $("#rightside .barContent div").last().after('<div><input type="checkbox" id="classicBookmarks" '+checkClassic+' > Classic styling</div><div class="clear2">&nbsp;</div>');
         };

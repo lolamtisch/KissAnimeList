@@ -1029,8 +1029,8 @@
           continueHtml +='</div>';
           getanime(url, function(actual){
             try{
-              if(actual['.add_anime[tags]'].indexOf("last::") > -1 ){
-                  var url = atobURL( actual['.add_anime[tags]'].split("last::")[1].split("::")[0] );
+              if(actual['.add_'+localListType+'[tags]'].indexOf("last::") > -1 ){
+                  var url = atobURL( actual['.add_'+localListType+'[tags]'].split("last::")[1].split("::")[0] );
                   $("#info-iframe").contents().find('.malDescription').first().append(continueHtml);
                   setStreamLinks(url, $("#info-iframe").contents().find('.malDescription').first());
 
