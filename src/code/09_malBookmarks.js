@@ -68,9 +68,9 @@
             $.each(data,function(index, el) {
                 if(el['tags'].indexOf("last::") > -1){
                     var url = atobURL( el['tags'].split("last::")[1].split("::")[0] );
-                    setStreamLinks(url, $('.list-item a[href^="'+el['anime_url']+'"]').parent().parent('.list-table-data'));
+                    setStreamLinks(url, $('.list-item a[href^="'+el[listType+'_url']+'"]').parent().parent('.list-table-data'));
                     if( parseInt(el['status']) === 1 ){
-                        checkForNewEpisodes(url, $('.list-item a[href^="'+el['anime_url']+'"]').parent().parent('.list-table-data'), el['anime_title'], el['anime_image_path']);
+                        checkForNewEpisodes(url, $('.list-item a[href^="'+el[listType+'_url']+'"]').parent().parent('.list-table-data'), el[listType+'_title'], el[listType+'_image_path']);
                     }
                 }
             });

@@ -1016,6 +1016,7 @@
         //###########################
     }else if( window.location.href.indexOf("myanimelist.net") > -1 ){
         googleover = 1;
+        var listType = window.location.href.split('/')[3];
         $.isOverviewPage = function() {
             return false;
         };
