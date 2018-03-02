@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name        KissAnimeList
-// @version     0.91.4
+// @version     0.91.5
 // @description Integrates MyAnimeList into various sites, with auto episode tracking.
 // @author      lolamtisch@gmail.com
 // @license 	CC-BY-4.0; https://creativecommons.org/licenses/by/4.0/legalcode
@@ -20,10 +20,10 @@
 //
 // @include     /^https?://www.masterani.me\/anime\/(info|watch)\//
 //
-// @include     /^https?:\/\/9anime\.to\/watch\//
-// @include     /^https?:\/\/9anime\.is\/watch\//
-// @include     /^https?:\/\/9anime\.ru\/watch\//
-// @include     /^https?:\/\/9anime\.ch\/watch\//
+// @include     /^https?:\/\/(w+.?\.)?9anime\.to\/watch\//
+// @include     /^https?:\/\/(w+.?\.)?9anime\.is\/watch\//
+// @include     /^https?:\/\/(w+.?\.)?9anime\.ru\/watch\//
+// @include     /^https?:\/\/(w+.?\.)?9anime\.ch\/watch\//
 //
 // @include     /^https?:\/\/(www\.)?crunchyroll.com\//
 // @exclude     /^https?:\/\/(www\.)?crunchyroll.com\/($|acct|anime|comics|edit|email|forum|home|inbox|library|login|manga|newprivate|news|notifications|order|outbox|pm|search|store|user|videos)/
