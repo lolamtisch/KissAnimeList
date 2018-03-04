@@ -187,7 +187,12 @@
         if(update.indexOf("masterani.me") > -1 && update.indexOf("/watch/") > -1){
             update = update.replace('/watch/','/info/');
         }
-        GM_setValue( update+'/next', nextEp);
+        if(listType == 'anime'){
+            GM_setValue( update+'/next', nextEp);
+        }else{
+            GM_setValue( update+'/next', 'manga');
+        }
+
         GM_setValue( update+'/nextEp', $.nextEpLink(update));
         return current;
     }
