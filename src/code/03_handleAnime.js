@@ -129,7 +129,6 @@
                 var animechange = {};
                 animechange['.add_manga[num_read_chapters]'] = curChapter;
                 animechange['.add_manga[num_read_volumes]'] = curVolume;
-                animechange['.add_manga[comments]'] = handleComment(window.location.href, anime['.add_manga[comments]']);
             }
             animechange['checkIncrease'] = 1;
             setTimeout(function() {
@@ -174,16 +173,6 @@
             }catch(e){}
         }
         return comment;
-    }
-
-    function handleComment(update, current){
-        var addition = 'last:^'+update+'^';
-        if(current.indexOf("last:^") > -1){
-            current = current.replace(/last:\^[^\^]*\^/,addition);
-        }else{
-            current = current+addition;
-        }
-        return current;
     }
 
     function handleTag(update, current, nextEp){
@@ -268,14 +257,10 @@
                         if (confirm('Reread Manga?')) {
                             anime['.add_manga[is_rereading]'] = 1;
                         }else{
-                            current['.add_manga[comments]'] = anime['.add_manga[comments]'];
-                            current['no_flash'] = 1;
-                            anime = current;
+                            return null;
                         }
                     }else{
-                        current['.add_manga[comments]'] = anime['.add_manga[comments]'];
-                        current['no_flash'] = 1;
-                        anime = current;
+                        return null;
                     }
                 }
             }
