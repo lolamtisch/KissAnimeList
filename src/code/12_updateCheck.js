@@ -24,7 +24,7 @@
 		}
 		var tempArray = checkArray;
 		checkArray = [];
-		for(i=0 ; i < tempArray.length ; i++){
+		for(var i=0 ; i < tempArray.length ; i++){
 			tempArray[i](tempArray.length);
 		}
 	}

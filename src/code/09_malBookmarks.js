@@ -32,6 +32,9 @@
                         }
                     })
                     //
+
+                    tagToContinueEpPrediction();
+
                     if( $('.header-title.tags').height() || $('.td1.tags').height()){
                         $('.tags span a').each(function( index ) {
                             if($(this).text().indexOf("last::") > -1 ){
@@ -51,8 +54,6 @@
                     }else{
                         alternativTagOnSite();
                     }
-
-                    tagToContinueEpPrediction();
 
                     return true;
                 }
