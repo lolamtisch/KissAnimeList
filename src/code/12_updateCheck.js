@@ -32,11 +32,12 @@
 	function checkForNewEpisode(url, entrySelector, totalEntrys, title = '', img = ''){
 		var selector = '';
 		var hasStyle = 0;
+		var checkAiringState = function(parsed, html){};
 		if($(entrySelector).attr('style')) hasStyle = 1;
 
 		if( url.indexOf("kissanime.ru") > -1 ){
 			selector = ".listing a";
-			function checkAiringState(parsed, html){
+			checkAiringState = function(parsed, html){
 				try{
 					if(html.split('Status:</span>')[1].split('<')[0].indexOf("Completed") > -1){
 						return true;
@@ -54,7 +55,7 @@
 			var masterid = url.split('/')[5].split('-')[0];
 			url = 'https://www.masterani.me/api/anime/'+masterid+'/detailed';
 			selector = ".thumbnail a.title";
-			function checkAiringState(parsed, html){
+			checkAiringState = function(parsed, html){
 				try{
 					if(parsed["info"]["status"] == 0){
 						return true;
@@ -66,7 +67,7 @@
 			}
 		}else if( url.indexOf("9anime.") > -1 ){
 			selector = ".server:first-child .episodes a";
-			function checkAiringState(parsed, html){
+			checkAiringState = function(parsed, html){
 				try{
 					if(html.split('<dt>Status:</dt>')[1].split('</dl>')[0].indexOf("Completed") > -1){
 						return true;
@@ -78,7 +79,7 @@
 			}
 		}else if( url.indexOf("crunchyroll.com") > -1 ){
 			selector = "#showview_content_videos .list-of-seasons .group-item a";
-			function checkAiringState(parsed, html){
+			checkAiringState = function(parsed, html){
 				try{
 					if(!(html.indexOf("Simulcast on") > -1)){
 						return true;
@@ -90,7 +91,7 @@
 			}
 		}else if( url.indexOf("gogoanime.") > -1 ){
 			selector = "#episode_page a:last";
-			function checkAiringState(parsed, html){
+			checkAiringState = function(parsed, html){
 				try{
 					if(html.split('Status: </span>')[1].split('<')[0].indexOf("Completed") > -1){
 						return true;
