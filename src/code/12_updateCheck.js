@@ -48,9 +48,17 @@
 				return false;
 			}
 		}else if( url.indexOf("kissmanga.com") > -1 ){
-			checkForNewEpisodesDone(totalEntrys, true);
-			return;
 			selector = ".listing a";
+			checkAiringState = function(parsed, html){
+				try{
+					if(html.split('Status:</span>')[1].split('<')[0].indexOf("Completed") > -1){
+						return true;
+					}
+				}catch(e){
+					con.log('[ERROR]',e);
+				}
+				return false;
+			}
 		}else if( url.indexOf("masterani.me") > -1 ){
 			var masterid = url.split('/')[5].split('-')[0];
 			url = 'https://www.masterani.me/api/anime/'+masterid+'/detailed';

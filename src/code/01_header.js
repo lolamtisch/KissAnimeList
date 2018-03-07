@@ -45,6 +45,7 @@
 // @connect     kissanimelist.firebaseio.com
 // @connect     www.crunchyroll.com
 // @connect     kissanime.ru
+// @connect     kissmanga.com
 // @connect     9anime.to
 // @connect     9anime.is
 // @connect     9anime.ru
