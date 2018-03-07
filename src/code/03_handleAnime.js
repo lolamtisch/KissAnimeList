@@ -129,7 +129,6 @@
                 var animechange = {};
                 animechange['.add_manga[num_read_chapters]'] = curChapter;
                 animechange['.add_manga[num_read_volumes]'] = curVolume;
-                animechange['.add_manga[comments]'] = handleComment(window.location.href, anime['.add_manga[comments]']);
             }
             animechange['checkIncrease'] = 1;
             setTimeout(function() {
@@ -176,16 +175,6 @@
         return comment;
     }
 
-    function handleComment(update, current){
-        var addition = 'last:^'+update+'^';
-        if(current.indexOf("last:^") > -1){
-            current = current.replace(/last:\^[^\^]*\^/,addition);
-        }else{
-            current = current+addition;
-        }
-        return current;
-    }
-
     function handleTag(update, current, nextEp){
         if(tagLinks == 0){return current;}
         var addition = "last::"+ btoa(update) +"::";
@@ -198,7 +187,12 @@
         if(update.indexOf("masterani.me") > -1 && update.indexOf("/watch/") > -1){
             update = update.replace('/watch/','/info/');
         }
-        GM_setValue( update+'/next', nextEp);
+        if(listType == 'anime'){
+            GM_setValue( update+'/next', nextEp);
+        }else{
+            GM_setValue( update+'/next', 'manga');
+        }
+
         GM_setValue( update+'/nextEp', $.nextEpLink(update));
         return current;
     }
@@ -262,19 +256,16 @@
         }else{
             if(anime['checkIncrease'] === 1){
                 current['checkIncrease'] = 1;
+                anime['.add_manga[tags]'] = handleTag($.urlAnimeIdent(window.location.href), current['.add_manga[tags]'], anime['.add_manga[num_read_chapters]']+1);
                 if(current['.add_manga[num_read_chapters]'] >= anime['.add_manga[num_read_chapters]']){
                     if((anime['.add_manga[status]'] === 2 || current['.add_manga[status]'] === 2) && anime['.add_manga[num_read_chapters]'] === 1){
                         if (confirm('Reread Manga?')) {
                             anime['.add_manga[is_rereading]'] = 1;
                         }else{
-                            current['.add_manga[comments]'] = anime['.add_manga[comments]'];
-                            current['no_flash'] = 1;
-                            anime = current;
+                            return null;
                         }
                     }else{
-                        current['.add_manga[comments]'] = anime['.add_manga[comments]'];
-                        current['no_flash'] = 1;
-                        anime = current;
+                        return null;
                     }
                 }
             }

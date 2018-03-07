@@ -68,9 +68,9 @@
             $.each(data,function(index, el) {
                 if(el['tags'].indexOf("last::") > -1){
                     var url = atobURL( el['tags'].split("last::")[1].split("::")[0] );
-                    setStreamLinks(url, $('.list-item a[href^="'+el['anime_url']+'"]').parent().parent('.list-table-data'));
+                    setStreamLinks(url, $('.list-item a[href^="'+el[listType+'_url']+'"]').parent().parent('.list-table-data'));
                     if( parseInt(el['status']) === 1 ){
-                        checkForNewEpisodes(url, $('.list-item a[href^="'+el['anime_url']+'"]').parent().parent('.list-table-data'), el['anime_title'], el['anime_image_path']);
+                        checkForNewEpisodes(url, $('.list-item a[href^="'+el[listType+'_url']+'"]').parent().parent('.list-table-data'), el[listType+'_title'], el[listType+'_image_path']);
                     }
                 }
             });
@@ -126,7 +126,7 @@
         $(tableData).find('.data.title .link').after('<a class="stream" title="'+url.split('/')[2]+'" target="_blank" style="margin: 0 5px;" href="'+url+'">'+icon+'</a>');
 
 
-        if(parseInt($(tableData).find('.data.progress .link').text())+1 == GM_getValue( url+'/next')){
+        if(parseInt($(tableData).find('.data.progress .link').text())+1 == GM_getValue( url+'/next') || GM_getValue( url+'/next') == 'manga'){
             if(typeof GM_getValue( url+'/nextEp') != 'undefined' && !( GM_getValue( url+'/nextEp').match(/undefined$/) )){
                 $(tableData).find('.stream').after('<a class="nextStream" title="Next Episode" target="_blank" style="margin: 0 5px 0 0; color: #BABABA;" href="'+ GM_getValue( url+'/nextEp')+'">'+'<img src="https://raw.githubusercontent.com/lolamtisch/KissAnimeList/master/Screenshots/if_Double_Arrow_Right_1063903.png" width="16" height="16">'+'</a>');
             }

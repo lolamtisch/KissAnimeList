@@ -16,7 +16,7 @@
 //
 // @include     /^https?:\/\/kissmanga\.com\/(manga\/|BookmarkList)/
 //
-// @include     /^https?:\/\/myanimelist.net\/((anime(list)?|manga)(\.php\?.*id=|\/)|character|people|search)/
+// @include     /^https?:\/\/myanimelist.net\/((anime(list)?|manga(list)?)(\.php\?.*id=|\/)|character|people|search)/
 //
 // @include     /^https?://www.masterani.me\/anime\/(info|watch)\//
 //
@@ -45,6 +45,7 @@
 // @connect     kissanimelist.firebaseio.com
 // @connect     www.crunchyroll.com
 // @connect     kissanime.ru
+// @connect     kissmanga.com
 // @connect     9anime.to
 // @connect     9anime.is
 // @connect     9anime.ru

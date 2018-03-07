@@ -1029,14 +1029,19 @@
           continueHtml +='</div>';
           getanime(url, function(actual){
             try{
-              if(actual['.add_anime[tags]'].indexOf("last::") > -1 ){
-                  var url = atobURL( actual['.add_anime[tags]'].split("last::")[1].split("::")[0] );
+              if(actual['.add_'+localListType+'[tags]'].indexOf("last::") > -1 ){
+                  var url = atobURL( actual['.add_'+localListType+'[tags]'].split("last::")[1].split("::")[0] );
                   $("#info-iframe").contents().find('.malDescription').first().append(continueHtml);
                   setStreamLinks(url, $("#info-iframe").contents().find('.malDescription').first());
 
                   $("#info-iframe").contents().find('.malDescription .stream, .malDescription .nextStream').addClass('mdl-button mdl-button--colored mdl-js-button mdl-button--raised').css('color', 'white').find('img').css('padding-bottom', '3px').css('padding-right', '6px').css('margin-left', '-3px');
-                  $("#info-iframe").contents().find('.malDescription .nextStream').append('Next Episode');
-                  $("#info-iframe").contents().find('.malDescription .stream').append('Continue Watching');
+                  if(localListType == 'anime'){
+                    $("#info-iframe").contents().find('.malDescription .nextStream').append('Next Episode');
+                    $("#info-iframe").contents().find('.malDescription .stream').append('Continue Watching');
+                  }else{
+                    $("#info-iframe").contents().find('.malDescription .nextStream').append('Continue Reading');
+                    $("#info-iframe").contents().find('.malDescription .stream').append('Overview');
+                  }
               }
             }catch(e) {console.log('[iframeOverview] Error:',e);}
           }, url, url.split('/')[3]);
@@ -1280,17 +1285,24 @@
         element.html('<div id="loadRecommendations" class="mdl-progress mdl-js-progress mdl-progress__indeterminate" style="width: 100%; position: absolute;"></div>');
         executejs('componentHandler.upgradeDom();');
 
+        var my_watched_episodes = 'my_watched_episodes';
+        var series_episodes = 'series_episodes';
+        if(listType != 'anime'){
+            my_watched_episodes = 'my_read_chapters';
+            series_episodes = 'series_chapters';
+        }
+
         getMalXml("", function(bookXML){
           var bookmarkHtml = '<div class="mdl-grid" style="justify-content: center;">';
           bookXML.find('my_status:contains(1)').parent().each(function(){
-            var malUrl = 'https://myanimelist.net/anime/'+$(this).find('series_animedb_id').first().text()+'/'+$(this).find('series_title').first().text();
-            var progressProcent = ( $(this).find('my_watched_episodes').first().text() / $(this).find('series_episodes').first().text() ) * 100;
+            var malUrl = 'https://myanimelist.net/'+listType+'/'+$(this).find('series_'+listType+'db_id').first().text()+'/'+$(this).find('series_title').first().text();
+            var progressProcent = ( $(this).find(my_watched_episodes).first().text() / $(this).find(series_episodes).first().text() ) * 100;
             bookmarkHtml +='<div class="mdl-cell mdl-cell--2-col mdl-cell--4-col-tablet mdl-cell--6-col-phone mdl-shadow--2dp mdl-grid bookEntry" malhref="'+malUrl+'" maltitle="'+$(this).find('series_title').first().text()+'" malimage="'+$(this).find('series_image').first().text()+'" style="position: relative; cursor: pointer; height: 250px; padding: 0; width: 210px; height: 293px;">';
               bookmarkHtml +='<div class="data title" style="background-image: url('+$(this).find('series_image').first().text()+'); background-size: cover; background-position: center center; background-repeat: no-repeat; width: 100%; position: relative; padding-top: 5px;">';
                 bookmarkHtml +='<span class="mdl-shadow--2dp" style="position: absolute; bottom: 0; display: block; background-color: rgba(255, 255, 255, 0.9); padding-top: 5px; display: inline-flex; align-items: center; justify-content: space-between; left: 0; right: 0; padding-right: 8px; padding-left: 8px; padding-bottom: 8px;">'+$(this).find('series_title').first().text();
-                  bookmarkHtml +='<div id="p1" class="mdl-progress" series_episodes="'+$(this).find('series_episodes').first().text()+'" style="position: absolute; top: -4px; left: 0;"><div class="progressbar bar bar1" style="width: '+progressProcent+'%;"></div><div class="bufferbar bar bar2" style="width: 100%;"></div><div class="auxbar bar bar3" style="width: 0%;"></div></div>';
+                  bookmarkHtml +='<div id="p1" class="mdl-progress" series_episodes="'+$(this).find(series_episodes).first().text()+'" style="position: absolute; top: -4px; left: 0;"><div class="progressbar bar bar1" style="width: '+progressProcent+'%;"></div><div class="bufferbar bar bar2" style="width: 100%;"></div><div class="auxbar bar bar3" style="width: 0%;"></div></div>';
                   bookmarkHtml +='<div class="data progress mdl-chip mdl-chip--contact mdl-color--indigo-100" style="float: right; line-height: 20px; height: 20px; padding-right: 4px; margin-left: 5px;">';
-                    bookmarkHtml +='<div class="link mdl-chip__contact mdl-color--primary mdl-color-text--white" style="line-height: 20px; height: 20px; margin-right: 0;">'+$(this).find('my_watched_episodes').first().text()+'</div>';
+                    bookmarkHtml +='<div class="link mdl-chip__contact mdl-color--primary mdl-color-text--white" style="line-height: 20px; height: 20px; margin-right: 0;">'+$(this).find(my_watched_episodes).first().text()+'</div>';
                   bookmarkHtml +='</div>';
                 bookmarkHtml +='</span>';
                 bookmarkHtml +='<div class="tags" style="display: none;">'+$(this).find('my_tags').first().text()+'</div>';

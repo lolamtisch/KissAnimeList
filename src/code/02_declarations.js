@@ -399,6 +399,10 @@
             return $(".listing tr:not(.head)");
         };
 
+        $.nextEpLink = function(url) {
+            return window.location.href;
+        };
+
         $.fn.classicBookmarkButton = function(checkClassic) {
             $("#rightside .barContent div").last().after('<div><input type="checkbox" id="classicBookmarks" '+checkClassic+' > Classic styling</div><div class="clear2">&nbsp;</div>');
         };
@@ -1012,6 +1016,7 @@
         //###########################
     }else if( window.location.href.indexOf("myanimelist.net") > -1 ){
         googleover = 1;
+        var listType = window.location.href.split('/')[3];
         $.isOverviewPage = function() {
             return false;
         };
