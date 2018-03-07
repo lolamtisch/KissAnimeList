@@ -330,7 +330,7 @@
             templateIframe(url,data);
         }
 
-        if(url == null | url == ''){
+        if(url == null | url == '' | data == '404'){
           $("#info-iframe").contents().find('#material').addClass('simple-header');
           $("#info-iframe").contents().find('.mdl-layout__tab-panel.is-active').removeClass('is-active');
           $("#info-iframe").contents().find('.mdl-layout__tab-panel').last().addClass('is-active');
@@ -366,7 +366,7 @@
                 settingsUI += '<div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-shadow--4dp">\
                                 <div class="mdl-card__title mdl-card--border">\
                                     <h2 class="mdl-card__title-text">';
-                                    if(data != null){
+                                    if(data != null && data != '404'){
                                       settingsUI += data.split('itemprop="name">')[1].split('<')[0];
                                     }else{
                                       settingsUI += 'Not Found';
@@ -1218,7 +1218,11 @@
                 "User-Agent": "Mozilla/5.0"
             },
             onload: function(response) {
-                callback(response.responseText);
+                if(response.status == 200){
+                  callback(response.responseText);
+                }else{
+                  callback('404');
+                }
             }
         });
     }
