@@ -383,7 +383,7 @@
                                             undoAnime['checkIncrease'] = 0;
                                             setanime(thisUrl, undoAnime, null, localListType);
                                             $('.info-Mal-undo').remove();
-                                            if($('.flashinfo>div').html() == ''){
+                                            if($('.flashinfo>div').text() == ''){
                                                 $('.flashinfo').remove();
                                             }
                                         });
@@ -434,11 +434,24 @@
                                 }
                                 if(anime['checkIncrease'] == 1){
                                     message += '<br><button class="undoButton" style="background-color: transparent; border: none; color: rgb(255,64,129);margin-top: 10px;cursor: pointer;">Undo</button>';
-                                    flashm( message , false);
-                                    $('.undoButton').click(function(){
-                                        undoAnime['checkIncrease'] = 0;
-                                        setanime(thisUrl, undoAnime, null, localListType);
-                                    });
+                                    if(!episodeInfoBox){
+                                        flashm( message , false);
+                                        $('.undoButton').click(function(){
+                                            undoAnime['checkIncrease'] = 0;
+                                            setanime(thisUrl, undoAnime, null, localListType);
+                                        });
+                                    }else{
+                                        message = "<div class='info-Mal-undo' style='white-space: nowrap; margin-top: 15px; /*margin-left: 15px;*/'> "+ message +"</div>";
+                                        flashm ( message , false, true);
+                                        $('.undoButton').click(function(){
+                                            undoAnime['checkIncrease'] = 0;
+                                            setanime(thisUrl, undoAnime, null, localListType);
+                                            $('.info-Mal-undo').remove();
+                                            if($('.flashinfo>div').first().text() == ''){
+                                                $('.flashinfo').remove();
+                                            }
+                                        });
+                                    }
                                 }else{
                                     flashm( message , false);
                                 }
