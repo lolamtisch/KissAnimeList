@@ -19,7 +19,7 @@
 			return;
 		}
 		if( $.now() - GM_getValue('newEp_last_update', 0) > newEpInterval){
-			$('body').before('<div style="z-index: 20000000000; height: 5px; position: fixed; top: 0; left: 0; right: 0;"><div id="checkProgress" style="width: 0%;background-color: #3f51b5; height: 100%; transition: width 1s;"></div></div>');
+			$('body').before('<div style="z-index: 20000000000; height: 5px; position: fixed; top: 0; left: 0; right: 0;background-color: rgba(255,225,255,0.5);"><div id="checkProgress" style="width: 0%;background-color: #3f51b5; height: 100%; transition: width 1s;"></div></div>');
 			newEpUpdate = 1;
 		}
 		var tempArray = checkArray;
