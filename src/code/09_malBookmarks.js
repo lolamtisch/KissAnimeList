@@ -40,7 +40,7 @@
                             if($(this).text().indexOf("last::") > -1 ){
                                 url = atobURL( $(this).text().split("last::")[1].split("::")[0] );
                                 setStreamLinks(url, $(this).closest('.list-table-data'));
-                                if($(this).closest('.list-table-data').find('.watching').length || $('#list_surround').length){
+                                if($(this).closest('.list-table-data').find('.watching , .reading').length || $('#list_surround').length){
                                     checkForNewEpisodes(url, $(this).closest('.list-table-data'), $(this).closest('.list-table-data').find('.title .link '+span).text(), $(this).closest('.list-table-data').find('.link img.image').attr('src'));
                                 }
                                 if($('#list_surround').length){
