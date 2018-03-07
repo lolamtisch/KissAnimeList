@@ -35,6 +35,7 @@
 	function checkForNewEpisode(url, entrySelector, totalEntrys, title = '', img = ''){
 		var selector = '';
 		var hasStyle = 0;
+		var localListType = 'anime';
 		var checkAiringState = function(parsed, html){};
 		if($(entrySelector).attr('style')) hasStyle = 1;
 
@@ -51,6 +52,7 @@
 				return false;
 			}
 		}else if( url.indexOf("kissmanga.com") > -1 ){
+			localListType = 'manga';
 			selector = ".listing a";
 			checkAiringState = function(parsed, html){
 				try{
@@ -204,8 +206,12 @@
 				con.log('[NewEP]', url);
 
 				if(GM_getValue('newEp_'+url+'_cache', null) != EpNumber){
+					var newMessage = 'New episode got released!';
+					if(localListType != 'anime'){
+						newMessage = 'New chapter got released!';
+					}
 					try{
-						GM_notification({text: "New episode got released!", title: title, image: img, timeout: 0, onclick: function(){
+						GM_notification({text: newMessage, title: title, image: img, timeout: 0, onclick: function(){
 							try{
 								GM_setValue('newEp_'+url+'_number', EpNumber);
 							}catch(e){}
