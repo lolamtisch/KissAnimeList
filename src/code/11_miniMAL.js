@@ -1366,6 +1366,19 @@
             fillIframe($(this).attr('malhref'));
           });
 
+        },
+        null,
+        function(continueCall){
+          var scrollable = $("#info-iframe").contents().find('#malSearchPop .simplebar-scroll-content');
+          var scrollDone = 0;
+          scrollable.scroll(function() {
+            if(scrollDone) return;
+            if(scrollable.scrollTop() + scrollable.height() > scrollable.find('.simplebar-content').height() - 100) {
+              scrollDone = 1;
+              con.log('[Bookmarks]','Loading next part');
+              continueCall();
+            }
+          });
         });
     }
 
