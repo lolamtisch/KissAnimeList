@@ -1291,7 +1291,7 @@
         });
     }
 
-    function iframeBookmarks(element){
+    function iframeBookmarks(element, state = 1){
         element.html('<div id="loadRecommendations" class="mdl-progress mdl-js-progress mdl-progress__indeterminate" style="width: 100%; position: absolute;"></div>');
         executejs('componentHandler.upgradeDom();');
 
@@ -1303,7 +1303,7 @@
         }
         var firstEl = 1;
 
-        getUserList(1, function(el, index, total){
+        getUserList(state, function(el, index, total){
           if(firstEl){
             firstEl = 0;
             var bookmarkHtml = '<div class="mdl-grid" id="malList" style="justify-content: center;">';
@@ -1376,6 +1376,10 @@
         },
         null,
         function(continueCall){
+          if(state == 1){
+            continueCall();
+            return;
+          }
           var scrollable = $("#info-iframe").contents().find('#malSearchPop .simplebar-scroll-content');
           var scrollDone = 0;
           scrollable.scroll(function() {
