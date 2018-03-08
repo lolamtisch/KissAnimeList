@@ -1297,9 +1297,13 @@
 
         var my_watched_episodes = 'num_watched_episodes';
         var series_episodes = 'anime_num_episodes';
+        var localPlanTo = 'Plan to Watch';
+        var localWatching = 'Watching'
         if(localListType != 'anime'){
             my_watched_episodes = 'num_read_chapters';
             series_episodes = 'manga_num_chapters';
+            localPlanTo = 'Plan to Read';
+            localWatching = 'Reading'
         }
         var firstEl = 1;
 
@@ -1311,6 +1315,14 @@
                               <option value="anime">Anime</option>\
                               <option value="manga">Manga</option>\
                             </select>';
+            bookmarkHtml +='<select name="myinfo_score" id="userListState" class="inputtext mdl-textfield__input" style="outline: none;">\
+                              <option value="7">All</option>\
+                              <option value="1" selected>'+localWatching+'</option>\
+                              <option value="2">Completed</option>\
+                              <option value="3">On-Hold</option>\
+                              <option value="4">Dropped</option>\
+                              <option value="6">'+localPlanTo+'</option>\
+                            </select>';
             //flexbox placeholder
             for(var i=0; i < 10; i++){
                 bookmarkHtml +='<div class="listPlaceholder mdl-cell mdl-cell--2-col mdl-cell--4-col-tablet mdl-cell--6-col-phone mdl-shadow--2dp mdl-grid "  style="cursor: pointer; height: 250px; padding: 0; width: 210px; height: 0px; margin-top:0; margin-bottom:0; visibility: hidden;"></div>';
@@ -1321,6 +1333,11 @@
             $("#info-iframe").contents().find('#malSearchPop #userListType').val(localListType);
             $("#info-iframe").contents().find('#malSearchPop #userListType').change(function(event) {
               iframeBookmarks(element, state, $("#info-iframe").contents().find('#malSearchPop #userListType').val() );
+            });
+
+            $("#info-iframe").contents().find('#malSearchPop #userListState').val(state);
+            $("#info-iframe").contents().find('#malSearchPop #userListState').change(function(event) {
+              iframeBookmarks(element, $("#info-iframe").contents().find('#malSearchPop #userListState').val(), localListType);
             });
           }
 
