@@ -454,6 +454,7 @@
                                       <input class="mdl-textfield__input" type="text" id="newEpBorder" size="6" maxlength="6" value="'+newEpBorder+'">\
                                   </div>\
                               </li>';
+                settingsUI += materialCheckbox(newEpNotification,'newEpNotification','Notifications');
                 settingsUI += materialCheckbox(openInBg,'openInBg','Load cookies in background');
                 settingsUI += materialCheckbox(newEpCR,'newEpCR','CR-Unblocker Extension');
                 settingsUI += '</div>';
@@ -653,6 +654,15 @@
                 }else{
                     GM_setValue('tagLinks', 0);
                     tagLinks = 0;
+                }
+            });
+            $("#info-iframe").contents().find('#newEpNotification').change(function(){
+                if($(this).is(":checked")){
+                    GM_setValue('newEpNotification', 1);
+                    newEpNotification = 1;
+                }else{
+                    GM_setValue('newEpNotification', 0);
+                    newEpNotification = 0;
                 }
             });
             $("#info-iframe").contents().find('#openInBg').change(function(){

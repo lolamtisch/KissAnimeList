@@ -210,16 +210,18 @@
 					if(localListType != 'anime'){
 						newMessage = 'New chapter got released!';
 					}
-					try{
-						GM_notification({text: newMessage, title: title, image: img, timeout: 0, onclick: function(){
-							try{
-								GM_setValue('newEp_'+url+'_number', EpNumber);
-							}catch(e){}
-							location.href = url;
-						} });
-					}catch(e){
-						console.log('[ERROR] Could not execute GM_notification');
-						alert('New episode for '+title+' released');
+					if(newEpNotification){
+						try{
+							GM_notification({text: newMessage, title: title, image: img, timeout: 0, onclick: function(){
+								try{
+									GM_setValue('newEp_'+url+'_number', EpNumber);
+								}catch(e){}
+								location.href = url;
+							} });
+						}catch(e){
+							console.log('[ERROR] Could not execute GM_notification');
+							alert('New episode for '+title+' released');
+						}
 					}
 				}
 
