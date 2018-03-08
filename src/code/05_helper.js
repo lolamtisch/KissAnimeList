@@ -359,19 +359,19 @@
     }
 
     //Status: 1 = watching | 2 = completed | 3 = onhold | 4 = dropped | 6 = plan to watch | 7 = all
-    function getUserList(status = 1,singleCallback = null, finishCallback = null, fullListCallback = null, continueCall = null, username = null, offset = 0, templist = []){
+    function getUserList(status = 1, localListType = 'anime', singleCallback = null, finishCallback = null, fullListCallback = null, continueCall = null, username = null, offset = 0, templist = []){
         con.log('[UserList]', 'username: '+username, 'status: '+status, 'offset: '+offset);
         if(username == null){
             getMalUserName(function(usernameTemp){
                 if(usernameTemp == false){
                     flashm( "Please log in on <a target='_blank' href='https://myanimelist.net/login.php'>MyAnimeList!<a>" , true);
                 }else{
-                    getUserList(status, singleCallback, finishCallback, fullListCallback, continueCall, usernameTemp, offset, templist);
+                    getUserList(status, localListType, singleCallback, finishCallback, fullListCallback, continueCall, usernameTemp, offset, templist);
                 }
             });
             return;
         }
-        var url = 'http://myanimelist.net/animelist/'+username+'/load.json?offset='+offset+'&status='+status;
+        var url = 'http://myanimelist.net/'+localListType+'list/'+username+'/load.json?offset='+offset+'&status='+status;
         GM_xmlhttpRequest({
             method: "GET",
             url: url,
@@ -392,10 +392,10 @@
                 if(data.length > 299){
                     if(continueCall){
                         continueCall(function(){
-                            getUserList(status, singleCallback, finishCallback, fullListCallback, continueCall, username, offset + 300, templist);
+                            getUserList(status, localListType, singleCallback, finishCallback, fullListCallback, continueCall, username, offset + 300, templist);
                         });
                     }else{
-                        getUserList(status, singleCallback, finishCallback, fullListCallback, continueCall, username, offset + 300, templist);
+                        getUserList(status, localListType, singleCallback, finishCallback, fullListCallback, continueCall, username, offset + 300, templist);
                     }
                 }else{
                     if(fullListCallback) fullListCallback(templist);
