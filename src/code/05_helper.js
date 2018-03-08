@@ -357,3 +357,71 @@
         return '<div id="tt'+rNumber+'" class="icon material-icons" style="font-size:16px; line-height: 0; color: #7f7f7f; padding-bottom: 20px; padding-left: 3px; '+style+'"> &#x1F6C8;</div>\
         <div class="mdl-tooltip mdl-tooltip--'+direction+' mdl-tooltip--large" for="tt'+rNumber+'">'+text+'</div>';
     }
+
+    //Status: 1 = watching | 2 = completed | 3 = onhold | 4 = dropped | 6 = plan to watch | 7 = all
+    function getUserList(status = 1,singleCallback = null, finishCallback = null, fullListCallback = null, continueCall = null, username = null, offset = 0, templist = []){
+        con.log('[UserList]', 'username: '+username, 'status: '+status, 'offset: '+offset);
+        if(username == null){
+            getMalUserName(function(usernameTemp){
+                if(usernameTemp == false){
+                    flashm( "Please log in on <a target='_blank' href='https://myanimelist.net/login.php'>MyAnimeList!<a>" , true);
+                }else{
+                    getUserList(status, singleCallback, finishCallback, fullListCallback, continueCall, usernameTemp, offset, templist);
+                }
+            });
+            return;
+        }
+        var url = 'http://myanimelist.net/animelist/'+username+'/load.json?offset='+offset+'&status='+status;
+        GM_xmlhttpRequest({
+            method: "GET",
+            url: url,
+            synchronous: false,
+            headers: {
+                "User-Agent": "Mozilla/5.0"
+            },
+            onload: function(response) {
+                var data = $.parseJSON(response.response);
+                if(singleCallback){
+                    for (var i = 0; i < data.length; i++) {
+                        singleCallback(data[i], i+offset+1, data.length+offset);
+                    }
+                }
+                if(fullListCallback){
+                    templist = templist.concat(data);
+                }
+                if(data.length > 299){
+                    if(continueCall){
+                        continueCall(function(){
+                            getUserList(status, singleCallback, finishCallback, fullListCallback, continueCall, username, offset + 300, templist);
+                        });
+                    }else{
+                        getUserList(status, singleCallback, finishCallback, fullListCallback, continueCall, username, offset + 300, templist);
+                    }
+                }else{
+                    if(fullListCallback) fullListCallback(templist);
+                    if(finishCallback) finishCallback();
+                }
+            }
+        });
+    }
+
+    function getMalUserName(callback){
+        var url = 'https://myanimelist.net/editlist.php?hideLayout';
+        GM_xmlhttpRequest({
+            method: "GET",
+            url: url,
+            synchronous: false,
+            headers: {
+                "User-Agent": "Mozilla/5.0"
+            },
+            onload: function(response) {
+                try{
+                    var username = response.response.split('USER_NAME = "')[1].split('"')[0];
+                }catch(e){
+                    var username = false;
+                }
+                con.log('[Username]', username);
+                callback(username);
+            }
+        });
+    }
