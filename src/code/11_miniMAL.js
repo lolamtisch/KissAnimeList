@@ -1348,7 +1348,9 @@
           if(domE.find('.tags').text().indexOf("last::") > -1 ){
             var url = atobURL( domE.find('.tags').text().split("last::")[1].split("::")[0] );
             setStreamLinks(url, domE);
-            checkForNewEpisodes(url, domE, domE.attr('maltitle'), domE.attr('malimage'));
+            if( parseInt(el['status']) === 1 ){
+              checkForNewEpisodes(url, domE, domE.attr('maltitle'), domE.attr('malimage'));
+            }
           }
 
           epPrediction(domE.attr('malhref').split('/')[4], function(timestamp, airing, diffWeeks, diffDays, diffHours, diffMinutes, episode){
