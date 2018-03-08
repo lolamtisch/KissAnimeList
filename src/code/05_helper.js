@@ -382,6 +382,7 @@
             onload: function(response) {
                 var data = $.parseJSON(response.response);
                 if(singleCallback){
+                    if(!data.length) singleCallback(false, 0, 0);
                     for (var i = 0; i < data.length; i++) {
                         singleCallback(data[i], i+offset+1, data.length+offset);
                     }

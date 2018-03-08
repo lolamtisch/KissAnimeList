@@ -1341,6 +1341,12 @@
             });
           }
 
+          if(!el){
+            element.find('#malList .listPlaceholder').first().before( '<span class="mdl-chip" style="margin: auto; margin-top: 16px; display: table;"><span class="mdl-chip__text">No Entries</span></span>');
+            element.find('#malList .listPlaceholder').remove();
+            return;
+          }
+
           var bookmarkElement = '';
           var uid = el[localListType+'_id']
           var malUrl = 'https://myanimelist.net'+el[localListType+'_url'];
