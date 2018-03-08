@@ -1295,42 +1295,44 @@
         element.html('<div id="loadRecommendations" class="mdl-progress mdl-js-progress mdl-progress__indeterminate" style="width: 100%; position: absolute;"></div>');
         executejs('componentHandler.upgradeDom();');
 
-        var my_watched_episodes = 'my_watched_episodes';
-        var series_episodes = 'series_episodes';
+        var my_watched_episodes = 'num_watched_episodes';
+        var series_episodes = 'anime_num_episodes';
         if(listType != 'anime'){
             my_watched_episodes = 'my_read_chapters';
             series_episodes = 'series_chapters';
         }
+        var firstEl = 1;
 
-        getMalXml("", function(bookXML){
-          var bookmarkHtml = '<div class="mdl-grid" id="malList" style="justify-content: center;">';
-          //flexbox placeholder
-          for(var i=0; i < 10; i++){
-              bookmarkHtml +='<div class="listPlaceholder mdl-cell mdl-cell--2-col mdl-cell--4-col-tablet mdl-cell--6-col-phone mdl-shadow--2dp mdl-grid "  style="cursor: pointer; height: 250px; padding: 0; width: 210px; height: 0px; margin-top:0; margin-bottom:0; visibility: hidden;"></div>';
+        getUserList(1, function(el, index, total){
+          if(firstEl){
+            firstEl = 0;
+            var bookmarkHtml = '<div class="mdl-grid" id="malList" style="justify-content: center;">';
+            //flexbox placeholder
+            for(var i=0; i < 10; i++){
+                bookmarkHtml +='<div class="listPlaceholder mdl-cell mdl-cell--2-col mdl-cell--4-col-tablet mdl-cell--6-col-phone mdl-shadow--2dp mdl-grid "  style="cursor: pointer; height: 250px; padding: 0; width: 210px; height: 0px; margin-top:0; margin-bottom:0; visibility: hidden;"></div>';
+            }
+            bookmarkHtml += '</div>'
+            element.html( bookmarkHtml );
           }
-          bookmarkHtml += '</div>'
-          element.html( bookmarkHtml );
 
-          bookXML.find('my_status:contains(1)').parent().each(function(){
-            var bookmarkElement = '';
-            var malUrl = 'https://myanimelist.net/'+listType+'/'+$(this).find('series_'+listType+'db_id').first().text()+'/'+$(this).find('series_title').first().text();
-            var progressProcent = ( $(this).find(my_watched_episodes).first().text() / $(this).find(series_episodes).first().text() ) * 100;
-            bookmarkElement +='<div class="mdl-cell mdl-cell--2-col mdl-cell--4-col-tablet mdl-cell--6-col-phone mdl-shadow--2dp mdl-grid bookEntry" malhref="'+malUrl+'" maltitle="'+$(this).find('series_title').first().text()+'" malimage="'+$(this).find('series_image').first().text()+'" style="position: relative; cursor: pointer; height: 250px; padding: 0; width: 210px; height: 293px;">';
-              bookmarkElement +='<div class="data title" style="background-image: url('+$(this).find('series_image').first().text()+'); background-size: cover; background-position: center center; background-repeat: no-repeat; width: 100%; position: relative; padding-top: 5px;">';
-                bookmarkElement +='<span class="mdl-shadow--2dp" style="position: absolute; bottom: 0; display: block; background-color: rgba(255, 255, 255, 0.9); padding-top: 5px; display: inline-flex; align-items: center; justify-content: space-between; left: 0; right: 0; padding-right: 8px; padding-left: 8px; padding-bottom: 8px;">'+$(this).find('series_title').first().text();
-                  bookmarkElement +='<div id="p1" class="mdl-progress" series_episodes="'+$(this).find(series_episodes).first().text()+'" style="position: absolute; top: -4px; left: 0;"><div class="progressbar bar bar1" style="width: '+progressProcent+'%;"></div><div class="bufferbar bar bar2" style="width: 100%;"></div><div class="auxbar bar bar3" style="width: 0%;"></div></div>';
-                  bookmarkElement +='<div class="data progress mdl-chip mdl-chip--contact mdl-color--indigo-100" style="float: right; line-height: 20px; height: 20px; padding-right: 4px; margin-left: 5px;">';
-                    bookmarkElement +='<div class="link mdl-chip__contact mdl-color--primary mdl-color-text--white" style="line-height: 20px; height: 20px; margin-right: 0;">'+$(this).find(my_watched_episodes).first().text()+'</div>';
-                  bookmarkElement +='</div>';
-                bookmarkElement +='</span>';
-                bookmarkElement +='<div class="tags" style="display: none;">'+$(this).find('my_tags').first().text()+'</div>';
-              bookmarkElement +='</div>';
+          var bookmarkElement = '';
+          var malUrl = 'https://myanimelist.net'+el[listType+'_url'];
+          var progressProcent = ( el[my_watched_episodes] / el[series_episodes] ) * 100;
+          bookmarkElement +='<div class="mdl-cell mdl-cell--2-col mdl-cell--4-col-tablet mdl-cell--6-col-phone mdl-shadow--2dp mdl-grid bookEntry" malhref="'+malUrl+'" maltitle="'+el[listType+'_title']+'" malimage="'+el[listType+'_image_path']+'" style="position: relative; cursor: pointer; height: 250px; padding: 0; width: 210px; height: 293px;">';
+            bookmarkElement +='<div class="data title" style="background-image: url('+el[listType+'_image_path']+'); background-size: cover; background-position: center center; background-repeat: no-repeat; width: 100%; position: relative; padding-top: 5px;">';
+              bookmarkElement +='<span class="mdl-shadow--2dp" style="position: absolute; bottom: 0; display: block; background-color: rgba(255, 255, 255, 0.9); padding-top: 5px; display: inline-flex; align-items: center; justify-content: space-between; left: 0; right: 0; padding-right: 8px; padding-left: 8px; padding-bottom: 8px;">'+el[listType+'_title'];
+                bookmarkElement +='<div id="p1" class="mdl-progress" series_episodes="'+el[series_episodes]+'" style="position: absolute; top: -4px; left: 0;"><div class="progressbar bar bar1" style="width: '+progressProcent+'%;"></div><div class="bufferbar bar bar2" style="width: 100%;"></div><div class="auxbar bar bar3" style="width: 0%;"></div></div>';
+                bookmarkElement +='<div class="data progress mdl-chip mdl-chip--contact mdl-color--indigo-100" style="float: right; line-height: 20px; height: 20px; padding-right: 4px; margin-left: 5px;">';
+                  bookmarkElement +='<div class="link mdl-chip__contact mdl-color--primary mdl-color-text--white" style="line-height: 20px; height: 20px; margin-right: 0;">'+el[my_watched_episodes]+'</div>';
+                bookmarkElement +='</div>';
+              bookmarkElement +='</span>';
+              bookmarkElement +='<div class="tags" style="display: none;">'+el['tags']+'</div>';
             bookmarkElement +='</div>';
-            element.find('#malList .listPlaceholder').first().before( bookmarkElement );
-          });
+          bookmarkElement +='</div>';
+          element.find('#malList .listPlaceholder').first().before( bookmarkElement );
 
-
-
+        }
+        ,function(){
           $("#info-iframe").contents().find('.bookEntry').each(function() {
             if($(this).find('.tags').text().indexOf("last::") > -1 ){
               var url = atobURL( $(this).find('.tags').text().split("last::")[1].split("::")[0] );
