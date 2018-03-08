@@ -1316,9 +1316,10 @@
           }
 
           var bookmarkElement = '';
+          var uid = el[listType+'_id']
           var malUrl = 'https://myanimelist.net'+el[listType+'_url'];
           var progressProcent = ( el[my_watched_episodes] / el[series_episodes] ) * 100;
-          bookmarkElement +='<div class="mdl-cell mdl-cell--2-col mdl-cell--4-col-tablet mdl-cell--6-col-phone mdl-shadow--2dp mdl-grid bookEntry" malhref="'+malUrl+'" maltitle="'+el[listType+'_title']+'" malimage="'+el[listType+'_image_path']+'" style="position: relative; cursor: pointer; height: 250px; padding: 0; width: 210px; height: 293px;">';
+          bookmarkElement +='<div class="mdl-cell mdl-cell--2-col mdl-cell--4-col-tablet mdl-cell--6-col-phone mdl-shadow--2dp mdl-grid bookEntry e'+uid+'" malhref="'+malUrl+'" maltitle="'+el[listType+'_title']+'" malimage="'+el[listType+'_image_path']+'" style="position: relative; cursor: pointer; height: 250px; padding: 0; width: 210px; height: 293px;">';
             bookmarkElement +='<div class="data title" style="background-image: url('+el[listType+'_image_path']+'); background-size: cover; background-position: center center; background-repeat: no-repeat; width: 100%; position: relative; padding-top: 5px;">';
               bookmarkElement +='<span class="mdl-shadow--2dp" style="position: absolute; bottom: 0; display: block; background-color: rgba(255, 255, 255, 0.9); padding-top: 5px; display: inline-flex; align-items: center; justify-content: space-between; left: 0; right: 0; padding-right: 8px; padding-left: 8px; padding-bottom: 8px;">'+el[listType+'_title'];
                 bookmarkElement +='<div id="p1" class="mdl-progress" series_episodes="'+el[series_episodes]+'" style="position: absolute; top: -4px; left: 0;"><div class="progressbar bar bar1" style="width: '+progressProcent+'%;"></div><div class="bufferbar bar bar2" style="width: 100%;"></div><div class="auxbar bar bar3" style="width: 0%;"></div></div>';
@@ -1331,28 +1332,27 @@
           bookmarkElement +='</div>';
           element.find('#malList .listPlaceholder').first().before( bookmarkElement );
 
+          var domE = element.find('#malList .e'+uid).first();
+          if(domE.find('.tags').text().indexOf("last::") > -1 ){
+            var url = atobURL( domE.find('.tags').text().split("last::")[1].split("::")[0] );
+            setStreamLinks(url, domE);
+            checkForNewEpisodes(url, domE, domE.attr('maltitle'), domE.attr('malimage'));
+          }
+
+          epPrediction(domE.attr('malhref').split('/')[4], function(timestamp, airing, diffWeeks, diffDays, diffHours, diffMinutes, episode){
+            if(airing){
+                if(episode){
+                    var titleMsg = 'Next episode estimated in '+diffDays+'d '+diffHours+'h '+diffMinutes+'m';
+                    var progressBar = domE.find('.mdl-progress');
+                    var predictionProgress = ( episode / progressBar.attr('series_episodes') ) * 100;
+                    progressBar.prepend('<div class="predictionbar bar" style="width: '+predictionProgress+'%; background-color: red; z-index: 1; left: 0;"></div>');
+                    domE.attr('title', titleMsg);
+                }
+            }
+          });
+
         }
         ,function(){
-          $("#info-iframe").contents().find('.bookEntry').each(function() {
-            if($(this).find('.tags').text().indexOf("last::") > -1 ){
-              var url = atobURL( $(this).find('.tags').text().split("last::")[1].split("::")[0] );
-              setStreamLinks(url, $(this));
-              checkForNewEpisodes(url, $(this), $(this).attr('maltitle'), $(this).attr('malimage'));
-            }
-
-            var el = $(this);
-            epPrediction(el.attr('malhref').split('/')[4], function(timestamp, airing, diffWeeks, diffDays, diffHours, diffMinutes, episode){
-              if(airing){
-                  if(episode){
-                      var titleMsg = 'Next episode estimated in '+diffDays+'d '+diffHours+'h '+diffMinutes+'m';
-                      var progressBar = el.find('.mdl-progress');
-                      var predictionProgress = ( episode / progressBar.attr('series_episodes') ) * 100;
-                      progressBar.prepend('<div class="predictionbar bar" style="width: '+predictionProgress+'%; background-color: red; z-index: 1; left: 0;"></div>');
-                      el.attr('title', titleMsg);
-                  }
-              }
-            });
-          });
           startCheckForNewEpisodes();
 
           $("#info-iframe").contents().find("#malSearchPop .bookEntry").unbind('click').click(function(event) {
