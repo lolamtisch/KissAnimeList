@@ -1333,6 +1333,18 @@
           element.find('#malList .listPlaceholder').first().before( bookmarkElement );
 
           var domE = element.find('#malList .e'+uid).first();
+
+          domE.click(function(event) {
+            $("#info-iframe").contents().find('#book').click();
+            $("#info-iframe").contents().find('.malClear').hide();
+            $("#info-iframe").contents().find('.mdl-progress__indeterminate').show();
+            $("#info-iframe").contents().find("#backbutton").show();
+            $("#info-iframe").contents().find('#SearchButton').css('margin-left', '-17px');
+            $("#info-iframe").contents().find('#book').css('left', '40px');
+            $("#info-iframe").contents().find('.mdl-layout__tab:eq(0) span').trigger( "click" );
+            fillIframe($(this).attr('malhref'));
+          });
+
           if(domE.find('.tags').text().indexOf("last::") > -1 ){
             var url = atobURL( domE.find('.tags').text().split("last::")[1].split("::")[0] );
             setStreamLinks(url, domE);
@@ -1354,18 +1366,6 @@
         }
         ,function(){
           startCheckForNewEpisodes();
-
-          $("#info-iframe").contents().find("#malSearchPop .bookEntry").unbind('click').click(function(event) {
-            $("#info-iframe").contents().find('#book').click();
-            $("#info-iframe").contents().find('.malClear').hide();
-            $("#info-iframe").contents().find('.mdl-progress__indeterminate').show();
-            $("#info-iframe").contents().find("#backbutton").show();
-            $("#info-iframe").contents().find('#SearchButton').css('margin-left', '-17px');
-            $("#info-iframe").contents().find('#book').css('left', '40px');
-            $("#info-iframe").contents().find('.mdl-layout__tab:eq(0) span').trigger( "click" );
-            fillIframe($(this).attr('malhref'));
-          });
-
         },
         null,
         function(continueCall){
