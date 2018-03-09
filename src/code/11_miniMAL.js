@@ -1404,7 +1404,7 @@
 
         }
         ,function(){
-          startCheckForNewEpisodes();
+          startCheckForNewEpisodes(localListType);
         },
         null,
         function(continueCall){
