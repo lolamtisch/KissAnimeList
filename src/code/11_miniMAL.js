@@ -1267,7 +1267,16 @@
             },
             onload: function(response) {
                 var searchResults = $.parseJSON(response.response);
-                $("#info-iframe").contents().find(selector).append('<div class="mdl-grid"></div>');
+                $("#info-iframe").contents().find(selector).append('<div class="mdl-grid">\
+                        <select name="myinfo_score" id="searchListType" class="inputtext mdl-textfield__input" style="outline: none;margin-bottom: 10px;">\
+                            <option value="anime">Anime</option>\
+                            <option value="manga">Manga</option>\
+                        </select>\
+                    </div>');
+                $("#info-iframe").contents().find('#searchListType').val(type);
+                $("#info-iframe").contents().find('#searchListType').change(function(event) {
+                  searchMal(keyword, $("#info-iframe").contents().find('#searchListType').val(), selector, callback)
+                });
                 $.each(searchResults, function() {
                     $.each(this, function() {
                         $.each(this, function() {
