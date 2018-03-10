@@ -6,7 +6,7 @@
               position = 'width: 100vw; height: 100%; position: absolute; top: 0%; '+ posLeft +': 0%';
             }
             var material = '<dialog class="modal-kal" id="info-popup" style="pointer-events: none;display: none; position: fixed;z-index: 9999;left: 0;top: 0;bottom: 0;width: 100%; height: 100%; background-color: transparent; padding: 0; margin: 0; border: 0;">';
-            material += '<div id="modal-content" class="modal-content-kal" Style="pointer-events: all;background-color: #fefefe; margin: 0; '+position+'">';
+            material += '<div id="modal-content" class="modal-content-kal" Style="pointer-events: all; background-color: #f9f9f9; margin: 0; '+position+'">';
             //material += '<iframe id="info-iframe" style="height:100%;width:100%;border:0;"></iframe>';
             material += '<div class="kal-tempHeader" style="position:  absolute; width: 100%; height:  103px; background-color: rgb(63,81,181); "></div>';
             material += '</div>';
@@ -99,6 +99,9 @@
                               }\
                               .mdl-layout__tab-panel a:hover{\
                                 text-decoration: underline;\
+                              }\
+                              .mdl-cell{\
+                                background-color: #fefefe;\
                               }\
                               \
                               #material.simple-header .mdl-layout__header .mdl-layout__tab-bar-container{\
@@ -232,7 +235,7 @@
             </section>';
           material +='</main>\
         </div>\
-        <div data-simplebar id="malSearchPop" style="height: calc(100% - 60px); width: 100%; position: fixed; top: 60px; z-index: 10; background-color: white; display: none;">\
+        <div data-simplebar id="malSearchPop" style="height: calc(100% - 60px); width: 100%; position: fixed; top: 60px; z-index: 10; background-color: #f9f9f9; display: none;">\
           <div id="malSearchPopInner"></div>\
         </div>';
         //material += '</div>';
