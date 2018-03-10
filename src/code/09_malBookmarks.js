@@ -170,7 +170,7 @@
                 diffWeeks = diffWeeks - (new Date().getFullYear() - new Date(timestamp).getFullYear()); //Remove 1 week between years
                 if(diffWeeks < 50){
                     var titleMsg = 'Next episode estimated in '+diffDays+'d '+diffHours+'h '+diffMinutes+'m';
-                    return '<a title="'+titleMsg+'">['+(diffWeeks+1)+']</a> ';
+                    return '<a class="kal-ep-pre" ep="'+(diffWeeks+1)+'" title="'+titleMsg+'">['+(diffWeeks+1)+']</a> ';
                 }
             }
         }

@@ -1409,7 +1409,7 @@
                     var titleMsg = 'Next episode estimated in '+diffDays+'d '+diffHours+'h '+diffMinutes+'m';
                     var progressBar = domE.find('.mdl-progress');
                     var predictionProgress = ( episode / progressBar.attr('series_episodes') ) * 100;
-                    progressBar.prepend('<div class="predictionbar bar" style="width: '+predictionProgress+'%; background-color: red; z-index: 1; left: 0;"></div>');
+                    progressBar.prepend('<div class="predictionbar bar kal-ep-pre" ep="'+(diffWeeks+1)+'" style="width: '+predictionProgress+'%; background-color: red; z-index: 1; left: 0;"></div>');
                     domE.attr('title', titleMsg);
                 }
             }

@@ -203,7 +203,8 @@
 				return;
 			}
 			con.log('[EpCheck]', GM_getValue('newEp_'+url+'_number',null), EpNumber);
-			if( GM_getValue('newEp_'+url+'_number', EpNumber) < EpNumber){
+			if( GM_getValue('newEp_'+url+'_number', EpNumber) < EpNumber
+				&& $(entrySelector).find('.data.progress .link').text() != $(entrySelector).find('.kal-ep-pre').attr('ep')){
 				con.log('[NewEP]', url);
 
 				if(GM_getValue('newEp_'+url+'_cache', null) != EpNumber){
