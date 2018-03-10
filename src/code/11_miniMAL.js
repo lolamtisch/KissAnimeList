@@ -6,7 +6,7 @@
               position = 'width: 100vw; height: 100%; position: absolute; top: 0%; '+ posLeft +': 0%';
             }
             var material = '<dialog class="modal-kal" id="info-popup" style="pointer-events: none;display: none; position: fixed;z-index: 9999;left: 0;top: 0;bottom: 0;width: 100%; height: 100%; background-color: transparent; padding: 0; margin: 0; border: 0;">';
-            material += '<div id="modal-content" class="modal-content-kal" Style="pointer-events: all;background-color: #fefefe; margin: 0; '+position+'">';
+            material += '<div id="modal-content" class="modal-content-kal" Style="pointer-events: all; background-color: #f9f9f9; margin: 0; '+position+'">';
             //material += '<iframe id="info-iframe" style="height:100%;width:100%;border:0;"></iframe>';
             material += '<div class="kal-tempHeader" style="position:  absolute; width: 100%; height:  103px; background-color: rgb(63,81,181); "></div>';
             material += '</div>';
@@ -99,6 +99,9 @@
                               }\
                               .mdl-layout__tab-panel a:hover{\
                                 text-decoration: underline;\
+                              }\
+                              .mdl-cell{\
+                                background-color: #fefefe;\
                               }\
                               \
                               #material.simple-header .mdl-layout__header .mdl-layout__tab-bar-container{\
@@ -232,7 +235,7 @@
             </section>';
           material +='</main>\
         </div>\
-        <div data-simplebar id="malSearchPop" style="height: calc(100% - 60px); width: 100%; position: fixed; top: 60px; z-index: 10; background-color: white; display: none;">\
+        <div data-simplebar id="malSearchPop" style="height: calc(100% - 60px); width: 100%; position: fixed; top: 60px; z-index: 10; background-color: #f9f9f9; display: none;">\
           <div id="malSearchPopInner"></div>\
         </div>';
         //material += '</div>';
@@ -1267,18 +1270,28 @@
             },
             onload: function(response) {
                 var searchResults = $.parseJSON(response.response);
-                $("#info-iframe").contents().find(selector).append('<div class="mdl-grid"></div>');
+                $("#info-iframe").contents().find(selector).append('<div class="mdl-grid">\
+                        <select name="myinfo_score" id="searchListType" class="inputtext mdl-textfield__input mdl-cell mdl-cell--12-col" style="outline: none; background-color: white; border: none;">\
+                            <option value="anime">Anime</option>\
+                            <option value="manga">Manga</option>\
+                        </select>\
+                    </div>');
+                $("#info-iframe").contents().find('#searchListType').val(type);
+                $("#info-iframe").contents().find('#searchListType').change(function(event) {
+                  searchMal(keyword, $("#info-iframe").contents().find('#searchListType').val(), selector, callback)
+                });
                 $.each(searchResults, function() {
                     $.each(this, function() {
                         $.each(this, function() {
                             $.each(this, function() {
                                 if(typeof this['name'] != 'undefined'){
                                     $("#info-iframe").contents().find(selector+' > div').append('<div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-shadow--2dp mdl-grid searchItem" malhref="'+this['url']+'" style="cursor: pointer;">\
-                                        <img src="'+this['thumbnail_url']+'" style=""></img>\
+                                        <img src="'+this['image_url']+'" style="margin: -8px 0px -8px -8px; height: 100px; width: 64px; background-color: grey;"></img>\
                                         <div style="flex-grow: 100; cursor: pointer; margin-top: 0; margin-bottom: 0;" class="mdl-cell">\
                                           <span style="font-size: 20px; font-weight: 400; line-height: 1;">'+this['name']+'</span>\
-                                          <p style="margin-bottom: 0;">'+this['payload']['score']+'</p>\
-                                          <p style="margin-bottom: 0;">'+this['payload']['start_year']+'</p>\
+                                          <p style="margin-bottom: 0; line-height: 20px; padding-top: 3px;">Type: '+this['payload']['media_type']+'</p>\
+                                          <p style="margin-bottom: 0; line-height: 20px;">Score: '+this['payload']['score']+'</p>\
+                                          <p style="margin-bottom: 0; line-height: 20px;">Year: '+this['payload']['start_year']+'</p>\
                                         </div>\
                                       </div>');
                                 }
@@ -1291,66 +1304,87 @@
         });
     }
 
-    function iframeBookmarks(element){
+    function iframeBookmarks(element, state = 1, localListType = listType){
         element.html('<div id="loadRecommendations" class="mdl-progress mdl-js-progress mdl-progress__indeterminate" style="width: 100%; position: absolute;"></div>');
         executejs('componentHandler.upgradeDom();');
 
-        var my_watched_episodes = 'my_watched_episodes';
-        var series_episodes = 'series_episodes';
-        if(listType != 'anime'){
-            my_watched_episodes = 'my_read_chapters';
-            series_episodes = 'series_chapters';
+        var my_watched_episodes = 'num_watched_episodes';
+        var series_episodes = 'anime_num_episodes';
+        var localPlanTo = 'Plan to Watch';
+        var localWatching = 'Watching'
+        if(localListType != 'anime'){
+            my_watched_episodes = 'num_read_chapters';
+            series_episodes = 'manga_num_chapters';
+            localPlanTo = 'Plan to Read';
+            localWatching = 'Reading'
         }
+        var firstEl = 1;
 
-        getMalXml("", function(bookXML){
-          var bookmarkHtml = '<div class="mdl-grid" style="justify-content: center;">';
-          bookXML.find('my_status:contains(1)').parent().each(function(){
-            var malUrl = 'https://myanimelist.net/'+listType+'/'+$(this).find('series_'+listType+'db_id').first().text()+'/'+$(this).find('series_title').first().text();
-            var progressProcent = ( $(this).find(my_watched_episodes).first().text() / $(this).find(series_episodes).first().text() ) * 100;
-            bookmarkHtml +='<div class="mdl-cell mdl-cell--2-col mdl-cell--4-col-tablet mdl-cell--6-col-phone mdl-shadow--2dp mdl-grid bookEntry" malhref="'+malUrl+'" maltitle="'+$(this).find('series_title').first().text()+'" malimage="'+$(this).find('series_image').first().text()+'" style="position: relative; cursor: pointer; height: 250px; padding: 0; width: 210px; height: 293px;">';
-              bookmarkHtml +='<div class="data title" style="background-image: url('+$(this).find('series_image').first().text()+'); background-size: cover; background-position: center center; background-repeat: no-repeat; width: 100%; position: relative; padding-top: 5px;">';
-                bookmarkHtml +='<span class="mdl-shadow--2dp" style="position: absolute; bottom: 0; display: block; background-color: rgba(255, 255, 255, 0.9); padding-top: 5px; display: inline-flex; align-items: center; justify-content: space-between; left: 0; right: 0; padding-right: 8px; padding-left: 8px; padding-bottom: 8px;">'+$(this).find('series_title').first().text();
-                  bookmarkHtml +='<div id="p1" class="mdl-progress" series_episodes="'+$(this).find(series_episodes).first().text()+'" style="position: absolute; top: -4px; left: 0;"><div class="progressbar bar bar1" style="width: '+progressProcent+'%;"></div><div class="bufferbar bar bar2" style="width: 100%;"></div><div class="auxbar bar bar3" style="width: 0%;"></div></div>';
-                  bookmarkHtml +='<div class="data progress mdl-chip mdl-chip--contact mdl-color--indigo-100" style="float: right; line-height: 20px; height: 20px; padding-right: 4px; margin-left: 5px;">';
-                    bookmarkHtml +='<div class="link mdl-chip__contact mdl-color--primary mdl-color-text--white" style="line-height: 20px; height: 20px; margin-right: 0;">'+$(this).find(my_watched_episodes).first().text()+'</div>';
-                  bookmarkHtml +='</div>';
-                bookmarkHtml +='</span>';
-                bookmarkHtml +='<div class="tags" style="display: none;">'+$(this).find('my_tags').first().text()+'</div>';
-              bookmarkHtml +='</div>';
-            bookmarkHtml +='</div>';
-          });
+        getUserList(state, localListType, function(el, index, total){
+          if(firstEl){
+            firstEl = 0;
+            var bookmarkHtml = '<div class="mdl-grid" id="malList" style="justify-content: space-around;">';
+            bookmarkHtml +='<select name="myinfo_score" id="userListType" class="inputtext mdl-textfield__input mdl-cell mdl-cell--12-col" style="outline: none; background-color: white; border: none;">\
+                              <option value="anime">Anime</option>\
+                              <option value="manga">Manga</option>\
+                            </select>';
+            bookmarkHtml +='<select name="myinfo_score" id="userListState" class="inputtext mdl-textfield__input mdl-cell mdl-cell--12-col" style="outline: none; background-color: white; border: none;">\
+                              <option value="7">All</option>\
+                              <option value="1" selected>'+localWatching+'</option>\
+                              <option value="2">Completed</option>\
+                              <option value="3">On-Hold</option>\
+                              <option value="4">Dropped</option>\
+                              <option value="6">'+localPlanTo+'</option>\
+                            </select>';
+            //flexbox placeholder
+            for(var i=0; i < 10; i++){
+                bookmarkHtml +='<div class="listPlaceholder mdl-cell mdl-cell--2-col mdl-cell--4-col-tablet mdl-cell--6-col-phone mdl-shadow--2dp mdl-grid "  style="cursor: pointer; height: 250px; padding: 0; width: 210px; height: 0px; margin-top:0; margin-bottom:0; visibility: hidden;"></div>';
+            }
+            bookmarkHtml += '</div>'
+            element.html( bookmarkHtml );
 
-          //flexbox placeholder
-          for(var i=0; i < 10; i++){
-              bookmarkHtml +='<div class="mdl-cell mdl-cell--2-col mdl-cell--4-col-tablet mdl-cell--6-col-phone mdl-shadow--2dp mdl-grid "  style="cursor: pointer; height: 250px; padding: 0; width: 210px; height: 0px; margin-top:0; margin-bottom:0; visibility: hidden;"></div>';
+            $("#info-iframe").contents().find('#malSearchPop #userListType').val(localListType);
+            $("#info-iframe").contents().find('#malSearchPop #userListType').change(function(event) {
+              iframeBookmarks(element, state, $("#info-iframe").contents().find('#malSearchPop #userListType').val() );
+            });
+
+            $("#info-iframe").contents().find('#malSearchPop #userListState').val(state);
+            $("#info-iframe").contents().find('#malSearchPop #userListState').change(function(event) {
+              iframeBookmarks(element, $("#info-iframe").contents().find('#malSearchPop #userListState').val(), localListType);
+            });
           }
 
-          bookmarkHtml += '</div>'
-          element.html( bookmarkHtml );
+          if(!el){
+            element.find('#malList .listPlaceholder').first().before( '<span class="mdl-chip" style="margin: auto; margin-top: 16px; display: table;"><span class="mdl-chip__text">No Entries</span></span>');
+            element.find('#malList .listPlaceholder').remove();
+            return;
+          }
 
-          $("#info-iframe").contents().find('.bookEntry').each(function() {
-            if($(this).find('.tags').text().indexOf("last::") > -1 ){
-              var url = atobURL( $(this).find('.tags').text().split("last::")[1].split("::")[0] );
-              setStreamLinks(url, $(this));
-              checkForNewEpisodes(url, $(this), $(this).attr('maltitle'), $(this).attr('malimage'));
-            }
+          var bookmarkElement = '';
+          var uid = el[localListType+'_id']
+          var malUrl = 'https://myanimelist.net'+el[localListType+'_url'];
+          var imageHi = el[localListType+'_image_path'];
+          var regexDimensions = /\/r\/\d*x\d*/g;
+          if ( regexDimensions.test(imageHi) ) {
+            imageHi = imageHi.replace(/v.jpg$/g, '.jpg').replace(regexDimensions, '');
+          }
+          var progressProcent = ( el[my_watched_episodes] / el[series_episodes] ) * 100;
+          bookmarkElement +='<div class="mdl-cell mdl-cell--2-col mdl-cell--4-col-tablet mdl-cell--6-col-phone mdl-shadow--2dp mdl-grid bookEntry e'+uid+'" malhref="'+malUrl+'" maltitle="'+el[localListType+'_title']+'" malimage="'+el[localListType+'_image_path']+'" style="position: relative; cursor: pointer; height: 250px; padding: 0; width: 210px; height: 293px;">';
+            bookmarkElement +='<div class="data title" style="background-image: url('+imageHi+'); background-size: cover; background-position: center center; background-repeat: no-repeat; width: 100%; position: relative; padding-top: 5px;">';
+              bookmarkElement +='<span class="mdl-shadow--2dp" style="position: absolute; bottom: 0; display: block; background-color: rgba(255, 255, 255, 0.9); padding-top: 5px; display: inline-flex; align-items: center; justify-content: space-between; left: 0; right: 0; padding-right: 8px; padding-left: 8px; padding-bottom: 8px;">'+el[localListType+'_title'];
+                bookmarkElement +='<div id="p1" class="mdl-progress" series_episodes="'+el[series_episodes]+'" style="position: absolute; top: -4px; left: 0;"><div class="progressbar bar bar1" style="width: '+progressProcent+'%;"></div><div class="bufferbar bar bar2" style="width: 100%;"></div><div class="auxbar bar bar3" style="width: 0%;"></div></div>';
+                bookmarkElement +='<div class="data progress mdl-chip mdl-chip--contact mdl-color--indigo-100" style="float: right; line-height: 20px; height: 20px; padding-right: 4px; margin-left: 5px;">';
+                  bookmarkElement +='<div class="link mdl-chip__contact mdl-color--primary mdl-color-text--white" style="line-height: 20px; height: 20px; margin-right: 0;">'+el[my_watched_episodes]+'</div>';
+                bookmarkElement +='</div>';
+              bookmarkElement +='</span>';
+              bookmarkElement +='<div class="tags" style="display: none;">'+el['tags']+'</div>';
+            bookmarkElement +='</div>';
+          bookmarkElement +='</div>';
+          element.find('#malList .listPlaceholder').first().before( bookmarkElement );
 
-            var el = $(this);
-            epPrediction(el.attr('malhref').split('/')[4], function(timestamp, airing, diffWeeks, diffDays, diffHours, diffMinutes, episode){
-              if(airing){
-                  if(episode){
-                      var titleMsg = 'Next episode estimated in '+diffDays+'d '+diffHours+'h '+diffMinutes+'m';
-                      var progressBar = el.find('.mdl-progress');
-                      var predictionProgress = ( episode / progressBar.attr('series_episodes') ) * 100;
-                      progressBar.prepend('<div class="predictionbar bar" style="width: '+predictionProgress+'%; background-color: red; z-index: 1; left: 0;"></div>');
-                      el.attr('title', titleMsg);
-                  }
-              }
-            });
-          });
-          startCheckForNewEpisodes();
+          var domE = element.find('#malList .e'+uid).first();
 
-          $("#info-iframe").contents().find("#malSearchPop .bookEntry").unbind('click').click(function(event) {
+          domE.click(function(event) {
             $("#info-iframe").contents().find('#book').click();
             $("#info-iframe").contents().find('.malClear').hide();
             $("#info-iframe").contents().find('.mdl-progress__indeterminate').show();
@@ -1361,6 +1395,46 @@
             fillIframe($(this).attr('malhref'));
           });
 
+          if(domE.find('.tags').text().indexOf("last::") > -1 ){
+            var url = atobURL( domE.find('.tags').text().split("last::")[1].split("::")[0] );
+            setStreamLinks(url, domE);
+            if( parseInt(el['status']) === 1 ){
+              checkForNewEpisodes(url, domE, domE.attr('maltitle'), domE.attr('malimage'));
+            }
+          }
+
+          epPrediction(domE.attr('malhref').split('/')[4], function(timestamp, airing, diffWeeks, diffDays, diffHours, diffMinutes, episode){
+            if(airing){
+                if(episode){
+                    var titleMsg = 'Next episode estimated in '+diffDays+'d '+diffHours+'h '+diffMinutes+'m';
+                    var progressBar = domE.find('.mdl-progress');
+                    var predictionProgress = ( episode / progressBar.attr('series_episodes') ) * 100;
+                    progressBar.prepend('<div class="predictionbar bar" style="width: '+predictionProgress+'%; background-color: red; z-index: 1; left: 0;"></div>');
+                    domE.attr('title', titleMsg);
+                }
+            }
+          });
+
+        }
+        ,function(){
+          startCheckForNewEpisodes(localListType);
+        },
+        null,
+        function(continueCall){
+          if(state == 1){
+            continueCall();
+            return;
+          }
+          var scrollable = $("#info-iframe").contents().find('#malSearchPop .simplebar-scroll-content');
+          var scrollDone = 0;
+          scrollable.scroll(function() {
+            if(scrollDone) return;
+            if(scrollable.scrollTop() + scrollable.height() > scrollable.find('.simplebar-content').height() - 100) {
+              scrollDone = 1;
+              con.log('[Bookmarks]','Loading next part');
+              continueCall();
+            }
+          });
         });
     }
 

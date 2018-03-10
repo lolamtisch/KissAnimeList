@@ -420,6 +420,34 @@
                 clearCache();
             });
         };
+
+        $.docReady(function(){
+            if(!$.isOverviewPage()){
+                $('#divImage > p').each(function(index, el) {
+                    $(this).attr('id', index+1).addClass('kal-image');
+                });
+                setTimeout(function(){
+                    var hash = window.location.hash;
+                    window.location.hash = '';
+                    window.location.hash = hash;
+                }, 2000);
+                var delayeUpate = 1;
+                $(document).scroll(function() {
+                    if(delayeUpate){
+                        delayeUpate = 0;
+                        setTimeout(function(){ delayeUpate = 1; }, 10000);
+                        $('.kal-image').each(function(index, el) {
+                            if($(this).isInViewport()){
+                                history.pushState({}, null, '#'+$(this).attr('id'));
+                                checkdata();
+                                return false;
+                            }
+                        });
+                    }
+                });
+            }
+        });
+
         //###########################
     }else if( window.location.href.indexOf("masterani.me") > -1 ){
         //#########Masterani.me#########
