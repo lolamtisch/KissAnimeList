@@ -1271,7 +1271,7 @@
             onload: function(response) {
                 var searchResults = $.parseJSON(response.response);
                 $("#info-iframe").contents().find(selector).append('<div class="mdl-grid">\
-                        <select name="myinfo_score" id="searchListType" class="inputtext mdl-textfield__input" style="outline: none;margin-bottom: 10px;">\
+                        <select name="myinfo_score" id="searchListType" class="inputtext mdl-textfield__input mdl-cell mdl-cell--12-col" style="outline: none; background-color: white; border: none;">\
                             <option value="anime">Anime</option>\
                             <option value="manga">Manga</option>\
                         </select>\
@@ -1324,11 +1324,11 @@
           if(firstEl){
             firstEl = 0;
             var bookmarkHtml = '<div class="mdl-grid" id="malList" style="justify-content: space-around;">';
-            bookmarkHtml +='<select name="myinfo_score" id="userListType" class="inputtext mdl-textfield__input" style="outline: none;margin-bottom: 10px;">\
+            bookmarkHtml +='<select name="myinfo_score" id="userListType" class="inputtext mdl-textfield__input mdl-cell mdl-cell--12-col" style="outline: none; background-color: white; border: none;">\
                               <option value="anime">Anime</option>\
                               <option value="manga">Manga</option>\
                             </select>';
-            bookmarkHtml +='<select name="myinfo_score" id="userListState" class="inputtext mdl-textfield__input" style="outline: none;margin-bottom: 20px;">\
+            bookmarkHtml +='<select name="myinfo_score" id="userListState" class="inputtext mdl-textfield__input mdl-cell mdl-cell--12-col" style="outline: none; background-color: white; border: none;">\
                               <option value="7">All</option>\
                               <option value="1" selected>'+localWatching+'</option>\
                               <option value="2">Completed</option>\
