@@ -216,7 +216,7 @@
 						try{
 							GM_notification({text: newMessage, title: title, image: img, timeout: 0, onclick: function(){
 								try{
-									GM_setValue('newEp_'+url+'_number', EpNumber);
+									//GM_setValue('newEp_'+url+'_number', EpNumber);
 								}catch(e){}
 								location.href = url;
 							} });
@@ -229,12 +229,15 @@
 
 				GM_setValue('newEp_'+url+'_cache', EpNumber);
 				if(!hasStyle) $(entrySelector).attr('style', 'border: 3px solid #'+newEpBorder+' !important');
-				$(entrySelector).one('click', function(){
+				if(GM_getValue('newEp_'+url+'_last', null) != $(entrySelector).find('.data.progress .link').text()
+					&& GM_getValue('newEp_'+url+'_last', null) != null){
 					GM_setValue('newEp_'+url+'_number', EpNumber);
 					if(!hasStyle) $(entrySelector).attr('style', '');
 					$(entrySelector).find('.newEp').remove();
+					GM_setValue('newEp_'+url+'_last', $(entrySelector).find('.data.progress .link').text());
 					return true;
-				});
+				};
+				GM_setValue('newEp_'+url+'_last', $(entrySelector).find('.data.progress .link').text());
 				if(!$(entrySelector).find('.newEp').length) $(entrySelector).append('<div class="newEp"></div>');
 			}else{
 				if(GM_getValue('newEp_'+url+'_number', null) == null){
