@@ -1310,12 +1310,12 @@
         getUserList(state, localListType, function(el, index, total){
           if(firstEl){
             firstEl = 0;
-            var bookmarkHtml = '<div class="mdl-grid" id="malList" style="justify-content: center;">';
-            bookmarkHtml +='<select name="myinfo_score" id="userListType" class="inputtext mdl-textfield__input" style="outline: none;">\
+            var bookmarkHtml = '<div class="mdl-grid" id="malList" style="justify-content: space-around;">';
+            bookmarkHtml +='<select name="myinfo_score" id="userListType" class="inputtext mdl-textfield__input" style="outline: none;margin-bottom: 10px;">\
                               <option value="anime">Anime</option>\
                               <option value="manga">Manga</option>\
                             </select>';
-            bookmarkHtml +='<select name="myinfo_score" id="userListState" class="inputtext mdl-textfield__input" style="outline: none;">\
+            bookmarkHtml +='<select name="myinfo_score" id="userListState" class="inputtext mdl-textfield__input" style="outline: none;margin-bottom: 20px;">\
                               <option value="7">All</option>\
                               <option value="1" selected>'+localWatching+'</option>\
                               <option value="2">Completed</option>\
