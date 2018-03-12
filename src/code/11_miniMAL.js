@@ -211,6 +211,7 @@
                     \
                     </ul>\
                 </div>\
+                <div class="mdl-grid mdl-grid--no-spacing mdl-cell mdl-cell--12-col mdl-shadow--4dp characters-block mdl-grid malClear" style="display: none;"></div>\
                 <div class="mdl-grid mdl-grid--no-spacing mdl-cell mdl-cell--12-col mdl-shadow--4dp info-block mdl-grid malClear">\
                     \
                 </div>\
@@ -1033,6 +1034,50 @@
                     }
                 }
               });
+        }catch(e) {console.log('[iframeOverview] Error:',e);}
+
+        try{
+            var characterBlock = data.split('detail-characters-list')[1].split('</h2>')[0];
+            var html = $.parseHTML( '<div class="detail-characters-list '+characterBlock );
+            var temphtml = '';
+            var charFound = 0;
+            var tempWrapHtml = '<div class="mdl-card__actions clicker">\
+                <h1 class="mdl-card__title-text" style="float: left;">Characters</h1>\
+                <i class="material-icons mdl-accordion__icon mdl-animation--default remove" style="float: right; margin-top: 3px;">expand_more</i>\
+            </div>\
+            <div class="mdl-grid mdl-card__actions mdl-card--border" id="characterList" style="justify-content: space-between; display: none;"></div>';
+            tempWrapHtml += '</div>';
+            $.each($(html).find(':not(td) > table'), function( index, value ) {
+                if(!index) charFound = 1;
+                var regexDimensions = /\/r\/\d*x\d*/g;
+                var charImg = $(this).find('img').first().attr("data-src");
+                if ( regexDimensions.test(charImg)){
+                    charImg = charImg.replace(regexDimensions, '');
+                }else{
+                    charImg = 'https://myanimelist.cdn-dena.com/images/questionmark_23.gif';
+                }
+
+                temphtml += '<div>';
+                    temphtml += '<div class="mdl-grid" style="width: 126px;">';
+                        temphtml += '<div style="width: 100%; height: auto;">';
+                            temphtml += '<img style="height: auto; width: 100%;"src="'+charImg+'">';
+                        temphtml += '</div>';
+                        temphtml += '<div class="">';
+                            temphtml += $(this).find('.borderClass .spaceit_pad').first().parent().html();
+                        temphtml += '</div>';
+                    temphtml += '</div>';
+                temphtml += '</div>';
+
+            });
+            for(var i=0; i < 10; i++){
+                temphtml +='<div class="listPlaceholder" style="height: 0;"><div class="mdl-grid" style="width: 126px;"></div></div>';
+            }
+            if(charFound) $("#info-iframe").contents().find('.characters-block').html(tempWrapHtml).show();
+            $("#info-iframe").contents().find('.characters-block .clicker').one('click', function(){
+                $("#info-iframe").contents().find('#characterList').html(temphtml).show();
+                $("#info-iframe").contents().find('.characters-block .remove').remove();
+                fixIframeLink();
+            });
         }catch(e) {console.log('[iframeOverview] Error:',e);}
 
         try{
