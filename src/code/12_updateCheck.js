@@ -202,9 +202,10 @@
 			if(EpNumber === null){
 				return;
 			}
+			var currentEpisode = $(entrySelector).find('.data.progress .link').text().trim().replace(/\/.*/,'');
 			con.log('[EpCheck]', GM_getValue('newEp_'+url+'_number',null), EpNumber);
 			if( GM_getValue('newEp_'+url+'_number', EpNumber) < EpNumber
-				&& $(entrySelector).find('.data.progress .link').text() != $(entrySelector).find('.kal-ep-pre').attr('ep')){
+				&& currentEpisode != $(entrySelector).find('.kal-ep-pre').attr('ep')){
 				con.log('[NewEP]', url);
 
 				if(GM_getValue('newEp_'+url+'_cache', null) != EpNumber){
@@ -229,15 +230,15 @@
 
 				GM_setValue('newEp_'+url+'_cache', EpNumber);
 				if(!hasStyle) $(entrySelector).attr('style', 'border: 3px solid #'+newEpBorder+' !important');
-				if(GM_getValue('newEp_'+url+'_last', null) != $(entrySelector).find('.data.progress .link').text()
+				if(GM_getValue('newEp_'+url+'_last', null) != currentEpisode
 					&& GM_getValue('newEp_'+url+'_last', null) != null){
 					GM_setValue('newEp_'+url+'_number', EpNumber);
 					if(!hasStyle) $(entrySelector).attr('style', '');
 					$(entrySelector).find('.newEp').remove();
-					GM_setValue('newEp_'+url+'_last', $(entrySelector).find('.data.progress .link').text());
+					GM_setValue('newEp_'+url+'_last', currentEpisode);
 					return true;
 				};
-				GM_setValue('newEp_'+url+'_last', $(entrySelector).find('.data.progress .link').text());
+				GM_setValue('newEp_'+url+'_last', currentEpisode);
 				if(!$(entrySelector).find('.newEp').length) $(entrySelector).append('<div class="newEp"></div>');
 			}else{
 				if(GM_getValue('newEp_'+url+'_number', null) == null){
