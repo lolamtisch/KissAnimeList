@@ -229,18 +229,29 @@
             });
         });
         function getLists(callback){
+            if(( (stateAnimeList = GM_getValue( 'stateAnimeList', null)) != null
+                && (stateMangaList = GM_getValue( 'stateMangaList', null)) != null )
+                && ($.now() - GM_getValue('timestampUpdate/stateTag', 0) < (1000 * 60 * 60 * 24)) ){
+                con.log('[stateTags]', 'Cache');
+                callback();
+                return;
+            }
+            con.log('[stateTags]', 'Update');
             getUserList(7, 'anime', null, null, function(list){
                 var reList = [];
                 for (var i = 0; i < list.length; i++) {
                     reList[list[i]['anime_id']] = list[i]['status'];
                 }
                 stateAnimeList = reList;
+                GM_setValue('stateAnimeList', stateAnimeList);
                 getUserList(7, 'manga', null, null, function(list){
                     var reList = [];
                     for (var i = 0; i < list.length; i++) {
                         reList[list[i]['manga_id']] = list[i]['status'];
                     }
                     stateMangaList = reList;
+                    GM_setValue('stateMangaList', stateMangaList);
+                    GM_setValue('timestampUpdate/stateTag', $.now());
                     callback();
                 });
             });
