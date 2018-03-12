@@ -173,3 +173,76 @@
             }
         }
     }
+
+    var stateAnimeList = '';
+    var stateMangaList = '';
+    function stateTags(selector){
+        getLists(function(){
+            selector.each(function() {
+                if(/\d+/g.test($(this).attr('href'))){
+                    var localListType = 'manga';
+                    if( $(this).attr('href').indexOf("anime") > -1 ){
+                        localListType = 'anime';
+                    }
+                    var animeid = $(this).attr('href').match(/\d+/g)[0];
+                    if(localListType == 'anime'){
+                        var state = stateAnimeList[animeid];
+                    }else{
+                        var state = stateMangaList[animeid];
+                    }
+                    var tagClass = '';
+                    var tagText = '';
+                    switch(state) {
+                        case 1:
+                            tagClass = 'watching';
+                            tagText = 'CW';
+                            if(localListType == 'manga'){
+                                tagClass = 'reading';
+                                tagText = 'CR';
+                            }
+                            break;
+                        case 2:
+                            tagClass = 'completed';
+                            tagText = 'CMPL';
+                            break;
+                        case 3:
+                            tagClass = 'on-hold';
+                            tagText = 'HOLD';
+                            break;
+                        case 4:
+                            tagClass = 'dropped';
+                            tagText = 'DROP';
+                            break;
+                        case 6:
+                            tagClass = 'plantowatch';
+                            tagText = 'PTW';
+                            if(localListType == 'manga'){
+                                tagClass = 'plantoread';
+                                tagText = 'PTR';
+                            }
+                            break;
+                    }
+                    if(tagClass != ''){
+                        $(this).after(' <a href="https://myanimelist.net/ownlist/'+localListType+'/'+animeid+'/edit?hideLayout=1" title="" class="Lightbox_AddEdit button_edit '+tagClass+'">'+tagText+'</a>');
+                    }
+                }
+            });
+        });
+        function getLists(callback){
+            getUserList(7, 'anime', null, null, function(list){
+                var reList = [];
+                for (var i = 0; i < list.length; i++) {
+                    reList[list[i]['anime_id']] = list[i]['status'];
+                }
+                stateAnimeList = reList;
+                getUserList(7, 'manga', null, null, function(list){
+                    var reList = [];
+                    for (var i = 0; i < list.length; i++) {
+                        reList[list[i]['manga_id']] = list[i]['status'];
+                    }
+                    stateMangaList = reList;
+                    callback();
+                });
+            });
+        }
+    }

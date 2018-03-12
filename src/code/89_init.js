@@ -83,6 +83,7 @@
             }
 
             $( document).ready(function(){
+                stateTags($('a[href^="/anime/"], a[href^="https://myanimelist.net/anime/"], a[href^="/manga/"], a[href^="https://myanimelist.net/manga/"]'));
 
                 epPrediction(window.location.href.split('/')[4], function(timestamp, airing, diffWeeks, diffDays, diffHours, diffMinutes, episode){
                     if(airing){
