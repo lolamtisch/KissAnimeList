@@ -147,7 +147,11 @@
 						}
 						if(response.status != 200){//TODO: Cloudflare handling
 							con.log('[EpCheck] [ERROR]', response);
-							var message = '<div>Coud Not Check</div><div class="errorpage"></div>'//;<button class="okChangelog" style="background-color: transparent; border: none; color: rgb(255,64,129);margin-top: 10px;cursor: pointer;">Ok</button></div>';
+							var checkFailMessage = 'Coud Not Check';
+							if(newEpRetrys < 3 && openInBg){
+								checkFailMessage = 'Please wait';
+							}
+							var message = '<div>'+checkFailMessage+'</div><div class="errorpage"></div>'//;<button class="okChangelog" style="background-color: transparent; border: none; color: rgb(255,64,129);margin-top: 10px;cursor: pointer;">Ok</button></div>';
 							if( !$('.errorpage').length ){
 								flashm(message,false,false,true);
 							}
