@@ -24,8 +24,8 @@
                     $('#list_surround table .animetitle').parent().addClass("title").addClass("data");
                     $('#list_surround table .animetitle').addClass("link");
                     $('.table_header').each(function(index){
-                        if($(this).find('strong a:contains(Progress)').height()){
-                            $('#list_surround table td[class^="td"]:nth-child('+(index+1)+')').addClass("progress").addClass("data").find('span a').addClass('link');
+                        if($(this).find('strong a:contains(Progress), a:contains(Chapters)').height()){
+                            $('#list_surround table td[class^="td"]:nth-child('+(index+1)+')').addClass("progress").addClass("data").find('a span').addClass('link');
                         }
                         if($('strong:contains(Tags)').height()){
                             $('#list_surround table td[class^="td"]:nth-child('+(index+1)+')').addClass("tags");  //.css('background-color','red');
