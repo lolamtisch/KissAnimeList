@@ -206,7 +206,7 @@
 			if(EpNumber === null){
 				return;
 			}
-			var currentEpisode = $(entrySelector).find('.data.progress .link').text().trim().replace(/\/.*/,'');
+			var currentEpisode = $(entrySelector).find('.data.progress .link, .data.chapter .link').text().trim().replace(/\/.*/,'');
 			con.log('[EpCheck]', GM_getValue('newEp_'+url+'_number',null), EpNumber);
 			if( GM_getValue('newEp_'+url+'_number', EpNumber) < EpNumber
 				&& currentEpisode != $(entrySelector).find('.kal-ep-pre').attr('ep')){
