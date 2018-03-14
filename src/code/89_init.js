@@ -69,7 +69,7 @@
             window.history.replaceState(null, null, '/manga/'+$.urlParam('id') );
         }
         if(window.location.href.indexOf("myanimelist.net/animelist") > -1 || window.location.href.indexOf("myanimelist.net/mangalist") > -1 ){
-            listType = listType.substring(0,5);
+            $.listType = $.listType.substring(0,5);
             tagToContinue();
         }else{
             setKissToMal(window.location.href);
@@ -97,8 +97,8 @@
                 });
 
                 getanime(window.location.href, function(actual){
-                    if(actual['.add_'+listType+'[tags]'].indexOf("last::") > -1 ){
-                        var url = atobURL( actual['.add_'+listType+'[tags]'].split("last::")[1].split("::")[0] );
+                    if(actual['.add_'+$.listType+'[tags]'].indexOf("last::") > -1 ){
+                        var url = atobURL( actual['.add_'+$.listType+'[tags]'].split("last::")[1].split("::")[0] );
                         $('.h1 span').first().after('<div class="data title progress" style="display: inline-block; position: relative; top: 2px;"><div class="link" style="display: none;">'+$('#myinfo_watchedeps').first().val()+'</div></div>');
                         setStreamLinks(url, $('.h1').first().parent());
                     }

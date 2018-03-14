@@ -153,10 +153,10 @@
 
     if( window.location.href.indexOf("kissanime.ru") > -1 ){
         //#########Kissanime#########
-        var domain = 'http://kissanime.ru';
-        var textColor = '#d5f406';
-        var dbSelector = 'Kissanime';
-        var listType = 'anime';
+        $.domain = 'http://kissanime.ru';
+        $.textColor = '#d5f406';
+        $.dbSelector = 'Kissanime';
+        $.listType = 'anime';
         var bookmarkCss = ".listing tr td:nth-child(1){height: 150px;padding-left: 125px;} .listing tr td{vertical-align: top;}";
         var bookmarkFixCss = ".bigBarContainer {margin: 0px; width: 630px !important; text-align: left; float: left;}";
         var videoSelector = '#divContentVideo';
@@ -288,10 +288,10 @@
         //###########################
     }else if( window.location.href.indexOf("kissmanga.com") > -1 ){
         //#########Kissmanga#########
-        var domain = 'http://kissmanga.com';
-        var textColor = '#72cefe';
-        var dbSelector = 'Kissmanga';
-        var listType = 'manga';
+        $.domain = 'http://kissmanga.com';
+        $.textColor = '#72cefe';
+        $.dbSelector = 'Kissmanga';
+        $.listType = 'manga';
         var bookmarkCss = ".listing tr td:nth-child(1){height: 150px;padding-left: 125px;} .listing tr td{vertical-align: top;}";
         if(classicBookmarks == 0){
             bookmarkCss += '#leftside{width: 581px !important;} #rightside{ float: left !important; margin-left: 30px;}';
@@ -492,10 +492,10 @@
         //###########################
     }else if( window.location.href.indexOf("masterani.me") > -1 ){
         //#########Masterani.me#########
-        var domain = 'https://www.masterani.me';
-        var textColor = 'white';
-        var dbSelector = 'Masterani';
-        var listType = 'anime';
+        $.domain = 'https://www.masterani.me';
+        $.textColor = 'white';
+        $.dbSelector = 'Masterani';
+        $.listType = 'anime';
         var bookmarkCss = "";
         var bookmarkFixCss = "";
         var videoSelector = '.ui.embed';
@@ -623,10 +623,10 @@
         //###########################
     }else if( window.location.href.indexOf("9anime.") > -1 ){
         //#########9anime#########
-        var domain = 'https://'+window.location.hostname;
-        var textColor = '#694ba1';
-        var dbSelector = '9anime';
-        var listType = 'anime';
+        $.domain = 'https://'+window.location.hostname;
+        $.textColor = '#694ba1';
+        $.dbSelector = '9anime';
+        $.listType = 'anime';
         var bookmarkCss = "";
         var bookmarkFixCss = "";
         var videoSelector = '#player';
@@ -741,7 +741,7 @@
         };
 
         $.nextEpLink = function(url) {
-            return domain+$(".servers .episodes a.active").parent('li').next().find('a').attr('href');
+            return $.domain+$(".servers .episodes a.active").parent('li').next().find('a').attr('href');
         };
 
         $.classicBookmarkButton = function(selector, checkfix) {
@@ -781,10 +781,10 @@
         if(window.location.href == 'http://www.crunchyroll.com/'){
             return;
         }
-        var domain = 'http://www.crunchyroll.com';
-        var textColor = 'black';
-        var dbSelector = 'Crunchyroll';
-        var listType = 'anime';
+        $.domain = 'http://www.crunchyroll.com';
+        $.textColor = 'black';
+        $.dbSelector = 'Crunchyroll';
+        $.listType = 'anime';
         var bookmarkCss = "";
         var bookmarkFixCss = "";
         var videoSelector = '#showmedia_video_box_wide,#showmedia_video_box';
@@ -972,10 +972,10 @@
         if(!window.location.href.split('/')[3]){
             return;
         }
-        var domain = window.location.href.split('/').slice(0,3).join('/')+'/';
-        var textColor = 'white';
-        var dbSelector = 'Gogoanime';
-        var listType = 'anime';
+        $.domain = window.location.href.split('/').slice(0,3).join('/')+'/';
+        $.textColor = 'white';
+        $.dbSelector = 'Gogoanime';
+        $.listType = 'anime';
         var bookmarkCss = "";
         var bookmarkFixCss = "";
         var videoSelector = '.anime_video_body_watch_items';
@@ -1001,7 +1001,7 @@
             return $("#episode_related a");
         };
         $.episodeListElementHref = function(selector) {
-            return domain+selector.attr('href').replace(' /','');
+            return $.domain+selector.attr('href').replace(' /','');
         };
         $.episodeListElementTitle = function(selector) {
             return selector.find("div.name").text();
@@ -1072,7 +1072,7 @@
         };
 
         $.nextEpLink = function(url) {
-            var url = domain + 's..' + $('.anime_video_body_episodes_r a').last().attr('href');
+            var url = $.domain + 's..' + $('.anime_video_body_episodes_r a').last().attr('href');
             return url.replace('/s..','');
         };
 
@@ -1086,7 +1086,7 @@
         //###########################
     }else if( window.location.href.indexOf("myanimelist.net") > -1 ){
         googleover = 1;
-        var listType = window.location.href.split('/')[3];
+        $.listType = window.location.href.split('/')[3];
         $.isOverviewPage = function() {
             return false;
         };
@@ -1101,7 +1101,7 @@
         };
     }
     //#######Anime or Manga######
-    if(listType == 'anime'){
+    if($.listType == 'anime'){
         var googleMalUrl = "site:myanimelist.net/Anime/+-site:myanimelist.net/Anime/genre/+-site:myanimelist.net/anime/season/+";
         var middleType = 'episodes';
         var middleVerb = 'watched';
@@ -1122,7 +1122,7 @@
         if (typeof url === "undefined") {
             return url;
         }
-        if(!url.startsWith("http")) { url = domain + url;}
+        if(!url.startsWith("http")) { url = $.domain + url;}
         return url;
     };
     $.titleToDbKey = function(title) {

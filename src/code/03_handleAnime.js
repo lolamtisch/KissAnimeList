@@ -4,9 +4,9 @@
 
         miniMalButton(anime['malurl']);
 
-        if(GM_getValue( dbSelector+'/'+$.titleToDbKey($.urlAnimeSelector($.urlAnimeIdent($.normalUrl())))+'/image' , null) == null ){
+        if(GM_getValue( $.dbSelector+'/'+$.titleToDbKey($.urlAnimeSelector($.urlAnimeIdent($.normalUrl())))+'/image' , null) == null ){
             try{
-                GM_setValue( dbSelector+'/'+$.titleToDbKey($.urlAnimeSelector($.urlAnimeIdent($.normalUrl())))+'/image', $.imageCache('') );
+                GM_setValue( $.dbSelector+'/'+$.titleToDbKey($.urlAnimeSelector($.urlAnimeIdent($.normalUrl())))+'/image', $.imageCache('') );
             }catch(e){}
         }
         if(anime['login'] === 0){
@@ -19,14 +19,14 @@
             return;
         }
         if($.isOverviewPage()){
-            $("#flash").attr("anime", anime['.'+listType+'_id']);
+            $("#flash").attr("anime", anime['.'+$.listType+'_id']);
             $("#malRating").attr("href", anime['malurl']);
-            if(isNaN(anime['.add_'+listType+'[status]'])){
+            if(isNaN(anime['.add_'+$.listType+'[status]'])){
                 $('.MalLogin').css("display","none");
                 $("#malRating").after("<span id='AddMalDiv'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href='#' id='AddMal' onclick='return false;'>Add to Mal</a></span>")
                 $('#AddMal').click(function() {
                     var anime = {};
-                    anime['.add_'+listType+'[status]'] = 6;
+                    anime['.add_'+$.listType+'[status]'] = 6;
                     anime['forceUpdate'] = 1;
                     setanime($.normalUrl(),anime);
                 });
@@ -36,9 +36,9 @@
                    $("#malTotal").text('?');
                 }
                 if(anime['forceUpdate'] != 2){
-                    $("#malStatus").val(anime['.add_'+listType+'[status]']);
+                    $("#malStatus").val(anime['.add_'+$.listType+'[status]']);
                     $("#malEpisodes").val(anime['.add_anime[num_watched_episodes]']);
-                    $("#malUserRating").val(anime['.add_'+listType+'[score]']);
+                    $("#malUserRating").val(anime['.add_'+$.listType+'[score]']);
 
                     //####Manga####
                     $("#malVolumes").val(anime['.add_manga[num_read_volumes]']);
@@ -64,7 +64,7 @@
             var truelink = null;
             $('.lastOpen').remove();
             $.episodeListSelector().each(function( index ) {
-                if(listType == 'anime'){
+                if($.listType == 'anime'){
                     if(debug){
                         $(this).after('  Episode: '+urlToEpisode($.episodeListElementHref($(this))));
                     }
@@ -99,7 +99,7 @@
                 }
             });
             truelink = $.handleNextLink(truelink, anime);
-            if(listType == 'anime'){
+            if($.listType == 'anime'){
                 $(".headui").html(truelink);
             }else{
                 if(truelink == null){
@@ -111,7 +111,7 @@
                 }
             }
         }else{
-            if(listType == 'anime'){
+            if($.listType == 'anime'){
                 //update
                 try{
                     var curEpisode = urlToEpisode(window.location.href);
@@ -140,7 +140,7 @@
     function urlToEpisode(url){
         var string = $.urlEpisodePart(url);
         string = $.EpisodePartToEpisode(string);
-        var Offset = GM_getValue(dbSelector+'/'+$.titleToDbKey($.urlAnimeSelector($.urlAnimeIdent(url)))+'/Offset' , null);
+        var Offset = GM_getValue($.dbSelector+'/'+$.titleToDbKey($.urlAnimeSelector($.urlAnimeIdent(url)))+'/Offset' , null);
         if( Offset != null){
             string = parseInt(string)+parseInt(Offset);
         }
@@ -187,7 +187,7 @@
         if(update.indexOf("masterani.me") > -1 && update.indexOf("/watch/") > -1){
             update = update.replace('/watch/','/info/');
         }
-        if(listType == 'anime'){
+        if($.listType == 'anime'){
             GM_setValue( update+'/next', nextEp);
         }else{
             GM_setValue( update+'/next', 'manga');
@@ -198,7 +198,7 @@
     }
 
     function handleanimeupdate( anime, current){
-        if(listType == 'anime'){
+        if($.listType == 'anime'){
             if(anime['checkIncrease'] === 1){
                 anime['.add_anime[tags]'] = handleTag($.urlAnimeIdent(window.location.href), current['.add_anime[tags]'], anime['.add_anime[num_watched_episodes]']+1);
                 if(current['.add_anime[num_watched_episodes]'] >= anime['.add_anime[num_watched_episodes]']){
