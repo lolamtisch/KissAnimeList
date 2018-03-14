@@ -1,5 +1,5 @@
     function createIframe(){
-        if( !($('#info-popup').height()) ){
+        if( !($('#info-popup').length) ){
             //var position = 'width: 80%; height: 70%; position: absolute; top: 15%; left: 10%';
             var position = 'max-width: 100%; max-height: 100%; min-width: 500px; min-height: 300px; width: '+miniMalWidth+'; height: '+miniMalHeight+'; position: absolute; bottom: 0%; '+ posLeft +': 0%';//phone
             if($(window).width() < 500){
@@ -263,7 +263,7 @@
         });
 
         $("#info-iframe").contents().find("#material-fullscreen").click( function(){
-            if($('.modal-content-kal.fullscreen').height()){
+            if($('.modal-content-kal.fullscreen').length){
                 $(".modal-content-kal").removeClass('fullscreen');
                 $(this).find('i').text('fullscreen');
             }else{
@@ -330,7 +330,7 @@
             });
             return;
         }
-        if( !($("#info-iframe").contents().find('#material').height()) ){
+        if( !($("#info-iframe").contents().find('#material').length) ){
             templateIframe(url,data);
         }
 

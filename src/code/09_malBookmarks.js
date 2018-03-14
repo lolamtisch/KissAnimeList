@@ -24,10 +24,10 @@
                     $('#list_surround table .animetitle').parent().addClass("title").addClass("data");
                     $('#list_surround table .animetitle').addClass("link");
                     $('.table_header').each(function(index){
-                        if($(this).find('strong a:contains(Progress), a:contains(Chapters)').height()){
+                        if($(this).find('strong a:contains(Progress), a:contains(Chapters)').length){
                             $('#list_surround table td[class^="td"]:nth-child('+(index+1)+')').addClass("progress").addClass("data").find('a span').addClass('link');
                         }
-                        if($('strong:contains(Tags)').height()){
+                        if($('strong:contains(Tags)').length){
                             $('#list_surround table td[class^="td"]:nth-child('+(index+1)+')').addClass("tags");  //.css('background-color','red');
                         }
                     })
@@ -35,7 +35,7 @@
 
                     tagToContinueEpPrediction();
 
-                    if( $('.header-title.tags').height() || $('.td1.tags').height()){
+                    if( $('.header-title.tags').length || $('.td1.tags').length){
                         $('.tags span a').each(function( index ) {
                             if($(this).text().indexOf("last::") > -1 ){
                                 url = atobURL( $(this).text().split("last::")[1].split("::")[0] );
