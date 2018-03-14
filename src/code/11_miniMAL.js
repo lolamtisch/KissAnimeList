@@ -1277,9 +1277,6 @@
             method: "GET",
             url: url,
             synchronous: false,
-            headers: {
-                "User-Agent": "Mozilla/5.0"
-            },
             onload: function(response) {
                 if(response.status == 200){
                   callback(response.responseText);
@@ -1310,9 +1307,6 @@
             method: "GET",
             url: 'https://myanimelist.net/search/prefix.json?type='+type+'&keyword='+keyword+'&v=1',
             synchronous: false,
-            headers: {
-                "User-Agent": "Mozilla/5.0"
-            },
             onload: function(response) {
                 var searchResults = $.parseJSON(response.response);
                 $("#info-iframe").contents().find(selector).append('<div class="mdl-grid">\

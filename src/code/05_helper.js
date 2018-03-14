@@ -376,9 +376,6 @@
             method: "GET",
             url: url,
             synchronous: false,
-            headers: {
-                "User-Agent": "Mozilla/5.0"
-            },
             onload: function(response) {
                 var data = $.parseJSON(response.response);
                 if(singleCallback){
@@ -412,9 +409,6 @@
             method: "GET",
             url: url,
             synchronous: false,
-            headers: {
-                "User-Agent": "Mozilla/5.0"
-            },
             onload: function(response) {
                 try{
                     var username = response.response.split('USER_NAME = "')[1].split('"')[0];

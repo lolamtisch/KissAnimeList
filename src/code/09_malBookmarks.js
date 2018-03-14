@@ -90,9 +90,6 @@
             method: "GET",
             url: url,
             synchronous: false,
-            headers: {
-                "User-Agent": "Mozilla/5.0"
-            },
             onload: function(response) {
                 //con.log(response);
                 var xml = $(response.responseXML);

@@ -325,9 +325,6 @@
             method: "GET",
             url: requestUrl,
             synchronous: false,
-            headers: {
-                "User-Agent": "Mozilla/5.0"
-            },
             onload: function(response) {
                 var data = response.responseText;
                 //currentMalData = data;

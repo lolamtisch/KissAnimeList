@@ -14,9 +14,6 @@
             method: "GET",
             url: url,
             synchronous: false,
-            headers: {
-                "User-Agent": "Mozilla/5.0"
-            },
             onload: function(response) {
                 if(url ===  "https://myanimelist.net/editprofile.php?go=privacy"){
                     try{
@@ -223,9 +220,6 @@
                 method: "GET",
                 url: url,
                 synchronous: false,
-                headers: {
-                    "User-Agent": "Mozilla/5.0"
-                },
                 onload: function(response) {
                     //con.log(response);
                     if( response.responseText != null  && response.responseText != 'null'){

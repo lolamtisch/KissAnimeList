@@ -41,9 +41,6 @@
             method: "GET",
             url: url,
             synchronous: false,
-            headers: {
-                "User-Agent": "Mozilla/5.0"
-            },
             onload: function(response) {
                 if(response.finalUrl != null){
                     url = response.finalUrl;
@@ -327,7 +324,6 @@
                 synchronous: false,
                 data: parameter,
                 headers: {
-                    "User-Agent": "Mozilla/5.0",
                     "Content-Type": "application/x-www-form-urlencoded",
                     "accept":"text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8"
                 },
