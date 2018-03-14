@@ -157,9 +157,9 @@
         $.textColor = '#d5f406';
         $.dbSelector = 'Kissanime';
         $.listType = 'anime';
-        var bookmarkCss = ".listing tr td:nth-child(1){height: 150px;padding-left: 125px;} .listing tr td{vertical-align: top;}";
-        var bookmarkFixCss = ".bigBarContainer {margin: 0px; width: 630px !important; text-align: left; float: left;}";
-        var videoSelector = '#divContentVideo';
+        $.bookmarkCss = ".listing tr td:nth-child(1){height: 150px;padding-left: 125px;} .listing tr td{vertical-align: top;}";
+        $.bookmarkFixCss = ".bigBarContainer {margin: 0px; width: 630px !important; text-align: left; float: left;}";
+        $.videoSelector = '#divContentVideo';
 
         $.init = function() {
             checkdata();
@@ -292,11 +292,11 @@
         $.textColor = '#72cefe';
         $.dbSelector = 'Kissmanga';
         $.listType = 'manga';
-        var bookmarkCss = ".listing tr td:nth-child(1){height: 150px;padding-left: 125px;} .listing tr td{vertical-align: top;}";
+        $.bookmarkCss = ".listing tr td:nth-child(1){height: 150px;padding-left: 125px;} .listing tr td{vertical-align: top;}";
         if(classicBookmarks == 0){
-            bookmarkCss += '#leftside{width: 581px !important;} #rightside{ float: left !important; margin-left: 30px;}';
+            $.bookmarkCss += '#leftside{width: 581px !important;} #rightside{ float: left !important; margin-left: 30px;}';
         }
-        var bookmarkFixCss = "";
+        $.bookmarkFixCss = "";
         BookmarksStyle = "";
 
         $.init = function() {
@@ -496,9 +496,9 @@
         $.textColor = 'white';
         $.dbSelector = 'Masterani';
         $.listType = 'anime';
-        var bookmarkCss = "";
-        var bookmarkFixCss = "";
-        var videoSelector = '.ui.embed';
+        $.bookmarkCss = "";
+        $.bookmarkFixCss = "";
+        $.videoSelector = '.ui.embed';
         var winLoad = 0;
 
         $.init = function() {
@@ -627,9 +627,9 @@
         $.textColor = '#694ba1';
         $.dbSelector = '9anime';
         $.listType = 'anime';
-        var bookmarkCss = "";
-        var bookmarkFixCss = "";
-        var videoSelector = '#player';
+        $.bookmarkCss = "";
+        $.bookmarkFixCss = "";
+        $.videoSelector = '#player';
         var winLoad = 0;
         GM_addStyle('.headui a {color: inherit !important;}');
 
@@ -785,9 +785,9 @@
         $.textColor = 'black';
         $.dbSelector = 'Crunchyroll';
         $.listType = 'anime';
-        var bookmarkCss = "";
-        var bookmarkFixCss = "";
-        var videoSelector = '#showmedia_video_box_wide,#showmedia_video_box';
+        $.bookmarkCss = "";
+        $.bookmarkFixCss = "";
+        $.videoSelector = '#showmedia_video_box_wide,#showmedia_video_box';
         GM_addStyle('.headui a {color: black !important;} #malp{margin-bottom: 8px;}');
 
         $.init = function() {
@@ -976,9 +976,9 @@
         $.textColor = 'white';
         $.dbSelector = 'Gogoanime';
         $.listType = 'anime';
-        var bookmarkCss = "";
-        var bookmarkFixCss = "";
-        var videoSelector = '.anime_video_body_watch_items';
+        $.bookmarkCss = "";
+        $.bookmarkFixCss = "";
+        $.videoSelector = '.anime_video_body_watch_items';
         var winLoad = 0;
         GM_addStyle('.headui a {color: inherit !important;}');
 

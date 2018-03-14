@@ -1502,14 +1502,14 @@
           }
 
           function reposition(){
-              $(videoSelector).css('transform', '');
+              $($.videoSelector).css('transform', '');
 
               if(!$(minimalSelector).is(":visible")){
                   return;
               }
 
-              var videoLeft = $(videoSelector).offset().left;
-              var videoWidth = $(videoSelector).width();
+              var videoLeft = $($.videoSelector).offset().left;
+              var videoWidth = $($.videoSelector).width();
               var videoRight = videoLeft + videoWidth;
             var minimalLeft = $(minimalSelector).offset().left;
             var minimalRight = minimalLeft + $(minimalSelector).width();
@@ -1541,9 +1541,9 @@
                 var scale = Width / videoWidth;
                 Left = Left - videoLeft;
                 Left = Left / scale;
-                $(videoSelector).css('transform', 'scale('+scale+') translateX('+Left+'px)');
-                $(videoSelector).css('transform-origin', '0% 50%');
-                $(videoSelector).css('transition', '0s');
+                $($.videoSelector).css('transform', 'scale('+scale+') translateX('+Left+'px)');
+                $($.videoSelector).css('transform-origin', '0% 50%');
+                $($.videoSelector).css('transition', '0s');
             }
           }
         }catch(e){}

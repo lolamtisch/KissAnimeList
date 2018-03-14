@@ -48,9 +48,9 @@
         });
         if(malBookmarks == 1){
             try{
-                GM_addStyle(bookmarkCss);
+                GM_addStyle($.bookmarkCss);
                 if(BookmarksStyle == 1){
-                    GM_addStyle(bookmarkFixCss);
+                    GM_addStyle($.bookmarkFixCss);
                 }
                 if(classicBookmarks == 1){
                     GM_addStyle('.listing tr:not(.head) br{display: none;} .listing tr:not(.head) .title{width: 30%; float: left;padding-bottom: 0 !important;}.kissData { width: 35% !important;} .MalData {width: 35% !important;}td.Timage {height: 0 !important;} #cssTableSet{min-width: 0 !important} #endSpacer{width: 0 !important;}');
