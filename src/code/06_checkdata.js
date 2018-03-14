@@ -101,9 +101,9 @@
 
             if(!uiLoaded){
                 uiLoaded = 1;
-                $(ui).uiPos();
-                $(uiwrong).uiWrongPos();
-                $(uihead).uiHeadPos();
+                $.uiPos($(ui));
+                $.uiWrongPos($(uiwrong));
+                $.uiHeadPos($(uihead));
 
                 $( "#malEpisodes" ).change(function() {
                     updatebutton();

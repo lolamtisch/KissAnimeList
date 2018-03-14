@@ -165,7 +165,7 @@
             checkdata();
         }
 
-        $.fn.imageCache = function() {
+        $.imageCache = function(selector) {
             return $('#rightside').find('img').attr('src');
         };
 
@@ -180,13 +180,13 @@
         $.episodeListSelector = function() {
             return $(".listing a");
         };
-        $.fn.episodeListElementHref = function() {
-            return $.absoluteLink(this.attr('href'));
+        $.episodeListElementHref = function(selector) {
+            return $.absoluteLink(selector.attr('href'));
         };
-        $.fn.episodeListElementTitle = function() {
-            return this.text().replace($('.bigChar').text(),'');
+        $.episodeListElementTitle = function(selector) {
+            return selector.text().replace($('.bigChar').text(),'');
         };
-        $.fn.episodeListNextElement = function(index) {
+        $.episodeListNextElement = function(selector, index) {
             if ((index-1) > -1) {
                 return $.episodeListSelector().eq(index-1);
             }
@@ -229,14 +229,14 @@
             return string;
         };
 
-        $.fn.uiPos = function() {
-            this.insertAfter($(".bigChar").first());
+        $.uiPos = function(selector) {
+            selector.insertAfter($(".bigChar").first());
         };
-        $.fn.uiWrongPos = function() {
-            this.insertAfter($(".bigChar").first());
+        $.uiWrongPos = function(selector) {
+            selector.insertAfter($(".bigChar").first());
         };
-        $.fn.uiHeadPos = function() {
-            this.appendTo($(".barTitle").first());
+        $.uiHeadPos = function(selector) {
+            selector.appendTo($(".barTitle").first());
         };
 
         $.docReady = function(data) {
@@ -247,11 +247,11 @@
             return $.urlAnimeIdent(window.location.href);
         };
 
-        $.fn.epListReset = function() {
-            this.parent().parent().css("background-color","initial");
+        $.epListReset = function(selector) {
+            selector.parent().parent().css("background-color","initial");
         };
-        $.fn.epListActive = function() {
-            this.parent().parent().css("background-color","#002966");
+        $.epListActive = function(selector) {
+            selector.parent().parent().css("background-color","#002966");
         };
 
         $.bookmarkEntrySelector = function() {
@@ -262,11 +262,11 @@
             return url+'/'+$('#selectEpisode option:selected').next().val();
         };
 
-        $.fn.classicBookmarkButton = function(checkClassic) {
-            this.before('<div><input type="checkbox" id="classicBookmarks" '+checkClassic+' > Classic styling</div><div class="clear2">&nbsp;</div>');
+        $.classicBookmarkButton = function(selector, checkClassic) {
+            selector.before('<div><input type="checkbox" id="classicBookmarks" '+checkClassic+' > Classic styling</div><div class="clear2">&nbsp;</div>');
         };
-        $.fn.bookmarkButton = function(check) {
-            this.before('<div><input type="checkbox" id="malBookmarks" '+check+' > MyAnimeList Bookmarks</div><div class="clear2">&nbsp;</div>');
+        $.bookmarkButton = function(selector, check) {
+            selector.before('<div><input type="checkbox" id="malBookmarks" '+check+' > MyAnimeList Bookmarks</div><div class="clear2">&nbsp;</div>');
         };
 
         $.BookmarksStyleAfterLoad = function() {
@@ -303,7 +303,7 @@
             checkdata();
         }
 
-        $.fn.imageCache = function() {
+        $.imageCache = function(selector) {
             return $('#rightside').find('img').attr('src');
         };
 
@@ -317,13 +317,13 @@
         $.episodeListSelector = function() {
             return $(".listing a");
         };
-        $.fn.episodeListElementHref = function() {
-            return $.absoluteLink(this.attr('href'));
+        $.episodeListElementHref = function(selector) {
+            return $.absoluteLink(selector.attr('href'));
         };
-        $.fn.episodeListElementTitle = function() {
-            return this.text().replace($('.bigChar').text(),'');
+        $.episodeListElementTitle = function(selector) {
+            return selector.text().replace($('.bigChar').text(),'');
         };
-        $.fn.episodeListNextElement = function( index ) {
+        $.episodeListNextElement = function(selector, index) {
             if ((index-1) > -1) {
                 return $.episodeListSelector().eq(index-1);
             }
@@ -371,14 +371,14 @@
             return string;
         };
 
-        $.fn.uiPos = function() {
-            this.insertAfter($(".bigChar").first());
+        $.uiPos = function(selector) {
+            selector.insertAfter($(".bigChar").first());
         };
-        $.fn.uiWrongPos = function() {
-            this.insertAfter($(".bigChar").first());
+        $.uiWrongPos = function(selector) {
+            selector.insertAfter($(".bigChar").first());
         };
-        $.fn.uiHeadPos = function() {
-            this.appendTo($(".barTitle").first());
+        $.uiHeadPos = function(selector) {
+            selector.appendTo($(".barTitle").first());
         };
 
         $.docReady = function(data) {
@@ -389,11 +389,11 @@
             return $.urlAnimeIdent(window.location.href);
         };
 
-        $.fn.epListReset = function() {
-            this.parent().parent().css("background-color","initial");
+        $.epListReset = function(selector) {
+            selector.parent().parent().css("background-color","initial");
         };
-        $.fn.epListActive = function() {
-            this.parent().parent().css("background-color","#002966");
+        $.epListActive = function(selector) {
+            selector.parent().parent().css("background-color","#002966");
         };
 
         $.bookmarkEntrySelector = function() {
@@ -404,10 +404,10 @@
             return window.location.href;
         };
 
-        $.fn.classicBookmarkButton = function(checkClassic) {
+        $.classicBookmarkButton = function(selector, checkClassic) {
             $("#rightside .barContent div").last().after('<div><input type="checkbox" id="classicBookmarks" '+checkClassic+' > Classic styling</div><div class="clear2">&nbsp;</div>');
         };
-        $.fn.bookmarkButton = function(check) {
+        $.bookmarkButton = function(selector, check) {
             $("#rightside .barContent div").last().after('<div class="clear2" style="border-bottom: 1px solid #DDD2A4;">&nbsp;</div><div class="clear2">&nbsp;</div><div><input type="checkbox" id="malBookmarks" '+check+' > MyAnimeList Bookmarks</div>');
         };
 
@@ -505,7 +505,7 @@
             checkdata();
         }
 
-        $.fn.imageCache = function() {
+        $.imageCache = function(selector) {
             return $('.class').first().find('img').attr('src');
         };
 
@@ -519,13 +519,13 @@
         $.episodeListSelector = function() {
             return $(".thumbnail a.title");
         };
-        $.fn.episodeListElementHref = function() {
-            return $.absoluteLink(this.attr('href'));
+        $.episodeListElementHref = function(selector) {
+            return $.absoluteLink(selector.attr('href'));
         };
-        $.fn.episodeListElementTitle = function() {
-            return this.find("div").text()+' ('+this.find("span").text()+')';
+        $.episodeListElementTitle = function(selector) {
+            return selector.find("div").text()+' ('+selector.find("span").text()+')';
         };
-        $.fn.episodeListNextElement = function( index ) {
+        $.episodeListNextElement = function(selector, index) {
             if ((index+1) > -1) {
                 return $.episodeListSelector().eq(index+1);
             }
@@ -561,14 +561,14 @@
             return string;
         };
 
-        $.fn.uiPos = function() {
-            this.prependTo($("#stats").first());
+        $.uiPos = function(selector) {
+            selector.prependTo($("#stats").first());
         };
-        $.fn.uiWrongPos = function() {
-            this.css('margin-top','5px').appendTo($(".ui.info.list").first());
+        $.uiWrongPos = function(selector) {
+            selector.css('margin-top','5px').appendTo($(".ui.info.list").first());
         };
-        $.fn.uiHeadPos = function() {
-            this.appendTo($("h1").first());
+        $.uiHeadPos = function(selector) {
+            selector.appendTo($("h1").first());
         };
 
         $(window).load(function(){
@@ -598,11 +598,11 @@
             return $.urlAnimeIdent(window.location.href);
         };
 
-        $.fn.epListReset = function() {
-            this.parent().parent().css("background-color","initial");
+        $.epListReset = function(selector) {
+            selector.parent().parent().css("background-color","initial");
         };
-        $.fn.epListActive = function() {
-            this.parent().parent().css("background-color","#002966");
+        $.epListActive = function(selector) {
+            selector.parent().parent().css("background-color","#002966");
         };
 
         $.bookmarkEntrySelector = function() {
@@ -613,9 +613,9 @@
             return 'https://www.masterani.me'+$('#watch .anime-info .actions a').last().attr('href');
         };
 
-        $.fn.classicBookmarkButton = function(checkfix) {
+        $.classicBookmarkButton = function(selector, checkfix) {
         };
-        $.fn.bookmarkButton = function(check) {
+        $.bookmarkButton = function(selector, check) {
         };
 
         $.BookmarksStyleAfterLoad = function() {
@@ -637,7 +637,7 @@
             checkdata();
         }
 
-        $.fn.imageCache = function() {
+        $.imageCache = function(selector) {
             return $('.class').first().find('img').attr('src');
         };
 
@@ -651,16 +651,16 @@
         $.episodeListSelector = function() {
             return $(".servers .episodes a");
         };
-        $.fn.episodeListElementHref = function() {
-            return $.absoluteLink(this.attr('href'))+'?ep='+this.attr('data-base');
+        $.episodeListElementHref = function(selector) {
+            return $.absoluteLink(selector.attr('href'))+'?ep='+selector.attr('data-base');
         };
-        $.fn.episodeListElementTitle = function() {
-            if(this.text() == ''){
+        $.episodeListElementTitle = function(selector) {
+            if(selector.text() == ''){
                 return '';
             }
-            return 'Episode '+this.text();
+            return 'Episode '+selector.text();
         };
-        $.fn.episodeListNextElement = function( index ) {
+        $.episodeListNextElement = function(selector, index) {
             if ((index+1) > -1) {
                 return $.episodeListSelector().eq(index+1);
             }
@@ -691,15 +691,15 @@
             return string;
         };
 
-        $.fn.uiPos = function() {
-            $('<div class="widget info"><div class="widget-body"> '+this.html()+'</div></div>').insertBefore($(".widget.info").first());
+        $.uiPos = function(selector) {
+            $('<div class="widget info"><div class="widget-body"> '+selector.html()+'</div></div>').insertBefore($(".widget.info").first());
         };
-        $.fn.uiWrongPos = function() {
-            this.css('font-size','14px').insertBefore($("#info").first());
+        $.uiWrongPos = function(selector) {
+            selector.css('font-size','14px').insertBefore($("#info").first());
             $('.title').first().css('display', 'inline-block');
         };
-        $.fn.uiHeadPos = function() {
-            this.addClass('title').css('margin-right','0').appendTo($(".widget.player .widget-title").first());
+        $.uiHeadPos = function(selector) {
+            selector.addClass('title').css('margin-right','0').appendTo($(".widget.player .widget-title").first());
         };
 
         $(window).load(function(){
@@ -729,11 +729,11 @@
             return $.urlAnimeIdent(window.location.href);
         };
 
-        $.fn.epListReset = function() {
-            this.css("border-style","none");
+        $.epListReset = function(selector) {
+            selector.css("border-style","none");
         };
-        $.fn.epListActive = function() {
-            this.css("border-color","#002966").css("border-width","2px").css("border-style","solid");
+        $.epListActive = function(selector) {
+            selector.css("border-color","#002966").css("border-width","2px").css("border-style","solid");
         };
 
         $.bookmarkEntrySelector = function() {
@@ -744,9 +744,9 @@
             return domain+$(".servers .episodes a.active").parent('li').next().find('a').attr('href');
         };
 
-        $.fn.classicBookmarkButton = function(checkfix) {
+        $.classicBookmarkButton = function(selector, checkfix) {
         };
-        $.fn.bookmarkButton = function(check) {
+        $.bookmarkButton = function(selector, check) {
         };
 
         $.BookmarksStyleAfterLoad = function() {
@@ -820,7 +820,7 @@
             });
         }
 
-        $.fn.imageCache = function() {
+        $.imageCache = function(selector) {
             return $('#rightside').find('img').attr('src');
         };
 
@@ -835,13 +835,13 @@
         $.episodeListSelector = function() {
             return $("#showview_content_videos .list-of-seasons .group-item a");
         };
-        $.fn.episodeListElementHref = function() {
-            return $.absoluteLink(this.attr('href'));
+        $.episodeListElementHref = function(selector) {
+            return $.absoluteLink(selector.attr('href'));
         };
-        $.fn.episodeListElementTitle = function() {
-            return this.find('.series-title').text();
+        $.episodeListElementTitle = function(selector) {
+            return selector.find('.series-title').text();
         };
-        $.fn.episodeListNextElement = function(index) {//TODO
+        $.episodeListNextElement = function(selector, index) {//TODO
             if ((index-1) > -1) {
                 return $.episodeListSelector().eq(index-1);
             }
@@ -917,20 +917,20 @@
             return string;
         };
 
-        $.fn.uiPos = function() {//TODO
+        $.uiPos = function(selector) {//TODO
             if($.isOverviewPage()){
-                //this.insertAfter($("h1.ellipsis"));
-                this.insertBefore($("#tabs").first());
+                //selector.insertAfter($("h1.ellipsis"));
+                selector.insertBefore($("#tabs").first());
                 $('#malStatus option').css('background-color','#f2f2f2');
                 $('#malUserRating option').css('background-color','#f2f2f2');
-                //this.prependTo($('.season-dropdown'));
+                //selector.prependTo($('.season-dropdown'));
             }
         };
-        $.fn.uiWrongPos = function() {//TODO after second element
-            //this.prependTo($("#sidebar_elements").first());
+        $.uiWrongPos = function(selector) {//TODO after second element
+            //selector.prependTo($("#sidebar_elements").first());
         };
-        $.fn.uiHeadPos = function() {//TODO
-            this.appendTo($(".ellipsis").first());
+        $.uiHeadPos = function(selector) {//TODO
+            selector.appendTo($(".ellipsis").first());
         };
 
         $.docReady = function(data) {
@@ -941,11 +941,11 @@
             return $.urlAnimeIdent(window.location.href);
         };
 
-        $.fn.epListReset = function() {
-            this.css("background-color","#fff");
+        $.epListReset = function(selector) {
+            selector.css("background-color","#fff");
         };
-        $.fn.epListActive = function() {
-            this.css("background-color","#b2d1ff");
+        $.epListActive = function(selector) {
+            selector.css("background-color","#b2d1ff");
         };
 
         $.bookmarkEntrySelector = function() {
@@ -956,10 +956,10 @@
             return 'http://www.crunchyroll.com'+$('.collection-carousel-media-link-current').parent().next().find('.link').attr('href');
         };
 
-        $.fn.classicBookmarkButton = function(checkClassic) {
+        $.classicBookmarkButton = function(selector, checkClassic) {
 
         };
-        $.fn.bookmarkButton = function(check) {
+        $.bookmarkButton = function(selector, check) {
 
         };
 
@@ -986,7 +986,7 @@
             checkdata();
         }
 
-        $.fn.imageCache = function() {
+        $.imageCache = function(selector) {
             return $('.class').first().find('img').attr('src');
         };
 
@@ -1000,13 +1000,13 @@
         $.episodeListSelector = function() {
             return $("#episode_related a");
         };
-        $.fn.episodeListElementHref = function() {
-            return domain+this.attr('href').replace(' /','');
+        $.episodeListElementHref = function(selector) {
+            return domain+selector.attr('href').replace(' /','');
         };
-        $.fn.episodeListElementTitle = function() {
-            return this.find("div.name").text();
+        $.episodeListElementTitle = function(selector) {
+            return selector.find("div.name").text();
         };
-        $.fn.episodeListNextElement = function( index ) {
+        $.episodeListNextElement = function(selector, index) {
             if ((index-1) > -1) {
                 return $.episodeListSelector().eq(index-1);
             }
@@ -1043,14 +1043,14 @@
             return string;
         };
 
-        $.fn.uiPos = function() {
-            this.prependTo($(".anime_info_body").first());
+        $.uiPos = function(selector) {
+            selector.prependTo($(".anime_info_body").first());
         };
-        $.fn.uiWrongPos = function() {//TODO
-            this.css('margin-top','5px').appendTo($(".ui.info.list").first());
+        $.uiWrongPos = function(selector) {//TODO
+            selector.css('margin-top','5px').appendTo($(".ui.info.list").first());
         };
-        $.fn.uiHeadPos = function() {//TODO
-            this.appendTo($("h1").first());
+        $.uiHeadPos = function(selector) {//TODO
+            selector.appendTo($("h1").first());
         };
 
         $.docReady = function(data) {
@@ -1061,11 +1061,11 @@
             return $.urlAnimeIdent(window.location.href);
         };
 
-        $.fn.epListReset = function() {
-            this.css("background-color","#363636");
+        $.epListReset = function(selector) {
+            selector.css("background-color","#363636");
         };
-        $.fn.epListActive = function() {
-            this.css("background-color","#002966");
+        $.epListActive = function(selector) {
+            selector.css("background-color","#002966");
         };
 
         $.bookmarkEntrySelector = function() {
@@ -1076,9 +1076,9 @@
             return url.replace('/s..','');
         };
 
-        $.fn.classicBookmarkButton = function(checkfix) {
+        $.classicBookmarkButton = function(selector, checkfix) {
         };
-        $.fn.bookmarkButton = function(check) {
+        $.bookmarkButton = function(selector, check) {
         };
 
         $.BookmarksStyleAfterLoad = function() {

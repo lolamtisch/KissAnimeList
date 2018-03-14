@@ -19,7 +19,7 @@
             }else{
                 var checkClassic = '';
             }
-            optionsTarget.bookmarkButton(check);//optionsTarget.before('<div><input type="checkbox" id="malBookmarks" '+check+' > MyAnimeList Bookmarks</div><div class="clear2">&nbsp;</div>');
+            $.bookmarkButton(optionsTarget, check);//optionsTarget.before('<div><input type="checkbox" id="malBookmarks" '+check+' > MyAnimeList Bookmarks</div><div class="clear2">&nbsp;</div>');
             $('#malBookmarks').change(function(){
                 if($('#malBookmarks').is(":checked")){
                     malBookmarks = 1;
@@ -32,7 +32,7 @@
                 }
             });
             if(malBookmarks == 1){
-                optionsTarget.classicBookmarkButton(checkClassic);//optionsTarget.before('<div><input type="checkbox" id="BookmarksStyle" '+checkfix+' > Fix Bookmark styling</div><div class="clear2">&nbsp;</div>');
+                $.classicBookmarkButton(optionsTarget, checkClassic);//optionsTarget.before('<div><input type="checkbox" id="BookmarksStyle" '+checkfix+' > Fix Bookmark styling</div><div class="clear2">&nbsp;</div>');
                 $('#classicBookmarks').change(function(){
                     if($('#classicBookmarks').is(":checked")){
                         classicBookmarks = 1;

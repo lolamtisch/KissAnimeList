@@ -6,7 +6,7 @@
 
         if(GM_getValue( dbSelector+'/'+$.titleToDbKey($.urlAnimeSelector($.urlAnimeIdent($.normalUrl())))+'/image' , null) == null ){
             try{
-                GM_setValue( dbSelector+'/'+$.titleToDbKey($.urlAnimeSelector($.urlAnimeIdent($.normalUrl())))+'/image', $().imageCache() );
+                GM_setValue( dbSelector+'/'+$.titleToDbKey($.urlAnimeSelector($.urlAnimeIdent($.normalUrl())))+'/image', $.imageCache('') );
             }catch(e){}
         }
         if(anime['login'] === 0){
@@ -66,35 +66,35 @@
             $.episodeListSelector().each(function( index ) {
                 if(listType == 'anime'){
                     if(debug){
-                        $(this).after('  Episode: '+urlToEpisode($(this).episodeListElementHref()));
+                        $(this).after('  Episode: '+urlToEpisode($.episodeListElementHref($(this))));
                     }
                     try{
-                        episodelink = urlToEpisode($(this).episodeListElementHref());
+                        episodelink = urlToEpisode($.episodeListElementHref($(this)));
                     }catch(e) {
                         episodelink = 1;
                     }
-                    $(this).epListReset();
+                    $.epListReset($(this));
                     if(episodelink == parseInt(anime['.add_anime[num_watched_episodes]'])){
-                        $(this).epListActive();
-                        if(typeof $(this).episodeListNextElement( index ).episodeListElementHref() !== "undefined"){
-                            truelink = '<a style="color: white;" href="'+$(this).episodeListNextElement( index ).episodeListElementHref()+'">'+$(this).episodeListNextElement( index ).episodeListElementTitle()+'</a>';
+                        $.epListActive($(this));
+                        if(typeof $.episodeListElementHref($.episodeListNextElement($(this), index)) !== "undefined"){
+                            truelink = '<a style="color: white;" href="'+$.episodeListElementHref($.episodeListNextElement($(this), index))+'">'+$.episodeListElementTitle($.episodeListNextElement($(this), index))+'</a>';
                         }
                     }
                 }else{
                     if(debug){
-                        $(this).after('   Chapter: '+urlToChapter($(this).episodeListElementHref()));
-                        $(this).after('Volume: '+urlToVolume($(this).episodeListElementHref()));
+                        $(this).after('   Chapter: '+urlToChapter($.episodeListElementHref($(this))));
+                        $(this).after('Volume: '+urlToVolume($.episodeListElementHref($(this))));
                     }
-                    episodelink = urlToChapter($(this).episodeListElementHref());
-                    $(this).epListReset();
+                    episodelink = urlToChapter($.episodeListElementHref($(this)));
+                    $.epListReset($(this));
                     if($(this).attr('href') == commentToUrl(anime['.add_manga[comments]'])){
                         $(this).parent().parent().css("background-color","#861515");
-                        linkbackup = '<a style="color: red;" href="'+$(this).episodeListNextElement( index ).episodeListElementHref()+'">'+$(this).episodeListNextElement( index ).episodeListElementTitle()+'</a>';
+                        linkbackup = '<a style="color: red;" href="'+$.episodeListElementHref($.episodeListNextElement($(this), index))+'">'+$.episodeListElementTitle($.episodeListNextElement($(this), index))+'</a>';
                         $(this).prepend('<span class="lastOpen">[Last opened]</span>');
                     }
                     if(episodelink == parseInt(anime['.add_manga[num_read_chapters]']) && parseInt(anime['.add_manga[num_read_chapters]']) != 0){
                         $(this).parent().parent().css("background-color","#002966");
-                        truelink = '<a style="color: white;" href="'+$(this).episodeListNextElement( index ).episodeListElementHref()+'">'+$(this).episodeListNextElement( index ).episodeListElementTitle()+'</a>';
+                        truelink = '<a style="color: white;" href="'+$.episodeListElementHref($.episodeListNextElement($(this), index))+'">'+$.episodeListElementTitle($.episodeListNextElement($(this), index))+'</a>';
                     }
                 }
             });
