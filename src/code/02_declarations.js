@@ -150,26 +150,27 @@
         }
     }
 
+    var K = {};
 
     if( window.location.href.indexOf("kissanime.ru") > -1 ){
         //#########Kissanime#########
-        $.domain = 'http://kissanime.ru';
-        $.textColor = '#d5f406';
-        $.dbSelector = 'Kissanime';
-        $.listType = 'anime';
-        $.bookmarkCss = ".listing tr td:nth-child(1){height: 150px;padding-left: 125px;} .listing tr td{vertical-align: top;}";
-        $.bookmarkFixCss = ".bigBarContainer {margin: 0px; width: 630px !important; text-align: left; float: left;}";
-        $.videoSelector = '#divContentVideo';
+        K.domain = 'http://kissanime.ru';
+        K.textColor = '#d5f406';
+        K.dbSelector = 'Kissanime';
+        K.listType = 'anime';
+        K.bookmarkCss = ".listing tr td:nth-child(1){height: 150px;padding-left: 125px;} .listing tr td{vertical-align: top;}";
+        K.bookmarkFixCss = ".bigBarContainer {margin: 0px; width: 630px !important; text-align: left; float: left;}";
+        K.videoSelector = '#divContentVideo';
 
-        $.init = function() {
+        K.init = function() {
             checkdata();
         }
 
-        $.imageCache = function(selector) {
+        K.imageCache = function(selector) {
             return $('#rightside').find('img').attr('src');
         };
 
-        $.isOverviewPage = function() {
+        K.isOverviewPage = function() {
             if(typeof window.location.href.split('/')[5] != 'undefined'){
                 if($('#centerDivVideo').length){
                     return false;
@@ -177,39 +178,39 @@
             }
             return true;
         };
-        $.episodeListSelector = function() {
+        K.episodeListSelector = function() {
             return $(".listing a");
         };
-        $.episodeListElementHref = function(selector) {
+        K.episodeListElementHref = function(selector) {
             return $.absoluteLink(selector.attr('href'));
         };
-        $.episodeListElementTitle = function(selector) {
+        K.episodeListElementTitle = function(selector) {
             return selector.text().replace($('.bigChar').text(),'');
         };
-        $.episodeListNextElement = function(selector, index) {
+        K.episodeListNextElement = function(selector, index) {
             if ((index-1) > -1) {
-                return $.episodeListSelector().eq(index-1);
+                return K.episodeListSelector().eq(index-1);
             }
             return $();
         };
-        $.handleNextLink = function(truelink, anime){
+        K.handleNextLink = function(truelink, anime){
             return truelink;
         };
 
-        $.urlEpisodePart = function(url) {
+        K.urlEpisodePart = function(url) {
             return url.split("/")[5].split("?")[0];
         };
-        $.urlAnimeIdent = function(url) {
+        K.urlAnimeIdent = function(url) {
             return url.split('/').slice(0,5).join('/');
         };
-        $.urlAnimeSelector = function(url) {
+        K.urlAnimeSelector = function(url) {
             return url.split("/")[4].split("?")[0];
         };
-        $.urlAnimeTitle = function(url) {
-            return $.urlAnimeSelector(url);
+        K.urlAnimeTitle = function(url) {
+            return K.urlAnimeSelector(url);
         };
 
-        $.EpisodePartToEpisode = function(string) {
+        K.EpisodePartToEpisode = function(string) {
             var temp = [];
             temp = string.match(/[e,E][p,P][i,I]?[s,S]?[o,O]?[d,D]?[e,E]?\D?\d{3}/);
             if(temp !== null){
@@ -229,47 +230,47 @@
             return string;
         };
 
-        $.uiPos = function(selector) {
+        K.uiPos = function(selector) {
             selector.insertAfter($(".bigChar").first());
         };
-        $.uiWrongPos = function(selector) {
+        K.uiWrongPos = function(selector) {
             selector.insertAfter($(".bigChar").first());
         };
-        $.uiHeadPos = function(selector) {
+        K.uiHeadPos = function(selector) {
             selector.appendTo($(".barTitle").first());
         };
 
-        $.docReady = function(data) {
+        K.docReady = function(data) {
             return $( document).ready(data);
         };
 
-        $.normalUrl = function(){
-            return $.urlAnimeIdent(window.location.href);
+        K.normalUrl = function(){
+            return K.urlAnimeIdent(window.location.href);
         };
 
-        $.epListReset = function(selector) {
+        K.epListReset = function(selector) {
             selector.parent().parent().css("background-color","initial");
         };
-        $.epListActive = function(selector) {
+        K.epListActive = function(selector) {
             selector.parent().parent().css("background-color","#002966");
         };
 
-        $.bookmarkEntrySelector = function() {
+        K.bookmarkEntrySelector = function() {
             return $(".trAnime");
         };
 
-        $.nextEpLink = function(url) {
+        K.nextEpLink = function(url) {
             return url+'/'+$('#selectEpisode option:selected').next().val();
         };
 
-        $.classicBookmarkButton = function(selector, checkClassic) {
+        K.classicBookmarkButton = function(selector, checkClassic) {
             selector.before('<div><input type="checkbox" id="classicBookmarks" '+checkClassic+' > Classic styling</div><div class="clear2">&nbsp;</div>');
         };
-        $.bookmarkButton = function(selector, check) {
+        K.bookmarkButton = function(selector, check) {
             selector.before('<div><input type="checkbox" id="malBookmarks" '+check+' > MyAnimeList Bookmarks</div><div class="clear2">&nbsp;</div>');
         };
 
-        $.BookmarksStyleAfterLoad = function() {
+        K.BookmarksStyleAfterLoad = function() {
             if( BookmarksStyle == 1 ){
                 var optionsTarget = $("#optionsTarget");
                 var blackSpacer = "";
@@ -288,65 +289,65 @@
         //###########################
     }else if( window.location.href.indexOf("kissmanga.com") > -1 ){
         //#########Kissmanga#########
-        $.domain = 'http://kissmanga.com';
-        $.textColor = '#72cefe';
-        $.dbSelector = 'Kissmanga';
-        $.listType = 'manga';
-        $.bookmarkCss = ".listing tr td:nth-child(1){height: 150px;padding-left: 125px;} .listing tr td{vertical-align: top;}";
+        K.domain = 'http://kissmanga.com';
+        K.textColor = '#72cefe';
+        K.dbSelector = 'Kissmanga';
+        K.listType = 'manga';
+        K.bookmarkCss = ".listing tr td:nth-child(1){height: 150px;padding-left: 125px;} .listing tr td{vertical-align: top;}";
         if(classicBookmarks == 0){
-            $.bookmarkCss += '#leftside{width: 581px !important;} #rightside{ float: left !important; margin-left: 30px;}';
+            K.bookmarkCss += '#leftside{width: 581px !important;} #rightside{ float: left !important; margin-left: 30px;}';
         }
-        $.bookmarkFixCss = "";
+        K.bookmarkFixCss = "";
         BookmarksStyle = "";
 
-        $.init = function() {
+        K.init = function() {
             checkdata();
         }
 
-        $.imageCache = function(selector) {
+        K.imageCache = function(selector) {
             return $('#rightside').find('img').attr('src');
         };
 
-        $.isOverviewPage = function() {
+        K.isOverviewPage = function() {
             if($("#malp").width() !== null){
                 return true;
             }else{
                 return false;
             }
         };
-        $.episodeListSelector = function() {
+        K.episodeListSelector = function() {
             return $(".listing a");
         };
-        $.episodeListElementHref = function(selector) {
+        K.episodeListElementHref = function(selector) {
             return $.absoluteLink(selector.attr('href'));
         };
-        $.episodeListElementTitle = function(selector) {
+        K.episodeListElementTitle = function(selector) {
             return selector.text().replace($('.bigChar').text(),'');
         };
-        $.episodeListNextElement = function(selector, index) {
+        K.episodeListNextElement = function(selector, index) {
             if ((index-1) > -1) {
-                return $.episodeListSelector().eq(index-1);
+                return K.episodeListSelector().eq(index-1);
             }
             return $();
         };
-        $.handleNextLink = function(truelink, anime){
+        K.handleNextLink = function(truelink, anime){
             return truelink;
         };
 
-        $.urlEpisodePart = function(url) {
+        K.urlEpisodePart = function(url) {
             return url.split("/")[5].split("?")[0];
         };
-        $.urlAnimeIdent = function(url) {
+        K.urlAnimeIdent = function(url) {
             return url.split('/').slice(0,5).join('/');
         };
-        $.urlAnimeSelector = function(url) {
+        K.urlAnimeSelector = function(url) {
             return url.split("/")[4].split("?")[0];
         };
-        $.urlAnimeTitle = function(url) {
-            return $.urlAnimeSelector(url);
+        K.urlAnimeTitle = function(url) {
+            return K.urlAnimeSelector(url);
         };
 
-        $.EpisodePartToEpisode = function(string) {
+        K.EpisodePartToEpisode = function(string) {
             var temp = [];
             try{
                 string = string.replace($('.bigChar').attr('href').split('/')[2],'');
@@ -371,47 +372,47 @@
             return string;
         };
 
-        $.uiPos = function(selector) {
+        K.uiPos = function(selector) {
             selector.insertAfter($(".bigChar").first());
         };
-        $.uiWrongPos = function(selector) {
+        K.uiWrongPos = function(selector) {
             selector.insertAfter($(".bigChar").first());
         };
-        $.uiHeadPos = function(selector) {
+        K.uiHeadPos = function(selector) {
             selector.appendTo($(".barTitle").first());
         };
 
-        $.docReady = function(data) {
+        K.docReady = function(data) {
             return $( document).ready(data);
         };
 
-        $.normalUrl = function(){
-            return $.urlAnimeIdent(window.location.href);
+        K.normalUrl = function(){
+            return K.urlAnimeIdent(window.location.href);
         };
 
-        $.epListReset = function(selector) {
+        K.epListReset = function(selector) {
             selector.parent().parent().css("background-color","initial");
         };
-        $.epListActive = function(selector) {
+        K.epListActive = function(selector) {
             selector.parent().parent().css("background-color","#002966");
         };
 
-        $.bookmarkEntrySelector = function() {
+        K.bookmarkEntrySelector = function() {
             return $(".listing tr:not(.head)");
         };
 
-        $.nextEpLink = function(url) {
+        K.nextEpLink = function(url) {
             return window.location.href;
         };
 
-        $.classicBookmarkButton = function(selector, checkClassic) {
+        K.classicBookmarkButton = function(selector, checkClassic) {
             $("#rightside .barContent div").last().after('<div><input type="checkbox" id="classicBookmarks" '+checkClassic+' > Classic styling</div><div class="clear2">&nbsp;</div>');
         };
-        $.bookmarkButton = function(selector, check) {
+        K.bookmarkButton = function(selector, check) {
             $("#rightside .barContent div").last().after('<div class="clear2" style="border-bottom: 1px solid #DDD2A4;">&nbsp;</div><div class="clear2">&nbsp;</div><div><input type="checkbox" id="malBookmarks" '+check+' > MyAnimeList Bookmarks</div>');
         };
 
-        $.BookmarksStyleAfterLoad = function() {
+        K.BookmarksStyleAfterLoad = function() {
             $(".head").html('<th id="cssTableSet" style="min-width:120px;padding-right: 5px;"></th><th></th>');//<th width="21%" style=""></th>');
             $( ".listing tr td:nth-child(1)" ).before("<td class='Timage' style='padding-left: 0;'></td>");
             $( ".listing tr td:nth-child(1)" ).css("height","150px");
@@ -421,8 +422,8 @@
             });
         };
 
-        $.docReady(function(){
-            if(!$.isOverviewPage()){
+        K.docReady(function(){
+            if(!K.isOverviewPage()){
                 $('#divImage > p').each(function(index, el) {
                     $(this).attr('id', index+1).addClass('kal-image');
                 });
@@ -492,82 +493,82 @@
         //###########################
     }else if( window.location.href.indexOf("masterani.me") > -1 ){
         //#########Masterani.me#########
-        $.domain = 'https://www.masterani.me';
-        $.textColor = 'white';
-        $.dbSelector = 'Masterani';
-        $.listType = 'anime';
-        $.bookmarkCss = "";
-        $.bookmarkFixCss = "";
-        $.videoSelector = '.ui.embed';
+        K.domain = 'https://www.masterani.me';
+        K.textColor = 'white';
+        K.dbSelector = 'Masterani';
+        K.listType = 'anime';
+        K.bookmarkCss = "";
+        K.bookmarkFixCss = "";
+        K.videoSelector = '.ui.embed';
         var winLoad = 0;
 
-        $.init = function() {
+        K.init = function() {
             checkdata();
         }
 
-        $.imageCache = function(selector) {
+        K.imageCache = function(selector) {
             return $('.class').first().find('img').attr('src');
         };
 
-        $.isOverviewPage = function() {
-            if($.normalUrl().split('/')[4] !== 'watch'){
+        K.isOverviewPage = function() {
+            if(K.normalUrl().split('/')[4] !== 'watch'){
                 return true;
             }else{
                 return false;
             }
         };
-        $.episodeListSelector = function() {
+        K.episodeListSelector = function() {
             return $(".thumbnail a.title");
         };
-        $.episodeListElementHref = function(selector) {
+        K.episodeListElementHref = function(selector) {
             return $.absoluteLink(selector.attr('href'));
         };
-        $.episodeListElementTitle = function(selector) {
+        K.episodeListElementTitle = function(selector) {
             return selector.find("div").text()+' ('+selector.find("span").text()+')';
         };
-        $.episodeListNextElement = function(selector, index) {
+        K.episodeListNextElement = function(selector, index) {
             if ((index+1) > -1) {
-                return $.episodeListSelector().eq(index+1);
+                return K.episodeListSelector().eq(index+1);
             }
             return $();
         };
-        $.handleNextLink = function(truelink, anime){
+        K.handleNextLink = function(truelink, anime){
             $('.menu.pagination').off('click').on( "click", function() {
                 handleanime(anime);
             });
             if(truelink == null){
                 var nextEp = parseInt(anime['.add_anime[num_watched_episodes]'])+1;
                 if(nextEp <= parseInt(anime['totalEp'])){
-                    return '<a style="color: white;" href="/anime/watch/'+$.normalUrl().replace(/#[^#]*$/, "").replace(/\?[^\?]*$/, "").split("/")[5]+'/'+nextEp+'">Ep. '+nextEp+'</a>';
+                    return '<a style="color: white;" href="/anime/watch/'+K.normalUrl().replace(/#[^#]*$/, "").replace(/\?[^\?]*$/, "").split("/")[5]+'/'+nextEp+'">Ep. '+nextEp+'</a>';
                 }
             }
             return truelink;
         };
 
-        $.urlEpisodePart = function(url) {
+        K.urlEpisodePart = function(url) {
             return url.split("/")[6].split("?")[0];
         };
-        $.urlAnimeIdent = function(url) {
+        K.urlAnimeIdent = function(url) {
             return url.split('/').slice(0,6).join('/');
         };
-        $.urlAnimeSelector = function(url) {
+        K.urlAnimeSelector = function(url) {
             return url.split("/")[5].split("?")[0];
         };
-        $.urlAnimeTitle = function(url) {
-            return $.urlAnimeSelector(url).replace(/^\d*-/,'');
+        K.urlAnimeTitle = function(url) {
+            return K.urlAnimeSelector(url).replace(/^\d*-/,'');
         };
 
-        $.EpisodePartToEpisode = function(string) {
+        K.EpisodePartToEpisode = function(string) {
             return string;
         };
 
-        $.uiPos = function(selector) {
+        K.uiPos = function(selector) {
             selector.prependTo($("#stats").first());
         };
-        $.uiWrongPos = function(selector) {
+        K.uiWrongPos = function(selector) {
             selector.css('margin-top','5px').appendTo($(".ui.info.list").first());
         };
-        $.uiHeadPos = function(selector) {
+        K.uiHeadPos = function(selector) {
             selector.appendTo($("h1").first());
         };
 
@@ -575,7 +576,7 @@
             winLoad = 1;
         });
         if(window.location.href.indexOf("/info/") > -1){
-            $.docReady = function(data) {
+            K.docReady = function(data) {
                 var checkExist = setInterval(function() {
                     if ($('#stats').length) {
                         clearInterval(checkExist);
@@ -589,116 +590,116 @@
                 }, 500);
             };
         }else{
-            $.docReady = function(data) {
+            K.docReady = function(data) {
                 return $( document).ready(data);
             }
         };
 
-        $.normalUrl = function(){
-            return $.urlAnimeIdent(window.location.href);
+        K.normalUrl = function(){
+            return K.urlAnimeIdent(window.location.href);
         };
 
-        $.epListReset = function(selector) {
+        K.epListReset = function(selector) {
             selector.parent().parent().css("background-color","initial");
         };
-        $.epListActive = function(selector) {
+        K.epListActive = function(selector) {
             selector.parent().parent().css("background-color","#002966");
         };
 
-        $.bookmarkEntrySelector = function() {
+        K.bookmarkEntrySelector = function() {
             return $(".trAnime");
         };
 
-        $.nextEpLink = function(url) {
+        K.nextEpLink = function(url) {
             return 'https://www.masterani.me'+$('#watch .anime-info .actions a').last().attr('href');
         };
 
-        $.classicBookmarkButton = function(selector, checkfix) {
+        K.classicBookmarkButton = function(selector, checkfix) {
         };
-        $.bookmarkButton = function(selector, check) {
+        K.bookmarkButton = function(selector, check) {
         };
 
-        $.BookmarksStyleAfterLoad = function() {
+        K.BookmarksStyleAfterLoad = function() {
         };
         //###########################
     }else if( window.location.href.indexOf("9anime.") > -1 ){
         //#########9anime#########
-        $.domain = 'https://'+window.location.hostname;
-        $.textColor = '#694ba1';
-        $.dbSelector = '9anime';
-        $.listType = 'anime';
-        $.bookmarkCss = "";
-        $.bookmarkFixCss = "";
-        $.videoSelector = '#player';
+        K.domain = 'https://'+window.location.hostname;
+        K.textColor = '#694ba1';
+        K.dbSelector = '9anime';
+        K.listType = 'anime';
+        K.bookmarkCss = "";
+        K.bookmarkFixCss = "";
+        K.videoSelector = '#player';
         var winLoad = 0;
         GM_addStyle('.headui a {color: inherit !important;}');
 
-        $.init = function() {
+        K.init = function() {
             checkdata();
         }
 
-        $.imageCache = function(selector) {
+        K.imageCache = function(selector) {
             return $('.class').first().find('img').attr('src');
         };
 
-        $.isOverviewPage = function() {
-            if($.normalUrl().split('/')[4] !== 'watch'){
+        K.isOverviewPage = function() {
+            if(K.normalUrl().split('/')[4] !== 'watch'){
                 return true;
             }else{
                 return false;
             }
         };
-        $.episodeListSelector = function() {
+        K.episodeListSelector = function() {
             return $(".servers .episodes a");
         };
-        $.episodeListElementHref = function(selector) {
+        K.episodeListElementHref = function(selector) {
             return $.absoluteLink(selector.attr('href'))+'?ep='+selector.attr('data-base');
         };
-        $.episodeListElementTitle = function(selector) {
+        K.episodeListElementTitle = function(selector) {
             if(selector.text() == ''){
                 return '';
             }
             return 'Episode '+selector.text();
         };
-        $.episodeListNextElement = function(selector, index) {
+        K.episodeListNextElement = function(selector, index) {
             if ((index+1) > -1) {
-                return $.episodeListSelector().eq(index+1);
+                return K.episodeListSelector().eq(index+1);
             }
             return $();
         };
-        $.handleNextLink = function(truelink, anime){
+        K.handleNextLink = function(truelink, anime){
             return truelink;
         };
 
-        $.urlEpisodePart = function(url) {
+        K.urlEpisodePart = function(url) {
             return url.split('?ep=')[1];
         };
-        $.urlAnimeIdent = function(url) {
+        K.urlAnimeIdent = function(url) {
             return url.split('/').slice(0,5).join('/');
         };
-        $.urlAnimeSelector = function(url) {
+        K.urlAnimeSelector = function(url) {
                 url = url.split("/")[4].split("?")[0];
             if( url.indexOf(".") > -1 ){
                 url = url.split(".")[1];
             }
             return url;
         };
-        $.urlAnimeTitle = function(url) {
+        K.urlAnimeTitle = function(url) {
             return url.split("/")[4].split("?")[0].split(".")[0];
         };
 
-        $.EpisodePartToEpisode = function(string) {
+        K.EpisodePartToEpisode = function(string) {
             return string;
         };
 
-        $.uiPos = function(selector) {
+        K.uiPos = function(selector) {
             $('<div class="widget info"><div class="widget-body"> '+selector.html()+'</div></div>').insertBefore($(".widget.info").first());
         };
-        $.uiWrongPos = function(selector) {
+        K.uiWrongPos = function(selector) {
             selector.css('font-size','14px').insertBefore($("#info").first());
             $('.title').first().css('display', 'inline-block');
         };
-        $.uiHeadPos = function(selector) {
+        K.uiHeadPos = function(selector) {
             selector.addClass('title').css('margin-right','0').appendTo($(".widget.player .widget-title").first());
         };
 
@@ -706,7 +707,7 @@
             winLoad = 1;
         });
         if(window.location.href.indexOf("/info/") > -1){
-            $.docReady = function(data) {
+            K.docReady = function(data) {
                 var checkExist = setInterval(function() {
                     if ($('#stats').length) {
                         clearInterval(checkExist);
@@ -720,40 +721,40 @@
                 }, 500);
             };
         }else{
-            $.docReady = function(data) {
+            K.docReady = function(data) {
                 return $( document).ready(data);
             }
         };
 
-        $.normalUrl = function(){
-            return $.urlAnimeIdent(window.location.href);
+        K.normalUrl = function(){
+            return K.urlAnimeIdent(window.location.href);
         };
 
-        $.epListReset = function(selector) {
+        K.epListReset = function(selector) {
             selector.css("border-style","none");
         };
-        $.epListActive = function(selector) {
+        K.epListActive = function(selector) {
             selector.css("border-color","#002966").css("border-width","2px").css("border-style","solid");
         };
 
-        $.bookmarkEntrySelector = function() {
+        K.bookmarkEntrySelector = function() {
             return $(".trAnime");
         };
 
-        $.nextEpLink = function(url) {
-            return $.domain+$(".servers .episodes a.active").parent('li').next().find('a').attr('href');
+        K.nextEpLink = function(url) {
+            return K.domain+$(".servers .episodes a.active").parent('li').next().find('a').attr('href');
         };
 
-        $.classicBookmarkButton = function(selector, checkfix) {
+        K.classicBookmarkButton = function(selector, checkfix) {
         };
-        $.bookmarkButton = function(selector, check) {
+        K.bookmarkButton = function(selector, check) {
         };
 
-        $.BookmarksStyleAfterLoad = function() {
+        K.BookmarksStyleAfterLoad = function() {
         };
 
         var tempEpisode = "";
-        $.docReady(function(){
+        K.docReady(function(){
             document.addEventListener("load", event =>{
                 var curEpisode = $(".servers .episodes a.active").attr('data-base');
                 if(curEpisode !== tempEpisode){
@@ -767,7 +768,7 @@
                         animechange['.add_anime[num_watched_episodes]'] = parseInt(curEpisode);
                         animechange['checkIncrease'] = 1;
                         animechange['forceUpdate'] = 1;
-                        setanime( $.normalUrl(),animechange);
+                        setanime( K.normalUrl(),animechange);
                     }
                 }
             }, true);
@@ -781,16 +782,16 @@
         if(window.location.href == 'http://www.crunchyroll.com/'){
             return;
         }
-        $.domain = 'http://www.crunchyroll.com';
-        $.textColor = 'black';
-        $.dbSelector = 'Crunchyroll';
-        $.listType = 'anime';
-        $.bookmarkCss = "";
-        $.bookmarkFixCss = "";
-        $.videoSelector = '#showmedia_video_box_wide,#showmedia_video_box';
+        K.domain = 'http://www.crunchyroll.com';
+        K.textColor = 'black';
+        K.dbSelector = 'Crunchyroll';
+        K.listType = 'anime';
+        K.bookmarkCss = "";
+        K.bookmarkFixCss = "";
+        K.videoSelector = '#showmedia_video_box_wide,#showmedia_video_box';
         GM_addStyle('.headui a {color: black !important;} #malp{margin-bottom: 8px;}');
 
-        $.init = function() {
+        K.init = function() {
             $( document).ready(function(){
                 if( $('.season-dropdown').length > 1){
                     $('.season-dropdown').append('<span class="exclusivMal" style="float: right; margin-right: 20px; color: #0A6DA4;" onclick="return false;">MAL</span>');
@@ -820,11 +821,11 @@
             });
         }
 
-        $.imageCache = function(selector) {
+        K.imageCache = function(selector) {
             return $('#rightside').find('img').attr('src');
         };
 
-        $.isOverviewPage = function() {
+        K.isOverviewPage = function() {
             if(typeof window.location.href.split('/')[4] != 'undefined'){
                 if($('#showmedia_video').length){
                     return false;
@@ -832,29 +833,29 @@
             }
             return true;
         };
-        $.episodeListSelector = function() {
+        K.episodeListSelector = function() {
             return $("#showview_content_videos .list-of-seasons .group-item a");
         };
-        $.episodeListElementHref = function(selector) {
+        K.episodeListElementHref = function(selector) {
             return $.absoluteLink(selector.attr('href'));
         };
-        $.episodeListElementTitle = function(selector) {
+        K.episodeListElementTitle = function(selector) {
             return selector.find('.series-title').text();
         };
-        $.episodeListNextElement = function(selector, index) {//TODO
+        K.episodeListNextElement = function(selector, index) {//TODO
             if ((index-1) > -1) {
-                return $.episodeListSelector().eq(index-1);
+                return K.episodeListSelector().eq(index-1);
             }
             return $();
         };
-        $.handleNextLink = function(truelink, anime){
+        K.handleNextLink = function(truelink, anime){
             return truelink;
         };
 
-        $.urlEpisodePart = function(url) {
+        K.urlEpisodePart = function(url) {
             return url.split("/")[4];
         };
-        $.urlAnimeIdent = function(url) {
+        K.urlAnimeIdent = function(url) {
             return url.split('/').slice(0,4).join('/');
         };
         /*$( document).ready(function(){//TODO
@@ -875,8 +876,8 @@
             script = script.split('mediaMetadata =')[1].split('"name":"')[1].split(' -')[0];
             alert(script);
         });*/
-        $.urlAnimeSelector = function(url) {
-            if($.isOverviewPage()){
+        K.urlAnimeSelector = function(url) {
+            if(K.isOverviewPage()){
                 if( $('.season-dropdown').length > 1){
                     $('<div>Kissanimelist does not support multiple seasons on one page</div>').uiPos();
                     throw new Error('Kissanimelist does not support multiple seasons');
@@ -896,11 +897,11 @@
                 return url.split("/")[3];
             }
         };
-        $.urlAnimeTitle = function(url) {
-            return $.urlAnimeSelector(url);
+        K.urlAnimeTitle = function(url) {
+            return K.urlAnimeSelector(url);
         };
 
-        $.EpisodePartToEpisode = function(string) {
+        K.EpisodePartToEpisode = function(string) {
             var temp = [];
             temp = string.match(/[e,E][p,P][i,I]?[s,S]?[o,O]?[d,D]?[e,E]?\D?\d+/);
             if(temp !== null){
@@ -917,8 +918,8 @@
             return string;
         };
 
-        $.uiPos = function(selector) {//TODO
-            if($.isOverviewPage()){
+        K.uiPos = function(selector) {//TODO
+            if(K.isOverviewPage()){
                 //selector.insertAfter($("h1.ellipsis"));
                 selector.insertBefore($("#tabs").first());
                 $('#malStatus option').css('background-color','#f2f2f2');
@@ -926,44 +927,44 @@
                 //selector.prependTo($('.season-dropdown'));
             }
         };
-        $.uiWrongPos = function(selector) {//TODO after second element
+        K.uiWrongPos = function(selector) {//TODO after second element
             //selector.prependTo($("#sidebar_elements").first());
         };
-        $.uiHeadPos = function(selector) {//TODO
+        K.uiHeadPos = function(selector) {//TODO
             selector.appendTo($(".ellipsis").first());
         };
 
-        $.docReady = function(data) {
+        K.docReady = function(data) {
             return $( document).ready(data);
         };
 
-        $.normalUrl = function(){
-            return $.urlAnimeIdent(window.location.href);
+        K.normalUrl = function(){
+            return K.urlAnimeIdent(window.location.href);
         };
 
-        $.epListReset = function(selector) {
+        K.epListReset = function(selector) {
             selector.css("background-color","#fff");
         };
-        $.epListActive = function(selector) {
+        K.epListActive = function(selector) {
             selector.css("background-color","#b2d1ff");
         };
 
-        $.bookmarkEntrySelector = function() {
+        K.bookmarkEntrySelector = function() {
             //return $(".trAnime");
         };
 
-        $.nextEpLink = function(url) {
+        K.nextEpLink = function(url) {
             return 'http://www.crunchyroll.com'+$('.collection-carousel-media-link-current').parent().next().find('.link').attr('href');
         };
 
-        $.classicBookmarkButton = function(selector, checkClassic) {
+        K.classicBookmarkButton = function(selector, checkClassic) {
 
         };
-        $.bookmarkButton = function(selector, check) {
+        K.bookmarkButton = function(selector, check) {
 
         };
 
-        $.BookmarksStyleAfterLoad = function() {
+        K.BookmarksStyleAfterLoad = function() {
 
         };
         //###########################
@@ -972,136 +973,136 @@
         if(!window.location.href.split('/')[3]){
             return;
         }
-        $.domain = window.location.href.split('/').slice(0,3).join('/')+'/';
-        $.textColor = 'white';
-        $.dbSelector = 'Gogoanime';
-        $.listType = 'anime';
-        $.bookmarkCss = "";
-        $.bookmarkFixCss = "";
-        $.videoSelector = '.anime_video_body_watch_items';
+        K.domain = window.location.href.split('/').slice(0,3).join('/')+'/';
+        K.textColor = 'white';
+        K.dbSelector = 'Gogoanime';
+        K.listType = 'anime';
+        K.bookmarkCss = "";
+        K.bookmarkFixCss = "";
+        K.videoSelector = '.anime_video_body_watch_items';
         var winLoad = 0;
         GM_addStyle('.headui a {color: inherit !important;}');
 
-        $.init = function() {
+        K.init = function() {
             checkdata();
         }
 
-        $.imageCache = function(selector) {
+        K.imageCache = function(selector) {
             return $('.class').first().find('img').attr('src');
         };
 
-        $.isOverviewPage = function() {
+        K.isOverviewPage = function() {
             if(window.location.href.split('/')[3] === 'category'){
                 return true;
             }else{
                 return false;
             }
         };
-        $.episodeListSelector = function() {
+        K.episodeListSelector = function() {
             return $("#episode_related a");
         };
-        $.episodeListElementHref = function(selector) {
-            return $.domain+selector.attr('href').replace(' /','');
+        K.episodeListElementHref = function(selector) {
+            return K.domain+selector.attr('href').replace(' /','');
         };
-        $.episodeListElementTitle = function(selector) {
+        K.episodeListElementTitle = function(selector) {
             return selector.find("div.name").text();
         };
-        $.episodeListNextElement = function(selector, index) {
+        K.episodeListNextElement = function(selector, index) {
             if ((index-1) > -1) {
-                return $.episodeListSelector().eq(index-1);
+                return K.episodeListSelector().eq(index-1);
             }
             return $();
         };
-        $.handleNextLink = function(truelink, anime){
+        K.handleNextLink = function(truelink, anime){
             if(truelink == null){
                 var nextEp = parseInt(anime['.add_anime[num_watched_episodes]'])+1;
                 if(nextEp <= parseInt(anime['totalEp'])){
-                    return '<a style="color: white;" href="/'+$.normalUrl().split('/')[4]+'-episode-'+nextEp+'">Ep '+nextEp+'</a>';
+                    return '<a style="color: white;" href="/'+K.normalUrl().split('/')[4]+'-episode-'+nextEp+'">Ep '+nextEp+'</a>';
                 }
             }
             return truelink;
         };
 
-        $.urlEpisodePart = function(url) {
+        K.urlEpisodePart = function(url) {
             return url.split("/")[3].split("?")[0].split('episode-')[1];
         };
-        $.urlAnimeIdent = function(url) {
+        K.urlAnimeIdent = function(url) {
             if(url.split('/')[3] === 'category'){
                 return url.split('/').slice(0,5).join('/');
             }else{
                 return url.split('/').slice(0,3).join('/') + '/category/' + url.split("/")[3].split("?")[0].split('-episode')[0];
             }
         };
-        $.urlAnimeSelector = function(url) {
+        K.urlAnimeSelector = function(url) {
             return url.split("/")[4].split("?")[0];
         };
-        $.urlAnimeTitle = function(url) {
-            return $.urlAnimeSelector(url);
+        K.urlAnimeTitle = function(url) {
+            return K.urlAnimeSelector(url);
         };
 
-        $.EpisodePartToEpisode = function(string) {
+        K.EpisodePartToEpisode = function(string) {
             return string;
         };
 
-        $.uiPos = function(selector) {
+        K.uiPos = function(selector) {
             selector.prependTo($(".anime_info_body").first());
         };
-        $.uiWrongPos = function(selector) {//TODO
+        K.uiWrongPos = function(selector) {//TODO
             selector.css('margin-top','5px').appendTo($(".ui.info.list").first());
         };
-        $.uiHeadPos = function(selector) {//TODO
+        K.uiHeadPos = function(selector) {//TODO
             selector.appendTo($("h1").first());
         };
 
-        $.docReady = function(data) {
+        K.docReady = function(data) {
             return $( document).ready(data);
         };
 
-        $.normalUrl = function(){
-            return $.urlAnimeIdent(window.location.href);
+        K.normalUrl = function(){
+            return K.urlAnimeIdent(window.location.href);
         };
 
-        $.epListReset = function(selector) {
+        K.epListReset = function(selector) {
             selector.css("background-color","#363636");
         };
-        $.epListActive = function(selector) {
+        K.epListActive = function(selector) {
             selector.css("background-color","#002966");
         };
 
-        $.bookmarkEntrySelector = function() {
+        K.bookmarkEntrySelector = function() {
         };
 
-        $.nextEpLink = function(url) {
-            var url = $.domain + 's..' + $('.anime_video_body_episodes_r a').last().attr('href');
+        K.nextEpLink = function(url) {
+            var url = K.domain + 's..' + $('.anime_video_body_episodes_r a').last().attr('href');
             return url.replace('/s..','');
         };
 
-        $.classicBookmarkButton = function(selector, checkfix) {
+        K.classicBookmarkButton = function(selector, checkfix) {
         };
-        $.bookmarkButton = function(selector, check) {
+        K.bookmarkButton = function(selector, check) {
         };
 
-        $.BookmarksStyleAfterLoad = function() {
+        K.BookmarksStyleAfterLoad = function() {
         };
         //###########################
     }else if( window.location.href.indexOf("myanimelist.net") > -1 ){
         googleover = 1;
-        $.listType = window.location.href.split('/')[3];
-        $.isOverviewPage = function() {
+        K.listType = window.location.href.split('/')[3];
+        K.isOverviewPage = function() {
             return false;
         };
-        $.urlAnimeSelector = function(url) {
+        K.urlAnimeSelector = function(url) {
             return $('.h1 span').first().text();
         };
-        $.urlAnimeTitle = function(url) {
-            return $.urlAnimeSelector(url);
+        K.urlAnimeTitle = function(url) {
+            return K.urlAnimeSelector(url);
         };
-        $.docReady = function(data) {
+        K.docReady = function(data) {
             return $( document).ready(data);
         };
     }
     //#######Anime or Manga######
-    if($.listType == 'anime'){
+    if(K.listType == 'anime'){
         var googleMalUrl = "site:myanimelist.net/Anime/+-site:myanimelist.net/Anime/genre/+-site:myanimelist.net/anime/season/+";
         var middleType = 'episodes';
         var middleVerb = 'watched';
@@ -1122,7 +1123,7 @@
         if (typeof url === "undefined") {
             return url;
         }
-        if(!url.startsWith("http")) { url = $.domain + url;}
+        if(!url.startsWith("http")) { url = K.domain + url;}
         return url;
     };
     $.titleToDbKey = function(title) {

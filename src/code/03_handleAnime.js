@@ -4,9 +4,9 @@
 
         miniMalButton(anime['malurl']);
 
-        if(GM_getValue( $.dbSelector+'/'+$.titleToDbKey($.urlAnimeSelector($.urlAnimeIdent($.normalUrl())))+'/image' , null) == null ){
+        if(GM_getValue( K.dbSelector+'/'+$.titleToDbKey(K.urlAnimeSelector(K.urlAnimeIdent(K.normalUrl())))+'/image' , null) == null ){
             try{
-                GM_setValue( $.dbSelector+'/'+$.titleToDbKey($.urlAnimeSelector($.urlAnimeIdent($.normalUrl())))+'/image', $.imageCache('') );
+                GM_setValue( K.dbSelector+'/'+$.titleToDbKey(K.urlAnimeSelector(K.urlAnimeIdent(K.normalUrl())))+'/image', K.imageCache('') );
             }catch(e){}
         }
         if(anime['login'] === 0){
@@ -18,17 +18,17 @@
             getcommondata(anime['malurl']);
             return;
         }
-        if($.isOverviewPage()){
-            $("#flash").attr("anime", anime['.'+$.listType+'_id']);
+        if(K.isOverviewPage()){
+            $("#flash").attr("anime", anime['.'+K.listType+'_id']);
             $("#malRating").attr("href", anime['malurl']);
-            if(isNaN(anime['.add_'+$.listType+'[status]'])){
+            if(isNaN(anime['.add_'+K.listType+'[status]'])){
                 $('.MalLogin').css("display","none");
                 $("#malRating").after("<span id='AddMalDiv'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href='#' id='AddMal' onclick='return false;'>Add to Mal</a></span>")
                 $('#AddMal').click(function() {
                     var anime = {};
-                    anime['.add_'+$.listType+'[status]'] = 6;
+                    anime['.add_'+K.listType+'[status]'] = 6;
                     anime['forceUpdate'] = 1;
-                    setanime($.normalUrl(),anime);
+                    setanime(K.normalUrl(),anime);
                 });
             }else{
                 $("#malTotal").text(anime['totalEp']);
@@ -36,9 +36,9 @@
                    $("#malTotal").text('?');
                 }
                 if(anime['forceUpdate'] != 2){
-                    $("#malStatus").val(anime['.add_'+$.listType+'[status]']);
+                    $("#malStatus").val(anime['.add_'+K.listType+'[status]']);
                     $("#malEpisodes").val(anime['.add_anime[num_watched_episodes]']);
-                    $("#malUserRating").val(anime['.add_'+$.listType+'[score]']);
+                    $("#malUserRating").val(anime['.add_'+K.listType+'[score]']);
 
                     //####Manga####
                     $("#malVolumes").val(anime['.add_manga[num_read_volumes]']);
@@ -63,43 +63,43 @@
             var linkbackup = null;
             var truelink = null;
             $('.lastOpen').remove();
-            $.episodeListSelector().each(function( index ) {
-                if($.listType == 'anime'){
+            K.episodeListSelector().each(function( index ) {
+                if(K.listType == 'anime'){
                     if(debug){
-                        $(this).after('  Episode: '+urlToEpisode($.episodeListElementHref($(this))));
+                        $(this).after('  Episode: '+urlToEpisode(K.episodeListElementHref($(this))));
                     }
                     try{
-                        episodelink = urlToEpisode($.episodeListElementHref($(this)));
+                        episodelink = urlToEpisode(K.episodeListElementHref($(this)));
                     }catch(e) {
                         episodelink = 1;
                     }
-                    $.epListReset($(this));
+                    K.epListReset($(this));
                     if(episodelink == parseInt(anime['.add_anime[num_watched_episodes]'])){
-                        $.epListActive($(this));
-                        if(typeof $.episodeListElementHref($.episodeListNextElement($(this), index)) !== "undefined"){
-                            truelink = '<a style="color: white;" href="'+$.episodeListElementHref($.episodeListNextElement($(this), index))+'">'+$.episodeListElementTitle($.episodeListNextElement($(this), index))+'</a>';
+                        K.epListActive($(this));
+                        if(typeof K.episodeListElementHref(K.episodeListNextElement($(this), index)) !== "undefined"){
+                            truelink = '<a style="color: white;" href="'+K.episodeListElementHref(K.episodeListNextElement($(this), index))+'">'+K.episodeListElementTitle(K.episodeListNextElement($(this), index))+'</a>';
                         }
                     }
                 }else{
                     if(debug){
-                        $(this).after('   Chapter: '+urlToChapter($.episodeListElementHref($(this))));
-                        $(this).after('Volume: '+urlToVolume($.episodeListElementHref($(this))));
+                        $(this).after('   Chapter: '+urlToChapter(K.episodeListElementHref($(this))));
+                        $(this).after('Volume: '+urlToVolume(K.episodeListElementHref($(this))));
                     }
-                    episodelink = urlToChapter($.episodeListElementHref($(this)));
-                    $.epListReset($(this));
+                    episodelink = urlToChapter(K.episodeListElementHref($(this)));
+                    K.epListReset($(this));
                     if($(this).attr('href') == commentToUrl(anime['.add_manga[comments]'])){
                         $(this).parent().parent().css("background-color","#861515");
-                        linkbackup = '<a style="color: red;" href="'+$.episodeListElementHref($.episodeListNextElement($(this), index))+'">'+$.episodeListElementTitle($.episodeListNextElement($(this), index))+'</a>';
+                        linkbackup = '<a style="color: red;" href="'+K.episodeListElementHref(K.episodeListNextElement($(this), index))+'">'+K.episodeListElementTitle(K.episodeListNextElement($(this), index))+'</a>';
                         $(this).prepend('<span class="lastOpen">[Last opened]</span>');
                     }
                     if(episodelink == parseInt(anime['.add_manga[num_read_chapters]']) && parseInt(anime['.add_manga[num_read_chapters]']) != 0){
                         $(this).parent().parent().css("background-color","#002966");
-                        truelink = '<a style="color: white;" href="'+$.episodeListElementHref($.episodeListNextElement($(this), index))+'">'+$.episodeListElementTitle($.episodeListNextElement($(this), index))+'</a>';
+                        truelink = '<a style="color: white;" href="'+K.episodeListElementHref(K.episodeListNextElement($(this), index))+'">'+K.episodeListElementTitle(K.episodeListNextElement($(this), index))+'</a>';
                     }
                 }
             });
-            truelink = $.handleNextLink(truelink, anime);
-            if($.listType == 'anime'){
+            truelink = K.handleNextLink(truelink, anime);
+            if(K.listType == 'anime'){
                 $(".headui").html(truelink);
             }else{
                 if(truelink == null){
@@ -111,7 +111,7 @@
                 }
             }
         }else{
-            if($.listType == 'anime'){
+            if(K.listType == 'anime'){
                 //update
                 try{
                     var curEpisode = urlToEpisode(window.location.href);
@@ -132,15 +132,15 @@
             }
             animechange['checkIncrease'] = 1;
             setTimeout(function() {
-                setanime( $.normalUrl(),animechange);
+                setanime( K.normalUrl(),animechange);
             }, delay * 1000);
         }
     }
 
     function urlToEpisode(url){
-        var string = $.urlEpisodePart(url);
-        string = $.EpisodePartToEpisode(string);
-        var Offset = GM_getValue($.dbSelector+'/'+$.titleToDbKey($.urlAnimeSelector($.urlAnimeIdent(url)))+'/Offset' , null);
+        var string = K.urlEpisodePart(url);
+        string = K.EpisodePartToEpisode(string);
+        var Offset = GM_getValue(K.dbSelector+'/'+$.titleToDbKey(K.urlAnimeSelector(K.urlAnimeIdent(url)))+'/Offset' , null);
         if( Offset != null){
             string = parseInt(string)+parseInt(Offset);
         }
@@ -187,20 +187,20 @@
         if(update.indexOf("masterani.me") > -1 && update.indexOf("/watch/") > -1){
             update = update.replace('/watch/','/info/');
         }
-        if($.listType == 'anime'){
+        if(K.listType == 'anime'){
             GM_setValue( update+'/next', nextEp);
         }else{
             GM_setValue( update+'/next', 'manga');
         }
 
-        GM_setValue( update+'/nextEp', $.nextEpLink(update));
+        GM_setValue( update+'/nextEp', K.nextEpLink(update));
         return current;
     }
 
     function handleanimeupdate( anime, current){
-        if($.listType == 'anime'){
+        if(K.listType == 'anime'){
             if(anime['checkIncrease'] === 1){
-                anime['.add_anime[tags]'] = handleTag($.urlAnimeIdent(window.location.href), current['.add_anime[tags]'], anime['.add_anime[num_watched_episodes]']+1);
+                anime['.add_anime[tags]'] = handleTag(K.urlAnimeIdent(window.location.href), current['.add_anime[tags]'], anime['.add_anime[num_watched_episodes]']+1);
                 if(current['.add_anime[num_watched_episodes]'] >= anime['.add_anime[num_watched_episodes]']){
                     if((anime['.add_anime[status]'] === 2 || current['.add_anime[status]'] === 2) && anime['.add_anime[num_watched_episodes]'] === 1){
                         if (confirm('Rewatch anime?')) {
@@ -256,7 +256,7 @@
         }else{
             if(anime['checkIncrease'] === 1){
                 current['checkIncrease'] = 1;
-                anime['.add_manga[tags]'] = handleTag($.urlAnimeIdent(window.location.href), current['.add_manga[tags]'], anime['.add_manga[num_read_chapters]']+1);
+                anime['.add_manga[tags]'] = handleTag(K.urlAnimeIdent(window.location.href), current['.add_manga[tags]'], anime['.add_manga[num_read_chapters]']+1);
                 if(current['.add_manga[num_read_chapters]'] >= anime['.add_manga[num_read_chapters]']){
                     if((anime['.add_manga[status]'] === 2 || current['.add_manga[status]'] === 2) && anime['.add_manga[num_read_chapters]'] === 1){
                         if (confirm('Reread Manga?')) {

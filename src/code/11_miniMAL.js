@@ -280,7 +280,7 @@
               $("#info-iframe").contents().find('#malSearchPop').hide();
             }else{
               $("#info-iframe").contents().find('#malSearchPop').show();
-              searchMal($("#info-iframe").contents().find("#headMalSearch").val(), $.listType, '#malSearchPopInner', function(){
+              searchMal($("#info-iframe").contents().find("#headMalSearch").val(), K.listType, '#malSearchPopInner', function(){
                 $("#info-iframe").contents().find("#malSearchPop .searchItem").unbind('click').click(function(event) {
                   $("#info-iframe").contents().find("#headMalSearch").val('').trigger("input").parent().parent().removeClass('is-dirty');
                   $("#info-iframe").contents().find('.malClear').hide();
@@ -362,7 +362,7 @@
             var settingsUI = '<ul class="demo-list-control mdl-list" style="margin: 0px; padding: 0px;">\
             <div class="mdl-grid">';
             try{
-              var malUrl = GM_getValue($.dbSelector+'/'+$.titleToDbKey($.urlAnimeSelector($.normalUrl()))+'/Mal' , null);
+              var malUrl = GM_getValue(K.dbSelector+'/'+$.titleToDbKey(K.urlAnimeSelector(K.normalUrl()))+'/Mal' , null);
             }catch(e){
               var malUrl = null;
             }
@@ -380,7 +380,7 @@
                                 </div>\
                                   <div class="mdl-list__item">\
                                   <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width: 100%;">\
-                                      <input class="mdl-textfield__input" style="padding-right: 18px;" type="number" step="1" id="malOffset" value="'+GM_getValue($.dbSelector+'/'+$.titleToDbKey($.urlAnimeSelector($.normalUrl()))+'/Offset' , '')+'">\
+                                      <input class="mdl-textfield__input" style="padding-right: 18px;" type="number" step="1" id="malOffset" value="'+GM_getValue(K.dbSelector+'/'+$.titleToDbKey(K.urlAnimeSelector(K.normalUrl()))+'/Offset' , '')+'">\
                                   <label class="mdl-textfield__label" for="malOffset">Episode Offset</label>\
                                     '+getTooltip('Input the episode offset, if an anime has 12 episodes, but uses the numbers 0-11 rather than 1-12, you simply type " +1 " in the episode offset.','float: right; margin-top: -17px;','left')+'\
                                   </div>\
@@ -554,14 +554,14 @@
             $("#info-iframe").contents().find('#malConfig').html(settingsUI);
 
             $("#info-iframe").contents().find("#malReset").click( function(){
-                GM_deleteValue( $.dbSelector+'/'+$.titleToDbKey($.urlAnimeSelector($.normalUrl()))+'/Mal' );
+                GM_deleteValue( K.dbSelector+'/'+$.titleToDbKey(K.urlAnimeSelector(K.normalUrl()))+'/Mal' );
                 flashm( "MyAnimeList url reset" , false);
                 checkdata();
             });
 
             $("#info-iframe").contents().find("#malSubmit").click( function(){
                 var murl = $("#info-iframe").contents().find("#malUrlInput").val();
-                local_setValue($.normalUrl(), murl, true);
+                local_setValue(K.normalUrl(), murl, true);
                 flashm( "new url '"+murl+"' set." , false);
                 checkdata();
             });
@@ -615,10 +615,10 @@
                 var Offset = $("#info-iframe").contents().find("#malOffset").val();
                 if(Offset !== null){
                     if(Offset !== ''){
-                        GM_setValue( $.dbSelector+'/'+$.titleToDbKey($.urlAnimeSelector($.normalUrl()))+'/Offset', Offset );
+                        GM_setValue( K.dbSelector+'/'+$.titleToDbKey(K.urlAnimeSelector(K.normalUrl()))+'/Offset', Offset );
                         flashm( "New Offset ("+Offset+") set." , false);
                     }else{
-                        GM_deleteValue( $.dbSelector+'/'+$.titleToDbKey($.urlAnimeSelector($.normalUrl()))+'/Offset' );
+                        GM_deleteValue( K.dbSelector+'/'+$.titleToDbKey(K.urlAnimeSelector(K.normalUrl()))+'/Offset' );
                         flashm( "Offset reset" , false);
                     }
                 }
@@ -628,7 +628,7 @@
             $("#info-iframe").contents().find("#malSearch").on("input", function(){
               clearTimeout(timer);
               timer = setTimeout(function(){
-                searchMal( $("#info-iframe").contents().find("#malSearch").val(), $.listType, '.malResults', function(){
+                searchMal( $("#info-iframe").contents().find("#malSearch").val(), K.listType, '.malResults', function(){
                   $("#info-iframe").contents().find("#malSearchResults .searchItem").unbind('click').click(function(event) {
                     $("#info-iframe").contents().find('#malUrlInput').val($(this).attr('malhref'));
                     $("#info-iframe").contents().find('#malSearch').val('');
@@ -1019,7 +1019,7 @@
                       anime['.add_'+localListType+'[score]'] = '';
                   }
                   anime['.add_'+localListType+'[status]'] = parseInt($("#info-iframe").contents().find('#myinfo_status').val() );
-                  if($.isOverviewPage()){
+                  if(K.isOverviewPage()){
                     anime['forceUpdate'] = 2;
                   }
                   anime['malurl'] = url;
@@ -1343,7 +1343,7 @@
         });
     }
 
-    function iframeBookmarks(element, state = 1, localListType = $.listType){
+    function iframeBookmarks(element, state = 1, localListType = K.listType){
         element.html('<div id="loadRecommendations" class="mdl-progress mdl-js-progress mdl-progress__indeterminate" style="width: 100%; position: absolute;"></div>');
         executejs('componentHandler.upgradeDom();');
 
@@ -1502,14 +1502,14 @@
           }
 
           function reposition(){
-              $($.videoSelector).css('transform', '');
+              $(K.videoSelector).css('transform', '');
 
               if(!$(minimalSelector).is(":visible")){
                   return;
               }
 
-              var videoLeft = $($.videoSelector).offset().left;
-              var videoWidth = $($.videoSelector).width();
+              var videoLeft = $(K.videoSelector).offset().left;
+              var videoWidth = $(K.videoSelector).width();
               var videoRight = videoLeft + videoWidth;
             var minimalLeft = $(minimalSelector).offset().left;
             var minimalRight = minimalLeft + $(minimalSelector).width();
@@ -1541,9 +1541,9 @@
                 var scale = Width / videoWidth;
                 Left = Left - videoLeft;
                 Left = Left / scale;
-                $($.videoSelector).css('transform', 'scale('+scale+') translateX('+Left+'px)');
-                $($.videoSelector).css('transform-origin', '0% 50%');
-                $($.videoSelector).css('transition', '0s');
+                $(K.videoSelector).css('transform', 'scale('+scale+') translateX('+Left+'px)');
+                $(K.videoSelector).css('transform-origin', '0% 50%');
+                $(K.videoSelector).css('transition', '0s');
             }
           }
         }catch(e){}

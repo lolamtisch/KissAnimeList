@@ -1,16 +1,16 @@
     var fireExists = 0;
-    function getanime(thisUrl , callback, absolute = false, localListType = $.listType) {
+    function getanime(thisUrl , callback, absolute = false, localListType = K.listType) {
         var thisUrl = thisUrl;
         var url = '';
         var malurl = '';
-        var title = $.urlAnimeTitle(thisUrl);
+        var title = K.urlAnimeTitle(thisUrl);
         if(absolute === false){
             //url = "http://myanimelist.net/anime.php?q=" + encodeURI(formattitle(title));
             //url = "http://www.google.com/search?btnI&q=site:myanimelist.net/Anime/+-site:myanimelist.net/Anime/genre/+-site:myanimelist.net/anime/season/+"+encodeURI(formattitle(title));
-            url = 'https://kissanimelist.firebaseio.com/Data2/'+$.dbSelector+'/'+encodeURIComponent($.titleToDbKey($.urlAnimeSelector(thisUrl))).toLowerCase()+'/Mal.json';
-            if(GM_getValue( $.dbSelector+'/'+$.titleToDbKey($.urlAnimeSelector(thisUrl))+'/Mal' , null) !== null ){
+            url = 'https://kissanimelist.firebaseio.com/Data2/'+K.dbSelector+'/'+encodeURIComponent($.titleToDbKey(K.urlAnimeSelector(thisUrl))).toLowerCase()+'/Mal.json';
+            if(GM_getValue( K.dbSelector+'/'+$.titleToDbKey(K.urlAnimeSelector(thisUrl))+'/Mal' , null) !== null ){
                 //if(con != console){
-                    url = GM_getValue( $.dbSelector+'/'+$.titleToDbKey($.urlAnimeSelector(thisUrl))+'/Mal' , null);
+                    url = GM_getValue( K.dbSelector+'/'+$.titleToDbKey(K.urlAnimeSelector(thisUrl))+'/Mal' , null);
                 //}
                 con.log('[GET] Cache:', url);
             }
@@ -20,7 +20,7 @@
         }
 
         if(url == '' || url == null){
-            GM_setValue($.dbSelector+'/'+$.titleToDbKey($.urlAnimeSelector($.normalUrl()))+'/Mal' , null);
+            GM_setValue(K.dbSelector+'/'+$.titleToDbKey(K.urlAnimeSelector(K.normalUrl()))+'/Mal' , null);
             loadingText = "No Mal Entry!";
             $("#MalInfo").text("No Mal Entry!");
             miniMalButton(null);
@@ -73,7 +73,7 @@
 
                 if(url.indexOf("ipv4.google.com") > -1) {
                     googleover = 1;
-                    $.docReady(function() {
+                    K.docReady(function() {
                         flashm( "Google Overloaded <br> <a target='_blank' href='"+url+"'>Solve captcha<a>" , true);
                         url = "http://myanimelist.net/"+localListType+".php?q=" + encodeURI(formattitle(title));
                         getanime(thisUrl, callback, url);
@@ -93,7 +93,7 @@
                     var data = response.responseText;
                     if(data.indexOf("getElementById('captcha')") > -1){ //Firefox no absolute url workaround TODO:
                         googleover = 1;
-                        $.docReady(function() {
+                        K.docReady(function() {
                             flashm( "Google Overloaded", true);// <br> <a target='_blank' href='"+url+"'>Solve captcha<a>" , true);
                             url = "http://myanimelist.net/"+localListType+".php?q=" + encodeURI(formattitle(title));
                             getanime(thisUrl, callback, url);
@@ -123,7 +123,7 @@
                             var anime = {};
                             anime['login'] = 0;
                             anime['malurl'] = malurl;
-                            $.docReady(function() {
+                            K.docReady(function() {
                                 callback(anime);
                             });
                         }else{
@@ -134,7 +134,7 @@
                                 return;
                             }
                             var anime = getObject(response.responseText,malurl,localListType);
-                            $.docReady(function() {
+                            K.docReady(function() {
                                 callback(anime);
                             });
                         }
@@ -237,7 +237,7 @@
     }
 
     var continueAllowed = 1;
-    function setanime(thisUrl ,anime, actual = null, localListType = $.listType) {
+    function setanime(thisUrl ,anime, actual = null, localListType = K.listType) {
         var undoAnime = $.extend({}, actual);
         if(actual === null){
             var absolute = false;
