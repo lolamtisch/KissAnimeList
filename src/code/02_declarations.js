@@ -630,9 +630,29 @@
         K.bookmarkFixCss = "";
         K.videoSelector = '#player';
         var winLoad = 0;
-        GM_addStyle('.headui a {color: inherit !important;}');
 
         K.init = function() {
+            GM_addStyle('.headui a {color: inherit !important;}');
+            var tempEpisode = "";
+            K.docReady(function(){
+                document.addEventListener("load", event =>{
+                    var curEpisode = $(".servers .episodes a.active").attr('data-base');
+                    if(curEpisode !== tempEpisode){
+                        tempEpisode =  curEpisode;
+                        if($('.servers').height() == null){
+                            tempEpisode = "";
+                            return;
+                        }
+                        if(curEpisode != ''){
+                            var animechange = {};
+                            animechange['.add_anime[num_watched_episodes]'] = parseInt(curEpisode);
+                            animechange['checkIncrease'] = 1;
+                            animechange['forceUpdate'] = 1;
+                            setanime( K.normalUrl(),animechange);
+                        }
+                    }
+                }, true);
+            });
             checkdata();
         }
 
@@ -750,27 +770,6 @@
 
         K.BookmarksStyleAfterLoad = function() {
         };
-
-        var tempEpisode = "";
-        K.docReady(function(){
-            document.addEventListener("load", event =>{
-                var curEpisode = $(".servers .episodes a.active").attr('data-base');
-                if(curEpisode !== tempEpisode){
-                    tempEpisode =  curEpisode;
-                    if($('.servers').height() == null){
-                        tempEpisode = "";
-                        return;
-                    }
-                    if(curEpisode != ''){
-                        var animechange = {};
-                        animechange['.add_anime[num_watched_episodes]'] = parseInt(curEpisode);
-                        animechange['checkIncrease'] = 1;
-                        animechange['forceUpdate'] = 1;
-                        setanime( K.normalUrl(),animechange);
-                    }
-                }
-            }, true);
-        });
         //###########################
     }else if( window.location.href.indexOf("crunchyroll.com") > -1 ){
         //TODO:
