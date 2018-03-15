@@ -978,9 +978,9 @@
         K.bookmarkFixCss = "";
         K.videoSelector = '.anime_video_body_watch_items';
         var winLoad = 0;
-        GM_addStyle('.headui a {color: inherit !important;}');
 
         K.init = function() {
+            GM_addStyle('.headui a {color: inherit !important;}');
             checkdata();
         }
 
