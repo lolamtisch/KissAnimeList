@@ -301,6 +301,73 @@
         BookmarksStyle = "";
 
         K.init = function() {
+            K.docReady(function(){
+                if(!K.isOverviewPage()){
+                    $('#divImage > p').each(function(index, el) {
+                        $(this).attr('id', index+1).addClass('kal-image');
+                    });
+                    var hash = window.location.hash;
+                    setTimeout(function(){
+                        var page = parseInt(hash.substring(1));
+                        window.location.hash = '';
+                        window.location.hash = hash;
+
+                        if($( "button:contains('Load Manga')" ).length){
+                            $( "button:contains('Load Manga')").click(function(){
+                                manga_loader();
+                            });
+                        }
+                        if($('.ml-images').length){
+                            manga_loader();
+                        }
+                        function manga_loader(){
+                            setTimeout(function(){
+                                var tempDocHeight = $(document).height();
+                                findPage();
+                                function findPage(){
+                                    if($(".ml-images .ml-counter:contains('"+page+"')").length){
+                                        $("html, body").animate({ scrollTop: $(".ml-images .ml-counter:contains('"+page+"')").prev().offset().top }, "slow");
+                                    }else{
+                                        $("html, body").animate({ scrollTop: $(document).height() }, 0);
+                                        setTimeout(function(){
+                                            $('html').scroll();
+                                            if(tempDocHeight != $(document).height()){
+                                                tempDocHeight = $(document).height();
+                                                findPage();
+                                            }
+                                        }, 500);
+                                    }
+                                }
+                            }, 2000);
+                        }
+                        var delayeUpate = 1;
+                        $(document).scroll(function() {
+                            if(delayeUpate){
+                                delayeUpate = 0;
+                                setTimeout(function(){ delayeUpate = 1; }, 2000);
+                                $('.kal-image').each(function(index, el) {
+                                    if($(this).isInViewport()){
+                                        if(window.location.hash != '#'+$(this).attr('id')){
+                                            history.pushState({}, null, '#'+$(this).attr('id'));
+                                            checkdata();
+                                        }
+                                        return false;
+                                    }
+                                });
+                                $('.ml-images img').each(function(index, el) {
+                                    if($(this).isInViewport()){
+                                        if(window.location.hash != '#'+$(this).next().text()){
+                                            history.pushState({}, null, '#'+$(this).next().text());
+                                            checkdata();
+                                        }
+                                        return false;
+                                    }
+                                });
+                            }
+                        });
+                    }, 5000);
+                }
+            });
             checkdata();
         }
 
@@ -421,75 +488,6 @@
                 clearCache();
             });
         };
-
-        K.docReady(function(){
-            if(!K.isOverviewPage()){
-                $('#divImage > p').each(function(index, el) {
-                    $(this).attr('id', index+1).addClass('kal-image');
-                });
-                var hash = window.location.hash;
-                setTimeout(function(){
-                    var page = parseInt(hash.substring(1));
-                    window.location.hash = '';
-                    window.location.hash = hash;
-
-                    if($( "button:contains('Load Manga')" ).length){
-                        $( "button:contains('Load Manga')").click(function(){
-                            manga_loader();
-                        });
-                    }
-                    if($('.ml-images').length){
-                        manga_loader();
-                    }
-                    function manga_loader(){
-                        setTimeout(function(){
-                            var tempDocHeight = $(document).height();
-                            findPage();
-                            function findPage(){
-                                if($(".ml-images .ml-counter:contains('"+page+"')").length){
-                                    $("html, body").animate({ scrollTop: $(".ml-images .ml-counter:contains('"+page+"')").prev().offset().top }, "slow");
-                                }else{
-                                    $("html, body").animate({ scrollTop: $(document).height() }, 0);
-                                    setTimeout(function(){
-                                        $('html').scroll();
-                                        if(tempDocHeight != $(document).height()){
-                                            tempDocHeight = $(document).height();
-                                            findPage();
-                                        }
-                                    }, 500);
-                                }
-                            }
-                        }, 2000);
-                    }
-                    var delayeUpate = 1;
-                    $(document).scroll(function() {
-                        if(delayeUpate){
-                            delayeUpate = 0;
-                            setTimeout(function(){ delayeUpate = 1; }, 2000);
-                            $('.kal-image').each(function(index, el) {
-                                if($(this).isInViewport()){
-                                    if(window.location.hash != '#'+$(this).attr('id')){
-                                        history.pushState({}, null, '#'+$(this).attr('id'));
-                                        checkdata();
-                                    }
-                                    return false;
-                                }
-                            });
-                            $('.ml-images img').each(function(index, el) {
-                                if($(this).isInViewport()){
-                                    if(window.location.hash != '#'+$(this).next().text()){
-                                        history.pushState({}, null, '#'+$(this).next().text());
-                                        checkdata();
-                                    }
-                                    return false;
-                                }
-                            });
-                        }
-                    });
-                }, 5000);
-            }
-        });
-
         //###########################
     }else if( window.location.href.indexOf("masterani.me") > -1 ){
         //#########Masterani.me#########
