@@ -47,7 +47,7 @@
     }
 
     var tagLinks = GM_getValue( 'tagLinks', 1 );
-    var newEpInterval = GM_getValue( 'newEpInterval', 43200000 );
+    var newEpInterval = GM_getValue( 'newEpInterval', 'null' );
     var newEpNotification = GM_getValue( 'newEpNotification', 1 );
     var newEpBorder = GM_getValue( 'newEpBorder', 'ff0000' );
     var openInBg = GM_getValue( 'openInBg', 1 );
