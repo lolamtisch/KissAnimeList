@@ -314,6 +314,7 @@
 
 	//EP_Prediction
 	function epPrediction( malId , callback){
+		if(!epPredictions) return;
 	    timestampUpdate();
 	    var timestamp = GM_getValue('mal/'+malId+'/release', false);
 	    if(timestamp){

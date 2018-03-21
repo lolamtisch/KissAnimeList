@@ -47,6 +47,7 @@
     }
 
     var tagLinks = GM_getValue( 'tagLinks', 1 );
+    var epPredictions = GM_getValue( 'epPredictions', 1 );
     var newEpInterval = GM_getValue( 'newEpInterval', 'null' );
     var newEpNotification = GM_getValue( 'newEpNotification', 1 );
     var newEpBorder = GM_getValue( 'newEpBorder', 'ff0000' );
