@@ -87,6 +87,9 @@
                                 width: 100% !important;\
                                 opacity: 1 !important;\
                               }\
+                              .simplebar-scrollbar.visible:before{\
+                                display: none;\
+                              }\
                               .simplebar-content{\
                                 margin-right: -7px !important;\
                               }\
