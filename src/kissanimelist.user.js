@@ -3373,6 +3373,9 @@
                                 width: 100% !important;\
                                 opacity: 1 !important;\
                               }\
+                              .simplebar-scrollbar.visible:before{\
+                                display: none;\
+                              }\
                               .simplebar-content{\
                                 margin-right: -7px !important;\
                               }\
@@ -3522,8 +3525,10 @@
             </section>';
           material +='</main>\
         </div>\
-        <div data-simplebar id="malSearchPop" style="height: calc(100% - 60px); width: 100%; position: fixed; top: 60px; z-index: 10; background-color: #f9f9f9; display: none;">\
+        <div id="malSearchPop" style="display: none; z-index: 10; position: fixed;">\
+          <div data-simplebar style="height: calc(100% - 60px); z-index: 10; width: 100%; position: fixed !important; top: 60px; background-color: #f9f9f9; width: 100%;position: fixed; top: 60px; background-color: #f9f9f9;">\
           <div id="malSearchPopInner"></div>\
+          </div>\
         </div>';
         //material += '</div>';
         $("#info-iframe").contents().find("body").append(material);
