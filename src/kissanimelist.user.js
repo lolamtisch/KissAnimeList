@@ -534,11 +534,11 @@
                             }
                         }, 2000);
                     }
-                    var delayeUpate = 1;
+                    var delayUpate = 1;
                     $(document).scroll(function() {
-                        if(delayeUpate){
-                            delayeUpate = 0;
-                            setTimeout(function(){ delayeUpate = 1; }, 2000);
+                        if(delayUpate){
+                            delayUpate = 0;
+                            setTimeout(function(){ delayUpate = 1; }, 2000);
                             $('.kal-image').each(function(index, el) {
                                 if($(this).isInViewport()){
                                     if(window.location.hash != '#'+$(this).attr('id')){
@@ -3065,7 +3065,7 @@
             return false;
         }
         if(tagToContinueNumber > 1){
-            alternativTagOnSite();
+            alternativeTagOnSite();
             return true;
         }
         $(window).load(function(){
@@ -3112,7 +3112,7 @@
                         });
                         startCheckForNewEpisodes();
                     }else{
-                        alternativTagOnSite();
+                        alternativeTagOnSite();
                     }
 
                     return true;
@@ -3121,7 +3121,7 @@
         });
     }
 
-    function alternativTagOnSite(){
+    function alternativeTagOnSite(){
         if($('.list-table').length){
             con.log('[BOOK] Modern Tags');
             var data = $.parseJSON($('.list-table').attr('data-items'));
@@ -4856,15 +4856,15 @@
 	var checkFail = [];
 	var NexEpProcessed = 0;
 	var NexEpFinished = 0;
-	var newEpRetrys = 0;
+	var newEpRetries = 0;
 
 	var checkArray = [];
 	function checkForNewEpisodes(url, entrySelector, title = '', img = ''){
-		checkArray.push(function(totalEntrys){checkForNewEpisode(url, entrySelector, totalEntrys, title, img);});
+		checkArray.push(function(totalEntries){checkForNewEpisode(url, entrySelector, totalEntries, title, img);});
 	}
 
 	function startCheckForNewEpisodes(localListType = listType){
-		newEpRetrys++;
+		newEpRetries++;
 		if(newEpInterval == 'null'){
 			return;
 		}
@@ -4886,7 +4886,7 @@
 		}
 	}
 
-	function checkForNewEpisode(url, entrySelector, totalEntrys, title = '', img = ''){
+	function checkForNewEpisode(url, entrySelector, totalEntries, title = '', img = ''){
 		var selector = '';
 		var hasStyle = 0;
 		var localListType = 'anime';
@@ -4969,14 +4969,14 @@
 				return false;
 			}
 		}else{
-			checkForNewEpisodesDone(totalEntrys, true);
+			checkForNewEpisodesDone(totalEntries, true);
 			return;
 		}
 
 		if( GM_getValue('newEp_'+url+'_finished', false) == true){
 			con.log('[EpCheck] [Finished]', title);
 			if(debug && !hasStyle){ $(entrySelector).attr('style', 'border-left: 4px solid green !important');}
-			checkForNewEpisodesDone(totalEntrys, true);
+			checkForNewEpisodesDone(totalEntries, true);
 			return true;
 		}
 
@@ -4990,7 +4990,7 @@
 					synchronous: false,
 					onerror: function(response) {
 						con.log('[ERROR]',url+' could not be loaded');
-						checkForNewEpisodesDone(totalEntrys, true);
+						checkForNewEpisodesDone(totalEntries, true);
 					},
 					onload: function(response) {
 						if(newEpCR){
@@ -5001,7 +5001,7 @@
 						if(response.status != 200){//TODO: Cloudflare handling
 							con.log('[EpCheck] [ERROR]', response);
 							var checkFailMessage = 'Coud Not Check';
-							if(newEpRetrys < 3 && openInBg){
+							if(newEpRetries < 3 && openInBg){
 								checkFailMessage = 'Please wait';
 							}
 							var message = '<div>'+checkFailMessage+'</div><div class="errorpage"></div>'//;<button class="okChangelog" style="background-color: transparent; border: none; color: rgb(255,64,129);margin-top: 10px;cursor: pointer;">Ok</button></div>';
@@ -5047,7 +5047,7 @@
 							}
 
 						}
-						checkForNewEpisodesDone(totalEntrys);
+						checkForNewEpisodesDone(totalEntries);
 					}
 				});
 
@@ -5105,13 +5105,13 @@
 			}
 		}
 
-		function checkForNewEpisodesDone(totalEntrys, finishedCache = false){
+		function checkForNewEpisodesDone(totalEntries, finishedCache = false){
 			NexEpProcessed++;
 			if(finishedCache) NexEpFinished++;
-			con.log('[EpCheck]','('+ NexEpProcessed+'/'+totalEntrys+')');
-			$('#checkProgress').css('width', ((NexEpProcessed - NexEpFinished)/( totalEntrys - NexEpFinished)*100) + '%');
+			con.log('[EpCheck]','('+ NexEpProcessed+'/'+totalEntries+')');
+			$('#checkProgress').css('width', ((NexEpProcessed - NexEpFinished)/( totalEntries - NexEpFinished)*100) + '%');
 
-			if(NexEpProcessed === totalEntrys){
+			if(NexEpProcessed === totalEntries){
 				NexEpProcessed = 0;
 				NexEpFinished = 0;
 
@@ -5155,10 +5155,10 @@
 						startCheckForNewEpisodes();
 					}
 				}
-				if(checkFail.length && newEpRetrys < 3){
+				if(checkFail.length && newEpRetries < 3){
 					checkFailBackground();
 				}else{
-					newEpRetrys = 0;
+					newEpRetries = 0;
 					GM_setValue('newEp_last_update_'+localListType, $.now());
 				}
 			}
