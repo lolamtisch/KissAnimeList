@@ -464,11 +464,11 @@
                             }
                         }, 2000);
                     }
-                    var delayeUpate = 1;
+                    var delayUpate = 1;
                     $(document).scroll(function() {
-                        if(delayeUpate){
-                            delayeUpate = 0;
-                            setTimeout(function(){ delayeUpate = 1; }, 2000);
+                        if(delayUpate){
+                            delayUpate = 0;
+                            setTimeout(function(){ delayUpate = 1; }, 2000);
                             $('.kal-image').each(function(index, el) {
                                 if($(this).isInViewport()){
                                     if(window.location.hash != '#'+$(this).attr('id')){
