@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name        KissAnimeList
-// @version     0.91.5
+// @version     0.92.0
 // @description Integrates MyAnimeList into various sites, with auto episode tracking.
 // @author      lolamtisch@gmail.com
 // @license 	CC-BY-4.0; https://creativecommons.org/licenses/by/4.0/legalcode
@@ -16,7 +16,7 @@
 //
 // @include     /^https?:\/\/kissmanga\.com\/(manga\/|BookmarkList)/
 //
-// @include     /^https?:\/\/myanimelist.net\/((anime(list)?|manga)(.php?id=|\/)|character|people|search)/
+// @include     /^https?:\/\/myanimelist.net\/((anime(list)?|manga(list)?)(\.php\?.*id=|\/)|character|people|search)/
 //
 // @include     /^https?://www.masterani.me\/anime\/(info|watch)\//
 //
@@ -43,6 +43,15 @@
 // @connect     ipv4.google.com
 // @connect     myanimelist.net
 // @connect     kissanimelist.firebaseio.com
+// @connect     www.crunchyroll.com
+// @connect     kissanime.ru
+// @connect     kissmanga.com
+// @connect     9anime.to
+// @connect     9anime.is
+// @connect     9anime.ru
+// @connect     9anime.ch
+// @connect     www3.gogoanime.tv
+// @connect     www.masterani.me
 // @connect     *
 // @grant       GM_xmlhttpRequest
 // @grant       GM_getValue
@@ -51,6 +60,8 @@
 // @grant       GM_deleteValue
 // @grant       GM_addStyle
 // @grant       GM_getResourceText
+// @grant       GM_openInTab
+// @grant       GM_notification
 // @run-at      document-start
 // @namespace https://greasyfork.org/users/92233
 // ==/UserScript==

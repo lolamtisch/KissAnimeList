@@ -14,9 +14,6 @@
             method: "GET",
             url: url,
             synchronous: false,
-            headers: {
-                "User-Agent": "Mozilla/5.0"
-            },
             onload: function(response) {
                 if(url ===  "https://myanimelist.net/editprofile.php?go=privacy"){
                     try{
@@ -176,6 +173,9 @@
             if(/^[^/]+\/[^/]+\/image$/.test(cache)){
                 GM_deleteValue(cache);
             }
+            if(/^newEp_.*/.test(cache)){
+                GM_deleteValue(cache);
+            }
         });
         con.log('After',GM_listValues());
         flashm( "Cache Cleared" , false);
@@ -220,9 +220,6 @@
                 method: "GET",
                 url: url,
                 synchronous: false,
-                headers: {
-                    "User-Agent": "Mozilla/5.0"
-                },
                 onload: function(response) {
                     //con.log(response);
                     if( response.responseText != null  && response.responseText != 'null'){

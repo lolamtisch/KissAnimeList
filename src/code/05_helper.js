@@ -5,8 +5,8 @@
         return url;
     }
 
-    function local_setValue( thisUrl, malurl ){
-        if( (!(thisUrl.indexOf("myAnimeList.net/") >= 0)) && ( GM_getValue(dbSelector+'/'+$.titleToDbKey($.urlAnimeSelector(thisUrl))+'/Mal' , null) == null || thisUrl.indexOf("#newCorrection") >= 0 || GM_getValue(dbSelector+'/'+$.titleToDbKey($.urlAnimeSelector(thisUrl))+'/Crunch' , null) == 'no')){
+    function local_setValue( thisUrl, malurl, newCorrection = false){
+        if( (!(thisUrl.indexOf("myAnimeList.net/") >= 0)) && ( GM_getValue(dbSelector+'/'+$.titleToDbKey($.urlAnimeSelector(thisUrl))+'/Mal' , null) == null || newCorrection || GM_getValue(dbSelector+'/'+$.titleToDbKey($.urlAnimeSelector(thisUrl))+'/Crunch' , null) == 'no')){
             var param = { Kiss: thisUrl, Mal: malurl};
             if(dbSelector == 'Crunchyroll'){
                 param = { Kiss: window.location.href+'?..'+$.titleToDbKey($.urlAnimeSelector()), Mal: malurl};
@@ -21,10 +21,14 @@
             }
 
             var toDB = 1;
-            if(thisUrl.indexOf("#newCorrection") >= 0){
+
+            if(fireExists) toDB = 0;
+
+            if(newCorrection){
                 toDB = 0;
                 if (confirm('Submit database correction request? \n If it does not exist on MAL, please leave empty.')) {
                     toDB = 1;
+                    param['newCorrection'] = true;
                 }
             }
 
@@ -61,6 +65,9 @@
     }
 
     function flashm(text,error = true, info = false, permanent = false){
+        if(!$('#flash-div-top').length){
+            initflashm();
+        }
         con.log("[Flash] Message:",text);
         if(error === true){
             var colorF = "#3e0808";
@@ -108,6 +115,55 @@
             $(this).parentsUntil('.flashPerm').remove();
             cancelCall();
         });
+    }
+
+    function initflashm(){
+        GM_addStyle('.flashinfo{\
+                        transition: max-height 2s;\
+                     }\
+                     .flashinfo:hover{\
+                        max-height:5000px !important;\
+                        z-index: 2147483647;\
+                     }\
+                     .flashinfo .synopsis{\
+                        transition: max-height 2s, max-width 2s ease 2s;\
+                     }\
+                     .flashinfo:hover .synopsis{\
+                        max-height:9999px !important;\
+                        max-width: 500px !important;\
+                        transition: max-height 2s;\
+                     }\
+                     #flashinfo-div{\
+                      z-index: 2;\
+                      transition: 2s;\
+                     }\
+                     #flashinfo-div:hover, #flashinfo-div.hover{\
+                      z-index: 2147483647;\
+                     }\
+                     \
+                     #flash-div-top, #flash-div, #flashinfo-div{\
+                        font-family: "Helvetica","Arial",sans-serif;\
+                        color: white;\
+                        font-size: 14px;\
+                        font-weight: 400;\
+                        line-height: 17px;\
+                     }\
+                     #flash-div-top h2, #flash-div h2, #flashinfo-div h2{\
+                        font-family: "Helvetica","Arial",sans-serif;\
+                        color: white;\
+                        font-size: 14px;\
+                        font-weight: 700;\
+                        line-height: 17px;\
+                        padding: 0;\
+                        margin: 0;\
+                     }\
+                     #flash-div-top a, #flash-div a, #flashinfo-div a{\
+                        color: #DF6300;\
+                     }');
+
+        $('body').after('<div id="flash-div-top" style="text-align: center;pointer-events: none;position: fixed;top:0px;width:100%;z-index: 2147483647;left: 0;"></div>\
+            <div id="flash-div" style="text-align: center;pointer-events: none;position: fixed;bottom:0px;width:100%;z-index: 2147483647;left: 0;"><div id="flash" style="display:none;  background-color: red;padding: 20px; margin: 0 auto;max-width: 60%;          -webkit-border-radius: 20px;-moz-border-radius: 20px;border-radius: 20px;background:rgba(227,0,0,0.6);"></div></div>\
+            <div id="flashinfo-div" style="text-align: center;pointer-events: none;position: fixed;bottom:0px;width:100%;left: 0;">');
     }
 
     function updatebutton(){
@@ -301,3 +357,75 @@
         return '<div id="tt'+rNumber+'" class="icon material-icons" style="font-size:16px; line-height: 0; color: #7f7f7f; padding-bottom: 20px; padding-left: 3px; '+style+'"> &#x1F6C8;</div>\
         <div class="mdl-tooltip mdl-tooltip--'+direction+' mdl-tooltip--large" for="tt'+rNumber+'">'+text+'</div>';
     }
+
+    //Status: 1 = watching | 2 = completed | 3 = onhold | 4 = dropped | 6 = plan to watch | 7 = all
+    function getUserList(status = 1, localListType = 'anime', singleCallback = null, finishCallback = null, fullListCallback = null, continueCall = null, username = null, offset = 0, templist = []){
+        con.log('[UserList]', 'username: '+username, 'status: '+status, 'offset: '+offset);
+        if(username == null){
+            getMalUserName(function(usernameTemp){
+                if(usernameTemp == false){
+                    flashm( "Please log in on <a target='_blank' href='https://myanimelist.net/login.php'>MyAnimeList!<a>" , true);
+                }else{
+                    getUserList(status, localListType, singleCallback, finishCallback, fullListCallback, continueCall, usernameTemp, offset, templist);
+                }
+            });
+            return;
+        }
+        var url = 'http://myanimelist.net/'+localListType+'list/'+username+'/load.json?offset='+offset+'&status='+status;
+        GM_xmlhttpRequest({
+            method: "GET",
+            url: url,
+            synchronous: false,
+            onload: function(response) {
+                var data = $.parseJSON(response.response);
+                if(singleCallback){
+                    if(!data.length) singleCallback(false, 0, 0);
+                    for (var i = 0; i < data.length; i++) {
+                        singleCallback(data[i], i+offset+1, data.length+offset);
+                    }
+                }
+                if(fullListCallback){
+                    templist = templist.concat(data);
+                }
+                if(data.length > 299){
+                    if(continueCall){
+                        continueCall(function(){
+                            getUserList(status, localListType, singleCallback, finishCallback, fullListCallback, continueCall, username, offset + 300, templist);
+                        });
+                    }else{
+                        getUserList(status, localListType, singleCallback, finishCallback, fullListCallback, continueCall, username, offset + 300, templist);
+                    }
+                }else{
+                    if(fullListCallback) fullListCallback(templist);
+                    if(finishCallback) finishCallback();
+                }
+            }
+        });
+    }
+
+    function getMalUserName(callback){
+        var url = 'https://myanimelist.net/editlist.php?hideLayout';
+        GM_xmlhttpRequest({
+            method: "GET",
+            url: url,
+            synchronous: false,
+            onload: function(response) {
+                try{
+                    var username = response.response.split('USER_NAME = "')[1].split('"')[0];
+                }catch(e){
+                    var username = false;
+                }
+                con.log('[Username]', username);
+                callback(username);
+            }
+        });
+    }
+
+    $.fn.isInViewport = function() {
+        var elementTop = $(this).offset().top;
+        var elementBottom = elementTop + $(this).outerHeight();
+        var viewportTop = $(window).scrollTop();
+        var viewportBottom = viewportTop + $(window).height();
+        return elementBottom > viewportTop && elementTop < viewportBottom;
+    };
+

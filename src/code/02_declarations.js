@@ -1,6 +1,8 @@
 //if (window.top != window.self) {return; }
 //TODO: temporary workaround
+
     var googleover = 0;
+    var debug = 0;
 
     var con = console;
     con = {
@@ -10,17 +12,33 @@
     };
 
     var element = new Image();
-    Object.defineProperty(element, 'id', {
-      get: function () {
+
+    var debugging = GM_getValue('debugging', 0 );
+
+    if(debugging){
+        debug = 1;
         con.log = function(){
             var args = Array.prototype.slice.call(arguments);
             args.unshift("color: blue;");
             args.unshift("%c[KAL]");
             console.log.apply(console, args);
         }
-      }
-    });
+    }else{
+        Object.defineProperty(element, 'id', {
+          get: function () {
+            debug = 1;
+            con.log = function(){
+                var args = Array.prototype.slice.call(arguments);
+                args.unshift("color: blue;");
+                args.unshift("%c[KAL]");
+                console.log.apply(console, args);
+            }
+          }
+        });
+    }
     console.log('%cKissAnimeList ['+GM_info.script.version+']', element,);
+
+
 
     var malBookmarks = GM_getValue( 'malBookmarks', 1 );
     var classicBookmarks = GM_getValue( 'classicBookmarks', 0 );
@@ -29,6 +47,14 @@
     }
 
     var tagLinks = GM_getValue( 'tagLinks', 1 );
+    var epPredictions = GM_getValue( 'epPredictions', 1 );
+    var newEpInterval = GM_getValue( 'newEpInterval', 'null' );
+    var newEpNotification = GM_getValue( 'newEpNotification', 1 );
+    var newEpBorder = GM_getValue( 'newEpBorder', 'ff0000' );
+    var openInBg = GM_getValue( 'openInBg', 1 );
+    var newEpCR = GM_getValue( 'newEpCR', 0 );
+
+    var searchLinks = GM_getValue( 'searchLinks', 1 );
     var kissanimeLinks = GM_getValue( 'kissanimeLinks', 1 );
     var kissmangaLinks = GM_getValue( 'kissmangaLinks', 1 );
     var masteraniLinks = GM_getValue( 'masteraniLinks', 1 );
@@ -107,6 +133,9 @@
                         break;
                     case '0.91.4':
                         message += 'KissAnimeList (v0.91.4):<br/><br/> [Added] <br/> - Support for 9anime.ch  <br/> <br/> [Fixed] <br/> - "MAL thumbnails" and "Episode Hoverinfo" not working in Opera <br/> - The miniMAL-button was not appearing for anime\'s without a MAL-url';
+                        break;
+                    case '0.92.0':
+                        message += 'KissAnimeList (v0.92.0):<br/><br/> [Added] <br/>- Feature: Display a tentative episode number and air time for anime.  <br/>- Feature: If autotracking is deactivated - Display a popup for manually updating  <br/>- Mangalist integration <br/>- Added a section for characters to miniMAL.  <br/>- Added anime/manga switches for miniMAL\'s search and bookmarks <br/>- Feature: Episode/Chapter releases check [BETA] (Deactivated by default) <br/> ';
                         break;
                 }
             }else{
@@ -375,6 +404,10 @@
             return $(".listing tr:not(.head)");
         };
 
+        $.nextEpLink = function(url) {
+            return window.location.href;
+        };
+
         $.fn.classicBookmarkButton = function(checkClassic) {
             $("#rightside .barContent div").last().after('<div><input type="checkbox" id="classicBookmarks" '+checkClassic+' > Classic styling</div><div class="clear2">&nbsp;</div>');
         };
@@ -391,6 +424,75 @@
                 clearCache();
             });
         };
+
+        $.docReady(function(){
+            if(!$.isOverviewPage()){
+                $('#divImage > p').each(function(index, el) {
+                    $(this).attr('id', index+1).addClass('kal-image');
+                });
+                var hash = window.location.hash;
+                setTimeout(function(){
+                    var page = parseInt(hash.substring(1));
+                    window.location.hash = '';
+                    window.location.hash = hash;
+
+                    if($( "button:contains('Load Manga')" ).length){
+                        $( "button:contains('Load Manga')").click(function(){
+                            manga_loader();
+                        });
+                    }
+                    if($('.ml-images').length){
+                        manga_loader();
+                    }
+                    function manga_loader(){
+                        setTimeout(function(){
+                            var tempDocHeight = $(document).height();
+                            findPage();
+                            function findPage(){
+                                if($(".ml-images .ml-counter:contains('"+page+"')").length){
+                                    $("html, body").animate({ scrollTop: $(".ml-images .ml-counter:contains('"+page+"')").prev().offset().top }, "slow");
+                                }else{
+                                    $("html, body").animate({ scrollTop: $(document).height() }, 0);
+                                    setTimeout(function(){
+                                        $('html').scroll();
+                                        if(tempDocHeight != $(document).height()){
+                                            tempDocHeight = $(document).height();
+                                            findPage();
+                                        }
+                                    }, 500);
+                                }
+                            }
+                        }, 2000);
+                    }
+                    var delayUpate = 1;
+                    $(document).scroll(function() {
+                        if(delayUpate){
+                            delayUpate = 0;
+                            setTimeout(function(){ delayUpate = 1; }, 2000);
+                            $('.kal-image').each(function(index, el) {
+                                if($(this).isInViewport()){
+                                    if(window.location.hash != '#'+$(this).attr('id')){
+                                        history.pushState({}, null, '#'+$(this).attr('id'));
+                                        checkdata();
+                                    }
+                                    return false;
+                                }
+                            });
+                            $('.ml-images img').each(function(index, el) {
+                                if($(this).isInViewport()){
+                                    if(window.location.hash != '#'+$(this).next().text()){
+                                        history.pushState({}, null, '#'+$(this).next().text());
+                                        checkdata();
+                                    }
+                                    return false;
+                                }
+                            });
+                        }
+                    });
+                }, 5000);
+            }
+        });
+
         //###########################
     }else if( window.location.href.indexOf("masterani.me") > -1 ){
         //#########Masterani.me#########
@@ -988,6 +1090,7 @@
         //###########################
     }else if( window.location.href.indexOf("myanimelist.net") > -1 ){
         googleover = 1;
+        var listType = window.location.href.split('/')[3];
         $.isOverviewPage = function() {
             return false;
         };
@@ -1037,5 +1140,11 @@
     if(document.title == "Please wait 5 seconds..."){
         con.log("loading");
         return;
+    }
+
+    if( window.location.href.indexOf("id="+GM_getValue( 'checkFail', 0 )) > -1 ){
+        $(window).load(function(){
+            GM_setValue( 'checkFail', 0 )
+        });
     }
 

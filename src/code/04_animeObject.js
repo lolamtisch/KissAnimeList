@@ -1,3 +1,4 @@
+    var fireExists = 0;
     function getanime(thisUrl , callback, absolute = false, localListType = listType) {
         var thisUrl = thisUrl;
         var url = '';
@@ -40,9 +41,6 @@
             method: "GET",
             url: url,
             synchronous: false,
-            headers: {
-                "User-Agent": "Mozilla/5.0"
-            },
             onload: function(response) {
                 if(response.finalUrl != null){
                     url = response.finalUrl;
@@ -58,6 +56,7 @@
                 if(url.indexOf("kissanimelist.firebaseio.com") > -1) {
                     con.log("[GET] Firebase:",response.response);
                     if(response.response !== 'null' && !(response.response.indexOf("error") > -1)){
+                        fireExists = 1;
                         //url = response.response.replace('"', '').replace('"', '');
                         url = 'https://myanimelist.net/'+localListType+'/'+response.response.split('"')[1]+'/'+response.response.split('"')[3];
                         if(response.response.split('"')[1] == 'Not-Found'){
@@ -237,6 +236,7 @@
         }
     }
 
+    var continueAllowed = 1;
     function setanime(thisUrl ,anime, actual = null, localListType = listType) {
         var undoAnime = $.extend({}, actual);
         if(actual === null){
@@ -249,14 +249,31 @@
         }
 
         var change = $.extend({},anime);
+
+        if(anime['checkIncrease'] === 1 && autoTracking === 0 && continueAllowed){
+            if(actual['.add_anime[num_watched_episodes]'] < anime['.add_anime[num_watched_episodes]'] ||
+               actual['.add_manga[num_read_chapters]'] < anime['.add_manga[num_read_chapters]']){
+                if(localListType == 'anime'){
+                    var epis = 'episode: '+anime['.add_anime[num_watched_episodes]'];
+                }else{
+                    var epis = 'chapter: <b>'+anime['.add_manga[num_read_chapters]']+'</b>';
+                }
+                message = '<button class="sync" style="margin-bottom: 8px; background-color: transparent; border: none; color: rgb(255,64,129);margin-top: 10px;cursor: pointer;">Update MAL to '+epis+'</button>';
+                flashm( message , true, true );
+                $('.sync').click(function(){
+                    $('.flashinfo').remove();
+                    continueAllowed = 0;
+                    setanime(thisUrl ,anime, actual, localListType);
+                });
+            }
+            return;
+        }
+        continueAllowed = 1;
+
         if(localListType == 'anime'){
             var url = "https://myanimelist.net/editlist.php?type=anime&id="+actual['.anime_id'];
             if(actual['addanime'] === 1){
                 url = "https://myanimelist.net/ownlist/anime/add?selected_series_id="+actual['.anime_id'];
-                if(change['checkIncrease'] == 1 && autoTracking == 0){
-                    episodeInfo(change['.add_anime[num_watched_episodes]'], actual['malurl']);
-                    return;
-                }
                 flashConfirm('Add "'+actual['name']+'" to MAL?', function(){continueCall();}, function(){
                     if(change['checkIncrease'] == 1){
                         episodeInfo(change['.add_anime[num_watched_episodes]'], actual['malurl']);
@@ -268,9 +285,6 @@
             var url = "https://myanimelist.net/panel.php?go=editmanga&id="+actual['.manga_id'];
             if(actual['addmanga'] === 1){
                 url = "https://myanimelist.net/ownlist/manga/add?selected_manga_id="+actual['.manga_id'];
-                if(change['checkIncrease'] == 1 && autoTracking == 0){
-                    return;
-                }
                 flashConfirm('Add "'+actual['name']+'" to MAL?', function(){continueCall();}, function(){});
                 return;
             }
@@ -310,7 +324,6 @@
                 synchronous: false,
                 data: parameter,
                 headers: {
-                    "User-Agent": "Mozilla/5.0",
                     "Content-Type": "application/x-www-form-urlencoded",
                     "accept":"text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8"
                 },
@@ -366,7 +379,7 @@
                                             undoAnime['checkIncrease'] = 0;
                                             setanime(thisUrl, undoAnime, null, localListType);
                                             $('.info-Mal-undo').remove();
-                                            if($('.flashinfo>div').html() == ''){
+                                            if($('.flashinfo>div').text() == ''){
                                                 $('.flashinfo').remove();
                                             }
                                         });
@@ -417,11 +430,24 @@
                                 }
                                 if(anime['checkIncrease'] == 1){
                                     message += '<br><button class="undoButton" style="background-color: transparent; border: none; color: rgb(255,64,129);margin-top: 10px;cursor: pointer;">Undo</button>';
-                                    flashm( message , false);
-                                    $('.undoButton').click(function(){
-                                        undoAnime['checkIncrease'] = 0;
-                                        setanime(thisUrl, undoAnime, null, localListType);
-                                    });
+                                    if(!episodeInfoBox){
+                                        flashm( message , false);
+                                        $('.undoButton').click(function(){
+                                            undoAnime['checkIncrease'] = 0;
+                                            setanime(thisUrl, undoAnime, null, localListType);
+                                        });
+                                    }else{
+                                        message = "<div class='info-Mal-undo' style='white-space: nowrap; margin-top: 15px; /*margin-left: 15px;*/'> "+ message +"</div>";
+                                        flashm ( message , false, true);
+                                        $('.undoButton').click(function(){
+                                            undoAnime['checkIncrease'] = 0;
+                                            setanime(thisUrl, undoAnime, null, localListType);
+                                            $('.info-Mal-undo').remove();
+                                            if($('.flashinfo>div').first().text() == ''){
+                                                $('.flashinfo').remove();
+                                            }
+                                        });
+                                    }
                                 }else{
                                     flashm( message , false);
                                 }

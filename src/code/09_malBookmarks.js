@@ -1,6 +1,12 @@
+    var tagToContinueNumber = 0;
     function tagToContinue(){
+        tagToContinueNumber++;
         if(tagLinks == 0){
             return false;
+        }
+        if(tagToContinueNumber > 1){
+            alternativeTagOnSite();
+            return true;
         }
         $(window).load(function(){
             var checkExist = setInterval(function() {
@@ -9,23 +15,34 @@
                     var url = '';
                     //Classic List formating
 
+                    var span = '';
+                    if($('#list_surround').length){
+                        span = 'span';
+                    };
+
                     $('#list_surround table').addClass("list-table-data");
-                    $('#list_surround table td[class^="td"]:first-child').addClass("title").addClass("data");
+                    $('#list_surround table .animetitle').parent().addClass("title").addClass("data");
                     $('#list_surround table .animetitle').addClass("link");
                     $('.table_header').each(function(index){
-                        if($(this).find('strong a:contains(Progress)').height()){
-                            $('#list_surround table td[class^="td"]:nth-child('+(index+1)+')').addClass("progress").addClass("data").find('span a').addClass('link');
+                        if($(this).find('strong a:contains(Progress), a:contains(Chapters)').length){
+                            $('#list_surround table td[class^="td"]:nth-child('+(index+1)+')').addClass("progress").addClass("data").find('a span').addClass('link');
                         }
-                        if($('strong:contains(Tags)').height()){
+                        if($('strong:contains(Tags)').length){
                             $('#list_surround table td[class^="td"]:nth-child('+(index+1)+')').addClass("tags");  //.css('background-color','red');
                         }
                     })
                     //
-                    if( $('.header-title.tags').height() || $('.td1.tags').height()){
+
+                    tagToContinueEpPrediction();
+
+                    if( $('.header-title.tags').length || $('.td1.tags').length){
                         $('.tags span a').each(function( index ) {
                             if($(this).text().indexOf("last::") > -1 ){
                                 url = atobURL( $(this).text().split("last::")[1].split("::")[0] );
                                 setStreamLinks(url, $(this).closest('.list-table-data'));
+                                if($(this).closest('.list-table-data').find('.watching , .reading').length || $('#list_surround').length){
+                                    checkForNewEpisodes(url, $(this).closest('.list-table-data'), $(this).closest('.list-table-data').find('.title .link '+span).text(), $(this).closest('.list-table-data').find('.link img.image').attr('src'));
+                                }
                                 if($('#list_surround').length){
                                     $(this).remove();
                                 }else{
@@ -33,8 +50,9 @@
                                 }
                             }
                         });
+                        startCheckForNewEpisodes();
                     }else{
-                        alternativTagOnSite();
+                        alternativeTagOnSite();
                     }
 
                     return true;
@@ -43,16 +61,20 @@
         });
     }
 
-    function alternativTagOnSite(){
+    function alternativeTagOnSite(){
         if($('.list-table').length){
             con.log('[BOOK] Modern Tags');
             var data = $.parseJSON($('.list-table').attr('data-items'));
             $.each(data,function(index, el) {
-                if(el['tags'].indexOf("last::") > -1 ){
+                if(el['tags'].indexOf("last::") > -1){
                     var url = atobURL( el['tags'].split("last::")[1].split("::")[0] );
-                    setStreamLinks(url, $('.list-item a[href^="'+el['anime_url']+'"]').parent().parent('.list-table-data'));
+                    setStreamLinks(url, $('.list-item a[href^="'+el[listType+'_url']+'"]').parent().parent('.list-table-data'));
+                    if( parseInt(el['status']) === 1 ){
+                        checkForNewEpisodes(url, $('.list-item a[href^="'+el[listType+'_url']+'"]').parent().parent('.list-table-data'), el[listType+'_title'], el[listType+'_image_path']);
+                    }
                 }
             });
+            startCheckForNewEpisodes();
         }else{
             con.log('[BOOK] Classic Tags');
             alternativTagToContinue();
@@ -68,9 +90,6 @@
             method: "GET",
             url: url,
             synchronous: false,
-            headers: {
-                "User-Agent": "Mozilla/5.0"
-            },
             onload: function(response) {
                 //con.log(response);
                 var xml = $(response.responseXML);
@@ -86,8 +105,12 @@
                     if(xmlAnime.find('my_tags').text().indexOf("last::") > -1 ){
                         url = atobURL( xmlAnime.find('my_tags').text().split("last::")[1].split("::")[0] );
                         setStreamLinks(url, $(this));
+                        if(parseInt(xmlAnime.find('my_status').text()) === 1){
+                            checkForNewEpisodes(url, $(this), xmlAnime.find('series_title').text(), xmlAnime.find('series_image').text());
+                        }
                     }
                 });
+                startCheckForNewEpisodes();
             }
         });
     }
@@ -100,7 +123,7 @@
         $(tableData).find('.data.title .link').after('<a class="stream" title="'+url.split('/')[2]+'" target="_blank" style="margin: 0 5px;" href="'+url+'">'+icon+'</a>');
 
 
-        if(parseInt($(tableData).find('.data.progress .link').text())+1 == GM_getValue( url+'/next')){
+        if(parseInt($(tableData).find('.data.progress .link').text().trim().replace(/\/.*/,''))+1 == GM_getValue( url+'/next') || GM_getValue( url+'/next') == 'manga'){
             if(typeof GM_getValue( url+'/nextEp') != 'undefined' && !( GM_getValue( url+'/nextEp').match(/undefined$/) )){
                 $(tableData).find('.stream').after('<a class="nextStream" title="Next Episode" target="_blank" style="margin: 0 5px 0 0; color: #BABABA;" href="'+ GM_getValue( url+'/nextEp')+'">'+'<img src="https://raw.githubusercontent.com/lolamtisch/KissAnimeList/master/Screenshots/if_Double_Arrow_Right_1063903.png" width="16" height="16">'+'</a>');
             }
@@ -115,4 +138,37 @@
                 return false;
             });
         });
+    }
+
+    function tagToContinueEpPrediction(){
+        var modernList = 0;
+        $('.list-table .list-item').each(function(){
+            modernList = 1;
+            var el = $(this);
+            var malid = el.find('.link').first().attr('href').split('/')[2];
+            epPrediction( malid , function(timestamp, airing, diffWeeks, diffDays, diffHours, diffMinutes){
+                el.find('.data.progress span').first().after( epPredictionMessage(timestamp, airing, diffWeeks, diffDays, diffHours, diffMinutes) );
+            });
+        });
+
+        if(modernList) return;
+
+        //Classic
+        $('.progress.data').each(function(){
+            var el = $(this).closest('.list-table-data');
+            var malid = el.find('.link').first().attr('href').split('/')[2];
+            epPrediction( malid , function(timestamp, airing, diffWeeks, diffDays, diffHours, diffMinutes){
+                el.find('.data.progress').first().prepend( epPredictionMessage(timestamp, airing, diffWeeks, diffDays, diffHours, diffMinutes) );
+            });
+        });
+
+        function epPredictionMessage(timestamp, airing, diffWeeks, diffDays, diffHours, diffMinutes){
+            if(airing){
+                diffWeeks = diffWeeks - (new Date().getFullYear() - new Date(timestamp).getFullYear()); //Remove 1 week between years
+                if(diffWeeks < 50){
+                    var titleMsg = 'Next episode estimated in '+diffDays+'d '+diffHours+'h '+diffMinutes+'m';
+                    return '<a class="kal-ep-pre" ep="'+(diffWeeks+1)+'" title="'+titleMsg+'">['+(diffWeeks+1)+']</a> ';
+                }
+            }
+        }
     }
