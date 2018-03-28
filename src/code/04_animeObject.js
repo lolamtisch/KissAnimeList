@@ -258,7 +258,7 @@
                 }else{
                     var epis = 'chapter: <b>'+anime['.add_manga[num_read_chapters]']+'</b>';
                 }
-                message = '<button class="sync" style="margin-bottom: 8px; background-color: transparent; border: none; color: rgb(255,64,129);margin-top: 10px;cursor: pointer;">Update MAL to '+epis+'</button>';
+                var message = '<button class="sync" style="margin-bottom: 8px; background-color: transparent; border: none; color: rgb(255,64,129);margin-top: 10px;cursor: pointer;">Update MAL to '+epis+'</button>';
                 flashm( message , true, true );
                 $('.sync').click(function(){
                     $('.flashinfo').remove();
