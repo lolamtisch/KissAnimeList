@@ -134,7 +134,7 @@
                     case '0.91.4':
                         message += 'KissAnimeList (v0.91.4):<br/><br/> [Added] <br/> - Support for 9anime.ch  <br/> <br/> [Fixed] <br/> - "MAL thumbnails" and "Episode Hoverinfo" not working in Opera <br/> - The miniMAL-button was not appearing for anime\'s without a MAL-url';
                         break;
-                    case '0.92.0':
+                    case '0.92.1':
                         message += 'KissAnimeList (v0.92.0):<br/><br/> [Added] <br/>- Feature: Display a tentative episode number and air time for anime.  <br/>- Feature: If autotracking is deactivated - Display a popup for manually updating  <br/>- Mangalist integration <br/>- Added a section for characters to miniMAL.  <br/>- Added anime/manga switches for miniMAL\'s search and bookmarks <br/>- Feature: Episode/Chapter releases check [BETA] (Deactivated by default) <br/> ';
                         break;
                 }
