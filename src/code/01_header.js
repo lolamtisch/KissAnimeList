@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name        KissAnimeList
-// @version     0.92.1
+// @version     0.92.2
 // @description Integrates MyAnimeList into various sites, with auto episode tracking.
 // @author      lolamtisch@gmail.com
 // @license 	CC-BY-4.0; https://creativecommons.org/licenses/by/4.0/legalcode
@@ -30,7 +30,9 @@
 //
 // @include     /^https?:\/\/(w+.?\.)?gogoanime\.tv\/([^/]+$|category\/)/
 // @include     /^https?:\/\/(w+.?\.)?gogoanime\.io\/([^/]+$|category\/)/
-// @exclude     /^https?:\/\/(w+.?\.)?gogoanime\.(tv|io)\/(.*.html|anime-List)/
+// @include     /^https?:\/\/(w+.?\.)?gogoanime\.in\/([^/]+$|category\/)/
+// @include     /^https?:\/\/(w+.?\.)?gogoanime\.se\/([^/]+$|category\/)/
+// @exclude     /^https?:\/\/(w+.?\.)?gogoanime\.(tv|io|in|se)\/(.*.html|anime-List)/
 //
 // @require     http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js
 // @resource    materialCSS https://code.getmdl.io/1.3.0/material.indigo-pink.min.css
