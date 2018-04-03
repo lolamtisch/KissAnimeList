@@ -447,7 +447,7 @@
                     function manga_loader(){
                         setTimeout(function(){
                             var tempDocHeight = $(document).height();
-                            findPage();
+                            if(hash && !(isNaN(page))) findPage();
                             function findPage(){
                                 if($(".ml-images .ml-counter:contains('"+page+"')").length){
                                     $("html, body").animate({ scrollTop: $(".ml-images .ml-counter:contains('"+page+"')").prev().offset().top }, "slow");
