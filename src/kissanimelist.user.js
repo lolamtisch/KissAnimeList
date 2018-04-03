@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name        KissAnimeList
-// @version     0.92.2
+// @version     0.92.3
 // @description Integrates MyAnimeList into various sites, with auto episode tracking.
 // @author      lolamtisch@gmail.com
 // @license 	CC-BY-4.0; https://creativecommons.org/licenses/by/4.0/legalcode
@@ -519,7 +519,7 @@
                     function manga_loader(){
                         setTimeout(function(){
                             var tempDocHeight = $(document).height();
-                            findPage();
+                            if(hash && !(isNaN(page))) findPage();
                             function findPage(){
                                 if($(".ml-images .ml-counter:contains('"+page+"')").length){
                                     $("html, body").animate({ scrollTop: $(".ml-images .ml-counter:contains('"+page+"')").prev().offset().top }, "slow");
