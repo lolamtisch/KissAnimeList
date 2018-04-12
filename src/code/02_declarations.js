@@ -47,7 +47,8 @@
     }
 
     var tagLinks = GM_getValue( 'tagLinks', 1 );
-    var newEpInterval = GM_getValue( 'newEpInterval', 43200000 );
+    var epPredictions = GM_getValue( 'epPredictions', 1 );
+    var newEpInterval = GM_getValue( 'newEpInterval', 'null' );
     var newEpNotification = GM_getValue( 'newEpNotification', 1 );
     var newEpBorder = GM_getValue( 'newEpBorder', 'ff0000' );
     var openInBg = GM_getValue( 'openInBg', 1 );
@@ -132,6 +133,9 @@
                         break;
                     case '0.91.4':
                         message += 'KissAnimeList (v0.91.4):<br/><br/> [Added] <br/> - Support for 9anime.ch  <br/> <br/> [Fixed] <br/> - "MAL thumbnails" and "Episode Hoverinfo" not working in Opera <br/> - The miniMAL-button was not appearing for anime\'s without a MAL-url';
+                        break;
+                    case '0.92.1':
+                        message += 'KissAnimeList (v0.92.0):<br/><br/> [Added] <br/>- Feature: Display a tentative episode number and air time for anime.  <br/>- Feature: If autotracking is deactivated - Display a popup for manually updating  <br/>- Mangalist integration <br/>- Added a section for characters to miniMAL.  <br/>- Added anime/manga switches for miniMAL\'s search and bookmarks <br/>- Feature: Episode/Chapter releases check [BETA] (Deactivated by default) <br/> ';
                         break;
                 }
             }else{
@@ -324,7 +328,7 @@
                         function manga_loader(){
                             setTimeout(function(){
                                 var tempDocHeight = $(document).height();
-                                findPage();
+                                if(hash && !(isNaN(page))) findPage();
                                 function findPage(){
                                     if($(".ml-images .ml-counter:contains('"+page+"')").length){
                                         $("html, body").animate({ scrollTop: $(".ml-images .ml-counter:contains('"+page+"')").prev().offset().top }, "slow");
@@ -341,11 +345,11 @@
                                 }
                             }, 2000);
                         }
-                        var delayeUpate = 1;
+                        var delayUpate = 1;
                         $(document).scroll(function() {
-                            if(delayeUpate){
-                                delayeUpate = 0;
-                                setTimeout(function(){ delayeUpate = 1; }, 2000);
+                            if(delayUpate){
+                                delayUpate = 0;
+                                setTimeout(function(){ delayUpate = 1; }, 2000);
                                 $('.kal-image').each(function(index, el) {
                                     if($(this).isInViewport()){
                                         if(window.location.hash != '#'+$(this).attr('id')){

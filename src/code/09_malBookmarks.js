@@ -5,7 +5,7 @@
             return false;
         }
         if(tagToContinueNumber > 1){
-            alternativTagOnSite();
+            alternativeTagOnSite();
             return true;
         }
         $(window).load(function(){
@@ -52,7 +52,7 @@
                         });
                         startCheckForNewEpisodes();
                     }else{
-                        alternativTagOnSite();
+                        alternativeTagOnSite();
                     }
 
                     return true;
@@ -61,7 +61,7 @@
         });
     }
 
-    function alternativTagOnSite(){
+    function alternativeTagOnSite(){
         if($('.list-table').length){
             con.log('[BOOK] Modern Tags');
             var data = $.parseJSON($('.list-table').attr('data-items'));

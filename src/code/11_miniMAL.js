@@ -87,6 +87,9 @@
                                 width: 100% !important;\
                                 opacity: 1 !important;\
                               }\
+                              .simplebar-scrollbar.visible:before{\
+                                display: none;\
+                              }\
                               .simplebar-content{\
                                 margin-right: -7px !important;\
                               }\
@@ -236,8 +239,10 @@
             </section>';
           material +='</main>\
         </div>\
-        <div data-simplebar id="malSearchPop" style="height: calc(100% - 60px); width: 100%; position: fixed; top: 60px; z-index: 10; background-color: #f9f9f9; display: none;">\
+        <div id="malSearchPop" style="display: none; z-index: 10; position: fixed;">\
+          <div data-simplebar style="height: calc(100% - 60px); z-index: 10; width: 100%; position: fixed !important; top: 60px; background-color: #f9f9f9; width: 100%;position: fixed; top: 60px; background-color: #f9f9f9;">\
           <div id="malSearchPopInner"></div>\
+          </div>\
         </div>';
         //material += '</div>';
         $("#info-iframe").contents().find("body").append(material);
@@ -431,6 +436,7 @@
                                 <h2 class="mdl-card__title-text">MAL Bookmark Page</h2>\
                                 </div>';
                 settingsUI += materialCheckbox(tagLinks,'tagLinks','Continue watching links'+getTooltip('If enabled: On your MAL Anime List and the bookmark list in miniMAL, an icon-link will be added to the last used streaming site you were using to watch an anime.<br>Simply click the icon to continue watching the anime.'));
+                settingsUI += materialCheckbox(epPredictions,'epPredictions','Predict episode number');
                 settingsUI += '<li class="mdl-list__item">\
                                   <span class="mdl-list__item-primary-content">\
                                       Check for new episodes\
@@ -828,6 +834,16 @@
                 }else{
                     GM_setValue('debugging', 0);
                     debugging = 0;
+                }
+            });
+
+            $("#info-iframe").contents().find('#epPredictions').change(function(){
+                if($(this).is(":checked")){
+                    GM_setValue('epPredictions', 1);
+                    epPredictions = 1;
+                }else{
+                    GM_setValue('epPredictions', 0);
+                    epPredictions = 0;
                 }
             });
 
