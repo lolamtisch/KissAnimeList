@@ -118,7 +118,7 @@
                         }
                         getanime(thisUrl, callback, url);
                     }else{
-                        if(url.indexOf("myanimelist.net/login.php") > -1) {
+                        if(url.indexOf("myanimelist.net/login.php") > -1 || response.responseText.indexOf("Unauthorized") > -1) {
                             flashm( "Please log in on <a target='_blank' href='https://myanimelist.net/login.php'>MyAnimeList!<a>" , true);
                             var anime = {};
                             anime['login'] = 0;
@@ -147,6 +147,9 @@
 
 
     function getObject(data,url,localListType){
+        if (typeof data.split('<form name="')[1] === "undefined") {
+            flashm( "MAL is down or otherwise giving bad data <a href='"+url+"'>[Check]</a>" , true);
+        }
         if(localListType == 'anime'){
             var anime = {};
             anime['malurl'] = url;
