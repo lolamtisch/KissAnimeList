@@ -274,7 +274,7 @@
         continueAllowed = 1;
 
         if(localListType == 'anime'){
-            var url = "https://myanimelist.net/editlist.php?type=anime&id="+actual['.anime_id'];
+            var url = "https://myanimelist.net/ownlist/anime/"+actual['.anime_id']+"/edit";
             if(actual['addanime'] === 1){
                 url = "https://myanimelist.net/ownlist/anime/add?selected_series_id="+actual['.anime_id'];
                 flashConfirm('Add "'+actual['name']+'" to MAL?', function(){continueCall();}, function(){
@@ -285,7 +285,7 @@
                 return;
             }
         }else{
-            var url = "https://myanimelist.net/panel.php?go=editmanga&id="+actual['.manga_id'];
+            var url = "https://myanimelist.net/ownlist/manga/"+actual['.manga_id']+"/edit";
             if(actual['addmanga'] === 1){
                 url = "https://myanimelist.net/ownlist/manga/add?selected_manga_id="+actual['.manga_id'];
                 flashConfirm('Add "'+actual['name']+'" to MAL?', function(){continueCall();}, function(){});
