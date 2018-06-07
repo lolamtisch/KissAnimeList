@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name        KissAnimeList
-// @version     0.92.3
+// @version     0.92.4
 // @description Integrates MyAnimeList into various sites, with auto episode tracking.
 // @author      lolamtisch@gmail.com
 // @license 	CC-BY-4.0; https://creativecommons.org/licenses/by/4.0/legalcode
@@ -226,66 +226,68 @@
         }
     }
 
+    function getDeclaration(kalUrl){
+    var Kal = {};
 
-    if( window.location.href.indexOf("kissanime.ru") > -1 ){
+    if( kalUrl.indexOf("kissanime.ru") > -1 ){
         //#########Kissanime#########
-        var domain = 'http://kissanime.ru';
-        var textColor = '#d5f406';
-        var dbSelector = 'Kissanime';
-        var listType = 'anime';
-        var bookmarkCss = ".listing tr td:nth-child(1){height: 150px;padding-left: 125px;} .listing tr td{vertical-align: top;}";
-        var bookmarkFixCss = ".bigBarContainer {margin: 0px; width: 630px !important; text-align: left; float: left;}";
-        var videoSelector = '#divContentVideo';
+        Kal.domain = 'http://kissanime.ru';
+        Kal.textColor = '#d5f406';
+        Kal.dbSelector = 'Kissanime';
+        Kal.listType = 'anime';
+        Kal.bookmarkCss = ".listing tr td:nth-child(1){height: 150px;padding-left: 125px;} .listing tr td{vertical-align: top;}";
+        Kal.bookmarkFixCss = ".bigBarContainer {margin: 0px; width: 630px !important; text-align: left; float: left;}";
+        Kal.videoSelector = '#divContentVideo';
 
-        $.init = function() {
+        Kal.init = function() {
             checkdata();
         }
 
-        $.fn.imageCache = function() {
+        Kal.imageCache = function(selector) {
             return $('#rightside').find('img').attr('src');
         };
 
-        $.isOverviewPage = function() {
-            if(typeof window.location.href.split('/')[5] != 'undefined'){
+        Kal.isOverviewPage = function() {
+            if(typeof kalUrl.split('/')[5] != 'undefined'){
                 if($('#centerDivVideo').length){
                     return false;
                 }
             }
             return true;
         };
-        $.episodeListSelector = function() {
+        Kal.episodeListSelector = function() {
             return $(".listing a");
         };
-        $.fn.episodeListElementHref = function() {
-            return $.absoluteLink(this.attr('href'));
+        Kal.episodeListElementHref = function(selector) {
+            return $.absoluteLink(selector.attr('href'));
         };
-        $.fn.episodeListElementTitle = function() {
-            return this.text().replace($('.bigChar').text(),'');
+        Kal.episodeListElementTitle = function(selector) {
+            return selector.text().replace($('.bigChar').text(),'');
         };
-        $.fn.episodeListNextElement = function(index) {
+        Kal.episodeListNextElement = function(selector, index) {
             if ((index-1) > -1) {
-                return $.episodeListSelector().eq(index-1);
+                return Kal.episodeListSelector().eq(index-1);
             }
             return $();
         };
-        $.handleNextLink = function(truelink, anime){
+        Kal.handleNextLink = function(truelink, anime){
             return truelink;
         };
 
-        $.urlEpisodePart = function(url) {
+        Kal.urlEpisodePart = function(url) {
             return url.split("/")[5].split("?")[0];
         };
-        $.urlAnimeIdent = function(url) {
+        Kal.urlAnimeIdent = function(url) {
             return url.split('/').slice(0,5).join('/');
         };
-        $.urlAnimeSelector = function(url) {
+        Kal.urlAnimeSelector = function(url) {
             return url.split("/")[4].split("?")[0];
         };
-        $.urlAnimeTitle = function(url) {
-            return $.urlAnimeSelector(url);
+        Kal.urlAnimeTitle = function(url) {
+            return Kal.urlAnimeSelector(url);
         };
 
-        $.EpisodePartToEpisode = function(string) {
+        Kal.EpisodePartToEpisode = function(string) {
             var temp = [];
             temp = string.match(/[e,E][p,P][i,I]?[s,S]?[o,O]?[d,D]?[e,E]?\D?\d{3}/);
             if(temp !== null){
@@ -305,47 +307,47 @@
             return string;
         };
 
-        $.fn.uiPos = function() {
-            this.insertAfter($(".bigChar").first());
+        Kal.uiPos = function(selector) {
+            selector.insertAfter($(".bigChar").first());
         };
-        $.fn.uiWrongPos = function() {
-            this.insertAfter($(".bigChar").first());
+        Kal.uiWrongPos = function(selector) {
+            selector.insertAfter($(".bigChar").first());
         };
-        $.fn.uiHeadPos = function() {
-            this.appendTo($(".barTitle").first());
+        Kal.uiHeadPos = function(selector) {
+            selector.appendTo($(".barTitle").first());
         };
 
-        $.docReady = function(data) {
+        Kal.docReady = function(data) {
             return $( document).ready(data);
         };
 
-        $.normalUrl = function(){
-            return $.urlAnimeIdent(window.location.href);
+        Kal.normalUrl = function(){
+            return Kal.urlAnimeIdent(kalUrl);
         };
 
-        $.fn.epListReset = function() {
-            this.parent().parent().css("background-color","initial");
+        Kal.epListReset = function(selector) {
+            selector.parent().parent().css("background-color","initial");
         };
-        $.fn.epListActive = function() {
-            this.parent().parent().css("background-color","#002966");
+        Kal.epListActive = function(selector) {
+            selector.parent().parent().css("background-color","#002966");
         };
 
-        $.bookmarkEntrySelector = function() {
+        Kal.bookmarkEntrySelector = function() {
             return $(".trAnime");
         };
 
-        $.nextEpLink = function(url) {
+        Kal.nextEpLink = function(url) {
             return url+'/'+$('#selectEpisode option:selected').next().val();
         };
 
-        $.fn.classicBookmarkButton = function(checkClassic) {
-            this.before('<div><input type="checkbox" id="classicBookmarks" '+checkClassic+' > Classic styling</div><div class="clear2">&nbsp;</div>');
+        Kal.classicBookmarkButton = function(selector, checkClassic) {
+            selector.before('<div><input type="checkbox" id="classicBookmarks" '+checkClassic+' > Classic styling</div><div class="clear2">&nbsp;</div>');
         };
-        $.fn.bookmarkButton = function(check) {
-            this.before('<div><input type="checkbox" id="malBookmarks" '+check+' > MyAnimeList Bookmarks</div><div class="clear2">&nbsp;</div>');
+        Kal.bookmarkButton = function(selector, check) {
+            selector.before('<div><input type="checkbox" id="malBookmarks" '+check+' > MyAnimeList Bookmarks</div><div class="clear2">&nbsp;</div>');
         };
 
-        $.BookmarksStyleAfterLoad = function() {
+        Kal.BookmarksStyleAfterLoad = function() {
             if( BookmarksStyle == 1 ){
                 var optionsTarget = $("#optionsTarget");
                 var blackSpacer = "";
@@ -362,71 +364,138 @@
             });
         };
         //###########################
-    }else if( window.location.href.indexOf("kissmanga.com") > -1 ){
+    }else if( kalUrl.indexOf("kissmanga.com") > -1 ){
         //#########Kissmanga#########
-        var domain = 'http://kissmanga.com';
-        var textColor = '#72cefe';
-        var dbSelector = 'Kissmanga';
-        var listType = 'manga';
-        var bookmarkCss = ".listing tr td:nth-child(1){height: 150px;padding-left: 125px;} .listing tr td{vertical-align: top;}";
+        Kal.domain = 'http://kissmanga.com';
+        Kal.textColor = '#72cefe';
+        Kal.dbSelector = 'Kissmanga';
+        Kal.listType = 'manga';
+        Kal.bookmarkCss = ".listing tr td:nth-child(1){height: 150px;padding-left: 125px;} .listing tr td{vertical-align: top;}";
         if(classicBookmarks == 0){
-            bookmarkCss += '#leftside{width: 581px !important;} #rightside{ float: left !important; margin-left: 30px;}';
+            Kal.bookmarkCss += '#leftside{width: 581px !important;} #rightside{ float: left !important; margin-left: 30px;}';
         }
-        var bookmarkFixCss = "";
+        Kal.bookmarkFixCss = "";
         BookmarksStyle = "";
 
-        $.init = function() {
+        Kal.init = function() {
+            Kal.docReady(function(){
+                if(!Kal.isOverviewPage()){
+                    $('#divImage > p').each(function(index, el) {
+                        $(this).attr('id', index+1).addClass('kal-image');
+                    });
+                    var hash = window.location.hash;
+                    setTimeout(function(){
+                        var page = parseInt(hash.substring(1));
+                        window.location.hash = '';
+                        window.location.hash = hash;
+
+                        if($( "button:contains('Load Manga')" ).length){
+                            $( "button:contains('Load Manga')").click(function(){
+                                manga_loader();
+                            });
+                        }
+                        if($('.ml-images').length){
+                            manga_loader();
+                        }
+                        function manga_loader(){
+                            setTimeout(function(){
+                                var tempDocHeight = $(document).height();
+                                if(hash && !(isNaN(page))) findPage();
+                                function findPage(){
+                                    if($(".ml-images .ml-counter:contains('"+page+"')").length){
+                                        $("html, body").animate({ scrollTop: $(".ml-images .ml-counter:contains('"+page+"')").prev().offset().top }, "slow");
+                                    }else{
+                                        $("html, body").animate({ scrollTop: $(document).height() }, 0);
+                                        setTimeout(function(){
+                                            $('html').scroll();
+                                            if(tempDocHeight != $(document).height()){
+                                                tempDocHeight = $(document).height();
+                                                findPage();
+                                            }
+                                        }, 500);
+                                    }
+                                }
+                            }, 2000);
+                        }
+                        var delayUpate = 1;
+                        $(document).scroll(function() {
+                            if(delayUpate){
+                                delayUpate = 0;
+                                setTimeout(function(){ delayUpate = 1; }, 2000);
+                                $('.kal-image').each(function(index, el) {
+                                    if($(this).isInViewport()){
+                                        if(window.location.hash != '#'+$(this).attr('id')){
+                                            history.pushState({}, null, '#'+$(this).attr('id'));
+                                            checkdata();
+                                        }
+                                        return false;
+                                    }
+                                });
+                                $('.ml-images img').each(function(index, el) {
+                                    if($(this).isInViewport()){
+                                        if(window.location.hash != '#'+$(this).next().text()){
+                                            history.pushState({}, null, '#'+$(this).next().text());
+                                            checkdata();
+                                        }
+                                        return false;
+                                    }
+                                });
+                            }
+                        });
+                    }, 5000);
+                }
+            });
             checkdata();
         }
 
-        $.fn.imageCache = function() {
+        Kal.imageCache = function(selector) {
             return $('#rightside').find('img').attr('src');
         };
 
-        $.isOverviewPage = function() {
+        Kal.isOverviewPage = function() {
             if($("#malp").width() !== null){
                 return true;
             }else{
                 return false;
             }
         };
-        $.episodeListSelector = function() {
+        Kal.episodeListSelector = function() {
             return $(".listing a");
         };
-        $.fn.episodeListElementHref = function() {
-            return $.absoluteLink(this.attr('href'));
+        Kal.episodeListElementHref = function(selector) {
+            return $.absoluteLink(selector.attr('href'));
         };
-        $.fn.episodeListElementTitle = function() {
-            return this.text().replace($('.bigChar').text(),'');
+        Kal.episodeListElementTitle = function(selector) {
+            return selector.text().replace($('.bigChar').text(),'');
         };
-        $.fn.episodeListNextElement = function( index ) {
+        Kal.episodeListNextElement = function(selector, index) {
             if ((index-1) > -1) {
-                return $.episodeListSelector().eq(index-1);
+                return Kal.episodeListSelector().eq(index-1);
             }
             return $();
         };
-        $.handleNextLink = function(truelink, anime){
+        Kal.handleNextLink = function(truelink, anime){
             return truelink;
         };
 
-        $.urlEpisodePart = function(url) {
+        Kal.urlEpisodePart = function(url) {
             return url.split("/")[5].split("?")[0];
         };
-        $.urlAnimeIdent = function(url) {
+        Kal.urlAnimeIdent = function(url) {
             return url.split('/').slice(0,5).join('/');
         };
-        $.urlAnimeSelector = function(url) {
+        Kal.urlAnimeSelector = function(url) {
             return url.split("/")[4].split("?")[0];
         };
-        $.urlAnimeTitle = function(url) {
-            return $.urlAnimeSelector(url);
+        Kal.urlAnimeTitle = function(url) {
+            return Kal.urlAnimeSelector(url);
         };
 
-        $.EpisodePartToEpisode = function(string) {
+        Kal.EpisodePartToEpisode = function(string) {
             var temp = [];
             try{
                 string = string.replace($('.bigChar').attr('href').split('/')[2],'');
-            }catch(e){string = string.replace(window.location.href.split("/")[4],'');}
+            }catch(e){string = string.replace(kalUrl.split("/")[4],'');}
             temp = string.match(/[c,C][h,H][a,A]?[p,P]?[t,T]?[e,E]?[r,R]?\D?\d+/);
             if(temp === null){
                 string = string.replace(/[V,v][o,O][l,L]\D?\d+/,'');
@@ -447,47 +516,47 @@
             return string;
         };
 
-        $.fn.uiPos = function() {
-            this.insertAfter($(".bigChar").first());
+        Kal.uiPos = function(selector) {
+            selector.insertAfter($(".bigChar").first());
         };
-        $.fn.uiWrongPos = function() {
-            this.insertAfter($(".bigChar").first());
+        Kal.uiWrongPos = function(selector) {
+            selector.insertAfter($(".bigChar").first());
         };
-        $.fn.uiHeadPos = function() {
-            this.appendTo($(".barTitle").first());
+        Kal.uiHeadPos = function(selector) {
+            selector.appendTo($(".barTitle").first());
         };
 
-        $.docReady = function(data) {
+        Kal.docReady = function(data) {
             return $( document).ready(data);
         };
 
-        $.normalUrl = function(){
-            return $.urlAnimeIdent(window.location.href);
+        Kal.normalUrl = function(){
+            return Kal.urlAnimeIdent(kalUrl);
         };
 
-        $.fn.epListReset = function() {
-            this.parent().parent().css("background-color","initial");
+        Kal.epListReset = function(selector) {
+            selector.parent().parent().css("background-color","initial");
         };
-        $.fn.epListActive = function() {
-            this.parent().parent().css("background-color","#002966");
+        Kal.epListActive = function(selector) {
+            selector.parent().parent().css("background-color","#002966");
         };
 
-        $.bookmarkEntrySelector = function() {
+        Kal.bookmarkEntrySelector = function() {
             return $(".listing tr:not(.head)");
         };
 
-        $.nextEpLink = function(url) {
-            return window.location.href;
+        Kal.nextEpLink = function(url) {
+            return kalUrl;
         };
 
-        $.fn.classicBookmarkButton = function(checkClassic) {
+        Kal.classicBookmarkButton = function(selector, checkClassic) {
             $("#rightside .barContent div").last().after('<div><input type="checkbox" id="classicBookmarks" '+checkClassic+' > Classic styling</div><div class="clear2">&nbsp;</div>');
         };
-        $.fn.bookmarkButton = function(check) {
+        Kal.bookmarkButton = function(selector, check) {
             $("#rightside .barContent div").last().after('<div class="clear2" style="border-bottom: 1px solid #DDD2A4;">&nbsp;</div><div class="clear2">&nbsp;</div><div><input type="checkbox" id="malBookmarks" '+check+' > MyAnimeList Bookmarks</div>');
         };
 
-        $.BookmarksStyleAfterLoad = function() {
+        Kal.BookmarksStyleAfterLoad = function() {
             $(".head").html('<th id="cssTableSet" style="min-width:120px;padding-right: 5px;"></th><th></th>');//<th width="21%" style=""></th>');
             $( ".listing tr td:nth-child(1)" ).before("<td class='Timage' style='padding-left: 0;'></td>");
             $( ".listing tr td:nth-child(1)" ).css("height","150px");
@@ -496,162 +565,93 @@
                 clearCache();
             });
         };
-
-        $.docReady(function(){
-            if(!$.isOverviewPage()){
-                $('#divImage > p').each(function(index, el) {
-                    $(this).attr('id', index+1).addClass('kal-image');
-                });
-                var hash = window.location.hash;
-                setTimeout(function(){
-                    var page = parseInt(hash.substring(1));
-                    window.location.hash = '';
-                    window.location.hash = hash;
-
-                    if($( "button:contains('Load Manga')" ).length){
-                        $( "button:contains('Load Manga')").click(function(){
-                            manga_loader();
-                        });
-                    }
-                    if($('.ml-images').length){
-                        manga_loader();
-                    }
-                    function manga_loader(){
-                        setTimeout(function(){
-                            var tempDocHeight = $(document).height();
-                            if(hash && !(isNaN(page))) findPage();
-                            function findPage(){
-                                if($(".ml-images .ml-counter:contains('"+page+"')").length){
-                                    $("html, body").animate({ scrollTop: $(".ml-images .ml-counter:contains('"+page+"')").prev().offset().top }, "slow");
-                                }else{
-                                    $("html, body").animate({ scrollTop: $(document).height() }, 0);
-                                    setTimeout(function(){
-                                        $('html').scroll();
-                                        if(tempDocHeight != $(document).height()){
-                                            tempDocHeight = $(document).height();
-                                            findPage();
-                                        }
-                                    }, 500);
-                                }
-                            }
-                        }, 2000);
-                    }
-                    var delayUpate = 1;
-                    $(document).scroll(function() {
-                        if(delayUpate){
-                            delayUpate = 0;
-                            setTimeout(function(){ delayUpate = 1; }, 2000);
-                            $('.kal-image').each(function(index, el) {
-                                if($(this).isInViewport()){
-                                    if(window.location.hash != '#'+$(this).attr('id')){
-                                        history.pushState({}, null, '#'+$(this).attr('id'));
-                                        checkdata();
-                                    }
-                                    return false;
-                                }
-                            });
-                            $('.ml-images img').each(function(index, el) {
-                                if($(this).isInViewport()){
-                                    if(window.location.hash != '#'+$(this).next().text()){
-                                        history.pushState({}, null, '#'+$(this).next().text());
-                                        checkdata();
-                                    }
-                                    return false;
-                                }
-                            });
-                        }
-                    });
-                }, 5000);
-            }
-        });
-
         //###########################
-    }else if( window.location.href.indexOf("masterani.me") > -1 ){
+    }else if( kalUrl.indexOf("masterani.me") > -1 ){
         //#########Masterani.me#########
-        var domain = 'https://www.masterani.me';
-        var textColor = 'white';
-        var dbSelector = 'Masterani';
-        var listType = 'anime';
-        var bookmarkCss = "";
-        var bookmarkFixCss = "";
-        var videoSelector = '.ui.embed';
+        Kal.domain = 'https://www.masterani.me';
+        Kal.textColor = 'white';
+        Kal.dbSelector = 'Masterani';
+        Kal.listType = 'anime';
+        Kal.bookmarkCss = "";
+        Kal.bookmarkFixCss = "";
+        Kal.videoSelector = '.ui.embed';
         var winLoad = 0;
 
-        $.init = function() {
+        Kal.init = function() {
             checkdata();
         }
 
-        $.fn.imageCache = function() {
+        Kal.imageCache = function(selector) {
             return $('.class').first().find('img').attr('src');
         };
 
-        $.isOverviewPage = function() {
-            if($.normalUrl().split('/')[4] !== 'watch'){
+        Kal.isOverviewPage = function() {
+            if(Kal.normalUrl().split('/')[4] !== 'watch'){
                 return true;
             }else{
                 return false;
             }
         };
-        $.episodeListSelector = function() {
+        Kal.episodeListSelector = function() {
             return $(".thumbnail a.title");
         };
-        $.fn.episodeListElementHref = function() {
-            return $.absoluteLink(this.attr('href'));
+        Kal.episodeListElementHref = function(selector) {
+            return $.absoluteLink(selector.attr('href'));
         };
-        $.fn.episodeListElementTitle = function() {
-            return this.find("div").text()+' ('+this.find("span").text()+')';
+        Kal.episodeListElementTitle = function(selector) {
+            return selector.find("div").text()+' ('+selector.find("span").text()+')';
         };
-        $.fn.episodeListNextElement = function( index ) {
+        Kal.episodeListNextElement = function(selector, index) {
             if ((index+1) > -1) {
-                return $.episodeListSelector().eq(index+1);
+                return Kal.episodeListSelector().eq(index+1);
             }
             return $();
         };
-        $.handleNextLink = function(truelink, anime){
+        Kal.handleNextLink = function(truelink, anime){
             $('.menu.pagination').off('click').on( "click", function() {
                 handleanime(anime);
             });
             if(truelink == null){
                 var nextEp = parseInt(anime['.add_anime[num_watched_episodes]'])+1;
                 if(nextEp <= parseInt(anime['totalEp'])){
-                    return '<a style="color: white;" href="/anime/watch/'+$.normalUrl().replace(/#[^#]*$/, "").replace(/\?[^\?]*$/, "").split("/")[5]+'/'+nextEp+'">Ep. '+nextEp+'</a>';
+                    return '<a style="color: white;" href="/anime/watch/'+Kal.normalUrl().replace(/#[^#]*$/, "").replace(/\?[^\?]*$/, "").split("/")[5]+'/'+nextEp+'">Ep. '+nextEp+'</a>';
                 }
             }
             return truelink;
         };
 
-        $.urlEpisodePart = function(url) {
+        Kal.urlEpisodePart = function(url) {
             return url.split("/")[6].split("?")[0];
         };
-        $.urlAnimeIdent = function(url) {
+        Kal.urlAnimeIdent = function(url) {
             return url.split('/').slice(0,6).join('/');
         };
-        $.urlAnimeSelector = function(url) {
+        Kal.urlAnimeSelector = function(url) {
             return url.split("/")[5].split("?")[0];
         };
-        $.urlAnimeTitle = function(url) {
-            return $.urlAnimeSelector(url).replace(/^\d*-/,'');
+        Kal.urlAnimeTitle = function(url) {
+            return Kal.urlAnimeSelector(url).replace(/^\d*-/,'');
         };
 
-        $.EpisodePartToEpisode = function(string) {
+        Kal.EpisodePartToEpisode = function(string) {
             return string;
         };
 
-        $.fn.uiPos = function() {
-            this.prependTo($("#stats").first());
+        Kal.uiPos = function(selector) {
+            selector.prependTo($("#stats").first());
         };
-        $.fn.uiWrongPos = function() {
-            this.css('margin-top','5px').appendTo($(".ui.info.list").first());
+        Kal.uiWrongPos = function(selector) {
+            selector.css('margin-top','5px').appendTo($(".ui.info.list").first());
         };
-        $.fn.uiHeadPos = function() {
-            this.appendTo($("h1").first());
+        Kal.uiHeadPos = function(selector) {
+            selector.appendTo($("h1").first());
         };
 
         $(window).load(function(){
             winLoad = 1;
         });
-        if(window.location.href.indexOf("/info/") > -1){
-            $.docReady = function(data) {
+        if(kalUrl.indexOf("/info/") > -1){
+            Kal.docReady = function(data) {
                 var checkExist = setInterval(function() {
                     if ($('#stats').length) {
                         clearInterval(checkExist);
@@ -665,124 +665,144 @@
                 }, 500);
             };
         }else{
-            $.docReady = function(data) {
+            Kal.docReady = function(data) {
                 return $( document).ready(data);
             }
         };
 
-        $.normalUrl = function(){
-            return $.urlAnimeIdent(window.location.href);
+        Kal.normalUrl = function(){
+            return Kal.urlAnimeIdent(kalUrl);
         };
 
-        $.fn.epListReset = function() {
-            this.parent().parent().css("background-color","initial");
+        Kal.epListReset = function(selector) {
+            selector.parent().parent().css("background-color","initial");
         };
-        $.fn.epListActive = function() {
-            this.parent().parent().css("background-color","#002966");
+        Kal.epListActive = function(selector) {
+            selector.parent().parent().css("background-color","#002966");
         };
 
-        $.bookmarkEntrySelector = function() {
+        Kal.bookmarkEntrySelector = function() {
             return $(".trAnime");
         };
 
-        $.nextEpLink = function(url) {
+        Kal.nextEpLink = function(url) {
             return 'https://www.masterani.me'+$('#watch .anime-info .actions a').last().attr('href');
         };
 
-        $.fn.classicBookmarkButton = function(checkfix) {
+        Kal.classicBookmarkButton = function(selector, checkfix) {
         };
-        $.fn.bookmarkButton = function(check) {
+        Kal.bookmarkButton = function(selector, check) {
         };
 
-        $.BookmarksStyleAfterLoad = function() {
+        Kal.BookmarksStyleAfterLoad = function() {
         };
         //###########################
-    }else if( window.location.href.indexOf("9anime.") > -1 ){
+    }else if( kalUrl.indexOf("9anime.") > -1 ){
         //#########9anime#########
-        var domain = 'https://'+window.location.hostname;
-        var textColor = '#694ba1';
-        var dbSelector = '9anime';
-        var listType = 'anime';
-        var bookmarkCss = "";
-        var bookmarkFixCss = "";
-        var videoSelector = '#player';
+        Kal.domain = 'https://'+window.location.hostname;
+        Kal.textColor = '#694ba1';
+        Kal.dbSelector = '9anime';
+        Kal.listType = 'anime';
+        Kal.bookmarkCss = "";
+        Kal.bookmarkFixCss = "";
+        Kal.videoSelector = '#player';
         var winLoad = 0;
-        GM_addStyle('.headui a {color: inherit !important;}');
 
-        $.init = function() {
+        Kal.init = function() {
+            GM_addStyle('.headui a {color: inherit !important;}');
+            var tempEpisode = "";
+            Kal.docReady(function(){
+                document.addEventListener("load", event =>{
+                    var curEpisode = $(".servers .episodes a.active").attr('data-base');
+                    if(curEpisode !== tempEpisode){
+                        tempEpisode =  curEpisode;
+                        if($('.servers').height() == null){
+                            tempEpisode = "";
+                            return;
+                        }
+                        if(curEpisode != ''){
+                            var animechange = {};
+                            animechange['.add_anime[num_watched_episodes]'] = parseInt(curEpisode);
+                            animechange['checkIncrease'] = 1;
+                            animechange['forceUpdate'] = 1;
+                            setanime( Kal.normalUrl(),animechange);
+                        }
+                    }
+                }, true);
+            });
             checkdata();
         }
 
-        $.fn.imageCache = function() {
+        Kal.imageCache = function(selector) {
             return $('.class').first().find('img').attr('src');
         };
 
-        $.isOverviewPage = function() {
-            if($.normalUrl().split('/')[4] !== 'watch'){
+        Kal.isOverviewPage = function() {
+            if(Kal.normalUrl().split('/')[4] !== 'watch'){
                 return true;
             }else{
                 return false;
             }
         };
-        $.episodeListSelector = function() {
+        Kal.episodeListSelector = function() {
             return $(".servers .episodes a");
         };
-        $.fn.episodeListElementHref = function() {
-            return $.absoluteLink(this.attr('href'))+'?ep='+this.attr('data-base');
+        Kal.episodeListElementHref = function(selector) {
+            return $.absoluteLink(selector.attr('href'))+'?ep='+selector.attr('data-base');
         };
-        $.fn.episodeListElementTitle = function() {
-            if(this.text() == ''){
+        Kal.episodeListElementTitle = function(selector) {
+            if(selector.text() == ''){
                 return '';
             }
-            return 'Episode '+this.text();
+            return 'Episode '+selector.text();
         };
-        $.fn.episodeListNextElement = function( index ) {
+        Kal.episodeListNextElement = function(selector, index) {
             if ((index+1) > -1) {
-                return $.episodeListSelector().eq(index+1);
+                return Kal.episodeListSelector().eq(index+1);
             }
             return $();
         };
-        $.handleNextLink = function(truelink, anime){
+        Kal.handleNextLink = function(truelink, anime){
             return truelink;
         };
 
-        $.urlEpisodePart = function(url) {
+        Kal.urlEpisodePart = function(url) {
             return url.split('?ep=')[1];
         };
-        $.urlAnimeIdent = function(url) {
+        Kal.urlAnimeIdent = function(url) {
             return url.split('/').slice(0,5).join('/');
         };
-        $.urlAnimeSelector = function(url) {
+        Kal.urlAnimeSelector = function(url) {
                 url = url.split("/")[4].split("?")[0];
             if( url.indexOf(".") > -1 ){
                 url = url.split(".")[1];
             }
             return url;
         };
-        $.urlAnimeTitle = function(url) {
+        Kal.urlAnimeTitle = function(url) {
             return url.split("/")[4].split("?")[0].split(".")[0];
         };
 
-        $.EpisodePartToEpisode = function(string) {
+        Kal.EpisodePartToEpisode = function(string) {
             return string;
         };
 
-        $.fn.uiPos = function() {
-            $('<div class="widget info"><div class="widget-body"> '+this.html()+'</div></div>').insertBefore($(".widget.info").first());
+        Kal.uiPos = function(selector) {
+            $('<div class="widget info"><div class="widget-body"> '+selector.html()+'</div></div>').insertBefore($(".widget.info").first());
         };
-        $.fn.uiWrongPos = function() {
-            this.css('font-size','14px').insertBefore($("#info").first());
+        Kal.uiWrongPos = function(selector) {
+            selector.css('font-size','14px').insertBefore($("#info").first());
             $('.title').first().css('display', 'inline-block');
         };
-        $.fn.uiHeadPos = function() {
-            this.addClass('title').css('margin-right','0').appendTo($(".widget.player .widget-title").first());
+        Kal.uiHeadPos = function(selector) {
+            selector.addClass('title').css('margin-right','0').appendTo($(".widget.player .widget-title").first());
         };
 
         $(window).load(function(){
             winLoad = 1;
         });
-        if(window.location.href.indexOf("/info/") > -1){
-            $.docReady = function(data) {
+        if(kalUrl.indexOf("/info/") > -1){
+            Kal.docReady = function(data) {
                 var checkExist = setInterval(function() {
                     if ($('#stats').length) {
                         clearInterval(checkExist);
@@ -796,82 +816,61 @@
                 }, 500);
             };
         }else{
-            $.docReady = function(data) {
+            Kal.docReady = function(data) {
                 return $( document).ready(data);
             }
         };
 
-        $.normalUrl = function(){
-            return $.urlAnimeIdent(window.location.href);
+        Kal.normalUrl = function(){
+            return Kal.urlAnimeIdent(kalUrl);
         };
 
-        $.fn.epListReset = function() {
-            this.css("border-style","none");
+        Kal.epListReset = function(selector) {
+            selector.css("border-style","none");
         };
-        $.fn.epListActive = function() {
-            this.css("border-color","#002966").css("border-width","2px").css("border-style","solid");
+        Kal.epListActive = function(selector) {
+            selector.css("border-color","#002966").css("border-width","2px").css("border-style","solid");
         };
 
-        $.bookmarkEntrySelector = function() {
+        Kal.bookmarkEntrySelector = function() {
             return $(".trAnime");
         };
 
-        $.nextEpLink = function(url) {
-            return domain+$(".servers .episodes a.active").parent('li').next().find('a').attr('href');
+        Kal.nextEpLink = function(url) {
+            return Kal.domain+$(".servers .episodes a.active").parent('li').next().find('a').attr('href');
         };
 
-        $.fn.classicBookmarkButton = function(checkfix) {
+        Kal.classicBookmarkButton = function(selector, checkfix) {
         };
-        $.fn.bookmarkButton = function(check) {
-        };
-
-        $.BookmarksStyleAfterLoad = function() {
+        Kal.bookmarkButton = function(selector, check) {
         };
 
-        var tempEpisode = "";
-        $.docReady(function(){
-            document.addEventListener("load", event =>{
-                var curEpisode = $(".servers .episodes a.active").attr('data-base');
-                if(curEpisode !== tempEpisode){
-                    tempEpisode =  curEpisode;
-                    if($('.servers').height() == null){
-                        tempEpisode = "";
-                        return;
-                    }
-                    if(curEpisode != ''){
-                        var animechange = {};
-                        animechange['.add_anime[num_watched_episodes]'] = parseInt(curEpisode);
-                        animechange['checkIncrease'] = 1;
-                        animechange['forceUpdate'] = 1;
-                        setanime( $.normalUrl(),animechange);
-                    }
-                }
-            }, true);
-        });
+        Kal.BookmarksStyleAfterLoad = function() {
+        };
         //###########################
-    }else if( window.location.href.indexOf("crunchyroll.com") > -1 ){
+    }else if( kalUrl.indexOf("crunchyroll.com") > -1 ){
         //TODO:
         //http://www.crunchyroll.com/ace-of-the-diamond
         //http://www.crunchyroll.com/trinity-seven
         //#########Crunchyroll#########
-        if(window.location.href == 'http://www.crunchyroll.com/'){
+        if(kalUrl == 'http://www.crunchyroll.com/'){
             return;
         }
-        var domain = 'http://www.crunchyroll.com';
-        var textColor = 'black';
-        var dbSelector = 'Crunchyroll';
-        var listType = 'anime';
-        var bookmarkCss = "";
-        var bookmarkFixCss = "";
-        var videoSelector = '#showmedia_video_box_wide,#showmedia_video_box';
+        Kal.domain = 'http://www.crunchyroll.com';
+        Kal.textColor = 'black';
+        Kal.dbSelector = 'Crunchyroll';
+        Kal.listType = 'anime';
+        Kal.bookmarkCss = "";
+        Kal.bookmarkFixCss = "";
+        Kal.videoSelector = '#showmedia_video_box_wide,#showmedia_video_box';
         GM_addStyle('.headui a {color: black !important;} #malp{margin-bottom: 8px;}');
 
-        $.init = function() {
+        Kal.init = function() {
             $( document).ready(function(){
                 if( $('.season-dropdown').length > 1){
                     $('.season-dropdown').append('<span class="exclusivMal" style="float: right; margin-right: 20px; color: #0A6DA4;" onclick="return false;">MAL</span>');
                     $('.exclusivMal').click(function(){
-                        $('#showview_content').before('<div><a href="'+window.location.href.split('?')[0]+'">Show hidden seasons</a></div>');
+                        $('#showview_content').before('<div><a href="'+kalUrl.split('?')[0]+'">Show hidden seasons</a></div>');
                         var thisparent =  $(this).parent();
                         $('.season-dropdown').not(thisparent).siblings().remove();
                         $('.season-dropdown').not(thisparent).remove();
@@ -881,7 +880,7 @@
                         $('.exclusivMal').remove();
                         checkdata();
                     });
-                    var season = new RegExp('[\?&]' + 'season' + '=([^&#]*)').exec(window.location.href);
+                    var season = new RegExp('[\?&]' + 'season' + '=([^&#]*)').exec(kalUrl);
                     if(season != null){
                         season = season[1] || null;
                         if(season != null){
@@ -896,41 +895,41 @@
             });
         }
 
-        $.fn.imageCache = function() {
+        Kal.imageCache = function(selector) {
             return $('#rightside').find('img').attr('src');
         };
 
-        $.isOverviewPage = function() {
-            if(typeof window.location.href.split('/')[4] != 'undefined'){
+        Kal.isOverviewPage = function() {
+            if(typeof kalUrl.split('/')[4] != 'undefined'){
                 if($('#showmedia_video').length){
                     return false;
                 }
             }
             return true;
         };
-        $.episodeListSelector = function() {
+        Kal.episodeListSelector = function() {
             return $("#showview_content_videos .list-of-seasons .group-item a");
         };
-        $.fn.episodeListElementHref = function() {
-            return $.absoluteLink(this.attr('href'));
+        Kal.episodeListElementHref = function(selector) {
+            return $.absoluteLink(selector.attr('href'));
         };
-        $.fn.episodeListElementTitle = function() {
-            return this.find('.series-title').text();
+        Kal.episodeListElementTitle = function(selector) {
+            return selector.find('.series-title').text();
         };
-        $.fn.episodeListNextElement = function(index) {//TODO
+        Kal.episodeListNextElement = function(selector, index) {//TODO
             if ((index-1) > -1) {
-                return $.episodeListSelector().eq(index-1);
+                return Kal.episodeListSelector().eq(index-1);
             }
             return $();
         };
-        $.handleNextLink = function(truelink, anime){
+        Kal.handleNextLink = function(truelink, anime){
             return truelink;
         };
 
-        $.urlEpisodePart = function(url) {
+        Kal.urlEpisodePart = function(url) {
             return url.split("/")[4];
         };
-        $.urlAnimeIdent = function(url) {
+        Kal.urlAnimeIdent = function(url) {
             return url.split('/').slice(0,4).join('/');
         };
         /*$( document).ready(function(){//TODO
@@ -951,8 +950,8 @@
             script = script.split('mediaMetadata =')[1].split('"name":"')[1].split(' -')[0];
             alert(script);
         });*/
-        $.urlAnimeSelector = function(url) {
-            if($.isOverviewPage()){
+        Kal.urlAnimeSelector = function(url) {
+            if(Kal.isOverviewPage()){
                 if( $('.season-dropdown').length > 1){
                     $('<div>Kissanimelist does not support multiple seasons on one page</div>').uiPos();
                     throw new Error('Kissanimelist does not support multiple seasons');
@@ -972,11 +971,11 @@
                 return url.split("/")[3];
             }
         };
-        $.urlAnimeTitle = function(url) {
-            return $.urlAnimeSelector(url);
+        Kal.urlAnimeTitle = function(url) {
+            return Kal.urlAnimeSelector(url);
         };
 
-        $.EpisodePartToEpisode = function(string) {
+        Kal.EpisodePartToEpisode = function(string) {
             var temp = [];
             temp = string.match(/[e,E][p,P][i,I]?[s,S]?[o,O]?[d,D]?[e,E]?\D?\d+/);
             if(temp !== null){
@@ -993,191 +992,197 @@
             return string;
         };
 
-        $.fn.uiPos = function() {//TODO
-            if($.isOverviewPage()){
-                //this.insertAfter($("h1.ellipsis"));
-                this.insertBefore($("#tabs").first());
+        Kal.uiPos = function(selector) {//TODO
+            if(Kal.isOverviewPage()){
+                //selector.insertAfter($("h1.ellipsis"));
+                selector.insertBefore($("#tabs").first());
                 $('#malStatus option').css('background-color','#f2f2f2');
                 $('#malUserRating option').css('background-color','#f2f2f2');
-                //this.prependTo($('.season-dropdown'));
+                //selector.prependTo($('.season-dropdown'));
             }
         };
-        $.fn.uiWrongPos = function() {//TODO after second element
-            //this.prependTo($("#sidebar_elements").first());
+        Kal.uiWrongPos = function(selector) {//TODO after second element
+            //selector.prependTo($("#sidebar_elements").first());
         };
-        $.fn.uiHeadPos = function() {//TODO
-            this.appendTo($(".ellipsis").first());
+        Kal.uiHeadPos = function(selector) {//TODO
+            selector.appendTo($(".ellipsis").first());
         };
 
-        $.docReady = function(data) {
+        Kal.docReady = function(data) {
             return $( document).ready(data);
         };
 
-        $.normalUrl = function(){
-            return $.urlAnimeIdent(window.location.href);
+        Kal.normalUrl = function(){
+            return Kal.urlAnimeIdent(kalUrl);
         };
 
-        $.fn.epListReset = function() {
-            this.css("background-color","#fff");
+        Kal.epListReset = function(selector) {
+            selector.css("background-color","#fff");
         };
-        $.fn.epListActive = function() {
-            this.css("background-color","#b2d1ff");
+        Kal.epListActive = function(selector) {
+            selector.css("background-color","#b2d1ff");
         };
 
-        $.bookmarkEntrySelector = function() {
+        Kal.bookmarkEntrySelector = function() {
             //return $(".trAnime");
         };
 
-        $.nextEpLink = function(url) {
+        Kal.nextEpLink = function(url) {
             return 'http://www.crunchyroll.com'+$('.collection-carousel-media-link-current').parent().next().find('.link').attr('href');
         };
 
-        $.fn.classicBookmarkButton = function(checkClassic) {
+        Kal.classicBookmarkButton = function(selector, checkClassic) {
 
         };
-        $.fn.bookmarkButton = function(check) {
+        Kal.bookmarkButton = function(selector, check) {
 
         };
 
-        $.BookmarksStyleAfterLoad = function() {
+        Kal.BookmarksStyleAfterLoad = function() {
 
         };
         //###########################
-    }else if( window.location.href.indexOf("gogoanime.") > -1 ){
+    }else if( kalUrl.indexOf("gogoanime.") > -1 ){
         //#########Gogoanime.tv#########
-        if(!window.location.href.split('/')[3]){
+        if(!kalUrl.split('/')[3]){
             return;
         }
-        var domain = window.location.href.split('/').slice(0,3).join('/')+'/';
-        var textColor = 'white';
-        var dbSelector = 'Gogoanime';
-        var listType = 'anime';
-        var bookmarkCss = "";
-        var bookmarkFixCss = "";
-        var videoSelector = '.anime_video_body_watch_items';
+        Kal.domain = kalUrl.split('/').slice(0,3).join('/')+'/';
+        Kal.textColor = 'white';
+        Kal.dbSelector = 'Gogoanime';
+        Kal.listType = 'anime';
+        Kal.bookmarkCss = "";
+        Kal.bookmarkFixCss = "";
+        Kal.videoSelector = '.anime_video_body_watch_items';
         var winLoad = 0;
-        GM_addStyle('.headui a {color: inherit !important;}');
 
-        $.init = function() {
+        Kal.init = function() {
+            GM_addStyle('.headui a {color: inherit !important;}');
             checkdata();
         }
 
-        $.fn.imageCache = function() {
+        Kal.imageCache = function(selector) {
             return $('.class').first().find('img').attr('src');
         };
 
-        $.isOverviewPage = function() {
-            if(window.location.href.split('/')[3] === 'category'){
+        Kal.isOverviewPage = function() {
+            if(kalUrl.split('/')[3] === 'category'){
                 return true;
             }else{
                 return false;
             }
         };
-        $.episodeListSelector = function() {
+        Kal.episodeListSelector = function() {
             return $("#episode_related a");
         };
-        $.fn.episodeListElementHref = function() {
-            return domain+this.attr('href').replace(' /','');
+        Kal.episodeListElementHref = function(selector) {
+            return Kal.domain+selector.attr('href').replace(' /','');
         };
-        $.fn.episodeListElementTitle = function() {
-            return this.find("div.name").text();
+        Kal.episodeListElementTitle = function(selector) {
+            return selector.find("div.name").text();
         };
-        $.fn.episodeListNextElement = function( index ) {
+        Kal.episodeListNextElement = function(selector, index) {
             if ((index-1) > -1) {
-                return $.episodeListSelector().eq(index-1);
+                return Kal.episodeListSelector().eq(index-1);
             }
             return $();
         };
-        $.handleNextLink = function(truelink, anime){
+        Kal.handleNextLink = function(truelink, anime){
             if(truelink == null){
                 var nextEp = parseInt(anime['.add_anime[num_watched_episodes]'])+1;
                 if(nextEp <= parseInt(anime['totalEp'])){
-                    return '<a style="color: white;" href="/'+$.normalUrl().split('/')[4]+'-episode-'+nextEp+'">Ep '+nextEp+'</a>';
+                    return '<a style="color: white;" href="/'+Kal.normalUrl().split('/')[4]+'-episode-'+nextEp+'">Ep '+nextEp+'</a>';
                 }
             }
             return truelink;
         };
 
-        $.urlEpisodePart = function(url) {
+        Kal.urlEpisodePart = function(url) {
             return url.split("/")[3].split("?")[0].split('episode-')[1];
         };
-        $.urlAnimeIdent = function(url) {
+        Kal.urlAnimeIdent = function(url) {
             if(url.split('/')[3] === 'category'){
                 return url.split('/').slice(0,5).join('/');
             }else{
                 return url.split('/').slice(0,3).join('/') + '/category/' + url.split("/")[3].split("?")[0].split('-episode')[0];
             }
         };
-        $.urlAnimeSelector = function(url) {
+        Kal.urlAnimeSelector = function(url) {
             return url.split("/")[4].split("?")[0];
         };
-        $.urlAnimeTitle = function(url) {
-            return $.urlAnimeSelector(url);
+        Kal.urlAnimeTitle = function(url) {
+            return Kal.urlAnimeSelector(url);
         };
 
-        $.EpisodePartToEpisode = function(string) {
+        Kal.EpisodePartToEpisode = function(string) {
             return string;
         };
 
-        $.fn.uiPos = function() {
-            this.prependTo($(".anime_info_body").first());
+        Kal.uiPos = function(selector) {
+            selector.prependTo($(".anime_info_body").first());
         };
-        $.fn.uiWrongPos = function() {//TODO
-            this.css('margin-top','5px').appendTo($(".ui.info.list").first());
+        Kal.uiWrongPos = function(selector) {//TODO
+            selector.css('margin-top','5px').appendTo($(".ui.info.list").first());
         };
-        $.fn.uiHeadPos = function() {//TODO
-            this.appendTo($("h1").first());
+        Kal.uiHeadPos = function(selector) {//TODO
+            selector.appendTo($("h1").first());
         };
 
-        $.docReady = function(data) {
+        Kal.docReady = function(data) {
             return $( document).ready(data);
         };
 
-        $.normalUrl = function(){
-            return $.urlAnimeIdent(window.location.href);
+        Kal.normalUrl = function(){
+            return Kal.urlAnimeIdent(kalUrl);
         };
 
-        $.fn.epListReset = function() {
-            this.css("background-color","#363636");
+        Kal.epListReset = function(selector) {
+            selector.css("background-color","#363636");
         };
-        $.fn.epListActive = function() {
-            this.css("background-color","#002966");
-        };
-
-        $.bookmarkEntrySelector = function() {
+        Kal.epListActive = function(selector) {
+            selector.css("background-color","#002966");
         };
 
-        $.nextEpLink = function(url) {
-            var url = domain + 's..' + $('.anime_video_body_episodes_r a').last().attr('href');
+        Kal.bookmarkEntrySelector = function() {
+        };
+
+        Kal.nextEpLink = function(url) {
+            var url = Kal.domain + 's..' + $('.anime_video_body_episodes_r a').last().attr('href');
             return url.replace('/s..','');
         };
 
-        $.fn.classicBookmarkButton = function(checkfix) {
+        Kal.classicBookmarkButton = function(selector, checkfix) {
         };
-        $.fn.bookmarkButton = function(check) {
+        Kal.bookmarkButton = function(selector, check) {
         };
 
-        $.BookmarksStyleAfterLoad = function() {
+        Kal.BookmarksStyleAfterLoad = function() {
         };
         //###########################
-    }else if( window.location.href.indexOf("myanimelist.net") > -1 ){
+    }else if( kalUrl.indexOf("myanimelist.net") > -1 ){
         googleover = 1;
-        var listType = window.location.href.split('/')[3];
-        $.isOverviewPage = function() {
+        Kal.listType = kalUrl.split('/')[3];
+        Kal.isOverviewPage = function() {
             return false;
         };
-        $.urlAnimeSelector = function(url) {
+        Kal.urlAnimeSelector = function(url) {
             return $('.h1 span').first().text();
         };
-        $.urlAnimeTitle = function(url) {
-            return $.urlAnimeSelector(url);
+        Kal.urlAnimeTitle = function(url) {
+            return Kal.urlAnimeSelector(url);
         };
-        $.docReady = function(data) {
+        Kal.docReady = function(data) {
             return $( document).ready(data);
         };
     }
+
+    return Kal;
+    }
+
+    var K = getDeclaration(window.location.href);
+
     //#######Anime or Manga######
-    if(listType == 'anime'){
+    if(K.listType == 'anime'){
         var googleMalUrl = "site:myanimelist.net/Anime/+-site:myanimelist.net/Anime/genre/+-site:myanimelist.net/anime/season/+";
         var middleType = 'episodes';
         var middleVerb = 'watched';
@@ -1198,7 +1203,7 @@
         if (typeof url === "undefined") {
             return url;
         }
-        if(!url.startsWith("http")) { url = domain + url;}
+        if(!url.startsWith("http")) { url = K.domain + url;}
         return url;
     };
     $.titleToDbKey = function(title) {
@@ -1226,9 +1231,9 @@
 
         miniMalButton(anime['malurl']);
 
-        if(GM_getValue( dbSelector+'/'+$.titleToDbKey($.urlAnimeSelector($.urlAnimeIdent($.normalUrl())))+'/image' , null) == null ){
+        if(GM_getValue( K.dbSelector+'/'+$.titleToDbKey(K.urlAnimeSelector(K.urlAnimeIdent(K.normalUrl())))+'/image' , null) == null ){
             try{
-                GM_setValue( dbSelector+'/'+$.titleToDbKey($.urlAnimeSelector($.urlAnimeIdent($.normalUrl())))+'/image', $().imageCache() );
+                GM_setValue( K.dbSelector+'/'+$.titleToDbKey(K.urlAnimeSelector(K.urlAnimeIdent(K.normalUrl())))+'/image', K.imageCache('') );
             }catch(e){}
         }
         if(anime['login'] === 0){
@@ -1240,17 +1245,17 @@
             getcommondata(anime['malurl']);
             return;
         }
-        if($.isOverviewPage()){
-            $("#flash").attr("anime", anime['.'+listType+'_id']);
+        if(K.isOverviewPage()){
+            $("#flash").attr("anime", anime['.'+K.listType+'_id']);
             $("#malRating").attr("href", anime['malurl']);
-            if(isNaN(anime['.add_'+listType+'[status]'])){
+            if(isNaN(anime['.add_'+K.listType+'[status]'])){
                 $('.MalLogin').css("display","none");
                 $("#malRating").after("<span id='AddMalDiv'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href='#' id='AddMal' onclick='return false;'>Add to Mal</a></span>")
                 $('#AddMal').click(function() {
                     var anime = {};
-                    anime['.add_'+listType+'[status]'] = 6;
+                    anime['.add_'+K.listType+'[status]'] = 6;
                     anime['forceUpdate'] = 1;
-                    setanime($.normalUrl(),anime);
+                    setanime(K.normalUrl(),anime);
                 });
             }else{
                 $("#malTotal").text(anime['totalEp']);
@@ -1258,9 +1263,9 @@
                    $("#malTotal").text('?');
                 }
                 if(anime['forceUpdate'] != 2){
-                    $("#malStatus").val(anime['.add_'+listType+'[status]']);
+                    $("#malStatus").val(anime['.add_'+K.listType+'[status]']);
                     $("#malEpisodes").val(anime['.add_anime[num_watched_episodes]']);
-                    $("#malUserRating").val(anime['.add_'+listType+'[score]']);
+                    $("#malUserRating").val(anime['.add_'+K.listType+'[score]']);
 
                     //####Manga####
                     $("#malVolumes").val(anime['.add_manga[num_read_volumes]']);
@@ -1285,43 +1290,43 @@
             var linkbackup = null;
             var truelink = null;
             $('.lastOpen').remove();
-            $.episodeListSelector().each(function( index ) {
-                if(listType == 'anime'){
+            K.episodeListSelector().each(function( index ) {
+                if(K.listType == 'anime'){
                     if(debug){
-                        $(this).after('  Episode: '+urlToEpisode($(this).episodeListElementHref()));
+                        $(this).after('  Episode: '+urlToEpisode(K.episodeListElementHref($(this))));
                     }
                     try{
-                        episodelink = urlToEpisode($(this).episodeListElementHref());
+                        episodelink = urlToEpisode(K.episodeListElementHref($(this)));
                     }catch(e) {
                         episodelink = 1;
                     }
-                    $(this).epListReset();
+                    K.epListReset($(this));
                     if(episodelink == parseInt(anime['.add_anime[num_watched_episodes]'])){
-                        $(this).epListActive();
-                        if(typeof $(this).episodeListNextElement( index ).episodeListElementHref() !== "undefined"){
-                            truelink = '<a style="color: white;" href="'+$(this).episodeListNextElement( index ).episodeListElementHref()+'">'+$(this).episodeListNextElement( index ).episodeListElementTitle()+'</a>';
+                        K.epListActive($(this));
+                        if(typeof K.episodeListElementHref(K.episodeListNextElement($(this), index)) !== "undefined"){
+                            truelink = '<a style="color: white;" href="'+K.episodeListElementHref(K.episodeListNextElement($(this), index))+'">'+K.episodeListElementTitle(K.episodeListNextElement($(this), index))+'</a>';
                         }
                     }
                 }else{
                     if(debug){
-                        $(this).after('   Chapter: '+urlToChapter($(this).episodeListElementHref()));
-                        $(this).after('Volume: '+urlToVolume($(this).episodeListElementHref()));
+                        $(this).after('   Chapter: '+urlToChapter(K.episodeListElementHref($(this))));
+                        $(this).after('Volume: '+urlToVolume(K.episodeListElementHref($(this))));
                     }
-                    episodelink = urlToChapter($(this).episodeListElementHref());
-                    $(this).epListReset();
+                    episodelink = urlToChapter(K.episodeListElementHref($(this)));
+                    K.epListReset($(this));
                     if($(this).attr('href') == commentToUrl(anime['.add_manga[comments]'])){
                         $(this).parent().parent().css("background-color","#861515");
-                        linkbackup = '<a style="color: red;" href="'+$(this).episodeListNextElement( index ).episodeListElementHref()+'">'+$(this).episodeListNextElement( index ).episodeListElementTitle()+'</a>';
+                        linkbackup = '<a style="color: red;" href="'+K.episodeListElementHref(K.episodeListNextElement($(this), index))+'">'+K.episodeListElementTitle(K.episodeListNextElement($(this), index))+'</a>';
                         $(this).prepend('<span class="lastOpen">[Last opened]</span>');
                     }
                     if(episodelink == parseInt(anime['.add_manga[num_read_chapters]']) && parseInt(anime['.add_manga[num_read_chapters]']) != 0){
                         $(this).parent().parent().css("background-color","#002966");
-                        truelink = '<a style="color: white;" href="'+$(this).episodeListNextElement( index ).episodeListElementHref()+'">'+$(this).episodeListNextElement( index ).episodeListElementTitle()+'</a>';
+                        truelink = '<a style="color: white;" href="'+K.episodeListElementHref(K.episodeListNextElement($(this), index))+'">'+K.episodeListElementTitle(K.episodeListNextElement($(this), index))+'</a>';
                     }
                 }
             });
-            truelink = $.handleNextLink(truelink, anime);
-            if(listType == 'anime'){
+            truelink = K.handleNextLink(truelink, anime);
+            if(K.listType == 'anime'){
                 $(".headui").html(truelink);
             }else{
                 if(truelink == null){
@@ -1333,7 +1338,7 @@
                 }
             }
         }else{
-            if(listType == 'anime'){
+            if(K.listType == 'anime'){
                 //update
                 try{
                     var curEpisode = urlToEpisode(window.location.href);
@@ -1354,15 +1359,15 @@
             }
             animechange['checkIncrease'] = 1;
             setTimeout(function() {
-                setanime( $.normalUrl(),animechange);
+                setanime( K.normalUrl(),animechange);
             }, delay * 1000);
         }
     }
 
     function urlToEpisode(url){
-        var string = $.urlEpisodePart(url);
-        string = $.EpisodePartToEpisode(string);
-        var Offset = GM_getValue(dbSelector+'/'+$.titleToDbKey($.urlAnimeSelector($.urlAnimeIdent(url)))+'/Offset' , null);
+        var string = K.urlEpisodePart(url);
+        string = K.EpisodePartToEpisode(string);
+        var Offset = GM_getValue(K.dbSelector+'/'+$.titleToDbKey(K.urlAnimeSelector(K.urlAnimeIdent(url)))+'/Offset' , null);
         if( Offset != null){
             string = parseInt(string)+parseInt(Offset);
         }
@@ -1409,20 +1414,20 @@
         if(update.indexOf("masterani.me") > -1 && update.indexOf("/watch/") > -1){
             update = update.replace('/watch/','/info/');
         }
-        if(listType == 'anime'){
+        if(K.listType == 'anime'){
             GM_setValue( update+'/next', nextEp);
         }else{
             GM_setValue( update+'/next', 'manga');
         }
 
-        GM_setValue( update+'/nextEp', $.nextEpLink(update));
+        GM_setValue( update+'/nextEp', K.nextEpLink(update));
         return current;
     }
 
     function handleanimeupdate( anime, current){
-        if(listType == 'anime'){
+        if(K.listType == 'anime'){
             if(anime['checkIncrease'] === 1){
-                anime['.add_anime[tags]'] = handleTag($.urlAnimeIdent(window.location.href), current['.add_anime[tags]'], anime['.add_anime[num_watched_episodes]']+1);
+                anime['.add_anime[tags]'] = handleTag(K.urlAnimeIdent(window.location.href), current['.add_anime[tags]'], anime['.add_anime[num_watched_episodes]']+1);
                 if(current['.add_anime[num_watched_episodes]'] >= anime['.add_anime[num_watched_episodes]']){
                     if((anime['.add_anime[status]'] === 2 || current['.add_anime[status]'] === 2) && anime['.add_anime[num_watched_episodes]'] === 1){
                         if (confirm('Rewatch anime?')) {
@@ -1478,7 +1483,7 @@
         }else{
             if(anime['checkIncrease'] === 1){
                 current['checkIncrease'] = 1;
-                anime['.add_manga[tags]'] = handleTag($.urlAnimeIdent(window.location.href), current['.add_manga[tags]'], anime['.add_manga[num_read_chapters]']+1);
+                anime['.add_manga[tags]'] = handleTag(K.urlAnimeIdent(window.location.href), current['.add_manga[tags]'], anime['.add_manga[num_read_chapters]']+1);
                 if(current['.add_manga[num_read_chapters]'] >= anime['.add_manga[num_read_chapters]']){
                     if((anime['.add_manga[status]'] === 2 || current['.add_manga[status]'] === 2) && anime['.add_manga[num_read_chapters]'] === 1){
                         if (confirm('Reread Manga?')) {
@@ -1559,18 +1564,18 @@
         });
     }
     var fireExists = 0;
-    function getanime(thisUrl , callback, absolute = false, localListType = listType) {
+    function getanime(thisUrl , callback, absolute = false, localListType = K.listType) {
         var thisUrl = thisUrl;
         var url = '';
         var malurl = '';
-        var title = $.urlAnimeTitle(thisUrl);
+        var title = K.urlAnimeTitle(thisUrl);
         if(absolute === false){
             //url = "http://myanimelist.net/anime.php?q=" + encodeURI(formattitle(title));
             //url = "http://www.google.com/search?btnI&q=site:myanimelist.net/Anime/+-site:myanimelist.net/Anime/genre/+-site:myanimelist.net/anime/season/+"+encodeURI(formattitle(title));
-            url = 'https://kissanimelist.firebaseio.com/Data2/'+dbSelector+'/'+encodeURIComponent($.titleToDbKey($.urlAnimeSelector(thisUrl))).toLowerCase()+'/Mal.json';
-            if(GM_getValue( dbSelector+'/'+$.titleToDbKey($.urlAnimeSelector(thisUrl))+'/Mal' , null) !== null ){
+            url = 'https://kissanimelist.firebaseio.com/Data2/'+K.dbSelector+'/'+encodeURIComponent($.titleToDbKey(K.urlAnimeSelector(thisUrl))).toLowerCase()+'/Mal.json';
+            if(GM_getValue( K.dbSelector+'/'+$.titleToDbKey(K.urlAnimeSelector(thisUrl))+'/Mal' , null) !== null ){
                 //if(con != console){
-                    url = GM_getValue( dbSelector+'/'+$.titleToDbKey($.urlAnimeSelector(thisUrl))+'/Mal' , null);
+                    url = GM_getValue( K.dbSelector+'/'+$.titleToDbKey(K.urlAnimeSelector(thisUrl))+'/Mal' , null);
                 //}
                 con.log('[GET] Cache:', url);
             }
@@ -1580,7 +1585,7 @@
         }
 
         if(url == '' || url == null){
-            GM_setValue(dbSelector+'/'+$.titleToDbKey($.urlAnimeSelector($.normalUrl()))+'/Mal' , null);
+            GM_setValue(K.dbSelector+'/'+$.titleToDbKey(K.urlAnimeSelector(K.normalUrl()))+'/Mal' , null);
             loadingText = "No Mal Entry!";
             $("#MalInfo").text("No Mal Entry!");
             miniMalButton(null);
@@ -1633,7 +1638,7 @@
 
                 if(url.indexOf("ipv4.google.com") > -1) {
                     googleover = 1;
-                    $.docReady(function() {
+                    K.docReady(function() {
                         flashm( "Google Overloaded <br> <a target='_blank' href='"+url+"'>Solve captcha<a>" , true);
                         url = "http://myanimelist.net/"+localListType+".php?q=" + encodeURI(formattitle(title));
                         getanime(thisUrl, callback, url);
@@ -1653,7 +1658,7 @@
                     var data = response.responseText;
                     if(data.indexOf("getElementById('captcha')") > -1){ //Firefox no absolute url workaround TODO:
                         googleover = 1;
-                        $.docReady(function() {
+                        K.docReady(function() {
                             flashm( "Google Overloaded", true);// <br> <a target='_blank' href='"+url+"'>Solve captcha<a>" , true);
                             url = "http://myanimelist.net/"+localListType+".php?q=" + encodeURI(formattitle(title));
                             getanime(thisUrl, callback, url);
@@ -1678,12 +1683,12 @@
                         }
                         getanime(thisUrl, callback, url);
                     }else{
-                        if(url.indexOf("myanimelist.net/login.php") > -1) {
+                        if(url.indexOf("myanimelist.net/login.php") > -1 || response.responseText.indexOf("Unauthorized") > -1) {
                             flashm( "Please log in on <a target='_blank' href='https://myanimelist.net/login.php'>MyAnimeList!<a>" , true);
                             var anime = {};
                             anime['login'] = 0;
                             anime['malurl'] = malurl;
-                            $.docReady(function() {
+                            K.docReady(function() {
                                 callback(anime);
                             });
                         }else{
@@ -1694,7 +1699,7 @@
                                 return;
                             }
                             var anime = getObject(response.responseText,malurl,localListType);
-                            $.docReady(function() {
+                            K.docReady(function() {
                                 callback(anime);
                             });
                         }
@@ -1707,6 +1712,9 @@
 
 
     function getObject(data,url,localListType){
+        if (typeof data.split('<form name="')[1] === "undefined") {
+            flashm( "MAL is down or otherwise giving bad data <a href='"+url+"'>[Check]</a>" , true);
+        }
         if(localListType == 'anime'){
             var anime = {};
             anime['malurl'] = url;
@@ -1797,7 +1805,7 @@
     }
 
     var continueAllowed = 1;
-    function setanime(thisUrl ,anime, actual = null, localListType = listType) {
+    function setanime(thisUrl ,anime, actual = null, localListType = K.listType) {
         var undoAnime = $.extend({}, actual);
         if(actual === null){
             var absolute = false;
@@ -1831,7 +1839,7 @@
         continueAllowed = 1;
 
         if(localListType == 'anime'){
-            var url = "https://myanimelist.net/editlist.php?type=anime&id="+actual['.anime_id'];
+            var url = "https://myanimelist.net/ownlist/anime/"+actual['.anime_id']+"/edit";
             if(actual['addanime'] === 1){
                 url = "https://myanimelist.net/ownlist/anime/add?selected_series_id="+actual['.anime_id'];
                 flashConfirm('Add "'+actual['name']+'" to MAL?', function(){continueCall();}, function(){
@@ -1842,7 +1850,7 @@
                 return;
             }
         }else{
-            var url = "https://myanimelist.net/panel.php?go=editmanga&id="+actual['.manga_id'];
+            var url = "https://myanimelist.net/ownlist/manga/"+actual['.manga_id']+"/edit";
             if(actual['addmanga'] === 1){
                 url = "https://myanimelist.net/ownlist/manga/add?selected_manga_id="+actual['.manga_id'];
                 flashConfirm('Add "'+actual['name']+'" to MAL?', function(){continueCall();}, function(){});
@@ -2039,17 +2047,17 @@
     }
 
     function local_setValue( thisUrl, malurl, newCorrection = false){
-        if( (!(thisUrl.indexOf("myAnimeList.net/") >= 0)) && ( GM_getValue(dbSelector+'/'+$.titleToDbKey($.urlAnimeSelector(thisUrl))+'/Mal' , null) == null || newCorrection || GM_getValue(dbSelector+'/'+$.titleToDbKey($.urlAnimeSelector(thisUrl))+'/Crunch' , null) == 'no')){
+        if( (!(thisUrl.indexOf("myAnimeList.net/") >= 0)) && ( GM_getValue(K.dbSelector+'/'+$.titleToDbKey(K.urlAnimeSelector(thisUrl))+'/Mal' , null) == null || newCorrection || GM_getValue(K.dbSelector+'/'+$.titleToDbKey(K.urlAnimeSelector(thisUrl))+'/Crunch' , null) == 'no')){
             var param = { Kiss: thisUrl, Mal: malurl};
-            if(dbSelector == 'Crunchyroll'){
-                param = { Kiss: window.location.href+'?..'+$.titleToDbKey($.urlAnimeSelector()), Mal: malurl};
-                if($.isOverviewPage()){
+            if(K.dbSelector == 'Crunchyroll'){
+                param = { Kiss: window.location.href+'?..'+$.titleToDbKey(K.urlAnimeSelector()), Mal: malurl};
+                if(K.isOverviewPage()){
                     param = null;
-                    if(GM_getValue(dbSelector+'/'+$.titleToDbKey($.urlAnimeSelector(thisUrl))+'/Crunch' , null) == null){
-                        GM_setValue( dbSelector+'/'+$.titleToDbKey($.urlAnimeSelector(thisUrl))+'/Crunch', 'no' );
+                    if(GM_getValue(K.dbSelector+'/'+$.titleToDbKey(K.urlAnimeSelector(thisUrl))+'/Crunch' , null) == null){
+                        GM_setValue( K.dbSelector+'/'+$.titleToDbKey(K.urlAnimeSelector(thisUrl))+'/Crunch', 'no' );
                     }
                 }else{
-                    GM_setValue( dbSelector+'/'+$.titleToDbKey($.urlAnimeSelector(thisUrl))+'/Crunch', 'yes' );
+                    GM_setValue( K.dbSelector+'/'+$.titleToDbKey(K.urlAnimeSelector(thisUrl))+'/Crunch', 'yes' );
                 }
             }
 
@@ -2068,7 +2076,7 @@
 
             if(toDB == 1){
                 GM_xmlhttpRequest({
-                    url: 'https://kissanimelist.firebaseio.com/Data2/Request/'+dbSelector+'Request.json',
+                    url: 'https://kissanimelist.firebaseio.com/Data2/Request/'+K.dbSelector+'Request.json',
                     method: "POST",
                     data: JSON.stringify(param),
                     onload: function () {
@@ -2080,7 +2088,7 @@
                 });
             }
         }
-        GM_setValue( dbSelector+'/'+$.titleToDbKey($.urlAnimeSelector(thisUrl))+'/Mal', malurl );
+        GM_setValue( K.dbSelector+'/'+$.titleToDbKey(K.urlAnimeSelector(thisUrl))+'/Mal', malurl );
     }
 
     function getselect(data, name){
@@ -2205,17 +2213,17 @@
 
     function buttonclick(){
         var anime = {};
-        if(listType == 'anime'){
+        if(K.listType == 'anime'){
             anime['.add_anime[num_watched_episodes]'] = $("#malEpisodes").val();
         }else{
             anime['.add_manga[num_read_volumes]'] = $("#malVolumes").val();
             anime['.add_manga[num_read_chapters]'] = $("#malChapters").val();
         }
-        anime['.add_'+listType+'[score]'] = $("#malUserRating").val();
-        anime['.add_'+listType+'[status]'] = $("#malStatus").val();
+        anime['.add_'+K.listType+'[score]'] = $("#malUserRating").val();
+        anime['.add_'+K.listType+'[status]'] = $("#malStatus").val();
         anime['forceUpdate'] = 2;
 
-        setanime($.normalUrl(), anime);
+        setanime(K.normalUrl(), anime);
     }
 
     function formattitle(title) {
@@ -2465,13 +2473,13 @@
     var uiLoaded = 0;
 
     function checkdata(){
-        if($.normalUrl() !== ""){
-            getanime($.normalUrl(), function(anime){handleanime(anime);});
+        if(K.normalUrl() !== ""){
+            getanime(K.normalUrl(), function(anime){handleanime(anime);});
         }else{
             alert(error);
         }
 
-        $.docReady(function() {
+        K.docReady(function() {
             var wrapStart = '<span style="display: inline-block;">';
             var wrapEnd = '</span>';
 
@@ -2482,7 +2490,7 @@
 
             ui += wrapStart;
             ui += '<span class="info">Mal Score: </span>';
-            ui += '<a id="malRating" style="color: '+textColor+';min-width: 30px;display: inline-block;" target="_blank" href="">____</a>';
+            ui += '<a id="malRating" style="color: '+K.textColor+';min-width: 30px;display: inline-block;" target="_blank" href="">____</a>';
             ui += wrapEnd;
 
             //ui += '<span id="MalLogin">';
@@ -2490,22 +2498,22 @@
 
             ui += wrapStart;
             ui += '<span class="info">Status: </span>';
-            ui += '<select id="malStatus" style="font-size: 12px;background: transparent; border-width: 1px; border-color: grey; color: '+textColor+'; text-decoration: none; outline: medium none;">';
-            //ui += '<option value="0" style="background: #111111;color: '+textColor+';"></option>';
-            ui += '<option value="1" style="background: #111111;color: '+textColor+';">'+watching+'</option>';
-            ui += '<option value="2" style="background: #111111;color: '+textColor+';">Completed</option>';
-            ui += '<option value="3" style="background: #111111;color: '+textColor+';">On-Hold</option>';
-            ui += '<option value="4" style="background: #111111;color: '+textColor+';">Dropped</option>';
-            ui += '<option value="6" style="background: #111111;color: '+textColor+';">'+planTo+'</option>';
+            ui += '<select id="malStatus" style="font-size: 12px;background: transparent; border-width: 1px; border-color: grey; color: '+K.textColor+'; text-decoration: none; outline: medium none;">';
+            //ui += '<option value="0" style="background: #111111;color: '+K.textColor+';"></option>';
+            ui += '<option value="1" style="background: #111111;color: '+K.textColor+';">'+watching+'</option>';
+            ui += '<option value="2" style="background: #111111;color: '+K.textColor+';">Completed</option>';
+            ui += '<option value="3" style="background: #111111;color: '+K.textColor+';">On-Hold</option>';
+            ui += '<option value="4" style="background: #111111;color: '+K.textColor+';">Dropped</option>';
+            ui += '<option value="6" style="background: #111111;color: '+K.textColor+';">'+planTo+'</option>';
             ui += '</select>';
             ui += wrapEnd;
 
-            if(listType == 'anime'){
+            if(K.listType == 'anime'){
                 var middle = '';
                 middle += wrapStart;
                 middle += '<span class="info">Episodes: </span>';
-                middle += '<span style="color: '+textColor+'; text-decoration: none; outline: medium none;">';
-                middle += '<input id="malEpisodes" value="0" style="background: transparent; border-width: 1px; border-color: grey; text-align: right; color: '+textColor+'; text-decoration: none; outline: medium none;" type="text" size="1" maxlength="4">';
+                middle += '<span style="color: '+K.textColor+'; text-decoration: none; outline: medium none;">';
+                middle += '<input id="malEpisodes" value="0" style="background: transparent; border-width: 1px; border-color: grey; text-align: right; color: '+K.textColor+'; text-decoration: none; outline: medium none;" type="text" size="1" maxlength="4">';
                 middle += '/<span id="malTotal">0</span>';
                 middle += '</span>';
                 middle += wrapEnd;
@@ -2514,8 +2522,8 @@
                 var middle = '';
                 middle += wrapStart;
                 middle += '<span class="info">Volumes: </span>';
-                middle += '<span style="color: '+textColor+'; text-decoration: none; outline: medium none;">';
-                middle += '<input id="malVolumes" value="0" style="background: transparent; border-width: 1px; border-color: grey; text-align: right; color: '+textColor+'; text-decoration: none; outline: medium none;" type="text" size="1" maxlength="4">';
+                middle += '<span style="color: '+K.textColor+'; text-decoration: none; outline: medium none;">';
+                middle += '<input id="malVolumes" value="0" style="background: transparent; border-width: 1px; border-color: grey; text-align: right; color: '+K.textColor+'; text-decoration: none; outline: medium none;" type="text" size="1" maxlength="4">';
                 middle += '/<span id="malTotalVol">0</span>';
                 middle += '</span>';
                 middle += wrapEnd;
@@ -2523,8 +2531,8 @@
 
                 middle += wrapStart;
                 middle += '<span class="info">Chapters: </span>';
-                middle += '<span style="color: '+textColor+'; text-decoration: none; outline: medium none;">';
-                middle += '<input id="malChapters" value="0" style="background: transparent; border-width: 1px; border-color: grey; text-align: right; color: '+textColor+'; text-decoration: none; outline: medium none;" type="text" size="1" maxlength="4">';
+                middle += '<span style="color: '+K.textColor+'; text-decoration: none; outline: medium none;">';
+                middle += '<input id="malChapters" value="0" style="background: transparent; border-width: 1px; border-color: grey; text-align: right; color: '+K.textColor+'; text-decoration: none; outline: medium none;" type="text" size="1" maxlength="4">';
                 middle += '/<span id="malTotalCha">0</span>';
                 middle += '</span>';
                 middle += wrapEnd;
@@ -2535,17 +2543,17 @@
 
             ui += wrapStart;
             ui += '<span class="info">Your Score: </span>';
-            ui += '<select id="malUserRating" style="font-size: 12px;background: transparent; border-width: 1px; border-color: grey; color: '+textColor+'; text-decoration: none; outline: medium none;"><option value="" style="background: #111111;color: '+textColor+';">Select</option>';
-            ui += '<option value="10" style="background: #111111;color: '+textColor+';">(10) Masterpiece</option>';
-            ui += '<option value="9" style="background: #111111;color: '+textColor+';">(9) Great</option>';
-            ui += '<option value="8" style="background: #111111;color: '+textColor+';">(8) Very Good</option>';
-            ui += '<option value="7" style="background: #111111;color: '+textColor+';">(7) Good</option>';
-            ui += '<option value="6" style="background: #111111;color: '+textColor+';">(6) Fine</option>';
-            ui += '<option value="5" style="background: #111111;color: '+textColor+';">(5) Average</option>';
-            ui += '<option value="4" style="background: #111111;color: '+textColor+';">(4) Bad</option>';
-            ui += '<option value="3" style="background: #111111;color: '+textColor+';">(3) Very Bad</option>';
-            ui += '<option value="2" style="background: #111111;color: '+textColor+';">(2) Horrible</option>';
-            ui += '<option value="1" style="background: #111111;color: '+textColor+';">(1) Appalling</option>';
+            ui += '<select id="malUserRating" style="font-size: 12px;background: transparent; border-width: 1px; border-color: grey; color: '+K.textColor+'; text-decoration: none; outline: medium none;"><option value="" style="background: #111111;color: '+K.textColor+';">Select</option>';
+            ui += '<option value="10" style="background: #111111;color: '+K.textColor+';">(10) Masterpiece</option>';
+            ui += '<option value="9" style="background: #111111;color: '+K.textColor+';">(9) Great</option>';
+            ui += '<option value="8" style="background: #111111;color: '+K.textColor+';">(8) Very Good</option>';
+            ui += '<option value="7" style="background: #111111;color: '+K.textColor+';">(7) Good</option>';
+            ui += '<option value="6" style="background: #111111;color: '+K.textColor+';">(6) Fine</option>';
+            ui += '<option value="5" style="background: #111111;color: '+K.textColor+';">(5) Average</option>';
+            ui += '<option value="4" style="background: #111111;color: '+K.textColor+';">(4) Bad</option>';
+            ui += '<option value="3" style="background: #111111;color: '+K.textColor+';">(3) Very Bad</option>';
+            ui += '<option value="2" style="background: #111111;color: '+K.textColor+';">(2) Horrible</option>';
+            ui += '<option value="1" style="background: #111111;color: '+K.textColor+';">(1) Appalling</option>';
             ui += '</select>';
             ui += wrapEnd;
 
@@ -2565,9 +2573,9 @@
 
             if(!uiLoaded){
                 uiLoaded = 1;
-                $(ui).uiPos();
-                $(uiwrong).uiWrongPos();
-                $(uihead).uiHeadPos();
+                K.uiPos($(ui));
+                K.uiWrongPos($(uiwrong));
+                K.uiHeadPos($(uihead));
 
                 $( "#malEpisodes" ).change(function() {
                     updatebutton();
@@ -2591,16 +2599,16 @@
                 //#######Kissanime#######
                 $("#btnRemoveBookmark").click(function() {
                     var anime = {};
-                    anime['.add_'+listType+'[status]'] = 4;
+                    anime['.add_'+K.listType+'[status]'] = 4;
                     anime['forceUpdate'] = 1;
-                    setanime($.normalUrl(),anime);
+                    setanime(K.normalUrl(),anime);
                 });
 
                 $("#btnAddBookmark").click(function() {
                     var anime = {};
-                    anime['.add_'+listType+'[status]'] = 6;
+                    anime['.add_'+K.listType+'[status]'] = 6;
                     anime['forceUpdate'] = 1;
-                    setanime($.normalUrl(),anime);
+                    setanime(K.normalUrl(),anime);
                 });
                 //#######################
             }
@@ -2617,7 +2625,7 @@
     function getMalXml(user = "", callback = null){
         var url = "https://myanimelist.net/editprofile.php?go=privacy";
         if(user !== ""){
-            url = "https://myanimelist.net/malappinfo.php?u="+user+"&status=all&type="+listType;
+            url = "https://myanimelist.net/malappinfo.php?u="+user+"&status=all&type="+K.listType;
             con.log("XML Url:", url);
         }
         GM_xmlhttpRequest({
@@ -2656,7 +2664,7 @@
         var id = value.split("/")[4];
         con.log(id);
         foundAnime.push(id);
-        var xmlAnime = xml.find('series_'+listType+'db_id:contains('+id+')').parent();
+        var xmlAnime = xml.find('series_'+K.listType+'db_id:contains('+id+')').parent();
 
         getdata(baseurl, function(value) { setimage(value, xmlAnime, target, baseurl); }, image);
 
@@ -2666,7 +2674,7 @@
             }else{
                 target.find(".MalData").first().append("<a href='#' onclick='return false;'>Add to Mal</a>").find("a").click(function() {
                     var anime = {};
-                    anime['.add_'+listType+'[status]'] = 6;
+                    anime['.add_'+K.listType+'[status]'] = 6;
                     setanime(baseurl,anime);
                 });
             }
@@ -2704,7 +2712,7 @@
     }
 
     function setepisode(episode, totalEp, target, baseurl){
-        target.find(".MalData").first().append('<div class="malEpisode"><input class="input" type="number" min="0" max="'+totalEp+'" value="'+episode+'" size="1" maxlength="4" style="display: none;background: transparent; border-width: 1px; border-color: grey; text-align: right; color: '+textColor+'; text-decoration: none; outline: medium none; max-width: 50px;"/><span class="normal">'+episode+'</span> / '+totalEp+'</div>');
+        target.find(".MalData").first().append('<div class="malEpisode"><input class="input" type="number" min="0" max="'+totalEp+'" value="'+episode+'" size="1" maxlength="4" style="display: none;background: transparent; border-width: 1px; border-color: grey; text-align: right; color: '+K.textColor+'; text-decoration: none; outline: medium none; max-width: 50px;"/><span class="normal">'+episode+'</span> / '+totalEp+'</div>');
 
         target.find(".MalData").first().find('.malEpisode').click(
           function() {
@@ -2712,9 +2720,9 @@
             $( this ).find('.normal').css('display', 'none');
           }).change(function() {
             var anime = {};
-            anime['.add_'+listType+'[num_'+middleVerb+'_'+middleType+']'] = $(this).parent().find('.malEpisode').find('.input').val();
-            anime['.add_'+listType+'[status]'] = $(this).parent().find('.malStatus').val();
-            anime['.add_'+listType+'[score]'] = $(this).parent().find('.malUserRating').val();
+            anime['.add_'+K.listType+'[num_'+middleVerb+'_'+middleType+']'] = $(this).parent().find('.malEpisode').find('.input').val();
+            anime['.add_'+K.listType+'[status]'] = $(this).parent().find('.malStatus').val();
+            anime['.add_'+K.listType+'[score]'] = $(this).parent().find('.malUserRating').val();
             setanime(baseurl,anime);
           });
     }
@@ -2722,19 +2730,19 @@
     function setstatus(value, target, baseurl){
         if(target.find(".malStatus").first().height() === null){
             var ui = "";
-            ui += '<select class="malStatus" style="width: 100%; font-size: 12px; background: transparent; border-width: 0px; border-color: grey; color: '+textColor+'; text-decoration: none; outline: medium none;">';
+            ui += '<select class="malStatus" style="width: 100%; font-size: 12px; background: transparent; border-width: 0px; border-color: grey; color: '+K.textColor+'; text-decoration: none; outline: medium none;">';
             //ui += '<option value="0" style="background: #111111;color: #d5f406;"></option>';
-            ui += '<option value="1" style="background: #111111;color: '+textColor+';">'+watching+'</option>';
-            ui += '<option value="2" style="background: #111111;color: '+textColor+';">Completed</option>';
-            ui += '<option value="3" style="background: #111111;color: '+textColor+';">On-Hold</option>';
-            ui += '<option value="4" style="background: #111111;color: '+textColor+';">Dropped</option>';
-            ui += '<option value="6" style="background: #111111;color: '+textColor+';">'+planTo+'</option>';
+            ui += '<option value="1" style="background: #111111;color: '+K.textColor+';">'+watching+'</option>';
+            ui += '<option value="2" style="background: #111111;color: '+K.textColor+';">Completed</option>';
+            ui += '<option value="3" style="background: #111111;color: '+K.textColor+';">On-Hold</option>';
+            ui += '<option value="4" style="background: #111111;color: '+K.textColor+';">Dropped</option>';
+            ui += '<option value="6" style="background: #111111;color: '+K.textColor+';">'+planTo+'</option>';
             ui += '</select>';
             target.find(".MalData").first().append(""+ui).find('.malStatus').change(function() {
                 var anime = {};
-                anime['.add_'+listType+'[num_'+middleVerb+'_'+middleType+']'] = $(this).parent().find('.malEpisode').find('.input').val();
-                anime['.add_'+listType+'[status]'] = $(this).parent().find('.malStatus').val();
-                anime['.add_'+listType+'[score]'] = $(this).parent().find('.malUserRating').val();
+                anime['.add_'+K.listType+'[num_'+middleVerb+'_'+middleType+']'] = $(this).parent().find('.malEpisode').find('.input').val();
+                anime['.add_'+K.listType+'[status]'] = $(this).parent().find('.malStatus').val();
+                anime['.add_'+K.listType+'[score]'] = $(this).parent().find('.malUserRating').val();
                 setanime(baseurl,anime);
             });
         }
@@ -2744,23 +2752,23 @@
     function setscore(value, target, baseurl){
         if(target.find(".malUserRating").first().height() === null){
             var ui = "";
-            ui += '<select class="malUserRating" style="width: 100%; font-size: 12px; background: transparent; border-width: 0px; border-color: grey; color: '+textColor+'; text-decoration: none; outline: medium none;"><option value="" style="background: #111111;color: '+textColor+';">Select</option>';
-            ui += '<option value="10" style="background: #111111;color: '+textColor+';">(10) Masterpiece</option>';
-            ui += '<option value="9" style="background: #111111;color: '+textColor+';">(9) Great</option>';
-            ui += '<option value="8" style="background: #111111;color: '+textColor+';">(8) Very Good</option>';
-            ui += '<option value="7" style="background: #111111;color: '+textColor+';">(7) Good</option>';
-            ui += '<option value="6" style="background: #111111;color: '+textColor+';">(6) Fine</option>';
-            ui += '<option value="5" style="background: #111111;color: '+textColor+';">(5) Average</option>';
-            ui += '<option value="4" style="background: #111111;color: '+textColor+';">(4) Bad</option>';
-            ui += '<option value="3" style="background: #111111;color: '+textColor+';">(3) Very Bad</option>';
-            ui += '<option value="2" style="background: #111111;color: '+textColor+';">(2) Horrible</option>';
-            ui += '<option value="1" style="background: #111111;color: '+textColor+';">(1) Appalling</option>';
+            ui += '<select class="malUserRating" style="width: 100%; font-size: 12px; background: transparent; border-width: 0px; border-color: grey; color: '+K.textColor+'; text-decoration: none; outline: medium none;"><option value="" style="background: #111111;color: '+K.textColor+';">Select</option>';
+            ui += '<option value="10" style="background: #111111;color: '+K.textColor+';">(10) Masterpiece</option>';
+            ui += '<option value="9" style="background: #111111;color: '+K.textColor+';">(9) Great</option>';
+            ui += '<option value="8" style="background: #111111;color: '+K.textColor+';">(8) Very Good</option>';
+            ui += '<option value="7" style="background: #111111;color: '+K.textColor+';">(7) Good</option>';
+            ui += '<option value="6" style="background: #111111;color: '+K.textColor+';">(6) Fine</option>';
+            ui += '<option value="5" style="background: #111111;color: '+K.textColor+';">(5) Average</option>';
+            ui += '<option value="4" style="background: #111111;color: '+K.textColor+';">(4) Bad</option>';
+            ui += '<option value="3" style="background: #111111;color: '+K.textColor+';">(3) Very Bad</option>';
+            ui += '<option value="2" style="background: #111111;color: '+K.textColor+';">(2) Horrible</option>';
+            ui += '<option value="1" style="background: #111111;color: '+K.textColor+';">(1) Appalling</option>';
             ui += '</select>';
             target.find(".MalData").first().append("</br>"+ui).find('.malUserRating').change(function() {
                 var anime = {};
-                anime['.add_'+listType+'[num_'+middleVerb+'_'+middleType+']'] = $(this).parent().find('.malEpisode').find('.input').val();
-                anime['.add_'+listType+'[status]'] = $(this).parent().find('.malStatus').val();
-                anime['.add_'+listType+'[score]'] = $(this).parent().find('.malUserRating').val();
+                anime['.add_'+K.listType+'[num_'+middleVerb+'_'+middleType+']'] = $(this).parent().find('.malEpisode').find('.input').val();
+                anime['.add_'+K.listType+'[status]'] = $(this).parent().find('.malStatus').val();
+                anime['.add_'+K.listType+'[score]'] = $(this).parent().find('.malUserRating').val();
                 setanime(baseurl,anime);
             });
         }
@@ -2795,7 +2803,7 @@
         var row = "";
         var xmlEntry = "";
         $(".listing").html("");//TODO remove;
-        xml.find('series_'+listType+'db_id').each(function(index){
+        xml.find('series_'+K.listType+'db_id').each(function(index){
             if((jQuery.inArray( $(this).text(), animelist ) ) < 0){
                 con.log($(this).text());
                 xmlEntry = $(this).parent();
@@ -2806,7 +2814,7 @@
                 row += '</td>';
                 row += '<td style="vertical-align: top;">';
                 row += '<div class="title" style="padding-bottom: 10px;">';
-                row += '<a class="aAnime" href="https://myanimelist.net/'+listType+'/'+xmlEntry.find("series_"+listType+"db_id").first().text()+'">'+xmlEntry.find("series_title").first().text()+'</a>';
+                row += '<a class="aAnime" href="https://myanimelist.net/'+K.listType+'/'+xmlEntry.find("series_"+K.listType+"db_id").first().text()+'">'+xmlEntry.find("series_title").first().text()+'</a>';
                 row += '</div>';
                 row += '</td>';
                 row += '</tr>';
@@ -2819,13 +2827,13 @@
     }
 
     function getdata(baseurl, callback, parth = ""){
-        if(GM_getValue(dbSelector+'/'+$.titleToDbKey($.urlAnimeSelector(baseurl))+'/'+parth , null) !== null ){
-            con.log("cache:", dbSelector+'/'+$.titleToDbKey($.urlAnimeSelector(baseurl))+'/'+parth);
-            var value = GM_getValue( dbSelector+'/'+$.titleToDbKey($.urlAnimeSelector(baseurl))+'/'+parth , null);
+        if(GM_getValue(K.dbSelector+'/'+$.titleToDbKey(K.urlAnimeSelector(baseurl))+'/'+parth , null) !== null ){
+            con.log("cache:", K.dbSelector+'/'+$.titleToDbKey(K.urlAnimeSelector(baseurl))+'/'+parth);
+            var value = GM_getValue( K.dbSelector+'/'+$.titleToDbKey(K.urlAnimeSelector(baseurl))+'/'+parth , null);
             callback(value);
         }else{
-            con.log("db:", dbSelector+'/'+$.titleToDbKey($.urlAnimeSelector(baseurl))+'/'+parth);
-            var url = 'https://kissanimelist.firebaseio.com/Data2/'+dbSelector+'/'+encodeURIComponent(encodeURIComponent($.titleToDbKey($.urlAnimeSelector(baseurl)))).toLowerCase()+'/'+parth+'.json';
+            con.log("db:", K.dbSelector+'/'+$.titleToDbKey(K.urlAnimeSelector(baseurl))+'/'+parth);
+            var url = 'https://kissanimelist.firebaseio.com/Data2/'+K.dbSelector+'/'+encodeURIComponent(encodeURIComponent($.titleToDbKey(K.urlAnimeSelector(baseurl)))).toLowerCase()+'/'+parth+'.json';
             GM_xmlhttpRequest({
                 method: "GET",
                 url: url,
@@ -2835,9 +2843,9 @@
                     if( response.responseText != null  && response.responseText != 'null'){
                         var newResponse = response.responseText.slice(1, -1);
                         if(parth == 'Mal'){
-                            newResponse = 'https://myanimelist.net/'+listType+'/'+response.responseText.split('"')[1]+'/'+response.responseText.split('"')[3];
+                            newResponse = 'https://myanimelist.net/'+K.listType+'/'+response.responseText.split('"')[1]+'/'+response.responseText.split('"')[3];
                         }
-                        GM_setValue(dbSelector+'/'+$.titleToDbKey($.urlAnimeSelector(baseurl))+'/'+parth , newResponse);
+                        GM_setValue(K.dbSelector+'/'+$.titleToDbKey(K.urlAnimeSelector(baseurl))+'/'+parth , newResponse);
                         callback(newResponse);
                     }
                 }
@@ -2846,9 +2854,9 @@
     }
 
     function setAll(){
-        $.docReady(function() {
+        K.docReady(function() {
 
-            $.bookmarkEntrySelector().each(function() {
+            K.bookmarkEntrySelector().each(function() {
                 var thistd = $(this).find("td").first();
                 $(this).find("td").first().children().first().wrap('<div class="title" style="padding-bottom: 10px;"></div>');
                 var append = '<div style="width: 50%; float: left;" class="kissData"></div><div style="width: 50%; float: left;" class="MalData"></div>';
@@ -2868,13 +2876,13 @@
                 $(this).find("td").first().find("td").append("<br />").contents().unwrap();
             });
             if($("#cssTableSet").height() === null){
-                $.BookmarksStyleAfterLoad();
+                K.BookmarksStyleAfterLoad();
             }else{
                 return;
             }
 
-            var len = $.bookmarkEntrySelector().length;
-            $.bookmarkEntrySelector().bind('inview', function (event, visible) {
+            var len = K.bookmarkEntrySelector().length;
+            K.bookmarkEntrySelector().bind('inview', function (event, visible) {
                 if (visible === true) {
                     var baseurl = $.absoluteLink($(this).find("a").first().attr('href'));
                     var target = $(this);
@@ -3130,9 +3138,9 @@
             $.each(data,function(index, el) {
                 if(el['tags'].indexOf("last::") > -1){
                     var url = atobURL( el['tags'].split("last::")[1].split("::")[0] );
-                    setStreamLinks(url, $('.list-item a[href^="'+el[listType+'_url']+'"]').parent().parent('.list-table-data'));
+                    setStreamLinks(url, $('.list-item a[href^="'+el[K.listType+'_url']+'"]').parent().parent('.list-table-data'));
                     if( parseInt(el['status']) === 1 ){
-                        checkForNewEpisodes(url, $('.list-item a[href^="'+el[listType+'_url']+'"]').parent().parent('.list-table-data'), el[listType+'_title'], el[listType+'_image_path']);
+                        checkForNewEpisodes(url, $('.list-item a[href^="'+el[K.listType+'_url']+'"]').parent().parent('.list-table-data'), el[K.listType+'_title'], el[K.listType+'_image_path']);
                     }
                 }
             });
@@ -3145,8 +3153,8 @@
 
     function alternativTagToContinue(){
         var user = window.location.href.split('/')[4].split('?')[0];
-        var listType = window.location.href.split('.net/')[1].split('list')[0];
-        url = "https://myanimelist.net/malappinfo.php?u="+user+"&status=all&type="+listType;
+        K.listType = window.location.href.split('.net/')[1].split('list')[0];
+        url = "https://myanimelist.net/malappinfo.php?u="+user+"&status=all&type="+K.listType;
         con.log("[BOOK] XML Url:", url);
         GM_xmlhttpRequest({
             method: "GET",
@@ -3234,7 +3242,7 @@
             }
         }
     }
-    if(dbSelector == 'Kissanime'){
+    if(K.dbSelector == 'Kissanime'){
         $( document).ready( function(){
             if( window.location.href.indexOf("BookmarkList") > -1 ){
                 var catOptions = '';
@@ -3244,20 +3252,20 @@
                 });
                 catOptions = '<select class="selectCats" style="width: 200px; font-size: 14px;">'+catOptions+'</select>';
                 con.log(catOptions);
-                GM_setValue(dbSelector+'catOptions',catOptions);
+                GM_setValue(K.dbSelector+'catOptions',catOptions);
                 $('.trAnime').each(function(){
                     var aurl = $.absoluteLink($(this).find('.aAnime').attr('href'));
-                    con.log(dbSelector+'/'+$.titleToDbKey($.urlAnimeSelector($.urlAnimeIdent(aurl)))+'/bdid',$(this).find('.aCategory').attr('bdid'));
-                    GM_setValue(dbSelector+'/'+$.titleToDbKey($.urlAnimeSelector($.urlAnimeIdent(aurl)))+'/bdid',$(this).find('.aCategory').attr('bdid'));
+                    con.log(K.dbSelector+'/'+$.titleToDbKey(K.urlAnimeSelector(K.urlAnimeIdent(aurl)))+'/bdid',$(this).find('.aCategory').attr('bdid'));
+                    GM_setValue(K.dbSelector+'/'+$.titleToDbKey(K.urlAnimeSelector(K.urlAnimeIdent(aurl)))+'/bdid',$(this).find('.aCategory').attr('bdid'));
                 });
             }else{
-                var bdid = GM_getValue( dbSelector+'/'+$.titleToDbKey($.urlAnimeSelector($.urlAnimeIdent($.normalUrl())))+'/bdid', null);
+                var bdid = GM_getValue( K.dbSelector+'/'+$.titleToDbKey(K.urlAnimeSelector(K.urlAnimeIdent(K.normalUrl())))+'/bdid', null);
                 if(bdid != null){
                     $('#spanBookmarkManager').before('<a class="aCategory" href="#" onclick="return false;" title="Move to other folder"><img border="0" style="vertical-align:middle" src="/Content/Images/folder.png"> Folder</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;');
                     $('.aCategory').click(function () {
                         $(this).hide();
                         var aCat= $(this);
-                        $(this).after(GM_getValue(dbSelector+'catOptions',""));
+                        $(this).after(GM_getValue(K.dbSelector+'catOptions',""));
                         $('body').on('change', '.selectCats', function() {
                             var element  = $(this);
                             var strUncate = ' Uncategorized';
@@ -3573,7 +3581,7 @@
               $("#info-iframe").contents().find('#malSearchPop').hide();
             }else{
               $("#info-iframe").contents().find('#malSearchPop').show();
-              searchMal($("#info-iframe").contents().find("#headMalSearch").val(), listType, '#malSearchPopInner', function(){
+              searchMal($("#info-iframe").contents().find("#headMalSearch").val(), K.listType, '#malSearchPopInner', function(){
                 $("#info-iframe").contents().find("#malSearchPop .searchItem").unbind('click').click(function(event) {
                   $("#info-iframe").contents().find("#headMalSearch").val('').trigger("input").parent().parent().removeClass('is-dirty');
                   $("#info-iframe").contents().find('.malClear').hide();
@@ -3655,7 +3663,7 @@
             var settingsUI = '<ul class="demo-list-control mdl-list" style="margin: 0px; padding: 0px;">\
             <div class="mdl-grid">';
             try{
-              var malUrl = GM_getValue(dbSelector+'/'+$.titleToDbKey($.urlAnimeSelector($.normalUrl()))+'/Mal' , null);
+              var malUrl = GM_getValue(K.dbSelector+'/'+$.titleToDbKey(K.urlAnimeSelector(K.normalUrl()))+'/Mal' , null);
             }catch(e){
               var malUrl = null;
             }
@@ -3673,7 +3681,7 @@
                                 </div>\
                                   <div class="mdl-list__item">\
                                   <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width: 100%;">\
-                                      <input class="mdl-textfield__input" style="padding-right: 18px;" type="number" step="1" id="malOffset" value="'+GM_getValue(dbSelector+'/'+$.titleToDbKey($.urlAnimeSelector($.normalUrl()))+'/Offset' , '')+'">\
+                                      <input class="mdl-textfield__input" style="padding-right: 18px;" type="number" step="1" id="malOffset" value="'+GM_getValue(K.dbSelector+'/'+$.titleToDbKey(K.urlAnimeSelector(K.normalUrl()))+'/Offset' , '')+'">\
                                   <label class="mdl-textfield__label" for="malOffset">Episode Offset</label>\
                                     '+getTooltip('Input the episode offset, if an anime has 12 episodes, but uses the numbers 0-11 rather than 1-12, you simply type " +1 " in the episode offset.','float: right; margin-top: -17px;','left')+'\
                                   </div>\
@@ -3848,14 +3856,14 @@
             $("#info-iframe").contents().find('#malConfig').html(settingsUI);
 
             $("#info-iframe").contents().find("#malReset").click( function(){
-                GM_deleteValue( dbSelector+'/'+$.titleToDbKey($.urlAnimeSelector($.normalUrl()))+'/Mal' );
+                GM_deleteValue( K.dbSelector+'/'+$.titleToDbKey(K.urlAnimeSelector(K.normalUrl()))+'/Mal' );
                 flashm( "MyAnimeList url reset" , false);
                 checkdata();
             });
 
             $("#info-iframe").contents().find("#malSubmit").click( function(){
                 var murl = $("#info-iframe").contents().find("#malUrlInput").val();
-                local_setValue($.normalUrl(), murl, true);
+                local_setValue(K.normalUrl(), murl, true);
                 flashm( "new url '"+murl+"' set." , false);
                 checkdata();
             });
@@ -3909,10 +3917,10 @@
                 var Offset = $("#info-iframe").contents().find("#malOffset").val();
                 if(Offset !== null){
                     if(Offset !== ''){
-                        GM_setValue( dbSelector+'/'+$.titleToDbKey($.urlAnimeSelector($.normalUrl()))+'/Offset', Offset );
+                        GM_setValue( K.dbSelector+'/'+$.titleToDbKey(K.urlAnimeSelector(K.normalUrl()))+'/Offset', Offset );
                         flashm( "New Offset ("+Offset+") set." , false);
                     }else{
-                        GM_deleteValue( dbSelector+'/'+$.titleToDbKey($.urlAnimeSelector($.normalUrl()))+'/Offset' );
+                        GM_deleteValue( K.dbSelector+'/'+$.titleToDbKey(K.urlAnimeSelector(K.normalUrl()))+'/Offset' );
                         flashm( "Offset reset" , false);
                     }
                 }
@@ -3922,7 +3930,7 @@
             $("#info-iframe").contents().find("#malSearch").on("input", function(){
               clearTimeout(timer);
               timer = setTimeout(function(){
-                searchMal( $("#info-iframe").contents().find("#malSearch").val(), listType, '.malResults', function(){
+                searchMal( $("#info-iframe").contents().find("#malSearch").val(), K.listType, '.malResults', function(){
                   $("#info-iframe").contents().find("#malSearchResults .searchItem").unbind('click').click(function(event) {
                     $("#info-iframe").contents().find('#malUrlInput').val($(this).attr('malhref'));
                     $("#info-iframe").contents().find('#malSearch').val('');
@@ -4323,7 +4331,7 @@
                       anime['.add_'+localListType+'[score]'] = '';
                   }
                   anime['.add_'+localListType+'[status]'] = parseInt($("#info-iframe").contents().find('#myinfo_status').val() );
-                  if($.isOverviewPage()){
+                  if(K.isOverviewPage()){
                     anime['forceUpdate'] = 2;
                   }
                   anime['malurl'] = url;
@@ -4647,7 +4655,7 @@
         });
     }
 
-    function iframeBookmarks(element, state = 1, localListType = listType){
+    function iframeBookmarks(element, state = 1, localListType = K.listType){
         element.html('<div id="loadRecommendations" class="mdl-progress mdl-js-progress mdl-progress__indeterminate" style="width: 100%; position: absolute;"></div>');
         executejs('componentHandler.upgradeDom();');
 
@@ -4806,14 +4814,14 @@
           }
 
           function reposition(){
-              $(videoSelector).css('transform', '');
+              $(K.videoSelector).css('transform', '');
 
               if(!$(minimalSelector).is(":visible")){
                   return;
               }
 
-              var videoLeft = $(videoSelector).offset().left;
-              var videoWidth = $(videoSelector).width();
+              var videoLeft = $(K.videoSelector).offset().left;
+              var videoWidth = $(K.videoSelector).width();
               var videoRight = videoLeft + videoWidth;
             var minimalLeft = $(minimalSelector).offset().left;
             var minimalRight = minimalLeft + $(minimalSelector).width();
@@ -4845,9 +4853,9 @@
                 var scale = Width / videoWidth;
                 Left = Left - videoLeft;
                 Left = Left / scale;
-                $(videoSelector).css('transform', 'scale('+scale+') translateX('+Left+'px)');
-                $(videoSelector).css('transform-origin', '0% 50%');
-                $(videoSelector).css('transition', '0s');
+                $(K.videoSelector).css('transform', 'scale('+scale+') translateX('+Left+'px)');
+                $(K.videoSelector).css('transform-origin', '0% 50%');
+                $(K.videoSelector).css('transition', '0s');
             }
           }
         }catch(e){}
@@ -4865,7 +4873,7 @@
 		checkArray.push(function(totalEntries){checkForNewEpisode(url, entrySelector, totalEntries, title, img);});
 	}
 
-	function startCheckForNewEpisodes(localListType = listType){
+	function startCheckForNewEpisodes(localListType = K.listType){
 		newEpRetries++;
 		if(newEpInterval == 'null'){
 			return;
@@ -5269,7 +5277,7 @@
 	}
 
     if(window.location.href.indexOf("/BookmarkList") > -1 ){
-        $.docReady(function() {
+        K.docReady(function() {
             var optionsTarget = $("#divEmailNotify");
             if(malBookmarks == 1){
                 var check = 'checked';
@@ -5289,7 +5297,7 @@
             }else{
                 var checkClassic = '';
             }
-            optionsTarget.bookmarkButton(check);//optionsTarget.before('<div><input type="checkbox" id="malBookmarks" '+check+' > MyAnimeList Bookmarks</div><div class="clear2">&nbsp;</div>');
+            K.bookmarkButton(optionsTarget, check);//optionsTarget.before('<div><input type="checkbox" id="malBookmarks" '+check+' > MyAnimeList Bookmarks</div><div class="clear2">&nbsp;</div>');
             $('#malBookmarks').change(function(){
                 if($('#malBookmarks').is(":checked")){
                     malBookmarks = 1;
@@ -5302,7 +5310,7 @@
                 }
             });
             if(malBookmarks == 1){
-                optionsTarget.classicBookmarkButton(checkClassic);//optionsTarget.before('<div><input type="checkbox" id="BookmarksStyle" '+checkfix+' > Fix Bookmark styling</div><div class="clear2">&nbsp;</div>');
+                K.classicBookmarkButton(optionsTarget, checkClassic);//optionsTarget.before('<div><input type="checkbox" id="BookmarksStyle" '+checkfix+' > Fix Bookmark styling</div><div class="clear2">&nbsp;</div>');
                 $('#classicBookmarks').change(function(){
                     if($('#classicBookmarks').is(":checked")){
                         classicBookmarks = 1;
@@ -5318,9 +5326,9 @@
         });
         if(malBookmarks == 1){
             try{
-                GM_addStyle(bookmarkCss);
+                GM_addStyle(K.bookmarkCss);
                 if(BookmarksStyle == 1){
-                    GM_addStyle(bookmarkFixCss);
+                    GM_addStyle(K.bookmarkFixCss);
                 }
                 if(classicBookmarks == 1){
                     GM_addStyle('.listing tr:not(.head) br{display: none;} .listing tr:not(.head) .title{width: 30%; float: left;padding-bottom: 0 !important;}.kissData { width: 35% !important;} .MalData {width: 35% !important;}td.Timage {height: 0 !important;} #cssTableSet{min-width: 0 !important} #endSpacer{width: 0 !important;}');
@@ -5339,7 +5347,7 @@
             window.history.replaceState(null, null, '/manga/'+$.urlParam('id') );
         }
         if(window.location.href.indexOf("myanimelist.net/animelist") > -1 || window.location.href.indexOf("myanimelist.net/mangalist") > -1 ){
-            listType = listType.substring(0,5);
+            K.listType = K.listType.substring(0,5);
             tagToContinue();
         }else{
             setKissToMal(window.location.href);
@@ -5367,8 +5375,8 @@
                 });
 
                 getanime(window.location.href, function(actual){
-                    if(actual['.add_'+listType+'[tags]'].indexOf("last::") > -1 ){
-                        var url = atobURL( actual['.add_'+listType+'[tags]'].split("last::")[1].split("::")[0] );
+                    if(actual['.add_'+K.listType+'[tags]'].indexOf("last::") > -1 ){
+                        var url = atobURL( actual['.add_'+K.listType+'[tags]'].split("last::")[1].split("::")[0] );
                         $('.h1 span').first().after('<div class="data title progress" style="display: inline-block; position: relative; top: 2px;"><div class="link" style="display: none;">'+$('#myinfo_watchedeps').first().val()+'</div></div>');
                         setStreamLinks(url, $('.h1').first().parent());
                     }
@@ -5380,7 +5388,7 @@
             checkdata();
         });
 
-        $.init();
+        K.init();
 
         try{
             window.onpopstate = function (event) {

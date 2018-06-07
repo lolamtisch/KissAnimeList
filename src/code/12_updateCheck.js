@@ -10,7 +10,7 @@
 		checkArray.push(function(totalEntries){checkForNewEpisode(url, entrySelector, totalEntries, title, img);});
 	}
 
-	function startCheckForNewEpisodes(localListType = listType){
+	function startCheckForNewEpisodes(localListType = K.listType){
 		newEpRetries++;
 		if(newEpInterval == 'null'){
 			return;

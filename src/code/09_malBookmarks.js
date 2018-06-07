@@ -68,9 +68,9 @@
             $.each(data,function(index, el) {
                 if(el['tags'].indexOf("last::") > -1){
                     var url = atobURL( el['tags'].split("last::")[1].split("::")[0] );
-                    setStreamLinks(url, $('.list-item a[href^="'+el[listType+'_url']+'"]').parent().parent('.list-table-data'));
+                    setStreamLinks(url, $('.list-item a[href^="'+el[K.listType+'_url']+'"]').parent().parent('.list-table-data'));
                     if( parseInt(el['status']) === 1 ){
-                        checkForNewEpisodes(url, $('.list-item a[href^="'+el[listType+'_url']+'"]').parent().parent('.list-table-data'), el[listType+'_title'], el[listType+'_image_path']);
+                        checkForNewEpisodes(url, $('.list-item a[href^="'+el[K.listType+'_url']+'"]').parent().parent('.list-table-data'), el[K.listType+'_title'], el[K.listType+'_image_path']);
                     }
                 }
             });
@@ -83,8 +83,8 @@
 
     function alternativTagToContinue(){
         var user = window.location.href.split('/')[4].split('?')[0];
-        var listType = window.location.href.split('.net/')[1].split('list')[0];
-        url = "https://myanimelist.net/malappinfo.php?u="+user+"&status=all&type="+listType;
+        K.listType = window.location.href.split('.net/')[1].split('list')[0];
+        url = "https://myanimelist.net/malappinfo.php?u="+user+"&status=all&type="+K.listType;
         con.log("[BOOK] XML Url:", url);
         GM_xmlhttpRequest({
             method: "GET",

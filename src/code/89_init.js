@@ -1,5 +1,5 @@
     if(window.location.href.indexOf("/BookmarkList") > -1 ){
-        $.docReady(function() {
+        K.docReady(function() {
             var optionsTarget = $("#divEmailNotify");
             if(malBookmarks == 1){
                 var check = 'checked';
@@ -19,7 +19,7 @@
             }else{
                 var checkClassic = '';
             }
-            optionsTarget.bookmarkButton(check);//optionsTarget.before('<div><input type="checkbox" id="malBookmarks" '+check+' > MyAnimeList Bookmarks</div><div class="clear2">&nbsp;</div>');
+            K.bookmarkButton(optionsTarget, check);//optionsTarget.before('<div><input type="checkbox" id="malBookmarks" '+check+' > MyAnimeList Bookmarks</div><div class="clear2">&nbsp;</div>');
             $('#malBookmarks').change(function(){
                 if($('#malBookmarks').is(":checked")){
                     malBookmarks = 1;
@@ -32,7 +32,7 @@
                 }
             });
             if(malBookmarks == 1){
-                optionsTarget.classicBookmarkButton(checkClassic);//optionsTarget.before('<div><input type="checkbox" id="BookmarksStyle" '+checkfix+' > Fix Bookmark styling</div><div class="clear2">&nbsp;</div>');
+                K.classicBookmarkButton(optionsTarget, checkClassic);//optionsTarget.before('<div><input type="checkbox" id="BookmarksStyle" '+checkfix+' > Fix Bookmark styling</div><div class="clear2">&nbsp;</div>');
                 $('#classicBookmarks').change(function(){
                     if($('#classicBookmarks').is(":checked")){
                         classicBookmarks = 1;
@@ -48,9 +48,9 @@
         });
         if(malBookmarks == 1){
             try{
-                GM_addStyle(bookmarkCss);
+                GM_addStyle(K.bookmarkCss);
                 if(BookmarksStyle == 1){
-                    GM_addStyle(bookmarkFixCss);
+                    GM_addStyle(K.bookmarkFixCss);
                 }
                 if(classicBookmarks == 1){
                     GM_addStyle('.listing tr:not(.head) br{display: none;} .listing tr:not(.head) .title{width: 30%; float: left;padding-bottom: 0 !important;}.kissData { width: 35% !important;} .MalData {width: 35% !important;}td.Timage {height: 0 !important;} #cssTableSet{min-width: 0 !important} #endSpacer{width: 0 !important;}');
@@ -69,7 +69,7 @@
             window.history.replaceState(null, null, '/manga/'+$.urlParam('id') );
         }
         if(window.location.href.indexOf("myanimelist.net/animelist") > -1 || window.location.href.indexOf("myanimelist.net/mangalist") > -1 ){
-            listType = listType.substring(0,5);
+            K.listType = K.listType.substring(0,5);
             tagToContinue();
         }else{
             setKissToMal(window.location.href);
@@ -97,8 +97,8 @@
                 });
 
                 getanime(window.location.href, function(actual){
-                    if(actual['.add_'+listType+'[tags]'].indexOf("last::") > -1 ){
-                        var url = atobURL( actual['.add_'+listType+'[tags]'].split("last::")[1].split("::")[0] );
+                    if(actual['.add_'+K.listType+'[tags]'].indexOf("last::") > -1 ){
+                        var url = atobURL( actual['.add_'+K.listType+'[tags]'].split("last::")[1].split("::")[0] );
                         $('.h1 span').first().after('<div class="data title progress" style="display: inline-block; position: relative; top: 2px;"><div class="link" style="display: none;">'+$('#myinfo_watchedeps').first().val()+'</div></div>');
                         setStreamLinks(url, $('.h1').first().parent());
                     }
@@ -110,7 +110,7 @@
             checkdata();
         });
 
-        $.init();
+        K.init();
 
         try{
             window.onpopstate = function (event) {
