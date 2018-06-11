@@ -314,8 +314,10 @@
                     var hash = window.location.hash;
                     setTimeout(function(){
                         var page = parseInt(hash.substring(1));
-                        window.location.hash = '';
-                        window.location.hash = hash;
+                        if(!isNaN(page)){
+                            window.location.hash = '';
+                            window.location.hash = hash;
+                        }
 
                         if($( "button:contains('Load Manga')" ).length){
                             $( "button:contains('Load Manga')").click(function(){
