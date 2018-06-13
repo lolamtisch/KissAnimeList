@@ -1186,6 +1186,7 @@
         };
 
         Kal.EpisodePartToEpisode = function(string) {
+            if(!string) return '';
             if(!(isNaN(parseInt(string)))){
                 return string;
             }
@@ -1222,10 +1223,10 @@
         };
 
         Kal.epListReset = function(selector) {
-            selector.parent().parent().css("background-color","initial");
+            selector.children().css("background-color","initial");
         };
         Kal.epListActive = function(selector) {
-            selector.parent().parent().css("background-color","#002966");
+            selector.children().css("background-color","#cee1ff");
         };
 
         Kal.bookmarkEntrySelector = function() {

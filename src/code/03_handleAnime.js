@@ -93,7 +93,7 @@
                         $(this).prepend('<span class="lastOpen">[Last opened]</span>');
                     }
                     if(episodelink == parseInt(anime['.add_manga[num_read_chapters]']) && parseInt(anime['.add_manga[num_read_chapters]']) != 0){
-                        $(this).parent().parent().css("background-color","#002966");
+                        K.epListActive($(this));
                         truelink = '<a style="color: white;" href="'+K.episodeListElementHref(K.episodeListNextElement($(this), index))+'">'+K.episodeListElementTitle(K.episodeListNextElement($(this), index))+'</a>';
                     }
                 }
