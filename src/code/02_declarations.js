@@ -1090,7 +1090,7 @@
         };
         //###########################
     }else if( kalUrl.indexOf("mangadex.org") > -1 ){
-        //#########Masterani.me#########
+        //#########Mangadex.org#########
         Kal.domain = 'https://www.mangadex.org';
         Kal.textColor = 'black';
         Kal.dbSelector = 'Mangadex';
@@ -1233,7 +1233,7 @@
         };
 
         Kal.nextEpLink = function(url) {
-            return 'https://www.masterani.me'+$('#watch .anime-info .actions a').last().attr('href');
+            return kalUrl;
         };
 
         Kal.classicBookmarkButton = function(selector, checkfix) {
