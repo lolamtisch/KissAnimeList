@@ -1132,16 +1132,7 @@
             }
             return $();
         };
-        Kal.handleNextLink = function(truelink, anime){//TODO
-            $('.menu.pagination').off('click').on( "click", function() {
-                handleanime(anime);
-            });
-            if(truelink == null){
-                var nextEp = parseInt(anime['.add_anime[num_watched_episodes]'])+1;
-                if(nextEp <= parseInt(anime['totalEp'])){
-                    return '<a style="color: white;" href="/anime/watch/'+Kal.normalUrl().replace(/#[^#]*$/, "").replace(/\?[^\?]*$/, "").split("/")[5]+'/'+nextEp+'">Ep. '+nextEp+'</a>';
-                }
-            }
+        Kal.handleNextLink = function(truelink, anime){
             return truelink;
         };
 
