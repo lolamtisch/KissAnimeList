@@ -1100,6 +1100,7 @@
         Kal.videoSelector = '';
 
         Kal.init = function() {
+            GM_addStyle('.headui a {color: inherit !important;} #malp{margin: 0 !important} #malStatus *, #malUserRating * {background: white !important;}');
             Kal.docReady(function(){
                 checkdata();
             })
@@ -1126,8 +1127,8 @@
             return selector.find("a").first().text().trim();
         };
         Kal.episodeListNextElement = function(selector, index) {
-            if ((index+1) > -1) {
-                return Kal.episodeListSelector().eq(index+1);
+            if ((index-1) > -1) {
+                return Kal.episodeListSelector().eq(index-1);
             }
             return $();
         };
@@ -1209,7 +1210,7 @@
             //selector.css('margin-top','5px').appendTo($(".ui.info.list").first());
         };
         Kal.uiHeadPos = function(selector) {//TODO
-            selector.appendTo($("h1").first());
+            selector.appendTo($("h3.panel-title").first());
         };
 
         Kal.docReady = function(data) {
