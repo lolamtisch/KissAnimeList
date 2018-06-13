@@ -1117,15 +1117,15 @@
             }
         };
         Kal.episodeListSelector = function() {
-            return $(".thumbnail a.title");//TODO
+            return $(".edit.tab-content .table-striped tbody > tr");
         };
         Kal.episodeListElementHref = function(selector) {
-            return $.absoluteLink(selector.attr('href'));//TODO
+            return $.absoluteLink(selector.find("a").first().attr('href'));
         };
         Kal.episodeListElementTitle = function(selector) {
-            return selector.find("div").text()+' ('+selector.find("span").text()+')';//TODO
+            return selector.find("a").first().text().trim();
         };
-        Kal.episodeListNextElement = function(selector, index) {//TODO
+        Kal.episodeListNextElement = function(selector, index) {
             if ((index+1) > -1) {
                 return Kal.episodeListSelector().eq(index+1);
             }
@@ -1145,7 +1145,27 @@
         };
 
         Kal.urlEpisodePart = function(url) {
-            return url.split("/")[4].split("?")[0];
+
+            if(Kal.isOverviewPage()){
+                var relativUrl = url.replace(url.split('/').slice(0,3).join('/'),'');
+                var someA = $('a[href*="'+relativUrl+'"]')
+                if(someA.length){
+                    var chapterNr = someA.attr('data-chapter-num');
+                    if(chapterNr){
+                        return chapterNr;
+                    }
+                }
+            }else{
+                console.log(url.split('/')[4]);
+                chapterId = url.split('/')[4];
+                var curOption = $('#jump_chapter option[value="'+chapterId+'"]');
+                if(curOption.length){
+                    console.log(curOption.text().trim());
+                    return curOption.text().trim();
+                }
+            }
+
+            return null;
         };
         Kal.urlAnimeIdent = function(url) {
             return url.split('/').slice(0,5).join('/');
@@ -1161,8 +1181,22 @@
             return $('.panel-title').text().trim();
         };
 
-        Kal.EpisodePartToEpisode = function(string) {//TODO
-            return string;
+        Kal.EpisodePartToEpisode = function(string) {
+            console.log(isNaN(parseInt(string)));
+            if(!(isNaN(parseInt(string)))){
+                return string;
+            }
+            var temp = [];
+            temp = string.match(/chapter\ \d+/i);
+            console.log(temp);
+            if(temp !== null){
+                string = temp[0];
+                temp = string.match(/\d+/);
+                if(temp !== null){
+                    return temp[0];
+                }
+            }
+            return '';
         };
 
         Kal.uiPos = function(selector) {
