@@ -1110,7 +1110,7 @@
         };
 
         Kal.isOverviewPage = function() {
-            if(Kal.normalUrl().split('/')[3] !== 'chapter'){
+            if(kalUrl.split('/')[3] !== 'chapter'){
                 return true;
             }else{
                 return false;
@@ -1156,7 +1156,6 @@
                     }
                 }
             }else{
-                console.log(url.split('/')[4]);
                 chapterId = url.split('/')[4];
                 var curOption = $('#jump_chapter option[value="'+chapterId+'"]');
                 if(curOption.length){
@@ -1168,7 +1167,11 @@
             return null;
         };
         Kal.urlAnimeIdent = function(url) {
-            return url.split('/').slice(0,5).join('/');
+            if(Kal.isOverviewPage()){
+                return url.split('/').slice(0,5).join('/');
+            }else{
+                return $.absoluteLink($('.panel-title a').first().attr('href'));
+            }
         };
         Kal.urlAnimeSelector = function(url) {
             return url.split("/")[4].split("?")[0];
@@ -1182,7 +1185,6 @@
         };
 
         Kal.EpisodePartToEpisode = function(string) {
-            console.log(isNaN(parseInt(string)));
             if(!(isNaN(parseInt(string)))){
                 return string;
             }
