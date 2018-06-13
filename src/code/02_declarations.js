@@ -1089,6 +1089,124 @@
         Kal.BookmarksStyleAfterLoad = function() {
         };
         //###########################
+    }else if( kalUrl.indexOf("mangadex.org") > -1 ){
+        //#########Masterani.me#########
+        Kal.domain = 'https://www.mangadex.org';
+        Kal.textColor = 'black';
+        Kal.dbSelector = 'Mangadex';
+        Kal.listType = 'manga';
+        Kal.bookmarkCss = "";
+        Kal.bookmarkFixCss = "";
+        Kal.videoSelector = '';
+
+        Kal.init = function() {
+            Kal.docReady(function(){
+                checkdata();
+            })
+        }
+
+        Kal.imageCache = function(selector) {
+            return $('.class').first().find('img').attr('src');
+        };
+
+        Kal.isOverviewPage = function() {
+            if(Kal.normalUrl().split('/')[3] !== 'chapter'){
+                return true;
+            }else{
+                return false;
+            }
+        };
+        Kal.episodeListSelector = function() {
+            return $(".thumbnail a.title");//TODO
+        };
+        Kal.episodeListElementHref = function(selector) {
+            return $.absoluteLink(selector.attr('href'));//TODO
+        };
+        Kal.episodeListElementTitle = function(selector) {
+            return selector.find("div").text()+' ('+selector.find("span").text()+')';//TODO
+        };
+        Kal.episodeListNextElement = function(selector, index) {//TODO
+            if ((index+1) > -1) {
+                return Kal.episodeListSelector().eq(index+1);
+            }
+            return $();
+        };
+        Kal.handleNextLink = function(truelink, anime){//TODO
+            $('.menu.pagination').off('click').on( "click", function() {
+                handleanime(anime);
+            });
+            if(truelink == null){
+                var nextEp = parseInt(anime['.add_anime[num_watched_episodes]'])+1;
+                if(nextEp <= parseInt(anime['totalEp'])){
+                    return '<a style="color: white;" href="/anime/watch/'+Kal.normalUrl().replace(/#[^#]*$/, "").replace(/\?[^\?]*$/, "").split("/")[5]+'/'+nextEp+'">Ep. '+nextEp+'</a>';
+                }
+            }
+            return truelink;
+        };
+
+        Kal.urlEpisodePart = function(url) {
+            return url.split("/")[4].split("?")[0];
+        };
+        Kal.urlAnimeIdent = function(url) {
+            return url.split('/').slice(0,5).join('/');
+        };
+        Kal.urlAnimeSelector = function(url) {
+            return url.split("/")[4].split("?")[0];
+        };
+        Kal.urlAnimeTitle = function(url) {
+            var onMal = $('.list-inline a[href^="https://myanimelist.net/"]');
+            if(onMal.length){
+                return onMal.attr('href').split('/')[4];
+            }
+            return $('.panel-title').text().trim();
+        };
+
+        Kal.EpisodePartToEpisode = function(string) {//TODO
+            return string;
+        };
+
+        Kal.uiPos = function(selector) {
+            $("#content .edit.row .table tr").first().after("<tr><th>MyAnimeList:</th><td colspan='5' class='kal-ui'></td></tr>");
+            selector.appendTo($("#content .kal-ui").first());
+        };
+        Kal.uiWrongPos = function(selector) {//TODO
+            //selector.css('margin-top','5px').appendTo($(".ui.info.list").first());
+        };
+        Kal.uiHeadPos = function(selector) {//TODO
+            selector.appendTo($("h1").first());
+        };
+
+        Kal.docReady = function(data) {
+            return $( document).ready(data);
+        };
+
+        Kal.normalUrl = function(){
+            return Kal.urlAnimeIdent(kalUrl);
+        };
+
+        Kal.epListReset = function(selector) {
+            selector.parent().parent().css("background-color","initial");
+        };
+        Kal.epListActive = function(selector) {
+            selector.parent().parent().css("background-color","#002966");
+        };
+
+        Kal.bookmarkEntrySelector = function() {
+            return $(".trAnime");
+        };
+
+        Kal.nextEpLink = function(url) {
+            return 'https://www.masterani.me'+$('#watch .anime-info .actions a').last().attr('href');
+        };
+
+        Kal.classicBookmarkButton = function(selector, checkfix) {
+        };
+        Kal.bookmarkButton = function(selector, check) {
+        };
+
+        Kal.BookmarksStyleAfterLoad = function() {
+        };
+        //###########################
     }else if( kalUrl.indexOf("myanimelist.net") > -1 ){
         googleover = 1;
         Kal.listType = kalUrl.split('/')[3];
