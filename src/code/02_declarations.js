@@ -1160,7 +1160,7 @@
         };
         Kal.urlAnimeIdent = function(url) {
             if(Kal.isOverviewPage()){
-                return kalUrl.split('/').slice(0,5).join('/');
+                return kalUrl.split('/').slice(0,6).join('/').split('?')[0];
             }else{
                 return $.absoluteLink($('.panel-title a').first().attr('href'));
             }
