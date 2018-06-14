@@ -484,6 +484,7 @@
                 settingsUI += materialCheckbox(crunchyrollLinks,'crunchyrollLinks','Crunchyroll');
                 settingsUI += materialCheckbox(gogoanimeLinks,'gogoanimeLinks','Gogoanime');
                 settingsUI += materialCheckbox(kissmangaLinks,'kissmangaLinks','KissManga');
+                settingsUI += materialCheckbox(mangadexLinks,'mangadexLinks','MangaDex');
                 settingsUI += '</div>';
 
                 settingsUI += '<div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-shadow--4dp">\
@@ -702,6 +703,15 @@
                 }else{
                     GM_setValue('kissmangaLinks', 0);
                     kissmangaLinks = 0;
+                }
+            });
+            $("#info-iframe").contents().find('#mangadexLinks').change(function(){
+                if($(this).is(":checked")){
+                    GM_setValue('mangadexLinks', 1);
+                    mangadexLinks = 1;
+                }else{
+                    GM_setValue('mangadexLinks', 0);
+                    mangadexLinks = 0;
                 }
             });
 
