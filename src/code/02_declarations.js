@@ -61,6 +61,7 @@
     var nineanimeLinks = GM_getValue( 'nineanimeLinks', 1 );
     var crunchyrollLinks = GM_getValue( 'crunchyrollLinks', 1 );
     var gogoanimeLinks = GM_getValue( 'gogoanimeLinks', 1 );
+    var mangadexLinks = GM_getValue( 'mangadexLinks', 1 );
 
     var malThumbnail = GM_getValue( 'malThumbnail', 100 );
 
