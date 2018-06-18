@@ -80,6 +80,8 @@
 
     var autoTracking = GM_getValue( 'autoTracking', 1 );
 
+    var mangaStore = GM_getValue( 'mangaStore', 1 );
+
     var delay = GM_getValue( 'delay', 3 );
 
     var currentMalData = null;
@@ -1252,6 +1254,16 @@
         Kal.docReady = function(data) {
             return $( document).ready(data);
         };
+
+        if(mangaStore){
+            GM_addStyle('.di-b.mt4.mb16.ac, .left-info-block-manga-store-button, .manga-store-preview{display: none!important;}');
+            $( document).ready(function(){
+                var mangaStore = $('h2:contains("Manga Store")');
+                if( mangaStore.length){
+                    mangaStore.parent('.pb24').css('display', 'none');
+                }
+            });
+        }
     }
 
     return Kal;
