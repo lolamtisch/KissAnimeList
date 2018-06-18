@@ -1172,7 +1172,7 @@
         Kal.urlAnimeTitle = function(url) {
             var onMal = $('.list-inline a[href^="https://myanimelist.net/"]');
             if(onMal.length){
-                return onMal.attr('href').split('/')[4];
+                return 'site:'+onMal.attr('href');
             }
             return $('.panel-title').text().trim();
         };
