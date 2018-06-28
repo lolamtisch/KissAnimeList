@@ -147,7 +147,7 @@
 
 
     function getObject(data,url,localListType){
-        if (typeof data.split('<form name="')[1] === "undefined") {
+        if (typeof data.split('<form name="')[1] === "undefined" && (url.indexOf('/manga/') !== -1 || url.indexOf('/anime/') !== -1)) {
             flashm( "MAL is down or otherwise giving bad data <a href='"+url+"'>[Check]</a>" , true);
         }
         if(localListType == 'anime'){
