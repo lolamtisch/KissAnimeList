@@ -449,6 +449,16 @@
             return string;
         };
 
+        Kal.urlVolumePart = function(url) {
+            try{
+                url = url.match(/[V,v][o,O][l,L]\D?\d{3}/)[0];
+                url = url.match(/\d+/)[0].slice(-3);
+            }catch(e){
+                url = 1;
+            }
+            return url;
+        }
+
         Kal.uiPos = function(selector) {
             selector.insertAfter($(".bigChar").first());
         };
@@ -1154,13 +1164,39 @@
                 chapterId = url.split('/')[4];
                 var curOption = $('#jump_chapter option[value="'+chapterId+'"]');
                 if(curOption.length){
-                    console.log(curOption.text().trim());
-                    return curOption.text().trim();
+                    temp = curOption.text().trim().match(/chapter\D?\d*/i);
+                    if(temp !== null){
+                        return temp[0];
+                    }
+                }
+            }
+            return null;
+        };
+
+        Kal.urlVolumePart = function(url) {
+            if(Kal.isOverviewPage()){
+                var relativUrl = url.replace(url.split('/').slice(0,3).join('/'),'');
+                var someA = $('a[href*="'+relativUrl+'"]')
+                if(someA.length){
+                    var chapterNr = someA.attr('data-volume-num');
+                    if(chapterNr){
+                        return chapterNr;
+                    }
+                }
+            }else{
+                chapterId = url.split('/')[4];
+                var curOption = $('#jump_chapter option[value="'+chapterId+'"]');
+                if(curOption.length){
+                    temp = curOption.text().trim().match(/volume\D?\d*/i);
+                    if(temp !== null){
+                        return temp[0].match(/\d+/);;
+                    }
                 }
             }
 
-            return null;
+            return 0;
         };
+
         Kal.urlAnimeIdent = function(url) {
             if(Kal.isOverviewPage()){
                 return kalUrl.split('/').slice(0,6).join('/').split('?')[0];

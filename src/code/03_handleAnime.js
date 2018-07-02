@@ -154,13 +154,8 @@
         return urlToEpisode(url);
     }
 
-    function urlToVolume(string){
-        try{
-            string = string.match(/[V,v][o,O][l,L]\D?\d{3}/)[0];
-            string = string.match(/\d+/)[0].slice(-3);
-        }catch(e){
-            string = 1;
-        }
+    function urlToVolume(url){
+        var string = K.urlVolumePart(url);
         return parseInt(string);
     }
 
