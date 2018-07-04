@@ -380,6 +380,7 @@
 	            var se = '.js-seasonal-anime-list-key-';
 	            se = se+'monday, '+se+'tuesday ,'+se+'wednesday ,'+se+'thursday ,'+se+'friday ,'+se+'saturday ,'+se+'sunday';
 	            $(parsed).find(se).find('.seasonal-anime').each(function(){
+					if(!found) clearScheduleCache();
 	            	found = 1;
 	                if($(this).find('.info .remain-time').text().match(/\w+\ \d+.\ \d+,\ \d+:\d+\ \(JST\)/i)){
 	                    var malId = $(this).find('a.link-title').attr('href').split('/')[4];
@@ -406,10 +407,22 @@
 	            });
 	            if(found){
 	            	GM_setValue('timestampUpdate/release', $.now());
+					flashm( "Schedule Data Updated" , false);
 	        	}
 
 	        }
 	    });
 	    return 1;
+	}
+
+	function clearScheduleCache(){
+		var cacheArray = GM_listValues();
+		con.log('Before',cacheArray);
+		$.each( cacheArray, function( index, cache){
+			if(/^mal\/[^/]+\/(release|eps)$/.test(cache)){
+				GM_deleteValue(cache);
+			}
+		});
+		con.log('After',GM_listValues());
 	}
 
