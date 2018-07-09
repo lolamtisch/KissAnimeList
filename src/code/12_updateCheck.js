@@ -115,6 +115,18 @@
 				}
 				return false;
 			}
+		}else if( url.indexOf("mangadex.org") > -1 ){
+			selector = ".edit.tab-content .table-striped tbody > tr:first a";
+			checkAiringState = function(parsed, html){
+				try{
+					if(html.split('status:</th>')[1].split('td')[1].split('<')[0].indexOf("Completed") > -1){
+						return true;
+					}
+				}catch(e){
+					con.log('[ERROR]',e);
+				}
+				return false;
+			}
 		}else{
 			checkForNewEpisodesDone(totalEntries, true);
 			return;
@@ -179,6 +191,10 @@
 								var parsed  = $.parseHTML(response.response);
 								var EpNumber = $(parsed).find( selector ).text();
 								EpNumber = parseInt(EpNumber.split('-')[1]);
+								var complete = checkAiringState(parsed, response.response);
+							}else if( url.indexOf("mangadex.org") > -1 ){
+								var parsed  = $.parseHTML(response.response);
+								var EpNumber = $(parsed).find( selector ).attr('data-chapter-num');
 								var complete = checkAiringState(parsed, response.response);
 							}else{
 								var parsed  = $.parseHTML(response.response);

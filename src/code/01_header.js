@@ -56,6 +56,8 @@
 // @connect     9anime.ch
 // @connect     www3.gogoanime.tv
 // @connect     www.masterani.me
+// @connect     mangadex.org
+// @connect     www.mangadex.org
 // @connect     *
 // @grant       GM_xmlhttpRequest
 // @grant       GM_getValue
