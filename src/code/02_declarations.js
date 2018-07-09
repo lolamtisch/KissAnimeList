@@ -489,7 +489,7 @@
         };
 
         Kal.nextEpLink = function(url) {
-            return kalUrl;
+            return window.location.href;
         };
 
         Kal.classicBookmarkButton = function(selector, checkClassic) {
