@@ -1116,6 +1116,15 @@
             GM_addStyle('.headui a {color: inherit !important;} #malp{margin: 0 !important} #malStatus *, #malUserRating * {background: white !important;}');
             Kal.docReady(function(){
                 checkdata();
+                if(!Kal.isOverviewPage()){
+                    var tempUrl = window.location.href;
+                    document.addEventListener("load", event =>{
+                        if(tempUrl != window.location.href){
+                           checkdata();
+                           tempUrl = window.location.href;
+                        }
+                    }, true);
+                }
             })
         }
 
@@ -1264,7 +1273,7 @@
         };
 
         Kal.nextEpLink = function(url) {
-            return kalUrl;
+            return window.location.href;
         };
 
         Kal.classicBookmarkButton = function(selector, checkfix) {
