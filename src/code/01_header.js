@@ -34,6 +34,8 @@
 // @include     /^https?:\/\/(w+.?\.)?gogoanime\.se\/([^/]+$|category\/)/
 // @exclude     /^https?:\/\/(w+.?\.)?gogoanime\.(tv|io|in|se)\/(.*.html|anime-List)/
 //
+// @include     /^https?:\/\/(w+.?\.)?mangadex\.org\/(manga|chapter)\//
+//
 // @require     http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js
 // @resource    materialCSS https://code.getmdl.io/1.3.0/material.indigo-pink.min.css
 // @resource    materialFont https://fonts.googleapis.com/icon?family=Material+Icons
@@ -54,6 +56,8 @@
 // @connect     9anime.ch
 // @connect     www3.gogoanime.tv
 // @connect     www.masterani.me
+// @connect     mangadex.org
+// @connect     www.mangadex.org
 // @connect     *
 // @grant       GM_xmlhttpRequest
 // @grant       GM_getValue

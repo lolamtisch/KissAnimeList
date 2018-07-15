@@ -115,6 +115,18 @@
 				}
 				return false;
 			}
+		}else if( url.indexOf("mangadex.org") > -1 ){
+			selector = ".edit.tab-content .table-striped tbody > tr:first a";
+			checkAiringState = function(parsed, html){
+				try{
+					if(html.split('status:</th>')[1].split('td')[1].split('<')[0].indexOf("Completed") > -1){
+						return true;
+					}
+				}catch(e){
+					con.log('[ERROR]',e);
+				}
+				return false;
+			}
 		}else{
 			checkForNewEpisodesDone(totalEntries, true);
 			return;
@@ -179,6 +191,10 @@
 								var parsed  = $.parseHTML(response.response);
 								var EpNumber = $(parsed).find( selector ).text();
 								EpNumber = parseInt(EpNumber.split('-')[1]);
+								var complete = checkAiringState(parsed, response.response);
+							}else if( url.indexOf("mangadex.org") > -1 ){
+								var parsed  = $.parseHTML(response.response);
+								var EpNumber = $(parsed).find( selector ).attr('data-chapter-num');
 								var complete = checkAiringState(parsed, response.response);
 							}else{
 								var parsed  = $.parseHTML(response.response);
@@ -380,6 +396,7 @@
 	            var se = '.js-seasonal-anime-list-key-';
 	            se = se+'monday, '+se+'tuesday ,'+se+'wednesday ,'+se+'thursday ,'+se+'friday ,'+se+'saturday ,'+se+'sunday';
 	            $(parsed).find(se).find('.seasonal-anime').each(function(){
+					if(!found) clearScheduleCache();
 	            	found = 1;
 	                if($(this).find('.info .remain-time').text().match(/\w+\ \d+.\ \d+,\ \d+:\d+\ \(JST\)/i)){
 	                    var malId = $(this).find('a.link-title').attr('href').split('/')[4];
@@ -406,10 +423,22 @@
 	            });
 	            if(found){
 	            	GM_setValue('timestampUpdate/release', $.now());
+					flashm( "Schedule Data Updated" , false);
 	        	}
 
 	        }
 	    });
 	    return 1;
+	}
+
+	function clearScheduleCache(){
+		var cacheArray = GM_listValues();
+		con.log('Before',cacheArray);
+		$.each( cacheArray, function( index, cache){
+			if(/^mal\/[^/]+\/(release|eps)$/.test(cache)){
+				GM_deleteValue(cache);
+			}
+		});
+		con.log('After',GM_listValues());
 	}
 

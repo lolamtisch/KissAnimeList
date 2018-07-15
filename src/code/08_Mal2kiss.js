@@ -79,6 +79,11 @@
                     sitesName['Kissmanga'] = 'KissManga';
                     searchLinks = 1;
                 }
+                if(mangadexLinks != 0){
+                    sites.push('Mangadex');
+                    sitesName['Mangadex'] = 'MangaDex';
+                    searchLinks = 1;
+                }
             }
             if(searchLinks != 0){
                 $('h2:contains("Information")').before('<h2 id="siteSearch" class="mal_links">Search</h2><br class="mal_links" />');
@@ -93,7 +98,8 @@
                       $('#kissanimeSearch').submit();
                     });
                 }else{
-                    $('#siteSearch').after('<form class="mal_links" target="_blank" action="http://kissmanga.com/Search/Manga" id="kissmangaSearch" method="post" _lpchecked="1"><a href="#" onclick="return false;" class="submitKissmangaSearch">KissManga</a><input type="hidden" id="keyword" name="keyword" value="'+$('#contentWrapper > div:first-child span').text()+'"/></form>');
+                    if(mangadexLinks != 0) $('#siteSearch').after('<div class="mal_links"><a target="_blank" href="https://mangadex.org/quick_search/'+$('#contentWrapper > div:first-child span').text()+'">MangaDex</a></div>');
+                    if(kissmangaLinks != 0) $('#siteSearch').after('<form class="mal_links" target="_blank" action="http://kissmanga.com/Search/Manga" id="kissmangaSearch" method="post" _lpchecked="1"><a href="#" onclick="return false;" class="submitKissmangaSearch">KissManga</a><input type="hidden" id="keyword" name="keyword" value="'+$('#contentWrapper > div:first-child span').text()+'"/></form>');
                     $('.submitKissmangaSearch').click(function(){
                       $('#kissmangaSearch').submit();
                     });

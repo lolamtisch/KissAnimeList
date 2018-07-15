@@ -93,7 +93,7 @@
                         $(this).prepend('<span class="lastOpen">[Last opened]</span>');
                     }
                     if(episodelink == parseInt(anime['.add_manga[num_read_chapters]']) && parseInt(anime['.add_manga[num_read_chapters]']) != 0){
-                        $(this).parent().parent().css("background-color","#002966");
+                        K.epListActive($(this));
                         truelink = '<a style="color: white;" href="'+K.episodeListElementHref(K.episodeListNextElement($(this), index))+'">'+K.episodeListElementTitle(K.episodeListNextElement($(this), index))+'</a>';
                     }
                 }
@@ -154,13 +154,8 @@
         return urlToEpisode(url);
     }
 
-    function urlToVolume(string){
-        try{
-            string = string.match(/[V,v][o,O][l,L]\D?\d{3}/)[0];
-            string = string.match(/\d+/)[0].slice(-3);
-        }catch(e){
-            string = 1;
-        }
+    function urlToVolume(url){
+        var string = K.urlVolumePart(url);
         return parseInt(string);
     }
 

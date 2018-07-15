@@ -61,6 +61,7 @@
     var nineanimeLinks = GM_getValue( 'nineanimeLinks', 1 );
     var crunchyrollLinks = GM_getValue( 'crunchyrollLinks', 1 );
     var gogoanimeLinks = GM_getValue( 'gogoanimeLinks', 1 );
+    var mangadexLinks = GM_getValue( 'mangadexLinks', 1 );
 
     var malThumbnail = GM_getValue( 'malThumbnail', 100 );
 
@@ -78,6 +79,8 @@
     var episodeInfoSubtitle = GM_getValue( 'episodeInfoSubtitle', 1 );
 
     var autoTracking = GM_getValue( 'autoTracking', 1 );
+
+    var mangaStore = GM_getValue( 'mangaStore', 1 );
 
     var delay = GM_getValue( 'delay', 3 );
 
@@ -446,6 +449,16 @@
             return string;
         };
 
+        Kal.urlVolumePart = function(url) {
+            try{
+                url = url.match(/[V,v][o,O][l,L]\D?\d{3}/)[0];
+                url = url.match(/\d+/)[0].slice(-3);
+            }catch(e){
+                url = 1;
+            }
+            return url;
+        }
+
         Kal.uiPos = function(selector) {
             selector.insertAfter($(".bigChar").first());
         };
@@ -476,7 +489,7 @@
         };
 
         Kal.nextEpLink = function(url) {
-            return kalUrl;
+            return window.location.href;
         };
 
         Kal.classicBookmarkButton = function(selector, checkClassic) {
@@ -1089,6 +1102,188 @@
         Kal.BookmarksStyleAfterLoad = function() {
         };
         //###########################
+    }else if( kalUrl.indexOf("mangadex.org") > -1 ){
+        //#########Mangadex.org#########
+        Kal.domain = 'https://www.mangadex.org';
+        Kal.textColor = 'black';
+        Kal.dbSelector = 'Mangadex';
+        Kal.listType = 'manga';
+        Kal.bookmarkCss = "";
+        Kal.bookmarkFixCss = "";
+        Kal.videoSelector = '';
+
+        Kal.init = function() {
+            GM_addStyle('.headui a {color: inherit !important;} #malp{margin: 0 !important} #malStatus *, #malUserRating * {background: white !important;}');
+            Kal.docReady(function(){
+                checkdata();
+                if(!Kal.isOverviewPage()){
+                    var tempUrl = window.location.href;
+                    document.addEventListener("load", event =>{
+                        if(tempUrl != window.location.href){
+                           checkdata();
+                           tempUrl = window.location.href;
+                        }
+                    }, true);
+                }
+            })
+        }
+
+        Kal.imageCache = function(selector) {
+            return $('.class').first().find('img').attr('src');
+        };
+
+        Kal.isOverviewPage = function() {
+            if(kalUrl.split('/')[3] !== 'chapter'){
+                return true;
+            }else{
+                return false;
+            }
+        };
+        Kal.episodeListSelector = function() {
+            return $(".edit.tab-content .table-striped tbody > tr");
+        };
+        Kal.episodeListElementHref = function(selector) {
+            return $.absoluteLink(selector.find("a").first().attr('href'));
+        };
+        Kal.episodeListElementTitle = function(selector) {
+            return selector.find("a").first().text().trim();
+        };
+        Kal.episodeListNextElement = function(selector, index) {
+            if ((index-1) > -1) {
+                return Kal.episodeListSelector().eq(index-1);
+            }
+            return $();
+        };
+        Kal.handleNextLink = function(truelink, anime){
+            return truelink;
+        };
+
+        Kal.urlEpisodePart = function(url) {
+
+            if(Kal.isOverviewPage()){
+                var relativUrl = url.replace(url.split('/').slice(0,3).join('/'),'');
+                var someA = $('a[href*="'+relativUrl+'"]')
+                if(someA.length){
+                    var chapterNr = someA.attr('data-chapter-num');
+                    if(chapterNr){
+                        return chapterNr;
+                    }
+                }
+            }else{
+                chapterId = url.split('/')[4];
+                var curOption = $('#jump_chapter option[value="'+chapterId+'"]');
+                if(curOption.length){
+                    temp = curOption.text().trim().match(/chapter\D?\d*/i);
+                    if(temp !== null){
+                        return temp[0];
+                    }
+                }
+            }
+            return null;
+        };
+
+        Kal.urlVolumePart = function(url) {
+            if(Kal.isOverviewPage()){
+                var relativUrl = url.replace(url.split('/').slice(0,3).join('/'),'');
+                var someA = $('a[href*="'+relativUrl+'"]')
+                if(someA.length){
+                    var chapterNr = someA.attr('data-volume-num');
+                    if(chapterNr){
+                        return chapterNr;
+                    }
+                }
+            }else{
+                chapterId = url.split('/')[4];
+                var curOption = $('#jump_chapter option[value="'+chapterId+'"]');
+                if(curOption.length){
+                    temp = curOption.text().trim().match(/volume\D?\d*/i);
+                    if(temp !== null){
+                        return temp[0].match(/\d+/);;
+                    }
+                }
+            }
+
+            return 0;
+        };
+
+        Kal.urlAnimeIdent = function(url) {
+            if(Kal.isOverviewPage()){
+                return kalUrl.split('/').slice(0,6).join('/').split('?')[0];
+            }else{
+                return $.absoluteLink($('.panel-title a').first().attr('href'));
+            }
+        };
+        Kal.urlAnimeSelector = function(url) {
+            return url.split("/")[4].split("?")[0];
+        };
+        Kal.urlAnimeTitle = function(url) {
+            var onMal = $('.list-inline a[href^="https://myanimelist.net/"]');
+            if(onMal.length){
+                return 'site:'+onMal.attr('href');
+            }
+            return $('.panel-title').text().trim();
+        };
+
+        Kal.EpisodePartToEpisode = function(string) {
+            if(!string) return '';
+            if(!(isNaN(parseInt(string)))){
+                return string;
+            }
+            var temp = [];
+            temp = string.match(/chapter\ \d+/i);
+            console.log(temp);
+            if(temp !== null){
+                string = temp[0];
+                temp = string.match(/\d+/);
+                if(temp !== null){
+                    return temp[0];
+                }
+            }
+            return '';
+        };
+
+        Kal.uiPos = function(selector) {
+            $("#content .edit.row .table tr").first().after("<tr><th>MyAnimeList:</th><td colspan='5' class='kal-ui'></td></tr>");
+            selector.appendTo($("#content .kal-ui").first());
+        };
+        Kal.uiWrongPos = function(selector) {//TODO
+            //selector.css('margin-top','5px').appendTo($(".ui.info.list").first());
+        };
+        Kal.uiHeadPos = function(selector) {//TODO
+            selector.appendTo($("h3.panel-title").first());
+        };
+
+        Kal.docReady = function(data) {
+            return $( document).ready(data);
+        };
+
+        Kal.normalUrl = function(){
+            return Kal.urlAnimeIdent(kalUrl);
+        };
+
+        Kal.epListReset = function(selector) {
+            selector.children().css("background-color","initial");
+        };
+        Kal.epListActive = function(selector) {
+            selector.children().css("background-color","#cee1ff");
+        };
+
+        Kal.bookmarkEntrySelector = function() {
+            return $(".trAnime");
+        };
+
+        Kal.nextEpLink = function(url) {
+            return window.location.href;
+        };
+
+        Kal.classicBookmarkButton = function(selector, checkfix) {
+        };
+        Kal.bookmarkButton = function(selector, check) {
+        };
+
+        Kal.BookmarksStyleAfterLoad = function() {
+        };
+        //###########################
     }else if( kalUrl.indexOf("myanimelist.net") > -1 ){
         googleover = 1;
         Kal.listType = kalUrl.split('/')[3];
@@ -1104,6 +1299,16 @@
         Kal.docReady = function(data) {
             return $( document).ready(data);
         };
+
+        if(mangaStore){
+            GM_addStyle('.di-b.mt4.mb16.ac, .left-info-block-manga-store-button, .manga-store-preview{display: none!important;}');
+            $( document).ready(function(){
+                var mangaStore = $('h2:contains("Manga Store")');
+                if( mangaStore.length){
+                    mangaStore.parent('.pb24').css('display', 'none');
+                }
+            });
+        }
     }
 
     return Kal;

@@ -17,7 +17,7 @@
   </tr>
   <tr>
     <td>9anime.to</td>
-    <td></td>
+    <td>mangadex.org</td>
   </tr>
   <tr>
     <td>masterani.me</td>
@@ -43,14 +43,7 @@
 <img src='https://raw.githubusercontent.com/Franciscoseipel/Mal-for-Kissanime-Greasymonkey-/master/Screenshots/Myanimelist_sidebar.png'>
 - Adds oneklick search links
 - Enlarge Thumbnails on MAL
-- Shows direct links using a Database.
-<code>Database: (01.01.2018)
-kissanime 6429 / ~7500
-kissmanga 3163 / ~12500
-masterani 99% / ~2500
-9anime 99% / ~7500
-crunchyroll 99% / ~1000
-gogoanime 444 / ~4000</code>
+- Shows direct links using a <a href="https://github.com/lolamtisch/KissAnimeList/wiki/Database">Database</a>.
 
 <img src='https://raw.githubusercontent.com/Franciscoseipel/Mal-for-Kissanime-Greasymonkey-/master/Screenshots/continue%20watching.png'>
 - Displays the last opened viewing page and a link to the next episode on your MAL Bookmarks page

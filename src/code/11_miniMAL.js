@@ -484,6 +484,7 @@
                 settingsUI += materialCheckbox(crunchyrollLinks,'crunchyrollLinks','Crunchyroll');
                 settingsUI += materialCheckbox(gogoanimeLinks,'gogoanimeLinks','Gogoanime');
                 settingsUI += materialCheckbox(kissmangaLinks,'kissmangaLinks','KissManga');
+                settingsUI += materialCheckbox(mangadexLinks,'mangadexLinks','MangaDex');
                 settingsUI += '</div>';
 
                 settingsUI += '<div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-shadow--4dp">\
@@ -504,6 +505,7 @@
                                     </select>\
                                   </span>\
                               </li>';
+                settingsUI += materialCheckbox(mangaStore,'mangaStore','Hide Manga Store');
                 settingsUI += '</div>';
 
                 settingsUI += '<div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-shadow--4dp">\
@@ -704,6 +706,15 @@
                     kissmangaLinks = 0;
                 }
             });
+            $("#info-iframe").contents().find('#mangadexLinks').change(function(){
+                if($(this).is(":checked")){
+                    GM_setValue('mangadexLinks', 1);
+                    mangadexLinks = 1;
+                }else{
+                    GM_setValue('mangadexLinks', 0);
+                    mangadexLinks = 0;
+                }
+            });
 
             $("#info-iframe").contents().find('#kissanimeLinks').change(function(){
                 if($(this).is(":checked")){
@@ -825,6 +836,16 @@
             $("#info-iframe").contents().find("#malThumbnail").val(malThumbnail);
             $("#info-iframe").contents().find("#malThumbnail").change(function(){
               GM_setValue( 'malThumbnail', $("#info-iframe").contents().find("#malThumbnail").val() );
+            });
+
+            $("#info-iframe").contents().find('#mangaStore').change(function(){
+                if($(this).is(":checked")){
+                    GM_setValue('mangaStore', 1);
+                    mangaStore = 1;
+                }else{
+                    GM_setValue('mangaStore', 0);
+                    mangaStore = 0;
+                }
             });
 
             $("#info-iframe").contents().find('#debugging').change(function(){
