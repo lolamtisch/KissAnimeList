@@ -140,6 +140,9 @@
                     case '0.92.1':
                         message += 'KissAnimeList (v0.92.0):<br/><br/> [Added] <br/>- Feature: Display a tentative episode number and air time for anime.  <br/>- Feature: If autotracking is deactivated - Display a popup for manually updating  <br/>- Mangalist integration <br/>- Added a section for characters to miniMAL.  <br/>- Added anime/manga switches for miniMAL\'s search and bookmarks <br/>- Feature: Episode/Chapter releases check [BETA] (Deactivated by default) <br/> ';
                         break;
+                    case '0.92.5':
+                        message += 'KissAnimeList (v0.92.5):<br/><br/> [Added] <br/>- Feature: mangadex.org support <br/>- Feature: Hide MALs Manga Store';
+                        break;
                 }
             }else{
                 message += '<h2>Welcome to <a href="https://greasyfork.org/en/scripts/27564-kissanimelist">KissAnimeList</a></h2><br/>Support:<br/><a href="https://discord.gg/cTH4yaw">Discord Channel</a><br/><a href="https://github.com/lolamtisch/KissAnimeList">GitHub</a> <a href="https://github.com/lolamtisch/KissAnimeList/issues">Issues</a>';
