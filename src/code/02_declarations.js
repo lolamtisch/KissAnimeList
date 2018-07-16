@@ -1173,10 +1173,10 @@
                     }
                 }
             }else{
-                chapterId = url.split('/')[4];
+                var chapterId = url.split('/')[4];
                 var curOption = $('#jump_chapter option[value="'+chapterId+'"]');
                 if(curOption.length){
-                    temp = curOption.text().trim().match(/chapter\D?\d*/i);
+                    var temp = curOption.text().trim().match(/chapter\D?\d*/i);
                     if(temp !== null){
                         return temp[0];
                     }
@@ -1196,10 +1196,10 @@
                     }
                 }
             }else{
-                chapterId = url.split('/')[4];
+                var chapterId = url.split('/')[4];
                 var curOption = $('#jump_chapter option[value="'+chapterId+'"]');
                 if(curOption.length){
-                    temp = curOption.text().trim().match(/volume\D?\d*/i);
+                    var temp = curOption.text().trim().match(/volume\D?\d*/i);
                     if(temp !== null){
                         return temp[0].match(/\d+/);;
                     }
