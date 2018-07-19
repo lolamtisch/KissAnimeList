@@ -92,7 +92,7 @@
             var uihead ='';
             uihead += '<p class="headui" style="float: right; margin: 0; margin-right: 10px">';
             uihead += '';
-            uihead += '<p>';
+            uihead += '</p>';
 
             var uiwrong ='';
 
