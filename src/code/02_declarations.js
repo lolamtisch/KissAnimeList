@@ -1176,7 +1176,6 @@
 
             if(Kal.isOverviewPage()){
                 var relativUrl = url.replace(url.split('/').slice(0,3).join('/'),'');
-                console.log(relativUrl);
                 var someA = $('a[href*="'+relativUrl+'"]').parent().parent('.chapter-row');
                 if(someA.length){
                     var chapterNr = someA.attr('data-chapter');
