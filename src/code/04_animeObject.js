@@ -21,8 +21,8 @@
 
         if(url == '' || url == null){
             GM_setValue(K.dbSelector+'/'+$.titleToDbKey(K.urlAnimeSelector(K.normalUrl()))+'/Mal' , null);
-            loadingText = "No Mal Entry!";
-            $("#MalInfo").text("No Mal Entry!");
+            loadingText = "No MAL Entry!";
+            $("#MalInfo").text("No MAL Entry!");
             miniMalButton(null);
             return;
         }

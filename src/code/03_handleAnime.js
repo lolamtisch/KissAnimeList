@@ -23,7 +23,7 @@
             $("#malRating").attr("href", anime['malurl']);
             if(isNaN(anime['.add_'+K.listType+'[status]'])){
                 $('.MalLogin').css("display","none");
-                $("#malRating").after("<span id='AddMalDiv'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href='#' id='AddMal' onclick='return false;'>Add to Mal</a></span>")
+                $("#malRating").after("<span id='AddMalDiv'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href='#' id='AddMal' onclick='return false;'>Add to MAL</a></span>")
                 $('#AddMal').click(function() {
                     var anime = {};
                     anime['.add_'+K.listType+'[status]'] = 6;
