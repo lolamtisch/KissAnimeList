@@ -1116,7 +1116,7 @@
         Kal.videoSelector = '';
 
         Kal.init = function() {
-            GM_addStyle('.headui a {color: inherit !important;} #malp{margin: 0 !important} #malStatus *, #malUserRating * {background: white !important;}');
+            GM_addStyle('.headui a {color: inherit !important;} #malp{margin: 0 !important; margin-bottom: -4px !important;} #malStatus *, #malUserRating * {background: white !important;}');
             Kal.docReady(function(){
                 checkdata();
                 if(!Kal.isOverviewPage()){
@@ -1246,8 +1246,8 @@
         };
 
         Kal.uiPos = function(selector) {
-            $("#content .edit.row .table tr").first().after("<tr><th>MyAnimeList:</th><td colspan='5' class='kal-ui'></td></tr>");
-            selector.appendTo($("#content .kal-ui").first());
+            $(".container .card .edit.row > * > .row").first().after('<div class="row m-0 py-1 px-0 border-top"><div class="col-lg-3 col-xl-2 strong">MyAnimeList:</div><div class="col-lg-9 col-xl-10 kal-ui"></div></div>');
+            selector.appendTo($(".container .card .kal-ui").first());
         };
         Kal.uiWrongPos = function(selector) {//TODO
             //selector.css('margin-top','5px').appendTo($(".ui.info.list").first());
