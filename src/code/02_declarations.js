@@ -1118,8 +1118,17 @@
         Kal.init = function() {
             GM_addStyle('.headui a {color: inherit !important;} #malp{margin: 0 !important; margin-bottom: -4px !important;} #malStatus *, #malUserRating * {background: white !important;}');
             Kal.docReady(function(){
-                checkdata();
                 if(!Kal.isOverviewPage()){
+                    var waitforhead = setInterval(function() {
+                        console.log('check');
+                        console.log(Kal.normalUrl());
+                        if (Kal.normalUrl() != null) {
+                           console.log("Exists!");
+                           clearInterval(waitforhead);
+                           checkdata();
+                        }
+                    }, 100);
+
                     var tempUrl = window.location.href;
                     document.addEventListener("load", event =>{
                         if(tempUrl != window.location.href){
@@ -1127,6 +1136,8 @@
                            tempUrl = window.location.href;
                         }
                     }, true);
+                }else{
+                   checkdata();
                 }
             })
         }
@@ -1175,9 +1186,9 @@
                 }
             }else{
                 var chapterId = url.split('/')[4];
-                var curOption = $('#jump_chapter option[value="'+chapterId+'"]');
+                var curOption = $('#jump-chapter option[value="'+chapterId+'"]');
                 if(curOption.length){
-                    var temp = curOption.text().trim().match(/chapter\D?\d*/i);
+                    var temp = curOption.text().trim().match(/ch\.\D?\d+/i);
                     if(temp !== null){
                         return temp[0];
                     }
@@ -1198,9 +1209,9 @@
                 }
             }else{
                 var chapterId = url.split('/')[4];
-                var curOption = $('#jump_chapter option[value="'+chapterId+'"]');
+                var curOption = $('#jump-chapter option[value="'+chapterId+'"]');
                 if(curOption.length){
-                    var temp = curOption.text().trim().match(/volume\D?\d*/i);
+                    var temp = curOption.text().trim().match(/vol\.\D?\d+/i);
                     if(temp !== null){
                         return temp[0].match(/\d+/);;
                     }
@@ -1214,7 +1225,7 @@
             if(Kal.isOverviewPage()){
                 return kalUrl.split('/').slice(0,6).join('/').split('?')[0];
             }else{
-                return $.absoluteLink($('.panel-title a').first().attr('href'));
+                return $.absoluteLink($('a.manga-link').first().attr('href'));
             }
         };
         Kal.urlAnimeSelector = function(url) {
@@ -1234,7 +1245,7 @@
                 return string;
             }
             var temp = [];
-            temp = string.match(/chapter\ \d+/i);
+            temp = string.match(/ch\.\D?\d+/i);
             console.log(temp);
             if(temp !== null){
                 string = temp[0];
