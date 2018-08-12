@@ -1254,7 +1254,7 @@
             //selector.css('margin-top','5px').appendTo($(".ui.info.list").first());
         };
         Kal.uiHeadPos = function(selector) {//TODO
-            selector.appendTo($("h3.panel-title").first());
+            selector.appendTo($("h6.card-header").first());
         };
 
         Kal.docReady = function(data) {
