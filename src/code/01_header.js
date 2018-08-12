@@ -32,7 +32,8 @@
 // @include     /^https?:\/\/(w+.?\.)?gogoanime\.io\/([^/]+$|category\/)/
 // @include     /^https?:\/\/(w+.?\.)?gogoanime\.in\/([^/]+$|category\/)/
 // @include     /^https?:\/\/(w+.?\.)?gogoanime\.se\/([^/]+$|category\/)/
-// @exclude     /^https?:\/\/(w+.?\.)?gogoanime\.(tv|io|in|se)\/(.*.html|anime-List)/
+// @include     /^https?:\/\/(w+.?\.)?gogoanime\.sh\/([^/]+$|category\/)/
+// @exclude     /^https?:\/\/(w+.?\.)?gogoanime\.(tv|io|in|se|sh)\/(.*.html|anime-List)/
 //
 // @include     /^https?:\/\/(w+.?\.)?mangadex\.org\/(manga|chapter)\//
 //
