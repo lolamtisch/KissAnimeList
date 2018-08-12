@@ -1143,7 +1143,7 @@
             }
         };
         Kal.episodeListSelector = function() {
-            return $(".edit.tab-content .table-striped tbody > tr");
+            return $(".chapter-container > .row:not(:first-of-type) .chapter-row");
         };
         Kal.episodeListElementHref = function(selector) {
             return $.absoluteLink(selector.find("a").first().attr('href'));
@@ -1165,9 +1165,10 @@
 
             if(Kal.isOverviewPage()){
                 var relativUrl = url.replace(url.split('/').slice(0,3).join('/'),'');
-                var someA = $('a[href*="'+relativUrl+'"]')
+                console.log(relativUrl);
+                var someA = $('a[href*="'+relativUrl+'"]').parent().parent('.chapter-row');
                 if(someA.length){
-                    var chapterNr = someA.attr('data-chapter-num');
+                    var chapterNr = someA.attr('data-chapter');
                     if(chapterNr){
                         return chapterNr;
                     }
@@ -1188,9 +1189,9 @@
         Kal.urlVolumePart = function(url) {
             if(Kal.isOverviewPage()){
                 var relativUrl = url.replace(url.split('/').slice(0,3).join('/'),'');
-                var someA = $('a[href*="'+relativUrl+'"]')
+                var someA = $('a[href*="'+relativUrl+'"]').parent().parent('.chapter-row');
                 if(someA.length){
-                    var chapterNr = someA.attr('data-volume-num');
+                    var chapterNr = someA.attr('data-volume');
                     if(chapterNr){
                         return chapterNr;
                     }
@@ -1265,10 +1266,10 @@
         };
 
         Kal.epListReset = function(selector) {
-            selector.children().css("background-color","initial");
+            selector.css("background-color","initial");
         };
         Kal.epListActive = function(selector) {
-            selector.children().css("background-color","#cee1ff");
+            selector.css("background-color","#cee1ff");
         };
 
         Kal.bookmarkEntrySelector = function() {
