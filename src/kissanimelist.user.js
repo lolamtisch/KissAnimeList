@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name        KissAnimeList
-// @version     0.92.5
+// @version     0.92.6
 // @description Integrates MyAnimeList into various sites, with auto episode tracking.
 // @author      lolamtisch@gmail.com
 // @license 	CC-BY-4.0; https://creativecommons.org/licenses/by/4.0/legalcode
@@ -32,7 +32,8 @@
 // @include     /^https?:\/\/(w+.?\.)?gogoanime\.io\/([^/]+$|category\/)/
 // @include     /^https?:\/\/(w+.?\.)?gogoanime\.in\/([^/]+$|category\/)/
 // @include     /^https?:\/\/(w+.?\.)?gogoanime\.se\/([^/]+$|category\/)/
-// @exclude     /^https?:\/\/(w+.?\.)?gogoanime\.(tv|io|in|se)\/(.*.html|anime-List)/
+// @include     /^https?:\/\/(w+.?\.)?gogoanime\.sh\/([^/]+$|category\/)/
+// @exclude     /^https?:\/\/(w+.?\.)?gogoanime\.(tv|io|in|se|sh)\/(.*.html|anime-List)/
 //
 // @include     /^https?:\/\/(w+.?\.)?mangadex\.org\/(manga|chapter)\//
 //
@@ -1192,10 +1193,19 @@
         Kal.videoSelector = '';
 
         Kal.init = function() {
-            GM_addStyle('.headui a {color: inherit !important;} #malp{margin: 0 !important} #malStatus *, #malUserRating * {background: white !important;}');
+            GM_addStyle('.headui a {color: inherit !important;} #malp{margin: 0 !important; margin-bottom: -4px !important;} #malStatus *, #malUserRating * {background: white !important;}');
             Kal.docReady(function(){
-                checkdata();
                 if(!Kal.isOverviewPage()){
+                    var waitforhead = setInterval(function() {
+                        console.log('check');
+                        console.log(Kal.normalUrl());
+                        if (Kal.normalUrl() != null) {
+                           console.log("Exists!");
+                           clearInterval(waitforhead);
+                           checkdata();
+                        }
+                    }, 100);
+
                     var tempUrl = window.location.href;
                     document.addEventListener("load", event =>{
                         if(tempUrl != window.location.href){
@@ -1203,6 +1213,8 @@
                            tempUrl = window.location.href;
                         }
                     }, true);
+                }else{
+                   checkdata();
                 }
             })
         }
@@ -1219,7 +1231,7 @@
             }
         };
         Kal.episodeListSelector = function() {
-            return $(".edit.tab-content .table-striped tbody > tr");
+            return $(".chapter-container > .row:not(:first-of-type) .chapter-row");
         };
         Kal.episodeListElementHref = function(selector) {
             return $.absoluteLink(selector.find("a").first().attr('href'));
@@ -1241,18 +1253,18 @@
 
             if(Kal.isOverviewPage()){
                 var relativUrl = url.replace(url.split('/').slice(0,3).join('/'),'');
-                var someA = $('a[href*="'+relativUrl+'"]')
+                var someA = $('a[href*="'+relativUrl+'"]').parent().parent('.chapter-row');
                 if(someA.length){
-                    var chapterNr = someA.attr('data-chapter-num');
+                    var chapterNr = someA.attr('data-chapter');
                     if(chapterNr){
                         return chapterNr;
                     }
                 }
             }else{
                 var chapterId = url.split('/')[4];
-                var curOption = $('#jump_chapter option[value="'+chapterId+'"]');
+                var curOption = $('#jump-chapter option[value="'+chapterId+'"]');
                 if(curOption.length){
-                    var temp = curOption.text().trim().match(/chapter\D?\d*/i);
+                    var temp = curOption.text().trim().match(/ch\.\D?\d+/i);
                     if(temp !== null){
                         return temp[0];
                     }
@@ -1264,18 +1276,18 @@
         Kal.urlVolumePart = function(url) {
             if(Kal.isOverviewPage()){
                 var relativUrl = url.replace(url.split('/').slice(0,3).join('/'),'');
-                var someA = $('a[href*="'+relativUrl+'"]')
+                var someA = $('a[href*="'+relativUrl+'"]').parent().parent('.chapter-row');
                 if(someA.length){
-                    var chapterNr = someA.attr('data-volume-num');
+                    var chapterNr = someA.attr('data-volume');
                     if(chapterNr){
                         return chapterNr;
                     }
                 }
             }else{
                 var chapterId = url.split('/')[4];
-                var curOption = $('#jump_chapter option[value="'+chapterId+'"]');
+                var curOption = $('#jump-chapter option[value="'+chapterId+'"]');
                 if(curOption.length){
-                    var temp = curOption.text().trim().match(/volume\D?\d*/i);
+                    var temp = curOption.text().trim().match(/vol\.\D?\d+/i);
                     if(temp !== null){
                         return temp[0].match(/\d+/);;
                     }
@@ -1289,7 +1301,7 @@
             if(Kal.isOverviewPage()){
                 return kalUrl.split('/').slice(0,6).join('/').split('?')[0];
             }else{
-                return $.absoluteLink($('.panel-title a').first().attr('href'));
+                return $.absoluteLink($('a.manga-link').first().attr('href'));
             }
         };
         Kal.urlAnimeSelector = function(url) {
@@ -1309,7 +1321,7 @@
                 return string;
             }
             var temp = [];
-            temp = string.match(/chapter\ \d+/i);
+            temp = string.match(/ch\.\D?\d+/i);
             console.log(temp);
             if(temp !== null){
                 string = temp[0];
@@ -1322,14 +1334,14 @@
         };
 
         Kal.uiPos = function(selector) {
-            $("#content .edit.row .table tr").first().after("<tr><th>MyAnimeList:</th><td colspan='5' class='kal-ui'></td></tr>");
-            selector.appendTo($("#content .kal-ui").first());
+            $(".container .card .edit.row > * > .row").first().after('<div class="row m-0 py-1 px-0 border-top"><div class="col-lg-3 col-xl-2 strong">MyAnimeList:</div><div class="col-lg-9 col-xl-10 kal-ui"></div></div>');
+            selector.appendTo($(".container .card .kal-ui").first());
         };
         Kal.uiWrongPos = function(selector) {//TODO
             //selector.css('margin-top','5px').appendTo($(".ui.info.list").first());
         };
         Kal.uiHeadPos = function(selector) {//TODO
-            selector.appendTo($("h3.panel-title").first());
+            selector.appendTo($("h6.card-header").first());
         };
 
         Kal.docReady = function(data) {
@@ -1341,10 +1353,10 @@
         };
 
         Kal.epListReset = function(selector) {
-            selector.children().css("background-color","initial");
+            selector.css("background-color","initial");
         };
         Kal.epListActive = function(selector) {
-            selector.children().css("background-color","#cee1ff");
+            selector.css("background-color","#cee1ff");
         };
 
         Kal.bookmarkEntrySelector = function() {
@@ -1464,7 +1476,7 @@
             $("#malRating").attr("href", anime['malurl']);
             if(isNaN(anime['.add_'+K.listType+'[status]'])){
                 $('.MalLogin').css("display","none");
-                $("#malRating").after("<span id='AddMalDiv'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href='#' id='AddMal' onclick='return false;'>Add to Mal</a></span>")
+                $("#malRating").after("<span id='AddMalDiv'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href='#' id='AddMal' onclick='return false;'>Add to MAL</a></span>")
                 $('#AddMal').click(function() {
                     var anime = {};
                     anime['.add_'+K.listType+'[status]'] = 6;
@@ -1795,8 +1807,8 @@
 
         if(url == '' || url == null){
             GM_setValue(K.dbSelector+'/'+$.titleToDbKey(K.urlAnimeSelector(K.normalUrl()))+'/Mal' , null);
-            loadingText = "No Mal Entry!";
-            $("#MalInfo").text("No Mal Entry!");
+            loadingText = "No MAL Entry!";
+            $("#MalInfo").text("No MAL Entry!");
             miniMalButton(null);
             return;
         }
@@ -2698,7 +2710,7 @@
             ui += '<span id="MalData" style="display: none; justify-content: space-between; flex-wrap: wrap;">';
 
             ui += wrapStart;
-            ui += '<span class="info">Mal Score: </span>';
+            ui += '<span class="info">MAL Score: </span>';
             ui += '<a id="malRating" style="color: '+K.textColor+';min-width: 30px;display: inline-block;" target="_blank" href="">____</a>';
             ui += wrapEnd;
 

@@ -17,7 +17,7 @@
             ui += '<span id="MalData" style="display: none; justify-content: space-between; flex-wrap: wrap;">';
 
             ui += wrapStart;
-            ui += '<span class="info">Mal Score: </span>';
+            ui += '<span class="info">MAL Score: </span>';
             ui += '<a id="malRating" style="color: '+K.textColor+';min-width: 30px;display: inline-block;" target="_blank" href="">____</a>';
             ui += wrapEnd;
 
