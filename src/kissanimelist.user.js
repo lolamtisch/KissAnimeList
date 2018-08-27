@@ -26,7 +26,7 @@
 // @include     /^https?:\/\/(w+.?\.)?9anime\.ch\/watch\//
 //
 // @include     /^https?:\/\/(www\.)?crunchyroll.com\//
-// @exclude     /^https?:\/\/(www\.)?crunchyroll.com\/($|acct|anime|comics|edit|email|forum|home|inbox|library|login|manga|newprivate|news|notifications|order|outbox|pm|search|store|user|videos)/
+// @exclude     /^https?:\/\/(www\.)?crunchyroll.com\/($|acct|anime|comics|edit|email|forum|home|inbox|library|login|manga|newprivate|news|notifications|order|outbox|pm|search|store|user|videos|affiliate_iframeplayer)/
 //
 // @include     /^https?:\/\/(w+.?\.)?gogoanime\.tv\/([^/]+$|category\/)/
 // @include     /^https?:\/\/(w+.?\.)?gogoanime\.io\/([^/]+$|category\/)/
