@@ -35,7 +35,7 @@
 // @include     /^https?:\/\/(w+.?\.)?gogoanime\.sh\/([^/]+$|category\/)/
 // @exclude     /^https?:\/\/(w+.?\.)?gogoanime\.(tv|io|in|se|sh)\/(.*.html|anime-List)/
 //
-// @include     /^https?:\/\/(w+.?\.)?mangadex\.org\/(manga|chapter)\//
+// @include     /^https?:\/\/(w+.?\.)?mangadex\.org\/(manga|title|chapter)\//
 //
 // @require     http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js
 // @resource    materialCSS https://code.getmdl.io/1.3.0/material.indigo-pink.min.css
