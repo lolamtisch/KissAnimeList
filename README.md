@@ -1,6 +1,6 @@
 <h1>This script is not getting updated anymore!</h1>
 Please use MAL-Sync instead. <br/> 
-github: https://github.com/lolamtisch/MALSync
+github: https://github.com/lolamtisch/MALSync<br/> 
 Chrome: https://chrome.google.com/webstore/detail/mal-sync/kekjfbackdeiabghhcdklcdoekaanoel?hl=en<br/>
 Firefox: https://addons.mozilla.org/en-US/firefox/addon/mal-sync/<br/>
 Userscript: https://greasyfork.org/en/scripts/372847-mal-sync <br/>
