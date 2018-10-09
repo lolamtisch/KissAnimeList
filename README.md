@@ -1,3 +1,12 @@
+<h1>This script is not getting updated anymore!</h1>
+Please use MAL-Sync instead. <br/> 
+Chrome: https://chrome.google.com/webstore/detail/mal-sync/kekjfbackdeiabghhcdklcdoekaanoel?hl=en<br/>
+Firefox: https://addons.mozilla.org/en-US/firefox/addon/mal-sync/<br/>
+Userscript: https://greasyfork.org/en/scripts/372847-mal-sync <br/>
+    <br/>
+  <br/>
+    <br/>
+
 
 [![img](https://img.shields.io/badge/Download-Greasyfork-brightgreen.svg?style=flat-square)](https://greasyfork.org/en/scripts/27564-kissanimelist)
 [![img](https://img.shields.io/badge/Download-OpenUserJS-yellow.svg?style=flat-square)](https://openuserjs.org/scripts/lolamtisch/KissAnimeList)
