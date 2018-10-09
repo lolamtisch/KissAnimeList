@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name        KissAnimeList
-// @version     0.92.7
+// @version     0.92.8
 // @description Integrates MyAnimeList into various sites, with auto episode tracking.
 // @author      lolamtisch@gmail.com
 // @license 	CC-BY-4.0; https://creativecommons.org/licenses/by/4.0/legalcode
@@ -26,7 +26,7 @@
 // @include     /^https?:\/\/(w+.?\.)?9anime\.ch\/watch\//
 //
 // @include     /^https?:\/\/(www\.)?crunchyroll.com\//
-// @exclude     /^https?:\/\/(www\.)?crunchyroll.com\/($|acct|anime|comics|edit|email|forum|home|inbox|library|login|manga|newprivate|news|notifications|order|outbox|pm|search|store|user|videos)/
+// @exclude     /^https?:\/\/(www\.)?crunchyroll.com\/($|acct|anime|comics|edit|email|forum|home|inbox|library|login|manga|newprivate|news|notifications|order|outbox|pm|search|store|user|videos|affiliate_iframeplayer)/
 //
 // @include     /^https?:\/\/(w+.?\.)?gogoanime\.tv\/([^/]+$|category\/)/
 // @include     /^https?:\/\/(w+.?\.)?gogoanime\.io\/([^/]+$|category\/)/
@@ -168,6 +168,12 @@
     var curVersion = GM_info.script.version;
 
     function changelog(){
+
+        if(GM_getValue( 'VersionStamp', null ) == null || ($.now() - GM_getValue( 'VersionStamp', null )) > 345600000){
+            GM_deleteValue('Version');
+            GM_setValue('VersionStamp', $.now());
+        }
+
         if(curVersion != GM_getValue( 'Version', null )){
             var message = '<div style="text-align: left;">';
             if(GM_getValue( 'Version', null ) != null){
@@ -222,7 +228,7 @@
                         break;
                 }
             }else{
-                message += '<h2>Welcome to <a href="https://greasyfork.org/en/scripts/27564-kissanimelist">KissAnimeList</a></h2><br/>Support:<br/><a href="https://discord.gg/cTH4yaw">Discord Channel</a><br/><a href="https://github.com/lolamtisch/KissAnimeList">GitHub</a> <a href="https://github.com/lolamtisch/KissAnimeList/issues">Issues</a>';
+                message += '<h2 style="color: rgb(255,64,129); font-size: 18px;">Important</h2><br/>This is going to be the last release for KissAnimeList.<br/>Please migrate to the rewrite MAL-Sync.<br/>It now comes as a browser extension, but you can still get a userscript version.<br/><br/><a href="https://chrome.google.com/webstore/detail/mal-sync/kekjfbackdeiabghhcdklcdoekaanoel?hl=en">Chrome</a><br/><a href="https://addons.mozilla.org/en-US/firefox/addon/mal-sync/">Firefox</a><br/><a href="https://greasyfork.org/de/scripts/372847-mal-sync">Greasyfork</a>';
             }
             if(message != '<div style="text-align: left;">'){
                 message += '</div><button class="okChangelog" style="background-color: transparent; border: none; color: rgb(255,64,129);margin-top: 10px;cursor: pointer;">Close</button>'
